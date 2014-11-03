@@ -40,8 +40,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.navigationController setNavigationBarHidden:YES];
-    
     self.languages = [[NSArray alloc] initWithObjects:getLocalizedString(@"Language_Name_English", @"English") , getLocalizedString(@"Language_Name_Swedish", @"Swedish"), nil];
     self.languageCodes = [[NSArray alloc] initWithObjects:@"en", @"sv", nil];
     
@@ -53,6 +51,11 @@
     UITapGestureRecognizer *tapGesture =
     [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(selectLanguageButtonClicked:)];
     [labelCurrentLanguage addGestureRecognizer:tapGesture];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self.navigationController setNavigationBarHidden:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated

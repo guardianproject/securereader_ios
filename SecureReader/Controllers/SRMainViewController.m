@@ -46,6 +46,11 @@
     //self.refreshControl = refreshControl;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self.navigationController setNavigationBarHidden:NO];    
+}
+
 - (NSString *) getCellIdentifierForItem:(Item *) item
 {
     NSString *cellIdentifier = @"cellNoPhotos";
