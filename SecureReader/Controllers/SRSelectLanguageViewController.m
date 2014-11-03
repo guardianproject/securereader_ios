@@ -1,0 +1,195 @@
+//
+//  SRLoginViewController.m
+//  SecureReader
+//
+//  Created by N-Pex on 2014-09-15.
+//  Copyright (c) 2014 Guardian Project. All rights reserved.
+//
+
+#import "SRSelectLanguageViewController.h"
+#import "NSBundle+Language.h"
+#import "SRTheme.h"
+#import "Settings.h"
+
+#define getLocalizedString(key, defaultVal)   [[NSBundle mainBundle] localizedStringForKey:key value:defaultVal table:nil]
+
+@interface SRSelectLanguageViewController ()
+@property NSArray *languages;
+@property NSArray *languageCodes;
+- (NSString*) getLanguageDisplayName:(NSString*)languageCode;
+@end
+
+@implementation SRSelectLanguageViewController
+{
+    UITapGestureRecognizer *tap;
+}
+
+@synthesize pickerFrame;
+@synthesize pickerLanguage;
+@synthesize labelCurrentLanguage;
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    [self.navigationController setNavigationBarHidden:YES];
+    
+    self.languages = [[NSArray alloc] initWithObjects:getLocalizedString(@"Language_Name_English", @"English") , getLocalizedString(@"Language_Name_Swedish", @"Swedish"), nil];
+    self.languageCodes = [[NSArray alloc] initWithObjects:@"en", @"sv", nil];
+    
+    [pickerLanguage setDataSource:self];
+    [pickerLanguage setDelegate:self];
+    
+    [labelCurrentLanguage setText:[self getLanguageDisplayName:[Settings getUiLanguage]]];
+    labelCurrentLanguage.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tapGesture =
+    [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(selectLanguageButtonClicked:)];
+    [labelCurrentLanguage addGestureRecognizer:tapGesture];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    CGRect newFrame = pickerFrame.frame;
+    CGRect parentFrame = pickerFrame.superview.frame;
+    newFrame.origin.y = parentFrame.size.height;
+    pickerFrame.frame = newFrame;
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)getStartedButtonClicked:(id)sender
+{
+    [self performSegueWithIdentifier:@"segueToCreatePassphrase" sender:self];
+    [self removeFromParentViewController];
+}
+
+- (IBAction)selectLanguageButtonClicked:(id)sender
+{
+    [self showLanguagePicker];
+}
+
+- (IBAction)saveLanguageButtonClicked:(id)sender
+{
+    [self hideLanguagePicker:YES];
+}
+
+- (void)updateLanguage
+{
+    int row = [pickerLanguage selectedRowInComponent:0];
+    NSString *newLanguage = [self.languageCodes objectAtIndex:row];
+    [Settings setUiLanguage:newLanguage];
+    [NSBundle setLanguage:newLanguage];
+    UIViewController *cont = [self.storyboard instantiateViewControllerWithIdentifier:self.restorationIdentifier];
+    [self.navigationController setViewControllers:@[cont] animated:NO];
+}
+
+- (void) showLanguagePicker
+{
+    CGRect newFrame = pickerFrame.frame;
+    CGRect superBounds = pickerFrame.superview.bounds;
+    newFrame.origin.y = superBounds.size.height - newFrame.size.height;
+    
+    [UIView animateWithDuration:0.5
+                          delay:0
+                        options: UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         pickerFrame.frame = newFrame;
+                     }
+                     completion:^(BOOL finished){
+                         NSLog(@"Done!");
+                     }];
+    
+    // Capture taps outside the bounds of this alert view
+    if (tap == nil)
+    {
+        tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapOut:)];
+        tap.cancelsTouchesInView = NO; // So that legit taps on the table bubble up to the tableview
+        [self.view addGestureRecognizer:tap];
+    }
+}
+
+- (void) hideLanguagePicker:(BOOL)setLanguageOnCompletion
+{
+    if (tap != nil)
+    {
+        [self.view removeGestureRecognizer:tap];
+        tap = nil;
+    }
+    
+    CGRect newFrame = pickerFrame.frame;
+    newFrame.origin.y = pickerFrame.superview.bounds.size.height;
+    
+    [UIView animateWithDuration:0.5
+                          delay:0
+                        options: UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         pickerFrame.frame = newFrame;
+                     }
+                     completion:^(BOOL finished){
+                         if (setLanguageOnCompletion)
+                             [self updateLanguage];
+                         NSLog(@"Done!");
+                     }];
+}
+
+-(void)tapOut:(UIGestureRecognizer *)gestureRecognizer {
+	CGPoint p = [gestureRecognizer locationInView:pickerFrame];
+	if (p.y < 0)
+    {
+        // They tapped outside
+        [self hideLanguagePicker:NO];
+	}
+}
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    return 1;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    return [self.languages count];
+}
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    return [self.languages objectAtIndex:row];
+}
+
+- (void)addChildViewController:(UIViewController *)childController
+{
+    [super addChildViewController:childController];
+}
+
+- (NSString*) getLanguageDisplayName:(NSString*)languageCode;
+{
+    if ([@"sv" isEqualToString:languageCode])
+        return getLocalizedString(@"Language_Name_Swedish", @"Swedish");
+    return getLocalizedString(@"Language_Name_English", @"English");
+}
+
+@end

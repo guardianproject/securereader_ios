@@ -1,0 +1,9 @@
+/* 
+  Localizable.strings
+  SecureReader
+
+  Created by N-Pex on 2014-10-20.
+  Copyright (c) 2014 Guardian Project. All rights reserved.
+*/
+"Language_Name_English" = "Engelska";
+"Language_Name_Swedish" = "Svenska";

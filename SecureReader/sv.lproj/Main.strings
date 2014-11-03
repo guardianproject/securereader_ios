@@ -1,0 +1,15 @@
+/* Class = "IBUIButton"; normalTitle = "GET STARTED"; ObjectID = "6yP-Wd-LOe"; */
+"6yP-Wd-LOe.normalTitle" = "SÄTT IGÅNG";
+
+/* Class = "IBUINavigationItem"; title = "Language"; ObjectID = "Ctb-zM-vlQ"; */
+"Ctb-zM-vlQ.title" = "Språk";
+
+/* Class = "IBUIBarButtonItem"; title = "Save"; ObjectID = "Hkg-oX-HWc"; */
+"Hkg-oX-HWc.title" = "Spara";
+
+/* Class = "IBUILabel"; text = "This is a localized string!"; ObjectID = "QdG-Sb-e5G"; */
+"QdG-Sb-e5G.text" = "Det här är svenska!";
+
+/* Class = "IBUIViewController"; title = "Login"; ObjectID = "u4e-FS-idg"; */
+"u4e-FS-idg.title" = "Inloggning";
+

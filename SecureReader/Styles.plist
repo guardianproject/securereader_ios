@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>UIButton</key>
+	<dict>
+		<key>parent</key>
+		<string>RoundButtonStyle</string>
+	</dict>
+	<key>RoundButtonStyle</key>
+	<dict>
+		<key>corners</key>
+		<integer>5</integer>
+		<key>tintColor</key>
+		<string>#ff000000</string>
+		<key>backgroundColor</key>
+		<string>#ffffff00</string>
+	</dict>
+	<key>LoginScreenStyle</key>
+	<dict>
+		<key>backgroundColor</key>
+		<string>#ffdddddd</string>
+	</dict>
+	<key>SettingsScreenStyle</key>
+	<dict>
+		<key>backgroundColor</key>
+		<string>#ffffffe0</string>
+	</dict>
+</dict>
+</plist>
