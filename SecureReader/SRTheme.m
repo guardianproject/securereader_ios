@@ -50,6 +50,15 @@ static NSMutableDictionary *themes;
                 UIColor *color = [self colorFromString:[styles objectForKey:property]];
                 [control setBackgroundColor:color];
             }
+            else if ([property isEqualToString:@"background"] && [control respondsToSelector:@selector(setBackgroundColor:)])
+            {
+                UIImage *image = [UIImage imageNamed:[styles objectForKey:property]];
+                if (image != nil)
+                {
+                    UIColor *color = [UIColor colorWithPatternImage:image];
+                    [control setBackgroundColor:color];
+                }
+            }
             else if ([property isEqualToString:@"tintColor"] && [control respondsToSelector:@selector(setTintColor:)])
             {
                 UIColor *color = [self colorFromString:[styles objectForKey:property]];

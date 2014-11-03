@@ -18,8 +18,8 @@
 	</dict>
 	<key>LoginScreenStyle</key>
 	<dict>
-		<key>backgroundColor</key>
-		<string>#ffdddddd</string>
+		<key>background</key>
+		<string>background_debut_light</string>
 	</dict>
 	<key>SettingsScreenStyle</key>
 	<dict>

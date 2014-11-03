@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		922DC28019FE920C00FB1274 /* SRMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 922DC27F19FE920C00FB1274 /* SRMainViewController.m */; };
+		9239049E1A07E365004EEE7E /* background_debut_light.png in Resources */ = {isa = PBXBuildFile; fileRef = 9239049D1A07E365004EEE7E /* background_debut_light.png */; };
 		929EEF4D19F4EB100020BD75 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 929EEF4C19F4EB100020BD75 /* main.m */; };
 		929EEF5019F4EB100020BD75 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 929EEF4F19F4EB100020BD75 /* AppDelegate.m */; };
 		929EEF5919F4EB100020BD75 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 929EEF5719F4EB100020BD75 /* Main.storyboard */; };
@@ -46,6 +47,7 @@
 /* Begin PBXFileReference section */
 		922DC27E19FE920C00FB1274 /* SRMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SRMainViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		922DC27F19FE920C00FB1274 /* SRMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SRMainViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		9239049D1A07E365004EEE7E /* background_debut_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_debut_light.png; sourceTree = "<group>"; };
 		929EEF4719F4EB100020BD75 /* SecureReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SecureReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		929EEF4B19F4EB100020BD75 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		929EEF4C19F4EB100020BD75 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = main.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -231,6 +233,7 @@
 		92BD50AA1A07A74500F3BD22 /* Temporary Files */ = {
 			isa = PBXGroup;
 			children = (
+				9239049D1A07E365004EEE7E /* background_debut_light.png */,
 				92BD50AB1A07A74500F3BD22 /* ic_launcher.png */,
 				92BD50AC1A07A74500F3BD22 /* img_local_share.png */,
 			);
@@ -320,6 +323,7 @@
 			files = (
 				929EEF8C19F4FC9D0020BD75 /* Localizable.strings in Resources */,
 				929EEF5919F4EB100020BD75 /* Main.storyboard in Resources */,
+				9239049E1A07E365004EEE7E /* background_debut_light.png in Resources */,
 				929EEF5E19F4EB100020BD75 /* LaunchScreen.xib in Resources */,
 				929EEF8719F4F5F30020BD75 /* Styles.plist in Resources */,
 				929EEF5B19F4EB100020BD75 /* Images.xcassets in Resources */,
