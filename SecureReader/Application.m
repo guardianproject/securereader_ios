@@ -7,10 +7,16 @@
 //
 
 #import "Application.h"
+#import "Settings.h"
 
 @implementation Application
 {
     NSTimer     *idleLockTimer;
+}
+
++ (Application*) sharedApplication
+{
+    return (Application*)[UIApplication sharedApplication];
 }
 
 - (void)sendEvent:(UIEvent *)event
@@ -19,20 +25,37 @@
     [self startLockTimer];
 }
 
--(void)idleTimerExpired
+-(void)lockApplication
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:kApplicationDidTimeoutNotification object:nil];
 }
 
--(void)startLockTimer
+-(void)lockApplicationDelayed
 {
-    if (idleLockTimer == nil || ![idleLockTimer isValid])
+    NSInteger timeout = [Settings lockTimeout];
+    if (timeout == 0)
     {
-        idleLockTimer = [NSTimer scheduledTimerWithTimeInterval:kApplicationTimeoutInSeconds target:self selector:@selector(idleTimerExpired) userInfo:nil repeats:NO];
+        [self lockApplication];
     }
     else
     {
-        [idleLockTimer setFireDate:[NSDate dateWithTimeIntervalSinceNow:kApplicationTimeoutInSeconds]];
+        [self startLockTimer];
+    }
+}
+
+-(void)startLockTimer
+{
+    NSInteger timeout = [Settings lockTimeout];
+    if (timeout != 0)
+    {
+        if (idleLockTimer == nil || ![idleLockTimer isValid])
+        {
+            idleLockTimer = [NSTimer scheduledTimerWithTimeInterval:timeout target:self selector:@selector(lockApplication) userInfo:nil repeats:NO];
+        }
+        else
+        {
+            [idleLockTimer setFireDate:[NSDate dateWithTimeIntervalSinceNow:timeout]];
+        }
     }
 }
 

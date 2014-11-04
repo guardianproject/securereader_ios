@@ -40,6 +40,12 @@
     [userDefaults synchronize];
 }
 
-
++ (NSInteger) lockTimeout
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    if ([userDefaults objectForKey:@"lockTimeout"] == nil)
+        return 60 * 60 * 24;
+    return [userDefaults integerForKey:@"lockTimeout"];
+}
 
 @end

@@ -17,4 +17,6 @@
 + (NSString *)getPassphrase;
 + (void) setPassphrase:(NSString *)passphrase;
 
++ (NSInteger) lockTimeout;
+
 @end

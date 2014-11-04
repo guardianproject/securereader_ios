@@ -299,28 +299,23 @@
             <point key="canvasLocation" x="161" y="1291"/>
         </scene>
         <!--Settings-->
-        <scene sceneID="VfM-Nu-aRu">
+        <scene sceneID="bNu-0m-etZ">
             <objects>
-                <viewController title="Settings" id="JTf-mp-jsP" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="vOb-r6-crB"/>
-                        <viewControllerLayoutGuide type="bottom" id="R5I-Kg-LTH"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="IKG-zz-Gkq">
+                <tableViewController title="Settings" id="1qY-y1-unP" customClass="IASKAppSettingsViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="jcY-cd-st1">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="string" keyPath="theme" value="SettingsScreenStyle"/>
-                        </userDefinedRuntimeAttributes>
-                    </view>
-                    <navigationItem key="navigationItem" title="Settings" id="K8X-BL-Gnp">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="wOl-tH-GWB"/>
-                    </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Swe-fd-EPj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <sections/>
+                        <connections>
+                            <outlet property="dataSource" destination="1qY-y1-unP" id="Rls-0g-52e"/>
+                            <outlet property="delegate" destination="1qY-y1-unP" id="dl8-rI-Dn7"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fnw-dZ-OCl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1937" y="-140"/>
+            <point key="canvasLocation" x="1912" y="-28"/>
         </scene>
         <!--Main-->
         <scene sceneID="BzX-lx-ILF">
@@ -453,7 +448,7 @@
                     <navigationItem key="navigationItem" title="Main" id="gVh-ob-VAG">
                         <barButtonItem key="rightBarButtonItem" systemItem="action" id="c6g-t0-see">
                             <connections>
-                                <segue destination="JTf-mp-jsP" kind="show" id="yYD-Lf-hn5"/>
+                                <segue destination="1qY-y1-unP" kind="show" id="xBO-ZN-mvg"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

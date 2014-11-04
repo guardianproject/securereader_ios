@@ -8,11 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-#define kApplicationTimeoutInSeconds 5
 #define kApplicationDidTimeoutNotification @"AppTimeOut"
 
 @interface Application : UIApplication
 
++ (Application*) sharedApplication;
+
+-(void)lockApplication;
+-(void)lockApplicationDelayed;
 - (void)startLockTimer;
 
 @end

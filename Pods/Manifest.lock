@@ -1,0 +1,10 @@
+PODS:
+  - InAppSettingsKit (2.2)
+
+DEPENDENCIES:
+  - InAppSettingsKit (~> 2.2)
+
+SPEC CHECKSUMS:
+  InAppSettingsKit: 08d5d21057973c5fd6cd9f7063fc27f73aa0d7a3
+
+COCOAPODS: 0.34.4
