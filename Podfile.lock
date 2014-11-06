@@ -1,10 +1,38 @@
 PODS:
+  - CocoaLumberjack (1.9.2):
+    - CocoaLumberjack/Extensions
+  - CocoaLumberjack/Core (1.9.2)
+  - CocoaLumberjack/Extensions (1.9.2):
+    - CocoaLumberjack/Core
+  - FormatterKit/TimeIntervalFormatter (1.7.2)
   - InAppSettingsKit (2.2)
+  - Mantle (1.5.1):
+    - Mantle/extobjc
+  - Mantle/extobjc (1.5.1)
+  - PureLayout (2.0.1)
+  - SQLCipher/common (3.1.0)
+  - SQLCipher/fts (3.1.0):
+    - SQLCipher/common
+  - YapDatabase/common (2.5.3):
+    - CocoaLumberjack (~> 1)
+  - YapDatabase/SQLCipher (2.5.3):
+    - SQLCipher/fts
+    - YapDatabase/common
 
 DEPENDENCIES:
+  - FormatterKit/TimeIntervalFormatter (~> 1.6)
   - InAppSettingsKit (~> 2.2)
+  - Mantle (~> 1.4)
+  - PureLayout (~> 2.0)
+  - YapDatabase/SQLCipher (~> 2.5)
 
 SPEC CHECKSUMS:
+  CocoaLumberjack: 205769c032b5fef85b92472046bcc8b7e7c8a817
+  FormatterKit: 230f6ae7a6e9ac468cb09b3ac2b7524effc8daaa
   InAppSettingsKit: 08d5d21057973c5fd6cd9f7063fc27f73aa0d7a3
+  Mantle: d7c5ac734579ec751c58fecbf56189853056c58c
+  PureLayout: 12eca5b6dc94f1a03fdf255d640604584ff1b55b
+  SQLCipher: 981110217eb93c2779c34fb59e646a1c1da918d8
+  YapDatabase: 096e860167b04e629b88bea33dfb7a4153279bb0
 
 COCOAPODS: 0.34.4
