@@ -7,70 +7,145 @@
 
 #import "SRTheme.h"
 #import "UIView+Theming.h"
+#import <objc/runtime.h>
 
 @interface SRTheme ()
 {
 }
-+(UIColor*) colorFromString:(NSString*)hexColorString;
++ (UIColor*) colorWithHexString:(NSString*)hexColorString;
++ (UIColor*) colorWithImageName:(NSString*)imageName;
 @end
 
 @implementation SRTheme
 
-static NSMutableDictionary *themes;
+static const char _savedStyle=0;
+static const char _currentTheme=1;
+
+static NSMutableDictionary *themes = nil;
 
 + (void) initialize
 {
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"Styles" ofType:@"plist"];
-    NSData *plistData = [NSData dataWithContentsOfFile:path];
-    NSError *error;
-    NSPropertyListFormat format;
+    if (themes == nil)
+    {
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"Styles" ofType:@"plist"];
+        NSData *plistData = [NSData dataWithContentsOfFile:path];
+        NSError *error;
+        NSPropertyListFormat format;
     
-    themes = [NSPropertyListSerialization propertyListWithData:plistData options:NSPropertyListImmutable format:&format error:&error];
-    if(!themes)
-    {
-        NSLog(error.localizedDescription);
+        themes = [NSPropertyListSerialization propertyListWithData:plistData options:NSPropertyListImmutable    format:&format error:&error];
+        if(!themes)
+        {
+            NSLog(@"%@", error.localizedDescription);
+        }
+        else
+        {
+            // Any defaults we need to apply?
+            [[UIButton appearance] setTheme:@"UIButton"];
+            [[UIButton appearanceWhenContainedIn:[UITableViewCell class], nil] setTheme:nil];
+        }
     }
-    else
+}
++ (void) saveProperty:(NSString *)property value:(NSObject *)obj forControl:(UIControl *)control
+{
+    NSMutableDictionary *savedStyle = objc_getAssociatedObject(control, &_savedStyle);
+    if (savedStyle != nil && [savedStyle objectForKey:property] == nil)
     {
-        // Any defaults we need to apply?
-        [[UIButton appearance] setTheme:@"UIButton"];
+        if (obj == nil)
+            obj = [NSNull null];
+        [savedStyle setObject:obj forKey:property];
     }
+}
+
++ (NSObject *) getNillableProperty:(NSString *)property fromDict:(NSDictionary *)dict
+{
+    NSObject *obj = [dict objectForKey:property];
+    if (obj == [NSNull null])
+        return nil;
+    return obj;
 }
 
 + (void) applyTheme:(NSString*)theme toControl:(UIControl*)control
 {
-    NSMutableDictionary *styles = nil;
-    [SRTheme getStylesForTheme:theme into:&styles];
-    if (styles != nil)
+    NSMutableDictionary *savedStyle = objc_getAssociatedObject(control, &_savedStyle);
+    NSString *currentTheme = objc_getAssociatedObject(control, &_currentTheme);
+    if (savedStyle != nil && currentTheme != nil && ![currentTheme isEqualToString:theme])
     {
-        for (NSString *property in styles.keyEnumerator)
+        // Reset to old style first
+        //
+        [self applyStyle:savedStyle toControl:control save:NO];
+    }
+    
+    if (savedStyle == nil)
+    {
+        savedStyle = [[NSMutableDictionary alloc] init];
+        objc_setAssociatedObject(control, &_savedStyle, savedStyle, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
+
+    // Store which theme we are using
+    objc_setAssociatedObject(control, &_currentTheme, theme, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+
+    // Apply all styles
+    NSMutableDictionary *style = nil;
+    [SRTheme getStylesForTheme:theme into:&style];
+    if (style != nil)
+    {
+        [self applyStyle:style toControl:control save:YES];
+    }
+}
+
++ (void) applyStyle:(NSDictionary *)style toControl:(UIControl *)control save:(BOOL)save
+{
+    for (NSString *property in style.keyEnumerator)
+    {
+        if ([property isEqualToString:@"backgroundColor"] && [control respondsToSelector:@selector(setBackgroundColor:)])
         {
-            if ([property isEqualToString:@"backgroundColor"] && [control respondsToSelector:@selector(setBackgroundColor:)])
+            if (save)
+                [SRTheme saveProperty:property value:[control backgroundColor] forControl:control];
+            UIColor *color = nil;
+            NSObject *value = [self getNillableProperty:property fromDict:style];
+            if ([value isKindOfClass:[NSString class]])
+                color =  [self colorWithHexString:(NSString *)value];
+            else
+                color = (UIColor *)value;
+            [control setBackgroundColor:color];
+        }
+        else if ([property isEqualToString:@"background"] && [control respondsToSelector:@selector(setBackgroundColor:)])
+        {
+            if (save)
+                [SRTheme saveProperty:property value:[control backgroundColor] forControl:control];
+            UIColor *color = nil;
+            NSObject *value = [self getNillableProperty:property fromDict:style];
+            if ([value isKindOfClass:[NSString class]])
+                color =  [self colorWithImageName:(NSString *)value];
+            else
+                color = (UIColor *)value;
+            [control setBackgroundColor:color];
+        }
+        else if ([property isEqualToString:@"tintColor"] && [control respondsToSelector:@selector(setTintColor:)])
+        {
+            if (save)
+                [SRTheme saveProperty:property value:[control tintColor] forControl:control];
+            UIColor *color = nil;
+            NSObject *value = [self getNillableProperty:property fromDict:style];
+            if ([value isKindOfClass:[NSString class]])
+                color =  [self colorWithHexString:(NSString *)value];
+            else
+                color = (UIColor *)value;
+            [control setTintColor:color];
+        }
+        else if ([property isEqualToString:@"corners"])
+        {
+            if (control.layer != nil)
             {
-                UIColor *color = [self colorFromString:[styles objectForKey:property]];
-                [control setBackgroundColor:color];
-            }
-            else if ([property isEqualToString:@"background"] && [control respondsToSelector:@selector(setBackgroundColor:)])
-            {
-                UIImage *image = [UIImage imageNamed:[styles objectForKey:property]];
-                if (image != nil)
-                {
-                    UIColor *color = [UIColor colorWithPatternImage:image];
-                    [control setBackgroundColor:color];
-                }
-            }
-            else if ([property isEqualToString:@"tintColor"] && [control respondsToSelector:@selector(setTintColor:)])
-            {
-                UIColor *color = [self colorFromString:[styles objectForKey:property]];
-                [control setTintColor:color];
-            }
-            else if ([property isEqualToString:@"corners"])
-            {
-                if (control.layer != nil)
-                    control.layer.cornerRadius = [[styles objectForKey:property] floatValue];
+                if (save)
+                    [SRTheme saveProperty:property value:[NSNumber numberWithFloat:control.layer.cornerRadius] forControl:control];
+                NSNumber *value = (NSNumber*)[self getNillableProperty:property fromDict:style];
+                if (value != nil)
+                    control.layer.cornerRadius = [value floatValue];
             }
         }
     }
+    
 }
 
 + (void) getStylesForTheme:(NSString*)theme into:(NSMutableDictionary **)dict
@@ -91,7 +166,7 @@ static NSMutableDictionary *themes;
     }
 }
 
-+(UIColor*) colorFromString:(NSString*)hexColorString
++ (UIColor*) colorWithHexString:(NSString*)hexColorString
 {
     NSScanner *scanner = [NSScanner scannerWithString:hexColorString];
     [scanner setScanLocation:1];
@@ -104,5 +179,12 @@ static NSMutableDictionary *themes;
     return [UIColor colorWithRed:r / 255.0f green:g / 255.0f blue:b / 255.0f alpha:a / 255.0f];
 }
 
++ (UIColor*) colorWithImageName:(NSString*)imageName
+{
+    UIImage *image = [UIImage imageNamed:imageName];
+    if (image == nil)
+        return nil;
+    return [UIColor colorWithPatternImage:image];
+}
 
 @end
