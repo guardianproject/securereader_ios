@@ -6,20 +6,20 @@
 //  Copyright (c) 2014 Guardian Project. All rights reserved.
 //
 
-#import "SRSelectLanguageViewController.h"
+#import "SCRSelectLanguageViewController.h"
 #import "NSBundle+Language.h"
-#import "SRTheme.h"
-#import "Settings.h"
+#import "SCRTheme.h"
+#import "SCRSettings.h"
 
 #define getLocalizedString(key, defaultVal)   [[NSBundle mainBundle] localizedStringForKey:key value:defaultVal table:nil]
 
-@interface SRSelectLanguageViewController ()
+@interface SCRSelectLanguageViewController ()
 @property NSArray *languages;
 @property NSArray *languageCodes;
 - (NSString*) getLanguageDisplayName:(NSString*)languageCode;
 @end
 
-@implementation SRSelectLanguageViewController
+@implementation SCRSelectLanguageViewController
 {
     UITapGestureRecognizer *tap;
 }
@@ -46,7 +46,7 @@
     [pickerLanguage setDataSource:self];
     [pickerLanguage setDelegate:self];
     
-    [labelCurrentLanguage setText:[self getLanguageDisplayName:[Settings getUiLanguage]]];
+    [labelCurrentLanguage setText:[self getLanguageDisplayName:[SCRSettings getUiLanguage]]];
     labelCurrentLanguage.userInteractionEnabled = YES;
     UITapGestureRecognizer *tapGesture =
     [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(selectLanguageButtonClicked:)];
@@ -92,7 +92,7 @@
 {
     int row = [pickerLanguage selectedRowInComponent:0];
     NSString *newLanguage = [self.languageCodes objectAtIndex:row];
-    [Settings setUiLanguage:newLanguage];
+    [SCRSettings setUiLanguage:newLanguage];
     [NSBundle setLanguage:newLanguage];
     UIViewController *cont = [self.storyboard instantiateViewControllerWithIdentifier:self.restorationIdentifier];
     [self.navigationController setViewControllers:@[cont] animated:NO];

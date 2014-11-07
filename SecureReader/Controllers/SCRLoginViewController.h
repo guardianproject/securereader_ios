@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SRLoginViewController : UIViewController
+@interface SCRLoginViewController : UIViewController
 
 - (IBAction)loginButtonClicked:(id)sender;
 

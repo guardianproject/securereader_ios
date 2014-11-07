@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Guardian Project. All rights reserved.
 //
 
-#import "ItemView.h"
+#import "SCRItemView.h"
 
-@implementation ItemView
+@implementation SCRItemView
 
 @synthesize imageView = _imageView;
 @synthesize sourceView = _sourceView;

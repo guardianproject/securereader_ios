@@ -6,17 +6,17 @@
 //  Copyright (c) 2014 Guardian Project. All rights reserved.
 //
 
-#import "Application.h"
-#import "Settings.h"
+#import "SCRApplication.h"
+#import "SCRSettings.h"
 
-@implementation Application
+@implementation SCRApplication
 {
     NSTimer     *idleLockTimer;
 }
 
-+ (Application*) sharedApplication
++ (SCRApplication*) sharedApplication
 {
-    return (Application*)[UIApplication sharedApplication];
+    return (SCRApplication*)[UIApplication sharedApplication];
 }
 
 - (void)sendEvent:(UIEvent *)event
@@ -32,7 +32,7 @@
 
 -(void)lockApplicationDelayed
 {
-    NSInteger timeout = [Settings lockTimeout];
+    NSInteger timeout = [SCRSettings lockTimeout];
     if (timeout == 0)
     {
         [self lockApplication];
@@ -45,7 +45,7 @@
 
 -(void)startLockTimer
 {
-    NSInteger timeout = [Settings lockTimeout];
+    NSInteger timeout = [SCRSettings lockTimeout];
     if (timeout != 0)
     {
         if (idleLockTimer == nil || ![idleLockTimer isValid])

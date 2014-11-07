@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SRSelectLanguageViewController : UIViewController<UIPickerViewDataSource, UIPickerViewDelegate>
+@interface SCRSelectLanguageViewController : UIViewController<UIPickerViewDataSource, UIPickerViewDelegate>
 @property (weak, nonatomic) IBOutlet UIPickerView *pickerLanguage;
 @property (weak, nonatomic) IBOutlet UIView *pickerFrame;
 @property (weak, nonatomic) IBOutlet UILabel *labelCurrentLanguage;

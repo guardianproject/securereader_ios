@@ -6,16 +6,16 @@
 //  Copyright (c) 2014 Guardian Project. All rights reserved.
 //
 
-#import "Item.h"
+#import "SCRItem.h"
 
-@implementation Item
+@implementation SCRItem
 
 @synthesize title;
 @synthesize text;
 
 + (id)createWithTitle:(NSString*)title text:(NSString*)text
 {
-    Item *newItem = [[self alloc] init];
+    SCRItem *newItem = [[self alloc] init];
     newItem.title = title;
     newItem.text = text;
     return newItem;

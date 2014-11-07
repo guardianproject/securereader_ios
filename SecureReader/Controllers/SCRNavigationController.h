@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SRNavigationController : UINavigationController
+@interface SCRNavigationController : UINavigationController
 
 @end

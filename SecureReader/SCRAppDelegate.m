@@ -6,30 +6,30 @@
 //  Copyright (c) 2014 Guardian Project. All rights reserved.
 //
 
-#import "AppDelegate.h"
-#import "Application.h"
-#import "Settings.h"
+#import "SCRAppDelegate.h"
+#import "SCRApplication.h"
+#import "SCRSettings.h"
 #import "NSBundle+Language.h"
-#import "Application.h"
-#import "SRLoginViewController.h"
-#import "SRSelectLanguageViewController.h"
-#import "SRCreatePassphraseViewController.h"
-#import "SRNavigationController.h"
-#import "SRTheme.h"
+#import "SCRApplication.h"
+#import "SCRLoginViewController.h"
+#import "SCRSelectLanguageViewController.h"
+#import "SCRCreatePassphraseViewController.h"
+#import "SCRNavigationController.h"
+#import "SCRTheme.h"
 
-@implementation AppDelegate
+@implementation SCRAppDelegate
 {
     BOOL mLoggedIn;
 }
 
-+ (AppDelegate*) sharedAppDelegate
++ (SCRAppDelegate*) sharedAppDelegate
 {
-    return (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    return (SCRAppDelegate*)[[UIApplication sharedApplication] delegate];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [NSBundle setLanguage:[Settings getUiLanguage]];
-    [SRTheme initialize];
+    [NSBundle setLanguage:[SCRSettings getUiLanguage]];
+    [SCRTheme initialize];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidTimeout:) name:kApplicationDidTimeoutNotification object:nil];
     
     return YES;
@@ -38,16 +38,16 @@
 -(void)applicationDidTimeout:(NSNotification *) notif
 {
     NSLog (@"time exceeded!!");
-    SRNavigationController *navController = (SRNavigationController *)self.window.rootViewController;
+    SCRNavigationController *navController = (SCRNavigationController *)self.window.rootViewController;
     UIViewController *vcCurrent = [navController visibleViewController];
-    if ([vcCurrent class] != [SRSelectLanguageViewController class] &&
-        [vcCurrent class] != [SRCreatePassphraseViewController class] &&
-        [vcCurrent class] != [SRLoginViewController class])
+    if ([vcCurrent class] != [SCRSelectLanguageViewController class] &&
+        [vcCurrent class] != [SCRCreatePassphraseViewController class] &&
+        [vcCurrent class] != [SCRLoginViewController class])
     {
-        SRLoginViewController *vcLogin = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"login"];
+        SCRLoginViewController *vcLogin = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"login"];
         vcLogin.modalPresentationStyle = UIModalPresentationFullScreen;
         dispatch_async(dispatch_get_main_queue(), ^{
-            [(SRNavigationController *)self.window.rootViewController presentViewController:vcLogin animated:YES completion:nil];
+            [(SCRNavigationController *)self.window.rootViewController presentViewController:vcLogin animated:YES completion:nil];
         });
     }
 }
@@ -55,7 +55,7 @@
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-    [[Application sharedApplication] lockApplicationDelayed];
+    [[SCRApplication sharedApplication] lockApplicationDelayed];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
@@ -67,7 +67,7 @@
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     self.window.hidden = NO;
-    [(Application *)[UIApplication sharedApplication] startLockTimer];
+    [(SCRApplication *)[UIApplication sharedApplication] startLockTimer];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
@@ -81,7 +81,7 @@
 - (BOOL)hasCreatedPassphrase
 {
     //return NO;
-    return [Settings getPassphrase] != nil && [Settings getPassphrase].length > 0;
+    return [SCRSettings getPassphrase] != nil && [SCRSettings getPassphrase].length > 0;
 }
 
 - (BOOL)isLoggedIn
@@ -91,7 +91,7 @@
 
 - (BOOL)loginWithPassphrase:(NSString *)passphrase
 {
-    if ([passphrase isEqualToString:[Settings getPassphrase]])
+    if ([passphrase isEqualToString:[SCRSettings getPassphrase]])
     {
         mLoggedIn = YES;
     }

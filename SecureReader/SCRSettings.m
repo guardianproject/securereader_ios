@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Guardian Project. All rights reserved.
 //
 
-#import "Settings.h"
+#import "SCRSettings.h"
 
-@implementation Settings
+@implementation SCRSettings
 
 + (NSString *)getUiLanguage
 {

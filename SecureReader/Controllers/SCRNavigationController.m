@@ -6,21 +6,21 @@
 //  Copyright (c) 2014 Guardian Project. All rights reserved.
 //
 
-#import "SRNavigationController.h"
-#import "AppDelegate.h"
-#import "SRSelectLanguageViewController.h"
-#import "SRCreatePassphraseViewController.h"
-#import "SRLoginViewController.h"
+#import "SCRNavigationController.h"
+#import "SCRAppDelegate.h"
+#import "SCRSelectLanguageViewController.h"
+#import "SCRCreatePassphraseViewController.h"
+#import "SCRLoginViewController.h"
 
-@interface SRNavigationController ()
+@interface SCRNavigationController ()
 
 @end
 
-@implementation SRNavigationController
+@implementation SCRNavigationController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    if (![[AppDelegate sharedAppDelegate] hasCreatedPassphrase])
+    if (![[SCRAppDelegate sharedAppDelegate] hasCreatedPassphrase])
         [self performSegueWithIdentifier:@"segueToWelcome" sender:self];
     else
         [self performSegueWithIdentifier:@"segueToMain" sender:self];
@@ -33,13 +33,13 @@
 
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
-    if ([viewController class] != [SRSelectLanguageViewController class] &&
-        [viewController class] != [SRCreatePassphraseViewController class] &&
-        [viewController class] != [SRLoginViewController class])
+    if ([viewController class] != [SCRSelectLanguageViewController class] &&
+        [viewController class] != [SCRCreatePassphraseViewController class] &&
+        [viewController class] != [SCRLoginViewController class])
     {
-        if (![[AppDelegate sharedAppDelegate] isLoggedIn])
+        if (![[SCRAppDelegate sharedAppDelegate] isLoggedIn])
         {
-            SRLoginViewController *vcLogin = [self.storyboard instantiateViewControllerWithIdentifier:@"login"];
+            SCRLoginViewController *vcLogin = [self.storyboard instantiateViewControllerWithIdentifier:@"login"];
             vcLogin.modalPresentationStyle = UIModalPresentationFullScreen;
             [vcLogin setDestinationViewController:viewController animated:animated];
             dispatch_async(dispatch_get_main_queue(), ^{

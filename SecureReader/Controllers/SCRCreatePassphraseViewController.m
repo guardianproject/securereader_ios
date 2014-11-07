@@ -6,16 +6,16 @@
 //  Copyright (c) 2014 Guardian Project. All rights reserved.
 //
 
-#import "SRCreatePassphraseViewController.h"
-#import "Settings.h"
-#import "AppDelegate.h"
+#import "SCRCreatePassphraseViewController.h"
+#import "SCRSettings.h"
+#import "SCRAppDelegate.h"
 
-@interface SRCreatePassphraseViewController ()
+@interface SCRCreatePassphraseViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *editPassphrase;
 @property (weak, nonatomic) IBOutlet UITextField *editPassphraseVerify;
 @end
 
-@implementation SRCreatePassphraseViewController
+@implementation SCRCreatePassphraseViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -43,8 +43,8 @@
     [[[UIAlertView alloc] initWithTitle:@"Create Passphrase" message:@"Ok." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
     
     // TODO proper password storage
-    [Settings setPassphrase:_editPassphrase.text];
-    [[AppDelegate sharedAppDelegate] loginWithPassphrase:_editPassphrase.text];
+    [SCRSettings setPassphrase:_editPassphrase.text];
+    [[SCRAppDelegate sharedAppDelegate] loginWithPassphrase:_editPassphrase.text];
     [self performSegueWithIdentifier:@"segueToMain" sender:self];
     [self removeFromParentViewController];
 }

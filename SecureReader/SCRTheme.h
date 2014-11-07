@@ -7,7 +7,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface SRTheme : NSObject
+@interface SCRTheme : NSObject
 
 + (void) applyTheme:(NSString*)theme toControl:(UIControl*)control;
 

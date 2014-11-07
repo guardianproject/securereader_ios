@@ -6,16 +6,16 @@
 //  Copyright (c) 2014 Guardian Project. All rights reserved.
 //
 
-#import "SRLoginViewController.h"
-#import "SRNavigationController.h"
-#import "AppDelegate.h"
-#import "Settings.h"
+#import "SCRLoginViewController.h"
+#import "SCRNavigationController.h"
+#import "SCRAppDelegate.h"
+#import "SCRSettings.h"
 
-@interface SRLoginViewController ()
+@interface SCRLoginViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *editPassphrase;
 @end
 
-@implementation SRLoginViewController
+@implementation SCRLoginViewController
 {
     UIViewController *destinationViewController;
     BOOL animateDestination;
@@ -40,11 +40,11 @@
 - (IBAction)loginButtonClicked:(id)sender
 {
     //TEMP
-    if ([[AppDelegate sharedAppDelegate] loginWithPassphrase:_editPassphrase.text])
+    if ([[SCRAppDelegate sharedAppDelegate] loginWithPassphrase:_editPassphrase.text])
     {
         if (destinationViewController != nil)
         {
-            SRNavigationController *vcNav = (SRNavigationController *)[self presentingViewController];
+            SCRNavigationController *vcNav = (SCRNavigationController *)[self presentingViewController];
             [vcNav pushViewController:destinationViewController animated:NO];
         }
         [self dismissViewControllerAnimated:YES completion:nil];

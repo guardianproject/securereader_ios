@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SourceView">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SCRSourceView">
             <connections>
                 <outlet property="contentView" destination="iN0-l3-epB" id="Fcf-Za-VRx"/>
                 <outlet property="labelDate" destination="uqe-jn-PYb" id="cZQ-uz-pxV"/>

@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SourceView.h"
+#import "SCRSourceView.h"
 
-@interface ItemView : UITableViewCell
+@interface SCRItemView : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
-@property (weak, nonatomic) IBOutlet SourceView *sourceView;
+@property (weak, nonatomic) IBOutlet SCRSourceView *sourceView;
 @property (weak, nonatomic) IBOutlet UILabel *titleView;
 @property (weak, nonatomic) IBOutlet UITextField *textView;
 

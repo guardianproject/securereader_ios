@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SRCreatePassphraseViewController : UIViewController<UITextFieldDelegate>
+@interface SCRCreatePassphraseViewController : UIViewController<UITextFieldDelegate>
 
 - (IBAction)openAppButtonClicked:(id)sender;
 

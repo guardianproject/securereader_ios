@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SourceView : UIView
+@interface SCRSourceView : UIView
 
 @property (strong) IBOutlet UIView *contentView;
 

@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface SCRAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
-+ (AppDelegate*) sharedAppDelegate;
++ (SCRAppDelegate*) sharedAppDelegate;
 
 - (BOOL)hasCreatedPassphrase;
 - (BOOL)isLoggedIn;

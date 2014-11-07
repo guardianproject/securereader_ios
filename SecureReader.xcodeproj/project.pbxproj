@@ -7,32 +7,32 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		922DC28019FE920C00FB1274 /* SRMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 922DC27F19FE920C00FB1274 /* SRMainViewController.m */; };
+		922DC28019FE920C00FB1274 /* SCRMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 922DC27F19FE920C00FB1274 /* SCRMainViewController.m */; };
 		9239049E1A07E365004EEE7E /* background_debut_light.png in Resources */ = {isa = PBXBuildFile; fileRef = 9239049D1A07E365004EEE7E /* background_debut_light.png */; };
 		924BBFC01A08DCEB00A32940 /* InAppSettings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 924BBFBF1A08DCEB00A32940 /* InAppSettings.bundle */; };
 		929EEF4D19F4EB100020BD75 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 929EEF4C19F4EB100020BD75 /* main.m */; };
-		929EEF5019F4EB100020BD75 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 929EEF4F19F4EB100020BD75 /* AppDelegate.m */; };
+		929EEF5019F4EB100020BD75 /* SCRAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 929EEF4F19F4EB100020BD75 /* SCRAppDelegate.m */; };
 		929EEF5919F4EB100020BD75 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 929EEF5719F4EB100020BD75 /* Main.storyboard */; };
 		929EEF5B19F4EB100020BD75 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 929EEF5A19F4EB100020BD75 /* Images.xcassets */; };
 		929EEF5E19F4EB100020BD75 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 929EEF5C19F4EB100020BD75 /* LaunchScreen.xib */; };
 		929EEF6A19F4EB100020BD75 /* SecureReaderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 929EEF6919F4EB100020BD75 /* SecureReaderTests.m */; };
-		929EEF8019F4F5940020BD75 /* SRLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 929EEF7519F4F5940020BD75 /* SRLoginViewController.m */; };
-		929EEF8119F4F5940020BD75 /* SRSelectLanguageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 929EEF7719F4F5940020BD75 /* SRSelectLanguageViewController.m */; };
+		929EEF8019F4F5940020BD75 /* SCRLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 929EEF7519F4F5940020BD75 /* SCRLoginViewController.m */; };
+		929EEF8119F4F5940020BD75 /* SCRSelectLanguageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 929EEF7719F4F5940020BD75 /* SCRSelectLanguageViewController.m */; };
 		929EEF8219F4F5940020BD75 /* NSBundle+Language.m in Sources */ = {isa = PBXBuildFile; fileRef = 929EEF7919F4F5940020BD75 /* NSBundle+Language.m */; };
-		929EEF8319F4F5940020BD75 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 929EEF7B19F4F5940020BD75 /* Settings.m */; };
-		929EEF8419F4F5940020BD75 /* SRTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 929EEF7D19F4F5940020BD75 /* SRTheme.m */; };
+		929EEF8319F4F5940020BD75 /* SCRSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 929EEF7B19F4F5940020BD75 /* SCRSettings.m */; };
+		929EEF8419F4F5940020BD75 /* SCRTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 929EEF7D19F4F5940020BD75 /* SCRTheme.m */; };
 		929EEF8519F4F5940020BD75 /* UIView+Theming.m in Sources */ = {isa = PBXBuildFile; fileRef = 929EEF7F19F4F5940020BD75 /* UIView+Theming.m */; };
 		929EEF8719F4F5F30020BD75 /* Styles.plist in Resources */ = {isa = PBXBuildFile; fileRef = 929EEF8619F4F5F30020BD75 /* Styles.plist */; };
 		929EEF8C19F4FC9D0020BD75 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 929EEF8E19F4FC9D0020BD75 /* Localizable.strings */; };
-		929EEF9319F5110D0020BD75 /* SRCreatePassphraseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 929EEF9219F5110D0020BD75 /* SRCreatePassphraseViewController.m */; };
-		929EEF9619F549080020BD75 /* SRNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 929EEF9519F549080020BD75 /* SRNavigationController.m */; };
-		92BD509A1A07A36A00F3BD22 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 92BD50991A07A36A00F3BD22 /* Item.m */; };
-		92BD50A11A07A38900F3BD22 /* ItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92BD509D1A07A38900F3BD22 /* ItemView.m */; };
-		92BD50A21A07A38900F3BD22 /* SourceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92BD509F1A07A38900F3BD22 /* SourceView.m */; };
-		92BD50A31A07A38900F3BD22 /* SourceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92BD50A01A07A38900F3BD22 /* SourceView.xib */; };
+		929EEF9319F5110D0020BD75 /* SCRCreatePassphraseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 929EEF9219F5110D0020BD75 /* SCRCreatePassphraseViewController.m */; };
+		929EEF9619F549080020BD75 /* SCRNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 929EEF9519F549080020BD75 /* SCRNavigationController.m */; };
+		92BD509A1A07A36A00F3BD22 /* SCRItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 92BD50991A07A36A00F3BD22 /* SCRItem.m */; };
+		92BD50A11A07A38900F3BD22 /* SCRItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92BD509D1A07A38900F3BD22 /* SCRItemView.m */; };
+		92BD50A21A07A38900F3BD22 /* SCRSourceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92BD509F1A07A38900F3BD22 /* SCRSourceView.m */; };
+		92BD50A31A07A38900F3BD22 /* SCRSourceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92BD50A01A07A38900F3BD22 /* SCRSourceView.xib */; };
 		92BD50AD1A07A74500F3BD22 /* ic_launcher.png in Resources */ = {isa = PBXBuildFile; fileRef = 92BD50AB1A07A74500F3BD22 /* ic_launcher.png */; };
 		92BD50AE1A07A74500F3BD22 /* img_local_share.png in Resources */ = {isa = PBXBuildFile; fileRef = 92BD50AC1A07A74500F3BD22 /* img_local_share.png */; };
-		92C28DD719F5B26C00E39BDD /* Application.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C28DD619F5B26C00E39BDD /* Application.m */; };
+		92C28DD719F5B26C00E39BDD /* SCRApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C28DD619F5B26C00E39BDD /* SCRApplication.m */; };
 		F6AA97CBC086528EBF0FFA97 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5982780EDA69C66A355A7531 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -48,31 +48,31 @@
 
 /* Begin PBXFileReference section */
 		5982780EDA69C66A355A7531 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		922DC27E19FE920C00FB1274 /* SRMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SRMainViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		922DC27F19FE920C00FB1274 /* SRMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SRMainViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		922DC27E19FE920C00FB1274 /* SCRMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SCRMainViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		922DC27F19FE920C00FB1274 /* SCRMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SCRMainViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		9239049D1A07E365004EEE7E /* background_debut_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_debut_light.png; sourceTree = "<group>"; };
 		924BBFBF1A08DCEB00A32940 /* InAppSettings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = InAppSettings.bundle; sourceTree = "<group>"; };
 		929EEF4719F4EB100020BD75 /* SecureReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SecureReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		929EEF4B19F4EB100020BD75 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		929EEF4C19F4EB100020BD75 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = main.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		929EEF4E19F4EB100020BD75 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AppDelegate.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		929EEF4F19F4EB100020BD75 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AppDelegate.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		929EEF4E19F4EB100020BD75 /* SCRAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SCRAppDelegate.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		929EEF4F19F4EB100020BD75 /* SCRAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SCRAppDelegate.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		929EEF5819F4EB100020BD75 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		929EEF5A19F4EB100020BD75 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		929EEF5D19F4EB100020BD75 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		929EEF6319F4EB100020BD75 /* SecureReaderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SecureReaderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		929EEF6819F4EB100020BD75 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		929EEF6919F4EB100020BD75 /* SecureReaderTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SecureReaderTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		929EEF7419F4F5940020BD75 /* SRLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SRLoginViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		929EEF7519F4F5940020BD75 /* SRLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SRLoginViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		929EEF7619F4F5940020BD75 /* SRSelectLanguageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SRSelectLanguageViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		929EEF7719F4F5940020BD75 /* SRSelectLanguageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SRSelectLanguageViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		929EEF7419F4F5940020BD75 /* SCRLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SCRLoginViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		929EEF7519F4F5940020BD75 /* SCRLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SCRLoginViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		929EEF7619F4F5940020BD75 /* SCRSelectLanguageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SCRSelectLanguageViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		929EEF7719F4F5940020BD75 /* SCRSelectLanguageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SCRSelectLanguageViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		929EEF7819F4F5940020BD75 /* NSBundle+Language.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = "NSBundle+Language.h"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		929EEF7919F4F5940020BD75 /* NSBundle+Language.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "NSBundle+Language.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		929EEF7A19F4F5940020BD75 /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Settings.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		929EEF7B19F4F5940020BD75 /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = Settings.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		929EEF7C19F4F5940020BD75 /* SRTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRTheme.h; sourceTree = "<group>"; };
-		929EEF7D19F4F5940020BD75 /* SRTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRTheme.m; sourceTree = "<group>"; };
+		929EEF7A19F4F5940020BD75 /* SCRSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SCRSettings.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		929EEF7B19F4F5940020BD75 /* SCRSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SCRSettings.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		929EEF7C19F4F5940020BD75 /* SCRTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRTheme.h; sourceTree = "<group>"; };
+		929EEF7D19F4F5940020BD75 /* SCRTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRTheme.m; sourceTree = "<group>"; };
 		929EEF7E19F4F5940020BD75 /* UIView+Theming.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Theming.h"; sourceTree = "<group>"; };
 		929EEF7F19F4F5940020BD75 /* UIView+Theming.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Theming.m"; sourceTree = "<group>"; };
 		929EEF8619F4F5F30020BD75 /* Styles.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Styles.plist; sourceTree = "<group>"; };
@@ -80,21 +80,21 @@
 		929EEF8919F4F84D0020BD75 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		929EEF8D19F4FC9D0020BD75 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; lineEnding = 0; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.simpleColoring; };
 		929EEF8F19F4FCA40020BD75 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; lineEnding = 0; name = sv; path = sv.lproj/Localizable.strings; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.simpleColoring; };
-		929EEF9119F5110D0020BD75 /* SRCreatePassphraseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SRCreatePassphraseViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		929EEF9219F5110D0020BD75 /* SRCreatePassphraseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SRCreatePassphraseViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		929EEF9419F549080020BD75 /* SRNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SRNavigationController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		929EEF9519F549080020BD75 /* SRNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SRNavigationController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		92BD50981A07A36A00F3BD22 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
-		92BD50991A07A36A00F3BD22 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
-		92BD509C1A07A38900F3BD22 /* ItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemView.h; sourceTree = "<group>"; };
-		92BD509D1A07A38900F3BD22 /* ItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemView.m; sourceTree = "<group>"; };
-		92BD509E1A07A38900F3BD22 /* SourceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourceView.h; sourceTree = "<group>"; };
-		92BD509F1A07A38900F3BD22 /* SourceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SourceView.m; sourceTree = "<group>"; };
-		92BD50A01A07A38900F3BD22 /* SourceView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SourceView.xib; sourceTree = "<group>"; };
+		929EEF9119F5110D0020BD75 /* SCRCreatePassphraseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SCRCreatePassphraseViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		929EEF9219F5110D0020BD75 /* SCRCreatePassphraseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SCRCreatePassphraseViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		929EEF9419F549080020BD75 /* SCRNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SCRNavigationController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		929EEF9519F549080020BD75 /* SCRNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SCRNavigationController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		92BD50981A07A36A00F3BD22 /* SCRItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRItem.h; sourceTree = "<group>"; };
+		92BD50991A07A36A00F3BD22 /* SCRItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRItem.m; sourceTree = "<group>"; };
+		92BD509C1A07A38900F3BD22 /* SCRItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRItemView.h; sourceTree = "<group>"; };
+		92BD509D1A07A38900F3BD22 /* SCRItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRItemView.m; sourceTree = "<group>"; };
+		92BD509E1A07A38900F3BD22 /* SCRSourceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRSourceView.h; sourceTree = "<group>"; };
+		92BD509F1A07A38900F3BD22 /* SCRSourceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRSourceView.m; sourceTree = "<group>"; };
+		92BD50A01A07A38900F3BD22 /* SCRSourceView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SCRSourceView.xib; sourceTree = "<group>"; };
 		92BD50AB1A07A74500F3BD22 /* ic_launcher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_launcher.png; sourceTree = "<group>"; };
 		92BD50AC1A07A74500F3BD22 /* img_local_share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_local_share.png; sourceTree = "<group>"; };
-		92C28DD519F5B26C00E39BDD /* Application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Application.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		92C28DD619F5B26C00E39BDD /* Application.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = Application.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		92C28DD519F5B26C00E39BDD /* SCRApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SCRApplication.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		92C28DD619F5B26C00E39BDD /* SCRApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SCRApplication.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		A21561AE6A5B97BAE0C7EADE /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		DBA503BDF49A23BF85C3B2EA /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -163,12 +163,12 @@
 				92BD509B1A07A38900F3BD22 /* Views */,
 				929EEF7319F4F5940020BD75 /* Controllers */,
 				929EEF9019F50B900020BD75 /* Language & Theming Support */,
-				929EEF7A19F4F5940020BD75 /* Settings.h */,
-				929EEF7B19F4F5940020BD75 /* Settings.m */,
-				929EEF4E19F4EB100020BD75 /* AppDelegate.h */,
-				929EEF4F19F4EB100020BD75 /* AppDelegate.m */,
-				92C28DD519F5B26C00E39BDD /* Application.h */,
-				92C28DD619F5B26C00E39BDD /* Application.m */,
+				929EEF7A19F4F5940020BD75 /* SCRSettings.h */,
+				929EEF7B19F4F5940020BD75 /* SCRSettings.m */,
+				929EEF4E19F4EB100020BD75 /* SCRAppDelegate.h */,
+				929EEF4F19F4EB100020BD75 /* SCRAppDelegate.m */,
+				92C28DD519F5B26C00E39BDD /* SCRApplication.h */,
+				92C28DD619F5B26C00E39BDD /* SCRApplication.m */,
 				929EEF5719F4EB100020BD75 /* Main.storyboard */,
 				929EEF5A19F4EB100020BD75 /* Images.xcassets */,
 				929EEF5C19F4EB100020BD75 /* LaunchScreen.xib */,
@@ -209,16 +209,16 @@
 		929EEF7319F4F5940020BD75 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				929EEF7419F4F5940020BD75 /* SRLoginViewController.h */,
-				929EEF7519F4F5940020BD75 /* SRLoginViewController.m */,
-				929EEF7619F4F5940020BD75 /* SRSelectLanguageViewController.h */,
-				929EEF7719F4F5940020BD75 /* SRSelectLanguageViewController.m */,
-				929EEF9119F5110D0020BD75 /* SRCreatePassphraseViewController.h */,
-				929EEF9219F5110D0020BD75 /* SRCreatePassphraseViewController.m */,
-				929EEF9419F549080020BD75 /* SRNavigationController.h */,
-				929EEF9519F549080020BD75 /* SRNavigationController.m */,
-				922DC27E19FE920C00FB1274 /* SRMainViewController.h */,
-				922DC27F19FE920C00FB1274 /* SRMainViewController.m */,
+				929EEF7419F4F5940020BD75 /* SCRLoginViewController.h */,
+				929EEF7519F4F5940020BD75 /* SCRLoginViewController.m */,
+				929EEF7619F4F5940020BD75 /* SCRSelectLanguageViewController.h */,
+				929EEF7719F4F5940020BD75 /* SCRSelectLanguageViewController.m */,
+				929EEF9119F5110D0020BD75 /* SCRCreatePassphraseViewController.h */,
+				929EEF9219F5110D0020BD75 /* SCRCreatePassphraseViewController.m */,
+				929EEF9419F549080020BD75 /* SCRNavigationController.h */,
+				929EEF9519F549080020BD75 /* SCRNavigationController.m */,
+				922DC27E19FE920C00FB1274 /* SCRMainViewController.h */,
+				922DC27F19FE920C00FB1274 /* SCRMainViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -228,8 +228,8 @@
 			children = (
 				929EEF7819F4F5940020BD75 /* NSBundle+Language.h */,
 				929EEF7919F4F5940020BD75 /* NSBundle+Language.m */,
-				929EEF7C19F4F5940020BD75 /* SRTheme.h */,
-				929EEF7D19F4F5940020BD75 /* SRTheme.m */,
+				929EEF7C19F4F5940020BD75 /* SCRTheme.h */,
+				929EEF7D19F4F5940020BD75 /* SCRTheme.m */,
 				929EEF7E19F4F5940020BD75 /* UIView+Theming.h */,
 				929EEF7F19F4F5940020BD75 /* UIView+Theming.m */,
 			);
@@ -239,8 +239,8 @@
 		92BD50971A07A36A00F3BD22 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				92BD50981A07A36A00F3BD22 /* Item.h */,
-				92BD50991A07A36A00F3BD22 /* Item.m */,
+				92BD50981A07A36A00F3BD22 /* SCRItem.h */,
+				92BD50991A07A36A00F3BD22 /* SCRItem.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -248,11 +248,11 @@
 		92BD509B1A07A38900F3BD22 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				92BD509C1A07A38900F3BD22 /* ItemView.h */,
-				92BD509D1A07A38900F3BD22 /* ItemView.m */,
-				92BD509E1A07A38900F3BD22 /* SourceView.h */,
-				92BD509F1A07A38900F3BD22 /* SourceView.m */,
-				92BD50A01A07A38900F3BD22 /* SourceView.xib */,
+				92BD509C1A07A38900F3BD22 /* SCRItemView.h */,
+				92BD509D1A07A38900F3BD22 /* SCRItemView.m */,
+				92BD509E1A07A38900F3BD22 /* SCRSourceView.h */,
+				92BD509F1A07A38900F3BD22 /* SCRSourceView.m */,
+				92BD50A01A07A38900F3BD22 /* SCRSourceView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -358,7 +358,7 @@
 				929EEF8719F4F5F30020BD75 /* Styles.plist in Resources */,
 				929EEF5B19F4EB100020BD75 /* Images.xcassets in Resources */,
 				92BD50AD1A07A74500F3BD22 /* ic_launcher.png in Resources */,
-				92BD50A31A07A38900F3BD22 /* SourceView.xib in Resources */,
+				92BD50A31A07A38900F3BD22 /* SCRSourceView.xib in Resources */,
 				92BD50AE1A07A74500F3BD22 /* img_local_share.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -410,21 +410,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				92BD509A1A07A36A00F3BD22 /* Item.m in Sources */,
-				92BD50A11A07A38900F3BD22 /* ItemView.m in Sources */,
-				929EEF9319F5110D0020BD75 /* SRCreatePassphraseViewController.m in Sources */,
-				929EEF8119F4F5940020BD75 /* SRSelectLanguageViewController.m in Sources */,
-				929EEF5019F4EB100020BD75 /* AppDelegate.m in Sources */,
+				92BD509A1A07A36A00F3BD22 /* SCRItem.m in Sources */,
+				92BD50A11A07A38900F3BD22 /* SCRItemView.m in Sources */,
+				929EEF9319F5110D0020BD75 /* SCRCreatePassphraseViewController.m in Sources */,
+				929EEF8119F4F5940020BD75 /* SCRSelectLanguageViewController.m in Sources */,
+				929EEF5019F4EB100020BD75 /* SCRAppDelegate.m in Sources */,
 				929EEF4D19F4EB100020BD75 /* main.m in Sources */,
 				929EEF8219F4F5940020BD75 /* NSBundle+Language.m in Sources */,
-				929EEF8019F4F5940020BD75 /* SRLoginViewController.m in Sources */,
-				922DC28019FE920C00FB1274 /* SRMainViewController.m in Sources */,
-				92C28DD719F5B26C00E39BDD /* Application.m in Sources */,
-				929EEF9619F549080020BD75 /* SRNavigationController.m in Sources */,
-				929EEF8419F4F5940020BD75 /* SRTheme.m in Sources */,
+				929EEF8019F4F5940020BD75 /* SCRLoginViewController.m in Sources */,
+				922DC28019FE920C00FB1274 /* SCRMainViewController.m in Sources */,
+				92C28DD719F5B26C00E39BDD /* SCRApplication.m in Sources */,
+				929EEF9619F549080020BD75 /* SCRNavigationController.m in Sources */,
+				929EEF8419F4F5940020BD75 /* SCRTheme.m in Sources */,
 				929EEF8519F4F5940020BD75 /* UIView+Theming.m in Sources */,
-				929EEF8319F4F5940020BD75 /* Settings.m in Sources */,
-				92BD50A21A07A38900F3BD22 /* SourceView.m in Sources */,
+				929EEF8319F4F5940020BD75 /* SCRSettings.m in Sources */,
+				92BD50A21A07A38900F3BD22 /* SCRSourceView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -5,18 +5,18 @@
 //
 
 
-#import "SRTheme.h"
+#import "SCRTheme.h"
 #import "UIView+Theming.h"
 #import <objc/runtime.h>
 
-@interface SRTheme ()
+@interface SCRTheme ()
 {
 }
 + (UIColor*) colorWithHexString:(NSString*)hexColorString;
 + (UIColor*) colorWithImageName:(NSString*)imageName;
 @end
 
-@implementation SRTheme
+@implementation SCRTheme
 
 static const char _savedStyle=0;
 static const char _currentTheme=1;
@@ -86,7 +86,7 @@ static NSMutableDictionary *themes = nil;
 
     // Apply all styles
     NSMutableDictionary *style = nil;
-    [SRTheme getStylesForTheme:theme into:&style];
+    [SCRTheme getStylesForTheme:theme into:&style];
     if (style != nil)
     {
         [self applyStyle:style toControl:control save:YES];
@@ -100,7 +100,7 @@ static NSMutableDictionary *themes = nil;
         if ([property isEqualToString:@"backgroundColor"] && [control respondsToSelector:@selector(setBackgroundColor:)])
         {
             if (save)
-                [SRTheme saveProperty:property value:[control backgroundColor] forControl:control];
+                [SCRTheme saveProperty:property value:[control backgroundColor] forControl:control];
             UIColor *color = nil;
             NSObject *value = [self getNillableProperty:property fromDict:style];
             if ([value isKindOfClass:[NSString class]])
@@ -112,7 +112,7 @@ static NSMutableDictionary *themes = nil;
         else if ([property isEqualToString:@"background"] && [control respondsToSelector:@selector(setBackgroundColor:)])
         {
             if (save)
-                [SRTheme saveProperty:property value:[control backgroundColor] forControl:control];
+                [SCRTheme saveProperty:property value:[control backgroundColor] forControl:control];
             UIColor *color = nil;
             NSObject *value = [self getNillableProperty:property fromDict:style];
             if ([value isKindOfClass:[NSString class]])
@@ -124,7 +124,7 @@ static NSMutableDictionary *themes = nil;
         else if ([property isEqualToString:@"tintColor"] && [control respondsToSelector:@selector(setTintColor:)])
         {
             if (save)
-                [SRTheme saveProperty:property value:[control tintColor] forControl:control];
+                [SCRTheme saveProperty:property value:[control tintColor] forControl:control];
             UIColor *color = nil;
             NSObject *value = [self getNillableProperty:property fromDict:style];
             if ([value isKindOfClass:[NSString class]])
@@ -138,7 +138,7 @@ static NSMutableDictionary *themes = nil;
             if (control.layer != nil)
             {
                 if (save)
-                    [SRTheme saveProperty:property value:[NSNumber numberWithFloat:control.layer.cornerRadius] forControl:control];
+                    [SCRTheme saveProperty:property value:[NSNumber numberWithFloat:control.layer.cornerRadius] forControl:control];
                 NSNumber *value = (NSNumber*)[self getNillableProperty:property fromDict:style];
                 if (value != nil)
                     control.layer.cornerRadius = [value floatValue];
@@ -155,7 +155,7 @@ static NSMutableDictionary *themes = nil;
     {
         NSString *parent = [themeDict objectForKey:@"parent"];
         if (parent != nil)
-            [SRTheme getStylesForTheme:parent into:dict];
+            [SCRTheme getStylesForTheme:parent into:dict];
             
         for (NSString *property in themeDict.keyEnumerator)
         {

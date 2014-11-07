@@ -5,7 +5,7 @@
 //
 
 #import "UIView+Theming.h"
-#import "SRTheme.h"
+#import "SCRTheme.h"
 
 @implementation UIView (Theming)
 
@@ -13,7 +13,7 @@
 
 - (void)setTheme:(NSString *)theme
 {
-    [SRTheme applyTheme:theme toControl:(UIControl*)self];
+    [SCRTheme applyTheme:theme toControl:(UIControl*)self];
 }
 
 @end

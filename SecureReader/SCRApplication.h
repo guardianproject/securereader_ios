@@ -10,9 +10,9 @@
 
 #define kApplicationDidTimeoutNotification @"AppTimeOut"
 
-@interface Application : UIApplication
+@interface SCRApplication : UIApplication
 
-+ (Application*) sharedApplication;
++ (SCRApplication*) sharedApplication;
 
 -(void)lockApplication;
 -(void)lockApplicationDelayed;

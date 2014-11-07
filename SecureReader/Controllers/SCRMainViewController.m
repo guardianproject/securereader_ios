@@ -6,23 +6,23 @@
 //  Copyright (c) 2014 Guardian Project. All rights reserved.
 //
 
-#import "SRMainViewController.h"
-#import "../Models/Item.h"
-#import "../Views/ItemView.h"
+#import "SCRMainViewController.h"
+#import "../Models/SCRItem.h"
+#import "../Views/SCRItemView.h"
 
-@interface SRMainViewController ()
+@interface SCRMainViewController ()
 
 @property (strong,nonatomic) NSMutableArray *itemsArray;
 @property (strong,nonatomic) NSMutableArray *filteredItemsArray;
 
 // Prototype cells for height calculation
-@property (nonatomic, strong) ItemView *prototypeCellNoPhotos;
-@property (nonatomic, strong) ItemView *prototypeCellLandscapePhotos;
-@property (nonatomic, strong) ItemView *prototypeCellPortraitPhotos;
+@property (nonatomic, strong) SCRItemView *prototypeCellNoPhotos;
+@property (nonatomic, strong) SCRItemView *prototypeCellLandscapePhotos;
+@property (nonatomic, strong) SCRItemView *prototypeCellPortraitPhotos;
 
 @end
 
-@implementation SRMainViewController
+@implementation SCRMainViewController
 
 @synthesize itemsArray;
 @synthesize filteredItemsArray;
@@ -34,10 +34,10 @@
     [super viewDidLoad];
     
     itemsArray = [NSMutableArray arrayWithObjects:
-                  [Item createWithTitle:@"First\nTitle\nGoes here\nBut is more\nThan 4 lines!" text:@"First text\nThat has more lines"],
-                  [Item createWithTitle:@"Second" text:@"Second text"],
-                  [Item createWithTitle:@"Third" text:@"Third text"],
-                  [Item createWithTitle:@"Fourth" text:@"Fourth text"],
+                  [SCRItem createWithTitle:@"First\nTitle\nGoes here\nBut is more\nThan 4 lines!" text:@"First text\nThat has more lines"],
+                  [SCRItem createWithTitle:@"Second" text:@"Second text"],
+                  [SCRItem createWithTitle:@"Third" text:@"Third text"],
+                  [SCRItem createWithTitle:@"Fourth" text:@"Fourth text"],
                   nil];
     
     //UIRefreshControl *refreshControl = [[UIRefreshControl alloc]
@@ -51,7 +51,7 @@
     [self.navigationController setNavigationBarHidden:NO];    
 }
 
-- (NSString *) getCellIdentifierForItem:(Item *) item
+- (NSString *) getCellIdentifierForItem:(SCRItem *) item
 {
     NSString *cellIdentifier = @"cellNoPhotos";
     if ([item.title hasPrefix:@"F"])
@@ -61,7 +61,7 @@
     return cellIdentifier;
 }
 
-- (ItemView *) getPrototypeForItem:(Item *) item
+- (SCRItemView *) getPrototypeForItem:(SCRItem *) item
 {
     NSString *cellIdentifier = [self getCellIdentifierForItem:item];
     if ([cellIdentifier compare:@"cellLandscapePhotos"] == NSOrderedSame)
@@ -94,13 +94,13 @@
     return 0;
 }
 
-- (Item *) getItemForIndexPath:(NSIndexPath *) indexPath
+- (SCRItem *) getItemForIndexPath:(NSIndexPath *) indexPath
 {
-    Item *item = (self.filteredItemsArray != nil) ? self.filteredItemsArray[indexPath.row] : self.itemsArray[indexPath.row];
+    SCRItem *item = (self.filteredItemsArray != nil) ? self.filteredItemsArray[indexPath.row] : self.itemsArray[indexPath.row];
     return item;
 }
 
-- (void)configureCell:(ItemView *)cell forItem:(Item *)item
+- (void)configureCell:(SCRItemView *)cell forItem:(SCRItem *)item
 {
     cell.titleView.text = item.title;
     cell.sourceView.labelSource.text = @"The Guardian";
@@ -113,11 +113,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Item *item = [self getItemForIndexPath:indexPath];
+    SCRItem *item = [self getItemForIndexPath:indexPath];
     
     NSString *cellIdentifier = [self getCellIdentifierForItem:item];
     
-    ItemView *cell = [tableView
+    SCRItemView *cell = [tableView
                       dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     [self configureCell:cell forItem:item];
     return cell;
@@ -125,8 +125,8 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Item *item = [self getItemForIndexPath:indexPath];
-    ItemView *prototype = [self getPrototypeForItem:item];
+    SCRItem *item = [self getItemForIndexPath:indexPath];
+    SCRItemView *prototype = [self getPrototypeForItem:item];
     [self configureCell:prototype forItem:item];
     [prototype layoutIfNeeded];
     

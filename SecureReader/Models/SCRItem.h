@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Item : NSObject
+@interface SCRItem : NSObject
 {
     NSString *title;
     NSString *text;

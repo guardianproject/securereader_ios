@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Settings : NSObject
+@interface SCRSettings : NSObject
 
 + (NSString *)getUiLanguage;
 + (void) setUiLanguage:(NSString *)languageCode;

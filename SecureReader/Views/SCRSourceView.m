@@ -6,14 +6,14 @@
 //  Copyright (c) 2014 Guardian Project. All rights reserved.
 //
 
-#import "SourceView.h"
+#import "SCRSourceView.h"
 
-@interface SourceView ()
+@interface SCRSourceView ()
 @property (weak, nonatomic) IBOutlet UIView *separator;
 @property (nonatomic, strong) NSMutableArray *customConstraints;
 @end
 
-@implementation SourceView
+@implementation SCRSourceView
 
 @synthesize contentView;
 
@@ -45,7 +45,7 @@
     self = [super initWithCoder:aDecoder];
     if (self)
     {
-        [[NSBundle mainBundle] loadNibNamed:@"SourceView" owner:self options:nil];
+        [[NSBundle mainBundle] loadNibNamed:@"SCRSourceView" owner:self options:nil];
         self.separator.backgroundColor = [UIColor colorWithRed:0.2 green:0.7 blue:0.1 alpha:0.5];
         self.translatesAutoresizingMaskIntoConstraints = NO;
         self.contentView.translatesAutoresizingMaskIntoConstraints = NO;
