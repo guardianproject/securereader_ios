@@ -10,15 +10,29 @@
 
 @implementation SCRItem
 
-@synthesize title;
-@synthesize text;
+- (instancetype)initWithFeedItem:(MWFeedItem*)item {
+    if (self = [super init]) {
+        _title = item.title;
+        _summary = item.summary;
+        _url = [NSURL URLWithString:item.link];
+        _publishDate = item.date;
+        _updateDate = item.updated;
+    }
+    return self;
+}
 
-+ (id)createWithTitle:(NSString*)title text:(NSString*)text
-{
-    SCRItem *newItem = [[self alloc] init];
-    newItem.title = title;
-    newItem.text = text;
-    return newItem;
+#pragma mark SRCYapObject methods
+
+- (NSString*) yapKey {
+    return [self.url absoluteString];
+}
+
+- (NSString*) yapGroup {
+    return [self.url host];
+}
+
++ (NSString*) yapCollection {
+    return NSStringFromClass([self class]);
 }
 
 @end

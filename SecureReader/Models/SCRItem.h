@@ -7,16 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Mantle.h"
+#import "SCRYapObject.h"
+#import "MWFeedItem.h"
 
-@interface SCRItem : NSObject
-{
-    NSString *title;
-    NSString *text;
-}
+@interface SCRItem : MTLModel <SCRYapObject>
 
-@property (nonatomic, copy) NSString *title;
-@property (nonatomic, copy) NSString *text;
+@property (nonatomic, strong, readonly) NSString *identifier;
+@property (nonatomic, strong, readonly) NSString *title;
+@property (nonatomic, strong, readonly) NSString *summary;
+@property (nonatomic, strong, readonly) NSDate *publishDate;
+@property (nonatomic, strong, readonly) NSDate *updateDate;
+@property (nonatomic, strong, readonly) NSURL *url;
+@property (nonatomic, strong, readonly) NSURL *thumbnailURL;
 
-+ (id)createWithTitle:(NSString*)title text:(NSString*)text;
+- (instancetype)initWithFeedItem:(MWFeedItem*)item;
 
 @end

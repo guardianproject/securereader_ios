@@ -33,6 +33,8 @@
 		92BD50AD1A07A74500F3BD22 /* ic_launcher.png in Resources */ = {isa = PBXBuildFile; fileRef = 92BD50AB1A07A74500F3BD22 /* ic_launcher.png */; };
 		92BD50AE1A07A74500F3BD22 /* img_local_share.png in Resources */ = {isa = PBXBuildFile; fileRef = 92BD50AC1A07A74500F3BD22 /* img_local_share.png */; };
 		92C28DD719F5B26C00E39BDD /* SCRApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C28DD619F5B26C00E39BDD /* SCRApplication.m */; };
+		D90F59371A19ECBE008F2DCB /* SCRFeedFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = D90F59361A19ECBE008F2DCB /* SCRFeedFetcher.m */; };
+		D90F593A1A19F617008F2DCB /* SCRDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D90F59391A19F617008F2DCB /* SCRDatabaseManager.m */; };
 		F6AA97CBC086528EBF0FFA97 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5982780EDA69C66A355A7531 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -96,6 +98,11 @@
 		92C28DD519F5B26C00E39BDD /* SCRApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SCRApplication.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		92C28DD619F5B26C00E39BDD /* SCRApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SCRApplication.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		A21561AE6A5B97BAE0C7EADE /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		D90F59351A19ECBE008F2DCB /* SCRFeedFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SCRFeedFetcher.h; path = SecureReader/Feed/SCRFeedFetcher.h; sourceTree = SOURCE_ROOT; };
+		D90F59361A19ECBE008F2DCB /* SCRFeedFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SCRFeedFetcher.m; path = SecureReader/Feed/SCRFeedFetcher.m; sourceTree = SOURCE_ROOT; };
+		D90F59381A19F617008F2DCB /* SCRDatabaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SCRDatabaseManager.h; path = SecureReader/Feed/SCRDatabaseManager.h; sourceTree = SOURCE_ROOT; };
+		D90F59391A19F617008F2DCB /* SCRDatabaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SCRDatabaseManager.m; path = SecureReader/Feed/SCRDatabaseManager.m; sourceTree = SOURCE_ROOT; };
+		D90F593B1A19F833008F2DCB /* SCRYapObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRYapObject.h; sourceTree = "<group>"; };
 		DBA503BDF49A23BF85C3B2EA /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -159,7 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				929EEF8619F4F5F30020BD75 /* Styles.plist */,
-				92BD50971A07A36A00F3BD22 /* Models */,
+				D90F59341A19EC43008F2DCB /* Feed */,
 				92BD509B1A07A38900F3BD22 /* Views */,
 				929EEF7319F4F5940020BD75 /* Controllers */,
 				929EEF9019F50B900020BD75 /* Language & Theming Support */,
@@ -239,10 +246,11 @@
 		92BD50971A07A36A00F3BD22 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D90F593B1A19F833008F2DCB /* SCRYapObject.h */,
 				92BD50981A07A36A00F3BD22 /* SCRItem.h */,
 				92BD50991A07A36A00F3BD22 /* SCRItem.m */,
 			);
-			path = Models;
+			name = Models;
 			sourceTree = "<group>";
 		};
 		92BD509B1A07A38900F3BD22 /* Views */ = {
@@ -265,6 +273,19 @@
 				92BD50AC1A07A74500F3BD22 /* img_local_share.png */,
 			);
 			path = "Temporary Files";
+			sourceTree = "<group>";
+		};
+		D90F59341A19EC43008F2DCB /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				D90F59381A19F617008F2DCB /* SCRDatabaseManager.h */,
+				D90F59391A19F617008F2DCB /* SCRDatabaseManager.m */,
+				92BD50971A07A36A00F3BD22 /* Models */,
+				D90F59351A19ECBE008F2DCB /* SCRFeedFetcher.h */,
+				D90F59361A19ECBE008F2DCB /* SCRFeedFetcher.m */,
+			);
+			name = Feed;
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -411,6 +432,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				92BD509A1A07A36A00F3BD22 /* SCRItem.m in Sources */,
+				D90F593A1A19F617008F2DCB /* SCRDatabaseManager.m in Sources */,
 				92BD50A11A07A38900F3BD22 /* SCRItemView.m in Sources */,
 				929EEF9319F5110D0020BD75 /* SCRCreatePassphraseViewController.m in Sources */,
 				929EEF8119F4F5940020BD75 /* SCRSelectLanguageViewController.m in Sources */,
@@ -418,6 +440,7 @@
 				929EEF4D19F4EB100020BD75 /* main.m in Sources */,
 				929EEF8219F4F5940020BD75 /* NSBundle+Language.m in Sources */,
 				929EEF8019F4F5940020BD75 /* SCRLoginViewController.m in Sources */,
+				D90F59371A19ECBE008F2DCB /* SCRFeedFetcher.m in Sources */,
 				922DC28019FE920C00FB1274 /* SCRMainViewController.m in Sources */,
 				92C28DD719F5B26C00E39BDD /* SCRApplication.m in Sources */,
 				929EEF9619F549080020BD75 /* SCRNavigationController.m in Sources */,
