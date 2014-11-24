@@ -1,8 +1,21 @@
 language: objective-c
 
-install:
-  - gem install cocoapods --no-rdoc --no-ri  # We need Cocoapods ~> 0.34
-  - pod install
+# Handle git submodules yourself
+# http://stackoverflow.com/a/24600210/805882
+git:
+    submodules: false
 
+# Use sed to replace the SSH URL with the public URL, then initialize submodules
+before_install:
+    - sed -i -e 's/git@github.com:/git:\/\/github.com\//' .gitmodules
+    - sed -i -e 's/git@github.com:/git:\/\/github.com\//' Podfile
+    - git submodule update --init --recursive
+
+install:
+  - export ARCHS="i386"   # Only build CPAProxy dependencies for i386 to speed things up
+  - bash ./Submodules/CPAProxy/scripts/build-all.sh
+
+before_script:
+  - pod install
 script:
-  - xctool -workspace SecureReader.xcworkspace -scheme SecureReader -sdk iphonesimulator8.0 -arch i386 build
+  - xctool -workspace SecureReader.xcworkspace -scheme SecureReader -sdk iphonesimulator -arch i386 build

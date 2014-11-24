@@ -35,6 +35,7 @@
 		92C28DD719F5B26C00E39BDD /* SCRApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C28DD619F5B26C00E39BDD /* SCRApplication.m */; };
 		D90F59371A19ECBE008F2DCB /* SCRFeedFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = D90F59361A19ECBE008F2DCB /* SCRFeedFetcher.m */; };
 		D90F593A1A19F617008F2DCB /* SCRDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D90F59391A19F617008F2DCB /* SCRDatabaseManager.m */; };
+		D9E6575F1A234363000E6301 /* SCRFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E6575E1A234363000E6301 /* SCRFeed.m */; };
 		F6AA97CBC086528EBF0FFA97 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5982780EDA69C66A355A7531 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -103,6 +104,9 @@
 		D90F59381A19F617008F2DCB /* SCRDatabaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SCRDatabaseManager.h; path = SecureReader/Feed/SCRDatabaseManager.h; sourceTree = SOURCE_ROOT; };
 		D90F59391A19F617008F2DCB /* SCRDatabaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SCRDatabaseManager.m; path = SecureReader/Feed/SCRDatabaseManager.m; sourceTree = SOURCE_ROOT; };
 		D90F593B1A19F833008F2DCB /* SCRYapObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRYapObject.h; sourceTree = "<group>"; };
+		D9DCD4451A2344CA003C0522 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		D9E6575D1A234363000E6301 /* SCRFeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRFeed.h; sourceTree = "<group>"; };
+		D9E6575E1A234363000E6301 /* SCRFeed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRFeed.m; sourceTree = "<group>"; };
 		DBA503BDF49A23BF85C3B2EA /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -128,6 +132,7 @@
 		6D8BC072A3BA09F61DB40805 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D9DCD4451A2344CA003C0522 /* CoreGraphics.framework */,
 				5982780EDA69C66A355A7531 /* libPods.a */,
 			);
 			name = Frameworks;
@@ -247,6 +252,8 @@
 			isa = PBXGroup;
 			children = (
 				D90F593B1A19F833008F2DCB /* SCRYapObject.h */,
+				D9E6575D1A234363000E6301 /* SCRFeed.h */,
+				D9E6575E1A234363000E6301 /* SCRFeed.m */,
 				92BD50981A07A36A00F3BD22 /* SCRItem.h */,
 				92BD50991A07A36A00F3BD22 /* SCRItem.m */,
 			);
@@ -435,6 +442,7 @@
 				D90F593A1A19F617008F2DCB /* SCRDatabaseManager.m in Sources */,
 				92BD50A11A07A38900F3BD22 /* SCRItemView.m in Sources */,
 				929EEF9319F5110D0020BD75 /* SCRCreatePassphraseViewController.m in Sources */,
+				D9E6575F1A234363000E6301 /* SCRFeed.m in Sources */,
 				929EEF8119F4F5940020BD75 /* SCRSelectLanguageViewController.m in Sources */,
 				929EEF5019F4EB100020BD75 /* SCRAppDelegate.m in Sources */,
 				929EEF4D19F4EB100020BD75 /* main.m in Sources */,

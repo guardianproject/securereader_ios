@@ -56,7 +56,7 @@
         return nil;
     }];
     YapDatabaseViewSorting *sorting = [YapDatabaseViewSorting withObjectBlock:^NSComparisonResult(NSString *group, NSString *collection1, NSString *key1, SCRItem *item1, NSString *collection2, NSString *key2, SCRItem *item2) {
-        return [item1.publishDate compare:item2.publishDate];
+        return [item1.publicationDate compare:item2.publicationDate];
     }];
     YapDatabaseView *databaseView = [[YapDatabaseView alloc] initWithGrouping:grouping sorting:sorting versionTag:@"1" options:nil];
     [self.database asyncRegisterExtension:databaseView withName:self.allFeedItemsViewName completionBlock:^(BOOL ready) {

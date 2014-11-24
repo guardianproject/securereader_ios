@@ -9,9 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @protocol SCRYapObject <NSObject>
-
+@required
 - (NSString*) yapKey;
 - (NSString*) yapGroup;
 + (NSString*) yapCollection;
-
 @end

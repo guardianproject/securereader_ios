@@ -7,19 +7,24 @@
 //
 
 #import "SCRFeedFetcher.h"
-#import "MWFeedParser.h"
+#import "RSSAtomKit.h"
 #import "SCRDatabaseManager.h"
 #import "SCRItem.h"
+#import "SCRFeed.h"
 
-@interface SCRFeedFetcher() <MWFeedParserDelegate>
-@property (atomic, strong, readonly) NSMutableSet *parsers;
+@interface SCRFeedFetcher()
+@property (nonatomic, strong, readonly) RSSAtomKit *atomKit;
+@property (nonatomic, strong, readonly) dispatch_queue_t callbackQueue;
 @end
 
 @implementation SCRFeedFetcher
 
 - (instancetype) init {
     if (self = [super init]) {
-        _parsers = [NSMutableSet set];
+        _atomKit = [[RSSAtomKit alloc] initWithSessionConfiguration:[NSURLSessionConfiguration ephemeralSessionConfiguration]];
+        _callbackQueue = dispatch_queue_create("SCRFeedFetcher callback queue", 0);
+        [self.atomKit.parser registerFeedClass:[SCRFeed class]];
+        [self.atomKit.parser registerItemClass:[SCRItem class]];
     }
     return self;
 }
@@ -30,41 +35,22 @@
  *  @param url rss feed url
  */
 - (void) fetchFeedDataFromURL:(NSURL*)url {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        
-        // We will need to modify MWFeedParser to use NSURLSession and Tor SOCKS proxy
-        MWFeedParser *parser = [[MWFeedParser alloc] initWithFeedURL:url];
-        parser.delegate = self;
-
-        [parser parse];
-    });
-}
-
-#pragma mark MWFeedParserDelegate methods
-
-- (void)feedParserDidStart:(MWFeedParser *)parser {
-    NSLog(@"feedParserDidStart %@", parser);
-}
-
-- (void)feedParser:(MWFeedParser *)parser didParseFeedInfo:(MWFeedInfo *)info {
-    NSLog(@"parser %@ didParseFeedInfo %@", parser, info);
-}
-
-- (void)feedParser:(MWFeedParser *)parser didParseFeedItem:(MWFeedItem *)item {
-    NSLog(@"parser %@ didParseFeedItem %@", parser, item);
-    SCRItem *appItem = [[SCRItem alloc] initWithFeedItem:item];
-    [[SCRDatabaseManager sharedInstance].readWriteConnection asyncReadWriteWithBlock:^(YapDatabaseReadWriteTransaction *transaction) {
-        [transaction setObject:appItem forKey:appItem.yapKey inCollection:[[appItem class] yapCollection]];
-    }];
-}
-
-- (void)feedParserDidFinish:(MWFeedParser *)parser {
-    [self.parsers removeObject:parser];
-}
-
-- (void)feedParser:(MWFeedParser *)parser didFailWithError:(NSError *)error {
-    NSLog(@"parser %@ didFailWithError: %@", parser, error);
-    [self.parsers removeObject:parser];
+    [self.atomKit parseFeedFromURL:url completionBlock:^(RSSFeed *feed, NSArray *items, NSError *error) {
+        NSLog(@"Parsed feed %@ with %lu items", feed.title, (unsigned long)items.count);
+        if ([feed isKindOfClass:[SCRFeed class]]) {
+            SCRFeed *nativeFeed = (SCRFeed*)feed;
+            [[SCRDatabaseManager sharedInstance].readWriteConnection asyncReadWriteWithBlock:^(YapDatabaseReadWriteTransaction *transaction) {
+                [transaction setObject:nativeFeed forKey:nativeFeed.yapKey inCollection:[[nativeFeed class] yapCollection]];
+                [items enumerateObjectsUsingBlock:^(RSSItem *item, NSUInteger idx, BOOL *stop) {
+                    if ([item isKindOfClass:[SCRItem class]]) {
+                        SCRItem *nativeItem = (SCRItem*)item;
+                        NSLog(@"Parsed feed %@ item: %@", feed.title, item.title);
+                        [transaction setObject:nativeItem forKey:nativeItem.yapKey inCollection:[[nativeItem class] yapCollection]];
+                    }
+                }];
+            }];
+        }
+    } completionQueue:self.callbackQueue];
 }
 
 

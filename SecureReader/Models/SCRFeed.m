@@ -1,14 +1,14 @@
 //
-//  Item.m
+//  SCRFeed.m
 //  SecureReader
 //
-//  Created by N-Pex on 2014-09-11.
+//  Created by Christopher Ballinger on 11/24/14.
 //  Copyright (c) 2014 Guardian Project. All rights reserved.
 //
 
-#import "SCRItem.h"
+#import "SCRFeed.h"
 
-@implementation SCRItem
+@implementation SCRFeed
 
 #pragma mark SRCYapObject methods
 

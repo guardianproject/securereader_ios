@@ -1,0 +1,6 @@
+[submodule "Submodules/RSSAtomKit"]
+	path = Submodules/RSSAtomKit
+	url = git@github.com:chrisballinger/RSSAtomKit.git
+[submodule "Submodules/CPAProxy"]
+	path = Submodules/CPAProxy
+	url = git@github.com:ursachec/CPAProxy.git

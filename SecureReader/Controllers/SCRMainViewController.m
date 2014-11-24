@@ -13,6 +13,7 @@
 #import "YapDatabase.h"
 #import "SCRDatabaseManager.h"
 #import "YapDatabaseView.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface SCRMainViewController ()
 
@@ -47,7 +48,15 @@
 - (void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self.tableView reloadData];
-    [self.feedFetcher fetchFeedDataFromURL:[NSURL URLWithString:@"http://www.nytimes.com/services/xml/rss/nyt/HomePage.xml"]];
+    NSArray *feedURLs = @[@"http://www.voanews.com/api/epiqq",
+                          @"http://www.theguardian.com/world/rss",
+                          @"http://feeds.washingtonpost.com/rss/world",
+                          @"http://www.nytimes.com/services/xml/rss/nyt/InternationalHome.xml",
+                          @"http://rss.cnn.com/rss/cnn_topstories.rss",
+                          @"http://rss.cnn.com/rss/cnn_world.rss"];
+    [feedURLs enumerateObjectsUsingBlock:^(NSString *feedURLString, NSUInteger idx, BOOL *stop) {
+        [self.feedFetcher fetchFeedDataFromURL:[NSURL URLWithString:feedURLString]];
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -58,10 +67,10 @@
 - (NSString *) getCellIdentifierForItem:(SCRItem *) item
 {
     NSString *cellIdentifier = @"cellNoPhotos";
-    if ([item.title hasPrefix:@"F"])
+    if (item.thumbnailURL) {
+        // perhaps we can also provide "cellPortraitPhotos" via thumbnailSize property
         cellIdentifier = @"cellLandscapePhotos";
-    else if ([item.title hasPrefix:@"T"])
-        cellIdentifier = @"cellPortraitPhotos";
+    }
     return cellIdentifier;
 }
 
@@ -120,11 +129,8 @@
 - (void)configureCell:(SCRItemView *)cell forItem:(SCRItem *)item
 {
     cell.titleView.text = item.title;
-    cell.sourceView.labelSource.text = [item.url host];
+    cell.sourceView.labelSource.text = [item.linkURL host];
     
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"dd-MM-yyyy HH:mm"];
-    cell.sourceView.labelDate.text = [formatter stringFromDate:item.publishDate];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
@@ -137,6 +143,12 @@
     SCRItemView *cell = [tableView
                       dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     [self configureCell:cell forItem:item];
+    
+    cell.imageView.image = nil;
+    if (item.thumbnailURL) {
+        [cell.imageView setImageWithURL:item.thumbnailURL];
+    }
+    
     return cell;
 }
 
