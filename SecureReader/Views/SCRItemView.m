@@ -15,4 +15,11 @@
 @synthesize titleView = _titleView;
 @synthesize textView = _textView;
 
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    _titleView.preferredMaxLayoutWidth = _titleView.bounds.size.width;
+    [super layoutSubviews];
+}
+
 @end

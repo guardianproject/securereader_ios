@@ -18,6 +18,7 @@
 @implementation SCRLoginViewController
 {
     UIViewController *destinationViewController;
+    UINavigationController *navigationViewController;
     BOOL animateDestination;
 }
 
@@ -31,9 +32,10 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void) setDestinationViewController:(UIViewController *)viewController animated:(BOOL)animated
+- (void) setDestinationViewController:(UIViewController *)viewController navigationController:(UINavigationController *)navigationController animated:(BOOL)animated
 {
     destinationViewController = viewController;
+    navigationViewController = navigationController;
     animateDestination = animated;
 }
 
@@ -42,10 +44,9 @@
     //TEMP
     if ([[SCRAppDelegate sharedAppDelegate] loginWithPassphrase:_editPassphrase.text])
     {
-        if (destinationViewController != nil)
+        if (destinationViewController != nil && navigationViewController != nil)
         {
-            SCRNavigationController *vcNav = (SCRNavigationController *)[self presentingViewController];
-            [vcNav pushViewController:destinationViewController animated:NO];
+            [navigationViewController pushViewController:destinationViewController animated:NO];
         }
         [self dismissViewControllerAnimated:YES completion:nil];
     }

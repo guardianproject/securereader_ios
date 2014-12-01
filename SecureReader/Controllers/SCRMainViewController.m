@@ -14,6 +14,7 @@
 #import "SCRDatabaseManager.h"
 #import "YapDatabaseView.h"
 #import "UIImageView+AFNetworking.h"
+#import "SCRItemViewController.h"
 
 @interface SCRMainViewController ()
 
@@ -22,14 +23,19 @@
 @property (nonatomic, strong) SCRItemView *prototypeCellLandscapePhotos;
 @property (nonatomic, strong) SCRItemView *prototypeCellPortraitPhotos;
 
+@property (strong,nonatomic) SCRItemViewController *expander;
+
 @property (nonatomic, strong, readonly) SCRFeedFetcher *feedFetcher;
 
 @property (nonatomic, strong) YapDatabaseViewMappings *mappings;
 @property (nonatomic, strong) YapDatabaseConnection *readConnection;
 @property (nonatomic, strong, readonly) NSString *yapViewName;
+
 @end
 
 @implementation SCRMainViewController
+
+@synthesize selectedItemRect;
 
 - (void)viewDidLoad
 {
@@ -43,7 +49,6 @@
     //refreshControl.tintColor = [UIColor magentaColor];
     //self.refreshControl = refreshControl;
 }
-
 
 - (void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -61,7 +66,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [self.navigationController setNavigationBarHidden:NO];    
+    [self.navigationController setNavigationBarHidden:NO];
 }
 
 - (NSString *) getCellIdentifierForItem:(SCRItem *) item
@@ -69,7 +74,7 @@
     NSString *cellIdentifier = @"cellNoPhotos";
     if (item.thumbnailURL) {
         // perhaps we can also provide "cellPortraitPhotos" via thumbnailSize property
-        cellIdentifier = @"cellLandscapePhotos";
+        cellIdentifier = @"cellNoPhotos";
     }
     return cellIdentifier;
 }
@@ -102,6 +107,21 @@
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (self.expander == nil)
+    {
+         self.expander = [self.storyboard instantiateViewControllerWithIdentifier:@"itemView"];
+    }
+    self.expander.item = [self itemForIndexPath:indexPath];
+    self.selectedItemRect = [self.tableView rectForRowAtIndexPath:indexPath];
+    
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+
+    self.selectedItemRect = CGRectMake(self.selectedItemRect.origin.x - tableView.bounds.origin.x, self.selectedItemRect.origin.y - tableView.bounds.origin.y, self.selectedItemRect.size.width, self.selectedItemRect.size.height);
+    
+    [self.navigationController pushViewController:self.expander animated:NO];
+
+    if ([cell class] == [SCRItemView class])
+        [self.expander willExpandFromView:(SCRItemView*)cell];
 }
 
 #pragma mark UITableViewDataSource methods
@@ -307,5 +327,18 @@
     
     [self.tableView endUpdates];
 }
+
+
+// Prepare for the segue going forward
+//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+//    if([segue isKindOfClass:[SCRExpandSegue class]]) {
+//        SCRExpandSegue *expand = (SCRExpandSegue *)segue;
+//        expand.isExpanding = YES;
+//        expand.sourceRect = self.chosenCellFrame;
+//        expand.targetRect = self.view.frame;
+//    }
+//}
+
+
 
 @end

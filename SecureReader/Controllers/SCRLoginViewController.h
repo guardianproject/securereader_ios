@@ -12,6 +12,6 @@
 
 - (IBAction)loginButtonClicked:(id)sender;
 
-- (void) setDestinationViewController:(UIViewController *)viewController animated:(BOOL)animated;
+- (void) setDestinationViewController:(UIViewController *)viewController navigationController:(UINavigationController *)navigationController animated:(BOOL)animated;
 
 @end

@@ -32,6 +32,14 @@
     [SCRTheme initialize];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidTimeout:) name:kApplicationDidTimeoutNotification object:nil];
     
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+
+    UIViewController *mainViewController = nil;
+    if (![self hasCreatedPassphrase])
+    {
+        mainViewController = [storyboard instantiateViewControllerWithIdentifier:@"welcome"];
+        self.window.rootViewController = mainViewController;
+    }
     return YES;
 }
 

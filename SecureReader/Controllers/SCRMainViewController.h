@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SCRItemViewController.h"
 
 @interface SCRMainViewController : UITableViewController
+
+@property (nonatomic) CGRect selectedItemRect;
 
 @end

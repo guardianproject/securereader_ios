@@ -7,9 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		920B4D941A110272000E53E2 /* SCRSideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 920B4D931A110272000E53E2 /* SCRSideMenuViewController.m */; };
 		922DC28019FE920C00FB1274 /* SCRMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 922DC27F19FE920C00FB1274 /* SCRMainViewController.m */; };
 		9239049E1A07E365004EEE7E /* background_debut_light.png in Resources */ = {isa = PBXBuildFile; fileRef = 9239049D1A07E365004EEE7E /* background_debut_light.png */; };
 		924BBFC01A08DCEB00A32940 /* InAppSettings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 924BBFBF1A08DCEB00A32940 /* InAppSettings.bundle */; };
+		928036661A2776BE0081801A /* content.txt in Resources */ = {isa = PBXBuildFile; fileRef = 928036651A2776BE0081801A /* content.txt */; };
+		928036691A27D4FF0081801A /* SCRItemPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 928036681A27D4FF0081801A /* SCRItemPageViewController.m */; };
 		929EEF4D19F4EB100020BD75 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 929EEF4C19F4EB100020BD75 /* main.m */; };
 		929EEF5019F4EB100020BD75 /* SCRAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 929EEF4F19F4EB100020BD75 /* SCRAppDelegate.m */; };
 		929EEF5919F4EB100020BD75 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 929EEF5719F4EB100020BD75 /* Main.storyboard */; };
@@ -33,6 +36,7 @@
 		92BD50AD1A07A74500F3BD22 /* ic_launcher.png in Resources */ = {isa = PBXBuildFile; fileRef = 92BD50AB1A07A74500F3BD22 /* ic_launcher.png */; };
 		92BD50AE1A07A74500F3BD22 /* img_local_share.png in Resources */ = {isa = PBXBuildFile; fileRef = 92BD50AC1A07A74500F3BD22 /* img_local_share.png */; };
 		92C28DD719F5B26C00E39BDD /* SCRApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C28DD619F5B26C00E39BDD /* SCRApplication.m */; };
+		92C458391A233EAA00835B10 /* SCRItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C458381A233EAA00835B10 /* SCRItemViewController.m */; };
 		D90F59371A19ECBE008F2DCB /* SCRFeedFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = D90F59361A19ECBE008F2DCB /* SCRFeedFetcher.m */; };
 		D90F593A1A19F617008F2DCB /* SCRDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D90F59391A19F617008F2DCB /* SCRDatabaseManager.m */; };
 		D9E6575F1A234363000E6301 /* SCRFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E6575E1A234363000E6301 /* SCRFeed.m */; };
@@ -51,10 +55,15 @@
 
 /* Begin PBXFileReference section */
 		5982780EDA69C66A355A7531 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		920B4D921A110272000E53E2 /* SCRSideMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRSideMenuViewController.h; sourceTree = "<group>"; };
+		920B4D931A110272000E53E2 /* SCRSideMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRSideMenuViewController.m; sourceTree = "<group>"; };
 		922DC27E19FE920C00FB1274 /* SCRMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SCRMainViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		922DC27F19FE920C00FB1274 /* SCRMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SCRMainViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		9239049D1A07E365004EEE7E /* background_debut_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_debut_light.png; sourceTree = "<group>"; };
 		924BBFBF1A08DCEB00A32940 /* InAppSettings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = InAppSettings.bundle; sourceTree = "<group>"; };
+		928036651A2776BE0081801A /* content.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = content.txt; sourceTree = "<group>"; };
+		928036671A27D4FF0081801A /* SCRItemPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRItemPageViewController.h; sourceTree = "<group>"; };
+		928036681A27D4FF0081801A /* SCRItemPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRItemPageViewController.m; sourceTree = "<group>"; };
 		929EEF4719F4EB100020BD75 /* SecureReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SecureReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		929EEF4B19F4EB100020BD75 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		929EEF4C19F4EB100020BD75 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = main.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -98,6 +107,8 @@
 		92BD50AC1A07A74500F3BD22 /* img_local_share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_local_share.png; sourceTree = "<group>"; };
 		92C28DD519F5B26C00E39BDD /* SCRApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SCRApplication.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		92C28DD619F5B26C00E39BDD /* SCRApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SCRApplication.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		92C458371A233EAA00835B10 /* SCRItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRItemViewController.h; sourceTree = "<group>"; };
+		92C458381A233EAA00835B10 /* SCRItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRItemViewController.m; sourceTree = "<group>"; };
 		A21561AE6A5B97BAE0C7EADE /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		D90F59351A19ECBE008F2DCB /* SCRFeedFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SCRFeedFetcher.h; path = SecureReader/Feed/SCRFeedFetcher.h; sourceTree = SOURCE_ROOT; };
 		D90F59361A19ECBE008F2DCB /* SCRFeedFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SCRFeedFetcher.m; path = SecureReader/Feed/SCRFeedFetcher.m; sourceTree = SOURCE_ROOT; };
@@ -231,6 +242,12 @@
 				929EEF9519F549080020BD75 /* SCRNavigationController.m */,
 				922DC27E19FE920C00FB1274 /* SCRMainViewController.h */,
 				922DC27F19FE920C00FB1274 /* SCRMainViewController.m */,
+				920B4D921A110272000E53E2 /* SCRSideMenuViewController.h */,
+				920B4D931A110272000E53E2 /* SCRSideMenuViewController.m */,
+				92C458371A233EAA00835B10 /* SCRItemViewController.h */,
+				92C458381A233EAA00835B10 /* SCRItemViewController.m */,
+				928036671A27D4FF0081801A /* SCRItemPageViewController.h */,
+				928036681A27D4FF0081801A /* SCRItemPageViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -278,6 +295,7 @@
 				9239049D1A07E365004EEE7E /* background_debut_light.png */,
 				92BD50AB1A07A74500F3BD22 /* ic_launcher.png */,
 				92BD50AC1A07A74500F3BD22 /* img_local_share.png */,
+				928036651A2776BE0081801A /* content.txt */,
 			);
 			path = "Temporary Files";
 			sourceTree = "<group>";
@@ -381,6 +399,7 @@
 				929EEF8C19F4FC9D0020BD75 /* Localizable.strings in Resources */,
 				929EEF5919F4EB100020BD75 /* Main.storyboard in Resources */,
 				9239049E1A07E365004EEE7E /* background_debut_light.png in Resources */,
+				928036661A2776BE0081801A /* content.txt in Resources */,
 				924BBFC01A08DCEB00A32940 /* InAppSettings.bundle in Resources */,
 				929EEF5E19F4EB100020BD75 /* LaunchScreen.xib in Resources */,
 				929EEF8719F4F5F30020BD75 /* Styles.plist in Resources */,
@@ -443,10 +462,13 @@
 				92BD50A11A07A38900F3BD22 /* SCRItemView.m in Sources */,
 				929EEF9319F5110D0020BD75 /* SCRCreatePassphraseViewController.m in Sources */,
 				D9E6575F1A234363000E6301 /* SCRFeed.m in Sources */,
+				928036691A27D4FF0081801A /* SCRItemPageViewController.m in Sources */,
 				929EEF8119F4F5940020BD75 /* SCRSelectLanguageViewController.m in Sources */,
 				929EEF5019F4EB100020BD75 /* SCRAppDelegate.m in Sources */,
+				92C458391A233EAA00835B10 /* SCRItemViewController.m in Sources */,
 				929EEF4D19F4EB100020BD75 /* main.m in Sources */,
 				929EEF8219F4F5940020BD75 /* NSBundle+Language.m in Sources */,
+				920B4D941A110272000E53E2 /* SCRSideMenuViewController.m in Sources */,
 				929EEF8019F4F5940020BD75 /* SCRLoginViewController.m in Sources */,
 				D90F59371A19ECBE008F2DCB /* SCRFeedFetcher.m in Sources */,
 				922DC28019FE920C00FB1274 /* SCRMainViewController.m in Sources */,

@@ -16,3 +16,7 @@ pod 'CPAProxy', :path => 'Submodules/CPAProxy/CPAProxy.podspec'
 
 # Our RSS parser
 pod 'RSSAtomKit', :path => 'Submodules/RSSAtomKit/RSSAtomKit.podspec'
+
+# Left side menu
+pod 'MMDrawerController', '~> 0.5.7'
+
