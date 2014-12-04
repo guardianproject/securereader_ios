@@ -9,6 +9,7 @@
 #import "SCRDatabaseManager.h"
 #import "YapDatabaseView.h"
 #import "SCRItem.h"
+#import "SCRFeed.h"
 
 @implementation SCRDatabaseManager
 
@@ -44,6 +45,7 @@
 
 - (void) registerViews {
     [self registerAllFeedItemsView];
+    [self registerAllFeedsView];
 }
 
 - (void) registerAllFeedItemsView {
@@ -64,6 +66,23 @@
     }];
 }
 
+- (void) registerAllFeedsView {
+    _allFeedsViewName = @"SRCAllFeedsViewName";
+    YapDatabaseViewGrouping *grouping = [YapDatabaseViewGrouping withObjectBlock:^NSString *(NSString *collection, NSString *key, id object) {
+        if ([object isKindOfClass:[SCRFeed class]]) {
+            SCRFeed *item = object;
+            return item.yapGroup;
+        }
+        return nil;
+    }];
+    YapDatabaseViewSorting *sorting = [YapDatabaseViewSorting withObjectBlock:^NSComparisonResult(NSString *group, NSString *collection1, NSString *key1, SCRFeed *item1, NSString *collection2, NSString *key2, SCRFeed *item2) {
+        return [item1.title compare:item2.title];
+    }];
+    YapDatabaseView *databaseView = [[YapDatabaseView alloc] initWithGrouping:grouping sorting:sorting versionTag:@"1" options:nil];
+    [self.database asyncRegisterExtension:databaseView withName:self.allFeedsViewName completionBlock:^(BOOL ready) {
+        NSLog(@"%@ ready %d", self.allFeedsViewName, ready);
+    }];
+}
 
 + (instancetype) sharedInstance {
     static id _sharedInstance = nil;

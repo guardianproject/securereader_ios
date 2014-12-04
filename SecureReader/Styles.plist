@@ -2,6 +2,25 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>LeftSideMenuStyle</key>
+	<dict>
+		<key>backgroundColor</key>
+		<string>#ff000000</string>
+	</dict>
+	<key>LeftSideMenuItemStyle</key>
+	<dict>
+		<key>textColor</key>
+		<string>#ffffffff</string>
+	</dict>
+	<key>LeftSideMenuItemSubStyle</key>
+	<dict>
+		<key>corners</key>
+		<integer>10</integer>
+		<key>tintColor</key>
+		<string>#ff000000</string>
+		<key>backgroundColor</key>
+		<string>#ffd7df23</string>
+	</dict>
 	<key>UIButton</key>
 	<dict>
 		<key>parent</key>

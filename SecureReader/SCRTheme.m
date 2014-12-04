@@ -133,6 +133,18 @@ static NSMutableDictionary *themes = nil;
                 color = (UIColor *)value;
             [control setTintColor:color];
         }
+        else if ([property isEqualToString:@"textColor"] && [control respondsToSelector:@selector(setTextColor:)])
+        {
+            if (save && [control respondsToSelector:@selector(textColor)])
+                [SCRTheme saveProperty:property value:[control performSelector:@selector(textColor)] forControl:control];
+            UIColor *color = nil;
+            NSObject *value = [self getNillableProperty:property fromDict:style];
+            if ([value isKindOfClass:[NSString class]])
+                color =  [self colorWithHexString:(NSString *)value];
+            else
+                color = (UIColor *)value;
+            [control performSelector:@selector(setTextColor:) withObject:color];
+        }
         else if ([property isEqualToString:@"corners"])
         {
             if (control.layer != nil)
