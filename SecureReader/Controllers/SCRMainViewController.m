@@ -74,7 +74,7 @@
     NSString *cellIdentifier = @"cellNoPhotos";
     if (item.thumbnailURL) {
         // perhaps we can also provide "cellPortraitPhotos" via thumbnailSize property
-        cellIdentifier = @"cellNoPhotos";
+        cellIdentifier = @"cellLandscapePhotos";
     }
     return cellIdentifier;
 }
