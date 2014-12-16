@@ -6,18 +6,18 @@
 //  Copyright (c) 2014 Guardian Project. All rights reserved.
 //
 
-#import "SCRSideMenuViewController.h"
+#import "SCRFeedListViewController.h"
 #import "YapDatabase.h"
 #import "SCRDatabaseManager.h"
 #import "YapDatabaseView.h"
-#import "SCRMenuItemWithCountCell.h"
+#import "SCRFeedListCell.h"
 #import "SCRFeed.h"
+#import "SCRFeedViewController.h"
 
-@interface SCRSideMenuViewController ()
+@interface SCRFeedListViewController ()
 
 // Prototype cells for height calculation
-@property (nonatomic, strong) UITableViewCell *prototypeCellButtonOptions;
-@property (nonatomic, strong) SCRMenuItemWithCountCell *prototypeCellWithCount;
+@property (nonatomic, strong) SCRFeedListCell *prototypeCellFeed;
 
 @property (nonatomic, strong) YapDatabaseViewMappings *mappings;
 @property (nonatomic, strong) YapDatabaseConnection *readConnection;
@@ -25,7 +25,7 @@
 
 @end
 
-@implementation SCRSideMenuViewController
+@implementation SCRFeedListViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -45,53 +45,49 @@
 
 - (NSString *) getCellIdentifierForIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *cellIdentifier = @"cellWithCount";
-    if (indexPath.section == 0 && indexPath.row == 0)
-    {
-        cellIdentifier = @"cellButtonOptions";
-    }
+    NSString *cellIdentifier = @"cellFeed";
     return cellIdentifier;
 }
 
 - (UITableViewCell *) getPrototypeForIndexPath:(NSIndexPath *)indexPath
 {
     NSString *cellIdentifier = [self getCellIdentifierForIndexPath:indexPath];
-    if ([cellIdentifier compare:@"cellButtonOptions"] == NSOrderedSame)
+    if ([cellIdentifier compare:@"cellFeed"] == NSOrderedSame)
     {
-        if (!self.prototypeCellButtonOptions)
-            self.prototypeCellButtonOptions = [self.tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-        return self.prototypeCellButtonOptions;
+        if (!self.prototypeCellFeed)
+            self.prototypeCellFeed = [self.tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        return self.prototypeCellFeed;
     }
-    else
-    {
-        // No photos
-        if (!self.prototypeCellWithCount)
-            self.prototypeCellWithCount = [self.tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-        return self.prototypeCellWithCount;
-    }
+    return nil;
 }
 
 #pragma mark UITableViewDelegate methods
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+   
+    SCRFeed *feed = [self itemForIndexPath:indexPath];
+    
+    SCRFeedViewController *feedViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"feedViewController"];
+    [feedViewController setFeedViewType:SCRFeedViewTypeFeed feed:feed];
+    [self.navigationController pushViewController:feedViewController animated:YES];
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)feedSectionOffset
 {
-    return 1;
+    return 0;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)sender
 {
     NSInteger numberOfSections = [self.mappings numberOfSections];
-    return 1 + numberOfSections;
+    return [self feedSectionOffset] + numberOfSections;
 }
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (section == 0)
+    if (section < [self feedSectionOffset])
         return 1;
     NSInteger numberOfRows = [self.mappings numberOfItemsInSection:section - [self feedSectionOffset]];
     return numberOfRows;
@@ -105,11 +101,11 @@
     UITableViewCell *cell = [tableView
                          dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     
-    if ([cell isKindOfClass:[SCRMenuItemWithCountCell class]])
+    if ([cell isKindOfClass:[SCRFeedListCell class]])
     {
         SCRFeed *feed = [self itemForIndexPath:indexPath];
         if (feed != nil)
-            [self configureCellWithCount:(SCRMenuItemWithCountCell *)cell forItem:feed];
+            [self configureCellWithCount:(SCRFeedListCell *)cell forItem:feed];
     }
     
     return cell;
@@ -133,9 +129,10 @@
     return item;
 }
 
-- (void)configureCellWithCount:(SCRMenuItemWithCountCell *)cell forItem:(SCRFeed *)item
+- (void)configureCellWithCount:(SCRFeedListCell *)cell forItem:(SCRFeed *)item
 {
     cell.titleView.text = item.title;
+    cell.descriptionView.text = item.description;
 }
 
 #pragma mark YapDatabase

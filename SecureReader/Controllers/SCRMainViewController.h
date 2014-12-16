@@ -1,16 +1,16 @@
 //
-//  SRMainViewController.h
+//  SCRRootViewController.h
 //  SecureReader
 //
-//  Created by N-Pex on 2014-10-27.
+//  Created by N-Pex on 2014-12-05.
 //  Copyright (c) 2014 Guardian Project. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import "SCRItemViewController.h"
 
-@interface SCRMainViewController : UITableViewController
+@interface SCRMainViewController : UIViewController<UITabBarDelegate>
 
-@property (nonatomic) CGRect selectedItemRect;
+@property (strong, nonatomic) IBOutlet UITabBar *tabBar;
+@property (strong, nonatomic) IBOutlet UIView *container;
 
 @end

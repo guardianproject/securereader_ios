@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SCRMenuItemWithCountCell : UITableViewCell
+@interface SCRFeedListCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleView;
-@property (weak, nonatomic) IBOutlet UILabel *countView;
+@property (weak, nonatomic) IBOutlet UILabel *descriptionView;
 
 @end

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SCRSideMenuViewController : UITableViewController
+@interface SCRFeedListViewController : UITableViewController
 
 @end

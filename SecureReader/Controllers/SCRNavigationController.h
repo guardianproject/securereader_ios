@@ -10,4 +10,6 @@
 
 @interface SCRNavigationController : UINavigationController
 
+- (IBAction)showPanicAction:(id)sender;
+
 @end

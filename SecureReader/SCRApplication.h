@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #define kApplicationDidTimeoutNotification @"AppTimeOut"
+#define kPanicStartNotification @"Panic"
 
 @interface SCRApplication : UIApplication
 

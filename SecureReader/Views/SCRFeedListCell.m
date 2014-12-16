@@ -6,18 +6,19 @@
 //  Copyright (c) 2014 Guardian Project. All rights reserved.
 //
 
-#import "SCRMenuItemWithCountCell.h"
+#import "SCRFeedListCell.h"
 
-@implementation SCRMenuItemWithCountCell
+@implementation SCRFeedListCell
 
 @synthesize imageView = _imageView;
 @synthesize titleView = _titleView;
-@synthesize countView = _countView;
+@synthesize descriptionView = _descriptionView;
 
 - (void)layoutSubviews
 {
     [super layoutSubviews];
     _titleView.preferredMaxLayoutWidth = _titleView.bounds.size.width;
+    _descriptionView.preferredMaxLayoutWidth = _descriptionView.bounds.size.width;
     [super layoutSubviews];
 }
 
