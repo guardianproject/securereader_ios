@@ -8,6 +8,7 @@
 
 #import "SCRMainViewControllerSegue.h"
 #import "SCRMainViewController.h"
+#import "UIView+Theming.h"
 
 @implementation SCRMainViewControllerSegue
 
@@ -30,6 +31,9 @@
     tabBarViewController.navigationItem.title = destinationViewController.navigationItem.title;
     tabBarViewController.navigationItem.rightBarButtonItems = destinationViewController.navigationItem.rightBarButtonItems;
     tabBarViewController.navigationItem.rightBarButtonItem = destinationViewController.navigationItem.rightBarButtonItem;
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    //[backItem setTheme:@"NavigationBarItemStyle"];
+    tabBarViewController.navigationItem.backBarButtonItem = backItem;
 }
 
 @end

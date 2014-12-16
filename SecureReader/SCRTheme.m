@@ -93,6 +93,31 @@ static NSMutableDictionary *themes = nil;
     }
 }
 
+
++ (NSObject*) getProperty:(NSString *)property forTheme:(NSString*)theme
+{
+    NSMutableDictionary *style = nil;
+    [SCRTheme getStylesForTheme:theme into:&style];
+    if (style != nil)
+    {
+        return [style objectForKey:property];
+    }
+    return nil;
+}
+
++ (UIColor*) getColorProperty:(NSString *)property forTheme:(NSString*)theme
+{
+    NSObject *value = [SCRTheme getProperty:property forTheme:theme];
+    if (value != nil)
+    {
+        if ([value isKindOfClass:[NSString class]])
+            return [self colorWithHexString:(NSString *)value];
+        else
+            return (UIColor *)value;
+    }
+    return nil;
+}
+
 + (void) applyStyle:(NSDictionary *)style toControl:(UIControl *)control save:(BOOL)save
 {
     for (NSString *property in style.keyEnumerator)

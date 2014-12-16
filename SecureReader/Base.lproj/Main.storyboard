@@ -12,10 +12,6 @@
                     <tabBarItem key="tabBarItem" title="News" image="ic_menu_news.png" id="tbw-PK-3Fi"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="GjF-dz-B0i">
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="1" green="0.84772613959999998" blue="0.90105798930000003" alpha="0.42999999999999999" colorSpace="calibratedRGB"/>
-                        <textAttributes key="titleTextAttributes">
-                            <color key="textColor" red="1" green="0.13396670029999999" blue="0.59150032880000003" alpha="1" colorSpace="calibratedRGB"/>
-                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="5ha-fa-hNB" kind="show" identifier="segueToMain" id="Ky3-cY-pkP"/>

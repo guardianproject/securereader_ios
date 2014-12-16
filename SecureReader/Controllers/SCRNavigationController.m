@@ -13,6 +13,8 @@
 #import "SCRLoginViewController.h"
 #import "SCRItemViewController.h"
 #import "SCRFeedViewController.h"
+#import "UIView+Theming.h"
+#import "SCRTheme.h"
 
 #define kAnimationDurationFadeIn 0.2
 #define kAnimationDurationExpand 0.5
@@ -27,6 +29,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.navigationBar setTheme:@"NavigationBarItemStyle"];
+
+    UIColor *color = [SCRTheme getColorProperty:@"textColor" forTheme:@"NavigationBarItemStyle"];
+    if (color != nil)
+    {
+        [self.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObject:color forKey:NSForegroundColorAttributeName]];
+    }
     [self performSegueWithIdentifier:@"segueToMain" sender:self];
 }
 
