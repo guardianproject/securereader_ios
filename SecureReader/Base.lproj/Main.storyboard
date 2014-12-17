@@ -518,7 +518,26 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fnw-dZ-OCl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="903" y="2099"/>
+            <point key="canvasLocation" x="363" y="2207"/>
+        </scene>
+        <!--Receive Share-->
+        <scene sceneID="f55-gL-gr2">
+            <objects>
+                <viewController storyboardIdentifier="receiveShare" id="JWm-T1-c63" customClass="SCRReceiveShareViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="lAz-jw-TdZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="UPM-xJ-Ng1"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="jH7-TA-rOz">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Receive Share" id="kvR-28-70Q"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="I1j-aq-Pqw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1929" y="2235"/>
         </scene>
         <!--Main Content-->
         <scene sceneID="bJD-Bd-5zi">
@@ -916,7 +935,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k5J-Hu-zEk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1559" y="1282"/>
+            <point key="canvasLocation" x="1635" y="1282"/>
         </scene>
         <!--Full Item View-->
         <scene sceneID="rwI-Hr-7gx">

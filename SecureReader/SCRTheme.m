@@ -70,6 +70,9 @@ static NSMutableDictionary *themes = nil;
     NSString *currentTheme = objc_getAssociatedObject(control, &_currentTheme);
     if (savedStyle != nil && currentTheme != nil && ![currentTheme isEqualToString:theme])
     {
+        if ([theme isEqualToString:@"UIButton"])
+            return;
+        
         // Reset to old style first
         //
         [self applyStyle:savedStyle toControl:control save:NO];

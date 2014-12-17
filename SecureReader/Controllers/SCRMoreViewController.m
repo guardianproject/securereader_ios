@@ -8,6 +8,8 @@
 
 #import "SCRMoreViewController.h"
 #import "SCRFeedViewController.h"
+#import "SCRReceiveShareView.h"
+#import "SCRNavigationController.h"
 
 @interface SCRMoreViewController ()
 
@@ -30,10 +32,16 @@
     {
         SCRFeedViewController *feedViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"feedViewController"];
         [feedViewController setFeedViewType:SCRFeedViewTypeReceived feed:nil];
+
+        // Set the header
+        SCRReceiveShareView *header = [[SCRReceiveShareView alloc] initWithFrame:CGRectMake(0, 0, 100, 60)];
+        feedViewController.tableView.tableHeaderView = header;
+        
         [self.navigationController pushViewController:feedViewController animated:YES];
         return NO;
     }
     return [super shouldPerformSegueWithIdentifier:identifier sender:sender];
 }
+
 
 @end
