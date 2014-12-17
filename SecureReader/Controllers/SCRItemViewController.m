@@ -51,7 +51,6 @@
     {
         self.isInitialized = YES;
         [self reflowText];
-        [self addExpandAnimations];
     }
 }
 
@@ -191,47 +190,5 @@
     if (self.isInitialized)
         [self reflowText];
 }
-
-- (void) willExpandFromView:(SCRItemView *)view
-{
-    self.collapsedView = view;
-    if (self.isInitialized)
-        [self addExpandAnimations];
-}
-
-- (void) addExpandAnimations
-{
-    if (self.pages.count > 0 && self.collapsedView != nil)
-    {
-        SCRItemPageViewController *page = [self.pages objectAtIndex:0];
-        
-        CGRect titleFrom = CGRectZero;
-        CGRect titleTo = CGRectZero;
-        if (self.collapsedView.titleView != nil && page.titleView != nil)
-        {
-            CGPoint ptFrom = CGPointMake(0, 0);
-            ptFrom = [self.collapsedView.titleView convertPoint:ptFrom toView:self.collapsedView];
-            CGPoint ptTo = CGPointMake(0, 0);
-            ptTo = [page.titleView convertPoint:ptTo toView:page.view];
-            CGPoint ptDelta = CGPointMake(ptTo.x - ptFrom.x, ptTo.y - ptFrom.y);
-            if (ptFrom.x != ptTo.x || ptFrom.y != ptTo.y)
-            {
-                titleTo = page.titleView.frame;
-                titleFrom = CGRectMake(titleTo.origin.x - ptDelta.x, titleTo.origin.y - ptDelta.y, self.collapsedView.titleView.frame.size.width, self.collapsedView.titleView.frame.size.height);
-                if (!CGRectEqualToRect(titleFrom, titleTo))
-                {
-                    page.titleView.frame = titleFrom;
-                }
-            }
-        }
-        
-        [UIView animateWithDuration:kAnimationDurationRearrange animations:^{
-            if (!CGRectEqualToRect(titleFrom, titleTo))
-                page.titleView.frame = titleTo;
-        }];
-    }
-}
-
-
 
 @end

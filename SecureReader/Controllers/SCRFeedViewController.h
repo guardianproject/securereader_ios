@@ -19,8 +19,6 @@ typedef NS_ENUM(NSInteger, SCRFeedViewType) {
 
 @interface SCRFeedViewController : UITableViewController
 
-@property (nonatomic) CGRect selectedItemRect;
-
 - (void) setFeedViewType:(SCRFeedViewType)type feed:(SCRFeed *)feed;
 
 @end

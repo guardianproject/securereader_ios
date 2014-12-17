@@ -62,6 +62,14 @@
             [feedController setFeedViewType:SCRFeedViewTypeFavorites feed:nil];
         }
     }
+    else if ([segue.identifier isEqualToString:@"segueToNews"])
+    {
+        SCRFeedViewController *feedController = segue.destinationViewController;
+        if (feedController != nil)
+        {
+            [feedController setFeedViewType:SCRFeedViewTypeAllFeeds feed:nil];
+        }
+    }
 }
 
 @end

@@ -50,6 +50,7 @@
 		92C28DD719F5B26C00E39BDD /* SCRApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C28DD619F5B26C00E39BDD /* SCRApplication.m */; };
 		92C458391A233EAA00835B10 /* SCRItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C458381A233EAA00835B10 /* SCRItemViewController.m */; };
 		92D169731A30A5C200A84608 /* SCRFeedListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92D169721A30A5C200A84608 /* SCRFeedListCell.m */; };
+		92E7B96C1A4186D60038DBCE /* SCRItemViewControllerSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7B96B1A4186D60038DBCE /* SCRItemViewControllerSegue.m */; };
 		D90F59371A19ECBE008F2DCB /* SCRFeedFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = D90F59361A19ECBE008F2DCB /* SCRFeedFetcher.m */; };
 		D90F593A1A19F617008F2DCB /* SCRDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D90F59391A19F617008F2DCB /* SCRDatabaseManager.m */; };
 		D9E6575F1A234363000E6301 /* SCRFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E6575E1A234363000E6301 /* SCRFeed.m */; };
@@ -140,6 +141,8 @@
 		92C458381A233EAA00835B10 /* SCRItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRItemViewController.m; sourceTree = "<group>"; };
 		92D169711A30A5C200A84608 /* SCRFeedListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRFeedListCell.h; sourceTree = "<group>"; };
 		92D169721A30A5C200A84608 /* SCRFeedListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRFeedListCell.m; sourceTree = "<group>"; };
+		92E7B96A1A4186D60038DBCE /* SCRItemViewControllerSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SCRItemViewControllerSegue.h; path = Controllers/SCRItemViewControllerSegue.h; sourceTree = "<group>"; };
+		92E7B96B1A4186D60038DBCE /* SCRItemViewControllerSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SCRItemViewControllerSegue.m; path = Controllers/SCRItemViewControllerSegue.m; sourceTree = "<group>"; };
 		A21561AE6A5B97BAE0C7EADE /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		D90F59351A19ECBE008F2DCB /* SCRFeedFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SCRFeedFetcher.h; path = SecureReader/Feed/SCRFeedFetcher.h; sourceTree = SOURCE_ROOT; };
 		D90F59361A19ECBE008F2DCB /* SCRFeedFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SCRFeedFetcher.m; path = SecureReader/Feed/SCRFeedFetcher.m; sourceTree = SOURCE_ROOT; };
@@ -224,6 +227,8 @@
 				929EEF5719F4EB100020BD75 /* Main.storyboard */,
 				925AE5771A3F261A001E182F /* SCRMainViewControllerSegue.h */,
 				925AE5781A3F261A001E182F /* SCRMainViewControllerSegue.m */,
+				92E7B96A1A4186D60038DBCE /* SCRItemViewControllerSegue.h */,
+				92E7B96B1A4186D60038DBCE /* SCRItemViewControllerSegue.m */,
 			);
 			name = Storyboarding;
 			sourceTree = "<group>";
@@ -552,6 +557,7 @@
 				92A4D2A51A31F1D40091479A /* SCRPanicViewController.m in Sources */,
 				925AE5791A3F261A001E182F /* SCRMainViewControllerSegue.m in Sources */,
 				929EEF9319F5110D0020BD75 /* SCRCreatePassphraseViewController.m in Sources */,
+				92E7B96C1A4186D60038DBCE /* SCRItemViewControllerSegue.m in Sources */,
 				92D169731A30A5C200A84608 /* SCRFeedListCell.m in Sources */,
 				D9E6575F1A234363000E6301 /* SCRFeed.m in Sources */,
 				928036691A27D4FF0081801A /* SCRItemPageViewController.m in Sources */,

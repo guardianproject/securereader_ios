@@ -14,6 +14,4 @@
 
 @property (strong, nonatomic) SCRItem *item;
 
-- (void) willExpandFromView:(SCRItemView *)view;
-
 @end
