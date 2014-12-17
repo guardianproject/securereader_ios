@@ -44,7 +44,7 @@
                 [items enumerateObjectsUsingBlock:^(RSSItem *item, NSUInteger idx, BOOL *stop) {
                     if ([item isKindOfClass:[SCRItem class]]) {
                         SCRItem *nativeItem = (SCRItem*)item;
-                        NSLog(@"Parsed feed %@ item: %@", feed.title, item.title);
+                        //NSLog(@"Parsed feed %@ item: %@", feed.title, item.title);
                         [transaction setObject:nativeItem forKey:nativeItem.yapKey inCollection:[[nativeItem class] yapCollection]];
                     }
                 }];

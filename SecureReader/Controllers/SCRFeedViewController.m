@@ -296,6 +296,12 @@
         return;
     }
     
+    // If there are a lot of row changes, it is quicker to just call reloadData
+    if ([rowChanges count] > 50) {
+        [self.tableView reloadData];
+        return;
+    }
+    
     [self.tableView beginUpdates];
     
     for (YapDatabaseViewSectionChange *sectionChange in sectionChanges)
