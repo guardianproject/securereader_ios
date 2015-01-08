@@ -37,52 +37,12 @@
     {
         [self.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObject:color forKey:NSForegroundColorAttributeName]];
     }
-    [self performSegueWithIdentifier:@"segueToMain" sender:self];
-}
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
-{
-    if ([viewController class] != [SCRSelectLanguageViewController class] &&
-        [viewController class] != [SCRCreatePassphraseViewController class] &&
-        [viewController class] != [SCRLoginViewController class])
+    // Hide bar on swipe, if we are running 8 or higher
+    if ([self respondsToSelector:@selector(setHidesBarsOnSwipe:)])
     {
-        if (![[SCRAppDelegate sharedAppDelegate] isLoggedIn])
-        {
-            SCRLoginViewController *vcLogin = [self.storyboard instantiateViewControllerWithIdentifier:@"login"];
-            vcLogin.modalPresentationStyle = UIModalPresentationFullScreen;
-            [vcLogin setDestinationViewController:viewController navigationController:self animated:animated];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self presentViewController:vcLogin animated:YES completion:nil];
-            });
-            return;
-        }
+        [self performSelector:@selector(setHidesBarsOnSwipe:) withObject:[NSNumber numberWithBool:YES]];
     }
-    [super pushViewController:viewController animated:animated];
-}
-
-- (UIViewController *)popViewControllerAnimated:(BOOL)animated
-{
-    return [super popViewControllerAnimated:animated];
-}
-
-- (IBAction)showPanicAction:(id)sender
-{
-    UIViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"panic"];
-    viewController.modalPresentationStyle = UIModalPresentationFullScreen;
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self presentViewController:viewController animated:YES completion:nil];
-    });
-}
-
-- (IBAction)receiveShareAction:(id)sender
-{
-    UIViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"receiveShare"];
-    [self pushViewController:viewController animated:YES];
 }
 
 @end

@@ -1,12 +1,14 @@
 //
-//  SCRRootViewController.m
+//  SCRRootTabViewController.m
 //  SecureReader
 //
-//  Created by N-Pex on 2014-12-05.
-//  Copyright (c) 2014 Guardian Project. All rights reserved.
+//  Created by N-Pex on 2015-01-07.
+//  Copyright (c) 2015 Guardian Project. All rights reserved.
 //
 
 #import "SCRMainViewController.h"
+#import "SCRLoginViewController.h"
+#import "SCRAppDelegate.h"
 #import "SCRFeedViewController.h"
 
 @interface SCRMainViewController ()
@@ -15,61 +17,56 @@
 
 @implementation SCRMainViewController
 
-@synthesize tabBar = _tabBar;
-@synthesize container = _container;
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.tabBar setSelectedItem:[self.tabBar.items objectAtIndex:0]];
-    [self performSegueWithIdentifier:@"segueToNews" sender:self];
+    self.delegate = self;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item {
-    NSInteger i = [[self.tabBar items] indexOfObject:item];
-    switch (i) {
-        case 0:
-            [self performSegueWithIdentifier:@"segueToNews" sender:self];
-            break;
-        case 1:
-            [self performSegueWithIdentifier:@"segueToFeeds" sender:self];
-            break;
-        case 2:
-            [self performSegueWithIdentifier:@"segueToFavorites" sender:self];
-            break;
-        case 3:
-            [self performSegueWithIdentifier:@"segueToChat" sender:self];
-            break;
-        case 4:
-            [self performSegueWithIdentifier:@"segueToMore" sender:self];
-            break;
-        default:
-            break;
-    }
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+- (void)viewWillAppear:(BOOL)animated
 {
-    if ([segue.identifier isEqualToString:@"segueToFavorites"])
+    [super viewWillAppear:animated];
+    if (![[SCRAppDelegate sharedAppDelegate] isLoggedIn])
     {
-        SCRFeedViewController *feedController = segue.destinationViewController;
-        if (feedController != nil)
-        {
-            [feedController setFeedViewType:SCRFeedViewTypeFavorites feed:nil];
-        }
-    }
-    else if ([segue.identifier isEqualToString:@"segueToNews"])
-    {
-        SCRFeedViewController *feedController = segue.destinationViewController;
-        if (feedController != nil)
-        {
-            [feedController setFeedViewType:SCRFeedViewTypeAllFeeds feed:nil];
-        }
+        SCRLoginViewController *vcLogin = [self.storyboard instantiateViewControllerWithIdentifier:@"login"];
+        vcLogin.modalPresentationStyle = UIModalPresentationFullScreen;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self presentViewController:vcLogin animated:NO completion:nil];
+        });
+        return;
     }
 }
+
+- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController
+{
+    if (![[SCRAppDelegate sharedAppDelegate] isLoggedIn])
+    {
+        SCRLoginViewController *vcLogin = [self.storyboard instantiateViewControllerWithIdentifier:@"login"];
+        vcLogin.modalPresentationStyle = UIModalPresentationFullScreen;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self presentViewController:vcLogin animated:NO completion:nil];
+        });
+        return NO;
+    }
+    return YES;
+}
+
+- (IBAction)showPanicAction:(id)sender
+{
+    UIViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"panic"];
+    viewController.modalPresentationStyle = UIModalPresentationFullScreen;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self presentViewController:viewController animated:YES completion:nil];
+    });
+}
+
+- (IBAction)receiveShareAction:(id)sender
+{
+    UIViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"receiveShare"];
+    viewController.modalPresentationStyle = UIModalPresentationFullScreen;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self presentViewController:viewController animated:YES completion:nil];
+    });
+}
+
 
 @end

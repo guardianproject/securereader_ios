@@ -70,6 +70,8 @@
     
     SCRFeedViewController *feedViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"feedViewController"];
     [feedViewController setFeedViewType:SCRFeedViewTypeFeed feed:feed];
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    self.navigationItem.backBarButtonItem = backItem;
     [self.navigationController pushViewController:feedViewController animated:YES];
 }
 

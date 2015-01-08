@@ -10,7 +10,4 @@
 
 @interface SCRNavigationController : UINavigationController
 
-- (IBAction)showPanicAction:(id)sender;
-- (IBAction)receiveShareAction:(id)sender;
-
 @end

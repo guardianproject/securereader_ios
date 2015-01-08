@@ -16,6 +16,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "SCRItemViewController.h"
 #import "SCRItemViewControllerSegue.h"
+#import "SCRAppDelegate.h"
 
 @interface SCRFeedViewController ()
 
@@ -42,6 +43,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
 //    _yapViewName = [SCRDatabaseManager sharedInstance].allFeedItemsViewName;
 //    [self setupMappings];
     _feedFetcher = [[SCRFeedFetcher alloc] init];
@@ -54,16 +56,19 @@
 
 - (void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self.tableView reloadData];
-    NSArray *feedURLs = @[@"http://www.voanews.com/api/epiqq",
+    if ([[SCRAppDelegate sharedAppDelegate] isLoggedIn])
+    {
+        [self.tableView reloadData];
+        NSArray *feedURLs = @[@"http://www.voanews.com/api/epiqq",
                           @"http://www.theguardian.com/world/rss",
                           @"http://feeds.washingtonpost.com/rss/world",
                           @"http://www.nytimes.com/services/xml/rss/nyt/InternationalHome.xml",
                           @"http://rss.cnn.com/rss/cnn_topstories.rss",
                           @"http://rss.cnn.com/rss/cnn_world.rss"];
-    [feedURLs enumerateObjectsUsingBlock:^(NSString *feedURLString, NSUInteger idx, BOOL *stop) {
-        [self.feedFetcher fetchFeedDataFromURL:[NSURL URLWithString:feedURLString]];
-    }];
+        [feedURLs enumerateObjectsUsingBlock:^(NSString *feedURLString, NSUInteger idx, BOOL *stop) {
+            [self.feedFetcher fetchFeedDataFromURL:[NSURL URLWithString:feedURLString]];
+        }];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -199,6 +204,11 @@
     }
     
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 100;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

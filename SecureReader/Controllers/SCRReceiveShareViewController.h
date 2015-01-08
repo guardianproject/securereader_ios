@@ -10,4 +10,6 @@
 
 @interface SCRReceiveShareViewController : UIViewController
 
+- (IBAction)closeAction:(id)sender;
+
 @end
