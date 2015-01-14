@@ -7,11 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SCRItem.h"
-#import "SCRItemView.h"
+#import "SCRFeedViewController.h"
 
-@interface SCRItemViewController : UIViewController<UIPageViewControllerDataSource>
+@interface SCRItemViewController : UIViewController<UIPageViewControllerDataSource, UIScrollViewDelegate>
 
-@property (strong, nonatomic) SCRItem *item;
+- (void) setDataView:(SCRFeedViewController *)feedView withStartAt:(NSIndexPath *)indexPath;
 
 @end

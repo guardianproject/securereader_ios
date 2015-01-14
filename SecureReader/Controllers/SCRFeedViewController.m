@@ -152,7 +152,7 @@
     {
          self.itemViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"itemView"];
     }
-    self.itemViewController.item = [self itemForIndexPath:indexPath];
+    [self.itemViewController setDataView:self withStartAt:indexPath];
     SCRItemViewControllerSegue *segue = [[SCRItemViewControllerSegue alloc] initWithIdentifier:@"" source:self destination:self.itemViewController];
     [self prepareForSegue:segue sender:self];
     [segue perform];

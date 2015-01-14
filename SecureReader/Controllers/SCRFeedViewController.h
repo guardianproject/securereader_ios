@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SCRItemViewController.h"
 #import "SCRFeed.h"
+#import "SCRItem.h"
 
 typedef NS_ENUM(NSInteger, SCRFeedViewType) {
     SCRFeedViewTypeAllFeeds,
@@ -20,5 +20,6 @@ typedef NS_ENUM(NSInteger, SCRFeedViewType) {
 @interface SCRFeedViewController : UITableViewController
 
 - (void) setFeedViewType:(SCRFeedViewType)type feed:(SCRFeed *)feed;
+- (SCRItem *) itemForIndexPath:(NSIndexPath *) indexPath;
 
 @end

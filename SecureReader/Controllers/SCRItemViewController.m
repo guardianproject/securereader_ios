@@ -8,187 +8,153 @@
 
 #import "SCRItemViewController.h"
 #import "SCRItemPageViewController.h"
-
-#define kAnimationDurationRearrange 1.0
+#import "SCRItem.h"
 
 @interface SCRItemViewController ()
-
-@property BOOL isInitialized;
+- (void)updateBarButtonItems:(CGFloat)alpha;
+@property SCRFeedViewController *itemDataSource;
+@property NSIndexPath *currentItemIndex;
+@property CGFloat previousScrollViewYOffset;
 @property (weak, nonatomic) IBOutlet UIPageViewController *pageViewController;
-@property NSMutableArray *pages;
-@property NSLayoutManager *layoutManager;
-@property NSTextStorage *textStorage;
-@property int nextColumnTagNumber;
-@property SCRItemPageViewController *currentPage;
-@property SCRItemView *collapsedView;
 @end
 
 @implementation SCRItemViewController
 
 @synthesize pageViewController;
+@synthesize itemDataSource;
+@synthesize currentItemIndex;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.isInitialized = NO;
-    self.nextColumnTagNumber = 0;
-    
-    NSURL *contentURL = [[NSBundle mainBundle] URLForResource:@"content" withExtension:@"txt"];
-    _textStorage = [[NSTextStorage alloc] initWithFileURL:contentURL
-                                                  options:nil
-                                       documentAttributes:NULL
-                                                    error:NULL];
-    _layoutManager = [[NSLayoutManager alloc] init];
-    [_textStorage addLayoutManager:_layoutManager];
-    
-    self.pages = [[NSMutableArray alloc] init];
     pageViewController = [[self childViewControllers] objectAtIndex:0];
-}
-
-- (void) viewDidLayoutSubviews
-{
-    if (!self.isInitialized)
-    {
-        self.isInitialized = YES;
-        [self reflowText];
-    }
-}
-
-- (void) reflowText
-{
-    [pageViewController setDataSource:nil];
-    [self.pages removeAllObjects];
-    [self layoutTextContainers];
-
-    if (self.pages.count > 0)
+    
+    if (itemDataSource != nil && currentItemIndex != nil)
     {
         [pageViewController setDataSource:self];
-        UIViewController *initialViewController = [self viewControllerAtIndex:0];
+        
+        SCRItem *item = [itemDataSource itemForIndexPath:currentItemIndex];
+        SCRItemPageViewController *initialViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"fullScreenItemView"];
+        [initialViewController setItem:item];
+        [initialViewController setItemIndexPath:currentItemIndex];
         NSArray *viewControllers = [NSArray arrayWithObject:initialViewController];
-        [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+        [pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
     }
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (UIViewController *)viewControllerForIndexPath:(NSIndexPath *)indexPath
+{
+    SCRItem *item = [itemDataSource itemForIndexPath:indexPath];
+    if (item != nil)
+    {
+        SCRItemPageViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"fullScreenItemView"];
+        [vc setItem:item];
+        [vc setItemIndexPath:indexPath];
+        return vc;
+    }
+    return nil;
 }
-
-
-#pragma mark - Page View Controller data source
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController {
-    
-    NSUInteger index = [self.pages indexOfObject:viewController];
-    if (index == 0) {
-        return nil;
+    if ([viewController isKindOfClass:[SCRItemPageViewController class]])
+    {
+        NSIndexPath *indexPath = [(SCRItemPageViewController *)viewController itemIndexPath];
+        NSIndexPath *newPath = [NSIndexPath indexPathForRow:(indexPath.row - 1)
+                                                  inSection:indexPath.section];
+        return [self viewControllerForIndexPath:newPath];
     }
-    index--;
-    return [self.pages objectAtIndex:index];
+    return nil;
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {
-    
-    NSUInteger index = [self.pages indexOfObject:viewController];
-    index++;
-    if (index >= self.pages.count) {
-        return nil;
-    }
-    return [self.pages objectAtIndex:index];
-}
-
-- (UIViewController *)viewControllerAtIndex:(NSUInteger)index {
-    return [self.pages objectAtIndex:index];
-}
-
-- (NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController {
-    // The number of items reflected in the page indicator.
-    return self.pages.count;
-}
-
-- (NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController {
-    // The selected item reflected in the page indicator.
-    return 0;
-}
-
-
-- (UITextView *)getNextColumn
-{
-    UIView *textView = nil;
-    if (self.currentPage != nil)
+    if ([viewController isKindOfClass:[SCRItemPageViewController class]])
     {
-        if (self.nextColumnTagNumber == 0)
-            textView = self.currentPage.column1;
-        else if (self.nextColumnTagNumber == 1)
-            textView = self.currentPage.column2;
+        NSIndexPath *indexPath = [(SCRItemPageViewController *)viewController itemIndexPath];
+        NSIndexPath *newPath = [NSIndexPath indexPathForRow:(indexPath.row + 1)
+                                                  inSection:indexPath.section];
+        return [self viewControllerForIndexPath:newPath];
     }
-    if (textView == nil)
-    {
-        if (self.currentPage == nil)
-            self.currentPage = [self.storyboard instantiateViewControllerWithIdentifier:@"itemViewPage1"];
-        else
-            self.currentPage = [self.storyboard instantiateViewControllerWithIdentifier:@"itemViewPageN"];
-        [self.currentPage loadView];
-        
-        if (self.item != nil)
-        {
-            if (self.currentPage.titleView != nil)
-            {
-                self.currentPage.titleView.text =  self.item.title;
-            }
-        }
-
-        // Force some layouting to get correct values
-        [self.pageViewController.view addSubview:self.currentPage.view];
-        [self.pageViewController.view layoutIfNeeded];
-        [self.currentPage.view removeFromSuperview];
-        
-        self.nextColumnTagNumber = 0;
-        [self.pages addObject:self.currentPage];
-        return [self getNextColumn];
-    }
-    self.nextColumnTagNumber += 1;
-    return (UITextView *)textView;
+    return nil;
 }
 
-- (void)layoutTextContainers
+
+#pragma mark - Scroll handling
+
+- (void)stoppedScrolling
 {
-    self.nextColumnTagNumber = 0;
-    self.currentPage = nil;
-    while (_layoutManager.textContainers.count > 0)
-        [_layoutManager removeTextContainerAtIndex:0];
+    CGRect frame = self.navigationController.navigationBar.frame;
+    if (frame.origin.y < 20) {
+        [self animateNavBarTo:-(frame.size.height - 21)];
+    }
+}
+
+- (void)updateBarButtonItems:(CGFloat)alpha
+{
+    [self.navigationItem.leftBarButtonItems enumerateObjectsUsingBlock:^(UIBarButtonItem* item, NSUInteger i, BOOL *stop) {
+        item.customView.alpha = alpha;
+    }];
+    [self.navigationItem.rightBarButtonItems enumerateObjectsUsingBlock:^(UIBarButtonItem* item, NSUInteger i, BOOL *stop) {
+        item.customView.alpha = alpha;
+    }];
+    self.navigationItem.titleView.alpha = alpha;
+    self.navigationController.navigationBar.tintColor = [self.navigationController.navigationBar.tintColor colorWithAlphaComponent:alpha];
+}
+
+- (void)animateNavBarTo:(CGFloat)y
+{
+    [UIView animateWithDuration:0.2 animations:^{
+        CGRect frame = self.navigationController.navigationBar.frame;
+        CGFloat alpha = (frame.origin.y >= y ? 0 : 1);
+        frame.origin.y = y;
+        [self.navigationController.navigationBar setFrame:frame];
+        [self updateBarButtonItems:alpha];
+    }];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    CGRect frame = self.navigationController.navigationBar.frame;
+    CGFloat size = frame.size.height - 21;
+    CGFloat framePercentageHidden = ((20 - frame.origin.y) / (frame.size.height - 1));
+    CGFloat scrollOffset = scrollView.contentOffset.y;
+    CGFloat scrollDiff = scrollOffset - self.previousScrollViewYOffset;
+    CGFloat scrollHeight = scrollView.frame.size.height;
+    CGFloat scrollContentSizeHeight = scrollView.contentSize.height + scrollView.contentInset.bottom;
     
-    NSUInteger lastRenderedGlyph = 0;
-    while (lastRenderedGlyph < _layoutManager.numberOfGlyphs) {
-        
-        UITextView *placeholder = [self getNextColumn];
+    if (scrollOffset <= -scrollView.contentInset.top) {
+        frame.origin.y = 20;
+    } else if ((scrollOffset + scrollHeight) >= scrollContentSizeHeight) {
+        frame.origin.y = -size;
+    } else {
+        frame.origin.y = MIN(20, MAX(-size, frame.origin.y - scrollDiff));
+    }
+    
+    [self.navigationController.navigationBar setFrame:frame];
+    [self updateBarButtonItems:(1 - framePercentageHidden)];
+    self.previousScrollViewYOffset = scrollOffset;
+}
 
-        CGRect textViewFrame = placeholder.frame;
-        [placeholder removeFromSuperview];
-        CGSize columnSize = CGSizeMake(CGRectGetWidth(textViewFrame),
-                                       CGRectGetHeight(textViewFrame));
-        
-        NSTextContainer *textContainer = [[NSTextContainer alloc] initWithSize:columnSize];
-        [_layoutManager addTextContainer:textContainer];
-        
-        // And a text view to render it
-        UITextView *textView = [[UITextView alloc] initWithFrame:textViewFrame
-                                                   textContainer:textContainer];
-        
-        textView.scrollEnabled = NO;
-        [self.currentPage.view addSubview:textView];
-        
-        
-        // And find the index of the glyph we've just rendered
-        lastRenderedGlyph = NSMaxRange([_layoutManager glyphRangeForTextContainer:textContainer]);
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    [self stoppedScrolling];
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView
+                  willDecelerate:(BOOL)decelerate
+{
+    if (!decelerate) {
+        [self stoppedScrolling];
     }
 }
 
-- (void) setItem:(SCRItem *)item
+
+#pragma mark - Data
+
+- (void) setDataView:(SCRFeedViewController *)feedView withStartAt:(NSIndexPath *)indexPath
 {
-    _item = item;
-    if (self.isInitialized)
-        [self reflowText];
+    self.itemDataSource = feedView;
+    self.currentItemIndex = indexPath;
 }
+
+
 
 @end

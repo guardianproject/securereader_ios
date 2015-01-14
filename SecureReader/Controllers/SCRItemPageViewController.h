@@ -7,11 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SCRItem.h"
 
 @interface SCRItemPageViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UILabel *titleView;
-@property (weak, nonatomic) IBOutlet UITextView *column1;
-@property (weak, nonatomic) IBOutlet UITextView *column2;
+@property (weak, nonatomic) IBOutlet UITextView *contentView;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+
+@property (strong, nonatomic) SCRItem *item;
+@property (strong, nonatomic) NSIndexPath *itemIndexPath;
 
 @end

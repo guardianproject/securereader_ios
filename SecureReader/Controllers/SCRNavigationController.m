@@ -39,10 +39,10 @@
     }
 
     // Hide bar on swipe, if we are running 8 or higher
-    if ([self respondsToSelector:@selector(setHidesBarsOnSwipe:)])
-    {
-        [self performSelector:@selector(setHidesBarsOnSwipe:) withObject:[NSNumber numberWithBool:YES]];
-    }
+//    if ([self respondsToSelector:@selector(setHidesBarsOnSwipe:)])
+//    {
+//        [self performSelector:@selector(setHidesBarsOnSwipe:) withObject:[NSNumber numberWithBool:YES]];
+//    }
 }
 
 @end
