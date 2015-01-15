@@ -9,7 +9,7 @@
 
 @interface SCRTheme : NSObject
 
-+ (void) applyTheme:(NSString*)theme toControl:(UIControl*)control;
++ (void) applyTheme:(NSString*)theme toControl:(NSObject*)control;
 + (NSObject*) getProperty:(NSString *)property forTheme:(NSString*)theme;
 + (UIColor*) getColorProperty:(NSString *)property forTheme:(NSString*)theme;
 
