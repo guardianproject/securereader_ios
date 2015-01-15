@@ -218,6 +218,9 @@
                                 <state key="normal" title="GET STARTED">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="theme" value="RoundButtonStyle"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="getStartedButtonClicked:" destination="9Zc-Cv-3uB" eventType="touchUpInside" id="Xcj-Eg-i5B"/>
                                 </connections>
@@ -315,6 +318,9 @@
                                 <state key="normal" title="OPEN APP">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="theme" value="RoundButtonStyle"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="openAppButtonClicked:" destination="UYk-Mv-gub" eventType="touchUpInside" id="HLz-fJ-3XY"/>
                                 </connections>
@@ -348,7 +354,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="0.84772613960193088" blue="0.90105798926565006" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="kXR-4m-m3F" firstAttribute="top" secondItem="sqX-hY-kql" secondAttribute="bottom" constant="50" id="2t9-1X-4pg"/>
                             <constraint firstItem="0aQ-XQ-xi1" firstAttribute="trailing" secondItem="3zn-rl-cSZ" secondAttribute="trailingMargin" id="3RE-pM-lzZ"/>
@@ -402,6 +408,9 @@
                                 <state key="normal" title="Login">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="theme" value="RoundButtonStyle"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="loginButtonClicked:" destination="IZO-GV-t3z" eventType="touchUpInside" id="fPX-J4-nsT"/>
                                 </connections>
@@ -932,29 +941,49 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WRF-Wn-b7n">
-                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="492" width="600" height="44"/>
                                 <items>
-                                    <barButtonItem title="Item" id="mS3-ST-dNH"/>
-                                    <barButtonItem title="Item" id="wRx-Fr-Els"/>
-                                    <barButtonItem title="Item" id="OTb-GQ-XGA">
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="LhR-Mf-esK"/>
+                                    <barButtonItem image="ic_action2_font.png" id="mS3-ST-dNH">
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="theme" value="FullScreenButtonStyle"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="gvW-On-kd1"/>
+                                    <barButtonItem image="ic_action2_favorite.png" id="wRx-Fr-Els">
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="theme" value="FullScreenButtonStyle"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="0Tl-Ye-E2c"/>
+                                    <barButtonItem image="ic_action2_chat.png" id="OTb-GQ-XGA">
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="theme" value="FullScreenButtonStyle"/>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="collapseBackToTableView:" destination="Yt3-ew-Hc6" id="cLy-qX-r4B"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="cxh-l2-Jls"/>
+                                    <barButtonItem image="ic_action2_share.png" id="qnC-f6-hce">
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="theme" value="FullScreenButtonStyle"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="vjM-hW-2w0"/>
                                 </items>
                             </toolbar>
                             <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rFg-cE-miZ">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="492"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <segue destination="jSy-hA-0DA" kind="embed" id="rlg-mB-Sy9"/>
                                 </connections>
                             </containerView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="WRF-Wn-b7n" firstAttribute="bottom" secondItem="lqT-Ps-kAD" secondAttribute="top" id="359-Tk-Ubv"/>
-                            <constraint firstItem="rFg-cE-miZ" firstAttribute="top" secondItem="BnV-pe-gJZ" secondAttribute="topMargin" id="Gjk-E8-eeo"/>
+                            <constraint firstItem="rFg-cE-miZ" firstAttribute="top" secondItem="xi7-Ez-T3C" secondAttribute="top" id="Fph-gz-JW5"/>
                             <constraint firstItem="rFg-cE-miZ" firstAttribute="trailing" secondItem="WRF-Wn-b7n" secondAttribute="trailing" id="Q6X-Er-uhL"/>
                             <constraint firstAttribute="width" secondItem="rFg-cE-miZ" secondAttribute="width" id="VhE-sR-f2i"/>
                             <constraint firstItem="WRF-Wn-b7n" firstAttribute="leading" secondItem="BnV-pe-gJZ" secondAttribute="leading" id="YXX-KR-YeN"/>
@@ -970,15 +999,21 @@
                             </mask>
                         </variation>
                     </view>
-                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" id="kyR-eg-9Ic">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="XsQ-D1-Sli">
+                        <barButtonItem key="rightBarButtonItem" image="ic_action_panic.png" id="Xxs-Yy-PFt">
+                            <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <action selector="collapseBackToTableView:" destination="Yt3-ew-Hc6" id="79W-Le-xWe"/>
+                                <action selector="showPanicAction:" destination="Yt3-ew-Hc6" id="c54-g0-ZtQ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="container" destination="rFg-cE-miZ" id="AVJ-Vl-ylJ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yt3-ew-Hc6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -987,7 +1022,9 @@
         <!--Page View Controller-->
         <scene sceneID="xCP-xV-352">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="jSy-hA-0DA" sceneMemberID="viewController"/>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" automaticallyAdjustsScrollViewInsets="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="jSy-hA-0DA" sceneMemberID="viewController">
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XWZ-96-nF7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="692" y="4618"/>
@@ -1008,30 +1045,30 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zgO-vU-RGa">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="214"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="234"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AhW-0L-8EY">
-                                                <rect key="frame" x="20" y="20" width="560" height="21"/>
-                                                <color key="backgroundColor" red="0.38841573010000002" green="0.60657894739999996" blue="0.13256746899999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Label sdkfjh sdf kjhfsd fshdkfjh sdkfh sdfkjh sdfkjhs dfkjshdfsdf kjhd asdkjha sdk asdhkaj sdkjahsd" lineBreakMode="wordWrap" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AhW-0L-8EY">
+                                                <rect key="frame" x="20" y="20" width="560" height="41"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" scrollEnabled="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4vz-a6-cEX">
-                                                <rect key="frame" x="20" y="61" width="560" height="133"/>
+                                                <rect key="frame" x="20" y="81" width="560" height="133"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                         </subviews>
-                                        <color key="backgroundColor" red="1" green="0.031852019549999999" blue="0.8942532097" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="AhW-0L-8EY" firstAttribute="leading" secondItem="zgO-vU-RGa" secondAttribute="leading" constant="20" id="42t-HE-Bzn"/>
                                             <constraint firstItem="4vz-a6-cEX" firstAttribute="leading" secondItem="zgO-vU-RGa" secondAttribute="leading" constant="20" id="7uz-qG-pvj"/>
                                             <constraint firstAttribute="bottom" secondItem="4vz-a6-cEX" secondAttribute="bottom" priority="999" constant="20" id="87D-B5-fUy"/>
                                             <constraint firstItem="AhW-0L-8EY" firstAttribute="top" secondItem="zgO-vU-RGa" secondAttribute="top" constant="20" id="8wK-lo-hql"/>
-                                            <constraint firstItem="4vz-a6-cEX" firstAttribute="top" secondItem="AhW-0L-8EY" secondAttribute="bottom" constant="20" id="hKZ-s5-t5b"/>
+                                            <constraint firstItem="4vz-a6-cEX" firstAttribute="top" secondItem="AhW-0L-8EY" secondAttribute="bottom" priority="999" constant="20" id="hKZ-s5-t5b"/>
                                             <constraint firstAttribute="trailing" secondItem="4vz-a6-cEX" secondAttribute="trailing" constant="20" id="vZI-PN-M6n"/>
                                             <constraint firstAttribute="trailing" secondItem="AhW-0L-8EY" secondAttribute="trailing" constant="20" id="wJW-zN-zRh"/>
                                         </constraints>
@@ -1048,7 +1085,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Yeq-zC-hQa" firstAttribute="top" secondItem="APV-0g-kfm" secondAttribute="bottom" id="0vX-JL-9Ra"/>
-                            <constraint firstItem="APV-0g-kfm" firstAttribute="top" secondItem="Iks-Aj-aiq" secondAttribute="top" id="6C4-P7-FnE"/>
+                            <constraint firstItem="APV-0g-kfm" firstAttribute="top" secondItem="Iks-Aj-aiq" secondAttribute="topMargin" id="EAk-ao-X7l"/>
                             <constraint firstItem="APV-0g-kfm" firstAttribute="leading" secondItem="Iks-Aj-aiq" secondAttribute="leading" id="PUM-NY-Jy3"/>
                             <constraint firstAttribute="trailing" secondItem="APV-0g-kfm" secondAttribute="trailing" id="QLm-uq-2Ci"/>
                             <constraint firstAttribute="width" secondItem="zgO-vU-RGa" secondAttribute="width" id="abc-aQ-UrJ"/>
@@ -1278,6 +1315,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ic_action2_chat.png" width="24" height="24"/>
+        <image name="ic_action2_favorite.png" width="24" height="24"/>
+        <image name="ic_action2_font.png" width="24" height="24"/>
+        <image name="ic_action2_share.png" width="24" height="24"/>
         <image name="ic_action_panic.png" width="24" height="24"/>
         <image name="ic_launcher.png" width="96" height="96"/>
         <image name="ic_menu_chat.png" width="24" height="24"/>

@@ -57,5 +57,12 @@
 		<key>backgroundColor</key>
 		<string>#ff95ab55</string>
 	</dict>
+	<key>FullScreenButtonStyle</key>
+	<dict>
+		<key>corners</key>
+		<integer>0</integer>
+		<key>tintColor</key>
+		<string>#ff95ab55</string>
+	</dict>
 </dict>
 </plist>

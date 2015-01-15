@@ -12,6 +12,11 @@
 		924BBFC01A08DCEB00A32940 /* InAppSettings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 924BBFBF1A08DCEB00A32940 /* InAppSettings.bundle */; };
 		925AE5801A404161001E182F /* SCRMoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 925AE57F1A404161001E182F /* SCRMoreViewController.m */; };
 		926C818F1A2F61E000864F32 /* SCRFeedListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 926C818E1A2F61E000864F32 /* SCRFeedListViewController.m */; };
+		9279F8001A67B4E90029572B /* ic_action2_chat.png in Resources */ = {isa = PBXBuildFile; fileRef = 9279F7FC1A67B4E90029572B /* ic_action2_chat.png */; };
+		9279F8011A67B4E90029572B /* ic_action2_favorite.png in Resources */ = {isa = PBXBuildFile; fileRef = 9279F7FD1A67B4E90029572B /* ic_action2_favorite.png */; };
+		9279F8021A67B4E90029572B /* ic_action2_font.png in Resources */ = {isa = PBXBuildFile; fileRef = 9279F7FE1A67B4E90029572B /* ic_action2_font.png */; };
+		9279F8031A67B4E90029572B /* ic_action2_share.png in Resources */ = {isa = PBXBuildFile; fileRef = 9279F7FF1A67B4E90029572B /* ic_action2_share.png */; };
+		9279F8061A67B9300029572B /* UIBarItem+Theming.m in Sources */ = {isa = PBXBuildFile; fileRef = 9279F8051A67B9300029572B /* UIBarItem+Theming.m */; };
 		928036661A2776BE0081801A /* content.txt in Resources */ = {isa = PBXBuildFile; fileRef = 928036651A2776BE0081801A /* content.txt */; };
 		928036691A27D4FF0081801A /* SCRItemPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 928036681A27D4FF0081801A /* SCRItemPageViewController.m */; };
 		9284FA741A3899730085638D /* ic_panic_down.png in Resources */ = {isa = PBXBuildFile; fileRef = 9284FA701A3899730085638D /* ic_panic_down.png */; };
@@ -81,6 +86,12 @@
 		925AE57F1A404161001E182F /* SCRMoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRMoreViewController.m; sourceTree = "<group>"; };
 		926C818D1A2F61E000864F32 /* SCRFeedListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRFeedListViewController.h; sourceTree = "<group>"; };
 		926C818E1A2F61E000864F32 /* SCRFeedListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRFeedListViewController.m; sourceTree = "<group>"; };
+		9279F7FC1A67B4E90029572B /* ic_action2_chat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_action2_chat.png; sourceTree = "<group>"; };
+		9279F7FD1A67B4E90029572B /* ic_action2_favorite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_action2_favorite.png; sourceTree = "<group>"; };
+		9279F7FE1A67B4E90029572B /* ic_action2_font.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_action2_font.png; sourceTree = "<group>"; };
+		9279F7FF1A67B4E90029572B /* ic_action2_share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_action2_share.png; sourceTree = "<group>"; };
+		9279F8041A67B9300029572B /* UIBarItem+Theming.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarItem+Theming.h"; sourceTree = "<group>"; };
+		9279F8051A67B9300029572B /* UIBarItem+Theming.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarItem+Theming.m"; sourceTree = "<group>"; };
 		928036651A2776BE0081801A /* content.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = content.txt; sourceTree = "<group>"; };
 		928036671A27D4FF0081801A /* SCRItemPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRItemPageViewController.h; sourceTree = "<group>"; };
 		928036681A27D4FF0081801A /* SCRItemPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRItemPageViewController.m; sourceTree = "<group>"; };
@@ -352,6 +363,8 @@
 				929EEF7D19F4F5940020BD75 /* SCRTheme.m */,
 				929EEF7E19F4F5940020BD75 /* UIView+Theming.h */,
 				929EEF7F19F4F5940020BD75 /* UIView+Theming.m */,
+				9279F8041A67B9300029572B /* UIBarItem+Theming.h */,
+				9279F8051A67B9300029572B /* UIBarItem+Theming.m */,
 			);
 			name = "Language & Theming Support";
 			sourceTree = "<group>";
@@ -388,6 +401,10 @@
 		92BD50AA1A07A74500F3BD22 /* Temporary Files */ = {
 			isa = PBXGroup;
 			children = (
+				9279F7FC1A67B4E90029572B /* ic_action2_chat.png */,
+				9279F7FD1A67B4E90029572B /* ic_action2_favorite.png */,
+				9279F7FE1A67B4E90029572B /* ic_action2_font.png */,
+				9279F7FF1A67B4E90029572B /* ic_action2_share.png */,
 				9284FA701A3899730085638D /* ic_panic_down.png */,
 				9284FA711A3899730085638D /* ic_panic_down@2x.png */,
 				9284FA721A3899730085638D /* ic_panic_lg.png */,
@@ -504,11 +521,15 @@
 				92E7B96E1A41A2AE0038DBCE /* SCRReceiveShareView.xib in Resources */,
 				9284FA741A3899730085638D /* ic_panic_down.png in Resources */,
 				929EEF5919F4EB100020BD75 /* Main.storyboard in Resources */,
+				9279F8031A67B4E90029572B /* ic_action2_share.png in Resources */,
 				9239049E1A07E365004EEE7E /* background_debut_light.png in Resources */,
+				9279F8021A67B4E90029572B /* ic_action2_font.png in Resources */,
 				9284FA761A3899730085638D /* ic_panic_lg.png in Resources */,
+				9279F8001A67B4E90029572B /* ic_action2_chat.png in Resources */,
 				928036661A2776BE0081801A /* content.txt in Resources */,
 				92A4D2AD1A31FE720091479A /* ic_menu_stories.png in Resources */,
 				924BBFC01A08DCEB00A32940 /* InAppSettings.bundle in Resources */,
+				9279F8011A67B4E90029572B /* ic_action2_favorite.png in Resources */,
 				92A4D2AA1A31FE720091479A /* ic_action_panic.png in Resources */,
 				9284FA771A3899730085638D /* ic_panic_lg@2x.png in Resources */,
 				9284FA751A3899730085638D /* ic_panic_down@2x.png in Resources */,
@@ -595,6 +616,7 @@
 				922DC28019FE920C00FB1274 /* SCRFeedViewController.m in Sources */,
 				92C28DD719F5B26C00E39BDD /* SCRApplication.m in Sources */,
 				929EEF9619F549080020BD75 /* SCRNavigationController.m in Sources */,
+				9279F8061A67B9300029572B /* UIBarItem+Theming.m in Sources */,
 				929EEF8419F4F5940020BD75 /* SCRTheme.m in Sources */,
 				925AE5801A404161001E182F /* SCRMoreViewController.m in Sources */,
 				929EEF8519F4F5940020BD75 /* UIView+Theming.m in Sources */,

@@ -15,7 +15,9 @@
 @property SCRFeedViewController *itemDataSource;
 @property NSIndexPath *currentItemIndex;
 @property CGFloat previousScrollViewYOffset;
+@property CGFloat yStart;
 @property (weak, nonatomic) IBOutlet UIPageViewController *pageViewController;
+@property (weak, nonatomic) IBOutlet UIView *container;
 @end
 
 @implementation SCRItemViewController
@@ -28,6 +30,9 @@
     [super viewDidLoad];
     pageViewController = [[self childViewControllers] objectAtIndex:0];
     
+    self.yStart = self.view.frame.size.height;
+    
+    pageViewController.delegate = self;
     if (itemDataSource != nil && currentItemIndex != nil)
     {
         [pageViewController setDataSource:self];
@@ -36,6 +41,7 @@
         SCRItemPageViewController *initialViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"fullScreenItemView"];
         [initialViewController setItem:item];
         [initialViewController setItemIndexPath:currentItemIndex];
+        initialViewController.scrollView.delegate = self;
         NSArray *viewControllers = [NSArray arrayWithObject:initialViewController];
         [pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
     }
@@ -49,10 +55,47 @@
         SCRItemPageViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"fullScreenItemView"];
         [vc setItem:item];
         [vc setItemIndexPath:indexPath];
+        vc.scrollView.delegate = self;
         return vc;
     }
     return nil;
 }
+
+#pragma mark - Page View Controller Delegate
+
+- (void)pageViewController:(UIPageViewController *)pageViewController willTransitionToViewControllers:(NSArray *)pendingViewControllers
+{
+    if (pendingViewControllers != nil && pendingViewControllers.count > 0)
+    {
+        NSObject *o = [pendingViewControllers objectAtIndex:0];
+        if ([o isKindOfClass:[SCRItemPageViewController class]])
+        {
+            UIScrollView *scrollView = ((SCRItemPageViewController *)o).scrollView;
+            if (scrollView != nil)
+                [scrollView setContentOffset:
+                 CGPointMake(0, -scrollView.contentInset.top) animated:YES];
+        }
+    }
+}
+
+- (void)pageViewController:(UIPageViewController *)pvc didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed
+{
+    //[self animateNavBarTo:0];
+
+//    if (pvc.viewControllers != nil && pvc.viewControllers.count > 0)
+//    {
+//        NSObject *o = [pvc.viewControllers objectAtIndex:0];
+//        if ([o isKindOfClass:[SCRItemPageViewController class]])
+//        {
+//            UIScrollView *scrollView = ((SCRItemPageViewController *)o).scrollView;
+//            if (scrollView != nil)
+//                scrollView.delegate = self;
+//        }
+//    }
+}
+
+
+#pragma mark - Page View Controller Data Source
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController {
     if ([viewController isKindOfClass:[SCRItemPageViewController class]])
@@ -107,6 +150,10 @@
         frame.origin.y = y;
         [self.navigationController.navigationBar setFrame:frame];
         [self updateBarButtonItems:alpha];
+        frame = self.view.frame;
+        frame.origin.y = y + self.navigationController.navigationBar.frame.size.height;
+        frame.size.height = self.yStart - frame.origin.y;
+        [self.view setFrame:frame];
     }];
 }
 
@@ -128,7 +175,12 @@
         frame.origin.y = MIN(20, MAX(-size, frame.origin.y - scrollDiff));
     }
     
+    CGFloat y = frame.origin.y;
     [self.navigationController.navigationBar setFrame:frame];
+    frame = self.view.frame;
+    frame.origin.y = y + self.navigationController.navigationBar.frame.size.height;
+    frame.size.height = self.yStart - frame.origin.y;
+    [self.view setFrame:frame];
     [self updateBarButtonItems:(1 - framePercentageHidden)];
     self.previousScrollViewYOffset = scrollOffset;
 }

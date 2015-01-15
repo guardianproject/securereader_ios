@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "SCRFeedViewController.h"
 
-@interface SCRItemViewController : UIViewController<UIPageViewControllerDataSource, UIScrollViewDelegate>
+@interface SCRItemViewController : UIViewController<UIPageViewControllerDataSource, UIPageViewControllerDelegate, UIScrollViewDelegate>
 
 - (void) setDataView:(SCRFeedViewController *)feedView withStartAt:(NSIndexPath *)indexPath;
 

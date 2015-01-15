@@ -134,7 +134,7 @@
 - (void)configureCellWithCount:(SCRFeedListCell *)cell forItem:(SCRFeed *)item
 {
     cell.titleView.text = item.title;
-    cell.descriptionView.text = item.description;
+    cell.descriptionView.text = item.feedDescription;
 }
 
 #pragma mark YapDatabase
