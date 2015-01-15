@@ -116,6 +116,10 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *prototype = [self getPrototypeForIndexPath:indexPath];
+    prototype.bounds = CGRectMake(0.0f, 0.0f, CGRectGetWidth(tableView.bounds), CGRectGetHeight(prototype.bounds));
+    SCRFeed *feed = [self itemForIndexPath:indexPath];
+    if (feed != nil)
+        [self configureCellWithCount:(SCRFeedListCell *)prototype forItem:feed];
     [prototype layoutIfNeeded];
     CGSize size = [prototype.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     return size.height+1;

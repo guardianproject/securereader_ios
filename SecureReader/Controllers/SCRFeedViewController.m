@@ -43,7 +43,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    UINib *nib = [UINib nibWithNibName:@"SCRItemCellNoPhotos" bundle:nil];
+    [self.tableView registerNib:nib forCellReuseIdentifier:@"cellNoPhotos"];
+    nib = [UINib nibWithNibName:@"SCRItemCellLandscapePhotos" bundle:nil];
+    [self.tableView registerNib:nib forCellReuseIdentifier:@"cellLandscapePhotos"];
+    
 //    _yapViewName = [SCRDatabaseManager sharedInstance].allFeedItemsViewName;
 //    [self setupMappings];
     _feedFetcher = [[SCRFeedFetcher alloc] init];
@@ -216,6 +220,8 @@
     SCRItem *item = [self itemForIndexPath:indexPath];
     SCRItemView *prototype = [self getPrototypeForItem:item];
     [self configureCell:prototype forItem:item];
+    prototype.bounds = CGRectMake(0.0f, 0.0f, CGRectGetWidth(tableView.bounds), CGRectGetHeight(prototype.bounds));
+    [prototype setNeedsLayout];
     [prototype layoutIfNeeded];
     
     CGSize size = [prototype.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
