@@ -29,17 +29,7 @@
     pageViewController = [[self childViewControllers] objectAtIndex:0];
     
     pageViewController.delegate = self;
-    if (itemDataSource != nil && currentItemIndex != nil)
-    {
-        [pageViewController setDataSource:self];
-        
-        SCRItem *item = [itemDataSource itemForIndexPath:currentItemIndex];
-        SCRItemPageViewController *initialViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"fullScreenItemView"];
-        [initialViewController setItem:item];
-        [initialViewController setItemIndexPath:currentItemIndex];
-        NSArray *viewControllers = [NSArray arrayWithObject:initialViewController];
-        [pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
-    }
+    [self updateCurrentView];
 }
 
 - (UIViewController *)viewControllerForIndexPath:(NSIndexPath *)indexPath
@@ -103,7 +93,24 @@
 {
     self.itemDataSource = feedView;
     self.currentItemIndex = indexPath;
+    [self updateCurrentView];
 }
+             
+- (void) updateCurrentView
+{
+    if (itemDataSource != nil && currentItemIndex != nil)
+    {
+        [pageViewController setDataSource:self];
+        
+        SCRItem *item = [itemDataSource itemForIndexPath:currentItemIndex];
+        SCRItemPageViewController *initialViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"fullScreenItemView"];
+        [initialViewController setItem:item];
+        [initialViewController setItemIndexPath:currentItemIndex];
+        NSArray *viewControllers = [NSArray arrayWithObject:initialViewController];
+        [pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+    }
+}
+             
 
 #pragma mark - Toolbar buttons
 

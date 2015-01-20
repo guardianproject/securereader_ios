@@ -7,6 +7,8 @@
 //
 
 #import "SCRItemPageViewController.h"
+#import <UIImageView+AFNetworking.h>
+#import <TTTTimeIntervalFormatter.h>
 
 @interface SCRItemPageViewController ()
 
@@ -16,29 +18,15 @@
 
 @synthesize itemIndexPath;
 
-@synthesize titleView;
+@synthesize imageView = _imageView;
+@synthesize imageViewHeightConstraint = _imageViewHeightConstraint;
+@synthesize sourceView = _sourceView;
+@synthesize titleView = _titleView;
 @synthesize contentView = _contentView;
-@synthesize scrollView = _scrollView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [_contentView setScrollEnabled:NO];
-    
-    if (self.item != nil)
-    {
-        self.titleView.text =  self.item.title;
-        self.contentView.text = self.item.itemDescription;
-        
-//        NSURL *contentURL = [[NSBundle mainBundle] URLForResource:@"content" withExtension:@"txt"];
-//        NSTextStorage *textStorage = [[NSTextStorage alloc] initWithFileURL:contentURL
-//                                                                    options:nil
-//                                                         documentAttributes:NULL
-//                                                                      error:NULL];
-//        [self.contentView setText:[textStorage string]];
-        
-        [self.view layoutIfNeeded];
-    }
-
 }
 
 - (void)didReceiveMemoryWarning {
@@ -50,6 +38,22 @@
 {
     _item = item;
     NSLog(@"String is %f", self.view.bounds.size.width);
+    if (self.item != nil)
+    {
+        if (self.item.thumbnailURL == nil)
+            self.imageViewHeightConstraint.constant = 0;
+        else
+            [self.imageView setImageWithURL:item.thumbnailURL];
+        
+        self.sourceView.labelSource.text = [item.linkURL host];
+        TTTTimeIntervalFormatter *timeIntervalFormatter = [[TTTTimeIntervalFormatter alloc] init];
+        self.sourceView.labelDate.text = [timeIntervalFormatter stringForTimeIntervalFromDate:item.publicationDate toDate:[NSDate dateWithTimeIntervalSinceNow:0]];
+
+        self.titleView.text =  self.item.title;
+        self.contentView.text = self.item.itemDescription;
+
+        [self.view layoutIfNeeded];
+    }
 }
 
 @end

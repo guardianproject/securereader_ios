@@ -325,7 +325,7 @@
                                     <action selector="openAppButtonClicked:" destination="UYk-Mv-gub" eventType="touchUpInside" id="HLz-fJ-3XY"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0aQ-XQ-xi1">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0aQ-XQ-xi1">
                                 <rect key="frame" x="16" y="200" width="568" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -333,7 +333,7 @@
                                     <outlet property="delegate" destination="1bD-Nz-oIn" id="WqR-Sw-Q8d"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8D5-lH-j9E">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8D5-lH-j9E">
                                 <rect key="frame" x="16" y="267" width="568" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -347,7 +347,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Repeat" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FIB-E0-LcG">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Repeat" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FIB-E0-LcG">
                                 <rect key="frame" x="16" y="238" width="568" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -421,7 +421,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r6V-Is-GTi">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r6V-Is-GTi">
                                 <rect key="frame" x="16" y="200" width="568" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -904,17 +904,29 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zgO-vU-RGa">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="234"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="492"/>
                                         <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="img_local_share.png" translatesAutoresizingMaskIntoConstraints="NO" id="SaD-dL-rdj">
+                                                <rect key="frame" x="0.0" y="0.0" width="600" height="200"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="200" id="jw0-Kz-5OO"/>
+                                                </constraints>
+                                            </imageView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Edy-xh-Hc4" customClass="SCRSourceView">
+                                                <rect key="frame" x="20" y="220" width="560" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="shL-Vq-OvW"/>
+                                                </constraints>
+                                            </view>
                                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Label sdkfjh sdf kjhfsd fshdkfjh sdkfh sdfkjh sdfkjhs dfkjshdfsdf kjhd asdkjha sdk asdhkaj sdkjahsd" lineBreakMode="wordWrap" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AhW-0L-8EY">
-                                                <rect key="frame" x="20" y="20" width="560" height="41"/>
+                                                <rect key="frame" x="20" y="278" width="560" height="41"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" scrollEnabled="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4vz-a6-cEX">
-                                                <rect key="frame" x="20" y="81" width="560" height="133"/>
+                                                <rect key="frame" x="20" y="339" width="560" height="133"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -926,8 +938,14 @@
                                             <constraint firstItem="AhW-0L-8EY" firstAttribute="leading" secondItem="zgO-vU-RGa" secondAttribute="leading" constant="20" id="42t-HE-Bzn"/>
                                             <constraint firstItem="4vz-a6-cEX" firstAttribute="leading" secondItem="zgO-vU-RGa" secondAttribute="leading" constant="20" id="7uz-qG-pvj"/>
                                             <constraint firstAttribute="bottom" secondItem="4vz-a6-cEX" secondAttribute="bottom" priority="999" constant="20" id="87D-B5-fUy"/>
-                                            <constraint firstItem="AhW-0L-8EY" firstAttribute="top" secondItem="zgO-vU-RGa" secondAttribute="top" constant="20" id="8wK-lo-hql"/>
+                                            <constraint firstAttribute="trailing" secondItem="SaD-dL-rdj" secondAttribute="trailing" id="BK8-pr-yvf"/>
+                                            <constraint firstItem="SaD-dL-rdj" firstAttribute="leading" secondItem="zgO-vU-RGa" secondAttribute="leading" id="BwH-kD-5yD"/>
+                                            <constraint firstItem="Edy-xh-Hc4" firstAttribute="leading" secondItem="zgO-vU-RGa" secondAttribute="leading" constant="20" id="VgO-b5-BV7"/>
+                                            <constraint firstItem="AhW-0L-8EY" firstAttribute="top" secondItem="Edy-xh-Hc4" secondAttribute="bottom" constant="8" id="ckh-NM-9gH"/>
                                             <constraint firstItem="4vz-a6-cEX" firstAttribute="top" secondItem="AhW-0L-8EY" secondAttribute="bottom" priority="999" constant="20" id="hKZ-s5-t5b"/>
+                                            <constraint firstAttribute="trailing" secondItem="Edy-xh-Hc4" secondAttribute="trailing" constant="20" id="kOJ-Cg-MDN"/>
+                                            <constraint firstItem="SaD-dL-rdj" firstAttribute="top" secondItem="zgO-vU-RGa" secondAttribute="top" id="mZ3-2G-VlY"/>
+                                            <constraint firstItem="Edy-xh-Hc4" firstAttribute="top" secondItem="SaD-dL-rdj" secondAttribute="bottom" constant="20" id="u1a-xS-fnW"/>
                                             <constraint firstAttribute="trailing" secondItem="4vz-a6-cEX" secondAttribute="trailing" constant="20" id="vZI-PN-M6n"/>
                                             <constraint firstAttribute="trailing" secondItem="AhW-0L-8EY" secondAttribute="trailing" constant="20" id="wJW-zN-zRh"/>
                                         </constraints>
@@ -952,7 +970,10 @@
                     </view>
                     <connections>
                         <outlet property="contentView" destination="4vz-a6-cEX" id="diy-Gb-eQT"/>
-                        <outlet property="scrollView" destination="APV-0g-kfm" id="0Sk-ZI-7vO"/>
+                        <outlet property="imageView" destination="SaD-dL-rdj" id="FUb-EE-xOh"/>
+                        <outlet property="imageViewHeightConstraint" destination="jw0-Kz-5OO" id="9w8-Yt-hje"/>
+                        <outlet property="scrollView" destination="APV-0g-kfm" id="A7v-u7-HLu"/>
+                        <outlet property="sourceView" destination="Edy-xh-Hc4" id="8xg-tq-zYd"/>
                         <outlet property="titleView" destination="AhW-0L-8EY" id="4ZQ-Y1-cif"/>
                     </connections>
                 </viewController>
@@ -1113,5 +1134,6 @@
         <image name="ic_menu_stories.png" width="24" height="24"/>
         <image name="ic_panic_down.png" width="139" height="84"/>
         <image name="ic_panic_lg.png" width="139" height="139"/>
+        <image name="img_local_share.png" width="350" height="319"/>
     </resources>
 </document>

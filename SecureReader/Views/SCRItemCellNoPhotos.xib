@@ -20,14 +20,14 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZBS-Bn-rcW">
-                        <rect key="frame" x="20" y="66" width="560" height="60"/>
+                        <rect key="frame" x="20" y="66" width="560" height="59"/>
                         <string key="text">Label dsf sdf sdf sdf sdf sdf sdf asdf sadfkjh askdfjh aksdjf aksjdhf kashd fkjash fkhakfhsdjhsjdhfksdh ahf shfkhsdkfhajdfhdh adf  jghg jhg jhg jhg jhg jhg jhg jhg j</string>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="95J-h5-Jab">
-                        <rect key="frame" x="0.0" y="145" width="600" height="15"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="95J-h5-Jab" customClass="SCRGradientBackgroundView">
+                        <rect key="frame" x="0.0" y="144" width="600" height="15"/>
                         <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="3YB-wD-ETg"/>

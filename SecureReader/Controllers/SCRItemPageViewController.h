@@ -8,9 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "SCRItem.h"
+#import "SCRSourceView.h"
 
 @interface SCRItemPageViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageViewHeightConstraint;
+@property (weak, nonatomic) IBOutlet SCRSourceView *sourceView;
 @property (weak, nonatomic) IBOutlet UILabel *titleView;
 @property (weak, nonatomic) IBOutlet UITextView *contentView;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
