@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		920582881A6EA25000E152D9 /* SCRGradientBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 920582871A6EA25000E152D9 /* SCRGradientBackgroundView.m */; };
 		922DC28019FE920C00FB1274 /* SCRFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 922DC27F19FE920C00FB1274 /* SCRFeedViewController.m */; };
 		9239049E1A07E365004EEE7E /* background_debut_light.png in Resources */ = {isa = PBXBuildFile; fileRef = 9239049D1A07E365004EEE7E /* background_debut_light.png */; };
 		92458CC71A6D4E4600C17EFA /* SCRReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 92458CC61A6D4E4600C17EFA /* SCRReader.m */; };
@@ -81,6 +82,8 @@
 
 /* Begin PBXFileReference section */
 		5982780EDA69C66A355A7531 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		920582861A6EA25000E152D9 /* SCRGradientBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRGradientBackgroundView.h; sourceTree = "<group>"; };
+		920582871A6EA25000E152D9 /* SCRGradientBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRGradientBackgroundView.m; sourceTree = "<group>"; };
 		922DC27E19FE920C00FB1274 /* SCRFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SCRFeedViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		922DC27F19FE920C00FB1274 /* SCRFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SCRFeedViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		9239049D1A07E365004EEE7E /* background_debut_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_debut_light.png; sourceTree = "<group>"; };
@@ -403,6 +406,8 @@
 				92E7B96D1A41A2AE0038DBCE /* SCRReceiveShareView.xib */,
 				9279F8071A67E2940029572B /* SCRItemCellNoPhotos.xib */,
 				9279F8091A67FBE50029572B /* SCRItemCellLandscapePhotos.xib */,
+				920582861A6EA25000E152D9 /* SCRGradientBackgroundView.h */,
+				920582871A6EA25000E152D9 /* SCRGradientBackgroundView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -618,6 +623,7 @@
 				D9E6575F1A234363000E6301 /* SCRFeed.m in Sources */,
 				928036691A27D4FF0081801A /* SCRItemPageViewController.m in Sources */,
 				929EEF8119F4F5940020BD75 /* SCRSelectLanguageViewController.m in Sources */,
+				920582881A6EA25000E152D9 /* SCRGradientBackgroundView.m in Sources */,
 				926C818F1A2F61E000864F32 /* SCRFeedListViewController.m in Sources */,
 				929EEF5019F4EB100020BD75 /* SCRAppDelegate.m in Sources */,
 				92C458391A233EAA00835B10 /* SCRItemViewController.m in Sources */,

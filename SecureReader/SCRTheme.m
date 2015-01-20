@@ -9,6 +9,7 @@
 #import "UIView+Theming.h"
 #import "UIBarItem+Theming.h"
 #import <objc/runtime.h>
+#import "SCRGradientBackgroundView.h"
 
 @interface SCRTheme ()
 {
@@ -202,44 +203,35 @@ static NSMutableDictionary *themes = nil;
         }
         else if ([property isEqualToString:@"backgroundGradientV"])
         {
-            if ([control isKindOfClass:[UIView class]])
+            NSMutableArray *colorArray = nil;
+            NSMutableArray *stopsArray = nil;
+
+            NSString *value = (NSString *)[self getNillableProperty:property fromDict:style];
+            if (value != nil)
             {
-                UIView *uiView = (UIView *)control;
-                if (uiView.layer != nil)
+                NSArray *gradientArray = [value componentsSeparatedByString: @":"];
+                if (gradientArray.count > 0)
                 {
-                    NSString *value = (NSString *)[self getNillableProperty:property fromDict:style];
-                    if (value != nil)
+                    // Parse the actual color values
+                    NSArray *colorHexStringArray = [[gradientArray objectAtIndex:0] componentsSeparatedByString:@","];
+                    colorArray = [[NSMutableArray alloc] initWithCapacity:[colorHexStringArray count]];
+                    [colorHexStringArray enumerateObjectsUsingBlock:^(NSString *colorHexString, NSUInteger idx, BOOL *stop) {
+                        [colorArray setObject:(id)[[SCRTheme colorWithHexString:colorHexString] CGColor] atIndexedSubscript:idx];
+                    }];
+                    
+                    // Parse optional gradient stops
+                    if (gradientArray.count > 1)
                     {
-                        NSArray *gradientArray = [value componentsSeparatedByString: @":"];
-                        if (gradientArray.count > 0)
-                        {
-                            // Parse the actual color values
-                            NSArray *colorHexStringArray = [[gradientArray objectAtIndex:0] componentsSeparatedByString:@","];
-                            NSMutableArray *colorArray = [[NSMutableArray alloc] initWithCapacity:[colorHexStringArray count]];
-                            [colorHexStringArray enumerateObjectsUsingBlock:^(NSString *colorHexString, NSUInteger idx, BOOL *stop) {
-                                [colorArray setObject:(id)[[SCRTheme colorWithHexString:colorHexString] CGColor] atIndexedSubscript:idx];
-                            }];
-
-                            CAGradientLayer *gradient = [CAGradientLayer layer];
-                            gradient.frame = uiView.bounds;
-                            gradient.colors = colorArray;
-
-                            // Parse optional gradient stops
-                            if (gradientArray.count > 1)
-                            {
-                                NSArray *stopsStringArray = [[gradientArray objectAtIndex:1] componentsSeparatedByString:@","];
-                                NSMutableArray *stopsArray = [[NSMutableArray alloc] initWithCapacity:[stopsStringArray count]];
-                                [stopsStringArray enumerateObjectsUsingBlock:^(NSString *stopString, NSUInteger idx, BOOL *stop) {
-                                    [stopsArray setObject:(id)[NSNumber numberWithFloat:[stopString floatValue]] atIndexedSubscript:idx];
-                                }];
-                                gradient.locations = stopsArray;
-                            }
-                            
-                            
-                            [uiView.layer insertSublayer:gradient atIndex:0];
-                        }
+                        NSArray *stopsStringArray = [[gradientArray objectAtIndex:1] componentsSeparatedByString:@","];
+                        stopsArray = [[NSMutableArray alloc] initWithCapacity:[stopsStringArray count]];
+                        [stopsStringArray enumerateObjectsUsingBlock:^(NSString *stopString, NSUInteger idx, BOOL *stop) {
+                            [stopsArray setObject:(id)[NSNumber numberWithFloat:[stopString floatValue]] atIndexedSubscript:idx];
+                        }];
                     }
                 }
+                
+                if ([control respondsToSelector:@selector(setBackgroundColors:withLocations:)])
+                    [control performSelector:@selector(setBackgroundColors:withLocations:) withObject:colorArray withObject:stopsArray];
             }
         }
     }
