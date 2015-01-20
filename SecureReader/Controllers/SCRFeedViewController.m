@@ -17,6 +17,7 @@
 #import "SCRItemViewController.h"
 #import "SCRItemViewControllerSegue.h"
 #import "SCRAppDelegate.h"
+#import <TTTTimeIntervalFormatter.h>
 
 @interface SCRFeedViewController ()
 
@@ -35,6 +36,7 @@
 
 @property (nonatomic) SCRFeedViewType currentType;
 @property (nonatomic, strong) SCRFeed *currentFeed;
+@property (nonatomic) NSTimer *updateTimeStampTimer;
 
 @end
 
@@ -73,6 +75,17 @@
             [self.feedFetcher fetchFeedDataFromURL:[NSURL URLWithString:feedURLString]];
         }];
     }
+    if (_updateTimeStampTimer != nil)
+        [_updateTimeStampTimer invalidate];
+    _updateTimeStampTimer = [NSTimer timerWithTimeInterval:60 target:self selector:@selector(updateTimeStampTimerDidFire) userInfo:nil repeats:YES];
+    [[NSRunLoop mainRunLoop] addTimer:_updateTimeStampTimer forMode:NSRunLoopCommonModes];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    if (_updateTimeStampTimer != nil)
+        [_updateTimeStampTimer invalidate];
+    _updateTimeStampTimer = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -188,7 +201,8 @@
 {
     cell.titleView.text = item.title;
     cell.sourceView.labelSource.text = [item.linkURL host];
-    
+    TTTTimeIntervalFormatter *timeIntervalFormatter = [[TTTTimeIntervalFormatter alloc] init];
+    cell.sourceView.labelDate.text = [timeIntervalFormatter stringForTimeIntervalFromDate:item.publicationDate toDate:[NSDate dateWithTimeIntervalSinceNow:0]];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
@@ -383,17 +397,15 @@
     [self.tableView endUpdates];
 }
 
-
-// Prepare for the segue going forward
-//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-//    if([segue isKindOfClass:[SCRExpandSegue class]]) {
-//        SCRExpandSegue *expand = (SCRExpandSegue *)segue;
-//        expand.isExpanding = YES;
-//        expand.sourceRect = self.chosenCellFrame;
-//        expand.targetRect = self.view.frame;
-//    }
-//}
-
-
+- (void)updateTimeStampTimerDidFire
+{
+    NSArray *visibleCells = [self.tableView visibleCells];
+    for (SCRItemView *cell in visibleCells) {
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+        SCRItem *item = [self itemForIndexPath:indexPath];
+        [self configureCell:cell forItem:item];
+        [cell setNeedsLayout];
+    }
+}
 
 @end

@@ -9,6 +9,7 @@
 #import "SCRItemViewController.h"
 #import "SCRItemPageViewController.h"
 #import "SCRItem.h"
+#import "SCRReader.h"
 
 @interface SCRItemViewController ()
 @property SCRFeedViewController *itemDataSource;
@@ -103,6 +104,18 @@
     self.itemDataSource = feedView;
     self.currentItemIndex = indexPath;
 }
+
+#pragma mark - Toolbar buttons
+
+- (IBAction)markItemAsFavorite:(id)sender
+{
+    SCRItem *item = [itemDataSource itemForIndexPath:self.currentItemIndex];
+    if (item != nil)
+    {
+        [[SCRReader sharedInstance] markItem:item asFavorite:YES]; //TODO - toggle
+    }
+}
+
 
 
 

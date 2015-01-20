@@ -17,36 +17,12 @@
 
 @synthesize contentView;
 
-//- (void) awakeFromNib
-//{
-//    [super awakeFromNib];
-//    if (self)
-//    {
-//        [[NSBundle mainBundle] loadNibNamed:@"SourceView" owner:self options:nil];
-//        self.separator.backgroundColor = [UIColor colorWithRed:0.2 green:0.7 blue:0.1 alpha:0.5];
-//        [self addSubview:self.contentView];
-//    }
-//}
-//
-//- (instancetype)initWithFrame:(CGRect)frame
-//{
-//    self = [super initWithFrame:frame];
-//    if (self)
-//    {
-//        [[NSBundle mainBundle] loadNibNamed:@"SourceView" owner:self options:nil];
-//        self.separator.backgroundColor = [UIColor colorWithRed:0.2 green:0.7 blue:0.1 alpha:0.5];
-//        [self addSubview:self.contentView];
-//    }
-//    return self;
-//}
-
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super initWithCoder:aDecoder];
     if (self)
     {
         [[NSBundle mainBundle] loadNibNamed:@"SCRSourceView" owner:self options:nil];
-        self.separator.backgroundColor = [UIColor colorWithRed:0.2 green:0.7 blue:0.1 alpha:0.5];
         self.translatesAutoresizingMaskIntoConstraints = NO;
         self.contentView.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:self.contentView];

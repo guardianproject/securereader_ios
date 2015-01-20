@@ -190,6 +190,16 @@ static NSMutableDictionary *themes = nil;
                 }
             }
         }
+        else if ([property isEqualToString:@"textSize"] && [control respondsToSelector:@selector(setFont:)] && [control respondsToSelector:@selector(font)])
+        {
+            UIFont *font = [control performSelector:@selector(font)];
+            if (save)
+                [SCRTheme saveProperty:property value:[NSNumber numberWithFloat:[font pointSize]] forControl:control];
+            
+            NSNumber *value = (NSNumber*)[self getNillableProperty:property fromDict:style];
+            if (value != nil)
+                [control performSelector:@selector(setFont:) withObject:[font fontWithSize:[value floatValue]]];
+        }
     }
     
 }

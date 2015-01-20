@@ -64,5 +64,29 @@
 		<key>tintColor</key>
 		<string>#ff95ab55</string>
 	</dict>
+	<key>SourceStyle</key>
+	<dict>
+		<key>backgroundColor</key>
+		<string>#ffffffff</string>
+	</dict>
+	<key>SourceTitleStyle</key>
+	<dict>
+		<key>textSize</key>
+		<integer>10</integer>
+		<key>textColor</key>
+		<string>#ff95ab55</string>
+	</dict>
+	<key>SourceTimeStyle</key>
+	<dict>
+		<key>textSize</key>
+		<integer>10</integer>
+		<key>textColor</key>
+		<string>#ff999999</string>
+	</dict>
+	<key>SourceSeparatorStyle</key>
+	<dict>
+		<key>backgroundColor</key>
+		<string>#ffaaaaaa</string>
+	</dict>
 </dict>
 </plist>
