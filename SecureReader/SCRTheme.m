@@ -200,6 +200,48 @@ static NSMutableDictionary *themes = nil;
             if (value != nil)
                 [control performSelector:@selector(setFont:) withObject:[font fontWithSize:[value floatValue]]];
         }
+        else if ([property isEqualToString:@"backgroundGradientV"])
+        {
+            if ([control isKindOfClass:[UIView class]])
+            {
+                UIView *uiView = (UIView *)control;
+                if (uiView.layer != nil)
+                {
+                    NSString *value = (NSString *)[self getNillableProperty:property fromDict:style];
+                    if (value != nil)
+                    {
+                        NSArray *gradientArray = [value componentsSeparatedByString: @":"];
+                        if (gradientArray.count > 0)
+                        {
+                            // Parse the actual color values
+                            NSArray *colorHexStringArray = [[gradientArray objectAtIndex:0] componentsSeparatedByString:@","];
+                            NSMutableArray *colorArray = [[NSMutableArray alloc] initWithCapacity:[colorHexStringArray count]];
+                            [colorHexStringArray enumerateObjectsUsingBlock:^(NSString *colorHexString, NSUInteger idx, BOOL *stop) {
+                                [colorArray setObject:(id)[[SCRTheme colorWithHexString:colorHexString] CGColor] atIndexedSubscript:idx];
+                            }];
+
+                            CAGradientLayer *gradient = [CAGradientLayer layer];
+                            gradient.frame = uiView.bounds;
+                            gradient.colors = colorArray;
+
+                            // Parse optional gradient stops
+                            if (gradientArray.count > 1)
+                            {
+                                NSArray *stopsStringArray = [[gradientArray objectAtIndex:1] componentsSeparatedByString:@","];
+                                NSMutableArray *stopsArray = [[NSMutableArray alloc] initWithCapacity:[stopsStringArray count]];
+                                [stopsStringArray enumerateObjectsUsingBlock:^(NSString *stopString, NSUInteger idx, BOOL *stop) {
+                                    [stopsArray setObject:(id)[NSNumber numberWithFloat:[stopString floatValue]] atIndexedSubscript:idx];
+                                }];
+                                gradient.locations = stopsArray;
+                            }
+                            
+                            
+                            [uiView.layer insertSublayer:gradient atIndex:0];
+                        }
+                    }
+                }
+            }
+        }
     }
     
 }

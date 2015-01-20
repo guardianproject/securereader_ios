@@ -13,7 +13,7 @@
 
 - (void)setTheme:(NSString *)theme
 {
-    [SCRTheme applyTheme:theme toControl:(UIControl*)self];
+    [SCRTheme applyTheme:theme toControl:self];
 }
 
 @end
