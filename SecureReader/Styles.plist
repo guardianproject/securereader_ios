@@ -2,6 +2,23 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>TabBarItemStyle</key>
+	<dict>
+		<key>parent</key>
+		<string>NavigationBarItemStyle</string>
+	</dict>
+	<key>NavigationBarItemStyle</key>
+	<dict>
+		<key>textColor</key>
+		<string>#ff95ab55</string>
+		<key>tintColor</key>
+		<string>#ff95ab55</string>
+	</dict>
+	<key>ListItemShadowStyle</key>
+	<dict>
+		<key>backgroundGradientV</key>
+		<string>#ffcccccc,#ffefefef:0.0,0.5</string>
+	</dict>
 	<key>FeedListStyle</key>
 	<dict>
 		<key>backgroundColor</key>
@@ -41,13 +58,6 @@
 		<key>backgroundColor</key>
 		<string>#ffffffe0</string>
 	</dict>
-	<key>NavigationBarItemStyle</key>
-	<dict>
-		<key>textColor</key>
-		<string>#ff95ab55</string>
-		<key>tintColor</key>
-		<string>#ff95ab55</string>
-	</dict>
 	<key>ReceiveShareButtonStyle</key>
 	<dict>
 		<key>corners</key>
@@ -86,7 +96,7 @@
 	<key>SourceSeparatorStyle</key>
 	<dict>
 		<key>backgroundColor</key>
-		<string>#ffaaaaaa</string>
+		<string>#ffcccccc</string>
 	</dict>
 </dict>
 </plist>

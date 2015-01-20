@@ -10,6 +10,7 @@
 #import "SCRLoginViewController.h"
 #import "SCRAppDelegate.h"
 #import "SCRFeedViewController.h"
+#import "UIView+Theming.h"
 
 @interface SCRMainViewController ()
 
@@ -19,6 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.tabBar setTheme:@"TabBarItemStyle"];
     self.delegate = self;
 }
 

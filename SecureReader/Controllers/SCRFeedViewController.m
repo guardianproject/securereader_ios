@@ -203,6 +203,10 @@
     cell.sourceView.labelSource.text = [item.linkURL host];
     TTTTimeIntervalFormatter *timeIntervalFormatter = [[TTTTimeIntervalFormatter alloc] init];
     cell.sourceView.labelDate.text = [timeIntervalFormatter stringForTimeIntervalFromDate:item.publicationDate toDate:[NSDate dateWithTimeIntervalSinceNow:0]];
+    cell.imageView.image = nil;
+    if (item.thumbnailURL) {
+        [cell.imageView setImageWithURL:item.thumbnailURL];
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
@@ -215,12 +219,6 @@
     SCRItemView *cell = [tableView
                       dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     [self configureCell:cell forItem:item];
-    
-    cell.imageView.image = nil;
-    if (item.thumbnailURL) {
-        [cell.imageView setImageWithURL:item.thumbnailURL];
-    }
-    
     return cell;
 }
 
