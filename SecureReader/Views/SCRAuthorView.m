@@ -1,18 +1,18 @@
 //
-//  SourceView.m
+//  SCRAuthorView.m
 //  SecureReader
 //
-//  Created by N-Pex on 2014-09-11.
-//  Copyright (c) 2014 Guardian Project. All rights reserved.
+//  Created by N-Pex on 2015-01-20.
+//  Copyright (c) 2015 Guardian Project. All rights reserved.
 //
 
-#import "SCRSourceView.h"
+#import "SCRAuthorView.h"
 
-@interface SCRSourceView ()
+@interface SCRAuthorView ()
 @property (nonatomic, strong) NSMutableArray *customConstraints;
 @end
 
-@implementation SCRSourceView
+@implementation SCRAuthorView
 
 @synthesize contentView;
 
@@ -21,7 +21,7 @@
     self = [super initWithCoder:aDecoder];
     if (self)
     {
-        [[NSBundle mainBundle] loadNibNamed:@"SCRSourceView" owner:self options:nil];
+        [[NSBundle mainBundle] loadNibNamed:@"SCRAuthorView" owner:self options:nil];
         self.translatesAutoresizingMaskIntoConstraints = NO;
         self.contentView.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:self.contentView];

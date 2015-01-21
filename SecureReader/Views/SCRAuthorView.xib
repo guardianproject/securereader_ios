@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SCRAuthorView">
+            <connections>
+                <outlet property="contentView" destination="Uot-HF-tWT" id="Yh2-4O-e9d"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="Uot-HF-tWT" colorLabel="IBBuiltInLabel-Orange">
+            <rect key="frame" x="0.0" y="0.0" width="238" height="80"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ac1-Ba-ok3" userLabel="Top View">
+                    <rect key="frame" x="0.0" y="0.0" width="238" height="3"/>
+                    <color key="backgroundColor" red="1" green="0.13396670029999999" blue="0.59150032880000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="3" id="mx5-QI-ENb"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="theme" value="AuthorSeparatorStyle"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="W8l-vq-GpT" userLabel="Grey Background View">
+                    <rect key="frame" x="0.0" y="3" width="238" height="77"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="Iqf-b5-XdQ" userLabel="Top Row">
+                            <rect key="frame" x="1" y="1" width="236" height="39"/>
+                            <subviews>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="August 15" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fq8-nB-c17" userLabel="Date">
+                                    <rect key="frame" x="10" y="10" width="66" height="24"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="theme" value="AuthorDateStyle"/>
+                                    </userDefinedRuntimeAttributes>
+                                </label>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="4.32 PM" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Us-Y5-RSn" userLabel="Time">
+                                    <rect key="frame" x="179" y="10" width="47" height="24"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                    <nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="theme" value="AuthorTimeStyle"/>
+                                    </userDefinedRuntimeAttributes>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="Fq8-nB-c17" firstAttribute="top" secondItem="Iqf-b5-XdQ" secondAttribute="top" constant="10" id="0o1-wm-GBC"/>
+                                <constraint firstAttribute="trailing" secondItem="1Us-Y5-RSn" secondAttribute="trailing" constant="10" id="IRz-pW-vP3"/>
+                                <constraint firstItem="1Us-Y5-RSn" firstAttribute="top" secondItem="Iqf-b5-XdQ" secondAttribute="top" constant="10" id="PVN-bE-mWy"/>
+                                <constraint firstAttribute="bottom" secondItem="1Us-Y5-RSn" secondAttribute="bottom" priority="980" constant="5" id="QeC-yS-OFV"/>
+                                <constraint firstItem="Fq8-nB-c17" firstAttribute="leading" secondItem="Iqf-b5-XdQ" secondAttribute="leading" constant="10" id="g96-k6-ZF4"/>
+                                <constraint firstAttribute="bottom" secondItem="Fq8-nB-c17" secondAttribute="bottom" priority="990" constant="5" id="jFh-CI-qGQ"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="Kbi-Qd-8JH" userLabel="Bottom Row">
+                            <rect key="frame" x="1" y="41" width="236" height="35"/>
+                            <subviews>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="BY MICHAEL B. SHEAR AND JEREMY PETE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EuM-0h-QLm" userLabel="Author Name">
+                                    <rect key="frame" x="10" y="10" width="216" height="15"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                    <nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="theme" value="AuthorNameStyle"/>
+                                    </userDefinedRuntimeAttributes>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="EuM-0h-QLm" firstAttribute="top" secondItem="Kbi-Qd-8JH" secondAttribute="top" constant="10" id="8It-Gv-3b6"/>
+                                <constraint firstAttribute="trailing" secondItem="EuM-0h-QLm" secondAttribute="trailing" constant="10" id="Dh0-CT-xxZ"/>
+                                <constraint firstAttribute="bottom" secondItem="EuM-0h-QLm" secondAttribute="bottom" priority="900" constant="10" id="RDC-G8-ayE"/>
+                                <constraint firstItem="EuM-0h-QLm" firstAttribute="leading" secondItem="Kbi-Qd-8JH" secondAttribute="leading" constant="10" id="hLq-Z4-nY8"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" red="0.42272565210000002" green="1" blue="0.47146066089999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="Kbi-Qd-8JH" secondAttribute="trailing" constant="1" id="79e-Nv-GNI"/>
+                        <constraint firstItem="Kbi-Qd-8JH" firstAttribute="leading" secondItem="W8l-vq-GpT" secondAttribute="leading" constant="1" id="AAX-ve-xxg"/>
+                        <constraint firstItem="Iqf-b5-XdQ" firstAttribute="leading" secondItem="W8l-vq-GpT" secondAttribute="leading" constant="1" id="SQQ-XZ-437"/>
+                        <constraint firstItem="Iqf-b5-XdQ" firstAttribute="top" secondItem="W8l-vq-GpT" secondAttribute="top" priority="900" constant="1" id="VTA-SZ-7TX"/>
+                        <constraint firstAttribute="bottom" secondItem="Kbi-Qd-8JH" secondAttribute="bottom" priority="900" constant="1" id="f2N-PR-udI"/>
+                        <constraint firstAttribute="trailing" secondItem="Iqf-b5-XdQ" secondAttribute="trailing" constant="1" id="krz-z4-Ru0"/>
+                        <constraint firstItem="Kbi-Qd-8JH" firstAttribute="top" secondItem="Iqf-b5-XdQ" secondAttribute="bottom" constant="1" id="zpd-t9-ciz"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="theme" value="AuthorStyle"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstItem="Ac1-Ba-ok3" firstAttribute="top" secondItem="Uot-HF-tWT" secondAttribute="top" id="2Za-NM-gbQ"/>
+                <constraint firstItem="Ac1-Ba-ok3" firstAttribute="leading" secondItem="Uot-HF-tWT" secondAttribute="leading" id="RDk-GA-Wuc"/>
+                <constraint firstAttribute="trailing" secondItem="Ac1-Ba-ok3" secondAttribute="trailing" id="aoU-mp-P0A"/>
+                <constraint firstAttribute="trailing" secondItem="W8l-vq-GpT" secondAttribute="trailing" id="bL9-4q-5xb"/>
+                <constraint firstItem="W8l-vq-GpT" firstAttribute="leading" secondItem="Uot-HF-tWT" secondAttribute="leading" id="lPT-yp-wAo"/>
+                <constraint firstAttribute="bottom" secondItem="W8l-vq-GpT" secondAttribute="bottom" priority="850" id="mS9-7H-S03"/>
+                <constraint firstItem="W8l-vq-GpT" firstAttribute="top" secondItem="Ac1-Ba-ok3" secondAttribute="bottom" id="ykh-tS-5IL"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="string" keyPath="theme" value="SourceStyle"/>
+            </userDefinedRuntimeAttributes>
+            <point key="canvasLocation" x="375" y="158.5"/>
+        </view>
+    </objects>
+</document>

@@ -98,5 +98,30 @@
 		<key>backgroundColor</key>
 		<string>#ffcccccc</string>
 	</dict>
+	<key>AuthorStyle</key>
+	<dict>
+		<key>backgroundColor</key>
+		<string>#ffcccccc</string>
+	</dict>
+	<key>AuthorSeparatorStyle</key>
+	<dict>
+		<key>backgroundColor</key>
+		<string>#ff95ab55</string>
+	</dict>
+	<key>AuthorDateStyle</key>
+	<dict>
+		<key>parent</key>
+		<string>SourceTimeStyle</string>
+	</dict>
+	<key>AuthorTimeStyle</key>
+	<dict>
+		<key>parent</key>
+		<string>SourceTimeStyle</string>
+	</dict>
+	<key>AuthorNameStyle</key>
+	<dict>
+		<key>parent</key>
+		<string>SourceTimeStyle</string>
+	</dict>
 </dict>
 </plist>
