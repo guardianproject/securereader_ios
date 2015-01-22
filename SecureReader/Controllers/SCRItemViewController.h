@@ -13,4 +13,6 @@
 
 - (void) setDataView:(SCRFeedViewController *)feedView withStartAt:(NSIndexPath *)indexPath;
 
+@property (weak, nonatomic) IBOutlet UIToolbar *toolBar;
+
 @end

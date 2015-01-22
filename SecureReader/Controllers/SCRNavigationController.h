@@ -10,4 +10,6 @@
 
 @interface SCRNavigationController : UINavigationController
 
+- (void) registerScrollViewForHideBars:(UIScrollView *)scrollView;
+
 @end

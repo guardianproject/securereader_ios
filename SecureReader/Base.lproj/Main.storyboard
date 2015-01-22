@@ -787,17 +787,24 @@
         <!--Item View Controller-->
         <scene sceneID="rwI-Hr-7gx">
             <objects>
-                <viewController storyboardIdentifier="itemView" hidesBottomBarWhenPushed="YES" id="QE5-Ij-pB9" customClass="SCRItemViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="itemView" automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="QE5-Ij-pB9" customClass="SCRItemViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="xi7-Ez-T3C"/>
                         <viewControllerLayoutGuide type="bottom" id="lqT-Ps-kAD"/>
                     </layoutGuides>
                     <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="BnV-pe-gJZ">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WRF-Wn-b7n">
-                                <rect key="frame" x="0.0" y="492" width="600" height="44"/>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rFg-cE-miZ">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <segue destination="jSy-hA-0DA" kind="embed" id="rlg-mB-Sy9"/>
+                                </connections>
+                            </containerView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WRF-Wn-b7n">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="LhR-Mf-esK"/>
                                     <barButtonItem image="ic_action2_font.png" id="mS3-ST-dNH">
@@ -832,22 +839,15 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="vjM-hW-2w0"/>
                                 </items>
                             </toolbar>
-                            <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rFg-cE-miZ">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="492"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <segue destination="jSy-hA-0DA" kind="embed" id="rlg-mB-Sy9"/>
-                                </connections>
-                            </containerView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="WRF-Wn-b7n" firstAttribute="bottom" secondItem="lqT-Ps-kAD" secondAttribute="top" id="359-Tk-Ubv"/>
-                            <constraint firstItem="rFg-cE-miZ" firstAttribute="top" secondItem="xi7-Ez-T3C" secondAttribute="top" id="Fph-gz-JW5"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="rFg-cE-miZ" secondAttribute="bottom" id="5Ou-5N-TCF"/>
+                            <constraint firstItem="rFg-cE-miZ" firstAttribute="top" secondItem="BnV-pe-gJZ" secondAttribute="top" id="Nm5-He-ch2"/>
                             <constraint firstItem="rFg-cE-miZ" firstAttribute="trailing" secondItem="WRF-Wn-b7n" secondAttribute="trailing" id="Q6X-Er-uhL"/>
                             <constraint firstAttribute="width" secondItem="rFg-cE-miZ" secondAttribute="width" id="VhE-sR-f2i"/>
                             <constraint firstItem="WRF-Wn-b7n" firstAttribute="leading" secondItem="BnV-pe-gJZ" secondAttribute="leading" id="YXX-KR-YeN"/>
                             <constraint firstItem="rFg-cE-miZ" firstAttribute="leading" secondItem="WRF-Wn-b7n" secondAttribute="leading" id="iPP-qA-K5M"/>
-                            <constraint firstItem="rFg-cE-miZ" firstAttribute="bottom" secondItem="WRF-Wn-b7n" secondAttribute="top" id="kwt-Q6-WaJ"/>
+                            <constraint firstAttribute="bottom" secondItem="WRF-Wn-b7n" secondAttribute="bottom" id="kKX-hO-8RB"/>
                             <constraint firstItem="rFg-cE-miZ" firstAttribute="leading" secondItem="WRF-Wn-b7n" secondAttribute="leading" id="wBD-qA-cKP"/>
                             <constraint firstAttribute="trailing" secondItem="WRF-Wn-b7n" secondAttribute="trailing" id="ww5-se-oOK"/>
                         </constraints>
@@ -858,7 +858,6 @@
                             </mask>
                         </variation>
                     </view>
-                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="kyR-eg-9Ic">
                         <barButtonItem key="rightBarButtonItem" image="ic_action_panic.png" id="Xxs-Yy-PFt">
@@ -872,6 +871,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="container" destination="rFg-cE-miZ" id="AVJ-Vl-ylJ"/>
+                        <outlet property="toolBar" destination="WRF-Wn-b7n" id="1Vm-VG-PYh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yt3-ew-Hc6" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -881,9 +881,7 @@
         <!--Page View Controller-->
         <scene sceneID="xCP-xV-352">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" automaticallyAdjustsScrollViewInsets="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="jSy-hA-0DA" sceneMemberID="viewController">
-                    <extendedEdge key="edgesForExtendedLayout"/>
-                </pageViewController>
+                <pageViewController extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="jSy-hA-0DA" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XWZ-96-nF7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="692" y="4618"/>
@@ -891,7 +889,7 @@
         <!--Item Page View Controller-->
         <scene sceneID="G55-6I-cg1">
             <objects>
-                <viewController storyboardIdentifier="fullScreenItemView" id="caU-DC-4qj" customClass="SCRItemPageViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="fullScreenItemView" automaticallyAdjustsScrollViewInsets="NO" id="caU-DC-4qj" customClass="SCRItemPageViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Zix-Mu-OGb"/>
                         <viewControllerLayoutGuide type="bottom" id="Yeq-zC-hQa"/>
@@ -970,13 +968,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Yeq-zC-hQa" firstAttribute="top" secondItem="APV-0g-kfm" secondAttribute="bottom" id="0vX-JL-9Ra"/>
-                            <constraint firstItem="APV-0g-kfm" firstAttribute="top" secondItem="Iks-Aj-aiq" secondAttribute="topMargin" id="EAk-ao-X7l"/>
+                            <constraint firstAttribute="bottom" secondItem="APV-0g-kfm" secondAttribute="bottom" id="5qE-vk-PCX"/>
+                            <constraint firstItem="APV-0g-kfm" firstAttribute="top" secondItem="Iks-Aj-aiq" secondAttribute="top" id="EAk-ao-X7l"/>
                             <constraint firstItem="APV-0g-kfm" firstAttribute="leading" secondItem="Iks-Aj-aiq" secondAttribute="leading" id="PUM-NY-Jy3"/>
                             <constraint firstAttribute="trailing" secondItem="APV-0g-kfm" secondAttribute="trailing" id="QLm-uq-2Ci"/>
                             <constraint firstAttribute="width" secondItem="zgO-vU-RGa" secondAttribute="width" id="abc-aQ-UrJ"/>
                         </constraints>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <connections>
                         <outlet property="contentView" destination="4vz-a6-cEX" id="diy-Gb-eQT"/>
                         <outlet property="imageView" destination="SaD-dL-rdj" id="FUb-EE-xOh"/>

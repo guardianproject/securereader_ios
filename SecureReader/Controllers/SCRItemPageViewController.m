@@ -29,6 +29,14 @@
     [_contentView setScrollEnabled:NO];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    CGFloat navBarHeight = self.navigationController.navigationBar.frame.size.height;
+    [self.scrollView setContentInset:UIEdgeInsetsMake(navBarHeight, 0, 0, 0)];
+    [self.scrollView scrollRectToVisible:CGRectMake(0, 0, self.scrollView.frame.size.width, 1) animated:NO];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

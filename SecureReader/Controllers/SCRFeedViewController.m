@@ -18,6 +18,7 @@
 #import "SCRItemViewControllerSegue.h"
 #import "SCRAppDelegate.h"
 #import <TTTTimeIntervalFormatter.h>
+#import "SCRNavigationController.h"
 
 @interface SCRFeedViewController ()
 
@@ -49,6 +50,8 @@
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cellNoPhotos"];
     nib = [UINib nibWithNibName:@"SCRItemCellLandscapePhotos" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cellLandscapePhotos"];
+    
+    [(SCRNavigationController *)self.navigationController registerScrollViewForHideBars:self.tableView];
     
 //    _yapViewName = [SCRDatabaseManager sharedInstance].allFeedItemsViewName;
 //    [self setupMappings];
@@ -165,7 +168,7 @@
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (self.itemViewController == nil)
+    //if (self.itemViewController == nil)
     {
          self.itemViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"itemView"];
     }

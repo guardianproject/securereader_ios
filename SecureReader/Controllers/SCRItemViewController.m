@@ -10,6 +10,7 @@
 #import "SCRItemPageViewController.h"
 #import "SCRItem.h"
 #import "SCRReader.h"
+#import "SCRNavigationController.h"
 
 @interface SCRItemViewController ()
 @property SCRFeedViewController *itemDataSource;
@@ -27,7 +28,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     pageViewController = [[self childViewControllers] objectAtIndex:0];
-    
     pageViewController.delegate = self;
     [self updateCurrentView];
 }
@@ -40,27 +40,13 @@
         SCRItemPageViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"fullScreenItemView"];
         [vc setItem:item];
         [vc setItemIndexPath:indexPath];
+        [(SCRNavigationController *)self.navigationController registerScrollViewForHideBars:vc.scrollView];
         return vc;
     }
     return nil;
 }
 
 #pragma mark - Page View Controller Delegate
-
-- (void)pageViewController:(UIPageViewController *)pageViewController willTransitionToViewControllers:(NSArray *)pendingViewControllers
-{
-    if (pendingViewControllers != nil && pendingViewControllers.count > 0)
-    {
-        NSObject *o = [pendingViewControllers objectAtIndex:0];
-        if ([o isKindOfClass:[SCRItemPageViewController class]])
-        {
-            UIScrollView *scrollView = ((SCRItemPageViewController *)o).scrollView;
-            if (scrollView != nil)
-                [scrollView setContentOffset:
-                 CGPointMake(0, -scrollView.contentInset.top) animated:YES];
-        }
-    }
-}
 
 #pragma mark - Page View Controller Data Source
 
@@ -98,7 +84,7 @@
              
 - (void) updateCurrentView
 {
-    if (itemDataSource != nil && currentItemIndex != nil)
+    if (itemDataSource != nil && currentItemIndex != nil && self.isViewLoaded)
     {
         [pageViewController setDataSource:self];
         
@@ -106,6 +92,7 @@
         SCRItemPageViewController *initialViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"fullScreenItemView"];
         [initialViewController setItem:item];
         [initialViewController setItemIndexPath:currentItemIndex];
+        [(SCRNavigationController *)self.navigationController registerScrollViewForHideBars:initialViewController.scrollView];
         NSArray *viewControllers = [NSArray arrayWithObject:initialViewController];
         [pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
     }
