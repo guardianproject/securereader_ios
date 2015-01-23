@@ -51,8 +51,6 @@
     nib = [UINib nibWithNibName:@"SCRItemCellLandscapePhotos" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cellLandscapePhotos"];
     
-    [(SCRNavigationController *)self.navigationController registerScrollViewForHideBars:self.tableView];
-    
 //    _yapViewName = [SCRDatabaseManager sharedInstance].allFeedItemsViewName;
 //    [self setupMappings];
     _feedFetcher = [[SCRFeedFetcher alloc] init];
@@ -65,6 +63,7 @@
 
 - (void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    [(SCRNavigationController *)self.navigationController registerScrollViewForHideBars:self.tableView];
     if ([[SCRAppDelegate sharedAppDelegate] isLoggedIn])
     {
         [self.tableView reloadData];
