@@ -7,8 +7,11 @@
 //
 
 #import "SCRSettings.h"
+#import "SCRApplication.h"
 
 @implementation SCRSettings
+
+NSString * const kFontSizeAdjustmentSettingsKey = @"fontSizeAdjustment";
 
 + (NSString *)getUiLanguage
 {
@@ -46,6 +49,27 @@
     if ([userDefaults objectForKey:@"lockTimeout"] == nil)
         return 60 * 60 * 24;
     return [userDefaults integerForKey:@"lockTimeout"];
+}
+
++ (float)fontSizeAdjustment
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    float ret = [userDefaults floatForKey:kFontSizeAdjustmentSettingsKey];
+    return ret;
+}
+
++ (void)setFontSizeAdjustment:(float)fontSizeAdjustment
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setFloat:fontSizeAdjustment forKey:kFontSizeAdjustmentSettingsKey];
+    [userDefaults synchronize];
+    [self onChange:kFontSizeAdjustmentSettingsKey];
+}
+
++ (void)onChange:(NSString*)key
+{
+    NSDictionary *dict = [[NSMutableDictionary alloc] initWithObjectsAndKeys:key, @"key", nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kSettingChangedNotification object:self userInfo:dict];
 }
 
 @end

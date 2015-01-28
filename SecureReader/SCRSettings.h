@@ -10,6 +10,8 @@
 
 @interface SCRSettings : NSObject
 
+extern NSString * const kFontSizeAdjustmentSettingsKey;
+
 + (NSString *)getUiLanguage;
 + (void) setUiLanguage:(NSString *)languageCode;
 
@@ -18,5 +20,8 @@
 + (void) setPassphrase:(NSString *)passphrase;
 
 + (NSInteger) lockTimeout;
+
++ (float)fontSizeAdjustment;
++ (void)setFontSizeAdjustment:(float)fontSizeAdjustment;
 
 @end

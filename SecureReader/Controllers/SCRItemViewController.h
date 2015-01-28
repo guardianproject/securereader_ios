@@ -9,10 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "SCRFeedViewController.h"
 
-@interface SCRItemViewController : UIViewController<UIPageViewControllerDataSource, UIPageViewControllerDelegate>
+@interface SCRItemViewController : UIViewController<UIPageViewControllerDataSource, UIPageViewControllerDelegate, UIGestureRecognizerDelegate>
 
 - (void) setDataView:(SCRFeedViewController *)feedView withStartAt:(NSIndexPath *)indexPath;
 
 @property (weak, nonatomic) IBOutlet UIToolbar *toolBar;
+@property (weak, nonatomic) IBOutlet UIView *textSizeView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *textSizeViewHeightConstraint;
+@property (weak, nonatomic) IBOutlet UISlider *textSizeSlider;
 
 @end

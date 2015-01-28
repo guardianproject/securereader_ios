@@ -11,12 +11,18 @@
 #import "SCRItem.h"
 #import "SCRReader.h"
 #import "SCRNavigationController.h"
+#import "SCRLabel.h"
+#import "SCRApplication.h"
+#import "SCRSettings.h"
+
 
 @interface SCRItemViewController ()
 @property SCRFeedViewController *itemDataSource;
 @property NSIndexPath *currentItemIndex;
 @property (weak, nonatomic) IBOutlet UIPageViewController *pageViewController;
 @property (weak, nonatomic) IBOutlet UIView *container;
+@property UIGestureRecognizer *textSizeViewGestureRecognizer;
+@property BOOL textSizeViewVisible;
 @end
 
 @implementation SCRItemViewController
@@ -30,6 +36,18 @@
     pageViewController = [[self childViewControllers] objectAtIndex:0];
     pageViewController.delegate = self;
     [self updateCurrentView];
+    
+    self.textSizeViewGestureRecognizer = [[UIGestureRecognizer alloc] initWithTarget:self action:@selector(handleTextSizeGesture:)];
+    [self.textSizeViewGestureRecognizer setEnabled:YES];
+    [self.textSizeViewGestureRecognizer setCancelsTouchesInView:NO];
+    [self.textSizeViewGestureRecognizer setDelaysTouchesBegan:NO];
+    [self.textSizeViewGestureRecognizer setDelaysTouchesEnded:NO];
+    [self.textSizeViewGestureRecognizer setDelegate:self];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    self.textSizeSlider.value = [SCRSettings fontSizeAdjustment];
 }
 
 - (UIViewController *)viewControllerForIndexPath:(NSIndexPath *)indexPath
@@ -101,6 +119,11 @@
 
 #pragma mark - Toolbar buttons
 
+- (IBAction)textSizeItemClicked:(id)sender
+{
+    [self toggleTextSizeView];
+}
+
 - (IBAction)markItemAsFavorite:(id)sender
 {
     SCRItem *item = [itemDataSource itemForIndexPath:self.currentItemIndex];
@@ -110,7 +133,58 @@
     }
 }
 
+- (void) showTextSizeView
+{
+    [self.view addGestureRecognizer:self.textSizeViewGestureRecognizer];
+    [self.view layoutIfNeeded];
+    self.textSizeViewHeightConstraint.constant = 60;
+    [UIView animateWithDuration:0.5 animations:^{
+        self.textSizeView.alpha = 1.0f;
+        [self.view layoutIfNeeded];
+    } completion:^(BOOL finished) {
+        self.textSizeViewVisible = YES;
+    }];
+ 
+}
 
+- (void) hideTextSizeView
+{
+    [self.view removeGestureRecognizer:self.textSizeViewGestureRecognizer];
+    [self.view layoutIfNeeded];
+    self.textSizeViewHeightConstraint.constant = 0;
+    [UIView animateWithDuration:0.5 animations:^{
+        self.textSizeView.alpha = 0.0f;
+        [self.view layoutIfNeeded];
+    } completion:^(BOOL finished) {
+        self.textSizeViewVisible = NO;
+    }];
+}
 
+- (void) toggleTextSizeView
+{
+    if (self.textSizeViewVisible)
+        [self hideTextSizeView];
+    else
+        [self showTextSizeView];
+}
+
+-(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+{
+    if (!CGRectContainsPoint(self.textSizeView.frame, [touch locationInView:self.view]) && self.textSizeViewHeightConstraint.constant > 0)
+    {
+        [self hideTextSizeView];
+    }
+    return NO;
+}
+
+- (void)handleTextSizeGesture:(UIGestureRecognizer *)gestureRecognizer
+{
+    // Not used
+}
+
+- (IBAction)textSideSliderChanged:(id)sender
+{
+    [SCRSettings setFontSizeAdjustment:self.textSizeSlider.value];
+}
 
 @end

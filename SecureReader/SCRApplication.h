@@ -10,6 +10,7 @@
 
 #define kApplicationDidTimeoutNotification @"AppTimeOut"
 #define kPanicStartNotification @"Panic"
+#define kSettingChangedNotification @"SettingChanged"
 
 @interface SCRApplication : UIApplication
 

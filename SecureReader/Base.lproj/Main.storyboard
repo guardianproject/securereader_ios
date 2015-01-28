@@ -798,11 +798,28 @@
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rFg-cE-miZ">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <segue destination="jSy-hA-0DA" kind="embed" id="rlg-mB-Sy9"/>
                                 </connections>
                             </containerView>
+                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B5F-sL-U7l">
+                                <subviews>
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-8" maxValue="8" translatesAutoresizingMaskIntoConstraints="NO" id="pob-cE-sOd">
+                                        <rect key="frame" x="18" y="10" width="564" height="31"/>
+                                        <connections>
+                                            <action selector="textSideSliderChanged:" destination="QE5-Ij-pB9" eventType="valueChanged" id="M2b-pb-mUB"/>
+                                        </connections>
+                                    </slider>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" id="3Qp-W8-nul"/>
+                                    <constraint firstAttribute="bottom" secondItem="pob-cE-sOd" secondAttribute="bottom" constant="10" id="UhZ-Tb-fqw"/>
+                                    <constraint firstItem="pob-cE-sOd" firstAttribute="top" secondItem="B5F-sL-U7l" secondAttribute="top" constant="10" id="WMA-NK-Zy4"/>
+                                    <constraint firstAttribute="trailing" secondItem="pob-cE-sOd" secondAttribute="trailing" constant="20" id="bNt-GZ-zeM"/>
+                                    <constraint firstItem="pob-cE-sOd" firstAttribute="leading" secondItem="B5F-sL-U7l" secondAttribute="leading" constant="20" id="oth-oM-utS"/>
+                                </constraints>
+                            </view>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WRF-Wn-b7n">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <items>
@@ -811,6 +828,9 @@
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="theme" value="FullScreenButtonStyle"/>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="textSizeItemClicked:" destination="QE5-Ij-pB9" id="29M-Km-t02"/>
+                                        </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="gvW-On-kd1"/>
                                     <barButtonItem image="ic_action2_favorite.png" id="wRx-Fr-Els">
@@ -841,11 +861,14 @@
                             </toolbar>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="B5F-sL-U7l" firstAttribute="leading" secondItem="WRF-Wn-b7n" secondAttribute="leading" id="5DT-Rc-oeU"/>
                             <constraint firstAttribute="bottomMargin" secondItem="rFg-cE-miZ" secondAttribute="bottom" id="5Ou-5N-TCF"/>
                             <constraint firstItem="rFg-cE-miZ" firstAttribute="top" secondItem="BnV-pe-gJZ" secondAttribute="top" id="Nm5-He-ch2"/>
                             <constraint firstItem="rFg-cE-miZ" firstAttribute="trailing" secondItem="WRF-Wn-b7n" secondAttribute="trailing" id="Q6X-Er-uhL"/>
                             <constraint firstAttribute="width" secondItem="rFg-cE-miZ" secondAttribute="width" id="VhE-sR-f2i"/>
                             <constraint firstItem="WRF-Wn-b7n" firstAttribute="leading" secondItem="BnV-pe-gJZ" secondAttribute="leading" id="YXX-KR-YeN"/>
+                            <constraint firstItem="WRF-Wn-b7n" firstAttribute="top" secondItem="B5F-sL-U7l" secondAttribute="bottom" id="eC7-Zu-PR7"/>
+                            <constraint firstItem="B5F-sL-U7l" firstAttribute="width" secondItem="WRF-Wn-b7n" secondAttribute="width" id="i6t-wH-CG7"/>
                             <constraint firstItem="rFg-cE-miZ" firstAttribute="leading" secondItem="WRF-Wn-b7n" secondAttribute="leading" id="iPP-qA-K5M"/>
                             <constraint firstAttribute="bottom" secondItem="WRF-Wn-b7n" secondAttribute="bottom" id="kKX-hO-8RB"/>
                             <constraint firstItem="rFg-cE-miZ" firstAttribute="leading" secondItem="WRF-Wn-b7n" secondAttribute="leading" id="wBD-qA-cKP"/>
@@ -871,6 +894,9 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="container" destination="rFg-cE-miZ" id="AVJ-Vl-ylJ"/>
+                        <outlet property="textSizeSlider" destination="pob-cE-sOd" id="CXK-HE-x3D"/>
+                        <outlet property="textSizeView" destination="B5F-sL-U7l" id="F8o-ps-9to"/>
+                        <outlet property="textSizeViewHeightConstraint" destination="3Qp-W8-nul" id="NKl-Ub-enN"/>
                         <outlet property="toolBar" destination="WRF-Wn-b7n" id="1Vm-VG-PYh"/>
                     </connections>
                 </viewController>
@@ -916,7 +942,7 @@
                                                     <constraint firstAttribute="height" constant="50" id="shL-Vq-OvW"/>
                                                 </constraints>
                                             </view>
-                                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Label sdkfjh sdf kjhfsd fshdkfjh sdkfh sdfkjh sdfkjhs dfkjshdfsdf kjhd asdkjha sdk asdhkaj sdkjahsd" lineBreakMode="wordWrap" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AhW-0L-8EY">
+                                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Label sdkfjh sdf kjhfsd fshdkfjh sdkfh sdfkjh sdfkjhs dfkjshdfsdf kjhd asdkjha sdk asdhkaj sdkjahsd" lineBreakMode="wordWrap" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AhW-0L-8EY" customClass="SCRLabel">
                                                 <rect key="frame" x="20" y="278" width="560" height="41"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -929,7 +955,7 @@
                                                     <constraint firstAttribute="height" constant="50" id="WzQ-95-aLl"/>
                                                 </constraints>
                                             </view>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" scrollEnabled="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4vz-a6-cEX">
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" scrollEnabled="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4vz-a6-cEX" customClass="SCRTextView">
                                                 <rect key="frame" x="20" y="409" width="560" height="133"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
@@ -992,7 +1018,7 @@
         <!--Navigation Controller-->
         <scene sceneID="Ke9-1p-PEd">
             <objects>
-                <navigationController storyboardIdentifier="panic" automaticallyAdjustsScrollViewInsets="NO" id="sMz-xr-lY0" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="panic" automaticallyAdjustsScrollViewInsets="NO" id="sMz-xr-lY0" customClass="SCRNavigationController" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="gIN-31-9ar">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

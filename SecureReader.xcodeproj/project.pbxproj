@@ -29,6 +29,8 @@
 		9284FA751A3899730085638D /* ic_panic_down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9284FA711A3899730085638D /* ic_panic_down@2x.png */; };
 		9284FA761A3899730085638D /* ic_panic_lg.png in Resources */ = {isa = PBXBuildFile; fileRef = 9284FA721A3899730085638D /* ic_panic_lg.png */; };
 		9284FA771A3899730085638D /* ic_panic_lg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9284FA731A3899730085638D /* ic_panic_lg@2x.png */; };
+		929BE4BE1A7913A700641647 /* SCRLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 929BE4BD1A7913A700641647 /* SCRLabel.m */; };
+		929BE4C11A79293900641647 /* SCRTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 929BE4C01A79293900641647 /* SCRTextView.m */; };
 		929EEF4D19F4EB100020BD75 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 929EEF4C19F4EB100020BD75 /* main.m */; };
 		929EEF5019F4EB100020BD75 /* SCRAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 929EEF4F19F4EB100020BD75 /* SCRAppDelegate.m */; };
 		929EEF5919F4EB100020BD75 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 929EEF5719F4EB100020BD75 /* Main.storyboard */; };
@@ -114,6 +116,10 @@
 		9284FA711A3899730085638D /* ic_panic_down@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_panic_down@2x.png"; sourceTree = "<group>"; };
 		9284FA721A3899730085638D /* ic_panic_lg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_panic_lg.png; sourceTree = "<group>"; };
 		9284FA731A3899730085638D /* ic_panic_lg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_panic_lg@2x.png"; sourceTree = "<group>"; };
+		929BE4BC1A7913A700641647 /* SCRLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRLabel.h; sourceTree = "<group>"; };
+		929BE4BD1A7913A700641647 /* SCRLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRLabel.m; sourceTree = "<group>"; };
+		929BE4BF1A79293900641647 /* SCRTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRTextView.h; sourceTree = "<group>"; };
+		929BE4C01A79293900641647 /* SCRTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRTextView.m; sourceTree = "<group>"; };
 		929EEF4719F4EB100020BD75 /* SecureReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SecureReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		929EEF4B19F4EB100020BD75 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		929EEF4C19F4EB100020BD75 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = main.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -416,6 +422,10 @@
 				920582891A6EA80900E152D9 /* SCRAuthorView.h */,
 				9205828A1A6EA80900E152D9 /* SCRAuthorView.m */,
 				9205828C1A6EA8F500E152D9 /* SCRAuthorView.xib */,
+				929BE4BC1A7913A700641647 /* SCRLabel.h */,
+				929BE4BD1A7913A700641647 /* SCRLabel.m */,
+				929BE4BF1A79293900641647 /* SCRTextView.h */,
+				929BE4C01A79293900641647 /* SCRTextView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -623,6 +633,7 @@
 				92E7B9711A41A30F0038DBCE /* SCRReceiveShareView.m in Sources */,
 				D90F593A1A19F617008F2DCB /* SCRDatabaseManager.m in Sources */,
 				92BD50A11A07A38900F3BD22 /* SCRItemView.m in Sources */,
+				929BE4BE1A7913A700641647 /* SCRLabel.m in Sources */,
 				92A4D2A51A31F1D40091479A /* SCRPanicViewController.m in Sources */,
 				929EEF9319F5110D0020BD75 /* SCRCreatePassphraseViewController.m in Sources */,
 				92B23C4C1A5D442F00FFD963 /* SCRAllFeedsViewController.m in Sources */,
@@ -649,6 +660,7 @@
 				9279F8061A67B9300029572B /* UIBarItem+Theming.m in Sources */,
 				929EEF8419F4F5940020BD75 /* SCRTheme.m in Sources */,
 				925AE5801A404161001E182F /* SCRMoreViewController.m in Sources */,
+				929BE4C11A79293900641647 /* SCRTextView.m in Sources */,
 				929EEF8519F4F5940020BD75 /* UIView+Theming.m in Sources */,
 				929EEF8319F4F5940020BD75 /* SCRSettings.m in Sources */,
 				92BD50A21A07A38900F3BD22 /* SCRSourceView.m in Sources */,
