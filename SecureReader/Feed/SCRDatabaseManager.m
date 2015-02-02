@@ -8,6 +8,8 @@
 
 #import "SCRDatabaseManager.h"
 #import "YapDatabaseView.h"
+#import "YapDatabaseFullTextSearch.h"
+#import "YapDatabaseSearchResultsView.h"
 #import "SCRItem.h"
 #import "SCRFeed.h"
 
@@ -46,6 +48,7 @@
 - (void) registerViews {
     [self registerAllFeedItemsView];
     [self registerAllFeedsView];
+    [self registerAllFeedsSearchView];
 }
 
 - (void) registerAllFeedItemsView {
@@ -81,6 +84,36 @@
     YapDatabaseView *databaseView = [[YapDatabaseView alloc] initWithGrouping:grouping sorting:sorting versionTag:@"1" options:nil];
     [self.database asyncRegisterExtension:databaseView withName:self.allFeedsViewName completionBlock:^(BOOL ready) {
         NSLog(@"%@ ready %d", self.allFeedsViewName, ready);
+    }];
+}
+
+- (void) registerAllFeedsSearchView {
+    _allFeedsSearchViewName = @"SCRAllFeedsSearchViewName";
+    YapDatabaseFullTextSearchBlockType ftsBlockType = YapDatabaseFullTextSearchBlockTypeWithObject;
+    YapDatabaseFullTextSearchWithObjectBlock ftsBlock =
+    ^(NSMutableDictionary *dict, NSString *collection, NSString *key, id object){
+        if ([object isKindOfClass:[SCRFeed class]]) {
+            SCRFeed *feed = (SCRFeed *)object;
+            [dict setObject:feed.title forKey:@"title"];
+            [dict setObject:feed.feedDescription forKey:@"description"];
+        }
+    };
+    YapDatabaseFullTextSearch *fts =
+    [[YapDatabaseFullTextSearch alloc] initWithColumnNames:@[ @"title", @"description" ]
+                                                     block:ftsBlock
+                                                 blockType:ftsBlockType
+                                                versionTag:@"2"];
+    [self.database asyncRegisterExtension:fts withName:@"SCRAllFeedsSearchViewNameFTS" completionBlock:^(BOOL ready) {
+        YapDatabaseSearchResultsViewOptions *searchViewOptions = [[YapDatabaseSearchResultsViewOptions alloc] init];
+        searchViewOptions.isPersistent = NO;
+        YapDatabaseSearchResultsView *searchResultsView =
+        [[YapDatabaseSearchResultsView alloc] initWithFullTextSearchName:@"SCRAllFeedsSearchViewNameFTS"
+                                                          parentViewName:_allFeedsViewName
+                                                              versionTag:@"1"
+                                                                 options:searchViewOptions];
+        [self.database asyncRegisterExtension:searchResultsView withName:self.allFeedsSearchViewName completionBlock:^(BOOL ready) {
+            NSLog(@"%@ ready %d", self.allFeedsSearchViewName, ready);
+        }];
     }];
 }
 

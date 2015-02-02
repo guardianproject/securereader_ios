@@ -31,6 +31,9 @@
     [super viewDidLoad];
     _yapViewName = [SCRDatabaseManager sharedInstance].allFeedsViewName;
     [self setupMappings];
+    
+    UIBarButtonItem *btnRefresh = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(manageFeedsClicked:)];
+    [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:self.navigationItem.rightBarButtonItem, btnRefresh, nil]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -292,6 +295,14 @@
     [self.tableView endUpdates];
 }
 
+- (IBAction)manageFeedsClicked:(id)sender
+{
+    UIViewController *manageFeedsViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"manageFeeds"];
+//    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+//    self.navigationItem.backBarButtonItem = backItem;
+    [self.navigationController pushViewController:manageFeedsViewController animated:YES];
+
+}
 
 
 @end

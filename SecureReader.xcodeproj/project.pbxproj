@@ -10,6 +10,7 @@
 		920582881A6EA25000E152D9 /* SCRGradientBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 920582871A6EA25000E152D9 /* SCRGradientBackgroundView.m */; };
 		9205828B1A6EA80900E152D9 /* SCRAuthorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9205828A1A6EA80900E152D9 /* SCRAuthorView.m */; };
 		9205828D1A6EA8F500E152D9 /* SCRAuthorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9205828C1A6EA8F500E152D9 /* SCRAuthorView.xib */; };
+		921135771A7A70D40049D82B /* SCRManageFeedsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 921135761A7A70D40049D82B /* SCRManageFeedsViewController.m */; };
 		922DC28019FE920C00FB1274 /* SCRFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 922DC27F19FE920C00FB1274 /* SCRFeedViewController.m */; };
 		9239049E1A07E365004EEE7E /* background_debut_light.png in Resources */ = {isa = PBXBuildFile; fileRef = 9239049D1A07E365004EEE7E /* background_debut_light.png */; };
 		92458CC71A6D4E4600C17EFA /* SCRReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 92458CC61A6D4E4600C17EFA /* SCRReader.m */; };
@@ -91,6 +92,8 @@
 		920582891A6EA80900E152D9 /* SCRAuthorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRAuthorView.h; sourceTree = "<group>"; };
 		9205828A1A6EA80900E152D9 /* SCRAuthorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRAuthorView.m; sourceTree = "<group>"; };
 		9205828C1A6EA8F500E152D9 /* SCRAuthorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SCRAuthorView.xib; sourceTree = "<group>"; };
+		921135751A7A70D40049D82B /* SCRManageFeedsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRManageFeedsViewController.h; sourceTree = "<group>"; };
+		921135761A7A70D40049D82B /* SCRManageFeedsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRManageFeedsViewController.m; sourceTree = "<group>"; };
 		922DC27E19FE920C00FB1274 /* SCRFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SCRFeedViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		922DC27F19FE920C00FB1274 /* SCRFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SCRFeedViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		9239049D1A07E365004EEE7E /* background_debut_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_debut_light.png; sourceTree = "<group>"; };
@@ -371,6 +374,8 @@
 				92B23C4B1A5D442F00FFD963 /* SCRAllFeedsViewController.m */,
 				92B23C4D1A5D823700FFD963 /* SCRFavoritesViewController.h */,
 				92B23C4E1A5D823700FFD963 /* SCRFavoritesViewController.m */,
+				921135751A7A70D40049D82B /* SCRManageFeedsViewController.h */,
+				921135761A7A70D40049D82B /* SCRManageFeedsViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -662,6 +667,7 @@
 				925AE5801A404161001E182F /* SCRMoreViewController.m in Sources */,
 				929BE4C11A79293900641647 /* SCRTextView.m in Sources */,
 				929EEF8519F4F5940020BD75 /* UIView+Theming.m in Sources */,
+				921135771A7A70D40049D82B /* SCRManageFeedsViewController.m in Sources */,
 				929EEF8319F4F5940020BD75 /* SCRSettings.m in Sources */,
 				92BD50A21A07A38900F3BD22 /* SCRSourceView.m in Sources */,
 			);
