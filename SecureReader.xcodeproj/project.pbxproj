@@ -63,6 +63,7 @@
 		92BD50AD1A07A74500F3BD22 /* ic_launcher.png in Resources */ = {isa = PBXBuildFile; fileRef = 92BD50AB1A07A74500F3BD22 /* ic_launcher.png */; };
 		92BD50AE1A07A74500F3BD22 /* img_local_share.png in Resources */ = {isa = PBXBuildFile; fileRef = 92BD50AC1A07A74500F3BD22 /* img_local_share.png */; };
 		92C28DD719F5B26C00E39BDD /* SCRApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C28DD619F5B26C00E39BDD /* SCRApplication.m */; };
+		92C3F0901A80CDE000DFA438 /* SCRFeedListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92C3F08F1A80CDE000DFA438 /* SCRFeedListCell.xib */; };
 		92C458391A233EAA00835B10 /* SCRItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C458381A233EAA00835B10 /* SCRItemViewController.m */; };
 		92D169731A30A5C200A84608 /* SCRFeedListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92D169721A30A5C200A84608 /* SCRFeedListCell.m */; };
 		92E7B96C1A4186D60038DBCE /* SCRItemViewControllerSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7B96B1A4186D60038DBCE /* SCRItemViewControllerSegue.m */; };
@@ -178,6 +179,7 @@
 		92BD50AC1A07A74500F3BD22 /* img_local_share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_local_share.png; sourceTree = "<group>"; };
 		92C28DD519F5B26C00E39BDD /* SCRApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SCRApplication.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		92C28DD619F5B26C00E39BDD /* SCRApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SCRApplication.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		92C3F08F1A80CDE000DFA438 /* SCRFeedListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SCRFeedListCell.xib; sourceTree = "<group>"; };
 		92C458371A233EAA00835B10 /* SCRItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRItemViewController.h; sourceTree = "<group>"; };
 		92C458381A233EAA00835B10 /* SCRItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRItemViewController.m; sourceTree = "<group>"; };
 		92D169711A30A5C200A84608 /* SCRFeedListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRFeedListCell.h; sourceTree = "<group>"; };
@@ -410,13 +412,12 @@
 		92BD509B1A07A38900F3BD22 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				92C3F0911A80CDFB00DFA438 /* Feeds */,
 				92BD509C1A07A38900F3BD22 /* SCRItemView.h */,
 				92BD509D1A07A38900F3BD22 /* SCRItemView.m */,
 				92BD509E1A07A38900F3BD22 /* SCRSourceView.h */,
 				92BD509F1A07A38900F3BD22 /* SCRSourceView.m */,
 				92BD50A01A07A38900F3BD22 /* SCRSourceView.xib */,
-				92D169711A30A5C200A84608 /* SCRFeedListCell.h */,
-				92D169721A30A5C200A84608 /* SCRFeedListCell.m */,
 				92E7B96F1A41A30F0038DBCE /* SCRReceiveShareView.h */,
 				92E7B9701A41A30F0038DBCE /* SCRReceiveShareView.m */,
 				92E7B96D1A41A2AE0038DBCE /* SCRReceiveShareView.xib */,
@@ -456,6 +457,16 @@
 				928036651A2776BE0081801A /* content.txt */,
 			);
 			path = "Temporary Files";
+			sourceTree = "<group>";
+		};
+		92C3F0911A80CDFB00DFA438 /* Feeds */ = {
+			isa = PBXGroup;
+			children = (
+				92D169711A30A5C200A84608 /* SCRFeedListCell.h */,
+				92D169721A30A5C200A84608 /* SCRFeedListCell.m */,
+				92C3F08F1A80CDE000DFA438 /* SCRFeedListCell.xib */,
+			);
+			name = Feeds;
 			sourceTree = "<group>";
 		};
 		D90F59341A19EC43008F2DCB /* Feed */ = {
@@ -568,6 +579,7 @@
 				9279F8081A67E2940029572B /* SCRItemCellNoPhotos.xib in Resources */,
 				928036661A2776BE0081801A /* content.txt in Resources */,
 				92A4D2AD1A31FE720091479A /* ic_menu_stories.png in Resources */,
+				92C3F0901A80CDE000DFA438 /* SCRFeedListCell.xib in Resources */,
 				924BBFC01A08DCEB00A32940 /* InAppSettings.bundle in Resources */,
 				9279F8011A67B4E90029572B /* ic_action2_favorite.png in Resources */,
 				9279F80A1A67FBE50029572B /* SCRItemCellLandscapePhotos.xib in Resources */,
@@ -806,6 +818,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = SecureReader/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -817,6 +830,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = SecureReader/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

@@ -26,6 +26,7 @@
 
 // Prototype cells for height calculation
 @property (nonatomic, strong) SCRFeedListCell *prototypeCellFeed;
+@property (nonatomic, strong) SCRFeedListCell *prototypeCellFeedSearch;
 @property (nonatomic, strong) YapDatabaseViewMappings *mappings;
 @property (nonatomic, strong) YapDatabaseViewMappings *searchMappings;
 @property (nonatomic, strong) YapDatabaseConnection *readConnection;
@@ -34,6 +35,7 @@
 @property (nonatomic, strong, readonly) NSString *yapSearchViewName;
 @property (nonatomic, strong) YapDatabaseSearchQueue *searchQueue;
 @property NSArray *searchResults;
+@property int trendingViewDesignHeight;
 
 @end
 
@@ -43,11 +45,20 @@
 {
     [super viewDidLoad];
     
+    UINib *nib = [UINib nibWithNibName:@"SCRFeedListCell" bundle:nil];
+    [self.tableView registerNib:nib forCellReuseIdentifier:@"cellFeed"];
+    [self.searchDisplayController.searchResultsTableView registerNib:nib forCellReuseIdentifier:@"cellFeed"];
+
+    self.trendingViewDesignHeight = self.searchBarOffsetConstraint.constant; // Save this for later use in animation
+    
     self.sessionManager = [[AFHTTPSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration ephemeralSessionConfiguration]];
     AFHTTPResponseSerializer *serializer = [AFHTTPResponseSerializer serializer];
     serializer.acceptableContentTypes  = [NSSet setWithObjects:@"application/opml",
                                           nil];
     self.sessionManager.responseSerializer = serializer;
+    [self.sessionManager setTaskWillPerformHTTPRedirectionBlock:^NSURLRequest *(NSURLSession *session, NSURLSessionTask *task, NSURLResponse *response, NSURLRequest *request) {
+        return request;
+    }];
 
     _yapViewName = [SCRDatabaseManager sharedInstance].allFeedsViewName;
     _yapSearchViewName = [SCRDatabaseManager sharedInstance].allFeedsSearchViewName;
@@ -61,25 +72,8 @@
 
 #pragma mark - UISearchBarDelegate Methods
 
-
-//- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
-//{
-//    if (self.segmentedControl.selectedSegmentIndex == 1)
-//    {
-//        // If we are on "my feeds" do a "live filter" of the data
-//        [self.searchDisplayController.searchResultsTableView reloadData];
-//    }
-//}
-
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar {
-    [self.view layoutIfNeeded];
-    self.searchBarOffsetConstraint.constant = 0;
-    [UIView animateWithDuration:.4
-                     animations:^{
-                         [self.view layoutIfNeeded];
-                     }
-                     completion:^(BOOL finished){
-                     }];
+    [self hideTrendingView];
     self.isInSearchMode = YES;
     return YES;
 }
@@ -94,15 +88,30 @@
     
     searchBar.text = @"";
     [searchBar resignFirstResponder];
-    
+    [self showTrendingView];
+}
+
+-(void)hideTrendingView
+{
+    [self animateTrendingViewToHeight:0];
+}
+
+-(void)showTrendingView
+{
+    [self animateTrendingViewToHeight:(self.segmentedControl.selectedSegmentIndex == 1 ? 0 : self.trendingViewDesignHeight)];
+}
+
+-(void)animateTrendingViewToHeight:(int)height
+{
     [self.view layoutIfNeeded];
-    self.searchBarOffsetConstraint.constant = 80;
+    self.searchBarOffsetConstraint.constant = height;
     [UIView animateWithDuration:.4
-                        animations:^{
-                            [self.view layoutIfNeeded];
-                        }
-                        completion:^(BOOL finished){
-                        }];
+                     animations:^{
+                         [self.view layoutIfNeeded];
+                     }
+                     completion:^(BOOL finished){
+                     }];
+
 }
 
 -(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
@@ -151,6 +160,7 @@
         
         dispatch_async(dispatch_get_main_queue(), ^{
             [self hideSearchBarSpinner];
+            NSLog(@"Error: %@", error);
         });
         
         if (error) {
@@ -177,19 +187,64 @@
         [self.searchDisplayController.searchResultsTableView reloadData];
     }];
     [dataTask resume];
-
 }
 
-- (UITableViewCell *) getPrototypeForIndexPath:(NSIndexPath *)indexPath
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller
+shouldReloadTableForSearchString:(NSString *)searchString
 {
-    if (!self.prototypeCellFeed)
-        self.prototypeCellFeed = [self.tableView dequeueReusableCellWithIdentifier:@"cellFeed"];
-    return self.prototypeCellFeed;
+    if (self.segmentedControl.selectedSegmentIndex == 1)
+    {
+        if (self.searchReadConnection == nil)
+            self.searchReadConnection = [[SCRDatabaseManager sharedInstance].database newConnection];
+        
+        if (self.searchQueue == nil)
+            self.searchQueue = [[YapDatabaseSearchQueue alloc] init];
+        
+        // Parse the text into a proper search query
+        NSCharacterSet *whitespace = [NSCharacterSet whitespaceCharacterSet];
+        
+        NSArray *searchComponents = [searchString componentsSeparatedByCharactersInSet:whitespace];
+        NSMutableString *query = [NSMutableString string];
+        
+        for (NSString *term in searchComponents)
+        {
+            if ([term length] > 0)
+                [query appendString:@""];
+            
+            [query appendFormat:@"%@*", term];
+        }
+        
+        NSLog(@"searchString(%@) -> query(%@)", searchString, query);
+        [self.searchQueue enqueueQuery:query];
+        
+        [self.searchReadConnection asyncReadWriteWithBlock:^(YapDatabaseReadWriteTransaction *transaction)
+         {
+             [[transaction ext:_yapSearchViewName] performSearchWithQueue:self.searchQueue];
+         }];
+        return NO;
+    }
+    return NO;
 }
 
 #pragma mark UITableViewDelegate methods
 
 #pragma mark - Table view data source
+
+- (UITableViewCell *) getPrototypeForTable:(UITableView *)tableView andIndexPath:(NSIndexPath *)indexPath
+{
+    if (tableView == self.tableView)
+    {
+        if (!self.prototypeCellFeed)
+            self.prototypeCellFeed = [tableView dequeueReusableCellWithIdentifier:@"cellFeed"];
+        return self.prototypeCellFeed;
+    }
+    else
+    {
+        if (!self.prototypeCellFeedSearch)
+            self.prototypeCellFeedSearch = [tableView dequeueReusableCellWithIdentifier:@"cellFeed"];
+        return self.prototypeCellFeedSearch;
+    }
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)sender
 {
@@ -264,14 +319,15 @@
 {
     if (tableView == self.tableView || (self.segmentedControl.selectedSegmentIndex == 1))
     {
-        UITableViewCell *prototype = [self getPrototypeForIndexPath:indexPath];
-        prototype.bounds = CGRectMake(0.0f, 0.0f, CGRectGetWidth(tableView.bounds), CGRectGetHeight(prototype.bounds));
-        SCRFeed *feed = [self itemForIndexPath:indexPath fromSearch:(self.segmentedControl.selectedSegmentIndex == 1)];
+        UITableViewCell *prototype = [self getPrototypeForTable:tableView andIndexPath:indexPath];
+        prototype.bounds = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.tableView.bounds), CGRectGetHeight(prototype.bounds));
+        SCRFeed *feed = [self itemForIndexPath:indexPath fromSearch:(self.searchDisplayController.searchResultsTableView == tableView)];
         if (feed != nil)
             [self configureCellWithCount:(SCRFeedListCell *)prototype forItem:feed];
         [prototype setNeedsLayout];
         [prototype layoutIfNeeded];
         CGSize size = [prototype.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+        NSLog(@"Measured item %@ to %f", feed.title, size.height);
         return size.height+1;
     }
     return 80;
@@ -538,46 +594,9 @@
 
 }
 
-
-- (BOOL)searchDisplayController:(UISearchDisplayController *)controller
-shouldReloadTableForSearchString:(NSString *)searchString
-{
-    if (self.segmentedControl.selectedSegmentIndex == 1)
-    {
-        if (self.searchReadConnection == nil)
-            self.searchReadConnection = [[SCRDatabaseManager sharedInstance].database newConnection];
-    
-        if (self.searchQueue == nil)
-            self.searchQueue = [[YapDatabaseSearchQueue alloc] init];
-    
-        // Parse the text into a proper search query
-        NSCharacterSet *whitespace = [NSCharacterSet whitespaceCharacterSet];
-    
-        NSArray *searchComponents = [searchString componentsSeparatedByCharactersInSet:whitespace];
-        NSMutableString *query = [NSMutableString string];
-    
-        for (NSString *term in searchComponents)
-        {
-            if ([term length] > 0)
-                [query appendString:@""];
-        
-            [query appendFormat:@"%@*", term];
-        }
-    
-        NSLog(@"searchString(%@) -> query(%@)", searchString, query);
-        [self.searchQueue enqueueQuery:query];
-    
-        [self.searchReadConnection asyncReadWriteWithBlock:^(YapDatabaseReadWriteTransaction *transaction)
-        {
-            [[transaction ext:_yapSearchViewName] performSearchWithQueue:self.searchQueue];
-        }];
-        return NO;
-    }
-    return NO;
-}
-
 - (IBAction)segmentedControlValueChanged:(id)sender {
     [self.tableView reloadData];
+    [self showTrendingView];
 }
 
 @end

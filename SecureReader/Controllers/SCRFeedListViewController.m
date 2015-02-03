@@ -29,6 +29,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    UINib *nib = [UINib nibWithNibName:@"SCRFeedListCell" bundle:nil];
+    [self.tableView registerNib:nib forCellReuseIdentifier:@"cellFeed"];
     _yapViewName = [SCRDatabaseManager sharedInstance].allFeedsViewName;
     [self setupMappings];
     
