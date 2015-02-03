@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -22,7 +23,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" lineBreakMode="wordWrap" numberOfLines="20" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zG5-zl-2Bt">
-                        <rect key="frame" x="68" y="30" width="504" height="61"/>
+                        <rect key="frame" x="68" y="30" width="434" height="61"/>
                         <string key="text">Description of a afhasdjfh dsf ksdfjh ksdfk sdfh ksdfhsdkf hsdkjfh skdfjh skdjfh skdjfh skdjfh skdjfh skdfh skjdfh ksjdhf ksjhdf ksjdf sdf sd</string>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -32,7 +33,7 @@
                         </userDefinedRuntimeAttributes>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="1000" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sgI-qH-vFB">
-                        <rect key="frame" x="68" y="3" width="504" height="17"/>
+                        <rect key="frame" x="68" y="3" width="434" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
@@ -40,23 +41,31 @@
                             <userDefinedRuntimeAttribute type="string" keyPath="theme" value="FeedListTitleStyle"/>
                         </userDefinedRuntimeAttributes>
                     </label>
+                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f7s-gi-woM">
+                        <rect key="frame" x="531" y="45" width="51" height="31"/>
+                    </switch>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="trailingMargin" secondItem="sgI-qH-vFB" secondAttribute="trailing" constant="90" id="2BN-I6-v9U"/>
                     <constraint firstItem="sgI-qH-vFB" firstAttribute="top" secondItem="YRx-UM-h16" secondAttribute="topMargin" priority="900" constant="20" id="F7z-fD-8B2"/>
+                    <constraint firstAttribute="centerY" secondItem="f7s-gi-woM" secondAttribute="centerY" id="NgG-cF-KkC"/>
                     <constraint firstItem="sgI-qH-vFB" firstAttribute="leading" secondItem="2CA-XV-gRT" secondAttribute="trailing" priority="850" constant="20" id="NnU-cj-qlT"/>
                     <constraint firstItem="zG5-zl-2Bt" firstAttribute="top" secondItem="sgI-qH-vFB" secondAttribute="bottom" priority="950" constant="10" id="R20-go-pix"/>
                     <constraint firstItem="2CA-XV-gRT" firstAttribute="leading" secondItem="YRx-UM-h16" secondAttribute="leadingMargin" id="ZlU-mx-jqh"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="sgI-qH-vFB" secondAttribute="trailing" constant="20" id="dpI-eS-scQ"/>
                     <constraint firstItem="zG5-zl-2Bt" firstAttribute="width" secondItem="sgI-qH-vFB" secondAttribute="width" priority="800" id="fGI-zU-fdA"/>
                     <constraint firstItem="zG5-zl-2Bt" firstAttribute="leading" secondItem="sgI-qH-vFB" secondAttribute="leading" priority="990" id="iDc-mn-PKR"/>
                     <constraint firstAttribute="bottomMargin" secondItem="zG5-zl-2Bt" secondAttribute="bottom" priority="999" constant="20" id="iMk-2P-f9v"/>
                     <constraint firstAttribute="centerY" secondItem="2CA-XV-gRT" secondAttribute="centerY" id="tfX-ZP-3Ii"/>
+                    <constraint firstAttribute="trailing" secondItem="f7s-gi-woM" secondAttribute="trailing" constant="20" id="unC-W8-dNG"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="descriptionView" destination="zG5-zl-2Bt" id="v3T-HM-z4T"/>
                 <outlet property="imageView" destination="2CA-XV-gRT" id="zo3-9A-39A"/>
+                <outlet property="switchTrailingConstraint" destination="unC-W8-dNG" id="ghP-39-9ad"/>
+                <outlet property="switchView" destination="f7s-gi-woM" id="UT7-QR-BlL"/>
+                <outlet property="titleTrailingConstraint" destination="2BN-I6-v9U" id="3am-CG-MpA"/>
                 <outlet property="titleView" destination="sgI-qH-vFB" id="7Kg-zC-pgo"/>
             </connections>
         </tableViewCell>

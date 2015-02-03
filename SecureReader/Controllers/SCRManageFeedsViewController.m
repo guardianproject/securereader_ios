@@ -285,9 +285,10 @@ shouldReloadTableForSearchString:(NSString *)searchString
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellFeed" forIndexPath:indexPath];
         if ([cell isKindOfClass:[SCRFeedListCell class]])
         {
+            SCRFeedListCell *feedListCell = (SCRFeedListCell *)cell;
             SCRFeed *feed = [self itemForIndexPath:indexPath fromSearch:NO];
             if (feed != nil)
-                [self configureCellWithCount:(SCRFeedListCell *)cell forItem:feed];
+                [self configureCellWithCount:feedListCell forItem:feed showSwitch:(self.segmentedControl.selectedSegmentIndex == 1) tableView:tableView];
         }
         return cell;
     }
@@ -298,9 +299,10 @@ shouldReloadTableForSearchString:(NSString *)searchString
         UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         if ([cell isKindOfClass:[SCRFeedListCell class]])
         {
+            SCRFeedListCell *feedListCell = (SCRFeedListCell *)cell;
             SCRFeed *feed = [self itemForIndexPath:indexPath fromSearch:YES];
             if (feed != nil)
-                [self configureCellWithCount:(SCRFeedListCell *)cell forItem:feed];
+                [self configureCellWithCount:feedListCell forItem:feed showSwitch:YES tableView:tableView];
         }
         return cell;
     }
@@ -323,7 +325,7 @@ shouldReloadTableForSearchString:(NSString *)searchString
         prototype.bounds = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.tableView.bounds), CGRectGetHeight(prototype.bounds));
         SCRFeed *feed = [self itemForIndexPath:indexPath fromSearch:(self.searchDisplayController.searchResultsTableView == tableView)];
         if (feed != nil)
-            [self configureCellWithCount:(SCRFeedListCell *)prototype forItem:feed];
+            [self configureCellWithCount:(SCRFeedListCell *)prototype forItem:feed showSwitch:(self.segmentedControl.selectedSegmentIndex == 1) tableView:tableView];
         [prototype setNeedsLayout];
         [prototype layoutIfNeeded];
         CGSize size = [prototype.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
@@ -353,10 +355,43 @@ shouldReloadTableForSearchString:(NSString *)searchString
     return item;
 }
 
-- (void)configureCellWithCount:(SCRFeedListCell *)cell forItem:(SCRFeed *)item
+- (void)configureCellWithCount:(SCRFeedListCell *)cell forItem:(SCRFeed *)item showSwitch:(BOOL)showSwitch tableView:(UITableView*)tableView
 {
     cell.titleView.text = item.title;
     cell.descriptionView.text = item.feedDescription;
+    [cell setShowSwitch:showSwitch];
+    if (showSwitch)
+    {
+        [cell.switchView setTag:(tableView == self.tableView ? 0 : 1)];
+        [cell.switchView addTarget:self action:@selector(toggleFeedSubscription:) forControlEvents:UIControlEventValueChanged];
+    }
+    else
+    {
+        [cell.switchView removeTarget:self action:@selector(toggleFeedSubscription:) forControlEvents:UIControlEventValueChanged];
+    }
+}
+
+- (void) toggleFeedSubscription:(id)sender
+{
+    // From http://stackoverflow.com/questions/1802707/detecting-which-uibutton-was-pressed-in-a-uitableview
+    //
+    CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.tableView];
+    NSIndexPath *indexPath = nil;
+    BOOL inSearchTable = ([(UISwitch *)sender tag] != 0);
+    if (!inSearchTable)
+        indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
+    else
+        indexPath = [self.searchDisplayController.searchResultsTableView indexPathForRowAtPoint:buttonPosition];
+    if (indexPath != nil)
+    {
+        SCRFeed *feed = [self itemForIndexPath:indexPath fromSearch:inSearchTable];
+        if (feed != nil)
+        {
+            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Feed" message:[@"Toggle subscription for feed " stringByAppendingString:feed.title] delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+            alert.alertViewStyle = UIAlertViewStyleDefault;
+            [alert show];
+        }
+    }
 }
 
 #pragma mark YapDatabase
