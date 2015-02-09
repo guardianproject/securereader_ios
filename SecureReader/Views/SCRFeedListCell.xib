@@ -43,6 +43,9 @@
                     </label>
                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f7s-gi-woM">
                         <rect key="frame" x="531" y="45" width="51" height="31"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="theme" value="FeedListSwitchStyle"/>
+                        </userDefinedRuntimeAttributes>
                     </switch>
                 </subviews>
                 <constraints>

@@ -164,6 +164,18 @@ static NSMutableDictionary *themes = nil;
                 color = (UIColor *)value;
             [control performSelector:@selector(setTintColor:) withObject:color];
         }
+        else if ([property isEqualToString:@"onTintColor"] && [control respondsToSelector:@selector(setOnTintColor:)])
+        {
+            if (save && [control respondsToSelector:@selector(onTintColor)])
+                [SCRTheme saveProperty:property value:[control performSelector:@selector(onTintColor)] forControl:control];
+            UIColor *color = nil;
+            NSObject *value = [self getNillableProperty:property fromDict:style];
+            if ([value isKindOfClass:[NSString class]])
+                color =  [self colorWithHexString:(NSString *)value];
+            else
+                color = (UIColor *)value;
+            [control performSelector:@selector(setOnTintColor:) withObject:color];
+        }
         else if ([property isEqualToString:@"textColor"] && [control respondsToSelector:@selector(setTextColor:)])
         {
             if (save && [control respondsToSelector:@selector(textColor)])

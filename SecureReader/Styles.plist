@@ -2,6 +2,20 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>FeedListSearchStyle</key>
+	<dict>
+		<key>tintColor</key>
+		<string>#ff95ab55</string>
+		<key>textColor</key>
+		<string>#ff95ab55</string>
+	</dict>
+	<key>FeedListSwitchStyle</key>
+	<dict>
+		<key>onTintColor</key>
+		<string>#ff95ab55</string>
+		<key>tintColor</key>
+		<string>#ff95ab55</string>
+	</dict>
 	<key>TabBarItemStyle</key>
 	<dict>
 		<key>parent</key>
