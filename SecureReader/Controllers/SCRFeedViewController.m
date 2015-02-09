@@ -17,7 +17,7 @@
 #import "SCRItemViewController.h"
 #import "SCRItemViewControllerSegue.h"
 #import "SCRAppDelegate.h"
-#import <TTTTimeIntervalFormatter.h>
+#import "NSFormatter+SecureReader.h"
 #import "SCRNavigationController.h"
 
 @interface SCRFeedViewController ()
@@ -203,8 +203,7 @@
 {
     cell.titleView.text = item.title;
     cell.sourceView.labelSource.text = [item.linkURL host];
-    TTTTimeIntervalFormatter *timeIntervalFormatter = [[TTTTimeIntervalFormatter alloc] init];
-    cell.sourceView.labelDate.text = [timeIntervalFormatter stringForTimeIntervalFromDate:item.publicationDate toDate:[NSDate dateWithTimeIntervalSinceNow:0]];
+    cell.sourceView.labelDate.text = [[NSFormatter scr_sharedIntervalFormatter] stringForTimeIntervalFromDate:[NSDate date] toDate:item.publicationDate];
     cell.imageView.image = nil;
     if (item.thumbnailURL) {
         [cell.imageView setImageWithURL:item.thumbnailURL];

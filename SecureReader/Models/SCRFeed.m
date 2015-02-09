@@ -13,11 +13,11 @@
 #pragma mark SRCYapObject methods
 
 - (NSString*) yapKey {
-    return [self.linkURL absoluteString];
+    return [self.htmlURL absoluteString];
 }
 
 - (NSString*) yapGroup {
-    return [self.linkURL host];
+    return [self.htmlURL host];
 }
 
 + (NSString*) yapCollection {

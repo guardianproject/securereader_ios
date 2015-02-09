@@ -20,7 +20,7 @@ PODS:
   - AFNetworking/UIKit (2.5.0):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - CocoaAsyncSocket (7.3.5)
+  - CocoaAsyncSocket (7.4.1)
   - CocoaLumberjack (1.9.2):
     - CocoaLumberjack/Extensions (= 1.9.2)
   - CocoaLumberjack/Core (1.9.2)
@@ -28,13 +28,14 @@ PODS:
     - CocoaLumberjack/Core
   - CPAProxy (1.0.0):
     - CocoaAsyncSocket
-  - FormatterKit/TimeIntervalFormatter (1.7.2)
-  - InAppSettingsKit (2.2)
-  - Mantle (1.5.1):
-    - Mantle/extobjc (= 1.5.1)
-  - Mantle/extobjc (1.5.1)
-  - Ono (1.1.3)
-  - PureLayout (2.0.1)
+  - FormatterKit/TimeIntervalFormatter (1.8.0)
+  - InAppSettingsKit (2.4.3)
+  - Mantle (1.5.4):
+    - Mantle/extobjc (= 1.5.4)
+  - Mantle/extobjc (1.5.4)
+  - MWFeedParser/NSString+HTML (1.0.1)
+  - Ono (1.2.0)
+  - PureLayout (2.0.5)
   - RSSAtomKit (0.1.0):
     - AFNetworking (~> 2.5)
     - Mantle (~> 1.5)
@@ -42,10 +43,10 @@ PODS:
   - SQLCipher/common (3.1.0)
   - SQLCipher/fts (3.1.0):
     - SQLCipher/common
-  - wpxmlrpc (0.5)
-  - YapDatabase/common (2.5.3):
+  - wpxmlrpc (0.7)
+  - YapDatabase/common (2.5.4):
     - CocoaLumberjack (~> 1)
-  - YapDatabase/SQLCipher (2.5.3):
+  - YapDatabase/SQLCipher (2.5.4):
     - SQLCipher/fts
     - YapDatabase/common
 
@@ -53,7 +54,8 @@ DEPENDENCIES:
   - CPAProxy (from `Submodules/CPAProxy/CPAProxy.podspec`)
   - FormatterKit/TimeIntervalFormatter (~> 1.6)
   - InAppSettingsKit (~> 2.2)
-  - Mantle (~> 1.4)
+  - Mantle (~> 1.5)
+  - MWFeedParser/NSString+HTML (~> 1.0)
   - PureLayout (~> 2.0)
   - RSSAtomKit (from `Submodules/RSSAtomKit/RSSAtomKit.podspec`)
   - wpxmlrpc (~> 0.5)
@@ -67,17 +69,18 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AFNetworking: 0f54cb5d16ce38c1b76948faffb8d5fb705021c7
-  CocoaAsyncSocket: 45bdbbc1c0a5ed0640ff4c42af325ba43a2f099a
+  CocoaAsyncSocket: b0a1a89e7ea4c1c0ea4ec83f57d55117d3cdae06
   CocoaLumberjack: 205769c032b5fef85b92472046bcc8b7e7c8a817
   CPAProxy: c3df549999514de2c04633d20a79b00daf627ddb
-  FormatterKit: 230f6ae7a6e9ac468cb09b3ac2b7524effc8daaa
-  InAppSettingsKit: 08d5d21057973c5fd6cd9f7063fc27f73aa0d7a3
-  Mantle: d7c5ac734579ec751c58fecbf56189853056c58c
-  Ono: cf5cb37c76225200d6f063e4189c15b4b6c9d5fe
-  PureLayout: 12eca5b6dc94f1a03fdf255d640604584ff1b55b
+  FormatterKit: 547a808c41172136a3f3acb424ac9361d38bb32f
+  InAppSettingsKit: 315e2a196a06921f8f83de01a855ed98dc69851e
+  Mantle: d5fbaf30fbc58031223af13812c060e15934a1fe
+  MWFeedParser: 003cbf5398e99a7f2057fbe9583054fd1b84be72
+  Ono: 2c9f6c8c50af1b40e988ff85a3f200574ee445cd
+  PureLayout: 63a3257320223e8edddcd3afb407445f85a6bf74
   RSSAtomKit: a689044708487c394d9ef4348571f8fd1d6c4d0f
   SQLCipher: 981110217eb93c2779c34fb59e646a1c1da918d8
-  wpxmlrpc: cf73cf957505e71e90f6f98a25615291ecee411c
-  YapDatabase: 096e860167b04e629b88bea33dfb7a4153279bb0
+  wpxmlrpc: 75ad2e4663c3a65948f5ae0799d948a8445bb0cf
+  YapDatabase: c1d6912df1b4a160f7373ee7657d360e29bb00fd
 
 COCOAPODS: 0.35.0

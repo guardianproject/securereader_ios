@@ -72,6 +72,7 @@
 		92E7B9741A41C8E60038DBCE /* SCRReceiveShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7B9731A41C8E60038DBCE /* SCRReceiveShareViewController.m */; };
 		D90F59371A19ECBE008F2DCB /* SCRFeedFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = D90F59361A19ECBE008F2DCB /* SCRFeedFetcher.m */; };
 		D90F593A1A19F617008F2DCB /* SCRDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D90F59391A19F617008F2DCB /* SCRDatabaseManager.m */; };
+		D9317B891A886A95005DA904 /* NSFormatter+SecureReader.m in Sources */ = {isa = PBXBuildFile; fileRef = D9317B881A886A95005DA904 /* NSFormatter+SecureReader.m */; };
 		D9E6575F1A234363000E6301 /* SCRFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E6575E1A234363000E6301 /* SCRFeed.m */; };
 		F6AA97CBC086528EBF0FFA97 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5982780EDA69C66A355A7531 /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -197,6 +198,8 @@
 		D90F59381A19F617008F2DCB /* SCRDatabaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SCRDatabaseManager.h; path = SecureReader/Feed/SCRDatabaseManager.h; sourceTree = SOURCE_ROOT; };
 		D90F59391A19F617008F2DCB /* SCRDatabaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SCRDatabaseManager.m; path = SecureReader/Feed/SCRDatabaseManager.m; sourceTree = SOURCE_ROOT; };
 		D90F593B1A19F833008F2DCB /* SCRYapObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRYapObject.h; sourceTree = "<group>"; };
+		D9317B871A886A95005DA904 /* NSFormatter+SecureReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFormatter+SecureReader.h"; sourceTree = "<group>"; };
+		D9317B881A886A95005DA904 /* NSFormatter+SecureReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFormatter+SecureReader.m"; sourceTree = "<group>"; };
 		D9DCD4451A2344CA003C0522 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		D9E6575D1A234363000E6301 /* SCRFeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRFeed.h; sourceTree = "<group>"; };
 		D9E6575E1A234363000E6301 /* SCRFeed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRFeed.m; sourceTree = "<group>"; };
@@ -385,6 +388,8 @@
 		929EEF9019F50B900020BD75 /* Language & Theming Support */ = {
 			isa = PBXGroup;
 			children = (
+				D9317B871A886A95005DA904 /* NSFormatter+SecureReader.h */,
+				D9317B881A886A95005DA904 /* NSFormatter+SecureReader.m */,
 				929EEF7819F4F5940020BD75 /* NSBundle+Language.h */,
 				929EEF7919F4F5940020BD75 /* NSBundle+Language.m */,
 				929EEF7C19F4F5940020BD75 /* SCRTheme.h */,
@@ -678,6 +683,7 @@
 				929EEF8419F4F5940020BD75 /* SCRTheme.m in Sources */,
 				925AE5801A404161001E182F /* SCRMoreViewController.m in Sources */,
 				929BE4C11A79293900641647 /* SCRTextView.m in Sources */,
+				D9317B891A886A95005DA904 /* NSFormatter+SecureReader.m in Sources */,
 				929EEF8519F4F5940020BD75 /* UIView+Theming.m in Sources */,
 				921135771A7A70D40049D82B /* SCRManageFeedsViewController.m in Sources */,
 				929EEF8319F4F5940020BD75 /* SCRSettings.m in Sources */,

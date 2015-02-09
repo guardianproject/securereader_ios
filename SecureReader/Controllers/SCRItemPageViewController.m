@@ -7,8 +7,9 @@
 //
 
 #import "SCRItemPageViewController.h"
+#import "NSString+HTML.h"
 #import <UIImageView+AFNetworking.h>
-#import <TTTTimeIntervalFormatter.h>
+#import "NSFormatter+SecureReader.h"
 
 @interface SCRItemPageViewController ()
 
@@ -45,23 +46,24 @@
 - (void) setItem:(SCRItem *)item
 {
     _item = item;
-    NSLog(@"String is %f", self.view.bounds.size.width);
-    if (self.item != nil)
-    {
-        if (self.item.thumbnailURL == nil)
-            self.imageViewHeightConstraint.constant = 0;
-        else
-            [self.imageView setImageWithURL:item.thumbnailURL];
-        
-        self.sourceView.labelSource.text = [item.linkURL host];
-        TTTTimeIntervalFormatter *timeIntervalFormatter = [[TTTTimeIntervalFormatter alloc] init];
-        self.sourceView.labelDate.text = [timeIntervalFormatter stringForTimeIntervalFromDate:item.publicationDate toDate:[NSDate dateWithTimeIntervalSinceNow:0]];
-
-        self.titleView.text =  self.item.title;
-        self.contentView.text = self.item.itemDescription;
-
-        [self.view layoutIfNeeded];
+    NSParameterAssert(item != nil);
+    if (!self.item) {
+        return;
     }
+    [self view]; // force view to load if it hasn't already
+
+    if (self.item.thumbnailURL == nil)
+        self.imageViewHeightConstraint.constant = 0;
+    else
+        [self.imageView setImageWithURL:item.thumbnailURL];
+    
+    self.sourceView.labelSource.text = [item.linkURL host];
+    self.sourceView.labelDate.text = [[NSFormatter scr_sharedIntervalFormatter] stringForTimeIntervalFromDate:[NSDate date] toDate:item.publicationDate];
+
+    self.titleView.text =  self.item.title;
+    self.contentView.text = [self.item.itemDescription stringByConvertingHTMLToPlainText];
+
+    [self.view layoutIfNeeded];
 }
 
 @end
