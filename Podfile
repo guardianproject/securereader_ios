@@ -8,6 +8,7 @@ pod 'PureLayout', '~> 2.0'
 pod 'Mantle', '~> 1.5'
 pod 'FormatterKit/TimeIntervalFormatter', '~> 1.6'
 pod 'wpxmlrpc', '~> 0.5'
+pod 'HockeySDK', '~> 3.6'
 
 pod 'MWFeedParser/NSString+HTML', '~> 1.0'
 

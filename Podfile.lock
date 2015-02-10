@@ -29,6 +29,7 @@ PODS:
   - CPAProxy (1.0.0):
     - CocoaAsyncSocket
   - FormatterKit/TimeIntervalFormatter (1.8.0)
+  - HockeySDK (3.6.2)
   - InAppSettingsKit (2.4.3)
   - Mantle (1.5.4):
     - Mantle/extobjc (= 1.5.4)
@@ -53,6 +54,7 @@ PODS:
 DEPENDENCIES:
   - CPAProxy (from `Submodules/CPAProxy/CPAProxy.podspec`)
   - FormatterKit/TimeIntervalFormatter (~> 1.6)
+  - HockeySDK (~> 3.6)
   - InAppSettingsKit (~> 2.2)
   - Mantle (~> 1.5)
   - MWFeedParser/NSString+HTML (~> 1.0)
@@ -73,6 +75,7 @@ SPEC CHECKSUMS:
   CocoaLumberjack: 205769c032b5fef85b92472046bcc8b7e7c8a817
   CPAProxy: c3df549999514de2c04633d20a79b00daf627ddb
   FormatterKit: 547a808c41172136a3f3acb424ac9361d38bb32f
+  HockeySDK: bfd1f5ac75938b07499c4ac12932244b72a2e70b
   InAppSettingsKit: 315e2a196a06921f8f83de01a855ed98dc69851e
   Mantle: d5fbaf30fbc58031223af13812c060e15934a1fe
   MWFeedParser: 003cbf5398e99a7f2057fbe9583054fd1b84be72

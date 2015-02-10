@@ -16,6 +16,10 @@
 #import "SCRCreatePassphraseViewController.h"
 #import "SCRNavigationController.h"
 #import "SCRTheme.h"
+#import "HockeySDK.h"
+
+@interface SCRAppDelegate() <BITHockeyManagerDelegate>
+@end
 
 @implementation SCRAppDelegate
 {
@@ -28,6 +32,14 @@
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:@"075cafe8595cb96f0c502f380e104a54"
+                                                           delegate:self];
+    [[BITHockeyManager sharedHockeyManager].authenticator setIdentificationType:BITAuthenticatorIdentificationTypeDevice];
+    [[BITHockeyManager sharedHockeyManager] startManager];
+#ifndef DEBUG
+    [[BITHockeyManager sharedHockeyManager].authenticator authenticateInstallation];
+#endif
+    
     [NSBundle setLanguage:[SCRSettings getUiLanguage]];
     [SCRTheme initialize];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidTimeout:) name:kApplicationDidTimeoutNotification object:nil];
@@ -104,6 +116,15 @@
         mLoggedIn = YES;
     }
     return mLoggedIn;
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    if( [[BITHockeyManager sharedHockeyManager].authenticator handleOpenURL:url
+                                                          sourceApplication:sourceApplication
+                                                                 annotation:annotation]) {
+        return YES;
+    }
+    return NO;
 }
 
 @end
