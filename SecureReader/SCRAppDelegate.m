@@ -17,8 +17,10 @@
 #import "SCRNavigationController.h"
 #import "SCRTheme.h"
 #import "HockeySDK.h"
+#import "SCRFeedFetcher.h"
 
 @interface SCRAppDelegate() <BITHockeyManagerDelegate>
+@property (nonatomic, strong, readonly) SCRFeedFetcher *feedFetcher;
 @end
 
 @implementation SCRAppDelegate
@@ -114,6 +116,17 @@
     if ([passphrase isEqualToString:[SCRSettings getPassphrase]])
     {
         mLoggedIn = YES;
+        
+        _feedFetcher = [[SCRFeedFetcher alloc] init];
+        NSArray *feedURLs = @[@"http://www.voanews.com/api/epiqq",
+                              @"http://www.theguardian.com/world/rss",
+                              @"http://feeds.washingtonpost.com/rss/world",
+                              @"http://www.nytimes.com/services/xml/rss/nyt/InternationalHome.xml",
+                              @"http://rss.cnn.com/rss/cnn_topstories.rss",
+                              @"http://rss.cnn.com/rss/cnn_world.rss"];
+        [feedURLs enumerateObjectsUsingBlock:^(NSString *feedURLString, NSUInteger idx, BOOL *stop) {
+            [self.feedFetcher fetchFeedDataFromURL:[NSURL URLWithString:feedURLString]];
+        }];
     }
     return mLoggedIn;
 }

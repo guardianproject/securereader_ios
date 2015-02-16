@@ -29,8 +29,6 @@
 
 @property (strong,nonatomic) SCRItemViewController *itemViewController;
 
-@property (nonatomic, strong, readonly) SCRFeedFetcher *feedFetcher;
-
 @property (nonatomic, strong) YapDatabaseViewMappings *mappings;
 @property (nonatomic, strong) YapDatabaseConnection *readConnection;
 @property (nonatomic, strong, readonly) NSString *yapViewName;
@@ -50,11 +48,6 @@
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cellNoPhotos"];
     nib = [UINib nibWithNibName:@"SCRItemCellLandscapePhotos" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cellLandscapePhotos"];
-    
-//    _yapViewName = [SCRDatabaseManager sharedInstance].allFeedItemsViewName;
-//    [self setupMappings];
-    _feedFetcher = [[SCRFeedFetcher alloc] init];
-    
     //UIRefreshControl *refreshControl = [[UIRefreshControl alloc]
     //                                    init];
     //refreshControl.tintColor = [UIColor magentaColor];
@@ -67,15 +60,6 @@
     if ([[SCRAppDelegate sharedAppDelegate] isLoggedIn])
     {
         [self.tableView reloadData];
-        NSArray *feedURLs = @[@"http://www.voanews.com/api/epiqq",
-                          @"http://www.theguardian.com/world/rss",
-                          @"http://feeds.washingtonpost.com/rss/world",
-                          @"http://www.nytimes.com/services/xml/rss/nyt/InternationalHome.xml",
-                          @"http://rss.cnn.com/rss/cnn_topstories.rss",
-                          @"http://rss.cnn.com/rss/cnn_world.rss"];
-        [feedURLs enumerateObjectsUsingBlock:^(NSString *feedURLString, NSUInteger idx, BOOL *stop) {
-            [self.feedFetcher fetchFeedDataFromURL:[NSURL URLWithString:feedURLString]];
-        }];
     }
     if (_updateTimeStampTimer != nil)
         [_updateTimeStampTimer invalidate];
