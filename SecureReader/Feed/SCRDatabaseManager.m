@@ -10,6 +10,7 @@
 #import "YapDatabaseView.h"
 #import "YapDatabaseFullTextSearch.h"
 #import "YapDatabaseSearchResultsView.h"
+#import "YapDatabaseFilteredView.h"
 #import "SCRItem.h"
 #import "SCRFeed.h"
 
@@ -70,7 +71,7 @@
 }
 
 - (void) registerAllFeedsView {
-    _allFeedsViewName = @"SRCAllFeedsViewName";
+    _allFeedsViewName = @"SCRAllFeedsViewName";
     YapDatabaseViewGrouping *grouping = [YapDatabaseViewGrouping withObjectBlock:^NSString *(NSString *collection, NSString *key, id object) {
         if ([object isKindOfClass:[SCRFeed class]]) {
             SCRFeed *item = object;
@@ -84,6 +85,29 @@
     YapDatabaseView *databaseView = [[YapDatabaseView alloc] initWithGrouping:grouping sorting:sorting versionTag:@"1" options:nil];
     [self.database asyncRegisterExtension:databaseView withName:self.allFeedsViewName completionBlock:^(BOOL ready) {
         NSLog(@"%@ ready %d", self.allFeedsViewName, ready);
+        
+        _subscribedFeedsViewName = @"SCRSubscribedFeedsViewName";
+        YapDatabaseViewFiltering *filtering = [YapDatabaseViewFiltering withObjectBlock:^BOOL (NSString *group, NSString *collection, NSString *key, id object)
+        {
+            return [(SCRFeed *)object subscribed];
+        }];
+        
+        YapDatabaseFilteredView *subscribedFeedsView = [[YapDatabaseFilteredView alloc] initWithParentViewName:_allFeedsViewName filtering:filtering];
+        [self.database asyncRegisterExtension:subscribedFeedsView withName:self.subscribedFeedsViewName completionBlock:^(BOOL ready) {
+            NSLog(@"%@ ready %d", self.subscribedFeedsViewName, ready);
+        }];
+        
+        _unsubscribedFeedsViewName = @"SCRUnSubscribedFeedsViewName";
+        filtering = [YapDatabaseViewFiltering withObjectBlock:^BOOL (NSString *group, NSString *collection, NSString *key, id object)
+                                               {
+                                                   return ![(SCRFeed *)object subscribed];
+                                               }];
+        
+        YapDatabaseFilteredView *unsubscribedFeedsView = [[YapDatabaseFilteredView alloc] initWithParentViewName:_allFeedsViewName filtering:filtering];
+        [self.database asyncRegisterExtension:unsubscribedFeedsView withName:self.unsubscribedFeedsViewName completionBlock:^(BOOL ready) {
+            NSLog(@"%@ ready %d", self.unsubscribedFeedsViewName, ready);
+        }];
+
     }];
 }
 

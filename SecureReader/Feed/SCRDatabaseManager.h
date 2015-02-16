@@ -18,6 +18,8 @@
 
 @property (nonatomic, strong, readonly) NSString *allFeedItemsViewName;
 @property (nonatomic, strong, readonly) NSString *allFeedsViewName;
+@property (nonatomic, strong, readonly) NSString *subscribedFeedsViewName;
+@property (nonatomic, strong, readonly) NSString *unsubscribedFeedsViewName;
 @property (nonatomic, strong, readonly) NSString *allFeedsSearchViewName;
 
 + (instancetype) sharedInstance;
