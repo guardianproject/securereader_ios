@@ -918,6 +918,7 @@
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <connections>
+                        <outlet property="authorView" destination="7ve-Ed-M2b" id="fSG-dM-e1o"/>
                         <outlet property="contentView" destination="4vz-a6-cEX" id="diy-Gb-eQT"/>
                         <outlet property="imageView" destination="SaD-dL-rdj" id="FUb-EE-xOh"/>
                         <outlet property="imageViewHeightConstraint" destination="jw0-Kz-5OO" id="9w8-Yt-hje"/>

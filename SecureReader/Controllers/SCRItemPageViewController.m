@@ -10,6 +10,9 @@
 #import "NSString+HTML.h"
 #import <UIImageView+AFNetworking.h>
 #import "NSFormatter+SecureReader.h"
+#import <Foundation/NSDateFormatter.h>
+#import "RSSPerson.h"
+#import "SCRApplication.h"
 
 @interface SCRItemPageViewController ()
 
@@ -61,6 +64,17 @@
     self.sourceView.labelDate.text = [[NSFormatter scr_sharedIntervalFormatter] stringForTimeIntervalFromDate:[NSDate date] toDate:item.publicationDate];
 
     self.titleView.text =  self.item.title;
+    
+    self.authorView.labelDate.text = [NSDateFormatter localizedStringFromDate:self.item.publicationDate dateStyle:NSDateFormatterLongStyle timeStyle:NSDateFormatterNoStyle];
+    self.authorView.labelTime.text = [NSDateFormatter localizedStringFromDate:self.item.publicationDate dateStyle:NSDateFormatterNoStyle timeStyle:NSDateFormatterShortStyle];
+    if (self.item.author != nil && self.item.author.name != nil)
+        self.authorView.labelAuthorName.text = [NSString stringWithFormat:getLocalizedString(@"Author_Name_String", @"BY %@"), self.item.author.name];
+    else if (self.item.author != nil && self.item.author.email != nil)
+        self.authorView.labelAuthorName.text = [NSString stringWithFormat:getLocalizedString(@"Author_Name_String", @"BY %@"), self.item.author.email];
+    else
+        self.authorView.labelAuthorName.text = @"";
+    self.authorView.labelAuthorName.text = [self.authorView.labelAuthorName.text uppercaseString];
+    
     self.contentView.text = [self.item.itemDescription stringByConvertingHTMLToPlainText];
 
     [self.view layoutIfNeeded];
