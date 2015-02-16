@@ -10,8 +10,8 @@
 #import "NSBundle+Language.h"
 #import "SCRTheme.h"
 #import "SCRSettings.h"
-
-#define getLocalizedString(key, defaultVal)   [[NSBundle mainBundle] localizedStringForKey:key value:defaultVal table:nil]
+#import "SCRApplication.h"
+#import "SCRAppDelegate.h"
 
 @interface SCRSelectLanguageViewController ()
 @property NSArray *languages;
@@ -90,12 +90,12 @@
 
 - (void)updateLanguage
 {
-    int row = [pickerLanguage selectedRowInComponent:0];
+    long row = [pickerLanguage selectedRowInComponent:0];
     NSString *newLanguage = [self.languageCodes objectAtIndex:row];
     [SCRSettings setUiLanguage:newLanguage];
     [NSBundle setLanguage:newLanguage];
     UIViewController *cont = [self.storyboard instantiateViewControllerWithIdentifier:self.restorationIdentifier];
-    [self.navigationController setViewControllers:@[cont] animated:NO];
+    [[SCRAppDelegate sharedAppDelegate].window setRootViewController:cont];
 }
 
 - (void) showLanguagePicker
