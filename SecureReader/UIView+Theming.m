@@ -11,6 +11,11 @@
 
 @dynamic theme;
 
+- (NSString *)theme
+{
+    return [SCRTheme getThemeForControl:self];
+}
+
 - (void)setTheme:(NSString *)theme
 {
     [SCRTheme applyTheme:theme toControl:self];

@@ -14,7 +14,8 @@
 #import "SCRLabel.h"
 #import "SCRApplication.h"
 #import "SCRSettings.h"
-
+#import "SCRTheme.h"
+#import "UIBarItem+Theming.h"
 
 @interface SCRItemViewController ()
 @property SCRFeedViewController *itemDataSource;
@@ -23,6 +24,8 @@
 @property (weak, nonatomic) IBOutlet UIView *container;
 @property UIGestureRecognizer *textSizeViewGestureRecognizer;
 @property BOOL textSizeViewVisible;
+@property UIColor *favoriteButtonDefaultTintColor;
+@property UIColor *favoriteButtonSelectedTintColor;
 @end
 
 @implementation SCRItemViewController
@@ -35,7 +38,6 @@
     [super viewDidLoad];
     pageViewController = [[self childViewControllers] objectAtIndex:0];
     pageViewController.delegate = self;
-    [self updateCurrentView];
     
     self.textSizeViewGestureRecognizer = [[UIGestureRecognizer alloc] initWithTarget:self action:@selector(handleTextSizeGesture:)];
     [self.textSizeViewGestureRecognizer setEnabled:YES];
@@ -43,6 +45,11 @@
     [self.textSizeViewGestureRecognizer setDelaysTouchesBegan:NO];
     [self.textSizeViewGestureRecognizer setDelaysTouchesEnded:NO];
     [self.textSizeViewGestureRecognizer setDelegate:self];
+    
+    self.favoriteButtonDefaultTintColor = [self.buttonFavorite tintColor];
+    self.favoriteButtonSelectedTintColor = [SCRTheme getColorProperty:@"onTintColor" forTheme:[self.buttonFavorite theme]];
+    
+    [self updateCurrentView];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -65,6 +72,11 @@
 }
 
 #pragma mark - Page View Controller Delegate
+
+- (void)pageViewController:(UIPageViewController *)viewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed
+{
+    [self updateFavoriteIcon];
+}
 
 #pragma mark - Page View Controller Data Source
 
@@ -113,6 +125,7 @@
         [(SCRNavigationController *)self.navigationController registerScrollViewForHideBars:initialViewController.scrollView];
         NSArray *viewControllers = [NSArray arrayWithObject:initialViewController];
         [pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+        [self updateFavoriteIcon];
     }
 }
              
@@ -126,11 +139,13 @@
 
 - (IBAction)markItemAsFavorite:(id)sender
 {
-    SCRItem *item = [itemDataSource itemForIndexPath:self.currentItemIndex];
-    if (item != nil)
+    SCRItemPageViewController *itemPage = [[self.pageViewController viewControllers] objectAtIndex:0];
+    if (itemPage != nil)
     {
-        [[SCRReader sharedInstance] markItem:item asFavorite:YES]; //TODO - toggle
+        SCRItem *item = itemPage.item;
+        [[SCRReader sharedInstance] markItem:item asFavorite:![item isFavorite]];
     }
+    [self updateFavoriteIcon];
 }
 
 - (void) showTextSizeView
@@ -185,6 +200,22 @@
 - (IBAction)textSideSliderChanged:(id)sender
 {
     [SCRSettings setFontSizeAdjustment:self.textSizeSlider.value];
+}
+
+- (void)updateFavoriteIcon
+{
+    SCRItemPageViewController *itemPage = [[self.pageViewController viewControllers] objectAtIndex:0];
+    if (itemPage != nil)
+    {
+        if ([[itemPage item] isFavorite])
+            [self.buttonFavorite setTintColor:self.favoriteButtonSelectedTintColor];
+        else
+            [self.buttonFavorite setTintColor:self.favoriteButtonDefaultTintColor];
+    }
+    else
+    {
+        [self.buttonFavorite setTintColor:self.favoriteButtonDefaultTintColor];
+    }
 }
 
 @end

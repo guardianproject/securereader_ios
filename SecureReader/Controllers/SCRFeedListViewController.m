@@ -19,6 +19,7 @@
 #import "SCRFeed.h"
 #import "SCRFeedViewController.h"
 #import "RSSParser.h"
+#import "SCRNavigationController.h"
 
 @interface SCRFeedListViewController ()
 @property BOOL isInSearchMode;

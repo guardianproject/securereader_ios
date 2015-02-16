@@ -125,7 +125,10 @@
     self.currentType = type;
     self.currentFeed = feed;
     
-    _yapViewName = [SCRDatabaseManager sharedInstance].allFeedItemsViewName;
+    if (type == SCRFeedViewTypeFavorites)
+        _yapViewName =  [SCRDatabaseManager sharedInstance].favoriteFeedItemsViewName;
+    else
+        _yapViewName = [SCRDatabaseManager sharedInstance].allFeedItemsViewName;
     [self setupMappings];
 }
 

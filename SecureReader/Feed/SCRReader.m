@@ -7,6 +7,7 @@
 //
 
 #import "SCRReader.h"
+#import "SCRDatabaseManager.h"
 
 @implementation SCRReader
 
@@ -29,7 +30,10 @@
 
 -(void) markItem:(SCRItem *)item asFavorite:(BOOL)favorite
 {
-    //TODO
+    [item setIsFavorite:favorite];
+    [[SCRDatabaseManager sharedInstance].readWriteConnection asyncReadWriteWithBlock:^(YapDatabaseReadWriteTransaction *transaction) {
+        [transaction setObject:item forKey:item.yapKey inCollection:[[item class] yapCollection]];
+    }];
 }
 
 @end

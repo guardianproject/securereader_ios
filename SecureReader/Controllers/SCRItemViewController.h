@@ -17,5 +17,6 @@
 @property (weak, nonatomic) IBOutlet UIView *textSizeView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *textSizeViewHeightConstraint;
 @property (weak, nonatomic) IBOutlet UISlider *textSizeSlider;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *buttonFavorite;
 
 @end

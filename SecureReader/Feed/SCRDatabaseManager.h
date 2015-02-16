@@ -17,6 +17,7 @@
 @property (nonatomic, strong, readonly) YapDatabaseConnection *readWriteConnection;
 
 @property (nonatomic, strong, readonly) NSString *allFeedItemsViewName;
+@property (nonatomic, strong, readonly) NSString *favoriteFeedItemsViewName;
 @property (nonatomic, strong, readonly) NSString *allFeedsViewName;
 @property (nonatomic, strong, readonly) NSString *subscribedFeedsViewName;
 @property (nonatomic, strong, readonly) NSString *unsubscribedFeedsViewName;

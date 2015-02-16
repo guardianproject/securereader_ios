@@ -67,6 +67,11 @@ static NSMutableDictionary *themes = nil;
     return obj;
 }
 
++ (NSString *) getThemeForControl:(NSObject*)control
+{
+    return objc_getAssociatedObject(control, &_currentTheme);
+}
+
 + (void) applyTheme:(NSString*)theme toControl:(NSObject*)control
 {
     NSMutableDictionary *savedStyle = objc_getAssociatedObject(control, &_savedStyle);

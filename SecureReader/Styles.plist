@@ -83,6 +83,8 @@
 	</dict>
 	<key>FullScreenButtonStyle</key>
 	<dict>
+		<key>onTintColor</key>
+		<string>#ffff0000</string>
 		<key>corners</key>
 		<integer>0</integer>
 		<key>tintColor</key>
