@@ -1071,8 +1071,17 @@
                             <constraint firstItem="0XR-cD-wLm" firstAttribute="top" secondItem="gQR-0h-IJm" secondAttribute="bottom" id="syw-Th-odZ"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Feeds" id="L7S-JU-Emx"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Feeds" id="L7S-JU-Emx">
+                        <barButtonItem key="rightBarButtonItem" image="ic_action_panic.png" id="3Lx-7D-qwA">
+                            <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="showPanicAction:" destination="G7w-kN-stV" id="so2-Tj-g3r"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="searchBar" destination="0XR-cD-wLm" id="Wac-7P-0mc"/>
                         <outlet property="searchBarHeightConstraint" destination="rMB-BN-mXC" id="9Sw-zZ-yPM"/>
