@@ -57,15 +57,14 @@
     _allFeedItemsViewName = @"SRCAllFeedItemsViewName";
     YapDatabaseViewGrouping *grouping = [YapDatabaseViewGrouping withObjectBlock:^NSString *(NSString *collection, NSString *key, id object) {
         if ([object isKindOfClass:[SCRItem class]]) {
-            SCRItem *item = object;
-            return item.yapGroup;
+            return @"All";
         }
         return nil;
     }];
     YapDatabaseViewSorting *sorting = [YapDatabaseViewSorting withObjectBlock:^NSComparisonResult(NSString *group, NSString *collection1, NSString *key1, SCRItem *item1, NSString *collection2, NSString *key2, SCRItem *item2) {
-        return [item1.publicationDate compare:item2.publicationDate];
+        return [item2.publicationDate compare:item1.publicationDate];
     }];
-    YapDatabaseView *databaseView = [[YapDatabaseView alloc] initWithGrouping:grouping sorting:sorting versionTag:@"1" options:nil];
+    YapDatabaseView *databaseView = [[YapDatabaseView alloc] initWithGrouping:grouping sorting:sorting versionTag:@"2" options:nil];
     [self.database asyncRegisterExtension:databaseView withName:self.allFeedItemsViewName completionBlock:^(BOOL ready) {
         NSLog(@"%@ ready %d", self.allFeedItemsViewName, ready);
     }];
@@ -77,12 +76,12 @@
         if ([object isKindOfClass:[SCRItem class]]) {
             SCRItem *item = object;
             if ([item isFavorite])
-                return item.yapGroup;
+                return @"Favorites";
         }
         return nil;
     }];
     YapDatabaseViewSorting *sorting = [YapDatabaseViewSorting withObjectBlock:^NSComparisonResult(NSString *group, NSString *collection1, NSString *key1, SCRItem *item1, NSString *collection2, NSString *key2, SCRItem *item2) {
-        return [item1.publicationDate compare:item2.publicationDate];
+        return [item2.publicationDate compare:item1.publicationDate];
     }];
     YapDatabaseView *databaseView = [[YapDatabaseView alloc] initWithGrouping:grouping sorting:sorting versionTag:@"1" options:nil];
     [self.database asyncRegisterExtension:databaseView withName:self.favoriteFeedItemsViewName completionBlock:^(BOOL ready) {
