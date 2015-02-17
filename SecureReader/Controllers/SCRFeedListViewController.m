@@ -20,6 +20,8 @@
 #import "SCRFeedViewController.h"
 #import "RSSParser.h"
 #import "SCRNavigationController.h"
+#import "SCRApplication.h"
+#import "SCRReader.h"
 
 @interface SCRFeedListViewController ()
 @property BOOL isInSearchMode;
@@ -54,6 +56,8 @@
     UINib *nib = [UINib nibWithNibName:@"SCRFeedListCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cellFeed"];
     [self.searchDisplayController.searchResultsTableView registerNib:nib forCellReuseIdentifier:@"cellFeed"];
+
+    self.tableView.allowsMultipleSelectionDuringEditing = NO;
 
     self.segmentedControlDesignHeight = self.segmentedControlHeightConstraint.constant;
     self.trendingViewDesignHeight = self.trendingViewHeightConstraint.constant; // Save this for later use in animation
@@ -394,37 +398,47 @@ shouldReloadTableForSearchString:(NSString *)searchString
 {
     cell.titleView.text = item.title;
     cell.descriptionView.text = item.feedDescription;
-    [cell setShowSwitch:showSwitch];
-    if (showSwitch)
+    if (tableView == self.tableView && ![self exploring])
     {
-        [cell.switchView setTag:(tableView == self.tableView ? 0 : 1)];
-        [cell.switchView addTarget:self action:@selector(toggleFeedSubscription:) forControlEvents:UIControlEventValueChanged];
-    }
-    else
-    {
-        [cell.switchView removeTarget:self action:@selector(toggleFeedSubscription:) forControlEvents:UIControlEventValueChanged];
+        cell.rightUtilityButtons = [self rightButtons];
+        cell.delegate = self;
     }
 }
 
-- (void) toggleFeedSubscription:(id)sender
+- (NSArray *)rightButtons
 {
-    // From http://stackoverflow.com/questions/1802707/detecting-which-uibutton-was-pressed-in-a-uitableview
-    //
-    CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.tableView];
-    NSIndexPath *indexPath = nil;
-    BOOL inSearchTable = ([(UISwitch *)sender tag] != 0);
-    if (!inSearchTable)
-        indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
-    else
-        indexPath = [self.searchDisplayController.searchResultsTableView indexPathForRowAtPoint:buttonPosition];
+    NSMutableArray *rightUtilityButtons = [NSMutableArray new];
+    [rightUtilityButtons sw_addUtilityButtonWithColor:
+     [UIColor colorWithRed:0.78f green:0.78f blue:0.8f alpha:1.0]
+                                                title:getLocalizedString(@"Feed_List_Action_Unfollow", @"Unfollow")];
+    [rightUtilityButtons sw_addUtilityButtonWithColor:
+     [UIColor colorWithRed:1.0f green:0.231f blue:0.188 alpha:1.0f]
+                                                title:getLocalizedString(@"Feed_List_Action_Delete", @"Delete")];
+    
+    return rightUtilityButtons;
+}
+
+- (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerRightUtilityButtonWithIndex:(NSInteger)index {
+
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     if (indexPath != nil)
     {
-        SCRFeed *feed = [self itemForIndexPath:indexPath inTable:(inSearchTable ? self.searchDisplayController.searchResultsTableView : self.tableView)];
+        SCRFeed *feed = [self itemForIndexPath:indexPath inTable:self.tableView];
         if (feed != nil)
         {
-            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Feed" message:[@"Toggle subscription for feed " stringByAppendingString:feed.title] delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Feed" message:[@"Remove feed " stringByAppendingString:feed.title] delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
             alert.alertViewStyle = UIAlertViewStyleDefault;
             [alert show];
+            switch (index) {
+                case 0:
+                    [[SCRReader sharedInstance] setFeed:feed subscribed:NO];
+                    break;
+                case 1:
+                    [[SCRReader sharedInstance] setFeed:feed subscribed:NO];
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

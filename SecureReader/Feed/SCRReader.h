@@ -7,12 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SCRFeed.h"
 #import "SCRItem.h"
 
 @interface SCRReader : NSObject
 
 + (SCRReader *) sharedInstance;
 
+-(void) setFeed:(SCRFeed *)feed subscribed:(BOOL)subscribed;
 -(void) markItem:(SCRItem *)item asFavorite:(BOOL)favorite;
 
 @end

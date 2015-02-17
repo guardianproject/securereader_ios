@@ -8,3 +8,5 @@
 "Language_Name_English" = "Engelska";
 "Language_Name_Swedish" = "Svenska";
 "Author_Name_String" = "AV %@";
+"Feed_List_Action_Unfollow" = "Avfölj";
+"Feed_List_Action_Delete" = "Ta bort";

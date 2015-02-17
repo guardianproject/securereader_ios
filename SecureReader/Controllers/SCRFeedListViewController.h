@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <SWTableViewCell.h>
 
-@interface SCRFeedListViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
+@interface SCRFeedListViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, SWTableViewCellDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *segmentedControlHeightConstraint;

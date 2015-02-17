@@ -7,16 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <SWTableViewCell.h>
 
-@interface SCRFeedListCell : UITableViewCell
+@interface SCRFeedListCell : SWTableViewCell
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleView;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionView;
-@property (weak, nonatomic) IBOutlet UISwitch *switchView;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *titleTrailingConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *switchTrailingConstraint;
-
-@property (nonatomic) BOOL showSwitch;
 
 @end

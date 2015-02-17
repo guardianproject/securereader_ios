@@ -28,6 +28,14 @@
     return self;
 }
 
+-(void) setFeed:(SCRFeed *)feed subscribed:(BOOL)subscribed
+{
+    [feed setSubscribed:subscribed];
+    [[SCRDatabaseManager sharedInstance].readWriteConnection asyncReadWriteWithBlock:^(YapDatabaseReadWriteTransaction *transaction) {
+        [transaction setObject:feed forKey:feed.yapKey inCollection:[[feed class] yapCollection]];
+    }];
+}
+
 -(void) markItem:(SCRItem *)item asFavorite:(BOOL)favorite
 {
     [item setIsFavorite:favorite];
