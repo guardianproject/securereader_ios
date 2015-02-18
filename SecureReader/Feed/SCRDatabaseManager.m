@@ -49,6 +49,7 @@
 - (void) registerViews {
     [self registerAllFeedItemsView];
     [self registerFavoriteFeedItemsView];
+    [self registerReceivedFeedItemsView];
     [self registerAllFeedsView];
     [self registerAllFeedsSearchView];
 }
@@ -86,6 +87,25 @@
     YapDatabaseView *databaseView = [[YapDatabaseView alloc] initWithGrouping:grouping sorting:sorting versionTag:@"2" options:nil];
     [self.database asyncRegisterExtension:databaseView withName:self.favoriteFeedItemsViewName completionBlock:^(BOOL ready) {
         NSLog(@"%@ ready %d", self.favoriteFeedItemsViewName, ready);
+    }];
+}
+
+- (void) registerReceivedFeedItemsView {
+    _receivedFeedItemsViewName = @"SRCReceivedFeedItemsViewName";
+    YapDatabaseViewGrouping *grouping = [YapDatabaseViewGrouping withObjectBlock:^NSString *(NSString *collection, NSString *key, id object) {
+        if ([object isKindOfClass:[SCRItem class]]) {
+            SCRItem *item = object;
+            if ([item isReceived])
+                return @"Received";
+        }
+        return nil;
+    }];
+    YapDatabaseViewSorting *sorting = [YapDatabaseViewSorting withObjectBlock:^NSComparisonResult(NSString *group, NSString *collection1, NSString *key1, SCRItem *item1, NSString *collection2, NSString *key2, SCRItem *item2) {
+        return [item2.publicationDate compare:item1.publicationDate];
+    }];
+    YapDatabaseView *databaseView = [[YapDatabaseView alloc] initWithGrouping:grouping sorting:sorting versionTag:@"1" options:nil];
+    [self.database asyncRegisterExtension:databaseView withName:self.receivedFeedItemsViewName completionBlock:^(BOOL ready) {
+        NSLog(@"%@ ready %d", self.receivedFeedItemsViewName, ready);
     }];
 }
 

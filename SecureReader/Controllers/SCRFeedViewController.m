@@ -111,6 +111,8 @@
     
     if (type == SCRFeedViewTypeFavorites)
         _yapViewName =  [SCRDatabaseManager sharedInstance].favoriteFeedItemsViewName;
+    else if (type == SCRFeedViewTypeReceived)
+        _yapViewName = [SCRDatabaseManager sharedInstance].receivedFeedItemsViewName;
     else
         _yapViewName = [SCRDatabaseManager sharedInstance].allFeedItemsViewName;
     [self setupMappings];

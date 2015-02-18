@@ -16,5 +16,6 @@
 @interface SCRItem : RSSItem <SCRYapObject>
 
 @property (nonatomic) BOOL isFavorite;
+@property (nonatomic) BOOL isReceived;
 
 @end
