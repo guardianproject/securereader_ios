@@ -205,7 +205,8 @@ shouldReloadTableForSearchString:(NSString *)searchString
         }
         else
         {
-            [[SCRReader sharedInstance] setFeed:feed subscribed:!feed.subscribed];
+            // Todo - need to figure out how to subscribe. Right now swipe and select "Follow".
+            //[[SCRReader sharedInstance] setFeed:feed subscribed:!feed.subscribed];
         }
     }
 }
@@ -265,7 +266,7 @@ shouldReloadTableForSearchString:(NSString *)searchString
 {
     SCRFeedListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellFeed" forIndexPath:indexPath];
     SCRFeed *feed = [self itemForIndexPath:indexPath inTable:tableView];
-    [self configureCellWithCount:cell forItem:feed tableView:tableView];
+    [self configureCell:cell forFeed:feed tableView:tableView];
     return cell;
 }
 
@@ -274,7 +275,7 @@ shouldReloadTableForSearchString:(NSString *)searchString
     UITableViewCell *prototype = [self getPrototypeForTable:tableView andIndexPath:indexPath];
     prototype.bounds = CGRectMake(0.0f, 0.0f, CGRectGetWidth(tableView.bounds), CGRectGetHeight(prototype.bounds));
     SCRFeed *feed = [self itemForIndexPath:indexPath inTable:tableView];
-    [self configureCellWithCount:(SCRFeedListCell *)prototype forItem:feed tableView:tableView];
+    [self configureCell:(SCRFeedListCell *)prototype forFeed:feed tableView:tableView];
     [prototype setNeedsLayout];
     [prototype layoutIfNeeded];
     CGSize size = [prototype.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
@@ -319,18 +320,39 @@ shouldReloadTableForSearchString:(NSString *)searchString
     return feed;
 }
 
-- (void)configureCellWithCount:(SCRFeedListCell *)cell forItem:(SCRFeed *)item tableView:(UITableView*)tableView
+- (void)configureCell:(SCRFeedListCell *)cell forFeed:(SCRFeed *)feed tableView:(UITableView*)tableView
 {
-    cell.titleView.text = item.title;
-    cell.descriptionView.text = item.feedDescription;
-    if (tableView == self.tableView && ![self exploring])
+    cell.titleView.text = feed.title;
+    cell.descriptionView.text = feed.feedDescription;
+    if (tableView == self.tableView)
     {
-        cell.rightUtilityButtons = [self rightButtons];
-        cell.delegate = self;
+        if ([self exploring])
+        {
+            cell.rightUtilityButtons = [self rightButtonsExplore];
+            cell.delegate = self;
+        }
+        else
+        {
+            cell.rightUtilityButtons = [self rightButtonsFollowing];
+            cell.delegate = self;
+        }
+    }
+    else if (tableView == self.searchDisplayController.searchResultsTableView)
+    {
+        if ([feed subscribed])
+        {
+            cell.rightUtilityButtons = [self rightButtonsExploreFollowed];
+            cell.delegate = self;
+        }
+        else
+        {
+            cell.rightUtilityButtons = [self rightButtonsExplore];
+            cell.delegate = self;
+        }
     }
 }
 
-- (NSArray *)rightButtons
+- (NSArray *)rightButtonsFollowing
 {
     NSMutableArray *rightUtilityButtons = [NSMutableArray new];
     [rightUtilityButtons sw_addUtilityButtonWithColor:
@@ -343,28 +365,65 @@ shouldReloadTableForSearchString:(NSString *)searchString
     return rightUtilityButtons;
 }
 
+- (NSArray *)rightButtonsExplore
+{
+    NSMutableArray *rightUtilityButtons = [NSMutableArray new];
+    [rightUtilityButtons sw_addUtilityButtonWithColor:
+     [UIColor colorWithRed:0.188f green:1.0f blue:0.188f alpha:1.0]
+                                                title:getLocalizedString(@"Feed_List_Action_Follow", @"Follow")];
+    return rightUtilityButtons;
+}
+
+- (NSArray *)rightButtonsExploreFollowed
+{
+    NSMutableArray *rightUtilityButtons = [NSMutableArray new];
+    [rightUtilityButtons sw_addUtilityButtonWithColor:
+     [UIColor colorWithRed:0.78f green:0.78f blue:0.78f alpha:1.0]
+                                                title:getLocalizedString(@"Feed_List_Action_Followed", @"Already Followed")];
+    return rightUtilityButtons;
+}
+
 - (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerRightUtilityButtonWithIndex:(NSInteger)index {
 
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    // Find table view
+    //
+    id view = [cell superview];
+    while (view && [view isKindOfClass:[UITableView class]] == NO) {
+        view = [view superview];
+    }
+    UITableView *tableView = (UITableView *)view;
+    
+    NSIndexPath *indexPath = [tableView indexPathForCell:cell];
     if (indexPath != nil)
     {
-        SCRFeed *feed = [self itemForIndexPath:indexPath inTable:self.tableView];
+        SCRFeed *feed = [self itemForIndexPath:indexPath inTable:tableView];
         if (feed != nil)
         {
-            switch (index) {
-                case 0:
-                    [[SCRReader sharedInstance] setFeed:feed subscribed:NO];
-                    break;
-                case 1:
-                {
-                    [[SCRReader sharedInstance] removeFeed:feed];
-                    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Feed" message:[@"Remove feed " stringByAppendingString:feed.title] delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-                    alert.alertViewStyle = UIAlertViewStyleDefault;
-                    [alert show];
-                    break;
+            // Pretty sloppy this, allocating new objects for the comparison, but done seldom so...
+            //
+            if ([cell.rightUtilityButtons sw_isEqualToButtons:[self rightButtonsFollowing]])
+            {
+                switch (index) {
+                    case 0:
+                        [[SCRReader sharedInstance] setFeed:feed subscribed:NO];
+                        break;
+                    case 1:
+                        {
+                        [[SCRReader sharedInstance] removeFeed:feed];
+                        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Feed" message:[@"Remove feed " stringByAppendingString:feed.title] delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+                        alert.alertViewStyle = UIAlertViewStyleDefault;
+                        [alert show];
+                        break;
+                        }
                 }
-                default:
-                    break;
+            }
+            else if ([cell.rightUtilityButtons sw_isEqualToButtons:[self rightButtonsExplore]])
+            {
+                switch (index) {
+                    case 0:
+                        [[SCRReader sharedInstance] setFeed:feed subscribed:YES];
+                        break;
+                }
             }
         }
     }
