@@ -28,6 +28,13 @@
     return self;
 }
 
+-(void) removeFeed:(SCRFeed *)feed
+{
+    [[SCRDatabaseManager sharedInstance].readWriteConnection asyncReadWriteWithBlock:^(YapDatabaseReadWriteTransaction *transaction) {
+        [transaction removeObjectForKey:feed.yapKey inCollection:[[feed class] yapCollection]];
+    }];
+}
+
 -(void) setFeed:(SCRFeed *)feed subscribed:(BOOL)subscribed
 {
     [feed setSubscribed:subscribed];

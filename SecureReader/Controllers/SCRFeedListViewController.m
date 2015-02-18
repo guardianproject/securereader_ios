@@ -18,10 +18,13 @@
 #import "SCRFeedListCell.h"
 #import "SCRFeed.h"
 #import "SCRFeedViewController.h"
-#import "RSSParser.h"
+#import "SCRFeedFetcher.h"
 #import "SCRNavigationController.h"
 #import "SCRApplication.h"
 #import "SCRReader.h"
+#import "SCRSettings.h"
+
+#define WEB_SEARCH_URL_FORMAT @"http://securereader.guardianproject.info/opml/find.php?lang=%1$@&term=%2$@"
 
 @interface SCRFeedListViewController ()
 @property BOOL isInSearchMode;
@@ -171,72 +174,15 @@
 
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-    [self showSearchBarSpinner];
-    
-    NSString *urlString = [NSString stringWithFormat:@"http://securereader.guardianproject.info/opml/find.php?lang=en_US&term=%@", searchBar.text];
-    NSURL *url = [[NSURL alloc] initWithString:urlString];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    NSURLSessionDataTask *dataTask = [self.sessionManager dataTaskWithRequest:request completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self hideSearchBarSpinner];
-            NSLog(@"Error: %@", error);
-        });
-        
-        if (error) {
-            return;
-        }
-        NSAssert([responseObject isKindOfClass:[NSData class]], @"responseObject must be NSData!");
-        if (![responseObject isKindOfClass:[NSData class]]) {
-            return;
-        }
-        
-        RSSParser *parser = [[RSSParser alloc] init];
-        [parser feedsFromOPMLData:responseObject completionBlock:^(NSArray *feeds, NSError *error) {
-            
-            //TODO - handle errors
-            self.searchResults = feeds;
-            [self.searchDisplayController.searchResultsTableView reloadData];
-        }
-        completionQueue:dispatch_get_main_queue()];
-    }];
-    [dataTask resume];
+    [self searchLocalFeeds:[searchBar text]];
+    [self searchWebFeeds:[searchBar text]];
 }
 
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller
 shouldReloadTableForSearchString:(NSString *)searchString
 {
-    if (![self exploring])
-    {
-        if (self.searchReadConnection == nil)
-            self.searchReadConnection = [[SCRDatabaseManager sharedInstance].database newConnection];
-        
-        if (self.searchQueue == nil)
-            self.searchQueue = [[YapDatabaseSearchQueue alloc] init];
-        
-        // Parse the text into a proper search query
-        NSCharacterSet *whitespace = [NSCharacterSet whitespaceCharacterSet];
-        
-        NSArray *searchComponents = [searchString componentsSeparatedByCharactersInSet:whitespace];
-        NSMutableString *query = [NSMutableString string];
-        
-        for (NSString *term in searchComponents)
-        {
-            if ([term length] > 0)
-                [query appendString:@""];
-            
-            [query appendFormat:@"%@*", term];
-        }
-        
-        NSLog(@"searchString(%@) -> query(%@)", searchString, query);
-        [self.searchQueue enqueueQuery:query];
-        
-        [self.searchReadConnection asyncReadWriteWithBlock:^(YapDatabaseReadWriteTransaction *transaction)
-         {
-             [[transaction ext:_yapSearchViewName] performSearchWithQueue:self.searchQueue];
-         }];
-        return NO;
-    }
+    // Use this for real-time search of local feeds, currently disabled by design
+    // [self searchLocalFeeds:searchString];
     return NO;
 }
 
@@ -259,10 +205,7 @@ shouldReloadTableForSearchString:(NSString *)searchString
         }
         else
         {
-            [feed setSubscribed:![feed subscribed]];
-            [[SCRDatabaseManager sharedInstance].readWriteConnection asyncReadWriteWithBlock:^(YapDatabaseReadWriteTransaction *transaction) {
-                [transaction setObject:feed forKey:feed.yapKey inCollection:[[feed class] yapCollection]];
-            }];
+            [[SCRReader sharedInstance] setFeed:feed subscribed:!feed.subscribed];
         }
     }
 }
@@ -293,9 +236,7 @@ shouldReloadTableForSearchString:(NSString *)searchString
             return [self.mappingsUnSubscribed numberOfSections];
         return [self.mappingsSubscribed numberOfSections];
     }
-    else if (![self exploring])
-        return [self.searchMappings numberOfSections];
-    return 1;
+    return 1 + [self.searchMappings numberOfSections];
 }
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -305,67 +246,39 @@ shouldReloadTableForSearchString:(NSString *)searchString
             return [self.mappingsUnSubscribed numberOfItemsInSection:section];
         return [self.mappingsSubscribed numberOfItemsInSection:section];
     }
-    else if (![self exploring])
+    else if (section == 0)
     {
-        NSInteger numberOfRows = [self.searchMappings numberOfItemsInSection:section];
-        return numberOfRows;
-    }
-    else
-    {
-        // Search
+        // Local search results in first section
         if (self.searchResults == nil)
             return 0;
         return self.searchResults.count;
+    }
+    else
+    {
+        NSInteger numberOfRows = [self.searchMappings numberOfItemsInSection:(section - 1)];
+        return numberOfRows;
     }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (tableView == self.tableView)
-    {
-        SCRFeedListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellFeed" forIndexPath:indexPath];
-        SCRFeed *feed = [self itemForIndexPath:indexPath inTable:tableView];
-        [self configureCellWithCount:cell forItem:feed showSwitch:NO tableView:tableView];
-        return cell;
-    }
-    else if (![self exploring])
-    {
-        // Search my feeds
-        SCRFeedListCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"cellFeed"];
-        SCRFeed *feed = [self itemForIndexPath:indexPath inTable:tableView];
-        [self configureCellWithCount:cell forItem:feed showSwitch:YES tableView:tableView];
-        return cell;
-    }
-    else
-    {
-        SCRFeedListCell *cell = (SCRFeedListCell*)[self.tableView
-                                 dequeueReusableCellWithIdentifier:@"cellFeed"];
-        SCRFeed *feed = [self.searchResults objectAtIndex:indexPath.row];
-        if (feed != nil)
-            [self configureCellWithCount:cell
-                                 forItem:feed showSwitch:NO tableView:tableView];
-        return cell;
-    }
+    SCRFeedListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellFeed" forIndexPath:indexPath];
+    SCRFeed *feed = [self itemForIndexPath:indexPath inTable:tableView];
+    [self configureCellWithCount:cell forItem:feed tableView:tableView];
+    return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (tableView == self.tableView || ![self exploring])
-    {
-        UITableViewCell *prototype = [self getPrototypeForTable:tableView andIndexPath:indexPath];
-        prototype.bounds = CGRectMake(0.0f, 0.0f, CGRectGetWidth(tableView.bounds), CGRectGetHeight(prototype.bounds));
-        SCRFeed *feed = [self itemForIndexPath:indexPath
-                                       inTable:tableView];
-        if (feed != nil)
-            [self configureCellWithCount:(SCRFeedListCell *)prototype forItem:feed showSwitch:![self exploring] tableView:tableView];
-        [prototype setNeedsLayout];
-        [prototype layoutIfNeeded];
-        CGSize size = [prototype.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
-        NSLog(@"Measured item %@ to %f", feed.title, size.height);
-        return size.height+1;
-    }
-    return 80;
+    UITableViewCell *prototype = [self getPrototypeForTable:tableView andIndexPath:indexPath];
+    prototype.bounds = CGRectMake(0.0f, 0.0f, CGRectGetWidth(tableView.bounds), CGRectGetHeight(prototype.bounds));
+    SCRFeed *feed = [self itemForIndexPath:indexPath inTable:tableView];
+    [self configureCellWithCount:(SCRFeedListCell *)prototype forItem:feed tableView:tableView];
+    [prototype setNeedsLayout];
+    [prototype layoutIfNeeded];
+    CGSize size = [prototype.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    return size.height+1;
 }
 
 - (SCRFeed *) itemForIndexPath:(NSIndexPath *)indexPath fromView:(NSString *)view mapping:(YapDatabaseViewMappings *)mappings
@@ -380,21 +293,33 @@ shouldReloadTableForSearchString:(NSString *)searchString
 
 - (SCRFeed *) itemForIndexPath:(NSIndexPath *)indexPath inTable:(UITableView *)tableView
 {
-    if (self.searchDisplayController.searchResultsTableView == tableView)
+    SCRFeed *feed = nil;
+    if (tableView == self.tableView)
     {
-        return [self itemForIndexPath:indexPath fromView:self.yapSearchViewName mapping:self.searchMappings];
+        if ([self exploring])
+        {
+            feed = [self itemForIndexPath:indexPath fromView:self.yapViewNameUnSubscribed mapping:self.mappingsUnSubscribed];
+        }
+        else
+        {
+            feed = [self itemForIndexPath:indexPath fromView:self.yapViewNameSubscribed mapping:self.mappingsSubscribed];
+        }
     }
-    else if ([self exploring])
+    else if (indexPath.section == 0)
     {
-        return [self itemForIndexPath:indexPath fromView:self.yapViewNameUnSubscribed mapping:self.mappingsUnSubscribed];
+        // Local search results in first section
+        feed = [self.searchResults objectAtIndex:indexPath.row];
     }
     else
     {
-        return [self itemForIndexPath:indexPath fromView:self.yapViewNameSubscribed mapping:self.mappingsSubscribed];
+        // Search my feeds
+        NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:indexPath.row inSection:(indexPath.section - 1)];
+        feed = [self itemForIndexPath:newIndexPath fromView:self.yapSearchViewName mapping:self.searchMappings];
     }
+    return feed;
 }
 
-- (void)configureCellWithCount:(SCRFeedListCell *)cell forItem:(SCRFeed *)item showSwitch:(BOOL)showSwitch tableView:(UITableView*)tableView
+- (void)configureCellWithCount:(SCRFeedListCell *)cell forItem:(SCRFeed *)item tableView:(UITableView*)tableView
 {
     cell.titleView.text = item.title;
     cell.descriptionView.text = item.feedDescription;
@@ -426,16 +351,18 @@ shouldReloadTableForSearchString:(NSString *)searchString
         SCRFeed *feed = [self itemForIndexPath:indexPath inTable:self.tableView];
         if (feed != nil)
         {
-            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Feed" message:[@"Remove feed " stringByAppendingString:feed.title] delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-            alert.alertViewStyle = UIAlertViewStyleDefault;
-            [alert show];
             switch (index) {
                 case 0:
                     [[SCRReader sharedInstance] setFeed:feed subscribed:NO];
                     break;
                 case 1:
-                    [[SCRReader sharedInstance] setFeed:feed subscribed:NO];
+                {
+                    [[SCRReader sharedInstance] removeFeed:feed];
+                    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Feed" message:[@"Remove feed " stringByAppendingString:feed.title] delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+                    alert.alertViewStyle = UIAlertViewStyleDefault;
+                    [alert show];
                     break;
+                }
                 default:
                     break;
             }
@@ -617,7 +544,8 @@ shouldReloadTableForSearchString:(NSString *)searchString
     //Search
     //
     //
-    [[self.searchReadConnection ext:self.yapSearchViewName] getSectionChanges:&sectionChanges
+    //notifications = [self.searchReadConnection beginLongLivedReadTransaction];
+    [[self.readConnection ext:self.yapSearchViewName] getSectionChanges:&sectionChanges
                                                        rowChanges:&rowChanges
                                                  forNotifications:notifications
                                                      withMappings:self.searchMappings];
@@ -631,13 +559,13 @@ shouldReloadTableForSearchString:(NSString *)searchString
             {
                 case YapDatabaseViewChangeDelete :
                 {
-                    [tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionChange.index]
+                    [tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionChange.index + 1]
                                   withRowAnimation:UITableViewRowAnimationAutomatic];
                     break;
                 }
                 case YapDatabaseViewChangeInsert :
                 {
-                    [tableView insertSections:[NSIndexSet indexSetWithIndex:sectionChange.index]
+                    [tableView insertSections:[NSIndexSet indexSetWithIndex:sectionChange.index + 1]
                                   withRowAnimation:UITableViewRowAnimationAutomatic];
                     break;
                 }
@@ -657,8 +585,8 @@ shouldReloadTableForSearchString:(NSString *)searchString
             NSIndexPath *indexPath = rowChange.indexPath;
             NSIndexPath *newIndexPath = rowChange.newIndexPath;
             
-            indexPath = [NSIndexPath indexPathForRow:indexPath.row inSection:indexPath.section];
-            newIndexPath = [NSIndexPath indexPathForRow:newIndexPath.row inSection:newIndexPath.section];
+            indexPath = [NSIndexPath indexPathForRow:indexPath.row inSection:indexPath.section + 1];
+            newIndexPath = [NSIndexPath indexPathForRow:newIndexPath.row inSection:newIndexPath.section + 1];
             
             switch (rowChange.type)
             {
@@ -706,5 +634,70 @@ shouldReloadTableForSearchString:(NSString *)searchString
     [self.tableView reloadData];
     [self showTrendingView];
 }
+
+- (void)searchWebFeeds:(NSString *)searchString
+{
+    [self showSearchBarSpinner];
+    
+    NSString *urlString = [NSString stringWithFormat:WEB_SEARCH_URL_FORMAT, [SCRSettings getUiLanguage], searchString];
+    NSURL *url = [[NSURL alloc] initWithString:urlString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    NSURLSessionDataTask *dataTask = [self.sessionManager dataTaskWithRequest:request completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self hideSearchBarSpinner];
+            NSLog(@"Error: %@", error);
+        });
+        
+        if (error) {
+            return;
+        }
+        NSAssert([responseObject isKindOfClass:[NSData class]], @"responseObject must be NSData!");
+        if (![responseObject isKindOfClass:[NSData class]]) {
+            return;
+        }
+        
+        ONOXMLDocument *doc = [ONOXMLDocument XMLDocumentWithData:responseObject error:nil];
+        if (doc != nil)
+        {
+            //TODO - handle errors
+            self.searchResults = [SCRFeed feedsFromOPMLDocument:doc error:nil];
+            [self.searchDisplayController.searchResultsTableView reloadData];
+        };
+    }];
+    [dataTask resume];
+}
+
+- (void)searchLocalFeeds:(NSString *)searchString
+{
+    if (self.searchReadConnection == nil)
+        self.searchReadConnection = [[SCRDatabaseManager sharedInstance].database newConnection];
+    
+    if (self.searchQueue == nil)
+        self.searchQueue = [[YapDatabaseSearchQueue alloc] init];
+    
+    // Parse the text into a proper search query
+    NSCharacterSet *whitespace = [NSCharacterSet whitespaceCharacterSet];
+    
+    NSArray *searchComponents = [searchString componentsSeparatedByCharactersInSet:whitespace];
+    NSMutableString *query = [NSMutableString string];
+    
+    for (NSString *term in searchComponents)
+    {
+        if ([term length] > 0)
+            [query appendString:@""];
+        
+        [query appendFormat:@"%@*", term];
+    }
+    
+    NSLog(@"searchString(%@) -> query(%@)", searchString, query);
+    [self.searchQueue enqueueQuery:query];
+    
+    [self.searchReadConnection asyncReadWriteWithBlock:^(YapDatabaseReadWriteTransaction *transaction)
+     {
+         [[transaction ext:_yapSearchViewName] performSearchWithQueue:self.searchQueue];
+     }];
+}
+
 
 @end

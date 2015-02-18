@@ -10,6 +10,7 @@
 #import "UIBarItem+Theming.h"
 #import <objc/runtime.h>
 #import "SCRGradientBackgroundView.h"
+#import "SCRApplication.h"
 
 @interface SCRTheme ()
 {
@@ -45,6 +46,9 @@ static NSMutableDictionary *themes = nil;
             //[[UIButton appearance] setTheme:@"UIButton"];
             //[[UIButton appearanceWhenContainedIn:[UITableViewCell class], nil] setTheme:nil];
             //[[UIBarItem appearance] setTheme:@"UIBarButton"];
+            
+            id barButtonAppearanceInSearchBar = [UIBarButtonItem appearanceWhenContainedIn:[UISearchBar class], nil];
+            [barButtonAppearanceInSearchBar setTitle:getLocalizedString(@"Feed_List_Search_Done", @"Done")];
         }
     }
 }

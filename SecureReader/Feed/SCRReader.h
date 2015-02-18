@@ -14,6 +14,7 @@
 
 + (SCRReader *) sharedInstance;
 
+-(void) removeFeed:(SCRFeed *)feed;
 -(void) setFeed:(SCRFeed *)feed subscribed:(BOOL)subscribed;
 -(void) markItem:(SCRItem *)item asFavorite:(BOOL)favorite;
 
