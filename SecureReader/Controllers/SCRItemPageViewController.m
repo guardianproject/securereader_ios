@@ -75,6 +75,11 @@
         self.authorView.labelAuthorName.text = @"";
     self.authorView.labelAuthorName.text = [self.authorView.labelAuthorName.text uppercaseString];
     
+    if (self.authorView.labelAuthorName.text.length == 0)
+        self.authorView.authorNameHeightConstaint.priority = 1000;
+    else
+        self.authorView.authorNameHeightConstaint.priority = 1;
+    
     self.contentView.text = [self.item.itemDescription stringByConvertingHTMLToPlainText];
 
     [self.view layoutIfNeeded];

@@ -15,5 +15,6 @@
 @property IBOutlet UILabel *labelDate;
 @property IBOutlet UILabel *labelTime;
 @property IBOutlet UILabel *labelAuthorName;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *authorNameHeightConstaint;
 
 @end

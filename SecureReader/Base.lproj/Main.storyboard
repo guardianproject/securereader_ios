@@ -839,11 +839,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="APV-0g-kfm">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="APV-0g-kfm">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zgO-vU-RGa">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="562"/>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zgO-vU-RGa">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="512"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="img_local_share.png" translatesAutoresizingMaskIntoConstraints="NO" id="SaD-dL-rdj">
                                                 <rect key="frame" x="0.0" y="0.0" width="600" height="200"/>
@@ -864,14 +864,9 @@
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7ve-Ed-M2b" customClass="SCRAuthorView">
-                                                <rect key="frame" x="20" y="339" width="560" height="50"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="WzQ-95-aLl"/>
-                                                </constraints>
-                                            </view>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" scrollEnabled="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4vz-a6-cEX" customClass="SCRTextView">
-                                                <rect key="frame" x="20" y="409" width="560" height="133"/>
+                                            <view contentMode="scaleToFill" verticalCompressionResistancePriority="1000" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7ve-Ed-M2b" customClass="SCRAuthorView"/>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" ambiguous="YES" scrollEnabled="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4vz-a6-cEX" customClass="SCRTextView">
+                                                <rect key="frame" x="20" y="359" width="560" height="133"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -885,7 +880,7 @@
                                             <constraint firstAttribute="bottom" secondItem="4vz-a6-cEX" secondAttribute="bottom" priority="999" constant="20" id="87D-B5-fUy"/>
                                             <constraint firstAttribute="trailing" secondItem="SaD-dL-rdj" secondAttribute="trailing" id="BK8-pr-yvf"/>
                                             <constraint firstItem="SaD-dL-rdj" firstAttribute="leading" secondItem="zgO-vU-RGa" secondAttribute="leading" id="BwH-kD-5yD"/>
-                                            <constraint firstItem="7ve-Ed-M2b" firstAttribute="top" secondItem="AhW-0L-8EY" secondAttribute="bottom" constant="20" id="N64-IJ-0wi"/>
+                                            <constraint firstItem="7ve-Ed-M2b" firstAttribute="top" secondItem="AhW-0L-8EY" secondAttribute="bottom" priority="999" constant="20" id="N64-IJ-0wi"/>
                                             <constraint firstItem="7ve-Ed-M2b" firstAttribute="leading" secondItem="zgO-vU-RGa" secondAttribute="leading" constant="20" id="Uxz-1C-n4L"/>
                                             <constraint firstItem="Edy-xh-Hc4" firstAttribute="leading" secondItem="zgO-vU-RGa" secondAttribute="leading" constant="20" id="VgO-b5-BV7"/>
                                             <constraint firstItem="AhW-0L-8EY" firstAttribute="top" secondItem="Edy-xh-Hc4" secondAttribute="bottom" constant="8" id="ckh-NM-9gH"/>
@@ -893,7 +888,7 @@
                                             <constraint firstItem="SaD-dL-rdj" firstAttribute="top" secondItem="zgO-vU-RGa" secondAttribute="top" id="mZ3-2G-VlY"/>
                                             <constraint firstAttribute="trailing" secondItem="7ve-Ed-M2b" secondAttribute="trailing" constant="20" id="mt0-ua-r0C"/>
                                             <constraint firstItem="Edy-xh-Hc4" firstAttribute="top" secondItem="SaD-dL-rdj" secondAttribute="bottom" constant="20" id="u1a-xS-fnW"/>
-                                            <constraint firstItem="4vz-a6-cEX" firstAttribute="top" secondItem="7ve-Ed-M2b" secondAttribute="bottom" constant="20" id="us1-hr-h7m"/>
+                                            <constraint firstItem="4vz-a6-cEX" firstAttribute="top" secondItem="7ve-Ed-M2b" secondAttribute="bottom" priority="999" constant="20" id="us1-hr-h7m"/>
                                             <constraint firstAttribute="trailing" secondItem="4vz-a6-cEX" secondAttribute="trailing" constant="20" id="vZI-PN-M6n"/>
                                             <constraint firstAttribute="trailing" secondItem="AhW-0L-8EY" secondAttribute="trailing" constant="20" id="wJW-zN-zRh"/>
                                         </constraints>
