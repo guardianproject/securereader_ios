@@ -44,6 +44,7 @@ PODS:
   - SQLCipher/common (3.1.0)
   - SQLCipher/fts (3.1.0):
     - SQLCipher/common
+  - SWTableViewCell (0.3.7)
   - wpxmlrpc (0.7)
   - YapDatabase/common (2.5.4):
     - CocoaLumberjack (~> 1)
@@ -60,6 +61,7 @@ DEPENDENCIES:
   - MWFeedParser/NSString+HTML (~> 1.0)
   - PureLayout (~> 2.0)
   - RSSAtomKit (from `Submodules/RSSAtomKit/RSSAtomKit.podspec`)
+  - SWTableViewCell (~> 0.3.7)
   - wpxmlrpc (~> 0.5)
   - YapDatabase/SQLCipher (~> 2.5)
 
@@ -83,6 +85,7 @@ SPEC CHECKSUMS:
   PureLayout: 63a3257320223e8edddcd3afb407445f85a6bf74
   RSSAtomKit: a689044708487c394d9ef4348571f8fd1d6c4d0f
   SQLCipher: 981110217eb93c2779c34fb59e646a1c1da918d8
+  SWTableViewCell: 25de71898e3fcd11cf75707ef90245acf990ec03
   wpxmlrpc: 75ad2e4663c3a65948f5ae0799d948a8445bb0cf
   YapDatabase: c1d6912df1b4a160f7373ee7657d360e29bb00fd
 

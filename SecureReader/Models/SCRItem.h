@@ -15,6 +15,9 @@
 
 @interface SCRItem : RSSItem <SCRYapObject>
 
+/** yapKay for the parent SCRFeed */
+@property (nonatomic, strong) NSString *feedYapKey;
+
 @property (nonatomic) BOOL isFavorite;
 @property (nonatomic) BOOL isReceived;
 

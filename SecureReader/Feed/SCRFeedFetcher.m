@@ -40,11 +40,20 @@
         if ([feed isKindOfClass:[SCRFeed class]]) {
             SCRFeed *nativeFeed = (SCRFeed*)feed;
             [[SCRDatabaseManager sharedInstance].readWriteConnection asyncReadWriteWithBlock:^(YapDatabaseReadWriteTransaction *transaction) {
+                SCRFeed *existingFeed = [transaction objectForKey:nativeFeed.yapKey inCollection:[[nativeFeed class] yapCollection]];
+                if (existingFeed) {
+                    nativeFeed.subscribed = existingFeed.subscribed;
+                }
                 [transaction setObject:nativeFeed forKey:nativeFeed.yapKey inCollection:[[nativeFeed class] yapCollection]];
                 [items enumerateObjectsUsingBlock:^(RSSItem *item, NSUInteger idx, BOOL *stop) {
                     if ([item isKindOfClass:[SCRItem class]]) {
                         SCRItem *nativeItem = (SCRItem*)item;
-                        //NSLog(@"Parsed feed %@ item: %@", feed.title, item.title);
+                        SCRItem *existingItem = [transaction objectForKey:nativeItem.yapKey inCollection:[[nativeItem class] yapCollection]];
+                        if (existingItem) {
+                            nativeItem.isFavorite = existingItem.isFavorite;
+                            nativeItem.isReceived = existingItem.isReceived;
+                        }
+                        nativeItem.feedYapKey = nativeFeed.yapKey;
                         [transaction setObject:nativeItem forKey:nativeItem.yapKey inCollection:[[nativeItem class] yapCollection]];
                     }
                 }];
