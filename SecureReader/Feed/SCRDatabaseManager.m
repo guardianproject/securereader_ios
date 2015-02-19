@@ -48,8 +48,6 @@
 
 - (void) registerViews {
     [self registerAllFeedItemsView];
-    [self registerFavoriteFeedItemsView];
-    [self registerReceivedFeedItemsView];
     [self registerAllFeedsView];
     [self registerAllFeedsSearchView];
 }
@@ -58,53 +56,55 @@
     _allFeedItemsViewName = @"SRCAllFeedItemsViewName";
     YapDatabaseViewGrouping *grouping = [YapDatabaseViewGrouping withObjectBlock:^NSString *(NSString *collection, NSString *key, id object) {
         if ([object isKindOfClass:[SCRItem class]]) {
-            return @"All";
+            SCRItem *item = object;
+            return item.yapGroup;
         }
         return nil;
     }];
     YapDatabaseViewSorting *sorting = [YapDatabaseViewSorting withObjectBlock:^NSComparisonResult(NSString *group, NSString *collection1, NSString *key1, SCRItem *item1, NSString *collection2, NSString *key2, SCRItem *item2) {
         return [item2.publicationDate compare:item1.publicationDate];
     }];
-    YapDatabaseView *databaseView = [[YapDatabaseView alloc] initWithGrouping:grouping sorting:sorting versionTag:@"2" options:nil];
+    YapDatabaseView *databaseView = [[YapDatabaseView alloc] initWithGrouping:grouping sorting:sorting versionTag:@"3" options:nil];
     [self.database asyncRegisterExtension:databaseView withName:self.allFeedItemsViewName completionBlock:^(BOOL ready) {
         NSLog(@"%@ ready %d", self.allFeedItemsViewName, ready);
+        [self registerFavoriteFeedItemsView];
+        [self registerReceivedFeedItemsView];
     }];
 }
 
 - (void) registerFavoriteFeedItemsView {
     _favoriteFeedItemsViewName = @"SRCFavoriteFeedItemsViewName";
-    YapDatabaseViewGrouping *grouping = [YapDatabaseViewGrouping withObjectBlock:^NSString *(NSString *collection, NSString *key, id object) {
-        if ([object isKindOfClass:[SCRItem class]]) {
-            SCRItem *item = object;
-            if ([item isFavorite])
-                return @"Favorites";
+    
+    YapDatabaseViewFiltering *filtering = [YapDatabaseViewFiltering withObjectBlock:^BOOL(NSString *group, NSString *collection, NSString *key, id object) {
+        SCRItem *item = object;
+        if (item.isFavorite) {
+            return YES;
         }
-        return nil;
+        return NO;
     }];
-    YapDatabaseViewSorting *sorting = [YapDatabaseViewSorting withObjectBlock:^NSComparisonResult(NSString *group, NSString *collection1, NSString *key1, SCRItem *item1, NSString *collection2, NSString *key2, SCRItem *item2) {
-        return [item2.publicationDate compare:item1.publicationDate];
-    }];
-    YapDatabaseView *databaseView = [[YapDatabaseView alloc] initWithGrouping:grouping sorting:sorting versionTag:@"2" options:nil];
-    [self.database asyncRegisterExtension:databaseView withName:self.favoriteFeedItemsViewName completionBlock:^(BOOL ready) {
+    
+    YapDatabaseFilteredView *filteredView =
+    [[YapDatabaseFilteredView alloc] initWithParentViewName:self.allFeedItemsViewName
+                                             filtering:filtering];
+    
+    [self.database asyncRegisterExtension:filteredView withName:self.favoriteFeedItemsViewName completionBlock:^(BOOL ready) {
         NSLog(@"%@ ready %d", self.favoriteFeedItemsViewName, ready);
     }];
 }
 
 - (void) registerReceivedFeedItemsView {
     _receivedFeedItemsViewName = @"SRCReceivedFeedItemsViewName";
-    YapDatabaseViewGrouping *grouping = [YapDatabaseViewGrouping withObjectBlock:^NSString *(NSString *collection, NSString *key, id object) {
-        if ([object isKindOfClass:[SCRItem class]]) {
-            SCRItem *item = object;
-            if ([item isReceived])
-                return @"Received";
+    YapDatabaseViewFiltering *filtering = [YapDatabaseViewFiltering withObjectBlock:^BOOL(NSString *group, NSString *collection, NSString *key, id object) {
+        SCRItem *item = object;
+        if (item.isReceived) {
+            return YES;
         }
-        return nil;
+        return NO;
     }];
-    YapDatabaseViewSorting *sorting = [YapDatabaseViewSorting withObjectBlock:^NSComparisonResult(NSString *group, NSString *collection1, NSString *key1, SCRItem *item1, NSString *collection2, NSString *key2, SCRItem *item2) {
-        return [item2.publicationDate compare:item1.publicationDate];
-    }];
-    YapDatabaseView *databaseView = [[YapDatabaseView alloc] initWithGrouping:grouping sorting:sorting versionTag:@"1" options:nil];
-    [self.database asyncRegisterExtension:databaseView withName:self.receivedFeedItemsViewName completionBlock:^(BOOL ready) {
+    YapDatabaseFilteredView *filteredView =
+    [[YapDatabaseFilteredView alloc] initWithParentViewName:self.allFeedItemsViewName
+                                                  filtering:filtering];
+    [self.database asyncRegisterExtension:filteredView withName:self.receivedFeedItemsViewName completionBlock:^(BOOL ready) {
         NSLog(@"%@ ready %d", self.receivedFeedItemsViewName, ready);
     }];
 }

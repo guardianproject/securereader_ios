@@ -17,7 +17,7 @@
 }
 
 - (NSString*) yapGroup {
-    return [self.linkURL host];
+    return self.feedYapKey;
 }
 
 + (NSString*) yapCollection {
