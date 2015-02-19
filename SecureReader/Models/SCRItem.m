@@ -7,6 +7,7 @@
 //
 
 #import "SCRItem.h"
+#import "YapDatabaseTransaction.h"
 
 @implementation SCRItem
 
@@ -18,6 +19,16 @@
 
 - (NSString*) yapGroup {
     return self.feedYapKey;
+}
+
+- (void)saveWithTransaction:(YapDatabaseReadWriteTransaction *)transaction
+{
+    [transaction setObject:self forKey:[self yapKey] inCollection:[[self class] yapCollection]];
+}
+
+- (void)removeWithTransaction:(YapDatabaseReadWriteTransaction *)transaction
+{
+    [transaction removeObjectForKey:[self yapKey] inCollection:[[self class] yapCollection]];
 }
 
 + (NSString*) yapCollection {

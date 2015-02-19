@@ -8,9 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+@class YapDatabaseReadWriteTransaction;
+
 @protocol SCRYapObject <NSObject>
 @required
-- (NSString*) yapKey;
-- (NSString*) yapGroup;
-+ (NSString*) yapCollection;
+- (NSString *)yapKey;
+- (NSString *)yapGroup;
+- (void)saveWithTransaction:(YapDatabaseReadWriteTransaction *)transaction;
+- (void)removeWithTransaction:(YapDatabaseReadWriteTransaction *)transaction;
+
++ (NSString *)yapCollection;
 @end
