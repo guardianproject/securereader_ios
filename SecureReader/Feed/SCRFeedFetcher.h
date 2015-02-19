@@ -17,4 +17,18 @@
  */
 - (void) fetchFeedDataFromURL:(NSURL*)url;
 
+
+/**
+ *  Wraps RSSAtomKit to use network and class defaults
+ *
+ *  @param url OPML document url
+ *  @param completionBlock The result with an array of SCRFeed(s)
+ *  @param completionQuee The queue to callback on if nil uses main queue
+ *
+ */
+
+- (void) fetchFeedsFromOPMLURL:(NSURL *)url
+               completionBlock:(void (^)(NSArray *feeds, NSError *error))completionBlock
+               completionQueue:(dispatch_queue_t)completionQueue;
+
 @end

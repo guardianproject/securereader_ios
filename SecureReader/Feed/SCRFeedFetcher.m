@@ -62,5 +62,9 @@
     } completionQueue:self.callbackQueue];
 }
 
+- (void) fetchFeedsFromOPMLURL:(NSURL *)url completionBlock:(void (^)(NSArray *, NSError *))completionBlock completionQueue:(dispatch_queue_t)completionQueue{
+    [self.atomKit parseFeedsFromOPMLURL:url completionBlock:completionBlock completionQueue:completionQueue];
+}
+
 
 @end
