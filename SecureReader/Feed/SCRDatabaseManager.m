@@ -48,12 +48,13 @@
 
 - (void) registerViews {
     [self registerAllFeedItemsView];
+    [self registerAllFeedItemsUngroupedView];
     [self registerAllFeedsView];
     [self registerAllFeedsSearchView];
 }
 
 - (void) registerAllFeedItemsView {
-    _allFeedItemsViewName = @"SRCAllFeedItemsViewName";
+    _allFeedItemsViewName = @"SCRAllFeedItemsViewName";
     YapDatabaseViewGrouping *grouping = [YapDatabaseViewGrouping withObjectBlock:^NSString *(NSString *collection, NSString *key, id object) {
         if ([object isKindOfClass:[SCRItem class]]) {
             SCRItem *item = object;
@@ -72,8 +73,25 @@
     }];
 }
 
+- (void) registerAllFeedItemsUngroupedView {
+    _allFeedItemsUngroupedViewName = @"SCRAllFeedItemsUngroupedViewName";
+    YapDatabaseViewGrouping *grouping = [YapDatabaseViewGrouping withObjectBlock:^NSString *(NSString *collection, NSString *key, id object) {
+        if ([object isKindOfClass:[SCRItem class]]) {
+            return @"All";
+        }
+        return nil;
+    }];
+    YapDatabaseViewSorting *sorting = [YapDatabaseViewSorting withObjectBlock:^NSComparisonResult(NSString *group, NSString *collection1, NSString *key1, SCRItem *item1, NSString *collection2, NSString *key2, SCRItem *item2) {
+        return [item2.publicationDate compare:item1.publicationDate];
+    }];
+    YapDatabaseView *databaseView = [[YapDatabaseView alloc] initWithGrouping:grouping sorting:sorting versionTag:@"1" options:nil];
+    [self.database asyncRegisterExtension:databaseView withName:self.allFeedItemsUngroupedViewName completionBlock:^(BOOL ready) {
+        NSLog(@"%@ ready %d", self.allFeedItemsUngroupedViewName, ready);
+    }];
+}
+
 - (void) registerFavoriteFeedItemsView {
-    _favoriteFeedItemsViewName = @"SRCFavoriteFeedItemsViewName";
+    _favoriteFeedItemsViewName = @"SCRFavoriteFeedItemsViewName";
     
     YapDatabaseViewFiltering *filtering = [YapDatabaseViewFiltering withObjectBlock:^BOOL(NSString *group, NSString *collection, NSString *key, id object) {
         SCRItem *item = object;
@@ -93,7 +111,7 @@
 }
 
 - (void) registerReceivedFeedItemsView {
-    _receivedFeedItemsViewName = @"SRCReceivedFeedItemsViewName";
+    _receivedFeedItemsViewName = @"SCRReceivedFeedItemsViewName";
     YapDatabaseViewFiltering *filtering = [YapDatabaseViewFiltering withObjectBlock:^BOOL(NSString *group, NSString *collection, NSString *key, id object) {
         SCRItem *item = object;
         if (item.isReceived) {

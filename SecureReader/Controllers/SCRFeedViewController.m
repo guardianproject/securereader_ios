@@ -113,8 +113,11 @@
         _yapViewName =  [SCRDatabaseManager sharedInstance].favoriteFeedItemsViewName;
     else if (type == SCRFeedViewTypeReceived)
         _yapViewName = [SCRDatabaseManager sharedInstance].receivedFeedItemsViewName;
-    else
+    else if (type == SCRFeedViewTypeFeed)
         _yapViewName = [SCRDatabaseManager sharedInstance].allFeedItemsViewName;
+    else
+        _yapViewName = [SCRDatabaseManager sharedInstance].allFeedItemsUngroupedViewName;
+    
     [self setupMappings];
 }
 
@@ -237,7 +240,7 @@
     self.mappings = [[YapDatabaseViewMappings alloc] initWithGroupFilterBlock:^BOOL(NSString *group, YapDatabaseReadTransaction *transaction) {
         if (self.currentFeed != nil)
         {
-            return [group isEqualToString:[self.currentFeed yapGroup]];
+            return [group isEqualToString:[self.currentFeed yapKey]];
         }
         return YES;
     } sortBlock:^NSComparisonResult(NSString *group1, NSString *group2, YapDatabaseReadTransaction *transaction) {
