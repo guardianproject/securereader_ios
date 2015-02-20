@@ -152,20 +152,19 @@
 
 - (void) registerAllFeedsSearchView {
     _allFeedsSearchViewName = @"SCRAllFeedsSearchViewName";
-    YapDatabaseFullTextSearchBlockType ftsBlockType = YapDatabaseFullTextSearchBlockTypeWithObject;
-    YapDatabaseFullTextSearchWithObjectBlock ftsBlock =
-    ^(NSMutableDictionary *dict, NSString *collection, NSString *key, id object){
+    
+    YapDatabaseFullTextSearchHandler *fullTextSearchHandler = [YapDatabaseFullTextSearchHandler withObjectBlock:^(NSMutableDictionary *dict, NSString *collection, NSString *key, id object) {
         if ([object isKindOfClass:[SCRFeed class]]) {
             SCRFeed *feed = (SCRFeed *)object;
             [dict setObject:feed.title forKey:@"title"];
             [dict setObject:feed.feedDescription forKey:@"description"];
         }
-    };
-    YapDatabaseFullTextSearch *fts =
-    [[YapDatabaseFullTextSearch alloc] initWithColumnNames:@[ @"title", @"description" ]
-                                                     block:ftsBlock
-                                                 blockType:ftsBlockType
-                                                versionTag:@"2"];
+    }];
+    
+    YapDatabaseFullTextSearch *fts = [[YapDatabaseFullTextSearch alloc] initWithColumnNames:@[@"title", @"description"]
+                                                                                    handler:fullTextSearchHandler
+                                                                                 versionTag:@"2"];
+    
     [self.database asyncRegisterExtension:fts withName:@"SCRAllFeedsSearchViewNameFTS" completionBlock:^(BOOL ready) {
         YapDatabaseSearchResultsViewOptions *searchViewOptions = [[YapDatabaseSearchResultsViewOptions alloc] init];
         searchViewOptions.isPersistent = NO;
