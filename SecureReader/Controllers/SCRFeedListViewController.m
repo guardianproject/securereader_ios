@@ -97,6 +97,7 @@
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar {
     [self animateTrendingViewToHeight:0 andSearchBarTo:self.searchBarDesignHeight andSegmentedControlTo:0];
     self.isInSearchMode = YES;
+    self.searchResults = nil;
     return YES;
 }
 
@@ -422,6 +423,7 @@ shouldReloadTableForSearchString:(NSString *)searchString
                 switch (index) {
                     case 0:
                         [[SCRReader sharedInstance] setFeed:feed subscribed:YES];
+                        [cell hideUtilityButtonsAnimated:YES];
                         break;
                 }
             }
