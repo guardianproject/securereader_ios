@@ -55,6 +55,7 @@
 		92B23C491A5D303800FFD963 /* SCRMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B23C481A5D303800FFD963 /* SCRMainViewController.m */; };
 		92B23C4C1A5D442F00FFD963 /* SCRAllFeedsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B23C4B1A5D442F00FFD963 /* SCRAllFeedsViewController.m */; };
 		92B23C4F1A5D823700FFD963 /* SCRFavoritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B23C4E1A5D823700FFD963 /* SCRFavoritesViewController.m */; };
+		92B9E9721A9C5FE100A2BED9 /* SCRSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B9E9711A9C5FE100A2BED9 /* SCRSegmentedControl.m */; };
 		92BD509A1A07A36A00F3BD22 /* SCRItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 92BD50991A07A36A00F3BD22 /* SCRItem.m */; };
 		92BD50A11A07A38900F3BD22 /* SCRItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92BD509D1A07A38900F3BD22 /* SCRItemView.m */; };
 		92BD50A21A07A38900F3BD22 /* SCRSourceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92BD509F1A07A38900F3BD22 /* SCRSourceView.m */; };
@@ -166,6 +167,8 @@
 		92B23C4B1A5D442F00FFD963 /* SCRAllFeedsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRAllFeedsViewController.m; sourceTree = "<group>"; };
 		92B23C4D1A5D823700FFD963 /* SCRFavoritesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRFavoritesViewController.h; sourceTree = "<group>"; };
 		92B23C4E1A5D823700FFD963 /* SCRFavoritesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRFavoritesViewController.m; sourceTree = "<group>"; };
+		92B9E9701A9C5FE100A2BED9 /* SCRSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRSegmentedControl.h; sourceTree = "<group>"; };
+		92B9E9711A9C5FE100A2BED9 /* SCRSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRSegmentedControl.m; sourceTree = "<group>"; };
 		92BD50981A07A36A00F3BD22 /* SCRItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRItem.h; sourceTree = "<group>"; };
 		92BD50991A07A36A00F3BD22 /* SCRItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRItem.m; sourceTree = "<group>"; };
 		92BD509C1A07A38900F3BD22 /* SCRItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRItemView.h; sourceTree = "<group>"; };
@@ -432,6 +435,8 @@
 				929BE4BD1A7913A700641647 /* SCRLabel.m */,
 				929BE4BF1A79293900641647 /* SCRTextView.h */,
 				929BE4C01A79293900641647 /* SCRTextView.m */,
+				92B9E9701A9C5FE100A2BED9 /* SCRSegmentedControl.h */,
+				92B9E9711A9C5FE100A2BED9 /* SCRSegmentedControl.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -662,6 +667,7 @@
 				929EEF8119F4F5940020BD75 /* SCRSelectLanguageViewController.m in Sources */,
 				920582881A6EA25000E152D9 /* SCRGradientBackgroundView.m in Sources */,
 				9205828B1A6EA80900E152D9 /* SCRAuthorView.m in Sources */,
+				92B9E9721A9C5FE100A2BED9 /* SCRSegmentedControl.m in Sources */,
 				929EEF5019F4EB100020BD75 /* SCRAppDelegate.m in Sources */,
 				92C458391A233EAA00835B10 /* SCRItemViewController.m in Sources */,
 				92B23C4F1A5D823700FFD963 /* SCRFavoritesViewController.m in Sources */,
