@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "SCRSourceView.h"
+#import <SWTableViewCell.h>
 
-@interface SCRItemView : UITableViewCell
+@interface SCRItemView : SWTableViewCell
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet SCRSourceView *sourceView;

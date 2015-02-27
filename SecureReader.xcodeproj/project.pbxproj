@@ -56,6 +56,11 @@
 		92B23C4C1A5D442F00FFD963 /* SCRAllFeedsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B23C4B1A5D442F00FFD963 /* SCRAllFeedsViewController.m */; };
 		92B23C4F1A5D823700FFD963 /* SCRFavoritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B23C4E1A5D823700FFD963 /* SCRFavoritesViewController.m */; };
 		92B9E9721A9C5FE100A2BED9 /* SCRSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B9E9711A9C5FE100A2BED9 /* SCRSegmentedControl.m */; };
+		92B9E9751A9C7A3D00A2BED9 /* SCRPostsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B9E9741A9C7A3D00A2BED9 /* SCRPostsViewController.m */; };
+		92B9E9781A9C845F00A2BED9 /* SCRYapDatabaseTableDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B9E9771A9C845F00A2BED9 /* SCRYapDatabaseTableDelegate.m */; };
+		92B9E97B1A9CBC0000A2BED9 /* SCRItemTableDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B9E97A1A9CBC0000A2BED9 /* SCRItemTableDelegate.m */; };
+		92B9E97F1A9E1A9F00A2BED9 /* SCRFeedTableDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B9E97E1A9E1A9F00A2BED9 /* SCRFeedTableDelegate.m */; };
+		92B9E9821A9E5EC600A2BED9 /* SCRFeedSearchTableDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B9E9811A9E5EC600A2BED9 /* SCRFeedSearchTableDelegate.m */; };
 		92BD509A1A07A36A00F3BD22 /* SCRItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 92BD50991A07A36A00F3BD22 /* SCRItem.m */; };
 		92BD50A11A07A38900F3BD22 /* SCRItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92BD509D1A07A38900F3BD22 /* SCRItemView.m */; };
 		92BD50A21A07A38900F3BD22 /* SCRSourceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92BD509F1A07A38900F3BD22 /* SCRSourceView.m */; };
@@ -169,6 +174,16 @@
 		92B23C4E1A5D823700FFD963 /* SCRFavoritesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRFavoritesViewController.m; sourceTree = "<group>"; };
 		92B9E9701A9C5FE100A2BED9 /* SCRSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRSegmentedControl.h; sourceTree = "<group>"; };
 		92B9E9711A9C5FE100A2BED9 /* SCRSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRSegmentedControl.m; sourceTree = "<group>"; };
+		92B9E9731A9C7A3D00A2BED9 /* SCRPostsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRPostsViewController.h; sourceTree = "<group>"; };
+		92B9E9741A9C7A3D00A2BED9 /* SCRPostsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRPostsViewController.m; sourceTree = "<group>"; };
+		92B9E9761A9C845F00A2BED9 /* SCRYapDatabaseTableDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRYapDatabaseTableDelegate.h; sourceTree = "<group>"; };
+		92B9E9771A9C845F00A2BED9 /* SCRYapDatabaseTableDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRYapDatabaseTableDelegate.m; sourceTree = "<group>"; };
+		92B9E9791A9CBC0000A2BED9 /* SCRItemTableDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRItemTableDelegate.h; sourceTree = "<group>"; };
+		92B9E97A1A9CBC0000A2BED9 /* SCRItemTableDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRItemTableDelegate.m; sourceTree = "<group>"; };
+		92B9E97D1A9E1A9F00A2BED9 /* SCRFeedTableDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRFeedTableDelegate.h; sourceTree = "<group>"; };
+		92B9E97E1A9E1A9F00A2BED9 /* SCRFeedTableDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRFeedTableDelegate.m; sourceTree = "<group>"; };
+		92B9E9801A9E5EC600A2BED9 /* SCRFeedSearchTableDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRFeedSearchTableDelegate.h; sourceTree = "<group>"; };
+		92B9E9811A9E5EC600A2BED9 /* SCRFeedSearchTableDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRFeedSearchTableDelegate.m; sourceTree = "<group>"; };
 		92BD50981A07A36A00F3BD22 /* SCRItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRItem.h; sourceTree = "<group>"; };
 		92BD50991A07A36A00F3BD22 /* SCRItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRItem.m; sourceTree = "<group>"; };
 		92BD509C1A07A38900F3BD22 /* SCRItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRItemView.h; sourceTree = "<group>"; };
@@ -356,6 +371,7 @@
 		929EEF7319F4F5940020BD75 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				92B9E97C1A9E10B000A2BED9 /* Table Delegates */,
 				925AE57A1A401B02001E182F /* Startup Flow */,
 				925AE57B1A401C33001E182F /* Login */,
 				925AE57C1A401C70001E182F /* Panic */,
@@ -379,6 +395,8 @@
 				92B23C4E1A5D823700FFD963 /* SCRFavoritesViewController.m */,
 				921135751A7A70D40049D82B /* SCRFeedListViewController.h */,
 				921135761A7A70D40049D82B /* SCRFeedListViewController.m */,
+				92B9E9731A9C7A3D00A2BED9 /* SCRPostsViewController.h */,
+				92B9E9741A9C7A3D00A2BED9 /* SCRPostsViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -398,6 +416,21 @@
 				9279F8051A67B9300029572B /* UIBarItem+Theming.m */,
 			);
 			name = "Language & Theming Support";
+			sourceTree = "<group>";
+		};
+		92B9E97C1A9E10B000A2BED9 /* Table Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				92B9E9761A9C845F00A2BED9 /* SCRYapDatabaseTableDelegate.h */,
+				92B9E9771A9C845F00A2BED9 /* SCRYapDatabaseTableDelegate.m */,
+				92B9E9791A9CBC0000A2BED9 /* SCRItemTableDelegate.h */,
+				92B9E97A1A9CBC0000A2BED9 /* SCRItemTableDelegate.m */,
+				92B9E97D1A9E1A9F00A2BED9 /* SCRFeedTableDelegate.h */,
+				92B9E97E1A9E1A9F00A2BED9 /* SCRFeedTableDelegate.m */,
+				92B9E9801A9E5EC600A2BED9 /* SCRFeedSearchTableDelegate.h */,
+				92B9E9811A9E5EC600A2BED9 /* SCRFeedSearchTableDelegate.m */,
+			);
+			name = "Table Delegates";
 			sourceTree = "<group>";
 		};
 		92BD50971A07A36A00F3BD22 /* Models */ = {
@@ -662,6 +695,7 @@
 				92E7B96C1A4186D60038DBCE /* SCRItemViewControllerSegue.m in Sources */,
 				92D169731A30A5C200A84608 /* SCRFeedListCell.m in Sources */,
 				92E7B9741A41C8E60038DBCE /* SCRReceiveShareViewController.m in Sources */,
+				92B9E97F1A9E1A9F00A2BED9 /* SCRFeedTableDelegate.m in Sources */,
 				D9E6575F1A234363000E6301 /* SCRFeed.m in Sources */,
 				928036691A27D4FF0081801A /* SCRItemPageViewController.m in Sources */,
 				929EEF8119F4F5940020BD75 /* SCRSelectLanguageViewController.m in Sources */,
@@ -674,13 +708,16 @@
 				929EEF4D19F4EB100020BD75 /* main.m in Sources */,
 				92B23C491A5D303800FFD963 /* SCRMainViewController.m in Sources */,
 				929EEF8219F4F5940020BD75 /* NSBundle+Language.m in Sources */,
+				92B9E9751A9C7A3D00A2BED9 /* SCRPostsViewController.m in Sources */,
 				929EEF8019F4F5940020BD75 /* SCRLoginViewController.m in Sources */,
+				92B9E9781A9C845F00A2BED9 /* SCRYapDatabaseTableDelegate.m in Sources */,
 				D90F59371A19ECBE008F2DCB /* SCRFeedFetcher.m in Sources */,
 				922DC28019FE920C00FB1274 /* SCRFeedViewController.m in Sources */,
 				92C28DD719F5B26C00E39BDD /* SCRApplication.m in Sources */,
 				929EEF9619F549080020BD75 /* SCRNavigationController.m in Sources */,
 				9279F8061A67B9300029572B /* UIBarItem+Theming.m in Sources */,
 				929EEF8419F4F5940020BD75 /* SCRTheme.m in Sources */,
+				92B9E97B1A9CBC0000A2BED9 /* SCRItemTableDelegate.m in Sources */,
 				925AE5801A404161001E182F /* SCRMoreViewController.m in Sources */,
 				929BE4C11A79293900641647 /* SCRTextView.m in Sources */,
 				D9317B891A886A95005DA904 /* NSFormatter+SecureReader.m in Sources */,
@@ -688,6 +725,7 @@
 				921135771A7A70D40049D82B /* SCRFeedListViewController.m in Sources */,
 				929EEF8319F4F5940020BD75 /* SCRSettings.m in Sources */,
 				92BD50A21A07A38900F3BD22 /* SCRSourceView.m in Sources */,
+				92B9E9821A9E5EC600A2BED9 /* SCRFeedSearchTableDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
