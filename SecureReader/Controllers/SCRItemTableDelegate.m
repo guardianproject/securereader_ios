@@ -146,7 +146,7 @@
 {
     SCRItem *item = [self itemFromTagCollectionView:collectionView];
     NSString *tag = [item.tags objectAtIndex:indexPath.row];
-    cell.labelName.text = tag;
+    cell.labelName.text = [@"#" stringByAppendingString:tag];
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
