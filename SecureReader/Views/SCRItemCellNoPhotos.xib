@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cellNoPhotos" rowHeight="160" id="KiZ-lf-4CO" customClass="SCRItemView">
-            <rect key="frame" x="0.0" y="0.0" width="600" height="160"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cellNoPhotos" rowHeight="215" id="KiZ-lf-4CO" customClass="SCRItemView">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="215"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KiZ-lf-4CO" id="aFV-c5-dfx">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="117"/>
@@ -20,14 +21,29 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZBS-Bn-rcW">
-                        <rect key="frame" x="20" y="66" width="560" height="59"/>
+                        <rect key="frame" x="20" y="66" width="560" height="61"/>
                         <string key="text">Label dsf sdf sdf sdf sdf sdf sdf asdf sadfkjh askdfjh aksdjf aksjdhf kashd fkjash fkhakfhsdjhsjdhfksdh ahf shfkhsdkfhajdfhdh adf  jghg jhg jhg jhg jhg jhg jhg jhg j</string>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" bounces="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="tlH-QI-7dN" userLabel="Tag View">
+                        <rect key="frame" x="20" y="147" width="560" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="1vh-ch-Pjf"/>
+                        </constraints>
+                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="oGF-Ai-ROo">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="theme" value="TagStyle"/>
+                        </userDefinedRuntimeAttributes>
+                    </collectionView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="95J-h5-Jab" customClass="SCRGradientBackgroundView">
-                        <rect key="frame" x="0.0" y="144" width="600" height="15"/>
+                        <rect key="frame" x="0.0" y="200" width="600" height="15"/>
                         <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="3YB-wD-ETg"/>
@@ -40,20 +56,28 @@
                 <constraints>
                     <constraint firstItem="ZBS-Bn-rcW" firstAttribute="top" secondItem="mYk-s0-uJZ" secondAttribute="bottom" constant="8" id="018-VA-QCL"/>
                     <constraint firstAttribute="trailing" secondItem="95J-h5-Jab" secondAttribute="trailing" id="0Xk-se-2TO"/>
+                    <constraint firstItem="tlH-QI-7dN" firstAttribute="leading" secondItem="aFV-c5-dfx" secondAttribute="leading" constant="20" id="47B-5A-9ua"/>
+                    <constraint firstItem="tlH-QI-7dN" firstAttribute="top" secondItem="ZBS-Bn-rcW" secondAttribute="bottom" constant="20" id="9G7-ZU-I83"/>
+                    <constraint firstItem="95J-h5-Jab" firstAttribute="top" secondItem="tlH-QI-7dN" secondAttribute="bottom" priority="999" constant="20" id="PNR-11-dOt"/>
                     <constraint firstItem="ZBS-Bn-rcW" firstAttribute="leading" secondItem="aFV-c5-dfx" secondAttribute="leading" constant="20" id="PrQ-Yj-dqg"/>
                     <constraint firstItem="mYk-s0-uJZ" firstAttribute="leading" secondItem="aFV-c5-dfx" secondAttribute="leading" constant="20" id="S8z-Bj-6pw"/>
                     <constraint firstItem="mYk-s0-uJZ" firstAttribute="top" secondItem="aFV-c5-dfx" secondAttribute="top" constant="8" id="XQ5-zU-24W"/>
                     <constraint firstItem="95J-h5-Jab" firstAttribute="leading" secondItem="aFV-c5-dfx" secondAttribute="leading" id="ZWG-qi-diJ"/>
+                    <constraint firstAttribute="trailing" secondItem="tlH-QI-7dN" secondAttribute="trailing" constant="20" id="a3O-jW-eYj"/>
                     <constraint firstAttribute="trailing" secondItem="mYk-s0-uJZ" secondAttribute="trailing" constant="20" id="fsg-sl-wCT"/>
-                    <constraint firstItem="95J-h5-Jab" firstAttribute="top" secondItem="ZBS-Bn-rcW" secondAttribute="bottom" constant="19" id="iKa-IK-YxB"/>
                     <constraint firstAttribute="bottom" secondItem="95J-h5-Jab" secondAttribute="bottom" id="ijo-H0-et8"/>
                     <constraint firstAttribute="trailing" secondItem="ZBS-Bn-rcW" secondAttribute="trailing" constant="20" id="wzv-IE-Pgk"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="sourceView" destination="mYk-s0-uJZ" id="00v-Nd-8mk"/>
+                <outlet property="tagCollectionView" destination="tlH-QI-7dN" id="2GJ-sQ-UAr"/>
+                <outlet property="tagCollectionViewBottomConstraint" destination="PNR-11-dOt" id="Zvd-pf-1Vx"/>
+                <outlet property="tagCollectionViewHeightConstraint" destination="1vh-ch-Pjf" id="oyP-55-GvE"/>
+                <outlet property="tagCollectionViewLayout" destination="oGF-Ai-ROo" id="SrR-Lw-9u5"/>
                 <outlet property="titleView" destination="ZBS-Bn-rcW" id="FwT-yq-Pxg"/>
             </connections>
+            <point key="canvasLocation" x="218" y="336.5"/>
         </tableViewCell>
     </objects>
 </document>

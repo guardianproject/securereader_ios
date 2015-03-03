@@ -9,7 +9,7 @@
 #import "SCRYapDatabaseTableDelegate.h"
 #import "SCRFeed.h"
 
-@interface SCRItemTableDelegate : SCRYapDatabaseTableDelegate
+@interface SCRItemTableDelegate : SCRYapDatabaseTableDelegate<UICollectionViewDelegateFlowLayout, UICollectionViewDataSource>
 
 - (id)initWithTableView:(UITableView *)tableView viewName:(NSString*)viewName filter:(SCRFeed *)feed delegate:(id<SCRYapDatabaseTableDelegateDelegate>)delegate;
 

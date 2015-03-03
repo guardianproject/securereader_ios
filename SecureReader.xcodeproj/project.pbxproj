@@ -13,6 +13,8 @@
 		921135771A7A70D40049D82B /* SCRFeedListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 921135761A7A70D40049D82B /* SCRFeedListViewController.m */; };
 		922DC28019FE920C00FB1274 /* SCRFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 922DC27F19FE920C00FB1274 /* SCRFeedViewController.m */; };
 		9239049E1A07E365004EEE7E /* background_debut_light.png in Resources */ = {isa = PBXBuildFile; fileRef = 9239049D1A07E365004EEE7E /* background_debut_light.png */; };
+		923FFFA11AA4A75600BC83D6 /* SCRItemTagCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 923FFFA01AA4A75600BC83D6 /* SCRItemTagCell.xib */; };
+		923FFFA41AA4AA2B00BC83D6 /* SCRItemTagCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 923FFFA31AA4AA2B00BC83D6 /* SCRItemTagCell.m */; };
 		92458CC71A6D4E4600C17EFA /* SCRReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 92458CC61A6D4E4600C17EFA /* SCRReader.m */; };
 		924BBFC01A08DCEB00A32940 /* InAppSettings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 924BBFBF1A08DCEB00A32940 /* InAppSettings.bundle */; };
 		925AE5801A404161001E182F /* SCRMoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 925AE57F1A404161001E182F /* SCRMoreViewController.m */; };
@@ -104,6 +106,9 @@
 		922DC27E19FE920C00FB1274 /* SCRFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SCRFeedViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		922DC27F19FE920C00FB1274 /* SCRFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SCRFeedViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		9239049D1A07E365004EEE7E /* background_debut_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_debut_light.png; sourceTree = "<group>"; };
+		923FFFA01AA4A75600BC83D6 /* SCRItemTagCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SCRItemTagCell.xib; sourceTree = "<group>"; };
+		923FFFA21AA4AA2B00BC83D6 /* SCRItemTagCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRItemTagCell.h; sourceTree = "<group>"; };
+		923FFFA31AA4AA2B00BC83D6 /* SCRItemTagCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRItemTagCell.m; sourceTree = "<group>"; };
 		92458CC51A6D4E4600C17EFA /* SCRReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SCRReader.h; path = SecureReader/Feed/SCRReader.h; sourceTree = SOURCE_ROOT; };
 		92458CC61A6D4E4600C17EFA /* SCRReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SCRReader.m; path = SecureReader/Feed/SCRReader.m; sourceTree = SOURCE_ROOT; };
 		924BBFBF1A08DCEB00A32940 /* InAppSettings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = InAppSettings.bundle; sourceTree = "<group>"; };
@@ -470,6 +475,9 @@
 				929BE4C01A79293900641647 /* SCRTextView.m */,
 				92B9E9701A9C5FE100A2BED9 /* SCRSegmentedControl.h */,
 				92B9E9711A9C5FE100A2BED9 /* SCRSegmentedControl.m */,
+				923FFFA01AA4A75600BC83D6 /* SCRItemTagCell.xib */,
+				923FFFA21AA4AA2B00BC83D6 /* SCRItemTagCell.h */,
+				923FFFA31AA4AA2B00BC83D6 /* SCRItemTagCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -605,6 +613,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				923FFFA11AA4A75600BC83D6 /* SCRItemTagCell.xib in Resources */,
 				929EEF8C19F4FC9D0020BD75 /* Localizable.strings in Resources */,
 				92E7B96E1A41A2AE0038DBCE /* SCRReceiveShareView.xib in Resources */,
 				9284FA741A3899730085638D /* ic_panic_down.png in Resources */,
@@ -709,6 +718,7 @@
 				92B23C491A5D303800FFD963 /* SCRMainViewController.m in Sources */,
 				929EEF8219F4F5940020BD75 /* NSBundle+Language.m in Sources */,
 				92B9E9751A9C7A3D00A2BED9 /* SCRPostsViewController.m in Sources */,
+				923FFFA41AA4AA2B00BC83D6 /* SCRItemTagCell.m in Sources */,
 				929EEF8019F4F5940020BD75 /* SCRLoginViewController.m in Sources */,
 				92B9E9781A9C845F00A2BED9 /* SCRYapDatabaseTableDelegate.m in Sources */,
 				D90F59371A19ECBE008F2DCB /* SCRFeedFetcher.m in Sources */,

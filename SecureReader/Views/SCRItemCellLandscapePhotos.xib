@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cellLandscapePhotos" rowHeight="330" id="NEL-3c-gR4" customClass="SCRItemView">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cellLandscapePhotos" rowHeight="400" id="NEL-3c-gR4" customClass="SCRItemView">
             <rect key="frame" x="0.0" y="0.0" width="600" height="350"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" horizontalHuggingPriority="1000" tableViewCell="NEL-3c-gR4" id="OWu-va-Orj">
@@ -26,12 +27,26 @@
                         </constraints>
                     </view>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="Tmh-Vq-M3f">
-                        <rect key="frame" x="20" y="266" width="560" height="48"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" bounces="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="sBi-Hl-ouM" userLabel="Tag View">
+                        <rect key="frame" x="20" y="286" width="560" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="HU2-hU-R5N"/>
+                        </constraints>
+                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="KvJ-WH-Re3">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="theme" value="TagStyle"/>
+                        </userDefinedRuntimeAttributes>
+                    </collectionView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rfn-0S-4Oj" customClass="SCRGradientBackgroundView">
-                        <rect key="frame" x="0.0" y="334" width="600" height="15"/>
+                        <rect key="frame" x="0.0" y="335" width="600" height="15"/>
                         <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="h8h-7g-wBZ"/>
@@ -42,15 +57,18 @@
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="rfn-0S-4Oj" firstAttribute="top" secondItem="Tmh-Vq-M3f" secondAttribute="bottom" constant="20" id="0uw-cu-v5N"/>
                     <constraint firstItem="o8j-Kk-Uca" firstAttribute="top" secondItem="592-5l-tQ7" secondAttribute="bottom" constant="8" id="4DW-A7-xFc"/>
                     <constraint firstItem="592-5l-tQ7" firstAttribute="top" secondItem="OWu-va-Orj" secondAttribute="top" id="6sH-jo-trn"/>
+                    <constraint firstItem="rfn-0S-4Oj" firstAttribute="top" secondItem="sBi-Hl-ouM" secondAttribute="bottom" priority="999" constant="20" id="8Y0-1e-ris"/>
                     <constraint firstItem="Tmh-Vq-M3f" firstAttribute="leading" secondItem="OWu-va-Orj" secondAttribute="leading" constant="20" id="9zr-KL-EbB"/>
                     <constraint firstAttribute="trailing" secondItem="Tmh-Vq-M3f" secondAttribute="trailing" constant="20" id="M0K-BQ-tso"/>
                     <constraint firstItem="o8j-Kk-Uca" firstAttribute="leading" secondItem="OWu-va-Orj" secondAttribute="leading" constant="20" id="Q9s-Mf-F5u"/>
                     <constraint firstAttribute="trailing" secondItem="592-5l-tQ7" secondAttribute="trailing" id="Uy6-VF-2EM"/>
+                    <constraint firstAttribute="trailing" secondItem="sBi-Hl-ouM" secondAttribute="trailing" constant="20" id="Wff-5K-mg0"/>
                     <constraint firstItem="Tmh-Vq-M3f" firstAttribute="top" secondItem="o8j-Kk-Uca" secondAttribute="bottom" constant="8" id="WpD-u6-vfe"/>
+                    <constraint firstItem="sBi-Hl-ouM" firstAttribute="top" secondItem="Tmh-Vq-M3f" secondAttribute="bottom" constant="20" id="dQ1-dr-3Hf"/>
                     <constraint firstItem="rfn-0S-4Oj" firstAttribute="leading" secondItem="OWu-va-Orj" secondAttribute="leading" id="irQ-yI-xdk"/>
+                    <constraint firstItem="sBi-Hl-ouM" firstAttribute="leading" secondItem="OWu-va-Orj" secondAttribute="leading" constant="20" id="kR0-hD-d9Z"/>
                     <constraint firstAttribute="trailing" secondItem="o8j-Kk-Uca" secondAttribute="trailing" constant="20" id="lVt-Yw-8C9"/>
                     <constraint firstAttribute="trailing" secondItem="rfn-0S-4Oj" secondAttribute="trailing" id="qBA-Ij-h1Y"/>
                     <constraint firstAttribute="bottom" secondItem="rfn-0S-4Oj" secondAttribute="bottom" id="v9I-2D-vec"/>
@@ -60,6 +78,10 @@
             <connections>
                 <outlet property="imageView" destination="592-5l-tQ7" id="VrQ-uB-xbU"/>
                 <outlet property="sourceView" destination="o8j-Kk-Uca" id="cZG-J3-qGy"/>
+                <outlet property="tagCollectionView" destination="sBi-Hl-ouM" id="dE5-So-RR3"/>
+                <outlet property="tagCollectionViewBottomConstraint" destination="8Y0-1e-ris" id="vG4-nv-H6W"/>
+                <outlet property="tagCollectionViewHeightConstraint" destination="HU2-hU-R5N" id="6uK-kV-mbZ"/>
+                <outlet property="tagCollectionViewLayout" destination="KvJ-WH-Re3" id="3XX-43-LpD"/>
                 <outlet property="titleView" destination="Tmh-Vq-M3f" id="s3k-7R-IRH"/>
             </connections>
             <point key="canvasLocation" x="389" y="124"/>

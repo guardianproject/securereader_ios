@@ -156,5 +156,14 @@
 		<key>parent</key>
 		<string>SourceTimeStyle</string>
 	</dict>
+	<key>TagStyle</key>
+	<dict>
+		<key>backgroundColor</key>
+		<string>#ffffffff</string>
+		<key>textSize</key>
+		<integer>15</integer>
+		<key>textColor</key>
+		<string>#ff00ff00</string>
+	</dict>
 </dict>
 </plist>
