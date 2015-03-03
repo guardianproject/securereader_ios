@@ -2,6 +2,11 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>Colors</key>
+	<dict>
+		<key>highlightColor</key>
+		<string>#ff95ab55</string>
+	</dict>
 	<key>SCRSegmentedControl</key>
 	<dict>
 		<key>edgeHeight</key>
@@ -9,7 +14,7 @@
 		<key>backgroundColorNormal</key>
 		<string>#00000000</string>
 		<key>backgroundColorSelected</key>
-		<string>#ff95ab55</string>
+		<string>@Colors/highlightColor</string>
 		<key>textSizeNormal</key>
 		<integer>10</integer>
 		<key>textColorNormal</key>
@@ -17,7 +22,7 @@
 		<key>textSizeSelected</key>
 		<integer>12</integer>
 		<key>textColorSelected</key>
-		<string>#ff95ab55</string>
+		<string>@Colors/highlightColor</string>
 	</dict>
 	<key>FeedListSearchStyle</key>
 	<dict>
@@ -163,7 +168,7 @@
 		<key>textSize</key>
 		<integer>15</integer>
 		<key>textColor</key>
-		<string>#ff00ff00</string>
+		<string>@Colors/highlightColor</string>
 	</dict>
 </dict>
 </plist>

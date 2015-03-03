@@ -125,10 +125,7 @@ static NSMutableDictionary *themes = nil;
     NSObject *value = [SCRTheme getProperty:property forTheme:theme];
     if (value != nil)
     {
-        if ([value isKindOfClass:[NSString class]])
-            return [self colorWithHexString:(NSString *)value];
-        else
-            return (UIColor *)value;
+        return [self colorWithPropertyValue:value];
     }
     return nil;
 }
@@ -141,12 +138,7 @@ static NSMutableDictionary *themes = nil;
         {
             if (save && [control respondsToSelector:@selector(backgroundColor)])
                 [SCRTheme saveProperty:property value:[control performSelector:@selector(backgroundColor)] forControl:control];
-            UIColor *color = nil;
-            NSObject *value = [self getNillableProperty:property fromDict:style];
-            if ([value isKindOfClass:[NSString class]])
-                color =  [self colorWithHexString:(NSString *)value];
-            else
-                color = (UIColor *)value;
+            UIColor *color = [self colorWithPropertyValue:[self getNillableProperty:property fromDict:style]];
             [control performSelector:@selector(setBackgroundColor:) withObject:color];
         }
         else if ([property isEqualToString:@"background"] && [control respondsToSelector:@selector(setBackgroundColor:)])
@@ -165,36 +157,21 @@ static NSMutableDictionary *themes = nil;
         {
             if (save && [control respondsToSelector:@selector(tintColor)])
                 [SCRTheme saveProperty:property value:[control performSelector:@selector(tintColor)] forControl:control];
-            UIColor *color = nil;
-            NSObject *value = [self getNillableProperty:property fromDict:style];
-            if ([value isKindOfClass:[NSString class]])
-                color =  [self colorWithHexString:(NSString *)value];
-            else
-                color = (UIColor *)value;
+            UIColor *color = [self colorWithPropertyValue:[self getNillableProperty:property fromDict:style]];
             [control performSelector:@selector(setTintColor:) withObject:color];
         }
         else if ([property isEqualToString:@"onTintColor"] && [control respondsToSelector:@selector(setOnTintColor:)])
         {
             if (save && [control respondsToSelector:@selector(onTintColor)])
                 [SCRTheme saveProperty:property value:[control performSelector:@selector(onTintColor)] forControl:control];
-            UIColor *color = nil;
-            NSObject *value = [self getNillableProperty:property fromDict:style];
-            if ([value isKindOfClass:[NSString class]])
-                color =  [self colorWithHexString:(NSString *)value];
-            else
-                color = (UIColor *)value;
+            UIColor *color = [self colorWithPropertyValue:[self getNillableProperty:property fromDict:style]];
             [control performSelector:@selector(setOnTintColor:) withObject:color];
         }
         else if ([property isEqualToString:@"textColor"] && [control respondsToSelector:@selector(setTextColor:)])
         {
             if (save && [control respondsToSelector:@selector(textColor)])
                 [SCRTheme saveProperty:property value:[control performSelector:@selector(textColor)] forControl:control];
-            UIColor *color = nil;
-            NSObject *value = [self getNillableProperty:property fromDict:style];
-            if ([value isKindOfClass:[NSString class]])
-                color =  [self colorWithHexString:(NSString *)value];
-            else
-                color = (UIColor *)value;
+            UIColor *color = [self colorWithPropertyValue:[self getNillableProperty:property fromDict:style]];
             [control performSelector:@selector(setTextColor:) withObject:color];
         }
         else if ([property isEqualToString:@"corners"])
@@ -275,6 +252,28 @@ static NSMutableDictionary *themes = nil;
             [*dict setValue:[themeDict objectForKey:property] forKey:property];
         }
     }
+}
+
++ (UIColor *) colorWithPropertyValue:(NSObject *)value
+{
+    UIColor *color = nil;
+    if ([value isKindOfClass:[NSString class]])
+    {
+        NSString *colorString = (NSString *)value;
+        if ([colorString hasPrefix:@"@"])
+        {
+            // Property reference, format is @ThemeName/PropertyName
+            //
+            NSArray* ref = [[colorString substringFromIndex:1] componentsSeparatedByString: @"/"];
+            NSString *theme = (NSString *) [ref objectAtIndex:0];
+            NSString *property = (NSString *) [ref objectAtIndex:1];
+            return [self getColorProperty:property forTheme:theme];
+        }
+        color =  [self colorWithHexString:colorString];
+    }
+    else
+        color = (UIColor *)value;
+    return color;
 }
 
 + (UIColor*) colorWithHexString:(NSString*)hexColorString
