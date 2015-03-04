@@ -108,6 +108,8 @@
     UITableViewCell *prototype = [self prototypeWithIdentifier:[self identifierForItem:item]];
     prototype.bounds = CGRectMake(0.0f, 0.0f, CGRectGetWidth(tableView.bounds), CGRectGetHeight(prototype.bounds));
     [self configureCell:prototype forItem:item];
+    if (self.delegate != nil && [self.delegate respondsToSelector:@selector(configureCell:item:delegate:)])
+        [self.delegate configureCell:prototype item:item delegate:self];
     [prototype setNeedsLayout];
     [prototype layoutIfNeeded];
     CGSize size = [prototype.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];

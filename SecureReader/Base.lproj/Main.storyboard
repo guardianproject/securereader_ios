@@ -484,6 +484,39 @@
             </objects>
             <point key="canvasLocation" x="-431" y="2024"/>
         </scene>
+        <!--Feed Share View Controller-->
+        <scene sceneID="wvj-dT-Vhx">
+            <objects>
+                <viewController storyboardIdentifier="feedShareViewController" id="R69-Of-EBF" customClass="SCRFeedShareViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3Bd-gh-nlA"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ykm-5i-YrB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="r1S-8N-nCs">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Iv7-oB-rix">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Iv7-oB-rix" secondAttribute="trailing" id="27j-md-fmH"/>
+                            <constraint firstItem="Ykm-5i-YrB" firstAttribute="top" secondItem="Iv7-oB-rix" secondAttribute="bottom" id="Gp0-xA-9ri"/>
+                            <constraint firstItem="Iv7-oB-rix" firstAttribute="leading" secondItem="r1S-8N-nCs" secondAttribute="leading" id="W0S-Om-Ev6"/>
+                            <constraint firstItem="Iv7-oB-rix" firstAttribute="top" secondItem="r1S-8N-nCs" secondAttribute="top" id="rZN-5W-JjD"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="Iv7-oB-rix" id="WbS-o8-yd3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6ea-xG-I6R" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-431" y="2771"/>
+        </scene>
         <!--More-->
         <scene sceneID="yOw-uk-zJq">
             <objects>
@@ -947,21 +980,16 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gQR-0h-IJm" userLabel="Trending">
-                                <rect key="frame" x="0.0" y="114" width="600" height="122"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q59-La-Fgp" userLabel="Left half">
-                                        <rect key="frame" x="0.0" y="0.0" width="300" height="122"/>
                                         <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="54i-r2-a2J" userLabel="Right half">
-                                        <rect key="frame" x="300" y="0.0" width="300" height="122"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xbt-6K-j6v" userLabel="Top half">
-                                                <rect key="frame" x="0.0" y="0.0" width="300" height="61"/>
                                                 <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QhU-Sc-UNK" userLabel="Bottom half">
-                                                <rect key="frame" x="0.0" y="61" width="300" height="61"/>
                                                 <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             </view>
                                         </subviews>
@@ -981,7 +1009,7 @@
                                 <constraints>
                                     <constraint firstItem="54i-r2-a2J" firstAttribute="width" secondItem="Q59-La-Fgp" secondAttribute="width" id="2NS-Bv-fgU"/>
                                     <constraint firstItem="54i-r2-a2J" firstAttribute="leading" secondItem="Q59-La-Fgp" secondAttribute="trailing" id="3Pw-wD-dtB"/>
-                                    <constraint firstAttribute="height" constant="122" id="I6Y-Jg-fap"/>
+                                    <constraint firstAttribute="height" id="I6Y-Jg-fap"/>
                                     <constraint firstItem="54i-r2-a2J" firstAttribute="top" secondItem="gQR-0h-IJm" secondAttribute="top" id="LER-t5-Fg6"/>
                                     <constraint firstItem="Q59-La-Fgp" firstAttribute="leading" secondItem="gQR-0h-IJm" secondAttribute="leading" id="MFm-za-grE"/>
                                     <constraint firstAttribute="bottom" secondItem="Q59-La-Fgp" secondAttribute="bottom" id="RPA-g3-j51"/>
@@ -991,7 +1019,7 @@
                                 </constraints>
                             </view>
                             <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="0XR-cD-wLm">
-                                <rect key="frame" x="0.0" y="236" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="114" width="600" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="rMB-BN-mXC"/>
                                 </constraints>
@@ -1004,7 +1032,7 @@
                                 </connections>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="fOd-IP-wzi">
-                                <rect key="frame" x="0.0" y="280" width="600" height="320"/>
+                                <rect key="frame" x="0.0" y="158" width="600" height="442"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <sections/>
                                 <connections>

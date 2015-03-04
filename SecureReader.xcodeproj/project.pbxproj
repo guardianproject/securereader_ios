@@ -70,6 +70,7 @@
 		92BD50AD1A07A74500F3BD22 /* ic_launcher.png in Resources */ = {isa = PBXBuildFile; fileRef = 92BD50AB1A07A74500F3BD22 /* ic_launcher.png */; };
 		92BD50AE1A07A74500F3BD22 /* img_local_share.png in Resources */ = {isa = PBXBuildFile; fileRef = 92BD50AC1A07A74500F3BD22 /* img_local_share.png */; };
 		92C28DD719F5B26C00E39BDD /* SCRApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C28DD619F5B26C00E39BDD /* SCRApplication.m */; };
+		92C2A7411AA74BDF00B18672 /* SCRFeedShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C2A7401AA74BDF00B18672 /* SCRFeedShareViewController.m */; };
 		92C3F0901A80CDE000DFA438 /* SCRFeedListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92C3F08F1A80CDE000DFA438 /* SCRFeedListCell.xib */; };
 		92C458391A233EAA00835B10 /* SCRItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C458381A233EAA00835B10 /* SCRItemViewController.m */; };
 		92D169731A30A5C200A84608 /* SCRFeedListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92D169721A30A5C200A84608 /* SCRFeedListCell.m */; };
@@ -200,6 +201,8 @@
 		92BD50AC1A07A74500F3BD22 /* img_local_share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_local_share.png; sourceTree = "<group>"; };
 		92C28DD519F5B26C00E39BDD /* SCRApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SCRApplication.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		92C28DD619F5B26C00E39BDD /* SCRApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SCRApplication.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		92C2A73F1AA74BDF00B18672 /* SCRFeedShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRFeedShareViewController.h; sourceTree = "<group>"; };
+		92C2A7401AA74BDF00B18672 /* SCRFeedShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRFeedShareViewController.m; sourceTree = "<group>"; };
 		92C3F08F1A80CDE000DFA438 /* SCRFeedListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SCRFeedListCell.xib; sourceTree = "<group>"; };
 		92C458371A233EAA00835B10 /* SCRItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRItemViewController.h; sourceTree = "<group>"; };
 		92C458381A233EAA00835B10 /* SCRItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRItemViewController.m; sourceTree = "<group>"; };
@@ -402,6 +405,8 @@
 				921135761A7A70D40049D82B /* SCRFeedListViewController.m */,
 				92B9E9731A9C7A3D00A2BED9 /* SCRPostsViewController.h */,
 				92B9E9741A9C7A3D00A2BED9 /* SCRPostsViewController.m */,
+				92C2A73F1AA74BDF00B18672 /* SCRFeedShareViewController.h */,
+				92C2A7401AA74BDF00B18672 /* SCRFeedShareViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -709,6 +714,7 @@
 				928036691A27D4FF0081801A /* SCRItemPageViewController.m in Sources */,
 				929EEF8119F4F5940020BD75 /* SCRSelectLanguageViewController.m in Sources */,
 				920582881A6EA25000E152D9 /* SCRGradientBackgroundView.m in Sources */,
+				92C2A7411AA74BDF00B18672 /* SCRFeedShareViewController.m in Sources */,
 				9205828B1A6EA80900E152D9 /* SCRAuthorView.m in Sources */,
 				92B9E9721A9C5FE100A2BED9 /* SCRSegmentedControl.m in Sources */,
 				929EEF5019F4EB100020BD75 /* SCRAppDelegate.m in Sources */,

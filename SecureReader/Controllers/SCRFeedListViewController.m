@@ -25,6 +25,7 @@
 #import "SCRSettings.h"
 #import "SCRFeedTableDelegate.h"
 #import "SCRFeedSearchTableDelegate.h"
+#import "SCRFeedShareViewController.h"
 
 #define WEB_SEARCH_URL_FORMAT @"http://securereader.guardianproject.info/opml/find.php?lang=%1$@&term=%2$@"
 
@@ -33,7 +34,7 @@
 @property UIActivityIndicatorView *searchModeSpinner;
 
 @property (nonatomic, strong) SCRYapDatabaseTableDelegate *subscribedTableDelegate;
-@property (nonatomic, strong) SCRYapDatabaseTableDelegate *unSubscribedTableDelegate;
+@property (nonatomic, strong) SCRYapDatabaseTableDelegate *allTableDelegate;
 @property (nonatomic, strong) SCRFeedSearchTableDelegate *searchTableDelegate;
 
 @property int segmentedControlDesignHeight;
@@ -52,7 +53,7 @@
     [self.searchDisplayController.searchResultsTableView registerNib:nib forCellReuseIdentifier:@"cellFeed"];
 
     self.subscribedTableDelegate = [[SCRFeedTableDelegate alloc] initWithTableView:self.tableView viewName:[SCRDatabaseManager sharedInstance].subscribedFeedsViewName delegate:self];
-    self.unSubscribedTableDelegate = [[SCRFeedTableDelegate alloc] initWithTableView:self.tableView viewName:[SCRDatabaseManager sharedInstance].unsubscribedFeedsViewName delegate:self];
+    self.allTableDelegate = [[SCRFeedTableDelegate alloc] initWithTableView:self.tableView viewName:[SCRDatabaseManager sharedInstance].allFeedsViewName delegate:self];
     [self.subscribedTableDelegate setActive:YES];
 
     self.searchTableDelegate = [[SCRFeedSearchTableDelegate alloc] initWithTableView:self.searchDisplayController.searchResultsTableView viewName:[SCRDatabaseManager sharedInstance].allFeedsSearchViewName delegate:self];
@@ -65,6 +66,7 @@
     self.searchBarDesignHeight = self.searchBarHeightConstraint.constant;
     
     [self hideTrendingView:NO];
+    [self showShareBarButton:YES];
 }
 
 - (void) viewDidAppear:(BOOL)animated {
@@ -197,17 +199,39 @@ shouldReloadTableForSearchString:(NSString *)searchString
             [self.navigationController pushViewController:feedViewController animated:YES];
         }
     }
+    else
+    {
+        SCRFeed *feed = (SCRFeed *)[delegate itemForIndexPath:indexPath];
+        if (feed != nil)
+        {
+            [[SCRReader sharedInstance] setFeed:feed subscribed:!feed.subscribed];
+        }
+    }
 }
 
 - (void)configureCell:(UITableViewCell *)cell item:(NSObject *)item delegate:(SCRYapDatabaseTableDelegate *)delegate
 {
     SCRFeedListCell *feedListCell = (SCRFeedListCell *)cell;
     if (delegate == self.subscribedTableDelegate)
+    {
         feedListCell.rightUtilityButtons = [self rightButtonsFollowing];
+        feedListCell.iconViewWidthConstraint.constant = 20;
+        [feedListCell.iconView setHidden:YES];
+    }
     else if ([(SCRFeed*)item subscribed])
-        feedListCell.rightUtilityButtons = [self rightButtonsExploreFollowed];
-    else
+    {
         feedListCell.rightUtilityButtons = [self rightButtonsExplore];
+        feedListCell.iconViewWidthConstraint.constant = 70;
+        [feedListCell.iconView setImage:[UIImage imageNamed:@"ic_action2_chat.png"]];
+        [feedListCell.iconView setHidden:NO];
+    }
+    else
+    {
+        feedListCell.rightUtilityButtons = [self rightButtonsExplore];
+        feedListCell.iconViewWidthConstraint.constant = 70;
+        [feedListCell.iconView setImage:[UIImage imageNamed:@"ic_action2_share.png"]];
+        [feedListCell.iconView setHidden:NO];
+    }
     feedListCell.delegate = self;
 }
 
@@ -228,17 +252,8 @@ shouldReloadTableForSearchString:(NSString *)searchString
 {
     NSMutableArray *rightUtilityButtons = [NSMutableArray new];
     [rightUtilityButtons sw_addUtilityButtonWithColor:
-     [UIColor colorWithRed:0.188f green:1.0f blue:0.188f alpha:1.0]
-                                                title:getLocalizedString(@"Feed_List_Action_Follow", @"Follow")];
-    return rightUtilityButtons;
-}
-
-- (NSArray *)rightButtonsExploreFollowed
-{
-    NSMutableArray *rightUtilityButtons = [NSMutableArray new];
-    [rightUtilityButtons sw_addUtilityButtonWithColor:
-     [UIColor colorWithRed:0.78f green:0.78f blue:0.78f alpha:1.0]
-                                                title:getLocalizedString(@"Feed_List_Action_Followed", @"Already Followed")];
+     [UIColor colorWithRed:1.0f green:0.231f blue:0.188 alpha:1.0f]
+                                                title:getLocalizedString(@"Feed_List_Action_Delete", @"Delete")];
     return rightUtilityButtons;
 }
 
@@ -292,8 +307,30 @@ shouldReloadTableForSearchString:(NSString *)searchString
 - (IBAction)segmentedControlValueChanged:(id)sender {
     
     [self.subscribedTableDelegate setActive:![self exploring]];
-    [self.unSubscribedTableDelegate setActive:[self exploring]];
+    [self.allTableDelegate setActive:[self exploring]];
     [self showTrendingView];
+    [self showShareBarButton:![self exploring]];
+}
+
+- (void) showShareBarButton:(BOOL) show
+{
+    if (show)
+    {
+        UIBarButtonItem *btnShare = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(share:)];
+        [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:self.navigationItem.rightBarButtonItem, btnShare, nil]];
+    }
+    else
+    {
+        [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObject:self.navigationItem.rightBarButtonItem]];
+    }
+}
+
+- (void)share:(id)sender
+{
+    SCRFeedShareViewController *feedViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"feedShareViewController"];
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    self.navigationItem.backBarButtonItem = backItem;
+    [self.navigationController pushViewController:feedViewController animated:YES];
 }
 
 @end

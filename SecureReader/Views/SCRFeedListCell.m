@@ -20,13 +20,13 @@
 
 - (void)layoutSubviews
 {
-    if (!self.isIniailized)
-    {
-        self.isIniailized = YES;
-    }
-    [super layoutSubviews];
-    _titleView.preferredMaxLayoutWidth = _titleView.bounds.size.width;
-    _descriptionView.preferredMaxLayoutWidth = _descriptionView.bounds.size.width;
+//    if (!self.isIniailized)
+//    {
+//        self.isIniailized = YES;
+//    }
+//    [super layoutSubviews];
+//    _titleView.preferredMaxLayoutWidth = _titleView.bounds.size.width;
+//    _descriptionView.preferredMaxLayoutWidth = _descriptionView.bounds.size.width;
     [super layoutSubviews];
 }
 
