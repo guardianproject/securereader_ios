@@ -9,5 +9,5 @@
 #import "SCRYapDatabaseTableDelegate.h"
 
 @interface SCRFeedTableDelegate : SCRYapDatabaseTableDelegate
-
+@property BOOL showDescription;
 @end

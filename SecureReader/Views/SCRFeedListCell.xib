@@ -14,7 +14,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="751" verticalHuggingPriority="751" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="510" translatesAutoresizingMaskIntoConstraints="NO" id="6gc-gG-orw" userLabel="Title" customClass="SCRLabel">
-                        <rect key="frame" x="70" y="20" width="460" height="21"/>
+                        <rect key="frame" x="70" y="20" width="460" height="160"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
@@ -22,24 +22,15 @@
                             <userDefinedRuntimeAttribute type="string" keyPath="theme" value="FeedListTitleStyle"/>
                         </userDefinedRuntimeAttributes>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="510" translatesAutoresizingMaskIntoConstraints="NO" id="XTE-L2-nOg" userLabel="Description" customClass="SCRLabel">
-                        <rect key="frame" x="70" y="61" width="460" height="120"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                        <nil key="highlightedColor"/>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="string" keyPath="theme" value="FeedListDescriptionStyle"/>
-                        </userDefinedRuntimeAttributes>
-                    </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WqB-o5-7aQ">
-                        <rect key="frame" x="548" y="20" width="32" height="32"/>
+                        <rect key="frame" x="548" y="84" width="32" height="32"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="32" id="Wqj-oM-iUM"/>
                             <constraint firstAttribute="height" constant="32" id="wvI-Rh-n41"/>
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DtA-HQ-ggq">
-                        <rect key="frame" x="20" y="20" width="40" height="40"/>
+                        <rect key="frame" x="20" y="80" width="40" height="40"/>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="40" id="BGu-s0-huo"/>
@@ -52,18 +43,18 @@
                     <constraint firstItem="6gc-gG-orw" firstAttribute="top" secondItem="YRx-UM-h16" secondAttribute="top" constant="20" id="DlJ-WT-OOA"/>
                     <constraint firstItem="DtA-HQ-ggq" firstAttribute="leading" secondItem="YRx-UM-h16" secondAttribute="leading" constant="20" id="Dpk-KN-OUp"/>
                     <constraint firstItem="6gc-gG-orw" firstAttribute="leading" secondItem="YRx-UM-h16" secondAttribute="leading" constant="70" id="O1E-Lx-stU"/>
-                    <constraint firstItem="XTE-L2-nOg" firstAttribute="top" secondItem="6gc-gG-orw" secondAttribute="bottom" constant="20" id="RnF-ew-afd"/>
-                    <constraint firstItem="6gc-gG-orw" firstAttribute="trailing" secondItem="XTE-L2-nOg" secondAttribute="trailing" id="UvN-VZ-qDS"/>
-                    <constraint firstAttribute="bottom" secondItem="XTE-L2-nOg" secondAttribute="bottom" constant="20" id="Vbq-ca-fcL"/>
-                    <constraint firstItem="WqB-o5-7aQ" firstAttribute="top" secondItem="YRx-UM-h16" secondAttribute="top" constant="20" id="YHu-zx-bCF"/>
-                    <constraint firstItem="DtA-HQ-ggq" firstAttribute="top" secondItem="YRx-UM-h16" secondAttribute="top" constant="20" id="ohw-j9-tLI"/>
+                    <constraint firstAttribute="centerY" secondItem="DtA-HQ-ggq" secondAttribute="centerY" id="PCN-lN-dhc"/>
+                    <constraint firstItem="WqB-o5-7aQ" firstAttribute="top" relation="greaterThanOrEqual" secondItem="YRx-UM-h16" secondAttribute="top" constant="20" id="YHu-zx-bCF"/>
+                    <constraint firstItem="DtA-HQ-ggq" firstAttribute="top" relation="greaterThanOrEqual" secondItem="YRx-UM-h16" secondAttribute="top" constant="20" id="ohw-j9-tLI"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="WqB-o5-7aQ" secondAttribute="bottom" constant="20" id="qRj-6i-0FO"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="DtA-HQ-ggq" secondAttribute="bottom" constant="20" id="qtD-CQ-LMc"/>
                     <constraint firstAttribute="trailing" secondItem="6gc-gG-orw" secondAttribute="trailing" constant="70" id="rOE-BB-dYQ"/>
-                    <constraint firstItem="6gc-gG-orw" firstAttribute="leading" secondItem="XTE-L2-nOg" secondAttribute="leading" id="rez-cb-OSG"/>
+                    <constraint firstAttribute="bottom" secondItem="6gc-gG-orw" secondAttribute="bottom" constant="20" id="vUo-Tf-eEJ"/>
+                    <constraint firstAttribute="centerY" secondItem="WqB-o5-7aQ" secondAttribute="centerY" id="yCF-2H-oLC"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
-                <outlet property="descriptionView" destination="XTE-L2-nOg" id="N7H-F0-AeJ"/>
                 <outlet property="iconView" destination="WqB-o5-7aQ" id="Z5C-HN-s6e"/>
                 <outlet property="iconViewWidthConstraint" destination="rOE-BB-dYQ" id="Iap-KY-9Zd"/>
                 <outlet property="titleView" destination="6gc-gG-orw" id="Jkn-TF-kCJ"/>

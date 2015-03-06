@@ -33,8 +33,8 @@
 @property BOOL isInSearchMode;
 @property UIActivityIndicatorView *searchModeSpinner;
 
-@property (nonatomic, strong) SCRYapDatabaseTableDelegate *subscribedTableDelegate;
-@property (nonatomic, strong) SCRYapDatabaseTableDelegate *allTableDelegate;
+@property (nonatomic, strong) SCRFeedTableDelegate *subscribedTableDelegate;
+@property (nonatomic, strong) SCRFeedTableDelegate *allTableDelegate;
 @property (nonatomic, strong) SCRFeedSearchTableDelegate *searchTableDelegate;
 
 @property int segmentedControlDesignHeight;
@@ -54,9 +54,11 @@
 
     self.subscribedTableDelegate = [[SCRFeedTableDelegate alloc] initWithTableView:self.tableView viewName:[SCRDatabaseManager sharedInstance].subscribedFeedsViewName delegate:self];
     self.allTableDelegate = [[SCRFeedTableDelegate alloc] initWithTableView:self.tableView viewName:[SCRDatabaseManager sharedInstance].allFeedsViewName delegate:self];
+    self.allTableDelegate.showDescription = YES;
     [self.subscribedTableDelegate setActive:YES];
 
     self.searchTableDelegate = [[SCRFeedSearchTableDelegate alloc] initWithTableView:self.searchDisplayController.searchResultsTableView viewName:[SCRDatabaseManager sharedInstance].allFeedsSearchViewName delegate:self];
+    self.searchTableDelegate.showDescription = YES;
     [self.searchTableDelegate setActive:YES];
     
     self.tableView.allowsMultipleSelectionDuringEditing = NO;

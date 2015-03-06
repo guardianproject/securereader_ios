@@ -16,10 +16,14 @@
 {
     UINib *nib = [UINib nibWithNibName:@"SCRFeedListCell" bundle:nil];
     [tableView registerNib:nib forCellReuseIdentifier:@"cellFeed"];
+    nib = [UINib nibWithNibName:@"SCRFeedListCellWithDescription" bundle:nil];
+    [tableView registerNib:nib forCellReuseIdentifier:@"cellFeedWithDescription"];
 }
 
 - (NSString *)identifierForItem:(NSObject *)item
 {
+    if (self.showDescription)
+        return @"cellFeedWithDescription";
     return @"cellFeed";
 }
 
@@ -29,7 +33,8 @@
     SCRFeed *feed = (SCRFeed *)genericitem;
     
     cell.titleView.text = feed.title;
-    cell.descriptionView.text = feed.feedDescription;
+    if (cell.descriptionView != nil)
+        cell.descriptionView.text = feed.feedDescription;
 }
 
 @end
