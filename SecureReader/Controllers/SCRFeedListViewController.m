@@ -85,13 +85,8 @@
 
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar {
     [self animateTrendingViewToHeight:0 andSearchBarTo:self.searchBarDesignHeight andSegmentedControlTo:0];
-    self.isInSearchMode = YES;
     [self.searchTableDelegate clearSearchResults];
     return YES;
-}
-
-- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar {
-    return !self.isInSearchMode;
 }
 
 -(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
@@ -130,7 +125,12 @@
 -(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self hideSearchBarSpinner];
+        if (!self.isInSearchMode)
+        {
+            [self hideSearchBarSpinner];
+            searchBar.text = @"";
+            [self showTrendingView];
+        }
     });
 }
 
@@ -164,6 +164,7 @@
 
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
+    self.isInSearchMode = YES;
     [self.searchTableDelegate performSearchWithString:[searchBar text]];
 }
 
@@ -282,13 +283,12 @@ shouldReloadTableForSearchString:(NSString *)searchString
                 switch (index) {
                     case 0:
                         [[SCRReader sharedInstance] setFeed:feed subscribed:NO];
+                        if (feed.userAdded)
+                            [[SCRReader sharedInstance] removeFeed:feed];
                         break;
                     case 1:
                         {
                         [[SCRReader sharedInstance] removeFeed:feed];
-                        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Feed" message:[@"Remove feed " stringByAppendingString:feed.title] delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-                        alert.alertViewStyle = UIAlertViewStyleDefault;
-                        [alert show];
                         break;
                         }
                 }
@@ -297,8 +297,7 @@ shouldReloadTableForSearchString:(NSString *)searchString
             {
                 switch (index) {
                     case 0:
-                        [[SCRReader sharedInstance] setFeed:feed subscribed:YES];
-                        [cell hideUtilityButtonsAnimated:YES];
+                        [[SCRReader sharedInstance] removeFeed:feed];
                         break;
                 }
             }

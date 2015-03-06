@@ -94,6 +94,10 @@
         {
             //TODO - handle errors
             self.searchResults = [SCRFeed feedsFromOPMLDocument:doc error:nil];
+            for (SCRFeed *feed in self.searchResults)
+            {
+                feed.userAdded = YES;
+            }
             [self.tableView reloadData];
         };
     }];
