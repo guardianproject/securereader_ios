@@ -30,27 +30,17 @@
     
     self.subscribedTableDelegate = [[SCRFeedTableDelegate alloc] initWithTableView:self.tableView viewName:[SCRDatabaseManager sharedInstance].subscribedFeedsViewName delegate:self];
     [self.subscribedTableDelegate setActive:YES];
-    
-    NSString *textToShare = @"Look at this awesome website for aspiring iOS Developers!";
-    NSURL *myWebsite = [NSURL URLWithString:@"http://www.codingexplorer.com/"];
-    NSArray *objectsToShare = @[textToShare, myWebsite];
-    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:objectsToShare applicationActivities:nil];
-    NSArray *excludeActivities = @[UIActivityTypeAirDrop,
-                                   UIActivityTypePrint,
-                                   UIActivityTypeAssignToContact,
-                                   UIActivityTypeSaveToCameraRoll,
-                                   UIActivityTypeAddToReadingList,
-                                   UIActivityTypePostToFlickr,
-                                   UIActivityTypePostToVimeo];
-    activityVC.excludedActivityTypes = excludeActivities;
-    //[self presentViewController:activityVC animated:YES completion:nil];
-    
-    [self setTitle:[NSString stringWithFormat:@"%lu Selected", (unsigned long)self.selectedFeeds.count]];
+    [self updateTitle];
 }
 
 - (void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self.tableView reloadData];
+}
+
+- (void) updateTitle
+{
+    [self setTitle:[NSString stringWithFormat:@"%lu Selected", (unsigned long)self.selectedFeeds.count]];
 }
 
 - (void)didSelectRowAtIndexPath:(NSIndexPath *)indexPath delegate:(SCRYapDatabaseTableDelegate *)delegate
@@ -68,7 +58,7 @@
         [delegate.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
         [delegate.tableView endUpdates];
     }
-    [self setTitle:[NSString stringWithFormat:@"%lu Selected", (unsigned long)self.selectedFeeds.count]];
+    [self updateTitle];
 }
 
 - (void)configureCell:(UITableViewCell *)cell item:(NSObject *)item delegate:(SCRYapDatabaseTableDelegate *)delegate
@@ -82,6 +72,23 @@
     {
         [feedListCell.iconView setImage:[UIImage imageNamed:@"ic_action2_share.png"]];
     }
+}
+
+- (IBAction)doShareAction:(id)sender
+{
+    NSString *textToShare = @"Share data goes here";
+    NSURL *myWebsite = [NSURL URLWithString:@"http://www.guardianproject.info/"];
+    NSArray *objectsToShare = @[textToShare, myWebsite];
+    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:objectsToShare applicationActivities:nil];
+    NSArray *excludeActivities = @[UIActivityTypeAirDrop,
+                                   UIActivityTypePrint,
+                                   UIActivityTypeAssignToContact,
+                                   UIActivityTypeSaveToCameraRoll,
+                                   UIActivityTypeAddToReadingList,
+                                   UIActivityTypePostToFlickr,
+                                   UIActivityTypePostToVimeo];
+    activityVC.excludedActivityTypes = excludeActivities;
+    [self presentViewController:activityVC animated:YES completion:nil];
 }
 
 @end
