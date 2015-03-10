@@ -35,4 +35,9 @@
     return NSStringFromClass([self class]);
 }
 
+- (NSArray *)tags
+{
+    return [NSArray arrayWithObjects:@"Tag", @"Long tag", @"A really really long tag that will scroll", nil];
+}
+
 @end

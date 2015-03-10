@@ -8,6 +8,7 @@
 
 #import "SCRReader.h"
 #import "SCRDatabaseManager.h"
+#import "SCRFeedFetcher.h"
 
 @implementation SCRReader
 
@@ -39,7 +40,17 @@
 {
     [feed setSubscribed:subscribed];
     [[SCRDatabaseManager sharedInstance].readWriteConnection asyncReadWriteWithBlock:^(YapDatabaseReadWriteTransaction *transaction) {
-        [transaction setObject:feed forKey:feed.yapKey inCollection:[[feed class] yapCollection]];
+        [feed saveWithTransaction:transaction];
+
+        // TODO - When subscribing, we need to download the feed!
+        if (subscribed)
+        {
+            SCRFeedFetcher *fetcher = [[SCRFeedFetcher alloc] init];
+            if (feed.xmlURL != nil)
+                [fetcher fetchFeedDataFromURL:[feed xmlURL]];
+            else
+                [fetcher fetchFeedDataFromURL:[feed htmlURL]];
+        }
     }];
 }
 
@@ -47,7 +58,7 @@
 {
     [item setIsFavorite:favorite];
     [[SCRDatabaseManager sharedInstance].readWriteConnection asyncReadWriteWithBlock:^(YapDatabaseReadWriteTransaction *transaction) {
-        [transaction setObject:item forKey:item.yapKey inCollection:[[item class] yapCollection]];
+        [item saveWithTransaction:transaction];
     }];
 }
 

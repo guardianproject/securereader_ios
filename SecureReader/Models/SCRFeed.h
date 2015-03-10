@@ -12,5 +12,6 @@
 @interface SCRFeed : RSSFeed <SCRYapObject>
 
 @property (nonatomic) BOOL subscribed;
+@property (nonatomic) BOOL userAdded;
 
 @end

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellFeedWithDescription" rowHeight="200" id="HhZ-LP-lUM" customClass="SCRFeedListCell">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="200"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HhZ-LP-lUM" id="7Fy-ID-GE1">
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="751" verticalHuggingPriority="751" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="510" translatesAutoresizingMaskIntoConstraints="NO" id="DM7-D2-pjg" userLabel="Title" customClass="SCRLabel">
+                        <rect key="frame" x="70" y="20" width="460" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="theme" value="FeedListTitleStyle"/>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="510" translatesAutoresizingMaskIntoConstraints="NO" id="Ait-XM-BB4" userLabel="Description" customClass="SCRLabel">
+                        <rect key="frame" x="70" y="61" width="460" height="120"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="theme" value="FeedListDescriptionStyle"/>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lxa-Ox-iVD">
+                        <rect key="frame" x="548" y="20" width="32" height="32"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="32" id="Fje-3F-aPp"/>
+                            <constraint firstAttribute="width" constant="32" id="iKV-Xs-r0e"/>
+                        </constraints>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PjJ-YR-8QN">
+                        <rect key="frame" x="20" y="20" width="40" height="40"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="pZw-zz-XMd"/>
+                            <constraint firstAttribute="width" constant="40" id="wz4-N0-BK6"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="DM7-D2-pjg" firstAttribute="leading" secondItem="Ait-XM-BB4" secondAttribute="leading" id="1IB-W1-N5y"/>
+                    <constraint firstItem="PjJ-YR-8QN" firstAttribute="top" secondItem="7Fy-ID-GE1" secondAttribute="top" constant="20" id="AuN-vm-Q51"/>
+                    <constraint firstAttribute="trailing" secondItem="lxa-Ox-iVD" secondAttribute="trailing" constant="20" id="DfR-MS-pdn"/>
+                    <constraint firstAttribute="bottom" secondItem="Ait-XM-BB4" secondAttribute="bottom" constant="20" id="FuH-aw-cUm"/>
+                    <constraint firstAttribute="trailing" secondItem="DM7-D2-pjg" secondAttribute="trailing" constant="70" id="HPF-xd-HeM"/>
+                    <constraint firstItem="DM7-D2-pjg" firstAttribute="trailing" secondItem="Ait-XM-BB4" secondAttribute="trailing" id="IrB-WU-hRZ"/>
+                    <constraint firstItem="Ait-XM-BB4" firstAttribute="top" secondItem="DM7-D2-pjg" secondAttribute="bottom" constant="20" id="Pca-5E-K7K"/>
+                    <constraint firstItem="lxa-Ox-iVD" firstAttribute="top" secondItem="7Fy-ID-GE1" secondAttribute="top" constant="20" id="Q46-jx-FfV"/>
+                    <constraint firstItem="PjJ-YR-8QN" firstAttribute="leading" secondItem="7Fy-ID-GE1" secondAttribute="leading" constant="20" id="QYd-uC-UW7"/>
+                    <constraint firstItem="DM7-D2-pjg" firstAttribute="leading" secondItem="7Fy-ID-GE1" secondAttribute="leading" constant="70" id="VDb-6N-4qd"/>
+                    <constraint firstItem="DM7-D2-pjg" firstAttribute="top" secondItem="7Fy-ID-GE1" secondAttribute="top" constant="20" id="nfh-55-F58"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <connections>
+                <outlet property="descriptionView" destination="Ait-XM-BB4" id="pJu-Na-F9M"/>
+                <outlet property="iconView" destination="lxa-Ox-iVD" id="1Db-2s-2EK"/>
+                <outlet property="iconViewWidthConstraint" destination="HPF-xd-HeM" id="WJc-Uw-8wU"/>
+                <outlet property="titleView" destination="DM7-D2-pjg" id="ivF-bD-9BL"/>
+            </connections>
+            <point key="canvasLocation" x="257" y="349"/>
+        </tableViewCell>
+    </objects>
+</document>

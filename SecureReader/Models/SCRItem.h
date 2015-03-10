@@ -21,4 +21,7 @@
 @property (nonatomic) BOOL isFavorite;
 @property (nonatomic) BOOL isReceived;
 
+// TEMP - replace with real property!
+- (NSArray *)tags;
+
 @end

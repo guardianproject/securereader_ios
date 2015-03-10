@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "SCRFeed.h"
 #import "SCRItem.h"
+#import "SCRYapDatabaseTableDelegate.h"
 
 typedef NS_ENUM(NSInteger, SCRFeedViewType) {
     SCRFeedViewTypeAllFeeds,
@@ -17,7 +18,7 @@ typedef NS_ENUM(NSInteger, SCRFeedViewType) {
     SCRFeedViewTypeReceived
 };
 
-@interface SCRFeedViewController : UITableViewController
+@interface SCRFeedViewController : UITableViewController<SCRYapDatabaseTableDelegateDelegate>
 
 - (void) setFeedViewType:(SCRFeedViewType)type feed:(SCRFeed *)feed;
 - (SCRItem *) itemForIndexPath:(NSIndexPath *) indexPath;
