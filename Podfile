@@ -27,4 +27,5 @@ pod 'SWTableViewCell', '~> 0.3.7'
 
 target "SecureReaderTests" do
     pod 'IOCipher/GCDWebServer', :path => 'Submodules/IOCipher/IOCipher.podspec'
+    pod 'URLMock', '~> 1.2.3'
 end

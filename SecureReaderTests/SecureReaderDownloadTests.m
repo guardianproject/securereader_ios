@@ -11,6 +11,7 @@
 #import "SCRMediaItem.h"
 #import "SCRMediaFetcher.h"
 #import "SCRFileManager.h"
+#import "URLMock.h"
 
 @interface SecureReaderDownloadTests : XCTestCase
 
@@ -45,23 +46,46 @@
 
 - (void)testMediaDownlaod {
     XCTestExpectation *expectation = [self expectationWithDescription:@"testMediaDownlaod"];
-    SCRMediaFetcher *mediaFetcher = [[SCRMediaFetcher alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] storage:self.fileManager.ioCipher];
+    
+    //Enable URLMock
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    [UMKMockURLProtocol enable];
+    configuration.protocolClasses = @[[UMKMockURLProtocol class]];
+    
+    //Fake URL to test from
+    NSURL *url = [NSURL URLWithString:@"http://test.notreal/image"];
+    
+    //Get the Octocat from bundle and add URLMock handler
+    NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"Octocat" ofType:@"png"];
+    __block NSData *imageData = [[NSFileManager defaultManager] contentsAtPath:path];
+    UMKMockHTTPResponder *responder = [UMKMockHTTPResponder mockHTTPResponderWithStatusCode:200 body:imageData];
+    UMKMockHTTPRequest *request = [UMKMockHTTPRequest mockHTTPGetRequestWithURL:url];
+    request.responder = responder;
+    
+    [UMKMockURLProtocol expectMockRequest:request];
+    
+    //Setup media fetcher
+    SCRMediaFetcher *mediaFetcher = [[SCRMediaFetcher alloc] initWithSessionConfiguration:configuration
+                                                                                  storage:self.fileManager.ioCipher];
     mediaFetcher.completionQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    
+    //Create media item
     __block SCRMediaItem *mediaItem = [[SCRMediaItem alloc] init];
     mediaItem.itemYapKey = @"itemKey";
+    mediaItem.remoteURL = url;
     
-    //Easiest way to test, fetch the octocat from github.
-    mediaItem.remoteURL = [NSURL URLWithString:@"https://assets-cdn.github.com/images/modules/logos_page/Octocat.png"];
+    //Download media item
     [mediaFetcher downloadMediaItem:mediaItem completionBlock:^(NSError *error) {
-        XCTAssertNil(error);
+        XCTAssertNil(error, @"Error retrieving file from url");
         
         NSDictionary *attributes = [self.fileManager.ioCipher fileAttributesAtPath:[mediaItem localPath] error:&error];
-        XCTAssertNotNil(attributes);
-        XCTAssertNil(error);
+        XCTAssertNotNil(attributes,@"No attributes found");
+        XCTAssertNil(error, @"Error retrieving attributes from IOCipher");
         
         [self.fileManager dataForPath:[mediaItem localPath] completionQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0) completion:^(NSData *data, NSError *error) {
-            XCTAssertNil(error);
-            XCTAssertNotNil(data);
+            XCTAssertNil(error,@"Error retrieving data from IOCipher");
+            XCTAssertNotNil(data, @"No data found in IOCipher");
+            XCTAssertTrue([data isEqualToData:imageData],@"Data is not Equal to IOCipher");
             [expectation fulfill];
         }];
         

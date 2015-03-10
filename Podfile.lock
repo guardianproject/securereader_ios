@@ -1,11 +1,11 @@
 PODS:
   - AFNetworking (2.5.1):
-    - AFNetworking/NSURLConnection
-    - AFNetworking/NSURLSession
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-    - AFNetworking/UIKit
+    - AFNetworking/NSURLConnection (= 2.5.1)
+    - AFNetworking/NSURLSession (= 2.5.1)
+    - AFNetworking/Reachability (= 2.5.1)
+    - AFNetworking/Security (= 2.5.1)
+    - AFNetworking/Serialization (= 2.5.1)
+    - AFNetworking/UIKit (= 2.5.1)
   - AFNetworking/NSURLConnection (2.5.1):
     - AFNetworking/Reachability
     - AFNetworking/Security
@@ -22,7 +22,7 @@ PODS:
     - AFNetworking/NSURLSession
   - CocoaAsyncSocket (7.4.1)
   - CocoaLumberjack (1.9.2):
-    - CocoaLumberjack/Extensions
+    - CocoaLumberjack/Extensions (= 1.9.2)
   - CocoaLumberjack/Core (1.9.2)
   - CocoaLumberjack/Extensions (1.9.2):
     - CocoaLumberjack/Core
@@ -44,7 +44,7 @@ PODS:
     - libsqlfs/common
     - SQLCipher/fts
   - Mantle (1.5.4):
-    - Mantle/extobjc
+    - Mantle/extobjc (= 1.5.4)
   - Mantle/extobjc (1.5.4)
   - MWFeedParser/NSString+HTML (1.0.1)
   - Ono (1.2.0)
@@ -53,10 +53,20 @@ PODS:
     - AFNetworking (~> 2.5)
     - Mantle (~> 1.5)
     - Ono (~> 1.1)
+  - SOCKit (1.1)
   - SQLCipher/common (3.1.0)
   - SQLCipher/fts (3.1.0):
     - SQLCipher/common
   - SWTableViewCell (0.3.7)
+  - URLMock (1.2.3):
+    - URLMock/Core (= 1.2.3)
+    - URLMock/SubclassResponsibility (= 1.2.3)
+    - URLMock/TestHelpers (= 1.2.3)
+  - URLMock/Core (1.2.3):
+    - SOCKit (~> 1.1)
+  - URLMock/SubclassResponsibility (1.2.3):
+    - URLMock/TestHelpers
+  - URLMock/TestHelpers (1.2.3)
   - wpxmlrpc (0.7)
   - YapDatabase/common (2.5.4):
     - CocoaLumberjack (~> 1)
@@ -75,6 +85,7 @@ DEPENDENCIES:
   - PureLayout (~> 2.0)
   - RSSAtomKit (from `Submodules/RSSAtomKit/RSSAtomKit.podspec`)
   - SWTableViewCell (~> 0.3.7)
+  - URLMock (~> 1.2.3)
   - wpxmlrpc (~> 0.5)
   - YapDatabase/SQLCipher (~> 2.5)
 
@@ -102,9 +113,11 @@ SPEC CHECKSUMS:
   Ono: 2c9f6c8c50af1b40e988ff85a3f200574ee445cd
   PureLayout: 63a3257320223e8edddcd3afb407445f85a6bf74
   RSSAtomKit: a689044708487c394d9ef4348571f8fd1d6c4d0f
+  SOCKit: d8d0dd3688ae1026c12367570da8fa8e1a6980fb
   SQLCipher: 981110217eb93c2779c34fb59e646a1c1da918d8
   SWTableViewCell: 25de71898e3fcd11cf75707ef90245acf990ec03
+  URLMock: c2150bc73ce7135b9afed901f8284717ba3870b7
   wpxmlrpc: 75ad2e4663c3a65948f5ae0799d948a8445bb0cf
   YapDatabase: c1d6912df1b4a160f7373ee7657d360e29bb00fd
 
-COCOAPODS: 0.34.4
+COCOAPODS: 0.35.0
