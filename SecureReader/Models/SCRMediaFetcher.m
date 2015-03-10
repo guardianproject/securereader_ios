@@ -7,18 +7,29 @@
 //
 
 #import "SCRMediaFetcher.h"
-#import "AFNetworking.h"
 #import "SCRMediaItem.h"
 #import "IOCipher.h"
 
-@interface SCRMediaFetcher ()
+typedef void (^SCRURLSesssionDataTaskCompletion)(NSURLSessionTask *dataTask, NSError *error);
 
-@property (nonatomic, strong) AFHTTPSessionManager *httpSessionManager;
+@interface SCRURLSessionDataTaskInfo : NSObject 
+
+@property (nonatomic, strong) NSString *localPath;
+@property (nonatomic, copy) SCRURLSesssionDataTaskCompletion completion;
+
+@end
+
+@implementation SCRURLSessionDataTaskInfo
+@end
+
+@interface SCRMediaFetcher () <NSURLSessionDataDelegate>
+
+@property (nonatomic, strong) NSURLSession *urlSession;
 @property (nonatomic, strong) NSMutableDictionary *dataTaskDictionary;
 @property (nonatomic, strong) IOCipher *ioCipher;
 
 @property (nonatomic) dispatch_queue_t isolationQueue;
-@property (nonatomic) dispatch_queue_t workQueue;
+@property (nonatomic, strong) NSOperationQueue *operationQueue;
 
 @end
 
@@ -30,60 +41,52 @@
         NSString *isolationLabel = [NSString stringWithFormat:@"%@.isolation.%p", [self class], self];
         self.isolationQueue = dispatch_queue_create([isolationLabel UTF8String], 0);
         
-        NSString *workLabel = [NSString stringWithFormat:@"%@.work.%p", [self class], self];
-        self.workQueue = dispatch_queue_create([isolationLabel UTF8String], 0);
+        self.dataTaskDictionary = [[NSMutableDictionary alloc] init];
         
         self.ioCipher = ioCipher;
         
-        self.httpSessionManager = [[AFHTTPSessionManager alloc] initWithSessionConfiguration:sessionConfiguration];
-        self.httpSessionManager.completionQueue = self.workQueue;
-        AFHTTPResponseSerializer *serializer = [AFHTTPResponseSerializer serializer];
-        self.httpSessionManager.responseSerializer = serializer;
-        __weak typeof(self)weakSelf = self;
-        [self.httpSessionManager setDataTaskDidReceiveDataBlock:^(NSURLSession *session, NSURLSessionDataTask *dataTask, NSData *data) {
-            __strong typeof(weakSelf)strongSelf = weakSelf;
-            NSString *localPath = [strongSelf localPathForDataTask:dataTask];
-            
-            [strongSelf receivedData:data forPath:localPath];
-        }];
+        self.operationQueue = [[NSOperationQueue alloc] init];
+        self.operationQueue.maxConcurrentOperationCount = 1;
+        
+        self.urlSession = [NSURLSession sessionWithConfiguration:sessionConfiguration delegate:self delegateQueue:self.operationQueue];
     }
     return self;
 }
 
+- (dispatch_queue_t)completionQueue
+{
+    if (!_completionQueue) {
+        return dispatch_get_main_queue();
+    }
+    return _completionQueue;
+}
 
-- (void)downloadMediaItem:(SCRMediaItem *)mediaItem completionQueue:(dispatch_queue_t)completionQueue completionBlock:(void (^)(NSError *))completion
+
+- (void)downloadMediaItem:(SCRMediaItem *)mediaItem completionBlock:(void (^)(NSError *))completion
 {
     if (!completion) {
         return;
     }
     
-    if (!completionQueue) {
-        completionQueue = dispatch_get_main_queue();
-    }
+    NSURLSessionDataTask *dataTask = [self.urlSession dataTaskWithURL:mediaItem.remoteURL];
     
-    NSURLSessionDataTask *dataTask = [self.httpSessionManager GET:mediaItem.remoteURL.absoluteString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        [self removeDataTask:task];
-        dispatch_async(completionQueue, ^{
-            completion(nil);
-        });
-        
-        
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        [self removeDataTask:task];
-        dispatch_async(completionQueue, ^{
-            completion(error);
-        });
+    [self addDataTask:dataTask forLocalPath:[mediaItem localPath] completion:^(NSURLSessionTask *task, NSError *error) {
+        completion(error);
     }];
-    
-    [self addDataTask:dataTask forLocalPath:[mediaItem localPath]];
+    [dataTask resume];
 }
 
 #pragma - mark Private Methods
 
-- (void)receivedData:(NSData *)data forPath:(NSString *)path
+- (void)receivedData:(NSData *)data forPath:(NSString *)path error:(NSError **)error;
 {
     [data enumerateByteRangesUsingBlock:^(const void *bytes, NSRange byteRange, BOOL *stop) {
-        [self.ioCipher writeDataToFileAtPath:path data:[NSData dataWithBytes:bytes length:byteRange.length] offset:byteRange.location error:nil];
+        NSError *err = nil;
+        [self.ioCipher writeDataToFileAtPath:path data:[NSData dataWithBytesNoCopy:(void*)bytes length:byteRange.length freeWhenDone:NO] offset:byteRange.location error:&err];
+        if(err) {
+            *stop = YES;
+            *error = err;
+        }
     }];
 }
 
@@ -91,23 +94,27 @@
 //Taken mostly from http://www.objc.io/issue-2/low-level-concurrency-apis.html
 
 
-- (void)addDataTask:(NSURLSessionDataTask *)dataTask forLocalPath:(NSString *)localPath
+- (void)addDataTask:(NSURLSessionDataTask *)dataTask forLocalPath:(NSString *)localPath completion:(SCRURLSesssionDataTaskCompletion)completion
 {
+    __block SCRURLSessionDataTaskInfo *taskInfo = [[SCRURLSessionDataTaskInfo alloc] init];
+    taskInfo.localPath = localPath;
+    taskInfo.completion = completion;
+    
     dispatch_async(self.isolationQueue, ^{
         if (dataTask && [localPath length]) {
-            [self.dataTaskDictionary setObject:localPath forKey:@(dataTask.taskIdentifier)];
+            [self.dataTaskDictionary setObject:taskInfo forKey:@(dataTask.taskIdentifier)];
         }
     });
 }
 
-- (NSString *)localPathForDataTask:(NSURLSessionDataTask *)dataTask
+- (SCRURLSessionDataTaskInfo *)infoForTask:(NSURLSessionTask *)task
 {
-    __block NSString *localPath = nil;
+    __block SCRURLSessionDataTaskInfo *dataInfo = nil;
     dispatch_sync(self.isolationQueue, ^{
-        localPath = [self.dataTaskDictionary objectForKey:@(dataTask.taskIdentifier)];
+        dataInfo = [self.dataTaskDictionary objectForKey:@(task.taskIdentifier)];
     });
     
-    return localPath;
+    return dataInfo;
 }
 
 - (void)removeDataTask:(NSURLSessionDataTask *)dataTask
@@ -119,4 +126,38 @@
     });
 }
 
+#pragma - mark NSURLSessionDataDelegate Methods
+
+- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveData:(NSData *)data
+{
+    if([session isEqual:self.urlSession])
+    {
+        SCRURLSessionDataTaskInfo *info = [self infoForTask:dataTask];
+        
+        NSError *error = nil;
+        [self receivedData:data forPath:info.localPath error:&error];
+        if (error) {
+            [dataTask cancel];
+            if (info.completion) {
+                dispatch_async(self.completionQueue, ^{
+                    info.completion(dataTask,error);
+                });
+            }
+        }
+    }
+}
+
+- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error
+{
+    if([session isEqual:self.urlSession]) {
+        SCRURLSessionDataTaskInfo *info = [self infoForTask:task];
+        if (info.completion)
+        {
+            dispatch_async(self.completionQueue, ^{
+                info.completion(task,error);
+            });
+        }
+    }
+    
+}
 @end
