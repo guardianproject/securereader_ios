@@ -23,10 +23,8 @@
 
 - (void)setUp {
     [super setUp];
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsPath = [paths firstObject];
     
-    NSString *path = [documentsPath stringByAppendingPathComponent:@"test.sqlite"];
+    NSString *path = [NSTemporaryDirectory() stringByAppendingPathComponent:@"test.sqlite"];
     
     if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
         [[NSFileManager defaultManager] removeItemAtPath:path error:nil];

@@ -11,6 +11,8 @@
 
 @interface SCRMediaServer : NSObject
 
+@property (nonatomic, readonly) NSUInteger port;
+
 - (instancetype)initWithIOCipher:(IOCipher *)cipher;
 
 - (void)startOnPort:(NSUInteger)port error:(NSError **)error;

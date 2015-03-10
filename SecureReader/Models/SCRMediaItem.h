@@ -12,6 +12,7 @@
 
 @interface SCRMediaItem : MTLModel <SCRYapObject>
 
+//The key for the 'parent' SCRItem (required)
 @property (nonatomic, strong) NSString *itemYapKey;
 
 @property (nonatomic, strong) NSURL *remoteURL;

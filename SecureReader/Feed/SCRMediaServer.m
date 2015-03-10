@@ -36,16 +36,17 @@
     return _webServer;
 }
 
+- (NSUInteger)port
+{
+    return self.webServer.port;
+}
+
 - (void)startOnPort:(NSUInteger)port error:(NSError *__autoreleasing *)error
 {
     if (port <1) {
         port = 8080;
     }
     
-    [self.webServer startWithOptions:@{GCDWebServerOption_Port: @(port),
-                                       GCDWebServerOption_BindToLocalhost: @(YES),
-                                       GCDWebServerOption_AutomaticallySuspendInBackground: @(NO)}
-                               error:error];
     __weak typeof(self)weakSelf = self;
     [self.webServer addHandlerForMethod:@"GET"
                               pathRegex:[NSString stringWithFormat:@"/.*"]
@@ -54,6 +55,11 @@
                           __strong typeof(weakSelf)strongSelf = weakSelf;
                           [strongSelf handleMediaRequest:request completion:completionBlock];
                       }];
+    [self.webServer startWithOptions:@{GCDWebServerOption_Port: @(port),
+                                       GCDWebServerOption_BindToLocalhost: @(YES),
+                                       GCDWebServerOption_AutomaticallySuspendInBackground: @(NO)}
+                               error:error];
+    
 }
 
 - (void)handleMediaRequest:(GCDWebServerRequest *)request completion:(GCDWebServerCompletionBlock)completionBlock
