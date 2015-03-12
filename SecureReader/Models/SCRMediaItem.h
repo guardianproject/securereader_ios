@@ -6,18 +6,19 @@
 //  Copyright (c) 2015 Guardian Project. All rights reserved.
 //
 
-#import "MTLModel.h"
+#import "RSSMediaItem.h"
 
 #import "SCRYapObject.h"
 
-@interface SCRMediaItem : MTLModel <SCRYapObject>
+@interface SCRMediaItem : RSSMediaItem <SCRYapObject>
 
-//The key for the 'parent' SCRItem (required)
-@property (nonatomic, strong) NSString *itemYapKey;
-
-@property (nonatomic, strong) NSURL *remoteURL;
-
+/** Local path for used in IOCipher */
 - (NSString *)localPath;
+
+/** Local URL to be used with SCRMediaServer */
 - (NSURL *)localURLWithPort:(NSUInteger)port;
+
+/** Hashes the URL to be used as a Yap key */
++ (NSString *)mediaItemKeyForURL:(NSURL *)url;
 
 @end

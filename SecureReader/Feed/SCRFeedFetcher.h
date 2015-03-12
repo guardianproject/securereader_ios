@@ -8,14 +8,19 @@
 
 #import <Foundation/Foundation.h>
 
+@class YapDatabaseConnection;
+
 @interface SCRFeedFetcher : NSObject
+
+- (instancetype)initWithReadWriteYapConnection:(YapDatabaseConnection *)connection
+                          sessionConfiguration:(NSURLSessionConfiguration *)sessionConfiguration;
 
 /**
  *  Fetches RSS feed info and items and inserts it into the database.
  *
  *  @param url rss feed url
  */
-- (void) fetchFeedDataFromURL:(NSURL*)url;
+- (void) fetchFeedDataFromURL:(NSURL*)url completionQueue:(dispatch_queue_t)completionQueue completion:(void (^)(NSError *error))completion;
 
 
 /**

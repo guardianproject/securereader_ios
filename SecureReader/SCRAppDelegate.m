@@ -125,7 +125,7 @@
                               @"http://rss.cnn.com/rss/cnn_topstories.rss",
                               @"http://rss.cnn.com/rss/cnn_world.rss"];
         [feedURLs enumerateObjectsUsingBlock:^(NSString *feedURLString, NSUInteger idx, BOOL *stop) {
-            [self.feedFetcher fetchFeedDataFromURL:[NSURL URLWithString:feedURLString]];
+            [self.feedFetcher fetchFeedDataFromURL:[NSURL URLWithString:feedURLString] completionQueue:nil completion:nil];
         }];
     }
     return mLoggedIn;

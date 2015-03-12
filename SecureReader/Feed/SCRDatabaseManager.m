@@ -16,15 +16,25 @@
 
 @implementation SCRDatabaseManager
 
-- (instancetype) init {
+- (instancetype) init
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
+    NSString *applicationSupportDirectory = [paths firstObject];
+    NSString *databaseDirectoryName = @"SecureReader.database";
+    NSString *databaseDirectoryPath = [applicationSupportDirectory stringByAppendingPathComponent:databaseDirectoryName];
+    NSString *databaseName = @"SecureReader.sqlite";
+    
+    return [self initWithPath:[databaseDirectoryPath stringByAppendingPathComponent:databaseName]];
+}
+
+- (instancetype) initWithPath:(NSString *)path {
     if (self = [super init]) {
-        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
-        NSString *applicationSupportDirectory = [paths firstObject];
-        NSString *databaseDirectoryName = @"SecureReader.database";
-        NSString *databaseDirectoryPath = [applicationSupportDirectory stringByAppendingPathComponent:databaseDirectoryName];
-        [[NSFileManager defaultManager] createDirectoryAtPath:databaseDirectoryPath withIntermediateDirectories:YES attributes:nil error:nil];
-        NSString *databaseName = @"SecureReader.sqlite";
-        NSString *databasePath = [databaseDirectoryPath stringByAppendingPathComponent:databaseName];
+        NSAssert([path length] > 0, @"Required path");
+        
+        NSString *directory = [path stringByDeletingLastPathComponent];
+        
+        [[NSFileManager defaultManager] createDirectoryAtPath:directory withIntermediateDirectories:YES attributes:nil error:nil];
+        
         YapDatabaseOptions *options = [[YapDatabaseOptions alloc] init];
         options.corruptAction = YapDatabaseCorruptAction_Fail;
         options.passphraseBlock = ^{
@@ -35,7 +45,7 @@
             }
             return passphrase;
         };
-        _database = [[YapDatabase alloc] initWithPath:databasePath objectSerializer:nil objectDeserializer:nil metadataSerializer:nil metadataDeserializer:nil objectSanitizer:nil metadataSanitizer:nil options:options];
+        _database = [[YapDatabase alloc] initWithPath:path objectSerializer:nil objectDeserializer:nil metadataSerializer:nil metadataDeserializer:nil objectSanitizer:nil metadataSanitizer:nil options:options];
         self.database.defaultObjectCacheEnabled = YES;
         self.database.defaultObjectCacheLimit = 5000;
         self.database.defaultObjectPolicy = YapDatabasePolicyShare;

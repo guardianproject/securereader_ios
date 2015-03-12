@@ -25,6 +25,8 @@
 @property (nonatomic, strong, readonly) NSString *unsubscribedFeedsViewName;
 @property (nonatomic, strong, readonly) NSString *allFeedsSearchViewName;
 
+- (instancetype) initWithPath:(NSString *)path;
+
 + (instancetype) sharedInstance;
 
 @end

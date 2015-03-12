@@ -47,9 +47,9 @@
         {
             SCRFeedFetcher *fetcher = [[SCRFeedFetcher alloc] init];
             if (feed.xmlURL != nil)
-                [fetcher fetchFeedDataFromURL:[feed xmlURL]];
+                [fetcher fetchFeedDataFromURL:[feed xmlURL] completionQueue:nil completion:nil];
             else
-                [fetcher fetchFeedDataFromURL:[feed htmlURL]];
+                [fetcher fetchFeedDataFromURL:[feed htmlURL] completionQueue:nil completion:nil];
         }
     }];
 }

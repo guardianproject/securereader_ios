@@ -15,6 +15,9 @@
 		633D23DF1AA0EC78008D1C28 /* SCRMediaServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 633D23DE1AA0EC78008D1C28 /* SCRMediaServer.m */; };
 		63775E891AAF97B4006CE553 /* Octocat.png in Resources */ = {isa = PBXBuildFile; fileRef = 63775E881AAF97B4006CE553 /* Octocat.png */; };
 		63775E8B1AAF9BE4006CE553 /* SecureReaderMediaServerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 63775E8A1AAF9BE4006CE553 /* SecureReaderMediaServerTest.m */; };
+		63775E8F1AAFB00F006CE553 /* NSData+SecureReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 63775E8E1AAFB00F006CE553 /* NSData+SecureReader.m */; };
+		63775E911AB0F2CB006CE553 /* SecureReaderYapTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 63775E901AB0F2CB006CE553 /* SecureReaderYapTests.m */; };
+		63775E931AB0FFDE006CE553 /* nytimes.xml in Resources */ = {isa = PBXBuildFile; fileRef = 63775E921AB0FFDE006CE553 /* nytimes.xml */; };
 		920582881A6EA25000E152D9 /* SCRGradientBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 920582871A6EA25000E152D9 /* SCRGradientBackgroundView.m */; };
 		9205828B1A6EA80900E152D9 /* SCRAuthorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9205828A1A6EA80900E152D9 /* SCRAuthorView.m */; };
 		9205828D1A6EA8F500E152D9 /* SCRAuthorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9205828C1A6EA8F500E152D9 /* SCRAuthorView.xib */; };
@@ -118,6 +121,10 @@
 		633D23DE1AA0EC78008D1C28 /* SCRMediaServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SCRMediaServer.m; path = SecureReader/Feed/SCRMediaServer.m; sourceTree = SOURCE_ROOT; };
 		63775E881AAF97B4006CE553 /* Octocat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Octocat.png; path = "Test Assets/Octocat.png"; sourceTree = "<group>"; };
 		63775E8A1AAF9BE4006CE553 /* SecureReaderMediaServerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecureReaderMediaServerTest.m; sourceTree = "<group>"; };
+		63775E8D1AAFB00F006CE553 /* NSData+SecureReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSData+SecureReader.h"; path = "Categories/NSData+SecureReader.h"; sourceTree = "<group>"; };
+		63775E8E1AAFB00F006CE553 /* NSData+SecureReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSData+SecureReader.m"; path = "Categories/NSData+SecureReader.m"; sourceTree = "<group>"; };
+		63775E901AB0F2CB006CE553 /* SecureReaderYapTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecureReaderYapTests.m; sourceTree = "<group>"; };
+		63775E921AB0FFDE006CE553 /* nytimes.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = nytimes.xml; path = "Test Assets/nytimes.xml"; sourceTree = "<group>"; };
 		920582861A6EA25000E152D9 /* SCRGradientBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRGradientBackgroundView.h; sourceTree = "<group>"; };
 		920582871A6EA25000E152D9 /* SCRGradientBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRGradientBackgroundView.m; sourceTree = "<group>"; };
 		920582891A6EA80900E152D9 /* SCRAuthorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRAuthorView.h; sourceTree = "<group>"; };
@@ -288,9 +295,19 @@
 		63775E871AAF9602006CE553 /* Test Assets */ = {
 			isa = PBXGroup;
 			children = (
+				63775E921AB0FFDE006CE553 /* nytimes.xml */,
 				63775E881AAF97B4006CE553 /* Octocat.png */,
 			);
 			name = "Test Assets";
+			sourceTree = "<group>";
+		};
+		63775E8C1AAFAFD7006CE553 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				63775E8D1AAFB00F006CE553 /* NSData+SecureReader.h */,
+				63775E8E1AAFB00F006CE553 /* NSData+SecureReader.m */,
+			);
+			name = Categories;
 			sourceTree = "<group>";
 		};
 		6D8BC072A3BA09F61DB40805 /* Frameworks */ = {
@@ -383,6 +400,7 @@
 				929EEF7319F4F5940020BD75 /* Controllers */,
 				929EEF9019F50B900020BD75 /* Language & Theming Support */,
 				925AE57D1A401D91001E182F /* Storyboarding */,
+				63775E8C1AAFAFD7006CE553 /* Categories */,
 				929EEF7A19F4F5940020BD75 /* SCRSettings.h */,
 				929EEF7B19F4F5940020BD75 /* SCRSettings.m */,
 				929EEF4E19F4EB100020BD75 /* SCRAppDelegate.h */,
@@ -412,6 +430,7 @@
 			isa = PBXGroup;
 			children = (
 				929EEF6919F4EB100020BD75 /* SecureReaderTests.m */,
+				63775E901AB0F2CB006CE553 /* SecureReaderYapTests.m */,
 				633AB73A1A9FFCEA00A0F3F9 /* SecureReaderDownloadTests.m */,
 				63775E8A1AAF9BE4006CE553 /* SecureReaderMediaServerTest.m */,
 				63775E871AAF9602006CE553 /* Test Assets */,
@@ -715,6 +734,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				63775E891AAF97B4006CE553 /* Octocat.png in Resources */,
+				63775E931AB0FFDE006CE553 /* nytimes.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -794,6 +814,7 @@
 				D90F593A1A19F617008F2DCB /* SCRDatabaseManager.m in Sources */,
 				92BD50A11A07A38900F3BD22 /* SCRItemView.m in Sources */,
 				929BE4BE1A7913A700641647 /* SCRLabel.m in Sources */,
+				63775E8F1AAFB00F006CE553 /* NSData+SecureReader.m in Sources */,
 				92A4D2A51A31F1D40091479A /* SCRPanicViewController.m in Sources */,
 				929EEF9319F5110D0020BD75 /* SCRCreatePassphraseViewController.m in Sources */,
 				92B23C4C1A5D442F00FFD963 /* SCRAllFeedsViewController.m in Sources */,
@@ -844,6 +865,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63775E911AB0F2CB006CE553 /* SecureReaderYapTests.m in Sources */,
 				929EEF6A19F4EB100020BD75 /* SecureReaderTests.m in Sources */,
 				633AB73B1A9FFCEA00A0F3F9 /* SecureReaderDownloadTests.m in Sources */,
 				63775E8B1AAF9BE4006CE553 /* SecureReaderMediaServerTest.m in Sources */,

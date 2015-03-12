@@ -68,7 +68,7 @@ typedef void (^SCRURLSesssionDataTaskCompletion)(NSURLSessionTask *dataTask, NSE
         return;
     }
     
-    NSURLSessionDataTask *dataTask = [self.urlSession dataTaskWithURL:mediaItem.remoteURL];
+    NSURLSessionDataTask *dataTask = [self.urlSession dataTaskWithURL:mediaItem.url];
     
     [self addDataTask:dataTask forLocalPath:[mediaItem localPath] completion:^(NSURLSessionTask *task, NSError *error) {
         completion(error);

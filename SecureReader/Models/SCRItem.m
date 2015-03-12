@@ -7,7 +7,10 @@
 //
 
 #import "SCRItem.h"
+#import "SCRMediaItem.h"
 #import "YapDatabaseTransaction.h"
+
+NSString *const kSCRMediaItemEdgeName = @"kSCRMediaItemEdgeName";
 
 @implementation SCRItem
 
@@ -38,6 +41,40 @@
 - (NSArray *)tags
 {
     return [NSArray arrayWithObjects:@"Tag", @"Long tag", @"A really really long tag that will scroll", nil];
+}
+
+#pragma - mark YapDatabaseRelationship Methods
+
+- (NSArray *)yapDatabaseRelationshipEdges
+{
+    NSArray *mediaItemKeys = [self mediaItemsYapKeys];
+    if ([mediaItemKeys count]) {
+        NSMutableArray *edges = [NSMutableArray arrayWithCapacity:[mediaItemKeys count]];
+        
+        for (NSString *mediaItemKey in mediaItemKeys) {
+            //Review nodeDeletionRules. Need some way to make sure we delete the file in IOCipher
+            YapDatabaseRelationshipEdge *mediaItemEdge = [YapDatabaseRelationshipEdge edgeWithName:kSCRMediaItemEdgeName
+                                                                                    destinationKey:mediaItemKey
+                                                                                        collection:[SCRMediaItem yapCollection]
+                                                                                   nodeDeleteRules:YDB_DeleteDestinationIfAllSourcesDeleted];
+            if (mediaItemEdge) {
+                [edges addObject:mediaItemEdge];
+            }
+            
+        }
+        return edges;
+    }
+    return nil;
+}
+
+#pragma - mark MTLModel Methods
+
++ (NSDictionary *)encodingBehaviorsByPropertyKey {
+    NSMutableDictionary *dictionary = [[super encodingBehaviorsByPropertyKey] mutableCopy];
+    
+    [dictionary setObject:@(MTLModelEncodingBehaviorExcluded) forKey:NSStringFromSelector(@selector(mediaItems))];
+    
+    return dictionary;
 }
 
 @end

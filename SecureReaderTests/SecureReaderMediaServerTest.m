@@ -48,9 +48,7 @@
 {
     XCTestExpectation *expectation = [self expectationWithDescription:@"testFetchingFile"];
     NSData *testData = [[NSFileManager defaultManager] contentsAtPath:[[NSBundle bundleForClass:[self class]] pathForResource:@"Octocat" ofType:@"png"]];
-    SCRMediaItem *mediaItem = [[SCRMediaItem alloc] init];
-    mediaItem.remoteURL = [NSURL URLWithString:@"http://notreal.com/image.png"];
-    mediaItem.itemYapKey = @"key";
+    SCRMediaItem *mediaItem = [[SCRMediaItem alloc] initWithURL:[NSURL URLWithString:@"http://notreal.com/image.png"]];
     NSError *err = nil;
     XCTAssertTrue([self.fileManager.ioCipher createFileAtPath:[mediaItem localPath] error:&err],@"Unable to create file");
     XCTAssertNil(err,@"Error creating file");

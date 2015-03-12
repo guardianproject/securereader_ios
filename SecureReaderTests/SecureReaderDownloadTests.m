@@ -68,9 +68,7 @@
     mediaFetcher.completionQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     
     //Create media item
-    __block SCRMediaItem *mediaItem = [[SCRMediaItem alloc] init];
-    mediaItem.itemYapKey = @"itemKey";
-    mediaItem.remoteURL = url;
+    __block SCRMediaItem *mediaItem = [[SCRMediaItem alloc] initWithURL:url];
     
     //Download media item
     [mediaFetcher downloadMediaItem:mediaItem completionBlock:^(NSError *error) {
