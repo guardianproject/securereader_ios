@@ -37,8 +37,8 @@
 {
     [super viewDidLoad];
     
-    self.postsTableDelegate = [[SCRItemTableDelegate alloc] initWithTableView:self.tableView viewName:[SCRDatabaseManager sharedInstance].allFeedItemsUngroupedViewName filter:nil delegate:self];
-    self.draftsTableDelegate = [[SCRItemTableDelegate alloc] initWithTableView:self.tableView viewName:[SCRDatabaseManager sharedInstance].allFeedItemsUngroupedViewName filter:nil delegate:self];
+    self.postsTableDelegate = [[SCRItemTableDelegate alloc] initWithTableView:self.tableView viewName:kSCRAllFeedItemsUngroupedViewName filter:nil delegate:self];
+    self.draftsTableDelegate = [[SCRItemTableDelegate alloc] initWithTableView:self.tableView viewName:kSCRAllFeedItemsUngroupedViewName filter:nil delegate:self];
     [self.postsTableDelegate setActive:YES];
     self.tableView.allowsMultipleSelectionDuringEditing = NO;
 }

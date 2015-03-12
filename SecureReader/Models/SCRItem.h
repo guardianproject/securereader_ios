@@ -14,6 +14,8 @@
 
 @import UIKit;
 
+@class YapDatabaseReadTransaction, SCRMediaItem;
+
 extern NSString *const kSCRMediaItemEdgeName;
 
 @interface SCRItem : RSSItem <SCRYapObject, YapDatabaseRelationshipNode>
@@ -28,5 +30,7 @@ extern NSString *const kSCRMediaItemEdgeName;
 
 // TEMP - replace with real property!
 - (NSArray *)tags;
+
+- (void)enumerateMediaItemsInTransaction:(YapDatabaseReadTransaction *)readTransaction block:(void (^)(SCRMediaItem *mediaItem,BOOL *stop))block;
 
 @end

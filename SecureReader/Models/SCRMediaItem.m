@@ -9,6 +9,9 @@
 #import "SCRMediaItem.h"
 #import "YapDatabaseTransaction.h"
 #import "NSData+SecureReader.h"
+#import "SCRItem.h"
+#import "SCRDatabaseManager.h"
+#import "YapDatabaseRelationshipTransaction.h"
 
 @interface SCRMediaItem ()
 
@@ -42,6 +45,19 @@
 - (NSURL *)localURLWithPort:(NSUInteger)port
 {
     return [NSURL URLWithString:[[NSString stringWithFormat:@"http://localhost:%lu",port] stringByAppendingPathComponent:[self localPath]]];
+}
+
+- (void)enumerateItemsInTransaction:(YapDatabaseReadTransaction *)readTransaction block:(void (^)(SCRItem *item,BOOL *stop))block
+{
+    if (!block) {
+        return;
+    }
+    
+    [[readTransaction ext:kSCRRelationshipExtensionName] enumerateEdgesWithName:kSCRMediaItemEdgeName destinationKey:self.yapKey collection:[[self class] yapCollection] usingBlock:^(YapDatabaseRelationshipEdge *edge, BOOL *stop) {
+        SCRItem *item = [readTransaction objectForKey:edge.sourceKey inCollection:edge.sourceCollection];
+        
+        block(item,stop);
+    }];
 }
 
  #pragma - mark Class Methods

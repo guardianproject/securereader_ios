@@ -9,6 +9,8 @@
 #import "SCRItem.h"
 #import "SCRMediaItem.h"
 #import "YapDatabaseTransaction.h"
+#import "YapDatabaseRelationshipTransaction.h"
+#import "SCRDatabaseManager.h"
 
 NSString *const kSCRMediaItemEdgeName = @"kSCRMediaItemEdgeName";
 
@@ -41,6 +43,20 @@ NSString *const kSCRMediaItemEdgeName = @"kSCRMediaItemEdgeName";
 - (NSArray *)tags
 {
     return [NSArray arrayWithObjects:@"Tag", @"Long tag", @"A really really long tag that will scroll", nil];
+}
+
+- (void)enumerateMediaItemsInTransaction:(YapDatabaseReadTransaction *)readTransaction block:(void (^)(SCRMediaItem *, BOOL *))block
+{
+    if (!block) {
+        return;
+    }
+    
+    [[readTransaction ext:kSCRRelationshipExtensionName] enumerateEdgesWithName:kSCRMediaItemEdgeName sourceKey:self.yapKey collection:[[self class] yapCollection] usingBlock:^(YapDatabaseRelationshipEdge *edge, BOOL *stop) {
+        
+        SCRMediaItem *mediaItem = [readTransaction objectForKey:edge.destinationKey inCollection:edge.destinationCollection];
+        block(mediaItem,stop);
+        
+    }];
 }
 
 #pragma - mark YapDatabaseRelationship Methods

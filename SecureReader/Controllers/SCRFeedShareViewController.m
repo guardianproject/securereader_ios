@@ -28,7 +28,7 @@
     UINib *nib = [UINib nibWithNibName:@"SCRFeedListCell" bundle:nil];
     [self.searchDisplayController.searchResultsTableView registerNib:nib forCellReuseIdentifier:@"cellFeed"];
     
-    self.subscribedTableDelegate = [[SCRFeedTableDelegate alloc] initWithTableView:self.tableView viewName:[SCRDatabaseManager sharedInstance].subscribedFeedsViewName delegate:self];
+    self.subscribedTableDelegate = [[SCRFeedTableDelegate alloc] initWithTableView:self.tableView viewName:kSCRSubscribedFeedsViewName delegate:self];
     [self.subscribedTableDelegate setActive:YES];
     [self updateTitle];
 }

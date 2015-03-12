@@ -9,21 +9,22 @@
 #import <Foundation/Foundation.h>
 #import "YapDatabase.h"
 
+extern NSString *const kSCRAllFeedItemsViewName;
+extern NSString *const kSCRAllFeedItemsUngroupedViewName;
+extern NSString *const kSCRFavoriteFeedItemsViewName;
+extern NSString *const kSCRReceivedFeedItemsViewName;
+extern NSString *const kSCRAllFeedsViewName;
+extern NSString *const kSCRSubscribedFeedsViewName;
+extern NSString *const kSCRUnsubscribedFeedsViewName;
+extern NSString *const kSCRAllFeedsSearchViewName;
+extern NSString *const kSCRRelationshipExtensionName;
+
 @interface SCRDatabaseManager : NSObject
 
 @property (nonatomic, strong, readonly) YapDatabase *database;
 
 @property (nonatomic, strong, readonly) YapDatabaseConnection *readConnection;
 @property (nonatomic, strong, readonly) YapDatabaseConnection *readWriteConnection;
-
-@property (nonatomic, strong, readonly) NSString *allFeedItemsViewName;
-@property (nonatomic, strong, readonly) NSString *allFeedItemsUngroupedViewName;
-@property (nonatomic, strong, readonly) NSString *favoriteFeedItemsViewName;
-@property (nonatomic, strong, readonly) NSString *receivedFeedItemsViewName;
-@property (nonatomic, strong, readonly) NSString *allFeedsViewName;
-@property (nonatomic, strong, readonly) NSString *subscribedFeedsViewName;
-@property (nonatomic, strong, readonly) NSString *unsubscribedFeedsViewName;
-@property (nonatomic, strong, readonly) NSString *allFeedsSearchViewName;
 
 - (instancetype) initWithPath:(NSString *)path;
 

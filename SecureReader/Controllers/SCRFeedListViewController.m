@@ -52,12 +52,12 @@
     UINib *nib = [UINib nibWithNibName:@"SCRFeedListCell" bundle:nil];
     [self.searchDisplayController.searchResultsTableView registerNib:nib forCellReuseIdentifier:@"cellFeed"];
 
-    self.subscribedTableDelegate = [[SCRFeedTableDelegate alloc] initWithTableView:self.tableView viewName:[SCRDatabaseManager sharedInstance].subscribedFeedsViewName delegate:self];
-    self.allTableDelegate = [[SCRFeedTableDelegate alloc] initWithTableView:self.tableView viewName:[SCRDatabaseManager sharedInstance].allFeedsViewName delegate:self];
+    self.subscribedTableDelegate = [[SCRFeedTableDelegate alloc] initWithTableView:self.tableView viewName:kSCRSubscribedFeedsViewName delegate:self];
+    self.allTableDelegate = [[SCRFeedTableDelegate alloc] initWithTableView:self.tableView viewName:kSCRAllFeedsViewName delegate:self];
     self.allTableDelegate.showDescription = YES;
     [self.subscribedTableDelegate setActive:YES];
 
-    self.searchTableDelegate = [[SCRFeedSearchTableDelegate alloc] initWithTableView:self.searchDisplayController.searchResultsTableView viewName:[SCRDatabaseManager sharedInstance].allFeedsSearchViewName delegate:self];
+    self.searchTableDelegate = [[SCRFeedSearchTableDelegate alloc] initWithTableView:self.searchDisplayController.searchResultsTableView viewName:kSCRAllFeedsSearchViewName delegate:self];
     self.searchTableDelegate.showDescription = YES;
     [self.searchTableDelegate setActive:YES];
     

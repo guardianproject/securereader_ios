@@ -7,8 +7,9 @@
 //
 
 #import "RSSMediaItem.h"
-
 #import "SCRYapObject.h"
+
+@class SCRItem, YapDatabaseReadTransaction;
 
 @interface SCRMediaItem : RSSMediaItem <SCRYapObject>
 
@@ -17,6 +18,8 @@
 
 /** Local URL to be used with SCRMediaServer */
 - (NSURL *)localURLWithPort:(NSUInteger)port;
+
+- (void)enumerateItemsInTransaction:(YapDatabaseReadTransaction *)readTransaction block:(void (^)(SCRItem *item,BOOL *stop))block;
 
 /** Hashes the URL to be used as a Yap key */
 + (NSString *)mediaItemKeyForURL:(NSURL *)url;

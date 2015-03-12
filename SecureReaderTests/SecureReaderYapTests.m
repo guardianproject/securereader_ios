@@ -43,14 +43,9 @@ NSString *const kSecureReaderYapTestsRSSURL = @"http://test.fake/rss";
         XCTAssertNotNil(self.databaseManager.database,@"No database");
         XCTAssertNotNil(self.databaseManager.readConnection,@"No read connection");
         XCTAssertNotNil(self.databaseManager.readWriteConnection,@"No read/write connection");
-        XCTAssertNotNil(self.databaseManager.allFeedItemsViewName);
-        XCTAssertNotNil(self.databaseManager.allFeedItemsUngroupedViewName);
-        XCTAssertNotNil(self.databaseManager.favoriteFeedItemsViewName);
-        XCTAssertNotNil(self.databaseManager.receivedFeedItemsViewName);
-        XCTAssertNotNil(self.databaseManager.allFeedsSearchViewName);
-        XCTAssertNotNil(self.databaseManager.subscribedFeedsViewName);
-        XCTAssertNotNil(self.databaseManager.unsubscribedFeedsViewName);
-        XCTAssertNotNil(self.databaseManager.allFeedsSearchViewName);
+        
+        //TODO: Check that all the extensions are registered
+        
         [expcetation fulfill];
     });
     
@@ -158,7 +153,55 @@ NSString *const kSecureReaderYapTestsRSSURL = @"http://test.fake/rss";
             NSLog(@"Timeout Error");
         }
     }];
+}
+
+- (void)testRelationships
+{
+    YapDatabaseConnection *connection = [self.databaseManager.database newConnection];
+    NSURLSessionConfiguration *configuration = [self setupURLMock];
+    SCRFeedFetcher *feedFetcher = [[SCRFeedFetcher alloc] initWithReadWriteYapConnection:connection sessionConfiguration:configuration];
     
+    NSURL *url = [NSURL URLWithString:kSecureReaderYapTestsRSSURL];
+    
+    XCTestExpectation *expectation = [self expectationWithDescription:@"testFetching"];
+    [feedFetcher fetchFeedDataFromURL:url completionQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0) completion:^(NSError *error) {
+        
+        __block int numberOfMediaItems = 0;
+        [[self.databaseManager.database newConnection] readWithBlock:^(YapDatabaseReadTransaction *transaction) {
+            [transaction enumerateKeysAndObjectsInCollection:[SCRItem yapCollection] usingBlock:^(NSString *key, id object, BOOL *stop) {
+                if ([object isKindOfClass:[SCRItem class]]) {
+                    __block SCRItem *item = (SCRItem *)object;
+                    
+                    [item enumerateMediaItemsInTransaction:transaction block:^(SCRMediaItem *mediaItem, BOOL *stop) {
+                        XCTAssertTrue([mediaItem isKindOfClass:[SCRMediaItem class]],@"Not correct media item class");
+                        XCTAssertTrue([item.mediaItemsYapKeys containsObject:mediaItem.yapKey],@"Key is not in item");
+                        numberOfMediaItems += 1;
+                    }];
+                }
+            }];
+            
+            [transaction enumerateKeysAndObjectsInCollection:[SCRMediaItem yapCollection] usingBlock:^(NSString *key, id object, BOOL *stop) {
+                if ([object isKindOfClass:[SCRMediaItem class]]) {
+                    __block SCRMediaItem *mediaItem = (SCRMediaItem *)object;
+                    
+                    [mediaItem enumerateItemsInTransaction:transaction block:^(SCRItem *item, BOOL *stop) {
+                        XCTAssertTrue([item isKindOfClass:[SCRItem class]],@"Not correct item class");
+                        XCTAssertTrue([item.mediaItemsYapKeys containsObject:mediaItem.yapKey],@"Key is not in item");
+                    }];
+                }
+            }];
+            
+        }];
+        
+        XCTAssertEqual(numberOfMediaItems,13, @"Not all media items found");
+        [expectation fulfill];
+    }];
+    
+    [self waitForExpectationsWithTimeout:30 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Timeout Error");
+        }
+    }];
 }
 
 @end
