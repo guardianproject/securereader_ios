@@ -20,6 +20,10 @@
     completionQueue:(dispatch_queue_t)completionQueue
          completion:(void (^)(NSData *data, NSError *error))completion;
 
+- (void)removeDataForPath:(NSString *)path
+          completionQueue:(dispatch_queue_t)completionQueue
+               completion:(void (^)(BOOL sucess, NSError *error))completion;
+
 + (instancetype)sharedInstance;
 
 @end

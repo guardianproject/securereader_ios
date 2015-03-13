@@ -39,7 +39,25 @@
             completion(data,error);
         });
     });
+}
 
+- (void)removeDataForPath:(NSString *)path
+          completionQueue:(dispatch_queue_t)completionQueue
+               completion:(void (^)(BOOL sucess, NSError *error))completion
+{
+    if (!completionQueue) {
+        completionQueue = dispatch_get_main_queue();
+    }
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        __block NSError *error = nil;
+        __block BOOL success = [self.ioCipher removeItemAtPath:path error:&error];
+        if (completion) {
+            dispatch_async(completionQueue, ^{
+                completion(success,error);
+            });
+        }
+    });
 }
 
 + (instancetype)sharedInstance
