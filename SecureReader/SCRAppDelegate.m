@@ -17,6 +17,7 @@
 #import "SCRNavigationController.h"
 #import "SCRTheme.h"
 #import "HockeySDK.h"
+#import "SCRDatabaseManager.h"
 #import "SCRFeedFetcher.h"
 
 @interface SCRAppDelegate() <BITHockeyManagerDelegate>
@@ -117,7 +118,8 @@
     {
         mLoggedIn = YES;
         
-        _feedFetcher = [[SCRFeedFetcher alloc] init];
+        YapDatabaseConnection *databaseConnection = [SCRDatabaseManager sharedInstance].readWriteConnection;
+        _feedFetcher = [[SCRFeedFetcher alloc] initWithReadWriteYapConnection:databaseConnection sessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
         NSArray *feedURLs = @[@"http://www.voanews.com/api/epiqq",
                               @"http://www.theguardian.com/world/rss",
                               @"http://feeds.washingtonpost.com/rss/world",
