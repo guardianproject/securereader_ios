@@ -88,13 +88,13 @@
     self.currentType = type;
     self.currentFeed = feed;
 
-    NSString *viewName = [SCRDatabaseManager sharedInstance].allFeedItemsUngroupedViewName;
+    NSString *viewName = kSCRAllFeedItemsUngroupedViewName;
     if (type == SCRFeedViewTypeFavorites)
-        viewName =  [SCRDatabaseManager sharedInstance].favoriteFeedItemsViewName;
+        viewName = kSCRFavoriteFeedItemsViewName;
     else if (type == SCRFeedViewTypeReceived)
-        viewName = [SCRDatabaseManager sharedInstance].receivedFeedItemsViewName;
+        viewName = kSCRReceivedFeedItemsViewName;
     else if (type == SCRFeedViewTypeFeed)
-        viewName = [SCRDatabaseManager sharedInstance].allFeedItemsViewName;
+        viewName = kSCRAllFeedItemsViewName;
     
     self.itemsTableDelegate = [[SCRItemTableDelegate alloc] initWithTableView:self.tableView viewName:viewName filter:feed delegate:self];
     [self.itemsTableDelegate setActive:YES];
