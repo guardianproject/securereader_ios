@@ -60,7 +60,7 @@
     }];
 }
 
- #pragma - mark Class Methods
+#pragma - mark Class Methods
 
 + (NSString *)mediaItemKeyForURL:(NSURL *)url
 {

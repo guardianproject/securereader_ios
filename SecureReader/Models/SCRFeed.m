@@ -7,18 +7,44 @@
 //
 
 #import "SCRFeed.h"
+#import "SCRItem.h"
+#import "SCRDatabaseManager.h"
+#import "YapDatabaseRelationshipTransaction.h"
 #import "YapDatabaseTransaction.h"
+
+@interface SCRFeed ()
+
+@property (nonatomic, strong) NSString *yapKey;
+
+@end
 
 @implementation SCRFeed
 
 #pragma mark SRCYapObject methods
 
 - (NSString*) yapKey {
-    return [self.htmlURL absoluteString];
+    
+    if (!_yapKey) {
+        if([self.htmlURL.absoluteString length]) {
+            _yapKey = [self.htmlURL absoluteString];
+        }
+        else if ([self.xmlURL.absoluteString length]) {
+            _yapKey = [self.xmlURL absoluteString];
+        }
+        else {
+            _yapKey = [[NSUUID UUID] UUIDString];
+        }
+    }
+    
+    return _yapKey;
 }
 
 - (NSString*) yapGroup {
-    return [self.htmlURL host];
+    if ([self.htmlURL.absoluteString length]) {
+        return [self.htmlURL host];
+    } else {
+        return [self.xmlURL host];
+    }
 }
 
 - (void)saveWithTransaction:(YapDatabaseReadWriteTransaction *)transaction
@@ -31,8 +57,31 @@
     [transaction removeObjectForKey:[self yapKey] inCollection:[[self class] yapCollection]];
 }
 
+- (void)enumerateItemsInTransaction:(YapDatabaseReadTransaction *)readTransaction block:(void (^)(SCRItem *item, BOOL *stop))block
+{
+    if (!block) {
+        return;
+    }
+    
+    [[readTransaction ext:kSCRRelationshipExtensionName] enumerateEdgesWithName:kSCRFeedEdgeName destinationKey:self.yapKey collection:[[self class] yapCollection] usingBlock:^(YapDatabaseRelationshipEdge *edge, BOOL *stop) {
+        
+        SCRItem *mediaItem = [readTransaction objectForKey:edge.sourceKey inCollection:edge.sourceCollection];
+        block(mediaItem,stop);
+        
+    }];
+}
+
 + (NSString*) yapCollection {
     return NSStringFromClass([self class]);
+}
+
++ (void)removeFeed:(SCRFeed *)feed inTransaction:(YapDatabaseReadWriteTransaction *)transaction storage:(IOCipher *)storage
+{
+    [feed enumerateItemsInTransaction:transaction block:^(SCRItem *item, BOOL *stop) {
+        [item removeMediaItemsWithReadWriteTransaction:transaction storage:storage];
+        [transaction removeObjectForKey:item.yapKey inCollection:[[item class] yapCollection]];
+    }];
+    [transaction removeObjectForKey:feed.yapKey inCollection:[[feed class] yapCollection]];
 }
 
 @end

@@ -27,39 +27,31 @@ NSString *const kSecureReaderYapTestsRSSURL = @"http://test.fake/rss";
 - (void)setUp {
     [super setUp];
     
-    NSString *path = [NSTemporaryDirectory() stringByAppendingPathComponent:@"yapTest.sqlite"];
     
-    if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
-        NSError *error = nil;
-        [[NSFileManager defaultManager] removeItemAtPath:path error:&error];
-        XCTAssertNil(error,@"Error removing existing database");
+    //Cleanup any items in temporary directory
+    NSString *directory = NSTemporaryDirectory();
+    
+    NSDirectoryEnumerator *enumerator = [[NSFileManager defaultManager] enumeratorAtPath:directory];
+    
+    NSString *file = nil;
+    while (file = [enumerator nextObject]) {
+        [[NSFileManager defaultManager] removeItemAtPath:[directory stringByAppendingPathComponent:file] error:nil];
     }
-    
-    self.databaseManager = [[SCRDatabaseManager alloc] initWithPath:path];
-    
-    //FIXME Not great that register views happen async in the init method
-    XCTestExpectation *expcetation = [self expectationWithDescription:@"datbaseSetup"];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        XCTAssertNotNil(self.databaseManager.database,@"No database");
-        XCTAssertNotNil(self.databaseManager.readConnection,@"No read connection");
-        XCTAssertNotNil(self.databaseManager.readWriteConnection,@"No read/write connection");
-        
-        //TODO: Check that all the extensions are registered
-        
-        [expcetation fulfill];
-    });
-    
-    [self waitForExpectationsWithTimeout:5 handler:^(NSError *error) {
-        if (error) {
-            NSLog(@"Timeout Error");
-        }
-    }];
-    
 }
 
 - (void)tearDown {
     // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];
+}
+
+- (void)setupDatabseAtPath:(NSString *)path
+{
+    //Need to setup a different database per method becuase yap has static variable it checks
+    self.databaseManager = [[SCRDatabaseManager alloc] initWithPath:path];
+    
+    XCTAssertNotNil(self.databaseManager.database,@"No database");
+    XCTAssertNotNil(self.databaseManager.readConnection,@"No read connection");
+    XCTAssertNotNil(self.databaseManager.readWriteConnection,@"No read/write connection");
 }
 
 - (NSURLSessionConfiguration *)setupURLMock
@@ -80,16 +72,23 @@ NSString *const kSecureReaderYapTestsRSSURL = @"http://test.fake/rss";
     return configuration;
 }
 
-- (void)testStorage {
-    
+- (void)importDefaultFeed:(void (^)(NSError *error))completion
+{
     YapDatabaseConnection *connection = [self.databaseManager.database newConnection];
     NSURLSessionConfiguration *configuration = [self setupURLMock];
     SCRFeedFetcher *feedFetcher = [[SCRFeedFetcher alloc] initWithReadWriteYapConnection:connection sessionConfiguration:configuration];
     
     NSURL *url = [NSURL URLWithString:kSecureReaderYapTestsRSSURL];
     
-    XCTestExpectation *expectation = [self expectationWithDescription:@"testFetching"];
-    [feedFetcher fetchFeedDataFromURL:url completionQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0) completion:^(NSError *error) {
+    [feedFetcher fetchFeedDataFromURL:url completionQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0) completion:completion];
+}
+
+- (void)testStorage {
+    
+    NSString *path = [NSTemporaryDirectory() stringByAppendingPathComponent:NSStringFromSelector(_cmd)];
+    [self setupDatabseAtPath:path];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"expectation"];
+    [self importDefaultFeed:^(NSError *error) {
         XCTAssertNil(error,@"Error fetching feed");
         
         [[self.databaseManager.database newConnection] readWithBlock:^(YapDatabaseReadTransaction *transaction) {
@@ -117,7 +116,7 @@ NSString *const kSecureReaderYapTestsRSSURL = @"http://test.fake/rss";
                 XCTAssertTrue([object isKindOfClass:[SCRItem class]],@"Item is not SCRItem");
                 SCRItem *item = (SCRItem *)object;
                 
-                XCTAssertNotNil(item.feedYapKey,@"could not find yap feed key");
+                XCTAssertTrue([item.feedYapKey length] > 0 ,@"could not find yap feed key");
                 XCTAssertFalse(item.isFavorite,@"Default should be not favorite");
                 XCTAssertFalse(item.isReceived,@"Default should be not received");
                 XCTAssertNotNil(item.linkURL,@"Could not find link");
@@ -157,47 +156,98 @@ NSString *const kSecureReaderYapTestsRSSURL = @"http://test.fake/rss";
 
 - (void)testRelationships
 {
-    YapDatabaseConnection *connection = [self.databaseManager.database newConnection];
-    NSURLSessionConfiguration *configuration = [self setupURLMock];
-    SCRFeedFetcher *feedFetcher = [[SCRFeedFetcher alloc] initWithReadWriteYapConnection:connection sessionConfiguration:configuration];
-    
-    NSURL *url = [NSURL URLWithString:kSecureReaderYapTestsRSSURL];
-    
+    NSString *path = [NSTemporaryDirectory() stringByAppendingPathComponent:NSStringFromSelector(_cmd)];
+    [self setupDatabseAtPath:path];
     XCTestExpectation *expectation = [self expectationWithDescription:@"testFetching"];
-    [feedFetcher fetchFeedDataFromURL:url completionQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0) completion:^(NSError *error) {
+    [self importDefaultFeed:^(NSError *error) {
         
         __block int numberOfMediaItems = 0;
+        __block int numberOfItems = 0;
         [[self.databaseManager.database newConnection] readWithBlock:^(YapDatabaseReadTransaction *transaction) {
+            
+            [transaction enumerateKeysAndObjectsInCollection:[SCRFeed yapCollection] usingBlock:^(NSString *key, id object, BOOL *stop) {
+                XCTAssertTrue([object isKindOfClass:[SCRFeed class]]);
+                __block SCRFeed *feed = (SCRFeed *)object;
+                
+                
+                [feed enumerateItemsInTransaction:transaction block:^(SCRItem *item, BOOL *stop) {
+                    XCTAssertTrue([item isKindOfClass:[SCRItem class]]);
+                    XCTAssertTrue([item.feedYapKey isEqualToString:feed.yapKey]);
+                    numberOfItems += 1;
+                }];
+            }];
+            
             [transaction enumerateKeysAndObjectsInCollection:[SCRItem yapCollection] usingBlock:^(NSString *key, id object, BOOL *stop) {
-                if ([object isKindOfClass:[SCRItem class]]) {
-                    __block SCRItem *item = (SCRItem *)object;
-                    
-                    [item enumerateMediaItemsInTransaction:transaction block:^(SCRMediaItem *mediaItem, BOOL *stop) {
-                        XCTAssertTrue([mediaItem isKindOfClass:[SCRMediaItem class]],@"Not correct media item class");
-                        XCTAssertTrue([item.mediaItemsYapKeys containsObject:mediaItem.yapKey],@"Key is not in item");
-                        numberOfMediaItems += 1;
-                    }];
-                }
+                XCTAssertTrue([object isKindOfClass:[SCRItem class]]);
+                __block SCRItem *item = (SCRItem *)object;
+                
+                [item enumerateMediaItemsInTransaction:transaction block:^(SCRMediaItem *mediaItem, BOOL *stop) {
+                    XCTAssertTrue([mediaItem isKindOfClass:[SCRMediaItem class]],@"Not correct media item class");
+                    XCTAssertTrue([item.mediaItemsYapKeys containsObject:mediaItem.yapKey],@"Key is not in item");
+                    numberOfMediaItems += 1;
+                }];
             }];
             
             [transaction enumerateKeysAndObjectsInCollection:[SCRMediaItem yapCollection] usingBlock:^(NSString *key, id object, BOOL *stop) {
-                if ([object isKindOfClass:[SCRMediaItem class]]) {
-                    __block SCRMediaItem *mediaItem = (SCRMediaItem *)object;
-                    
-                    [mediaItem enumerateItemsInTransaction:transaction block:^(SCRItem *item, BOOL *stop) {
-                        XCTAssertTrue([item isKindOfClass:[SCRItem class]],@"Not correct item class");
-                        XCTAssertTrue([item.mediaItemsYapKeys containsObject:mediaItem.yapKey],@"Key is not in item");
-                    }];
-                }
+                XCTAssertTrue([object isKindOfClass:[SCRMediaItem class]]);
+                __block SCRMediaItem *mediaItem = (SCRMediaItem *)object;
+                
+                [mediaItem enumerateItemsInTransaction:transaction block:^(SCRItem *item, BOOL *stop) {
+                    XCTAssertTrue([item isKindOfClass:[SCRItem class]],@"Not correct item class");
+                    XCTAssertTrue([item.mediaItemsYapKeys containsObject:mediaItem.yapKey],@"Key is not in item");
+                }];
             }];
+            
+            
             
         }];
         
+        XCTAssertEqual(numberOfItems, 20);
         XCTAssertEqual(numberOfMediaItems,13, @"Not all media items found");
         [expectation fulfill];
     }];
     
-    [self waitForExpectationsWithTimeout:30 handler:^(NSError *error) {
+    [self waitForExpectationsWithTimeout:10 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Timeout Error");
+        }
+    }];
+}
+
+- (void)testDelete
+{
+    NSString *path = [NSTemporaryDirectory() stringByAppendingPathComponent:NSStringFromSelector(_cmd)];
+    [self setupDatabseAtPath:path];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"expectation"];
+    [self importDefaultFeed:^(NSError *error) {
+        
+        YapDatabaseConnection *connection = [self.databaseManager.database newConnection];
+        [connection readWriteWithBlock:^(YapDatabaseReadWriteTransaction *transaction) {
+            
+            NSMutableArray *feeds = [NSMutableArray array];
+            [transaction enumerateKeysAndObjectsInCollection:[SCRFeed yapCollection] usingBlock:^(NSString *key, id object, BOOL *stop) {
+                XCTAssertTrue([object isKindOfClass:[SCRFeed class]]);
+                SCRFeed *feed = (SCRFeed *)object;
+                [feeds addObject:feed];
+            }];
+            
+            XCTAssertEqual([feeds count], 1);
+            
+            for (SCRFeed *feed in feeds) {
+                [SCRFeed removeFeed:feed inTransaction:transaction storage:nil];
+            }
+        }];
+        
+        [connection readWithBlock:^(YapDatabaseReadTransaction *transaction) {
+            [transaction enumerateKeysInAllCollectionsUsingBlock:^(NSString *collection, NSString *key, BOOL *stop) {
+                XCTAssertTrue(NO,@"There should not be anything in the databse");
+            }];
+        }];
+        
+        [expectation fulfill];
+    }];
+    
+    [self waitForExpectationsWithTimeout:10 handler:^(NSError *error) {
         if (error) {
             NSLog(@"Timeout Error");
         }

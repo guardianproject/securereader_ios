@@ -89,10 +89,9 @@ NSString *const kSCRRelationshipExtensionName = @"kSCRRelationshipExtensionName"
         return [item2.publicationDate compare:item1.publicationDate];
     }];
     YapDatabaseView *databaseView = [[YapDatabaseView alloc] initWithGrouping:grouping sorting:sorting versionTag:@"3" options:nil];
-    [self.database asyncRegisterExtension:databaseView withName:kSCRAllFeedItemsViewName completionBlock:^(BOOL ready) {
-        [self registerFavoriteFeedItemsView];
-        [self registerReceivedFeedItemsView];
-    }];
+    [self.database registerExtension:databaseView withName:kSCRAllFeedItemsViewName];
+    [self registerFavoriteFeedItemsView];
+    [self registerReceivedFeedItemsView];
 }
 
 - (void) registerAllFeedItemsUngroupedView {
@@ -106,9 +105,7 @@ NSString *const kSCRRelationshipExtensionName = @"kSCRRelationshipExtensionName"
         return [item2.publicationDate compare:item1.publicationDate];
     }];
     YapDatabaseView *databaseView = [[YapDatabaseView alloc] initWithGrouping:grouping sorting:sorting versionTag:@"1" options:nil];
-    [self.database asyncRegisterExtension:databaseView withName:kSCRAllFeedItemsUngroupedViewName completionBlock:^(BOOL ready) {
-        NSLog(@"%@ ready %d",kSCRAllFeedItemsUngroupedViewName, ready);
-    }];
+    [self.database registerExtension:databaseView withName:kSCRAllFeedItemsUngroupedViewName];
 }
 
 - (void) registerFavoriteFeedItemsView {
@@ -125,9 +122,7 @@ NSString *const kSCRRelationshipExtensionName = @"kSCRRelationshipExtensionName"
     [[YapDatabaseFilteredView alloc] initWithParentViewName:kSCRAllFeedItemsViewName
                                              filtering:filtering];
     
-    [self.database asyncRegisterExtension:filteredView withName:kSCRFavoriteFeedItemsViewName completionBlock:^(BOOL ready) {
-        NSLog(@"%@ ready %d", kSCRFavoriteFeedItemsViewName, ready);
-    }];
+    [self.database registerExtension:filteredView withName:kSCRFavoriteFeedItemsViewName];
 }
 
 - (void) registerReceivedFeedItemsView {
@@ -141,9 +136,7 @@ NSString *const kSCRRelationshipExtensionName = @"kSCRRelationshipExtensionName"
     YapDatabaseFilteredView *filteredView =
     [[YapDatabaseFilteredView alloc] initWithParentViewName:kSCRAllFeedItemsViewName
                                                   filtering:filtering];
-    [self.database asyncRegisterExtension:filteredView withName:kSCRReceivedFeedItemsViewName completionBlock:^(BOOL ready) {
-        NSLog(@"%@ ready %d", kSCRReceivedFeedItemsViewName, ready);
-    }];
+    [self.database registerExtension:filteredView withName:kSCRReceivedFeedItemsViewName];
 }
 
 - (void) registerAllFeedsView {
@@ -158,30 +151,25 @@ NSString *const kSCRRelationshipExtensionName = @"kSCRRelationshipExtensionName"
         return [item1.title compare:item2.title];
     }];
     YapDatabaseView *databaseView = [[YapDatabaseView alloc] initWithGrouping:grouping sorting:sorting versionTag:@"1" options:nil];
-    [self.database asyncRegisterExtension:databaseView withName:kSCRAllFeedsViewName completionBlock:^(BOOL ready) {
-        NSLog(@"%@ ready %d", kSCRAllFeedsViewName, ready);
+    
+    [self.database registerExtension:databaseView withName:kSCRAllFeedsViewName];
         
-        YapDatabaseViewFiltering *filtering = [YapDatabaseViewFiltering withObjectBlock:^BOOL (NSString *group, NSString *collection, NSString *key, id object)
-        {
-            return [(SCRFeed *)object subscribed];
-        }];
-        
-        YapDatabaseFilteredView *subscribedFeedsView = [[YapDatabaseFilteredView alloc] initWithParentViewName:kSCRAllFeedsViewName filtering:filtering];
-        [self.database asyncRegisterExtension:subscribedFeedsView withName:kSCRSubscribedFeedsViewName completionBlock:^(BOOL ready) {
-            NSLog(@"%@ ready %d", kSCRSubscribedFeedsViewName, ready);
-        }];
-        
-        filtering = [YapDatabaseViewFiltering withObjectBlock:^BOOL (NSString *group, NSString *collection, NSString *key, id object)
-                                               {
-                                                   return ![(SCRFeed *)object subscribed];
-                                               }];
-        
-        YapDatabaseFilteredView *unsubscribedFeedsView = [[YapDatabaseFilteredView alloc] initWithParentViewName:kSCRAllFeedsViewName filtering:filtering];
-        [self.database asyncRegisterExtension:unsubscribedFeedsView withName:kSCRUnsubscribedFeedsViewName completionBlock:^(BOOL ready) {
-            NSLog(@"%@ ready %d", kSCRUnsubscribedFeedsViewName, ready);
-        }];
-
+    YapDatabaseViewFiltering *filtering = [YapDatabaseViewFiltering withObjectBlock:^BOOL (NSString *group, NSString *collection, NSString *key, id object)
+    {
+        return [(SCRFeed *)object subscribed];
     }];
+    
+    YapDatabaseFilteredView *subscribedFeedsView = [[YapDatabaseFilteredView alloc] initWithParentViewName:kSCRAllFeedsViewName filtering:filtering];
+    
+    [self.database registerExtension:subscribedFeedsView withName:kSCRSubscribedFeedsViewName];
+    
+    filtering = [YapDatabaseViewFiltering withObjectBlock:^BOOL (NSString *group, NSString *collection, NSString *key, id object)
+                                           {
+                                               return ![(SCRFeed *)object subscribed];
+                                           }];
+    
+    YapDatabaseFilteredView *unsubscribedFeedsView = [[YapDatabaseFilteredView alloc] initWithParentViewName:kSCRAllFeedsViewName filtering:filtering];
+    [self.database registerExtension:unsubscribedFeedsView withName:kSCRUnsubscribedFeedsViewName];
 }
 
 - (void) registerAllFeedsSearchView {
@@ -198,18 +186,16 @@ NSString *const kSCRRelationshipExtensionName = @"kSCRRelationshipExtensionName"
                                                                                     handler:fullTextSearchHandler
                                                                                  versionTag:@"2"];
     
-    [self.database asyncRegisterExtension:fts withName:@"SCRAllFeedsSearchViewNameFTS" completionBlock:^(BOOL ready) {
-        YapDatabaseSearchResultsViewOptions *searchViewOptions = [[YapDatabaseSearchResultsViewOptions alloc] init];
-        searchViewOptions.isPersistent = NO;
-        YapDatabaseSearchResultsView *searchResultsView =
-        [[YapDatabaseSearchResultsView alloc] initWithFullTextSearchName:@"SCRAllFeedsSearchViewNameFTS"
-                                                          parentViewName:kSCRAllFeedsViewName
-                                                              versionTag:@"1"
-                                                                 options:searchViewOptions];
-        [self.database asyncRegisterExtension:searchResultsView withName:kSCRAllFeedsSearchViewName completionBlock:^(BOOL ready) {
-            NSLog(@"%@ ready %d", kSCRAllFeedsSearchViewName, ready);
-        }];
-    }];
+    [self.database registerExtension:fts withName:@"SCRAllFeedsSearchViewNameFTS"];
+
+    YapDatabaseSearchResultsViewOptions *searchViewOptions = [[YapDatabaseSearchResultsViewOptions alloc] init];
+    searchViewOptions.isPersistent = NO;
+    YapDatabaseSearchResultsView *searchResultsView =
+    [[YapDatabaseSearchResultsView alloc] initWithFullTextSearchName:@"SCRAllFeedsSearchViewNameFTS"
+                                                      parentViewName:kSCRAllFeedsViewName
+                                                          versionTag:@"1"
+                                                             options:searchViewOptions];
+    [self.database registerExtension:searchResultsView withName:kSCRAllFeedsSearchViewName];
 }
 
 + (instancetype) sharedInstance {
