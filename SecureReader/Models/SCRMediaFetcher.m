@@ -16,6 +16,7 @@ typedef void (^SCRURLSesssionDataTaskCompletion)(NSURLSessionTask *dataTask, NSE
 
 @property (nonatomic, strong) NSString *localPath;
 @property (nonatomic, copy) SCRURLSesssionDataTaskCompletion completion;
+@property (nonatomic) NSUInteger offset;
 
 @end
 
@@ -78,11 +79,11 @@ typedef void (^SCRURLSesssionDataTaskCompletion)(NSURLSessionTask *dataTask, NSE
 
 #pragma - mark Private Methods
 
-- (void)receivedData:(NSData *)data forPath:(NSString *)path error:(NSError **)error;
+- (void)receivedData:(NSData *)data forPath:(NSString *)path atOffset:(NSUInteger)offset error:(NSError **)error;
 {
     [data enumerateByteRangesUsingBlock:^(const void *bytes, NSRange byteRange, BOOL *stop) {
         NSError *err = nil;
-        [self.ioCipher writeDataToFileAtPath:path data:[NSData dataWithBytesNoCopy:(void*)bytes length:byteRange.length freeWhenDone:NO] offset:byteRange.location error:&err];
+        [self.ioCipher writeDataToFileAtPath:path data:[NSData dataWithBytesNoCopy:(void*)bytes length:byteRange.length freeWhenDone:NO] offset:(offset+byteRange.location) error:&err];
         if(err) {
             *stop = YES;
             *error = err;
@@ -99,6 +100,7 @@ typedef void (^SCRURLSesssionDataTaskCompletion)(NSURLSessionTask *dataTask, NSE
     __block SCRURLSessionDataTaskInfo *taskInfo = [[SCRURLSessionDataTaskInfo alloc] init];
     taskInfo.localPath = localPath;
     taskInfo.completion = completion;
+    taskInfo.offset = 0;
     
     dispatch_async(self.isolationQueue, ^{
         if (dataTask && [localPath length]) {
@@ -135,7 +137,7 @@ typedef void (^SCRURLSesssionDataTaskCompletion)(NSURLSessionTask *dataTask, NSE
         SCRURLSessionDataTaskInfo *info = [self infoForTask:dataTask];
         
         NSError *error = nil;
-        [self receivedData:data forPath:info.localPath error:&error];
+        [self receivedData:data forPath:info.localPath atOffset:info.offset error:&error];
         if (error) {
             [dataTask cancel];
             if (info.completion) {
@@ -144,6 +146,7 @@ typedef void (^SCRURLSesssionDataTaskCompletion)(NSURLSessionTask *dataTask, NSE
                 });
             }
         }
+        info.offset += [data length];
     }
 }
 

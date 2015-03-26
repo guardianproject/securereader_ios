@@ -16,6 +16,8 @@
 
 - (void)setupWithPath:(NSString *)path password:(NSString *)password;
 
+- (BOOL)hasDataForPath:(NSString *)path;
+
 - (void)dataForPath:(NSString *)path
     completionQueue:(dispatch_queue_t)completionQueue
          completion:(void (^)(NSData *data, NSError *error))completion;

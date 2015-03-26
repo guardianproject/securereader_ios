@@ -20,6 +20,13 @@
     _ioCipher = [[IOCipher alloc] initWithPath:path password:password];
 }
 
+- (BOOL)hasDataForPath:(NSString *)path
+{
+    if (![path length])
+        return NO;
+    return [self.ioCipher fileExistsAtPath:path isDirectory:nil];
+}
+
 - (void)dataForPath:(NSString *)path
     completionQueue:(dispatch_queue_t)completionQueue
          completion:(void (^)(NSData *data, NSError *error))completion
