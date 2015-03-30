@@ -19,6 +19,7 @@
 #import "HockeySDK.h"
 #import "SCRDatabaseManager.h"
 #import "SCRFeedFetcher.h"
+#import "SCRFileManager.h"
 
 @interface SCRAppDelegate() <BITHockeyManagerDelegate>
 @property (nonatomic, strong, readonly) SCRFeedFetcher *feedFetcher;
@@ -129,6 +130,15 @@
         [feedURLs enumerateObjectsUsingBlock:^(NSString *feedURLString, NSUInteger idx, BOOL *stop) {
             [self.feedFetcher fetchFeedDataFromURL:[NSURL URLWithString:feedURLString] completionQueue:nil completion:nil];
         }];
+        
+        NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:@"media.sqlite"];
+        _fileManager = [[SCRFileManager alloc] init];
+        [self.fileManager setupWithPath:path password:@"password"]; //TODO real password here!
+        
+        //Setup media fetcher
+        self.mediaFetcher = [[SCRMediaFetcher alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]
+                                                                                      storage:self.fileManager.ioCipher];
+        self.mediaFetcher.completionQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     }
     return mLoggedIn;
 }

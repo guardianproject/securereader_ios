@@ -7,10 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SCRFileManager.h"
+#import "SCRMediaFetcher.h"
 
 @interface SCRAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) SCRFileManager *fileManager;
+@property (strong, nonatomic) SCRMediaFetcher *mediaFetcher;
 
 + (SCRAppDelegate*) sharedAppDelegate;
 
