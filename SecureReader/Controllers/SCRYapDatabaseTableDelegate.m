@@ -35,6 +35,11 @@
     return self;
 }
 
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:YapDatabaseModifiedNotification object:self.readConnection.database];
+}
+
 - (BOOL)isActive
 {
     return (self.tableView.delegate == self);
