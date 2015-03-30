@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -14,23 +14,21 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="321"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="img_local_share.png" translatesAutoresizingMaskIntoConstraints="NO" id="592-5l-tQ7">
+                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xwG-qA-D4c" customClass="SCRMediaCollectionView">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="200"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="200" id="uRP-kd-gqM"/>
-                        </constraints>
-                    </imageView>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o8j-Kk-Uca" customClass="SCRSourceView">
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="o8j-Kk-Uca" customClass="SCRSourceView">
                         <rect key="frame" x="20" y="208" width="560" height="50"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="50" id="a0w-aa-SuQ"/>
                         </constraints>
                     </view>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="Tmh-Vq-M3f">
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="Tmh-Vq-M3f">
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" bounces="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="sBi-Hl-ouM" userLabel="Tag View">
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" directionalLockEnabled="YES" bounces="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="sBi-Hl-ouM" userLabel="Tag View">
                         <rect key="frame" x="20" y="286" width="560" height="40"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="40" id="HU2-hU-R5N"/>
@@ -46,7 +44,7 @@
                         </userDefinedRuntimeAttributes>
                     </collectionView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rfn-0S-4Oj" customClass="SCRGradientBackgroundView">
-                        <rect key="frame" x="0.0" y="335" width="600" height="15"/>
+                        <rect key="frame" x="0.0" y="334" width="600" height="15"/>
                         <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="h8h-7g-wBZ"/>
@@ -57,26 +55,26 @@
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="o8j-Kk-Uca" firstAttribute="top" secondItem="592-5l-tQ7" secondAttribute="bottom" constant="8" id="4DW-A7-xFc"/>
-                    <constraint firstItem="592-5l-tQ7" firstAttribute="top" secondItem="OWu-va-Orj" secondAttribute="top" id="6sH-jo-trn"/>
                     <constraint firstItem="rfn-0S-4Oj" firstAttribute="top" secondItem="sBi-Hl-ouM" secondAttribute="bottom" priority="999" constant="20" id="8Y0-1e-ris"/>
                     <constraint firstItem="Tmh-Vq-M3f" firstAttribute="leading" secondItem="OWu-va-Orj" secondAttribute="leading" constant="20" id="9zr-KL-EbB"/>
+                    <constraint firstItem="o8j-Kk-Uca" firstAttribute="top" secondItem="xwG-qA-D4c" secondAttribute="bottom" constant="8" id="Hxv-oK-e6o"/>
                     <constraint firstAttribute="trailing" secondItem="Tmh-Vq-M3f" secondAttribute="trailing" constant="20" id="M0K-BQ-tso"/>
                     <constraint firstItem="o8j-Kk-Uca" firstAttribute="leading" secondItem="OWu-va-Orj" secondAttribute="leading" constant="20" id="Q9s-Mf-F5u"/>
-                    <constraint firstAttribute="trailing" secondItem="592-5l-tQ7" secondAttribute="trailing" id="Uy6-VF-2EM"/>
+                    <constraint firstAttribute="trailing" secondItem="xwG-qA-D4c" secondAttribute="trailing" id="TDg-c5-nCx"/>
                     <constraint firstAttribute="trailing" secondItem="sBi-Hl-ouM" secondAttribute="trailing" constant="20" id="Wff-5K-mg0"/>
                     <constraint firstItem="Tmh-Vq-M3f" firstAttribute="top" secondItem="o8j-Kk-Uca" secondAttribute="bottom" constant="8" id="WpD-u6-vfe"/>
+                    <constraint firstItem="xwG-qA-D4c" firstAttribute="top" secondItem="OWu-va-Orj" secondAttribute="top" id="cg6-qw-Sp8"/>
                     <constraint firstItem="sBi-Hl-ouM" firstAttribute="top" secondItem="Tmh-Vq-M3f" secondAttribute="bottom" constant="20" id="dQ1-dr-3Hf"/>
                     <constraint firstItem="rfn-0S-4Oj" firstAttribute="leading" secondItem="OWu-va-Orj" secondAttribute="leading" id="irQ-yI-xdk"/>
                     <constraint firstItem="sBi-Hl-ouM" firstAttribute="leading" secondItem="OWu-va-Orj" secondAttribute="leading" constant="20" id="kR0-hD-d9Z"/>
                     <constraint firstAttribute="trailing" secondItem="o8j-Kk-Uca" secondAttribute="trailing" constant="20" id="lVt-Yw-8C9"/>
+                    <constraint firstItem="xwG-qA-D4c" firstAttribute="leading" secondItem="OWu-va-Orj" secondAttribute="leading" id="nIh-nf-5sP"/>
                     <constraint firstAttribute="trailing" secondItem="rfn-0S-4Oj" secondAttribute="trailing" id="qBA-Ij-h1Y"/>
                     <constraint firstAttribute="bottom" secondItem="rfn-0S-4Oj" secondAttribute="bottom" id="v9I-2D-vec"/>
-                    <constraint firstItem="592-5l-tQ7" firstAttribute="leading" secondItem="OWu-va-Orj" secondAttribute="leading" id="vwi-z2-wy3"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="imageView" destination="592-5l-tQ7" id="VrQ-uB-xbU"/>
+                <outlet property="mediaCollectionView" destination="xwG-qA-D4c" id="yhd-r8-u9N"/>
                 <outlet property="sourceView" destination="o8j-Kk-Uca" id="cZG-J3-qGy"/>
                 <outlet property="tagCollectionView" destination="sBi-Hl-ouM" id="dE5-So-RR3"/>
                 <outlet property="tagCollectionViewBottomConstraint" destination="8Y0-1e-ris" id="vG4-nv-H6W"/>
@@ -87,7 +85,4 @@
             <point key="canvasLocation" x="389" y="124"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="img_local_share.png" width="350" height="319"/>
-    </resources>
 </document>

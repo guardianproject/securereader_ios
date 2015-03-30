@@ -30,6 +30,8 @@
 		92458CC71A6D4E4600C17EFA /* SCRReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 92458CC61A6D4E4600C17EFA /* SCRReader.m */; };
 		924BBFC01A08DCEB00A32940 /* InAppSettings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 924BBFBF1A08DCEB00A32940 /* InAppSettings.bundle */; };
 		925AE5801A404161001E182F /* SCRMoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 925AE57F1A404161001E182F /* SCRMoreViewController.m */; };
+		9268080C1ABC4C5E00EB9225 /* SCRMediaCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9268080B1ABC4C5E00EB9225 /* SCRMediaCollectionView.m */; };
+		9268080E1ABC4C6F00EB9225 /* SCRMediaCollectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9268080D1ABC4C6F00EB9225 /* SCRMediaCollectionView.xib */; };
 		9279F8001A67B4E90029572B /* ic_action2_chat.png in Resources */ = {isa = PBXBuildFile; fileRef = 9279F7FC1A67B4E90029572B /* ic_action2_chat.png */; };
 		9279F8011A67B4E90029572B /* ic_action2_favorite.png in Resources */ = {isa = PBXBuildFile; fileRef = 9279F7FD1A67B4E90029572B /* ic_action2_favorite.png */; };
 		9279F8021A67B4E90029572B /* ic_action2_font.png in Resources */ = {isa = PBXBuildFile; fileRef = 9279F7FE1A67B4E90029572B /* ic_action2_font.png */; };
@@ -144,6 +146,9 @@
 		924BBFBF1A08DCEB00A32940 /* InAppSettings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = InAppSettings.bundle; sourceTree = "<group>"; };
 		925AE57E1A404161001E182F /* SCRMoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRMoreViewController.h; sourceTree = "<group>"; };
 		925AE57F1A404161001E182F /* SCRMoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRMoreViewController.m; sourceTree = "<group>"; };
+		9268080A1ABC4C5E00EB9225 /* SCRMediaCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRMediaCollectionView.h; sourceTree = "<group>"; };
+		9268080B1ABC4C5E00EB9225 /* SCRMediaCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRMediaCollectionView.m; sourceTree = "<group>"; };
+		9268080D1ABC4C6F00EB9225 /* SCRMediaCollectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SCRMediaCollectionView.xib; sourceTree = "<group>"; };
 		9279F7FC1A67B4E90029572B /* ic_action2_chat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_action2_chat.png; sourceTree = "<group>"; };
 		9279F7FD1A67B4E90029572B /* ic_action2_favorite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_action2_favorite.png; sourceTree = "<group>"; };
 		9279F7FE1A67B4E90029572B /* ic_action2_font.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_action2_font.png; sourceTree = "<group>"; };
@@ -556,6 +561,9 @@
 				923FFFA01AA4A75600BC83D6 /* SCRItemTagCell.xib */,
 				923FFFA21AA4AA2B00BC83D6 /* SCRItemTagCell.h */,
 				923FFFA31AA4AA2B00BC83D6 /* SCRItemTagCell.m */,
+				9268080A1ABC4C5E00EB9225 /* SCRMediaCollectionView.h */,
+				9268080B1ABC4C5E00EB9225 /* SCRMediaCollectionView.m */,
+				9268080D1ABC4C6F00EB9225 /* SCRMediaCollectionView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -702,6 +710,7 @@
 				9228CAD91AA9A97000DD3E44 /* SCRFeedListCellWithDescription.xib in Resources */,
 				9284FA741A3899730085638D /* ic_panic_down.png in Resources */,
 				929EEF5919F4EB100020BD75 /* Main.storyboard in Resources */,
+				9268080E1ABC4C6F00EB9225 /* SCRMediaCollectionView.xib in Resources */,
 				9279F8031A67B4E90029572B /* ic_action2_share.png in Resources */,
 				9239049E1A07E365004EEE7E /* background_debut_light.png in Resources */,
 				9279F8021A67B4E90029572B /* ic_action2_font.png in Resources */,
@@ -835,6 +844,7 @@
 				92B23C4F1A5D823700FFD963 /* SCRFavoritesViewController.m in Sources */,
 				929EEF4D19F4EB100020BD75 /* main.m in Sources */,
 				92B23C491A5D303800FFD963 /* SCRMainViewController.m in Sources */,
+				9268080C1ABC4C5E00EB9225 /* SCRMediaCollectionView.m in Sources */,
 				929EEF8219F4F5940020BD75 /* NSBundle+Language.m in Sources */,
 				92B9E9751A9C7A3D00A2BED9 /* SCRPostsViewController.m in Sources */,
 				923FFFA41AA4AA2B00BC83D6 /* SCRItemTagCell.m in Sources */,

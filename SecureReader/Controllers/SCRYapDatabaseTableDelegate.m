@@ -35,6 +35,11 @@
     return self;
 }
 
+- (BOOL)isActive
+{
+    return (self.tableView.delegate == self);
+}
+
 - (void)setActive:(BOOL)active
 {
     if (active)
@@ -62,6 +67,11 @@
 - (void)configureCell:(UITableViewCell *)cell forItem:(NSObject *)item
 {
     mustOverride();
+}
+
+- (void)onCellConfigured:(UITableViewCell *)cell forItem:(NSObject *)item atIndexPath:(NSIndexPath *)indexPath
+{
+    // Do nothing
 }
 
 - (void)createMappings
@@ -95,10 +105,13 @@
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSObject *item = [self itemForIndexPath:indexPath];
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[self identifierForItem:item]];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[self identifierForItem:item] forIndexPath:indexPath];
     [self configureCell:cell forItem:item];
     if (self.delegate != nil && [self.delegate respondsToSelector:@selector(configureCell:item:delegate:)])
         [self.delegate configureCell:cell item:item delegate:self];
+    [self onCellConfigured:cell forItem:item atIndexPath:indexPath];
+    [cell setNeedsUpdateConstraints];
+    [cell updateConstraintsIfNeeded];
     return cell;
 }
 
@@ -106,10 +119,12 @@
 {
     NSObject *item = [self itemForIndexPath:indexPath];
     UITableViewCell *prototype = [self prototypeWithIdentifier:[self identifierForItem:item]];
-    prototype.bounds = CGRectMake(0.0f, 0.0f, CGRectGetWidth(tableView.bounds), CGRectGetHeight(prototype.bounds));
     [self configureCell:prototype forItem:item];
     if (self.delegate != nil && [self.delegate respondsToSelector:@selector(configureCell:item:delegate:)])
         [self.delegate configureCell:prototype item:item delegate:self];
+    [prototype setNeedsUpdateConstraints];
+    [prototype updateConstraintsIfNeeded];
+    prototype.bounds = CGRectMake(0.0f, 0.0f, CGRectGetWidth(tableView.bounds), CGRectGetHeight(prototype.bounds));
     [prototype setNeedsLayout];
     [prototype layoutIfNeeded];
     CGSize size = [prototype.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
@@ -285,6 +300,38 @@
         
         [self.tableView endUpdates];
     }
+}
+
+// -------------------------------------------------------------------------------
+//	loadMediaForOnscreenRows
+//  This method is used in case the user scrolled into a set of cells that don't
+//  have their media loaded yet.
+// -------------------------------------------------------------------------------
+- (void)loadMediaForOnscreenRows
+{
+}
+
+#pragma mark - UIScrollViewDelegate
+
+// -------------------------------------------------------------------------------
+//	scrollViewDidEndDragging:willDecelerate:
+//  Load images for all onscreen rows when scrolling is finished.
+// -------------------------------------------------------------------------------
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    if (!decelerate)
+    {
+        [self loadMediaForOnscreenRows];
+    }
+}
+
+// -------------------------------------------------------------------------------
+//	scrollViewDidEndDecelerating:scrollView
+//  When scrolling stops, proceed to load images for onscreen rows.
+// -------------------------------------------------------------------------------
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    [self loadMediaForOnscreenRows];
 }
 
 @end

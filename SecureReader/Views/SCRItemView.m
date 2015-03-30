@@ -10,7 +10,7 @@
 
 @implementation SCRItemView
 
-@synthesize imageView = _imageView;
+@synthesize mediaCollectionView = _mediaCollectionView;
 @synthesize sourceView = _sourceView;
 @synthesize titleView = _titleView;
 @synthesize textView = _textView;

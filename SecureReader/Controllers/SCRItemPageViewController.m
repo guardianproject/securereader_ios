@@ -13,6 +13,7 @@
 #import <Foundation/NSDateFormatter.h>
 #import "RSSPerson.h"
 #import "SCRApplication.h"
+#import "SCRSettings.h"
 
 @interface SCRItemPageViewController ()
 
@@ -22,7 +23,7 @@
 
 @synthesize itemIndexPath;
 
-@synthesize imageView = _imageView;
+@synthesize mediaCollectionView = _mediaCollectionView;
 @synthesize imageViewHeightConstraint = _imageViewHeightConstraint;
 @synthesize sourceView = _sourceView;
 @synthesize titleView = _titleView;
@@ -31,6 +32,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [_contentView setScrollEnabled:NO];
+    [self.mediaCollectionView setShowDownloadButtonIfNoneLoaded:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -55,10 +57,8 @@
     }
     [self view]; // force view to load if it hasn't already
 
-    if (self.item.thumbnailURL == nil)
-        self.imageViewHeightConstraint.constant = 0;
-    else
-        [self.imageView setImageWithURL:item.thumbnailURL];
+    [self.mediaCollectionView setItem:self.item];
+    [self.mediaCollectionView createThumbnails:[SCRSettings downloadMedia]];
     
     self.sourceView.labelSource.text = [item.linkURL host];
     self.sourceView.labelDate.text = [[NSFormatter scr_sharedIntervalFormatter] stringForTimeIntervalFromDate:[NSDate date] toDate:item.publicationDate];

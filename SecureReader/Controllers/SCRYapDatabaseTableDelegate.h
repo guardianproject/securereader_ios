@@ -22,7 +22,10 @@
 
 - (id)initWithTableView:(UITableView *)tableView viewName:(NSString *)viewName delegate:(id<SCRYapDatabaseTableDelegateDelegate>)delegate;
 - (NSObject *) itemForIndexPath:(NSIndexPath *)indexPath;
+- (BOOL)isActive;
 - (void)setActive:(BOOL)active;
+
+- (void)loadMediaForOnscreenRows;
 
 @end
 

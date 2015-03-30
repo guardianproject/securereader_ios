@@ -10,11 +10,12 @@
 #import "SCRSourceView.h"
 #import <SWTableViewCell.h>
 #import "SCRItem.h"
+#import "SCRMediaCollectionView.h"
 
 @interface SCRItemView : SWTableViewCell
 
 @property (weak, nonatomic) SCRItem *item;
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet SCRMediaCollectionView *mediaCollectionView;
 @property (weak, nonatomic) IBOutlet SCRSourceView *sourceView;
 @property (weak, nonatomic) IBOutlet UILabel *titleView;
 @property (weak, nonatomic) IBOutlet UITextField *textView;

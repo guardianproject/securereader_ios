@@ -24,6 +24,8 @@ pod 'IOCipher/GCDWebServer', :path => 'Submodules/IOCipher/IOCipher.podspec'
 # Swipeable table cells with action buttons
 pod 'SWTableViewCell', '~> 0.3.7'
 
+# Swipeable media views
+pod 'SwipeView', '~> 1.3'
 
 target "SecureReaderTests" do
     pod 'IOCipher/GCDWebServer', :path => 'Submodules/IOCipher/IOCipher.podspec'

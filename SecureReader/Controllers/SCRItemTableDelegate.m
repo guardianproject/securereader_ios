@@ -13,6 +13,9 @@
 #import "UIImageView+AFNetworking.h"
 #import "SCRDatabaseManager.h"
 #import "SCRItemTagCell.h"
+#import "SCRMediaItem.h"
+#import "SCRAppDelegate.h"
+#import "SCRSettings.h"
 
 @interface SCRItemTableDelegate()
 @property (nonatomic, weak) SCRFeed *filter;
@@ -44,9 +47,9 @@
 {
     SCRItem *nativeItem = (SCRItem*)item;
     NSString *cellIdentifier = @"cellNoPhotos";
-    if (nativeItem.thumbnailURL) {
+    //if (nativeItem.thumbnailURL) {
         cellIdentifier = @"cellLandscapePhotos";
-    }
+    //}
     return cellIdentifier;
 }
 
@@ -61,10 +64,7 @@
     cell.titleView.text = item.title;
     cell.sourceView.labelSource.text = [item.linkURL host];
     cell.sourceView.labelDate.text = [[NSFormatter scr_sharedIntervalFormatter] stringForTimeIntervalFromDate:[NSDate date] toDate:item.publicationDate];
-    cell.imageView.image = nil;
-    if (item.thumbnailURL) {
-        [cell.imageView setImageWithURL:item.thumbnailURL];
-    }
+    [cell.mediaCollectionView setItem:item];
     
     // If we have a filter, i.e. we are showing a single feed, show tags as well
     //
@@ -89,6 +89,13 @@
         }
     }
 }
+
+- (void)onCellConfigured:(UITableViewCell *)cell forItem:(NSObject *)item atIndexPath:(NSIndexPath *)indexPath
+{
+    BOOL download = ([self isActive] && [SCRSettings downloadMedia] && self.tableView.dragging == NO && self.tableView.decelerating == NO);
+    [((SCRItemView *)cell).mediaCollectionView createThumbnails:download];
+}
+
 
 - (void)createMappings
 {
@@ -171,6 +178,24 @@
     [cell layoutIfNeeded];
     CGSize size = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     return size;
+}
+
+// -------------------------------------------------------------------------------
+//	loadImagesForOnscreenRows
+//  This method is used in case the user scrolled into a set of cells that don't
+//  have their media loaded yet.
+// -------------------------------------------------------------------------------
+- (void)loadMediaForOnscreenRows
+{
+    NSArray *visiblePaths = [self.tableView indexPathsForVisibleRows];
+    if (visiblePaths != nil)
+    {
+        for (NSIndexPath *indexPath in visiblePaths)
+        {
+            SCRItemView *cell = (SCRItemView*)[self.tableView cellForRowAtIndexPath:indexPath];
+            [cell.mediaCollectionView createThumbnails:[SCRSettings downloadMedia]];
+        }
+    }
 }
 
 @end
