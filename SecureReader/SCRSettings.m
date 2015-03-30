@@ -11,6 +11,7 @@
 
 @implementation SCRSettings
 
+NSString * const kDownloadMediaSettingsKey = @"downloadMedia";
 NSString * const kFontSizeAdjustmentSettingsKey = @"fontSizeAdjustment";
 
 + (NSString *)getUiLanguage
@@ -27,6 +28,21 @@ NSString * const kFontSizeAdjustmentSettingsKey = @"fontSizeAdjustment";
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setValue:languageCode forKey:@"uiLanguage"];
     [userDefaults synchronize];
+}
+
++ (BOOL)downloadMedia
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    if ([userDefaults objectForKey:kDownloadMediaSettingsKey] != nil)
+        return [userDefaults boolForKey:kDownloadMediaSettingsKey];
+    return NO;
+}
+
++ (void)setDownloadMedia:(BOOL)downloadMedia
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setBool:downloadMedia forKey:kDownloadMediaSettingsKey];
+    [self onChange:kDownloadMediaSettingsKey];
 }
 
 + (NSString *)getPassphrase

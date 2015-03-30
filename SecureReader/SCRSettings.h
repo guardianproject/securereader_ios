@@ -15,6 +15,9 @@ extern NSString * const kFontSizeAdjustmentSettingsKey;
 + (NSString *)getUiLanguage;
 + (void) setUiLanguage:(NSString *)languageCode;
 
++ (BOOL)downloadMedia;
++ (void)setDownloadMedia:(BOOL)downloadMedia;
+
 // TEMP implement passwords!
 + (NSString *)getPassphrase;
 + (void) setPassphrase:(NSString *)passphrase;
