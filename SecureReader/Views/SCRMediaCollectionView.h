@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "SCRItem.h"
 #import <SwipeView.h>
+#import "SCRMediaCollectionViewDownloadView.h"
 
-@interface SCRMediaCollectionView : UIView<SwipeViewDataSource, SwipeViewDelegate>
+@interface SCRMediaCollectionView : UIView<SwipeViewDataSource, SwipeViewDelegate, SCRMediaCollectionViewDownloadViewDelegate>
 
 @property (strong) IBOutlet UIView *contentView;
 @property (strong) IBOutlet UIPageControl *pageControl;

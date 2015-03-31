@@ -139,58 +139,11 @@
                     
                     if ([[SCRAppDelegate sharedAppDelegate].fileManager hasDataForPath:mediaItem.mediaItem.localPath])
                     {
-                        [[SCRAppDelegate sharedAppDelegate].fileManager dataForPath:mediaItem.mediaItem.localPath completionQueue:self.imageQueue completion:^(NSData *data, NSError *error) {
-                            mediaItem.downloading = false;
-                            if (error == nil)
-                            {
-                                mediaItem.downloaded = true;
-                                UIImage *image = [UIImage imageWithData:data];
-                                dispatch_async(dispatch_get_main_queue(), ^{
-                                    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
-                                    [imageView setFrame:CGRectMake(0, 0, self.contentView.bounds.size.width, [self imageViewHeight])];
-                                    mediaItem.view = imageView;
-                                    [(SwipeView *)self.contentView reloadData];
-                                });
-                            }
-                        }];
+                        [self mediaItemCreate:mediaItem];
                     }
                     else if (downloadIfNeeded)
                     {
-                        // Don't have the data, needs downloading
-                        mediaItem.downloading = YES;
-                        [[SCRAppDelegate sharedAppDelegate].mediaFetcher downloadMediaItem:mediaItem.mediaItem completionBlock:^(NSError *error) {
-                            mediaItem.downloading = NO;
-                            [[SCRAppDelegate sharedAppDelegate].fileManager dataForPath:mediaItem.mediaItem.localPath completionQueue:self.imageQueue   completion:^(NSData *data, NSError *error) {
-                                if (error == nil)
-                                {
-                                    mediaItem.downloaded = true;
-                                    UIImage *image = [UIImage imageWithData:data];
-                                    dispatch_async(dispatch_get_main_queue(), ^{
-                                        UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
-                                        mediaItem.view = imageView;
-                                        [imageView setFrame:CGRectMake(0, 0, self.contentView.bounds.size.width, [self imageViewHeight])];
-                                        [(SwipeView *)self.contentView reloadData];
-                                        
-                                        UITableViewCell *cell = [self cellThisViewIsContainedIn];
-                                        UITableView *tableView = [self tableViewForCell:cell];
-                                        if (tableView != nil && cell != nil)
-                                        {
-                                            NSIndexPath *indexPath = [tableView indexPathForCell:cell];
-                                            if (indexPath != nil)
-                                            {
-                                                [tableView beginUpdates];
-                                                [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
-                                                [tableView endUpdates];
-                                            }
-                                        }
-                                        else
-                                        {
-                                            [self updateHeight];
-                                        }
-                                    });
-                                }
-                            }];
-                        }];
+                        [self mediaItemDownload:mediaItem];
                     }
                     else if (self.showDownloadButtonIfNotLoaded)
                     {
@@ -199,6 +152,7 @@
                             dispatch_async(dispatch_get_main_queue(), ^{
                                 CGRect frame = CGRectMake(0, 0, self.contentView.bounds.size.width, [self imageViewHeight]);
                                 SCRMediaCollectionViewDownloadView *view = [[SCRMediaCollectionViewDownloadView alloc] initWithFrame:frame];
+                                view.delegate = self;
                                 mediaItem.view = view;
                                 [(SwipeView *)self.contentView reloadData];
                             });
@@ -208,6 +162,68 @@
             }
         });
     }
+}
+
+- (void) mediaItemCreate:(SCRMediaCollectionViewItem *)mediaItem
+{
+    [[SCRAppDelegate sharedAppDelegate].fileManager dataForPath:mediaItem.mediaItem.localPath completionQueue:self.imageQueue completion:^(NSData *data, NSError *error) {
+        mediaItem.downloading = false;
+        if (error == nil)
+        {
+            mediaItem.downloaded = true;
+            UIImage *image = [UIImage imageWithData:data];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+                [imageView setFrame:CGRectMake(0, 0, self.contentView.bounds.size.width, [self imageViewHeight])];
+                mediaItem.view = imageView;
+                [(SwipeView *)self.contentView reloadData];
+            });
+        }
+    }];
+}
+
+- (void) mediaItemDownload:(SCRMediaCollectionViewItem *)mediaItem
+{
+    mediaItem.downloading = YES;
+    [[SCRAppDelegate sharedAppDelegate].mediaFetcher downloadMediaItem:mediaItem.mediaItem completionBlock:^(NSError *error) {
+        mediaItem.downloading = NO;
+        [[SCRAppDelegate sharedAppDelegate].fileManager dataForPath:mediaItem.mediaItem.localPath completionQueue:self.imageQueue   completion:^(NSData *data, NSError *error) {
+            if (error == nil)
+            {
+                mediaItem.downloaded = true;
+                UIImage *image = [UIImage imageWithData:data];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+                    mediaItem.view = imageView;
+                    [imageView setFrame:CGRectMake(0, 0, self.contentView.bounds.size.width, [self imageViewHeight])];
+                    [(SwipeView *)self.contentView reloadData];
+                    
+                    UITableViewCell *cell = [self cellThisViewIsContainedIn];
+                    UITableView *tableView = [self tableViewForCell:cell];
+                    if (tableView != nil && cell != nil)
+                    {
+                        NSIndexPath *indexPath = [tableView indexPathForCell:cell];
+                        if (indexPath != nil)
+                        {
+                            [tableView beginUpdates];
+                            [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
+                            [tableView endUpdates];
+                        }
+                    }
+                    else
+                    {
+                        [self updateHeight];
+                    }
+                });
+            }
+            else if (mediaItem.view != nil && [mediaItem.view isKindOfClass:[SCRMediaCollectionViewDownloadView class]])
+            {
+                [[(SCRMediaCollectionViewDownloadView *)mediaItem.view downloadButton] setHidden:NO];
+                [[(SCRMediaCollectionViewDownloadView *)mediaItem.view activityView] setHidden:YES];
+            }
+
+        }];
+    }];
 }
 
 - (UITableViewCell *)cellThisViewIsContainedIn
@@ -272,8 +288,24 @@
     return imageView;
 }
 
-- (IBAction) downloadMedia:(id)sender {
-    [self createThumbnails:YES];
+- (void)downloadButtonClicked:(SCRMediaCollectionViewDownloadView *)view
+{
+    @synchronized(self.mediaItems)
+    {
+        [self.mediaItems enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            SCRMediaCollectionViewItem *mediaItem = obj;
+            if (mediaItem.view == view && !mediaItem.downloaded && !mediaItem.downloading)
+            {
+                if ([mediaItem.view isKindOfClass:[SCRMediaCollectionViewDownloadView class]])
+                {
+                    [[(SCRMediaCollectionViewDownloadView *)mediaItem.view downloadButton] setHidden:YES];
+                    [[(SCRMediaCollectionViewDownloadView *)mediaItem.view activityView] setHidden:NO];
+                }
+                *stop = YES;
+                [self mediaItemDownload:mediaItem];
+            }
+        }];
+    }
 }
 
 @end

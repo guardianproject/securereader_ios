@@ -8,10 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+@class SCRMediaCollectionViewDownloadView;
+
+@protocol SCRMediaCollectionViewDownloadViewDelegate <NSObject>
+-(void)downloadButtonClicked:(SCRMediaCollectionViewDownloadView *)view;
+@end
+
 @interface SCRMediaCollectionViewDownloadView : UIView
 
 @property (strong) IBOutlet UIView *contentView;
 @property (strong) IBOutlet UIView *downloadButton;
 @property (strong) IBOutlet UIView *activityView;
+
+@property (nonatomic, weak) id<SCRMediaCollectionViewDownloadViewDelegate> delegate;
 
 @end

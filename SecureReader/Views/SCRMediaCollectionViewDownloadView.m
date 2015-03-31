@@ -7,6 +7,7 @@
 //
 
 #import "SCRMediaCollectionViewDownloadView.h"
+#import "SCRMediaCollectionView.h"
 
 @implementation SCRMediaCollectionViewDownloadView
 
@@ -25,6 +26,14 @@
         [self addSubview:self.contentView];
     }
     return self;
+}
+
+- (IBAction)downloadButtonClicked:(id)sender
+{
+    if (self.delegate != nil)
+    {
+        [self.delegate downloadButtonClicked:self];
+    }
 }
 
 @end
