@@ -22,7 +22,6 @@
 #import "SCRFileManager.h"
 
 @interface SCRAppDelegate() <BITHockeyManagerDelegate>
-@property (nonatomic, strong, readonly) SCRFeedFetcher *feedFetcher;
 @end
 
 @implementation SCRAppDelegate
@@ -136,7 +135,7 @@
         [self.fileManager setupWithPath:path password:@"password"]; //TODO real password here!
         
         //Setup media fetcher
-        self.mediaFetcher = [[SCRMediaFetcher alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]
+        _mediaFetcher = [[SCRMediaFetcher alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]
                                                                                       storage:self.fileManager.ioCipher];
         self.mediaFetcher.completionQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     }
@@ -150,6 +149,38 @@
         return YES;
     }
     return NO;
+}
+
+-(void) removeFeed:(SCRFeed *)feed
+{
+    [[SCRDatabaseManager sharedInstance].readWriteConnection asyncReadWriteWithBlock:^(YapDatabaseReadWriteTransaction *transaction) {
+        [transaction removeObjectForKey:feed.yapKey inCollection:[[feed class] yapCollection]];
+    }];
+}
+
+-(void) setFeed:(SCRFeed *)feed subscribed:(BOOL)subscribed
+{
+    [feed setSubscribed:subscribed];
+    [[SCRDatabaseManager sharedInstance].readWriteConnection asyncReadWriteWithBlock:^(YapDatabaseReadWriteTransaction *transaction) {
+        [feed saveWithTransaction:transaction];
+        
+        // TODO - When subscribing, we need to download the feed!
+        if (subscribed)
+        {
+            if (feed.xmlURL != nil)
+                [self.feedFetcher fetchFeedDataFromURL:[feed xmlURL] completionQueue:nil completion:nil];
+            else
+                [self.feedFetcher fetchFeedDataFromURL:[feed htmlURL] completionQueue:nil completion:nil];
+        }
+    }];
+}
+
+-(void) markItem:(SCRItem *)item asFavorite:(BOOL)favorite
+{
+    [item setIsFavorite:favorite];
+    [[SCRDatabaseManager sharedInstance].readWriteConnection asyncReadWriteWithBlock:^(YapDatabaseReadWriteTransaction *transaction) {
+        [item saveWithTransaction:transaction];
+    }];
 }
 
 @end

@@ -27,7 +27,6 @@
 		9239049E1A07E365004EEE7E /* background_debut_light.png in Resources */ = {isa = PBXBuildFile; fileRef = 9239049D1A07E365004EEE7E /* background_debut_light.png */; };
 		923FFFA11AA4A75600BC83D6 /* SCRItemTagCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 923FFFA01AA4A75600BC83D6 /* SCRItemTagCell.xib */; };
 		923FFFA41AA4AA2B00BC83D6 /* SCRItemTagCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 923FFFA31AA4AA2B00BC83D6 /* SCRItemTagCell.m */; };
-		92458CC71A6D4E4600C17EFA /* SCRReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 92458CC61A6D4E4600C17EFA /* SCRReader.m */; };
 		924BBFC01A08DCEB00A32940 /* InAppSettings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 924BBFBF1A08DCEB00A32940 /* InAppSettings.bundle */; };
 		925AE5801A404161001E182F /* SCRMoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 925AE57F1A404161001E182F /* SCRMoreViewController.m */; };
 		9268080C1ABC4C5E00EB9225 /* SCRMediaCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9268080B1ABC4C5E00EB9225 /* SCRMediaCollectionView.m */; };
@@ -141,8 +140,6 @@
 		923FFFA01AA4A75600BC83D6 /* SCRItemTagCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SCRItemTagCell.xib; sourceTree = "<group>"; };
 		923FFFA21AA4AA2B00BC83D6 /* SCRItemTagCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRItemTagCell.h; sourceTree = "<group>"; };
 		923FFFA31AA4AA2B00BC83D6 /* SCRItemTagCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRItemTagCell.m; sourceTree = "<group>"; };
-		92458CC51A6D4E4600C17EFA /* SCRReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SCRReader.h; path = SecureReader/Feed/SCRReader.h; sourceTree = SOURCE_ROOT; };
-		92458CC61A6D4E4600C17EFA /* SCRReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SCRReader.m; path = SecureReader/Feed/SCRReader.m; sourceTree = SOURCE_ROOT; };
 		924BBFBF1A08DCEB00A32940 /* InAppSettings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = InAppSettings.bundle; sourceTree = "<group>"; };
 		925AE57E1A404161001E182F /* SCRMoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRMoreViewController.h; sourceTree = "<group>"; };
 		925AE57F1A404161001E182F /* SCRMoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRMoreViewController.m; sourceTree = "<group>"; };
@@ -612,8 +609,6 @@
 				D90F59361A19ECBE008F2DCB /* SCRFeedFetcher.m */,
 				633AB7371A9FE9A800A0F3F9 /* SCRMediaFetcher.h */,
 				633AB7381A9FE9A800A0F3F9 /* SCRMediaFetcher.m */,
-				92458CC51A6D4E4600C17EFA /* SCRReader.h */,
-				92458CC61A6D4E4600C17EFA /* SCRReader.m */,
 			);
 			name = Feed;
 			path = Models;
@@ -818,7 +813,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				92BD509A1A07A36A00F3BD22 /* SCRItem.m in Sources */,
-				92458CC71A6D4E4600C17EFA /* SCRReader.m in Sources */,
 				92E7B9711A41A30F0038DBCE /* SCRReceiveShareView.m in Sources */,
 				D90F593A1A19F617008F2DCB /* SCRDatabaseManager.m in Sources */,
 				92BD50A11A07A38900F3BD22 /* SCRItemView.m in Sources */,

@@ -9,13 +9,13 @@
 #import "SCRItemViewController.h"
 #import "SCRItemPageViewController.h"
 #import "SCRItem.h"
-#import "SCRReader.h"
 #import "SCRNavigationController.h"
 #import "SCRLabel.h"
 #import "SCRApplication.h"
 #import "SCRSettings.h"
 #import "SCRTheme.h"
 #import "UIBarItem+Theming.h"
+#import "SCRAppDelegate.h"
 
 @interface SCRItemViewController ()
 @property SCRFeedViewController *itemDataSource;
@@ -143,7 +143,7 @@
     if (itemPage != nil)
     {
         SCRItem *item = itemPage.item;
-        [[SCRReader sharedInstance] markItem:item asFavorite:![item isFavorite]];
+        [[SCRAppDelegate sharedAppDelegate] markItem:item asFavorite:![item isFavorite]];
     }
     [self updateFavoriteIcon];
 }

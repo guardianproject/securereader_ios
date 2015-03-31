@@ -21,7 +21,6 @@
 #import "SCRFeedFetcher.h"
 #import "SCRNavigationController.h"
 #import "SCRApplication.h"
-#import "SCRReader.h"
 #import "SCRSettings.h"
 #import "SCRItemTableDelegate.h"
 #import <SWTableViewCell.h>

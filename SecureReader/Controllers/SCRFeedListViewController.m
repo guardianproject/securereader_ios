@@ -21,11 +21,11 @@
 #import "SCRFeedFetcher.h"
 #import "SCRNavigationController.h"
 #import "SCRApplication.h"
-#import "SCRReader.h"
 #import "SCRSettings.h"
 #import "SCRFeedTableDelegate.h"
 #import "SCRFeedSearchTableDelegate.h"
 #import "SCRFeedShareViewController.h"
+#import "SCRAppDelegate.h"
 
 #define WEB_SEARCH_URL_FORMAT @"http://securereader.guardianproject.info/opml/find.php?lang=%1$@&term=%2$@"
 
@@ -40,6 +40,8 @@
 @property int segmentedControlDesignHeight;
 @property int trendingViewDesignHeight;
 @property int searchBarDesignHeight;
+
+@property (nonatomic, strong) NSMutableArray *feedsToAdd;
 
 @end
 
@@ -91,6 +93,15 @@
 
 -(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
+    if (self.feedsToAdd != nil)
+    {
+        for (SCRFeed *feed in self.feedsToAdd)
+        {
+            [[SCRAppDelegate sharedAppDelegate] setFeed:feed subscribed:YES];
+        }
+        self.feedsToAdd = nil;
+    }
+    
     self.isInSearchMode = NO;
     searchBar.text = @"";
     [self showTrendingView];
@@ -189,26 +200,37 @@ shouldReloadTableForSearchString:(NSString *)searchString
 - (void)didSelectRowAtIndexPath:(NSIndexPath *)indexPath delegate:(SCRYapDatabaseTableDelegate *)delegate
 {
     [delegate.tableView deselectRowAtIndexPath:indexPath animated:YES];
+
+    SCRFeed *feed = (SCRFeed *)[delegate itemForIndexPath:indexPath];
+    if (feed == nil)
+    {
+        return;
+    }
+    
     if (delegate == self.subscribedTableDelegate)
     {
-        SCRFeed *feed = (SCRFeed *)[self.subscribedTableDelegate itemForIndexPath:indexPath];
-        if (feed != nil)
-        {
-            // Tap on a feed we are following, open up feed
-            SCRFeedViewController *feedViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"feedViewController"];
-            [feedViewController setFeedViewType:SCRFeedViewTypeFeed feed:feed];
-            UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
-            self.navigationItem.backBarButtonItem = backItem;
-            [self.navigationController pushViewController:feedViewController animated:YES];
-        }
+        // Tap on a feed we are following, open up feed
+        SCRFeedViewController *feedViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"feedViewController"];
+        [feedViewController setFeedViewType:SCRFeedViewTypeFeed feed:feed];
+        UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+        self.navigationItem.backBarButtonItem = backItem;
+        [self.navigationController pushViewController:feedViewController animated:YES];
+    }
+    else if (delegate == self.searchTableDelegate)
+    {
+        if (self.feedsToAdd == nil)
+            self.feedsToAdd = [NSMutableArray array];
+        if ([self.feedsToAdd containsObject:feed])
+            [self.feedsToAdd removeObject:feed];
+        else
+            [self.feedsToAdd addObject:feed];
+        [delegate.tableView beginUpdates];
+        [delegate.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
+        [delegate.tableView endUpdates];
     }
     else
     {
-        SCRFeed *feed = (SCRFeed *)[delegate itemForIndexPath:indexPath];
-        if (feed != nil)
-        {
-            [[SCRReader sharedInstance] setFeed:feed subscribed:!feed.subscribed];
-        }
+        [[SCRAppDelegate sharedAppDelegate] setFeed:feed subscribed:!feed.subscribed];
     }
 }
 
@@ -221,18 +243,24 @@ shouldReloadTableForSearchString:(NSString *)searchString
         feedListCell.iconViewWidthConstraint.constant = 20;
         [feedListCell.iconView setHidden:YES];
     }
-    else if ([(SCRFeed*)item subscribed])
+    else if (delegate == self.searchTableDelegate)
     {
         feedListCell.rightUtilityButtons = [self rightButtonsExplore];
         feedListCell.iconViewWidthConstraint.constant = 70;
-        [feedListCell.iconView setImage:[UIImage imageNamed:@"ic_action2_chat.png"]];
+        if ([self.feedsToAdd containsObject:item])
+            [feedListCell.iconView setImage:[UIImage imageNamed:@"ic_action2_chat.png"]];
+        else
+            [feedListCell.iconView setImage:[UIImage imageNamed:@"ic_action2_share.png"]];
         [feedListCell.iconView setHidden:NO];
     }
     else
     {
         feedListCell.rightUtilityButtons = [self rightButtonsExplore];
         feedListCell.iconViewWidthConstraint.constant = 70;
-        [feedListCell.iconView setImage:[UIImage imageNamed:@"ic_action2_share.png"]];
+        if ([(SCRFeed*)item subscribed])
+            [feedListCell.iconView setImage:[UIImage imageNamed:@"ic_action2_chat.png"]];
+        else
+            [feedListCell.iconView setImage:[UIImage imageNamed:@"ic_action2_share.png"]];
         [feedListCell.iconView setHidden:NO];
     }
     feedListCell.delegate = self;
@@ -282,13 +310,13 @@ shouldReloadTableForSearchString:(NSString *)searchString
             {
                 switch (index) {
                     case 0:
-                        [[SCRReader sharedInstance] setFeed:feed subscribed:NO];
+                        [[SCRAppDelegate sharedAppDelegate] setFeed:feed subscribed:NO];
                         if (feed.userAdded)
-                            [[SCRReader sharedInstance] removeFeed:feed];
+                            [[SCRAppDelegate sharedAppDelegate] removeFeed:feed];
                         break;
                     case 1:
                         {
-                        [[SCRReader sharedInstance] removeFeed:feed];
+                        [[SCRAppDelegate sharedAppDelegate] removeFeed:feed];
                         break;
                         }
                 }
@@ -297,7 +325,7 @@ shouldReloadTableForSearchString:(NSString *)searchString
             {
                 switch (index) {
                     case 0:
-                        [[SCRReader sharedInstance] removeFeed:feed];
+                        [[SCRAppDelegate sharedAppDelegate] removeFeed:feed];
                         break;
                 }
             }
