@@ -89,6 +89,7 @@
 		92C3F0901A80CDE000DFA438 /* SCRFeedListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92C3F08F1A80CDE000DFA438 /* SCRFeedListCell.xib */; };
 		92C458391A233EAA00835B10 /* SCRItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C458381A233EAA00835B10 /* SCRItemViewController.m */; };
 		92D169731A30A5C200A84608 /* SCRFeedListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92D169721A30A5C200A84608 /* SCRFeedListCell.m */; };
+		92DD08831ACAD010001A0F59 /* SCRAddPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DD08821ACAD010001A0F59 /* SCRAddPostViewController.m */; };
 		92E7B96C1A4186D60038DBCE /* SCRItemViewControllerSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7B96B1A4186D60038DBCE /* SCRItemViewControllerSegue.m */; };
 		92E7B96E1A41A2AE0038DBCE /* SCRReceiveShareView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92E7B96D1A41A2AE0038DBCE /* SCRReceiveShareView.xib */; };
 		92E7B9711A41A30F0038DBCE /* SCRReceiveShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7B9701A41A30F0038DBCE /* SCRReceiveShareView.m */; };
@@ -244,6 +245,8 @@
 		92C458381A233EAA00835B10 /* SCRItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRItemViewController.m; sourceTree = "<group>"; };
 		92D169711A30A5C200A84608 /* SCRFeedListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRFeedListCell.h; sourceTree = "<group>"; };
 		92D169721A30A5C200A84608 /* SCRFeedListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRFeedListCell.m; sourceTree = "<group>"; };
+		92DD08811ACAD010001A0F59 /* SCRAddPostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRAddPostViewController.h; sourceTree = "<group>"; };
+		92DD08821ACAD010001A0F59 /* SCRAddPostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRAddPostViewController.m; sourceTree = "<group>"; };
 		92E7B96A1A4186D60038DBCE /* SCRItemViewControllerSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SCRItemViewControllerSegue.h; path = Controllers/SCRItemViewControllerSegue.h; sourceTree = "<group>"; };
 		92E7B96B1A4186D60038DBCE /* SCRItemViewControllerSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SCRItemViewControllerSegue.m; path = Controllers/SCRItemViewControllerSegue.m; sourceTree = "<group>"; };
 		92E7B96D1A41A2AE0038DBCE /* SCRReceiveShareView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SCRReceiveShareView.xib; sourceTree = "<group>"; };
@@ -485,6 +488,8 @@
 				92B9E9741A9C7A3D00A2BED9 /* SCRPostsViewController.m */,
 				92C2A73F1AA74BDF00B18672 /* SCRFeedShareViewController.h */,
 				92C2A7401AA74BDF00B18672 /* SCRFeedShareViewController.m */,
+				92DD08811ACAD010001A0F59 /* SCRAddPostViewController.h */,
+				92DD08821ACAD010001A0F59 /* SCRAddPostViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -828,6 +833,7 @@
 				929BE4BE1A7913A700641647 /* SCRLabel.m in Sources */,
 				63775E8F1AAFB00F006CE553 /* NSData+SecureReader.m in Sources */,
 				92A4D2A51A31F1D40091479A /* SCRPanicViewController.m in Sources */,
+				92DD08831ACAD010001A0F59 /* SCRAddPostViewController.m in Sources */,
 				929EEF9319F5110D0020BD75 /* SCRCreatePassphraseViewController.m in Sources */,
 				92B23C4C1A5D442F00FFD963 /* SCRAllFeedsViewController.m in Sources */,
 				92E7B96C1A4186D60038DBCE /* SCRItemViewControllerSegue.m in Sources */,

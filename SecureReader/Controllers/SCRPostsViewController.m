@@ -24,6 +24,7 @@
 #import "SCRSettings.h"
 #import "SCRItemTableDelegate.h"
 #import <SWTableViewCell.h>
+#import "SCRAddPostViewController.h"
 
 @interface SCRPostsViewController ()
 @property (nonatomic, strong) SCRItemTableDelegate *postsTableDelegate;
@@ -39,6 +40,7 @@
     self.postsTableDelegate = [[SCRItemTableDelegate alloc] initWithTableView:self.tableView viewName:kSCRAllFeedItemsUngroupedViewName filter:nil delegate:self];
     self.draftsTableDelegate = [[SCRItemTableDelegate alloc] initWithTableView:self.tableView viewName:kSCRAllFeedItemsUngroupedViewName filter:nil delegate:self];
     [self.postsTableDelegate setActive:YES];
+    [self showAddPostBarButton:NO];
     self.tableView.allowsMultipleSelectionDuringEditing = NO;
 }
 
@@ -124,6 +126,28 @@
 - (IBAction)segmentedControlValueChanged:(id)sender {
     [self.postsTableDelegate setActive:![self draftMode]];
     [self.draftsTableDelegate setActive:[self draftMode]];
+    [self showAddPostBarButton:[self draftMode]];
+}
+
+- (void) showAddPostBarButton:(BOOL) show
+{
+    if (show)
+    {
+        UIBarButtonItem *btnAddPost = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(addPost:)];
+        [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:self.navigationItem.rightBarButtonItem, btnAddPost, nil]];
+    }
+    else
+    {
+        [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObject:self.navigationItem.rightBarButtonItem]];
+    }
+}
+
+- (void)addPost:(id)sender
+{
+    SCRAddPostViewController *addPostViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"addPostViewController"];
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    self.navigationItem.backBarButtonItem = backItem;
+    [self.navigationController pushViewController:addPostViewController animated:YES];
 }
 
 @end
