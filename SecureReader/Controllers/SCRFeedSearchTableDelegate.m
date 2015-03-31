@@ -16,6 +16,7 @@
 #import "SCRSettings.h"
 #import "SCRFeed.h"
 #import "SCRDatabaseManager.h"
+#import "SCRAppDelegate.h"
 
 #define WEB_SEARCH_URL_FORMAT @"http://securereader.guardianproject.info/opml/find.php?lang=%1$@&term=%2$@"
 
@@ -69,39 +70,28 @@
     
     NSString *urlString = [NSString stringWithFormat:WEB_SEARCH_URL_FORMAT, [SCRSettings getUiLanguage], searchString];
     NSURL *url = [[NSURL alloc] initWithString:urlString];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    NSURLSessionDataTask *dataTask = [self.sessionManager dataTaskWithRequest:request completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (self.delegate != nil && [self.delegate conformsToProtocol:@protocol(SCRFeedSearchTableDelegateDelegate)])
-            {
-                id<SCRFeedSearchTableDelegateDelegate> delegate = (id<SCRFeedSearchTableDelegateDelegate>)self.delegate;
-                if ([delegate respondsToSelector:@selector(didFinishSearch)])
-                    [delegate didFinishSearch];
-            }
-        });
-        
-        if (error) {
-            return;
-        }
-        NSAssert([responseObject isKindOfClass:[NSData class]], @"responseObject must be NSData!");
-        if (![responseObject isKindOfClass:[NSData class]]) {
-            return;
-        }
-        
-        ONOXMLDocument *doc = [ONOXMLDocument XMLDocumentWithData:responseObject error:nil];
-        if (doc != nil)
-        {
-            //TODO - handle errors
-            self.searchResults = [SCRFeed feedsFromOPMLDocument:doc error:nil];
-            for (SCRFeed *feed in self.searchResults)
-            {
-                feed.userAdded = YES;
-            }
-            [self.tableView reloadData];
-        };
-    }];
-    [dataTask resume];
+    
+    [[SCRAppDelegate sharedAppDelegate].feedFetcher fetchFeedsFromOPMLURL:url
+                                                          completionBlock:^(NSArray *feeds, NSError *error) {
+                                                              
+                                                              if (self.delegate != nil && [self.delegate conformsToProtocol:@protocol(SCRFeedSearchTableDelegateDelegate)])
+                                                              {
+                                                                  id<SCRFeedSearchTableDelegateDelegate> delegate = (id<SCRFeedSearchTableDelegateDelegate>)self.delegate;
+                                                                  if ([delegate respondsToSelector:@selector(didFinishSearch)])
+                                                                      [delegate didFinishSearch];
+                                                              }
+                                                              
+                                                              if (error == nil)
+                                                              {
+                                                                  self.searchResults = feeds;
+                                                                  for (SCRFeed *feed in self.searchResults)
+                                                                  {
+                                                                      feed.userAdded = YES;
+                                                                  }
+                                                                  [self.tableView reloadData];
+                                                              }
+                                                              
+                                                          } completionQueue:nil];
 }
 
 - (void)searchLocalFeeds:(NSString *)searchString
