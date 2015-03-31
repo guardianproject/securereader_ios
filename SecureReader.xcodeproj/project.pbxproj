@@ -38,6 +38,8 @@
 		9279F8061A67B9300029572B /* UIBarItem+Theming.m in Sources */ = {isa = PBXBuildFile; fileRef = 9279F8051A67B9300029572B /* UIBarItem+Theming.m */; };
 		9279F8081A67E2940029572B /* SCRItemCellNoPhotos.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9279F8071A67E2940029572B /* SCRItemCellNoPhotos.xib */; };
 		9279F80A1A67FBE50029572B /* SCRItemCellLandscapePhotos.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9279F8091A67FBE50029572B /* SCRItemCellLandscapePhotos.xib */; };
+		927EE44E1ACA9B230023AA1D /* SCRMediaCollectionViewDownloadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 927EE44D1ACA9B230023AA1D /* SCRMediaCollectionViewDownloadView.xib */; };
+		927EE4511ACA9BA90023AA1D /* SCRMediaCollectionViewDownloadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 927EE4501ACA9BA90023AA1D /* SCRMediaCollectionViewDownloadView.m */; };
 		928036661A2776BE0081801A /* content.txt in Resources */ = {isa = PBXBuildFile; fileRef = 928036651A2776BE0081801A /* content.txt */; };
 		928036691A27D4FF0081801A /* SCRItemPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 928036681A27D4FF0081801A /* SCRItemPageViewController.m */; };
 		9284FA741A3899730085638D /* ic_panic_down.png in Resources */ = {isa = PBXBuildFile; fileRef = 9284FA701A3899730085638D /* ic_panic_down.png */; };
@@ -154,6 +156,9 @@
 		9279F8051A67B9300029572B /* UIBarItem+Theming.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarItem+Theming.m"; sourceTree = "<group>"; };
 		9279F8071A67E2940029572B /* SCRItemCellNoPhotos.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SCRItemCellNoPhotos.xib; sourceTree = "<group>"; };
 		9279F8091A67FBE50029572B /* SCRItemCellLandscapePhotos.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SCRItemCellLandscapePhotos.xib; sourceTree = "<group>"; };
+		927EE44D1ACA9B230023AA1D /* SCRMediaCollectionViewDownloadView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SCRMediaCollectionViewDownloadView.xib; sourceTree = "<group>"; };
+		927EE44F1ACA9BA90023AA1D /* SCRMediaCollectionViewDownloadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRMediaCollectionViewDownloadView.h; sourceTree = "<group>"; };
+		927EE4501ACA9BA90023AA1D /* SCRMediaCollectionViewDownloadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRMediaCollectionViewDownloadView.m; sourceTree = "<group>"; };
 		928036651A2776BE0081801A /* content.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = content.txt; sourceTree = "<group>"; };
 		928036671A27D4FF0081801A /* SCRItemPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRItemPageViewController.h; sourceTree = "<group>"; };
 		928036681A27D4FF0081801A /* SCRItemPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRItemPageViewController.m; sourceTree = "<group>"; };
@@ -561,6 +566,9 @@
 				9268080A1ABC4C5E00EB9225 /* SCRMediaCollectionView.h */,
 				9268080B1ABC4C5E00EB9225 /* SCRMediaCollectionView.m */,
 				9268080D1ABC4C6F00EB9225 /* SCRMediaCollectionView.xib */,
+				927EE44F1ACA9BA90023AA1D /* SCRMediaCollectionViewDownloadView.h */,
+				927EE4501ACA9BA90023AA1D /* SCRMediaCollectionViewDownloadView.m */,
+				927EE44D1ACA9B230023AA1D /* SCRMediaCollectionViewDownloadView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -724,6 +732,7 @@
 				92A4D2AB1A31FE720091479A /* ic_menu_chat.png in Resources */,
 				929EEF5E19F4EB100020BD75 /* LaunchScreen.xib in Resources */,
 				929EEF8719F4F5F30020BD75 /* Styles.plist in Resources */,
+				927EE44E1ACA9B230023AA1D /* SCRMediaCollectionViewDownloadView.xib in Resources */,
 				929EEF5B19F4EB100020BD75 /* Images.xcassets in Resources */,
 				92BD50AD1A07A74500F3BD22 /* ic_launcher.png in Resources */,
 				92BD50A31A07A38900F3BD22 /* SCRSourceView.xib in Resources */,
@@ -843,6 +852,7 @@
 				92B9E9751A9C7A3D00A2BED9 /* SCRPostsViewController.m in Sources */,
 				923FFFA41AA4AA2B00BC83D6 /* SCRItemTagCell.m in Sources */,
 				929EEF8019F4F5940020BD75 /* SCRLoginViewController.m in Sources */,
+				927EE4511ACA9BA90023AA1D /* SCRMediaCollectionViewDownloadView.m in Sources */,
 				92B9E9781A9C845F00A2BED9 /* SCRYapDatabaseTableDelegate.m in Sources */,
 				D90F59371A19ECBE008F2DCB /* SCRFeedFetcher.m in Sources */,
 				922DC28019FE920C00FB1274 /* SCRFeedViewController.m in Sources */,

@@ -32,7 +32,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [_contentView setScrollEnabled:NO];
-    [self.mediaCollectionView setShowDownloadButtonIfNoneLoaded:YES];
+    [self.mediaCollectionView setShowDownloadButtonIfNotLoaded:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated

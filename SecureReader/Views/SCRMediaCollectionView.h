@@ -13,10 +13,9 @@
 @interface SCRMediaCollectionView : UIView<SwipeViewDataSource, SwipeViewDelegate>
 
 @property (strong) IBOutlet UIView *contentView;
-@property (strong) IBOutlet UIView *downloadButton;
-@property (strong) IBOutlet UIView *activityView;
+@property (strong) IBOutlet UIPageControl *pageControl;
 
-@property BOOL showDownloadButtonIfNoneLoaded;
+@property BOOL showDownloadButtonIfNotLoaded;
 
 - (void) setItem:(SCRItem *)item;
 - (void) createThumbnails:(BOOL)downloadIfNeeded;
