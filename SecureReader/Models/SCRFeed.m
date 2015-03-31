@@ -25,17 +25,19 @@
 - (NSString*) yapKey {
     
     if (!_yapKey) {
-        if([self.htmlURL.absoluteString length]) {
-            _yapKey = [self.htmlURL absoluteString];
-        }
-        else if ([self.xmlURL.absoluteString length]) {
+        if ([self.xmlURL.absoluteString length]) {
             _yapKey = [self.xmlURL absoluteString];
+        }
+        else if([self.htmlURL.absoluteString length]) {
+            _yapKey = [self.htmlURL absoluteString];
         }
         else {
             _yapKey = [[NSUUID UUID] UUIDString];
         }
+        if ([_yapKey hasSuffix:@"/"])
+            _yapKey = [_yapKey substringToIndex:([_yapKey length] - 1)];
+        _yapKey = [_yapKey lowercaseString];
     }
-    
     return _yapKey;
 }
 
