@@ -14,11 +14,11 @@
 
 @interface SCRItemView : SWTableViewCell
 
-@property (weak, nonatomic) SCRItem *item;
+@property (weak, nonatomic) NSObject *item;
 @property (weak, nonatomic) IBOutlet SCRMediaCollectionView *mediaCollectionView;
 @property (weak, nonatomic) IBOutlet SCRSourceView *sourceView;
 @property (weak, nonatomic) IBOutlet UILabel *titleView;
-@property (weak, nonatomic) IBOutlet UITextField *textView;
+@property (weak, nonatomic) IBOutlet UILabel *textView;
 @property (weak, nonatomic) IBOutlet UICollectionView *tagCollectionView;
 @property (weak, nonatomic) IBOutlet UICollectionViewFlowLayout *tagCollectionViewLayout;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tagCollectionViewHeightConstraint;

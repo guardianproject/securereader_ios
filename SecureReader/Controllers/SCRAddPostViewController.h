@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SCRPostItem.h"
+#import "SCRTextView.h"
 
 @interface SCRAddPostViewController : UIViewController
+
+@property (weak, nonatomic) IBOutlet SCRTextView *titleView;
+@property (weak, nonatomic) IBOutlet SCRTextView *descriptionView;
+-(void) editItem:(SCRPostItem *)item;
 
 @end

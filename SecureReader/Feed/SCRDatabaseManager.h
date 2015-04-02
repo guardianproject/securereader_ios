@@ -18,6 +18,7 @@ extern NSString *const kSCRSubscribedFeedsViewName;
 extern NSString *const kSCRUnsubscribedFeedsViewName;
 extern NSString *const kSCRAllFeedsSearchViewName;
 extern NSString *const kSCRRelationshipExtensionName;
+extern NSString *const kSCRAllPostItemsViewName;
 
 @interface SCRDatabaseManager : NSObject
 

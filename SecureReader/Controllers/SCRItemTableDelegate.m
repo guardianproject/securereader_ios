@@ -146,7 +146,7 @@
         view = [view superview];
     }
     SCRItemView *parentCell = (SCRItemView *)view;
-    return parentCell.item;
+    return (SCRItem *)parentCell.item;
 }
 
 - (void)configureTagCell:(SCRItemTagCell *)cell forCollectionView:(UICollectionView *)collectionView indexPath:(NSIndexPath *)indexPath

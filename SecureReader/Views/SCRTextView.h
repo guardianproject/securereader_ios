@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SCRTextView : UITextView
+IB_DESIGNABLE
 
+@interface SCRTextView : UITextView<UITextViewDelegate>
+@property (nonatomic, strong) IBInspectable UIColor *textColorDisabled;
+@property (nonatomic, strong) IBInspectable NSString *prompt;
 @end

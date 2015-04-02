@@ -25,10 +25,12 @@
 #import "SCRItemTableDelegate.h"
 #import <SWTableViewCell.h>
 #import "SCRAddPostViewController.h"
+#import "SCRSentPostItemTableDelegate.h"
+#import "SCRDraftPostItemTableDelegate.h"
 
 @interface SCRPostsViewController ()
-@property (nonatomic, strong) SCRItemTableDelegate *postsTableDelegate;
-@property (nonatomic, strong) SCRItemTableDelegate *draftsTableDelegate;
+@property (nonatomic, strong) SCRSentPostItemTableDelegate *postsTableDelegate;
+@property (nonatomic, strong) SCRDraftPostItemTableDelegate *draftsTableDelegate;
 @end
 
 @implementation SCRPostsViewController
@@ -37,8 +39,8 @@
 {
     [super viewDidLoad];
     
-    self.postsTableDelegate = [[SCRItemTableDelegate alloc] initWithTableView:self.tableView viewName:kSCRAllFeedItemsUngroupedViewName filter:nil delegate:self];
-    self.draftsTableDelegate = [[SCRItemTableDelegate alloc] initWithTableView:self.tableView viewName:kSCRAllFeedItemsUngroupedViewName filter:nil delegate:self];
+    self.postsTableDelegate = [[SCRSentPostItemTableDelegate alloc] initWithTableView:self.tableView viewName:kSCRAllPostItemsViewName delegate:self];
+    self.draftsTableDelegate = [[SCRDraftPostItemTableDelegate alloc] initWithTableView:self.tableView viewName:kSCRAllPostItemsViewName delegate:self];
     [self.postsTableDelegate setActive:YES];
     [self showAddPostBarButton:NO];
     self.tableView.allowsMultipleSelectionDuringEditing = NO;
@@ -133,7 +135,7 @@
 {
     if (show)
     {
-        UIBarButtonItem *btnAddPost = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(addPost:)];
+        UIBarButtonItem *btnAddPost = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(addPost:)];
         [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:self.navigationItem.rightBarButtonItem, btnAddPost, nil]];
     }
     else
@@ -148,6 +150,22 @@
     UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     self.navigationItem.backBarButtonItem = backItem;
     [self.navigationController pushViewController:addPostViewController animated:YES];
+}
+
+- (void)editDraftItem:(SCRPostItem *)item
+{
+    SCRAddPostViewController *addPostViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"addPostViewController"];
+    [addPostViewController editItem:item];
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    self.navigationItem.backBarButtonItem = backItem;
+    [self.navigationController pushViewController:addPostViewController animated:YES];
+}
+
+- (void)deleteDraftItem:(SCRPostItem *)item
+{
+    [[SCRDatabaseManager sharedInstance].readWriteConnection asyncReadWriteWithBlock:^(YapDatabaseReadWriteTransaction *transaction) {
+        [transaction removeObjectForKey:item.yapKey inCollection:[[item class] yapCollection]];
+    }];
 }
 
 @end

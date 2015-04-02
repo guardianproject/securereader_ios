@@ -11,6 +11,12 @@
 #import "SCRApplication.h"
 #import "SCRSettings.h"
 
+@interface SCRTextView ()
+@property (nonatomic, weak) id<UITextViewDelegate> originalDelegate;
+@property (nonatomic) UIColor *originalTextColor;
+@property (nonatomic) BOOL isDisplayingPrompt;
+@end
+
 @implementation SCRTextView
 
 - (void)willMoveToSuperview:(UIView *)newSuperview
@@ -22,6 +28,7 @@
                                                      name:kSettingChangedNotification
                                                    object:nil];
         [self setFontSizeAdjustment:[SCRSettings fontSizeAdjustment]];
+        [super setDelegate:self];
     }
 }
 
@@ -67,5 +74,106 @@
     [self setUnadjustedSize:font.pointSize];
     [super setFont:[font fontWithSize:(font.pointSize + [SCRSettings fontSizeAdjustment])]];
 }
+
+- (void) setDelegate:(id<UITextViewDelegate>)delegate
+{
+    self.originalDelegate = delegate;
+}
+
+- (void)setTextColor:(UIColor *)textColor
+{
+    self.originalTextColor = textColor;
+    if (!self.isDisplayingPrompt)
+        [super setTextColor:textColor];
+}
+
+- (NSString *)getPrompt
+{
+    return _prompt;
+}
+
+- (void)setPrompt:(NSString *)prompt
+{
+    _prompt = prompt;
+    if (self.isDisplayingPrompt || (!self.isFirstResponder && self.text.length == 0))
+    {
+        [self showPrompt:YES];
+    }
+}
+
+- (UIColor *)getTextColorDisabled
+{
+    return _textColorDisabled;
+}
+
+- (void)setTextColorDisabled:(UIColor *)textColorDisabled
+{
+    _textColorDisabled = textColorDisabled;
+    if (self.isDisplayingPrompt)
+        [super setTextColor:_textColorDisabled];
+}
+
+-(void)showPrompt:(BOOL)show
+{
+    if (show)
+    {
+        if (!self.isDisplayingPrompt)
+            self.originalTextColor = [self textColor];
+        [super setTextColor:self.textColorDisabled];
+        [super setText:_prompt];
+        self.isDisplayingPrompt = YES;
+    }
+    else
+    {
+        [super setText:@""];
+        [super setTextColor:self.originalTextColor];
+        self.isDisplayingPrompt = NO;
+    }
+}
+
+- (BOOL) textViewShouldBeginEditing:(UITextView *)textView
+{
+    BOOL ret = YES;
+    if (self.originalDelegate != nil)
+        ret = [self.originalDelegate textViewShouldBeginEditing:textView];
+    if (ret && self.isDisplayingPrompt)
+    {
+        [self showPrompt:NO];
+    }
+    return ret;
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView
+{
+    if (self.text.length == 0)
+    {
+        [self showPrompt:YES];
+    }
+    if (self.originalDelegate != nil)
+        [self.originalDelegate textViewDidEndEditing:textView];
+}
+
+- (void)setText:(NSString *)text
+{
+    if (self.text.length > 0)
+    {
+        [self showPrompt:NO];
+    }
+    [super setText:text];
+    if (self.text.length == 0 && ![self isFirstResponder])
+    {
+        [self showPrompt:YES];
+    }
+}
+
+//-(void) textViewDidChange:(UITextView *)textView
+//{
+//    if (self.text.length == 0 && ![self isFirstResponder])
+//    {
+//        [self showPrompt:YES];
+//    }
+//    if (self.originalDelegate != nil)
+//        [self.originalDelegate textViewDidChange:textView];
+//}
 
 @end

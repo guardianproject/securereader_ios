@@ -11,6 +11,7 @@
 #import <objc/runtime.h>
 #import "SCRGradientBackgroundView.h"
 #import "SCRApplication.h"
+#import "SCRTextView.h"
 
 @interface SCRTheme ()
 {
@@ -173,6 +174,13 @@ static NSMutableDictionary *themes = nil;
                 [SCRTheme saveProperty:property value:[control performSelector:@selector(textColor)] forControl:control];
             UIColor *color = [self colorWithPropertyValue:[self getNillableProperty:property fromDict:style]];
             [control performSelector:@selector(setTextColor:) withObject:color];
+        }
+        else if ([property isEqualToString:@"textColorDisabled"] && [control respondsToSelector:@selector(setTextColorDisabled:)])
+        {
+            if (save && [control respondsToSelector:@selector(textColorDisabled)])
+                [SCRTheme saveProperty:property value:[control performSelector:@selector(textColorDisabled)] forControl:control];
+            UIColor *color = [self colorWithPropertyValue:[self getNillableProperty:property fromDict:style]];
+            [control performSelector:@selector(setTextColorDisabled:) withObject:color];
         }
         else if ([property isEqualToString:@"corners"])
         {

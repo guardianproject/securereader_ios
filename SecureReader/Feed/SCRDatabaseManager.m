@@ -14,6 +14,7 @@
 #import "YapDatabaseFilteredView.h"
 #import "SCRItem.h"
 #import "SCRFeed.h"
+#import "SCRPostItem.h"
 
 NSString *const kSCRAllFeedItemsViewName = @"kSCRAllFeedItemsViewName";
 NSString *const kSCRAllFeedItemsUngroupedViewName = @"kSCRAllFeedItemsUngroupedViewName";
@@ -24,6 +25,7 @@ NSString *const kSCRSubscribedFeedsViewName = @"kSCRSubscribedFeedsViewName";
 NSString *const kSCRUnsubscribedFeedsViewName = @"kSCRUnsubscribedFeedsViewName";
 NSString *const kSCRAllFeedsSearchViewName = @"kSCRAllFeedsSearchViewName";
 NSString *const kSCRRelationshipExtensionName = @"kSCRRelationshipExtensionName";
+NSString *const kSCRAllPostItemsViewName = @"kSCRAllPostItemsViewName";
 
 @implementation SCRDatabaseManager
 
@@ -75,6 +77,7 @@ NSString *const kSCRRelationshipExtensionName = @"kSCRRelationshipExtensionName"
     [self registerAllFeedItemsUngroupedView];
     [self registerAllFeedsView];
     [self registerAllFeedsSearchView];
+    [self registerAllPostItemsView];
 }
 
 - (void) registerAllFeedItemsView {
@@ -196,6 +199,21 @@ NSString *const kSCRRelationshipExtensionName = @"kSCRRelationshipExtensionName"
                                                           versionTag:@"1"
                                                              options:searchViewOptions];
     [self.database registerExtension:searchResultsView withName:kSCRAllFeedsSearchViewName];
+}
+
+- (void) registerAllPostItemsView {
+    YapDatabaseViewGrouping *grouping = [YapDatabaseViewGrouping withObjectBlock:^NSString *(NSString *collection, NSString *key, id object) {
+        if ([object isKindOfClass:[SCRPostItem class]]) {
+            SCRPostItem *item = object;
+            return item.yapGroup;
+        }
+        return nil;
+    }];
+    YapDatabaseViewSorting *sorting = [YapDatabaseViewSorting withObjectBlock:^NSComparisonResult(NSString *group, NSString *collection1, NSString *key1, SCRPostItem *item1, NSString *collection2, NSString *key2, SCRPostItem *item2) {
+        return [item2.title compare:item1.title];
+    }];
+    YapDatabaseView *databaseView = [[YapDatabaseView alloc] initWithGrouping:grouping sorting:sorting versionTag:@"1" options:nil];
+    [self.database registerExtension:databaseView withName:kSCRAllPostItemsViewName];
 }
 
 + (instancetype) sharedInstance {

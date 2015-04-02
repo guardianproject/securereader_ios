@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cellDraft" rowHeight="439" id="NEL-3c-gR4" customClass="SCRPostItemCellDraft">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="389"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" horizontalHuggingPriority="1000" tableViewCell="NEL-3c-gR4" id="OWu-va-Orj">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="321"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xwG-qA-D4c" customClass="SCRMediaCollectionView">
+                        <rect key="frame" x="20" y="20" width="80" height="80"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="80" id="9Xg-5H-vYk"/>
+                            <constraint firstAttribute="width" constant="80" id="Byd-Y8-EFO"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="downloadViewHeight">
+                                <integer key="value" value="80"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="imageViewHeight">
+                                <integer key="value" value="80"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="Tmh-Vq-M3f" customClass="SCRLabel">
+                        <rect key="frame" x="120" y="20" width="460" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EF6-AO-hLx" userLabel="Content" customClass="SCRLabel">
+                        <rect key="frame" x="20" y="214" width="560" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" bounces="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="sBi-Hl-ouM" userLabel="Tag View">
+                        <rect key="frame" x="20" y="254" width="560" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="HU2-hU-R5N"/>
+                        </constraints>
+                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="KvJ-WH-Re3">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="theme" value="TagStyle"/>
+                        </userDefinedRuntimeAttributes>
+                    </collectionView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zcq-My-M5H" userLabel="Button Area">
+                        <rect key="frame" x="20" y="304" width="560" height="60"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fw6-IW-77h" userLabel="Delete">
+                                <rect key="frame" x="506" y="15" width="44" height="30"/>
+                                <state key="normal" title="Delete">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mFS-xb-bMJ" userLabel="Edit">
+                                <rect key="frame" x="466" y="15" width="30" height="30"/>
+                                <state key="normal" title="Edit">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerY" secondItem="mFS-xb-bMJ" secondAttribute="centerY" id="Ska-hL-ycs"/>
+                            <constraint firstAttribute="height" constant="60" id="To7-fV-8xb"/>
+                            <constraint firstAttribute="centerY" secondItem="fw6-IW-77h" secondAttribute="centerY" id="iiZ-Mm-zWF"/>
+                            <constraint firstAttribute="trailing" secondItem="fw6-IW-77h" secondAttribute="trailing" constant="10" id="l6i-bP-fET"/>
+                            <constraint firstItem="fw6-IW-77h" firstAttribute="leading" secondItem="mFS-xb-bMJ" secondAttribute="trailing" constant="10" id="lIB-HV-DJw"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rfn-0S-4Oj" customClass="SCRGradientBackgroundView">
+                        <rect key="frame" x="0.0" y="374" width="600" height="15"/>
+                        <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="15" id="h8h-7g-wBZ"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="theme" value="ListItemShadowStyle"/>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="rfn-0S-4Oj" firstAttribute="top" secondItem="zcq-My-M5H" secondAttribute="bottom" priority="999" constant="10" id="7UB-Kh-NlB"/>
+                    <constraint firstItem="xwG-qA-D4c" firstAttribute="leading" secondItem="OWu-va-Orj" secondAttribute="leading" constant="20" id="EUi-dm-gdI"/>
+                    <constraint firstItem="EF6-AO-hLx" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Tmh-Vq-M3f" secondAttribute="bottom" constant="20" id="Hvf-x1-K0s"/>
+                    <constraint firstAttribute="trailing" secondItem="Tmh-Vq-M3f" secondAttribute="trailing" constant="20" id="KG7-g1-w41"/>
+                    <constraint firstItem="sBi-Hl-ouM" firstAttribute="top" secondItem="EF6-AO-hLx" secondAttribute="bottom" constant="20" id="LvW-BA-nBa"/>
+                    <constraint firstItem="xwG-qA-D4c" firstAttribute="top" secondItem="OWu-va-Orj" secondAttribute="top" constant="20" id="PqP-Af-aBe"/>
+                    <constraint firstAttribute="trailing" secondItem="sBi-Hl-ouM" secondAttribute="trailing" constant="20" id="Wff-5K-mg0"/>
+                    <constraint firstItem="zcq-My-M5H" firstAttribute="leading" secondItem="OWu-va-Orj" secondAttribute="leading" constant="20" id="d8J-CC-VmO"/>
+                    <constraint firstItem="EF6-AO-hLx" firstAttribute="top" relation="greaterThanOrEqual" secondItem="xwG-qA-D4c" secondAttribute="bottom" constant="20" id="dRV-cB-pXU"/>
+                    <constraint firstAttribute="trailing" secondItem="EF6-AO-hLx" secondAttribute="trailing" constant="20" id="eH7-aB-mjY"/>
+                    <constraint firstItem="zcq-My-M5H" firstAttribute="top" secondItem="sBi-Hl-ouM" secondAttribute="bottom" constant="10" id="hEQ-XV-VfL"/>
+                    <constraint firstItem="rfn-0S-4Oj" firstAttribute="leading" secondItem="OWu-va-Orj" secondAttribute="leading" id="irQ-yI-xdk"/>
+                    <constraint firstItem="sBi-Hl-ouM" firstAttribute="leading" secondItem="OWu-va-Orj" secondAttribute="leading" constant="20" id="kR0-hD-d9Z"/>
+                    <constraint firstItem="Tmh-Vq-M3f" firstAttribute="top" secondItem="OWu-va-Orj" secondAttribute="top" constant="20" id="kdG-FS-pVq"/>
+                    <constraint firstItem="Tmh-Vq-M3f" firstAttribute="leading" secondItem="xwG-qA-D4c" secondAttribute="trailing" constant="20" id="lDm-DO-u8w"/>
+                    <constraint firstAttribute="trailing" secondItem="rfn-0S-4Oj" secondAttribute="trailing" id="qBA-Ij-h1Y"/>
+                    <constraint firstItem="EF6-AO-hLx" firstAttribute="leading" secondItem="OWu-va-Orj" secondAttribute="leading" constant="20" id="top-v8-DeY"/>
+                    <constraint firstAttribute="bottom" secondItem="rfn-0S-4Oj" secondAttribute="bottom" id="v9I-2D-vec"/>
+                    <constraint firstAttribute="trailing" secondItem="zcq-My-M5H" secondAttribute="trailing" constant="20" id="xY1-pM-QPr"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="btnDelete" destination="fw6-IW-77h" id="iBb-cx-dO0"/>
+                <outlet property="btnEdit" destination="mFS-xb-bMJ" id="jEN-1T-rhl"/>
+                <outlet property="mediaCollectionView" destination="xwG-qA-D4c" id="yhd-r8-u9N"/>
+                <outlet property="tagCollectionView" destination="sBi-Hl-ouM" id="dE5-So-RR3"/>
+                <outlet property="tagCollectionViewHeightConstraint" destination="HU2-hU-R5N" id="6uK-kV-mbZ"/>
+                <outlet property="tagCollectionViewLayout" destination="KvJ-WH-Re3" id="3XX-43-LpD"/>
+                <outlet property="textView" destination="EF6-AO-hLx" id="HYO-gO-1Cw"/>
+                <outlet property="titleView" destination="Tmh-Vq-M3f" id="s3k-7R-IRH"/>
+            </connections>
+            <point key="canvasLocation" x="389" y="143.5"/>
+        </tableViewCell>
+    </objects>
+</document>

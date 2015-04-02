@@ -41,6 +41,10 @@
     self = [super initWithCoder:aDecoder];
     if (self)
     {
+        // Default values
+        self.downloadViewHeight = 80;
+        self.imageViewHeight = 200;
+        
         self.mediaItems = [NSMutableArray array];
         
         [[NSBundle mainBundle] loadNibNamed:@"SCRMediaCollectionView" owner:self options:nil];
@@ -108,16 +112,6 @@
     {
         self.heightConstraint.constant = 0;
     }
-}
-
-- (int)downloadViewHeight
-{
-    return 80;
-}
-
-- (int)imageViewHeight
-{
-    return 200;
 }
 
 - (void) createThumbnails:(BOOL)downloadIfNeeded

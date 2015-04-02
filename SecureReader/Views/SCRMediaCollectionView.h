@@ -11,7 +11,12 @@
 #import <SwipeView.h>
 #import "SCRMediaCollectionViewDownloadView.h"
 
+IB_DESIGNABLE
+
 @interface SCRMediaCollectionView : UIView<SwipeViewDataSource, SwipeViewDelegate, SCRMediaCollectionViewDownloadViewDelegate>
+
+@property (nonatomic) IBInspectable NSInteger downloadViewHeight;
+@property (nonatomic) IBInspectable NSInteger imageViewHeight;
 
 @property (strong) IBOutlet UIView *contentView;
 @property (strong) IBOutlet UIPageControl *pageControl;
