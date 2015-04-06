@@ -15,6 +15,7 @@
 #import "SCRItem.h"
 #import "SCRFeed.h"
 #import "SCRPostItem.h"
+#import "SSKeychain.h"
 
 NSString *const kSCRAllFeedItemsViewName = @"kSCRAllFeedItemsViewName";
 NSString *const kSCRAllFeedItemsUngroupedViewName = @"kSCRAllFeedItemsUngroupedViewName";
@@ -26,6 +27,8 @@ NSString *const kSCRUnsubscribedFeedsViewName = @"kSCRUnsubscribedFeedsViewName"
 NSString *const kSCRAllFeedsSearchViewName = @"kSCRAllFeedsSearchViewName";
 NSString *const kSCRRelationshipExtensionName = @"kSCRRelationshipExtensionName";
 NSString *const kSCRAllPostItemsViewName = @"kSCRAllPostItemsViewName";
+
+static NSString * const SCRDatabasePassphraseKey    = @"SCRDatabasePassphraseKey";
 
 @implementation SCRDatabaseManager
 
@@ -50,15 +53,15 @@ NSString *const kSCRAllPostItemsViewName = @"kSCRAllPostItemsViewName";
         
         YapDatabaseOptions *options = [[YapDatabaseOptions alloc] init];
         options.corruptAction = YapDatabaseCorruptAction_Fail;
-        options.passphraseBlock = ^{
-            // Fetch from keychain or in-memory passphrase
-            NSString *passphrase = @"super secure password";
-            if (!passphrase.length) {
+        options.cipherKeyBlock = ^{
+            NSString *passphrase = [self databasePassphrase];
+            NSData *passphraseData = [passphrase dataUsingEncoding:NSUTF8StringEncoding];
+            if (!passphraseData.length) {
                 [NSException raise:@"Must have passphrase of length > 0" format:@"password length is %d.", (int)passphrase.length];
             }
-            return passphrase;
+            return passphraseData;
         };
-        _database = [[YapDatabase alloc] initWithPath:path objectSerializer:nil objectDeserializer:nil metadataSerializer:nil metadataDeserializer:nil objectSanitizer:nil metadataSanitizer:nil options:options];
+        _database = [[YapDatabase alloc] initWithPath:path serializer:nil deserializer:nil options:options];
         self.database.defaultObjectCacheEnabled = YES;
         self.database.defaultObjectCacheLimit = 5000;
         self.database.defaultObjectPolicy = YapDatabasePolicyShare;
@@ -68,6 +71,23 @@ NSString *const kSCRAllPostItemsViewName = @"kSCRAllPostItemsViewName";
     }
     return self;
 }
+
+/** Returns db passphrase from keychain (will generate if needed) */
+- (NSString*) databasePassphrase {
+    [SSKeychain setAccessibilityType:kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly];
+    NSString *passphrase = [SSKeychain passwordForService:SCRDatabasePassphraseKey account:SCRDatabasePassphraseKey];
+    if (!passphrase.length) {
+        // no passphrase found, generating new one
+        int passphraseBytes = 30;
+        NSMutableData* passphraseData = [NSMutableData dataWithLength:passphraseBytes];
+        SecRandomCopyBytes(kSecRandomDefault, passphraseBytes, [passphraseData mutableBytes]);
+        passphrase = [passphraseData base64EncodedStringWithOptions:0];
+        [SSKeychain setPassword:passphrase forService:SCRDatabasePassphraseKey account:SCRDatabasePassphraseKey];
+    }
+    NSAssert(passphrase.length > 0, @"Must have a passphrase!");
+    return passphrase;
+}
+
 
 - (void) registerViews {
     
