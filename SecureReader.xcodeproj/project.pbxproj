@@ -99,6 +99,7 @@
 		92E7B96E1A41A2AE0038DBCE /* SCRReceiveShareView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92E7B96D1A41A2AE0038DBCE /* SCRReceiveShareView.xib */; };
 		92E7B9711A41A30F0038DBCE /* SCRReceiveShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7B9701A41A30F0038DBCE /* SCRReceiveShareView.m */; };
 		92E7B9741A41C8E60038DBCE /* SCRReceiveShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7B9731A41C8E60038DBCE /* SCRReceiveShareViewController.m */; };
+		92E8CF8D1AD3C91D00756F9E /* SCREditTagsTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E8CF8C1AD3C91D00756F9E /* SCREditTagsTextView.m */; };
 		D90F59371A19ECBE008F2DCB /* SCRFeedFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = D90F59361A19ECBE008F2DCB /* SCRFeedFetcher.m */; };
 		D90F593A1A19F617008F2DCB /* SCRDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D90F59391A19F617008F2DCB /* SCRDatabaseManager.m */; };
 		D9317B891A886A95005DA904 /* NSFormatter+SecureReader.m in Sources */ = {isa = PBXBuildFile; fileRef = D9317B881A886A95005DA904 /* NSFormatter+SecureReader.m */; };
@@ -268,6 +269,8 @@
 		92E7B9701A41A30F0038DBCE /* SCRReceiveShareView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRReceiveShareView.m; sourceTree = "<group>"; };
 		92E7B9721A41C8E60038DBCE /* SCRReceiveShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRReceiveShareViewController.h; sourceTree = "<group>"; };
 		92E7B9731A41C8E60038DBCE /* SCRReceiveShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRReceiveShareViewController.m; sourceTree = "<group>"; };
+		92E8CF8B1AD3C91D00756F9E /* SCREditTagsTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCREditTagsTextView.h; sourceTree = "<group>"; };
+		92E8CF8C1AD3C91D00756F9E /* SCREditTagsTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCREditTagsTextView.m; sourceTree = "<group>"; };
 		A21561AE6A5B97BAE0C7EADE /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		B6D79F343A572BF139F79DDE /* Pods-SecureReaderTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SecureReaderTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SecureReaderTests/Pods-SecureReaderTests.release.xcconfig"; sourceTree = "<group>"; };
 		D63F575D235A327D686329F6 /* Pods-SecureReaderTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SecureReaderTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SecureReaderTests/Pods-SecureReaderTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -597,6 +600,8 @@
 				927EE44F1ACA9BA90023AA1D /* SCRMediaCollectionViewDownloadView.h */,
 				927EE4501ACA9BA90023AA1D /* SCRMediaCollectionViewDownloadView.m */,
 				927EE44D1ACA9B230023AA1D /* SCRMediaCollectionViewDownloadView.xib */,
+				92E8CF8B1AD3C91D00756F9E /* SCREditTagsTextView.h */,
+				92E8CF8C1AD3C91D00756F9E /* SCREditTagsTextView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -856,6 +861,7 @@
 				92BD50A11A07A38900F3BD22 /* SCRItemView.m in Sources */,
 				929BE4BE1A7913A700641647 /* SCRLabel.m in Sources */,
 				63775E8F1AAFB00F006CE553 /* NSData+SecureReader.m in Sources */,
+				92E8CF8D1AD3C91D00756F9E /* SCREditTagsTextView.m in Sources */,
 				92A4D2A51A31F1D40091479A /* SCRPanicViewController.m in Sources */,
 				92DD08831ACAD010001A0F59 /* SCRAddPostViewController.m in Sources */,
 				929EEF9319F5110D0020BD75 /* SCRCreatePassphraseViewController.m in Sources */,

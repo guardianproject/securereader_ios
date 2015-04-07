@@ -112,6 +112,20 @@
 		<key>tintColor</key>
 		<string>#ff95ab55</string>
 	</dict>
+	<key>ItemTitleStyle</key>
+	<dict>
+		<key>textSize</key>
+		<integer>18</integer>
+		<key>textColor</key>
+		<string>#ff000000</string>
+	</dict>
+	<key>ItemContentStyle</key>
+	<dict>
+		<key>textSize</key>
+		<integer>14</integer>
+		<key>textColor</key>
+		<string>#ff000000</string>
+	</dict>
 	<key>SourceStyle</key>
 	<dict>
 		<key>backgroundColor</key>
@@ -169,6 +183,16 @@
 		<integer>15</integer>
 		<key>textColor</key>
 		<string>@Colors/highlightColor</string>
+	</dict>
+	<key>PostDraftTitleStyle</key>
+	<dict>
+		<key>parent</key>
+		<string>ItemTitleStyle</string>
+	</dict>
+	<key>PostDraftContentStyle</key>
+	<dict>
+		<key>parent</key>
+		<string>ItemContentStyle</string>
 	</dict>
 </dict>
 </plist>

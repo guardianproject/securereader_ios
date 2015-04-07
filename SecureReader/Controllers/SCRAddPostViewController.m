@@ -62,12 +62,33 @@
 {
     self.titleView.text = self.item.title;
     self.descriptionView.text = self.item.content;
+    self.tagView.text = [self.item.tags componentsJoinedByString:@" "];
 }
 
 - (void)populateItemFromUI
 {
     self.item.title = self.titleView.text;
     self.item.content = self.descriptionView.text;
+
+    // Get the tags and trim away all extra
+    //
+    NSMutableArray *tags = nil;
+    NSArray *rawtags = [self.tagView.text componentsSeparatedByString:@"#"];
+    if (rawtags != nil && rawtags.count > 0)
+    {
+        for (NSString *tag in rawtags)
+        {
+            NSString *trimmed = [tag stringByTrimmingCharactersInSet:
+                                                           [NSCharacterSet whitespaceCharacterSet]];
+            if (trimmed.length > 0)
+            {
+                if (tags == nil)
+                    tags = [NSMutableArray array];
+                [tags addObject:trimmed];
+            }
+        }
+    }
+    self.item.tags = tags;
 }
 
 - (void)post:(id)sender

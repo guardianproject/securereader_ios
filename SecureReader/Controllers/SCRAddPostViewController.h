@@ -14,6 +14,7 @@
 
 @property (weak, nonatomic) IBOutlet SCRTextView *titleView;
 @property (weak, nonatomic) IBOutlet SCRTextView *descriptionView;
+@property (weak, nonatomic) IBOutlet SCRTextView *tagView;
 -(void) editItem:(SCRPostItem *)item;
 
 @end

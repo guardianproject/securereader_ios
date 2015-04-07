@@ -16,4 +16,6 @@
 @property (nonatomic) NSString *content;
 @property (nonatomic) BOOL isSent;
 
+@property (nonatomic, strong) NSArray *tags;
+
 @end

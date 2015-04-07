@@ -241,7 +241,7 @@
                                     <action selector="openAppButtonClicked:" destination="UYk-Mv-gub" eventType="touchUpInside" id="HLz-fJ-3XY"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0aQ-XQ-xi1">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0aQ-XQ-xi1">
                                 <rect key="frame" x="16" y="200" width="568" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -249,7 +249,7 @@
                                     <outlet property="delegate" destination="1bD-Nz-oIn" id="WqR-Sw-Q8d"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8D5-lH-j9E">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8D5-lH-j9E">
                                 <rect key="frame" x="16" y="267" width="568" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -263,7 +263,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Repeat" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FIB-E0-LcG">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Repeat" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FIB-E0-LcG">
                                 <rect key="frame" x="16" y="238" width="568" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -337,7 +337,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r6V-Is-GTi">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r6V-Is-GTi">
                                 <rect key="frame" x="16" y="200" width="568" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -542,7 +542,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rcp-dE-Owv" userLabel="Scroll Content">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="390"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="450"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="re8-U9-Zs5">
                                                 <rect key="frame" x="0.0" y="0.0" width="600" height="200"/>
@@ -583,18 +583,37 @@
                                                     <userDefinedRuntimeAttribute type="string" keyPath="prompt" value="Describe what's happening. Include important details about the location and subject. Remember to respect others' privacy."/>
                                                 </userDefinedRuntimeAttributes>
                                             </textView>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Hg-t3-5if" userLabel="Tags" customClass="SCREditTagsTextView">
+                                                <rect key="frame" x="0.0" y="390" width="600" height="50"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="uXl-4d-PYn"/>
+                                                </constraints>
+                                                <color key="textColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="textColorDisabled">
+                                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="prompt" value="#tags"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </textView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="Adn-F9-fBH" firstAttribute="top" secondItem="re8-U9-Zs5" secondAttribute="bottom" constant="10" id="2WL-Qi-SFc"/>
+                                            <constraint firstItem="4Hg-t3-5if" firstAttribute="leading" secondItem="rcp-dE-Owv" secondAttribute="leading" id="2ng-B3-WwT"/>
                                             <constraint firstItem="re8-U9-Zs5" firstAttribute="top" secondItem="rcp-dE-Owv" secondAttribute="top" id="8wn-A0-Zbc"/>
                                             <constraint firstAttribute="trailing" secondItem="inT-tN-8CT" secondAttribute="trailing" id="B4f-5l-Hud"/>
+                                            <constraint firstAttribute="bottom" secondItem="4Hg-t3-5if" secondAttribute="bottom" constant="10" id="FaS-a7-JGB"/>
                                             <constraint firstItem="inT-tN-8CT" firstAttribute="top" secondItem="Adn-F9-fBH" secondAttribute="bottom" constant="10" id="FeY-wY-cy0"/>
                                             <constraint firstItem="re8-U9-Zs5" firstAttribute="leading" secondItem="rcp-dE-Owv" secondAttribute="leading" id="GzU-KI-3F6"/>
+                                            <constraint firstItem="4Hg-t3-5if" firstAttribute="top" secondItem="inT-tN-8CT" secondAttribute="bottom" constant="10" id="MyO-eU-d20"/>
                                             <constraint firstAttribute="trailing" secondItem="Adn-F9-fBH" secondAttribute="trailing" id="S5t-a3-7GL"/>
                                             <constraint firstAttribute="trailing" secondItem="re8-U9-Zs5" secondAttribute="trailing" id="Ysg-ao-gdF"/>
                                             <constraint firstItem="inT-tN-8CT" firstAttribute="leading" secondItem="rcp-dE-Owv" secondAttribute="leading" id="aTg-bC-vuD"/>
-                                            <constraint firstAttribute="bottom" secondItem="inT-tN-8CT" secondAttribute="bottom" constant="10" id="uR8-e6-C1P"/>
+                                            <constraint firstAttribute="trailing" secondItem="4Hg-t3-5if" secondAttribute="trailing" id="b00-Go-qEx"/>
                                             <constraint firstItem="Adn-F9-fBH" firstAttribute="leading" secondItem="rcp-dE-Owv" secondAttribute="leading" id="vx1-7C-Ee9"/>
                                         </constraints>
                                     </view>
@@ -623,6 +642,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="descriptionView" destination="inT-tN-8CT" id="R7i-WZ-dPR"/>
+                        <outlet property="tagView" destination="4Hg-t3-5if" id="eLd-JI-CBG"/>
                         <outlet property="titleView" destination="Adn-F9-fBH" id="rfx-7Z-gHb"/>
                         <outlet property="view" destination="Bn8-oW-1Ff" id="h4u-Mg-nj6"/>
                     </connections>
