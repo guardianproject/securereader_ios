@@ -546,9 +546,32 @@
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="re8-U9-Zs5">
                                                 <rect key="frame" x="0.0" y="0.0" width="600" height="200"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Fg-Uf-0ek">
+                                                        <rect key="frame" x="10" y="140" width="580" height="50"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kas-eU-iMj">
+                                                                <rect key="frame" x="8" y="10" width="46" height="30"/>
+                                                                <state key="normal" title="Add">
+                                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <action selector="addMediaButtonClicked:" destination="RIg-BG-i7z" eventType="touchUpInside" id="bRJ-8M-N2h"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="CqX-aJ-EDr"/>
+                                                        </constraints>
+                                                    </view>
+                                                </subviews>
                                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="8Fg-Uf-0ek" secondAttribute="trailing" constant="10" id="L0m-0g-IdT"/>
                                                     <constraint firstAttribute="height" constant="200" id="T6q-I5-fh1"/>
+                                                    <constraint firstAttribute="bottom" secondItem="8Fg-Uf-0ek" secondAttribute="bottom" constant="10" id="TI6-eD-Urd"/>
+                                                    <constraint firstItem="8Fg-Uf-0ek" firstAttribute="leading" secondItem="re8-U9-Zs5" secondAttribute="leading" constant="10" id="gzE-Bb-wqh"/>
                                                 </constraints>
                                             </view>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Adn-F9-fBH" userLabel="Title" customClass="SCRTextView">

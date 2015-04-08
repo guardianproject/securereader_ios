@@ -32,7 +32,8 @@
 -(void)setText:(NSString *)text
 {
     [super setText:text];
-    [self updateText:text lastOperationWasRemove:NO];
+    if (super.text.length > 0)
+        [self updateText:super.text lastOperationWasRemove:NO];
 }
 
 -(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text

@@ -10,6 +10,7 @@
 #import "SCRPostItem.h"
 #import "SCRPostItemCellDraft.h"
 #import "SCRItemTagCell.h"
+#import "SCRApplication.h"
 
 @interface SCRDraftPostItemTableDelegate()
 @property (nonatomic, strong) SCRItemTagCell *cellTagPrototype;
@@ -47,7 +48,11 @@
     cell.item = item;
     
     cell.titleView.text = item.title;
+    if (cell.titleView.text.length == 0)
+        cell.titleView.text = getLocalizedString(@"Add_Post_Item_No_Title", @"(No title set)");
     cell.textView.text = item.content;
+    if (cell.textView.text.length == 0)
+        cell.textView.text = getLocalizedString(@"Add_Post_Item_No_Description", @"(No description set)");
     [cell.btnEdit addTarget:self action:@selector(editButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [cell.btnDelete addTarget:self action:@selector(deleteButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     //[cell.mediaCollectionView setItem:item];

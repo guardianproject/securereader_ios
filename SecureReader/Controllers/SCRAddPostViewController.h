@@ -10,7 +10,7 @@
 #import "SCRPostItem.h"
 #import "SCRTextView.h"
 
-@interface SCRAddPostViewController : UIViewController
+@interface SCRAddPostViewController : UIViewController<UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet SCRTextView *titleView;
 @property (weak, nonatomic) IBOutlet SCRTextView *descriptionView;

@@ -14,6 +14,7 @@
 @property (nonatomic) NSString *uuid;
 @property (nonatomic) NSString *title;
 @property (nonatomic) NSString *content;
+@property (nonatomic) NSDate *lastEdited;
 @property (nonatomic) BOOL isSent;
 
 @property (nonatomic, strong) NSArray *tags;

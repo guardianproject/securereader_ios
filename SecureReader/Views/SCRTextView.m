@@ -153,9 +153,16 @@
         [self.originalDelegate textViewDidEndEditing:textView];
 }
 
+- (NSString *)text
+{
+    if (self.isDisplayingPrompt)
+        return nil;
+    return [super text];
+}
+
 - (void)setText:(NSString *)text
 {
-    if (self.text.length > 0)
+    if (text.length > 0 && self.isDisplayingPrompt)
     {
         [self showPrompt:NO];
     }
