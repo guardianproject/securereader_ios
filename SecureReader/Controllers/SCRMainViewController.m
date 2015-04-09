@@ -11,6 +11,7 @@
 #import "SCRAppDelegate.h"
 #import "SCRFeedViewController.h"
 #import "UIView+Theming.h"
+#import "SCRDatabaseManager.h"
 
 @interface SCRMainViewController ()
 
@@ -22,34 +23,6 @@
     [super viewDidLoad];
     [self.tabBar setTheme:@"TabBarItemStyle"];
     self.delegate = self;
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    if (![[SCRAppDelegate sharedAppDelegate] isLoggedIn])
-    {
-        SCRLoginViewController *vcLogin = [self.storyboard instantiateViewControllerWithIdentifier:@"login"];
-        vcLogin.modalPresentationStyle = UIModalPresentationFullScreen;
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self presentViewController:vcLogin animated:NO completion:nil];
-        });
-        return;
-    }
-}
-
-- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController
-{
-    if (![[SCRAppDelegate sharedAppDelegate] isLoggedIn])
-    {
-        SCRLoginViewController *vcLogin = [self.storyboard instantiateViewControllerWithIdentifier:@"login"];
-        vcLogin.modalPresentationStyle = UIModalPresentationFullScreen;
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self presentViewController:vcLogin animated:NO completion:nil];
-        });
-        return NO;
-    }
-    return YES;
 }
 
 - (IBAction)showPanicAction:(id)sender

@@ -18,10 +18,6 @@ extern NSString * const kFontSizeAdjustmentSettingsKey;
 + (BOOL)downloadMedia;
 + (void)setDownloadMedia:(BOOL)downloadMedia;
 
-// TEMP implement passwords!
-+ (NSString *)getPassphrase;
-+ (void) setPassphrase:(NSString *)passphrase;
-
 + (NSInteger) lockTimeout;
 
 + (float)fontSizeAdjustment;

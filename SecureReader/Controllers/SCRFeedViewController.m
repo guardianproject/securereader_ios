@@ -42,10 +42,7 @@
 - (void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [(SCRNavigationController *)self.navigationController registerScrollViewForHideBars:self.tableView];
-    if ([[SCRAppDelegate sharedAppDelegate] isLoggedIn])
-    {
-        [self.itemsTableDelegate setActive:YES];
-    }
+    [self.itemsTableDelegate setActive:YES];
 }
 
 - (void)viewDidDisappear:(BOOL)animated

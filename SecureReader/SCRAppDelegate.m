@@ -20,14 +20,12 @@
 #import "SCRDatabaseManager.h"
 #import "SCRFeedFetcher.h"
 #import "SCRFileManager.h"
+#import "SCRPassphraseManager.h"
 
 @interface SCRAppDelegate() <BITHockeyManagerDelegate>
 @end
 
 @implementation SCRAppDelegate
-{
-    BOOL mLoggedIn;
-}
 
 + (SCRAppDelegate*) sharedAppDelegate
 {
@@ -50,10 +48,22 @@
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
 
     UIViewController *mainViewController = nil;
-    if (![self hasCreatedPassphrase])
+    if (![SCRDatabaseManager databaseExists])
     {
+        // Show welcome screen on first launch
         mainViewController = [storyboard instantiateViewControllerWithIdentifier:@"welcome"];
         self.window.rootViewController = mainViewController;
+    } else {
+        // Show login view if passphrase is not in keychain or a PIN has been set
+        BOOL success = [SCRPassphraseManager sharedInstance].databasePassphrase.length > 0;
+        if (success) {
+            success = [self setupDatabase];
+        }
+        BOOL hasPIN = [SCRPassphraseManager sharedInstance].PIN.length > 0;
+        if (!success || hasPIN) {
+            mainViewController = [storyboard instantiateViewControllerWithIdentifier:@"login"];
+            self.window.rootViewController = mainViewController;
+        }
     }
     return YES;
 }
@@ -101,45 +111,39 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-- (BOOL)hasCreatedPassphrase
+/** Set up database. Will return NO if db passphrase is incorrect */
+- (BOOL)setupDatabase
 {
-    //return NO;
-    return [SCRSettings getPassphrase] != nil && [SCRSettings getPassphrase].length > 0;
-}
-
-- (BOOL)isLoggedIn
-{
-    return mLoggedIn;
-}
-
-- (BOOL)loginWithPassphrase:(NSString *)passphrase
-{
-    if ([passphrase isEqualToString:[SCRSettings getPassphrase]])
-    {
-        mLoggedIn = YES;
-        
-        YapDatabaseConnection *databaseConnection = [SCRDatabaseManager sharedInstance].readWriteConnection;
-        _feedFetcher = [[SCRFeedFetcher alloc] initWithReadWriteYapConnection:databaseConnection sessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-        NSArray *feedURLs = @[@"http://www.voanews.com/api/epiqq",
-                              @"http://www.theguardian.com/world/rss",
-                              @"http://feeds.washingtonpost.com/rss/world",
-                              @"http://www.nytimes.com/services/xml/rss/nyt/InternationalHome.xml",
-                              @"http://rss.cnn.com/rss/cnn_topstories.rss",
-                              @"http://rss.cnn.com/rss/cnn_world.rss"];
-        [feedURLs enumerateObjectsUsingBlock:^(NSString *feedURLString, NSUInteger idx, BOOL *stop) {
-            [self.feedFetcher fetchFeedDataFromURL:[NSURL URLWithString:feedURLString] completionQueue:nil completion:nil];
-        }];
-        
-        NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:@"media.sqlite"];
-        _fileManager = [[SCRFileManager alloc] init];
-        [self.fileManager setupWithPath:path password:@"password"]; //TODO real password here!
-        
-        //Setup media fetcher
-        _mediaFetcher = [[SCRMediaFetcher alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]
-                                                                                      storage:self.fileManager.ioCipher];
-        self.mediaFetcher.completionQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    SCRDatabaseManager *dbManager = [SCRDatabaseManager sharedInstance];
+    if (!dbManager.database) {
+        // db passphrase is incorrect
+        return NO;
     }
-    return mLoggedIn;
+    NSString *path = [SCRFileManager defaultDatabasePath];
+    NSString *passphrase = [[SCRPassphraseManager sharedInstance] databasePassphrase];
+    _fileManager = [[SCRFileManager alloc] init];
+    BOOL success = [self.fileManager setupWithPath:path password:passphrase];
+    if (!success) {
+        return NO;
+    }
+    
+    YapDatabaseConnection *databaseConnection = [SCRDatabaseManager sharedInstance].readWriteConnection;
+    _feedFetcher = [[SCRFeedFetcher alloc] initWithReadWriteYapConnection:databaseConnection sessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    NSArray *feedURLs = @[@"http://www.voanews.com/api/epiqq",
+                          @"http://www.theguardian.com/world/rss",
+                          @"http://feeds.washingtonpost.com/rss/world",
+                          @"http://www.nytimes.com/services/xml/rss/nyt/InternationalHome.xml",
+                          @"http://rss.cnn.com/rss/cnn_topstories.rss",
+                          @"http://rss.cnn.com/rss/cnn_world.rss"];
+    [feedURLs enumerateObjectsUsingBlock:^(NSString *feedURLString, NSUInteger idx, BOOL *stop) {
+        [self.feedFetcher fetchFeedDataFromURL:[NSURL URLWithString:feedURLString] completionQueue:nil completion:nil];
+    }];
+    
+    //Setup media fetcher
+    _mediaFetcher = [[SCRMediaFetcher alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]
+                                                                                  storage:self.fileManager.ioCipher];
+    self.mediaFetcher.completionQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    return YES;
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {

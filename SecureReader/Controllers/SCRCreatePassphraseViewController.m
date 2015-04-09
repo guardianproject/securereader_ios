@@ -9,6 +9,7 @@
 #import "SCRCreatePassphraseViewController.h"
 #import "SCRSettings.h"
 #import "SCRAppDelegate.h"
+#import "SCRPassphraseManager.h"
 
 @interface SCRCreatePassphraseViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *editPassphrase;
@@ -40,13 +41,17 @@
         [[[UIAlertView alloc] initWithTitle:@"Create Passphrase" message:@"Passphrases did not match, please try again." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
         return;
     }
-    [[[UIAlertView alloc] initWithTitle:@"Create Passphrase" message:@"Ok." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+    NSString *passphrase = _editPassphrase.text;
+    [[SCRPassphraseManager sharedInstance] setDatabasePassphrase:passphrase storeInKeychain:NO];
     
-    // TODO proper password storage
-    [SCRSettings setPassphrase:_editPassphrase.text];
-    [[SCRAppDelegate sharedAppDelegate] loginWithPassphrase:_editPassphrase.text];
-    [self performSegueWithIdentifier:@"segueToMain" sender:self];
-    [self removeFromParentViewController];
+    BOOL success = [[SCRAppDelegate sharedAppDelegate] setupDatabase];
+    if (!success) {
+        [[[UIAlertView alloc] initWithTitle:@"Database Error" message:@"Ok." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+    } else {
+        [[[UIAlertView alloc] initWithTitle:@"Create Passphrase" message:@"Ok." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+        [self performSegueWithIdentifier:@"segueToMain" sender:self];
+        [self removeFromParentViewController];
+    }
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {

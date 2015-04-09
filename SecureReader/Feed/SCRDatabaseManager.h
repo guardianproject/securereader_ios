@@ -31,4 +31,9 @@ extern NSString *const kSCRAllPostItemsViewName;
 
 + (instancetype) sharedInstance;
 
+/** Default path for database */
++ (NSString *) defaultDatabasePath;
+/** Checks if database file has been created */
++ (BOOL) databaseExists;
+
 @end
