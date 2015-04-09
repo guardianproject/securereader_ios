@@ -9,12 +9,15 @@
 #import "SCRAddPostViewController.h"
 #import "SCRDatabaseManager.h"
 #import "SCRApplication.h"
+#import "SCRAppDelegate.h"
+#import "SCRMediaItem.h"
 
 @interface SCRAddPostViewController ()
 @property (nonatomic, strong) SCRPostItem *item;
 @property BOOL isEditing;
 @property (nonatomic) UIImagePickerController *imagePickerController;
 @property (nonatomic) UIPopoverController *imagePickerPopoverController;
+@property (nonatomic, weak) SCRMediaItem *imagePickerReplaceThisItem;
 @end
 
 @implementation SCRAddPostViewController
@@ -66,6 +69,11 @@
     self.titleView.text = self.item.title;
     self.descriptionView.text = self.item.content;
     self.tagView.text = [self.item.tags componentsJoinedByString:@" "];
+    [self.mediaCollectionView setItem:self.item];
+    [self.mediaCollectionView createThumbnails:NO completion:^{
+        [self.operationButtons setHidden:([self.mediaCollectionView numberOfImages] == 0)];
+        [self.imagePlaceholder setHidden:([self.mediaCollectionView numberOfImages] > 0)];
+    }];
 }
 
 - (void)populateItemFromUI
@@ -110,7 +118,7 @@
 
 - (void)saveDraft
 {
-    if (self.item != nil && self.item.isSent == NO && (self.isEditing || self.titleView.text.length > 0 || self.descriptionView.text.length > 0 || self.tagView.text.length > 0))
+    if (self.item != nil && self.item.isSent == NO && (self.isEditing || self.titleView.text.length > 0 || self.descriptionView.text.length > 0 || self.tagView.text.length > 0 || [self.mediaCollectionView numberOfImages] > 0))
     {
         [self populateItemFromUI];
         [[SCRDatabaseManager sharedInstance].readWriteConnection asyncReadWriteWithBlock:^(YapDatabaseReadWriteTransaction *transaction) {
@@ -120,6 +128,45 @@
 }
 
 - (IBAction)addMediaButtonClicked:(id)sender
+{
+    self.imagePickerReplaceThisItem = nil;
+    [self getImageFromGalleryOrCamera:sender];
+}
+
+- (IBAction)replaceMediaButtonClicked:(id)sender
+{
+    self.imagePickerReplaceThisItem = [self.mediaCollectionView currentImageMediaItem];
+    if (self.imagePickerReplaceThisItem != nil)
+    {
+        [self getImageFromGalleryOrCamera:sender];
+    }
+}
+
+- (IBAction)viewMediaButtonClicked:(id)sender
+{
+    
+}
+
+- (IBAction)deleteMediaButtonClicked:(id)sender
+{
+    SCRMediaItem *itemToRemove = [self.mediaCollectionView currentImageMediaItem];
+    if (itemToRemove != nil)
+    {
+        [[SCRDatabaseManager sharedInstance].readWriteConnection asyncReadWriteWithBlock:^(YapDatabaseReadWriteTransaction *transaction) {
+            if (self.item.mediaItemsYapKeys.count > 0)
+            {
+                NSMutableArray *newArray = [[NSMutableArray alloc] initWithArray:self.item.mediaItemsYapKeys];
+                [newArray removeObject:[itemToRemove yapKey]];
+                self.item.mediaItemsYapKeys = newArray;
+                [self.item saveWithTransaction:transaction];
+            }
+            [itemToRemove removeWithTransaction:transaction];
+            [self updateMediaCollectionView];
+        }];
+    }
+}
+
+- (void) getImageFromGalleryOrCamera:(id)sender
 {
     BOOL hasCamera = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
     BOOL hasSavedPics = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
@@ -207,7 +254,44 @@
     }
     self.imagePickerController = nil;
     self.imagePickerPopoverController = nil;
-    //ivPickedImage.image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    
+    UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
+    if (image == nil)
+        image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    if (image != nil)
+    {
+        NSData *png = UIImagePNGRepresentation(image);
+        if (png != nil)
+        {
+            NSString *path = [NSString stringWithFormat:@"post/%@", [[[NSUUID UUID] UUIDString] stringByReplacingOccurrencesOfString:@"-" withString:@""]];
+            NSURL *url = [NSURL fileURLWithPath:path];
+            SCRMediaItem *mediaItem = [[SCRMediaItem alloc] initWithURL:url];
+            [[SCRDatabaseManager sharedInstance].readWriteConnection asyncReadWriteWithBlock:^(YapDatabaseReadWriteTransaction *transaction) {
+                [mediaItem saveWithTransaction:transaction];
+                if (self.item.mediaItemsYapKeys.count > 0)
+                {
+                    if (self.imagePickerReplaceThisItem != nil)
+                    {
+                        NSMutableArray *newArray = [[NSMutableArray alloc] initWithArray:self.item.mediaItemsYapKeys];
+                        [newArray replaceObjectAtIndex:[newArray indexOfObject:[self.imagePickerReplaceThisItem yapKey]] withObject:mediaItem.yapKey];
+                        self.item.mediaItemsYapKeys = newArray;
+                        [self.imagePickerReplaceThisItem removeWithTransaction:transaction];
+                        self.imagePickerReplaceThisItem = nil;
+                    }
+                    else
+                    {
+                        self.item.mediaItemsYapKeys = [self.item.mediaItemsYapKeys arrayByAddingObject:mediaItem.yapKey];
+                    }
+                }
+                else
+                    self.item.mediaItemsYapKeys = [NSArray arrayWithObject:mediaItem.yapKey];
+                [self.item saveWithTransaction:transaction];
+                [[SCRAppDelegate sharedAppDelegate].mediaFetcher saveMediaItem:mediaItem data:png completionBlock:^(NSError *error) {
+                    [self updateMediaCollectionView];
+                }];
+            }];
+        }
+    }
 }
 
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
@@ -215,6 +299,18 @@
     [picker dismissViewControllerAnimated:YES completion:nil];
     self.imagePickerController = nil;
     self.imagePickerPopoverController = nil;
+}
+
+- (void) updateMediaCollectionView
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.mediaCollectionView setItem:nil];
+        [self.mediaCollectionView setItem:self.item];
+        [self.mediaCollectionView createThumbnails:NO completion:^{
+            [self.operationButtons setHidden:([self.mediaCollectionView numberOfImages] == 0)];
+            [self.imagePlaceholder setHidden:([self.mediaCollectionView numberOfImages] > 0)];
+        }];
+    });
 }
 
 @end

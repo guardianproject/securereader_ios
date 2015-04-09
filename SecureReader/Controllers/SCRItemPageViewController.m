@@ -58,7 +58,7 @@
     [self view]; // force view to load if it hasn't already
 
     [self.mediaCollectionView setItem:self.item];
-    [self.mediaCollectionView createThumbnails:[SCRSettings downloadMedia]];
+    [self.mediaCollectionView createThumbnails:[SCRSettings downloadMedia] completion:nil];
     
     self.sourceView.labelSource.text = [item.linkURL host];
     self.sourceView.labelDate.text = [[NSFormatter scr_sharedIntervalFormatter] stringForTimeIntervalFromDate:[NSDate date] toDate:item.publicationDate];

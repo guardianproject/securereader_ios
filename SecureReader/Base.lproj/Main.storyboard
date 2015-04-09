@@ -547,31 +547,116 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="re8-U9-Zs5">
                                                 <rect key="frame" x="0.0" y="0.0" width="600" height="200"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Fg-Uf-0ek">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QkV-hT-nyT" customClass="SCRMediaCollectionView">
+                                                        <rect key="frame" x="0.0" y="0.0" width="600" height="200"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="downloadViewHeight">
+                                                                <integer key="value" value="200"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="imageViewHeight">
+                                                                <integer key="value" value="200"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="noImagesViewHeight">
+                                                                <integer key="value" value="200"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Fg-Uf-0ek" userLabel="Button Container">
                                                         <rect key="frame" x="10" y="140" width="580" height="50"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kas-eU-iMj">
-                                                                <rect key="frame" x="8" y="10" width="46" height="30"/>
-                                                                <state key="normal" title="Add">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kas-eU-iMj">
+                                                                <rect key="frame" x="5" y="5" width="139" height="40"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                                <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                                <state key="normal" title="ADD MORE" image="ic_post_add_more">
+                                                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                                 </state>
                                                                 <connections>
                                                                     <action selector="addMediaButtonClicked:" destination="RIg-BG-i7z" eventType="touchUpInside" id="bRJ-8M-N2h"/>
                                                                 </connections>
                                                             </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hbp-MZ-Gjy">
+                                                                <rect key="frame" x="149" y="5" width="139" height="40"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                                <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                                <state key="normal" title="REPLACE" image="ic_post_swap">
+                                                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <action selector="replaceMediaButtonClicked:" destination="RIg-BG-i7z" eventType="touchUpInside" id="o9d-qf-Hz4"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZI8-O9-DZX">
+                                                                <rect key="frame" x="293" y="5" width="138" height="40"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                                <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                                <state key="normal" title="VIEW" image="ic_post_view">
+                                                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <action selector="viewMediaButtonClicked:" destination="RIg-BG-i7z" eventType="touchUpInside" id="tqF-eg-oGl"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EB2-33-vKV">
+                                                                <rect key="frame" x="436" y="5" width="139" height="40"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                                <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                                <state key="normal" title="DELETE" image="ic_post_delete">
+                                                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <action selector="deleteMediaButtonClicked:" destination="RIg-BG-i7z" eventType="touchUpInside" id="KAK-Ee-9Rz"/>
+                                                                </connections>
+                                                            </button>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="backgroundColor" white="0.66666666666666663" alpha="0.70000000000000007" colorSpace="calibratedWhite"/>
                                                         <constraints>
+                                                            <constraint firstAttribute="trailing" secondItem="EB2-33-vKV" secondAttribute="trailing" constant="5" id="19g-fL-na6"/>
                                                             <constraint firstAttribute="height" constant="50" id="CqX-aJ-EDr"/>
+                                                            <constraint firstItem="Hbp-MZ-Gjy" firstAttribute="width" secondItem="Kas-eU-iMj" secondAttribute="width" id="JWA-1P-Md2"/>
+                                                            <constraint firstItem="Kas-eU-iMj" firstAttribute="width" secondItem="ZI8-O9-DZX" secondAttribute="width" id="K6g-Hh-zaa"/>
+                                                            <constraint firstItem="ZI8-O9-DZX" firstAttribute="top" secondItem="8Fg-Uf-0ek" secondAttribute="top" constant="5" id="KE1-oY-an5"/>
+                                                            <constraint firstAttribute="bottom" secondItem="EB2-33-vKV" secondAttribute="bottom" constant="5" id="N6p-yt-ohw"/>
+                                                            <constraint firstItem="EB2-33-vKV" firstAttribute="top" secondItem="8Fg-Uf-0ek" secondAttribute="top" constant="5" id="NSm-Dv-FS1"/>
+                                                            <constraint firstItem="Hbp-MZ-Gjy" firstAttribute="top" secondItem="8Fg-Uf-0ek" secondAttribute="top" constant="5" id="Sf8-Kv-ds2"/>
+                                                            <constraint firstItem="Hbp-MZ-Gjy" firstAttribute="leading" secondItem="Kas-eU-iMj" secondAttribute="trailing" constant="5" id="Svo-MQ-ACg"/>
+                                                            <constraint firstItem="ZI8-O9-DZX" firstAttribute="leading" secondItem="Hbp-MZ-Gjy" secondAttribute="trailing" constant="5" id="VJl-SZ-zRU"/>
+                                                            <constraint firstItem="Kas-eU-iMj" firstAttribute="leading" secondItem="8Fg-Uf-0ek" secondAttribute="leading" constant="5" id="Zuo-1F-fDe"/>
+                                                            <constraint firstItem="Kas-eU-iMj" firstAttribute="top" secondItem="8Fg-Uf-0ek" secondAttribute="top" constant="5" id="bvW-CJ-Ter"/>
+                                                            <constraint firstItem="EB2-33-vKV" firstAttribute="leading" secondItem="ZI8-O9-DZX" secondAttribute="trailing" constant="5" id="eNW-Pe-hmw"/>
+                                                            <constraint firstItem="Kas-eU-iMj" firstAttribute="width" secondItem="EB2-33-vKV" secondAttribute="width" id="rO5-7U-MOA"/>
+                                                            <constraint firstAttribute="bottom" secondItem="Hbp-MZ-Gjy" secondAttribute="bottom" constant="5" id="rnq-7r-Osu"/>
+                                                            <constraint firstAttribute="bottom" secondItem="Kas-eU-iMj" secondAttribute="bottom" constant="5" id="wz9-vd-YSu"/>
+                                                            <constraint firstAttribute="bottom" secondItem="ZI8-O9-DZX" secondAttribute="bottom" constant="5" id="y5h-4N-SBu"/>
                                                         </constraints>
                                                     </view>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7ut-3w-aLj">
+                                                        <rect key="frame" x="259" y="59" width="82" height="82"/>
+                                                        <state key="normal" image="ic_post_add">
+                                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="addMediaButtonClicked:" destination="RIg-BG-i7z" eventType="touchUpInside" id="QMG-Er-PbD"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
+                                                    <constraint firstAttribute="centerY" secondItem="7ut-3w-aLj" secondAttribute="centerY" id="1tu-6d-OmP"/>
+                                                    <constraint firstAttribute="trailing" secondItem="QkV-hT-nyT" secondAttribute="trailing" id="B7j-Wg-iY7"/>
+                                                    <constraint firstAttribute="centerX" secondItem="7ut-3w-aLj" secondAttribute="centerX" id="BBs-ZB-9aU"/>
+                                                    <constraint firstItem="QkV-hT-nyT" firstAttribute="leading" secondItem="re8-U9-Zs5" secondAttribute="leading" id="KDb-c7-BCW"/>
                                                     <constraint firstAttribute="trailing" secondItem="8Fg-Uf-0ek" secondAttribute="trailing" constant="10" id="L0m-0g-IdT"/>
+                                                    <constraint firstAttribute="bottom" secondItem="QkV-hT-nyT" secondAttribute="bottom" id="MDS-lV-2Xb"/>
                                                     <constraint firstAttribute="height" constant="200" id="T6q-I5-fh1"/>
                                                     <constraint firstAttribute="bottom" secondItem="8Fg-Uf-0ek" secondAttribute="bottom" constant="10" id="TI6-eD-Urd"/>
                                                     <constraint firstItem="8Fg-Uf-0ek" firstAttribute="leading" secondItem="re8-U9-Zs5" secondAttribute="leading" constant="10" id="gzE-Bb-wqh"/>
+                                                    <constraint firstItem="QkV-hT-nyT" firstAttribute="top" secondItem="re8-U9-Zs5" secondAttribute="top" id="u8g-8n-cmK"/>
                                                 </constraints>
                                             </view>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Adn-F9-fBH" userLabel="Title" customClass="SCRTextView">
@@ -665,6 +750,9 @@
                     </navigationItem>
                     <connections>
                         <outlet property="descriptionView" destination="inT-tN-8CT" id="R7i-WZ-dPR"/>
+                        <outlet property="imagePlaceholder" destination="7ut-3w-aLj" id="mc6-2h-Cbh"/>
+                        <outlet property="mediaCollectionView" destination="QkV-hT-nyT" id="uTQ-MS-lzQ"/>
+                        <outlet property="operationButtons" destination="8Fg-Uf-0ek" id="KD2-Pj-ytR"/>
                         <outlet property="tagView" destination="4Hg-t3-5if" id="eLd-JI-CBG"/>
                         <outlet property="titleView" destination="Adn-F9-fBH" id="rfx-7Z-gHb"/>
                         <outlet property="view" destination="Bn8-oW-1Ff" id="h4u-Mg-nj6"/>
@@ -1456,5 +1544,10 @@
         <image name="ic_menu_stories.png" width="24" height="24"/>
         <image name="ic_panic_down.png" width="139" height="84"/>
         <image name="ic_panic_lg.png" width="139" height="139"/>
+        <image name="ic_post_add" width="82" height="82"/>
+        <image name="ic_post_add_more" width="24" height="24"/>
+        <image name="ic_post_delete" width="24" height="24"/>
+        <image name="ic_post_swap" width="24" height="24"/>
+        <image name="ic_post_view" width="24" height="24"/>
     </resources>
 </document>

@@ -19,4 +19,10 @@
 
 @property (nonatomic, strong) NSArray *tags;
 
+@property (nonatomic, strong) NSArray *mediaItemsYapKeys;
+
+- (void)removeMediaItemsWithReadWriteTransaction:(YapDatabaseReadWriteTransaction *)transaction storage:(IOCipher *)storage;
+
+- (void)enumerateMediaItemsInTransaction:(YapDatabaseReadTransaction *)readTransaction block:(void (^)(SCRMediaItem *mediaItem,BOOL *stop))block;
+
 @end

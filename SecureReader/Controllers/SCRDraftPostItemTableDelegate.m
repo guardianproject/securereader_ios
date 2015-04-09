@@ -55,7 +55,7 @@
         cell.textView.text = getLocalizedString(@"Add_Post_Item_No_Description", @"(No description set)");
     [cell.btnEdit addTarget:self action:@selector(editButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [cell.btnDelete addTarget:self action:@selector(deleteButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    //[cell.mediaCollectionView setItem:item];
+    [cell.mediaCollectionView setItem:item];
 
     if (item.tags != nil && item.tags.count > 0)
     {
@@ -76,6 +76,12 @@
         cell.tagCollectionView.delegate = nil;
         cell.tagCollectionView.dataSource = nil;
     }
+}
+
+- (void)onCellConfigured:(UITableViewCell *)cell forItem:(NSObject *)item atIndexPath:(NSIndexPath *)indexPath
+{
+    if (self.tableView.dragging == NO && self.tableView.decelerating == NO)
+        [((SCRItemView *)cell).mediaCollectionView createThumbnails:NO completion:nil];
 }
 
 - (SCRPostItem *)itemFromSubView:(UIView *)subview
