@@ -1,28 +1,28 @@
 PODS:
-  - AFNetworking (2.5.1):
-    - AFNetworking/NSURLConnection (= 2.5.1)
-    - AFNetworking/NSURLSession (= 2.5.1)
-    - AFNetworking/Reachability (= 2.5.1)
-    - AFNetworking/Security (= 2.5.1)
-    - AFNetworking/Serialization (= 2.5.1)
-    - AFNetworking/UIKit (= 2.5.1)
-  - AFNetworking/NSURLConnection (2.5.1):
+  - AFNetworking (2.5.2):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.5.1):
+    - AFNetworking/UIKit
+  - AFNetworking/NSURLConnection (2.5.2):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/Reachability (2.5.1)
-  - AFNetworking/Security (2.5.1)
-  - AFNetworking/Serialization (2.5.1)
-  - AFNetworking/UIKit (2.5.1):
+  - AFNetworking/NSURLSession (2.5.2):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.5.2)
+  - AFNetworking/Security (2.5.2)
+  - AFNetworking/Serialization (2.5.2)
+  - AFNetworking/UIKit (2.5.2):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - CocoaAsyncSocket (7.4.1)
   - CocoaLumberjack (1.9.2):
-    - CocoaLumberjack/Extensions (= 1.9.2)
+    - CocoaLumberjack/Extensions
   - CocoaLumberjack/Core (1.9.2)
   - CocoaLumberjack/Extensions (1.9.2):
     - CocoaLumberjack/Core
@@ -30,7 +30,7 @@ PODS:
     - CocoaAsyncSocket
   - FormatterKit/TimeIntervalFormatter (1.8.0)
   - GCDWebServer (3.2.2):
-    - GCDWebServer/Core (= 3.2.2)
+    - GCDWebServer/Core
   - GCDWebServer/Core (3.2.2)
   - HockeySDK (3.6.2)
   - InAppSettingsKit (2.4.3)
@@ -44,10 +44,10 @@ PODS:
     - libsqlfs/common
     - SQLCipher/fts
   - Mantle (1.5.4):
-    - Mantle/extobjc (= 1.5.4)
+    - Mantle/extobjc
   - Mantle/extobjc (1.5.4)
   - MWFeedParser/NSString+HTML (1.0.1)
-  - Ono (1.2.0)
+  - Ono (1.2.1)
   - PureLayout (2.0.5)
   - RSSAtomKit (0.1.0):
     - AFNetworking (~> 2.5)
@@ -57,22 +57,21 @@ PODS:
   - SQLCipher/common (3.1.0)
   - SQLCipher/fts (3.1.0):
     - SQLCipher/common
-  - SSKeychain (1.2.3)
   - SwipeView (1.3.2)
   - SWTableViewCell (0.3.7)
   - URLMock (1.2.3):
-    - URLMock/Core (= 1.2.3)
-    - URLMock/SubclassResponsibility (= 1.2.3)
-    - URLMock/TestHelpers (= 1.2.3)
+    - URLMock/Core
+    - URLMock/SubclassResponsibility
+    - URLMock/TestHelpers
   - URLMock/Core (1.2.3):
     - SOCKit (~> 1.1)
   - URLMock/SubclassResponsibility (1.2.3):
     - URLMock/TestHelpers
   - URLMock/TestHelpers (1.2.3)
   - wpxmlrpc (0.7)
-  - YapDatabase/common (2.6.1):
+  - YapDatabase/common (2.5.4):
     - CocoaLumberjack (~> 1)
-  - YapDatabase/SQLCipher (2.6.1):
+  - YapDatabase/SQLCipher (2.5.4):
     - SQLCipher/fts
     - YapDatabase/common
 
@@ -86,12 +85,11 @@ DEPENDENCIES:
   - MWFeedParser/NSString+HTML (~> 1.0)
   - PureLayout (~> 2.0)
   - RSSAtomKit (from `Submodules/RSSAtomKit/RSSAtomKit.podspec`)
-  - SSKeychain (~> 1.2)
   - SwipeView (~> 1.3)
   - SWTableViewCell (~> 0.3.7)
   - URLMock (~> 1.2.3)
   - wpxmlrpc (~> 0.5)
-  - YapDatabase/SQLCipher (~> 2.6)
+  - YapDatabase/SQLCipher (~> 2.5)
 
 EXTERNAL SOURCES:
   CPAProxy:
@@ -102,28 +100,27 @@ EXTERNAL SOURCES:
     :path: Submodules/RSSAtomKit/RSSAtomKit.podspec
 
 SPEC CHECKSUMS:
-  AFNetworking: 10e85a00bb0f475124e4ff2677bf15693b2c1523
+  AFNetworking: fefbce9660acb17f48ae0011292d4da0f457bf36
   CocoaAsyncSocket: 7cbf214b27f8e7f7574db6a3fd96352ffaed433d
   CocoaLumberjack: 628fca2e88ef06f7cf6817309aa405f325d9a6fa
-  CPAProxy: 2f0d2ef592b28e0686b5a100ad663bdd3e51900b
+  CPAProxy: c3df549999514de2c04633d20a79b00daf627ddb
   FormatterKit: bddde83e054edf9d9ee14f9de3b3a5103db256f4
   GCDWebServer: 5320220ad0d497da8e7beca1396f0c82d4f83730
   HockeySDK: 51ade1aff04463137e852797d2eb4dfb2511d6a9
   InAppSettingsKit: 8f4bf298c6d1452e1c1520029d857bf028afc46b
-  IOCipher: 2bcc56103fbdd9cd9139a5b030ebb97ed6fbc4b9
+  IOCipher: b98913cec82ead5a0c933513b4e462133044f90a
   libsqlfs: 179e4fb40b8c07fd0ee7933ec4c0b9f4815cbd0e
   Mantle: 60acd0cd363e27d945bda0a6b8e90577112d28f3
   MWFeedParser: 2cf646014c1baf6ad1b08c480b40a08180079247
-  Ono: f8c2b610f28f40d411b0d75130e77fd78b92e4e1
+  Ono: 1122212de602280cc7af19d7ab12ee98a3fc0339
   PureLayout: a0fe75f1cf485801e7e00b723b8a3c32dca558e2
-  RSSAtomKit: 81636ed61cf61508c272877c88847d83235304c9
+  RSSAtomKit: a689044708487c394d9ef4348571f8fd1d6c4d0f
   SOCKit: c7376ac262bea9115b8f749358f762522a47d392
   SQLCipher: c44fcca49c31483c2489cfb79aa7a69407f3794a
-  SSKeychain: 3f42991739c6c60a9cf1bbd4dff6c0d3694bcf3d
   SwipeView: bd67cfaf7760c036438446b3ccb28a3b84fce009
   SWTableViewCell: 2a94aadc9d47b2b611fa064566bf57948b95b579
   URLMock: 5d14a89942559f7948793d2f9aaffc25a6af2166
   wpxmlrpc: 3d804d4dca483ddb5d84443f7ea3adb45f46d7fa
-  YapDatabase: 13566c87dc9226a0f15d755edba08e8ad94cac9f
+  YapDatabase: 52370b36f692e23c41c86e60f3bbf81b1c8ae44a
 
-COCOAPODS: 0.36.3
+COCOAPODS: 0.34.4

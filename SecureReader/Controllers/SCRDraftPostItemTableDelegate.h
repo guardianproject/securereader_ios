@@ -15,6 +15,6 @@
 -(void) deleteDraftItem:(SCRPostItem *)item;
 @end
 
-@interface SCRDraftPostItemTableDelegate : SCRYapDatabaseTableDelegate
+@interface SCRDraftPostItemTableDelegate : SCRYapDatabaseTableDelegate<UICollectionViewDelegateFlowLayout, UICollectionViewDataSource>
 
 @end

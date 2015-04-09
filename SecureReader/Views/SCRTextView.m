@@ -134,7 +134,7 @@
 - (BOOL) textViewShouldBeginEditing:(UITextView *)textView
 {
     BOOL ret = YES;
-    if (self.originalDelegate != nil)
+    if (self.originalDelegate != nil && self.originalDelegate != self)
         ret = [self.originalDelegate textViewShouldBeginEditing:textView];
     if (ret && self.isDisplayingPrompt)
     {
@@ -149,13 +149,20 @@
     {
         [self showPrompt:YES];
     }
-    if (self.originalDelegate != nil)
+    if (self.originalDelegate != nil && self.originalDelegate != self)
         [self.originalDelegate textViewDidEndEditing:textView];
+}
+
+- (NSString *)text
+{
+    if (self.isDisplayingPrompt)
+        return nil;
+    return [super text];
 }
 
 - (void)setText:(NSString *)text
 {
-    if (self.text.length > 0)
+    if (text.length > 0 && self.isDisplayingPrompt)
     {
         [self showPrompt:NO];
     }
@@ -165,15 +172,5 @@
         [self showPrompt:YES];
     }
 }
-
-//-(void) textViewDidChange:(UITextView *)textView
-//{
-//    if (self.text.length == 0 && ![self isFirstResponder])
-//    {
-//        [self showPrompt:YES];
-//    }
-//    if (self.originalDelegate != nil)
-//        [self.originalDelegate textViewDidChange:textView];
-//}
 
 @end
