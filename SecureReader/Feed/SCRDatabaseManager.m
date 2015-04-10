@@ -8,6 +8,7 @@
 
 #import "SCRDatabaseManager.h"
 #import "YapDatabaseView.h"
+#import "YapDatabaseOptions.h"
 #import "YapDatabaseRelationship.h"
 #import "YapDatabaseFullTextSearch.h"
 #import "YapDatabaseSearchResultsView.h"
@@ -50,15 +51,18 @@ NSString *const kSCRAllPostItemsViewName = @"kSCRAllPostItemsViewName";
         
         YapDatabaseOptions *options = [[YapDatabaseOptions alloc] init];
         options.corruptAction = YapDatabaseCorruptAction_Fail;
-        options.passphraseBlock = ^{
+        options.cipherKeyBlock = ^{
             // Fetch from keychain or in-memory passphrase
             NSString *passphrase = @"super secure password";
             if (!passphrase.length) {
                 [NSException raise:@"Must have passphrase of length > 0" format:@"password length is %d.", (int)passphrase.length];
             }
-            return passphrase;
+            return [passphrase dataUsingEncoding:NSUTF8StringEncoding];
         };
-        _database = [[YapDatabase alloc] initWithPath:path objectSerializer:nil objectDeserializer:nil metadataSerializer:nil metadataDeserializer:nil objectSanitizer:nil metadataSanitizer:nil options:options];
+        _database = [[YapDatabase alloc] initWithPath:path
+                                           serializer:NULL
+                                         deserializer:NULL
+                                              options:options];
         self.database.defaultObjectCacheEnabled = YES;
         self.database.defaultObjectCacheLimit = 5000;
         self.database.defaultObjectPolicy = YapDatabasePolicyShare;

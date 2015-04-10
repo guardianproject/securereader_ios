@@ -6,11 +6,13 @@
 //  Copyright (c) 2014 Guardian Project. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "SCRNetworkFeetcher.h"
 
 @class YapDatabaseConnection;
 
-@interface SCRFeedFetcher : NSObject
+@interface SCRFeedFetcher : SCRNetworkFeetcher
+
+
 
 - (instancetype)initWithReadWriteYapConnection:(YapDatabaseConnection *)connection
                           sessionConfiguration:(NSURLSessionConfiguration *)sessionConfiguration;

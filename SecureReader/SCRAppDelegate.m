@@ -20,6 +20,7 @@
 #import "SCRDatabaseManager.h"
 #import "SCRFeedFetcher.h"
 #import "SCRFileManager.h"
+#import "NSUserDefaults+SecureReader.h"
 
 @interface SCRAppDelegate() <BITHockeyManagerDelegate>
 @end
@@ -42,6 +43,9 @@
 #ifndef DEBUG
     [[BITHockeyManager sharedHockeyManager].authenticator authenticateInstallation];
 #endif
+    
+    _torManager = [[SCRTorManager alloc] init];
+    [self loginWithPassphrase:@"password"];
     
     [NSBundle setLanguage:[SCRSettings getUiLanguage]];
     [SCRTheme initialize];
@@ -118,8 +122,28 @@
     {
         mLoggedIn = YES;
         
+        ////// Setup File Storage //////
+        
+        NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:@"media.sqlite"];
+        _fileManager = [[SCRFileManager alloc] init];
+        [self.fileManager setupWithPath:path password:@"password"]; //TODO real password here!
+        
+        ////// Setup Media Fetcher //////
+        
+        _mediaFetcher = [[SCRMediaFetcher alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]
+                                                                      storage:self.fileManager.ioCipher];
+        self.mediaFetcher.completionQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+        
+        ////// Setup Feed Fetcher //////
+        
         YapDatabaseConnection *databaseConnection = [SCRDatabaseManager sharedInstance].readWriteConnection;
         _feedFetcher = [[SCRFeedFetcher alloc] initWithReadWriteYapConnection:databaseConnection sessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+        if ([[NSUserDefaults standardUserDefaults] scr_useTor] && self.torManager.proxyManager.status != CPAStatusOpen) {
+            self.feedFetcher.networkOperationQueue.suspended = YES;
+            self.mediaFetcher.networkOperationQueue.suspended = YES;
+        }
+        
+        ////// Download Some Feeds //////
         NSArray *feedURLs = @[@"http://www.voanews.com/api/epiqq",
                               @"http://www.theguardian.com/world/rss",
                               @"http://feeds.washingtonpost.com/rss/world",
@@ -130,14 +154,6 @@
             [self.feedFetcher fetchFeedDataFromURL:[NSURL URLWithString:feedURLString] completionQueue:nil completion:nil];
         }];
         
-        NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:@"media.sqlite"];
-        _fileManager = [[SCRFileManager alloc] init];
-        [self.fileManager setupWithPath:path password:@"password"]; //TODO real password here!
-        
-        //Setup media fetcher
-        _mediaFetcher = [[SCRMediaFetcher alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]
-                                                                                      storage:self.fileManager.ioCipher];
-        self.mediaFetcher.completionQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     }
     return mLoggedIn;
 }
