@@ -19,3 +19,5 @@
 "Add_Post_Pick_Image_SubTitle" = "Bildkälla";
 "Add_Post_Pick_Image_Camera" = "Kamera";
 "Add_Post_Pick_Image_Library" = "Bilder";
+"Post_Draft_Action_Edit" = "Redigera";
+"Post_Draft_Action_Delete" = "Ta bort";

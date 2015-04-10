@@ -42,7 +42,7 @@
                         </userDefinedRuntimeAttributes>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Label" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="560" translatesAutoresizingMaskIntoConstraints="NO" id="EF6-AO-hLx" userLabel="Content" customClass="SCRLabel">
-                        <rect key="frame" x="20" y="318" width="571" height="21"/>
+                        <rect key="frame" x="20" y="388" width="571" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
@@ -51,7 +51,7 @@
                         </userDefinedRuntimeAttributes>
                     </label>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" bounces="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="sBi-Hl-ouM" userLabel="Tag View">
-                        <rect key="frame" x="20" y="359" width="571" height="40"/>
+                        <rect key="frame" x="20" y="429" width="571" height="40"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="40" id="HU2-hU-R5N"/>
                         </constraints>
@@ -65,17 +65,16 @@
                             <userDefinedRuntimeAttribute type="string" keyPath="theme" value="TagStyle"/>
                         </userDefinedRuntimeAttributes>
                     </collectionView>
-                    <view contentMode="scaleToFill" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="zcq-My-M5H" userLabel="Button Area">
-                        <rect key="frame" x="20" y="409" width="571" height="60"/>
+                    <view clipsSubviews="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="zcq-My-M5H" userLabel="Button Area">
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fw6-IW-77h" userLabel="Delete">
-                                <rect key="frame" x="517" y="15" width="44" height="30"/>
+                                <rect key="frame" x="517" y="-15" width="44" height="30"/>
                                 <state key="normal" title="Delete">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mFS-xb-bMJ" userLabel="Edit">
-                                <rect key="frame" x="477" y="15" width="30" height="30"/>
+                                <rect key="frame" x="477" y="-15" width="30" height="30"/>
                                 <state key="normal" title="Edit">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -84,7 +83,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerY" secondItem="mFS-xb-bMJ" secondAttribute="centerY" id="Ska-hL-ycs"/>
-                            <constraint firstAttribute="height" constant="60" id="To7-fV-8xb"/>
+                            <constraint firstAttribute="height" id="To7-fV-8xb"/>
                             <constraint firstAttribute="centerY" secondItem="fw6-IW-77h" secondAttribute="centerY" id="iiZ-Mm-zWF"/>
                             <constraint firstAttribute="trailing" secondItem="fw6-IW-77h" secondAttribute="trailing" constant="10" id="l6i-bP-fET"/>
                             <constraint firstItem="fw6-IW-77h" firstAttribute="leading" secondItem="mFS-xb-bMJ" secondAttribute="trailing" constant="10" id="lIB-HV-DJw"/>
@@ -102,7 +101,7 @@
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="rfn-0S-4Oj" firstAttribute="top" secondItem="zcq-My-M5H" secondAttribute="bottom" priority="999" constant="10" id="7UB-Kh-NlB"/>
+                    <constraint firstItem="rfn-0S-4Oj" firstAttribute="top" secondItem="zcq-My-M5H" secondAttribute="bottom" priority="999" id="7UB-Kh-NlB"/>
                     <constraint firstItem="xwG-qA-D4c" firstAttribute="leading" secondItem="OWu-va-Orj" secondAttribute="leading" constant="20" id="EUi-dm-gdI"/>
                     <constraint firstItem="EF6-AO-hLx" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Tmh-Vq-M3f" secondAttribute="bottom" constant="20" id="Hvf-x1-K0s"/>
                     <constraint firstAttribute="trailing" secondItem="Tmh-Vq-M3f" secondAttribute="trailing" constant="20" id="KG7-g1-w41"/>
