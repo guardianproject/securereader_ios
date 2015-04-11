@@ -74,21 +74,22 @@
     NSMutableArray *rightUtilityButtons = [NSMutableArray new];
     [rightUtilityButtons sw_addUtilityButtonWithColor:
      [UIColor colorWithRed:0.78f green:0.78f blue:0.8f alpha:1.0]
-                                                title:getLocalizedString(@"Feed_List_Action_Unfollow", @"Unfollow")];
+                                                title:getLocalizedString(@"Post_Draft_Action_Unfollow", @"Edit")];
     [rightUtilityButtons sw_addUtilityButtonWithColor:
      [UIColor colorWithRed:1.0f green:0.231f blue:0.188 alpha:1.0f]
-                                                title:getLocalizedString(@"Feed_List_Action_Delete", @"Delete")];
+                                                title:getLocalizedString(@"Post_Draft_Action_Delete", @"Delete")];
     
     return rightUtilityButtons;
 }
 
 - (NSArray *)rightButtonsPost
 {
-    NSMutableArray *rightUtilityButtons = [NSMutableArray new];
-    [rightUtilityButtons sw_addUtilityButtonWithColor:
-     [UIColor colorWithRed:0.188f green:1.0f blue:0.188f alpha:1.0]
-                                                title:getLocalizedString(@"Feed_List_Action_Follow", @"Follow")];
-    return rightUtilityButtons;
+    return nil;
+//    NSMutableArray *rightUtilityButtons = [NSMutableArray new];
+//    [rightUtilityButtons sw_addUtilityButtonWithColor:
+//     [UIColor colorWithRed:0.188f green:1.0f blue:0.188f alpha:1.0]
+//                                                title:getLocalizedString(@"Feed_List_Action_Follow", @"Follow")];
+//    return rightUtilityButtons;
 }
 
 
@@ -106,14 +107,18 @@
     if (indexPath != nil)
     {
         SCRYapDatabaseTableDelegate *tableDelegate = (SCRYapDatabaseTableDelegate *)tableView.dataSource;
-        SCRItem *item = (SCRItem*)[tableDelegate itemForIndexPath:indexPath];
+        SCRPostItem *item = (SCRPostItem*)[tableDelegate itemForIndexPath:indexPath];
         if (item != nil)
         {
-            // Pretty sloppy this, allocating new objects for the comparison, but done seldom so...
-            //
             if ([cell.rightUtilityButtons sw_isEqualToButtons:[self rightButtonsDraft]])
             {
                 switch (index) {
+                    case 0:
+                        [self editDraftItem:item];
+                        break;
+                    case 1:
+                        [self deleteDraftItem:item];
+                        break;
                 }
             }
             else if ([cell.rightUtilityButtons sw_isEqualToButtons:[self rightButtonsPost]])

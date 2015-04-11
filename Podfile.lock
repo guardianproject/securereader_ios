@@ -33,7 +33,7 @@ PODS:
     - GCDWebServer/Core (= 3.2.2)
   - GCDWebServer/Core (3.2.2)
   - HockeySDK (3.6.2)
-  - InAppSettingsKit (2.4.4)
+  - InAppSettingsKit (2.5)
   - IOCipher/common (0.1.0):
     - libsqlfs/SQLCipher
   - IOCipher/GCDWebServer (0.1.0):
@@ -47,7 +47,7 @@ PODS:
     - Mantle/extobjc (= 1.5.4)
   - Mantle/extobjc (1.5.4)
   - MWFeedParser/NSString+HTML (1.0.1)
-  - Ono (1.2.0)
+  - Ono (1.2.1)
   - PureLayout (2.0.5)
   - RSSAtomKit (0.1.0):
     - AFNetworking (~> 2.5)
@@ -107,12 +107,12 @@ SPEC CHECKSUMS:
   FormatterKit: bddde83e054edf9d9ee14f9de3b3a5103db256f4
   GCDWebServer: 5320220ad0d497da8e7beca1396f0c82d4f83730
   HockeySDK: 51ade1aff04463137e852797d2eb4dfb2511d6a9
-  InAppSettingsKit: df2c0b0cafd5c6f375f4d792eef8cbcdf63ae5ed
+  InAppSettingsKit: d872c25e20fcc7d9d33554e5be63070a07a443a7
   IOCipher: 2bcc56103fbdd9cd9139a5b030ebb97ed6fbc4b9
   libsqlfs: 179e4fb40b8c07fd0ee7933ec4c0b9f4815cbd0e
   Mantle: 60acd0cd363e27d945bda0a6b8e90577112d28f3
   MWFeedParser: 2cf646014c1baf6ad1b08c480b40a08180079247
-  Ono: f8c2b610f28f40d411b0d75130e77fd78b92e4e1
+  Ono: 1122212de602280cc7af19d7ab12ee98a3fc0339
   PureLayout: a0fe75f1cf485801e7e00b723b8a3c32dca558e2
   RSSAtomKit: 81636ed61cf61508c272877c88847d83235304c9
   SOCKit: c7376ac262bea9115b8f749358f762522a47d392

@@ -18,7 +18,7 @@
 
 @property (strong) IBOutlet UIView *contentView;
 @property (strong) IBOutlet UIView *downloadButton;
-@property (strong) IBOutlet UIView *activityView;
+@property (strong) IBOutlet UIActivityIndicatorView *activityView;
 
 @property (nonatomic, weak) id<SCRMediaCollectionViewDownloadViewDelegate> delegate;
 

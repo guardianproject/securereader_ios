@@ -214,7 +214,7 @@ NSString *const kSCRAllPostItemsViewName = @"kSCRAllPostItemsViewName";
         return nil;
     }];
     YapDatabaseViewSorting *sorting = [YapDatabaseViewSorting withObjectBlock:^NSComparisonResult(NSString *group, NSString *collection1, NSString *key1, SCRPostItem *item1, NSString *collection2, NSString *key2, SCRPostItem *item2) {
-        return [item2.title compare:item1.title];
+        return [item2.lastEdited compare:item1.lastEdited];
     }];
     YapDatabaseView *databaseView = [[YapDatabaseView alloc] initWithGrouping:grouping sorting:sorting versionTag:@"1" options:nil];
     [self.database registerExtension:databaseView withName:kSCRAllPostItemsViewName];

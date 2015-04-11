@@ -13,3 +13,11 @@
 "Feed_List_Action_Delete" = "Delete";
 "Feed_List_Action_Followed" = "Already Followed";
 "Feed_List_Search_Done" = "Done";
+"Add_Post_Item_No_Title" = "(No title set)";
+"Add_Post_Item_No_Description" = "(No description set)";
+"Add_Post_Pick_Image_Title" = "Pick Image";
+"Add_Post_Pick_Image_SubTitle" = "Select source";
+"Add_Post_Pick_Image_Camera" = "Camera";
+"Add_Post_Pick_Image_Library" = "Photos";
+"Post_Draft_Action_Edit" = "Edit";
+"Post_Draft_Action_Delete" = "Delete";

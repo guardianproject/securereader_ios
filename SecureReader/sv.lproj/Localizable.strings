@@ -13,3 +13,11 @@
 "Feed_List_Action_Delete" = "Ta bort";
 "Feed_List_Action_Followed" = "Redan Följd";
 "Feed_List_Search_Done" = "Klar";
+"Add_Post_Item_No_Title" = "(Titel saknas)";
+"Add_Post_Item_No_Description" = "(Beskrivning saknas)";
+"Add_Post_Pick_Image_Title" = "Välj bild";
+"Add_Post_Pick_Image_SubTitle" = "Bildkälla";
+"Add_Post_Pick_Image_Camera" = "Kamera";
+"Add_Post_Pick_Image_Library" = "Bilder";
+"Post_Draft_Action_Edit" = "Redigera";
+"Post_Draft_Action_Delete" = "Ta bort";

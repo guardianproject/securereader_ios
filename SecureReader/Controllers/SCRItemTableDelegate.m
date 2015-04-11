@@ -93,7 +93,7 @@
 - (void)onCellConfigured:(UITableViewCell *)cell forItem:(NSObject *)item atIndexPath:(NSIndexPath *)indexPath
 {
     BOOL download = ([self isActive] && [SCRSettings downloadMedia] && self.tableView.dragging == NO && self.tableView.decelerating == NO);
-    [((SCRItemView *)cell).mediaCollectionView createThumbnails:download];
+    [((SCRItemView *)cell).mediaCollectionView createThumbnails:download completion:nil];
 }
 
 
@@ -193,7 +193,7 @@
         for (NSIndexPath *indexPath in visiblePaths)
         {
             SCRItemView *cell = (SCRItemView*)[self.tableView cellForRowAtIndexPath:indexPath];
-            [cell.mediaCollectionView createThumbnails:[SCRSettings downloadMedia]];
+            [cell.mediaCollectionView createThumbnails:[SCRSettings downloadMedia] completion:nil];
         }
     }
 }

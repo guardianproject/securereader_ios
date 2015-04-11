@@ -77,6 +77,19 @@ typedef void (^SCRURLSesssionDataTaskCompletion)(NSURLSessionTask *dataTask, NSE
     [dataTask resume];
 }
 
+- (void)saveMediaItem:(SCRMediaItem *)mediaItem data:(NSData *)data completionBlock:(void (^)(NSError *error))completion
+{
+    if (!completion) {
+        return;
+    }
+    
+    dispatch_async(self.isolationQueue, ^{
+        NSError *error = nil;
+        [self receivedData:data forPath:mediaItem.localPath atOffset:0 error:&error];
+        completion(error);
+    });
+}
+
 #pragma - mark Private Methods
 
 - (void)receivedData:(NSData *)data forPath:(NSString *)path atOffset:(NSUInteger)offset error:(NSError **)error;

@@ -33,4 +33,13 @@
  */
 - (void)downloadMediaItem:(SCRMediaItem *)mediaItem completionBlock:(void (^)(NSError *error))completion;
 
+/**
+ Asynchronously save a SCRMediaItem. Uses the data provided and the localPath to store in IOCipher.
+ 
+ @param mediaItem The media item to save data for
+ @param data The data to save
+ @param completion The completion block to be called once the save is complete or an error is encountered
+ */
+- (void)saveMediaItem:(SCRMediaItem *)mediaItem data:(NSData *)data completionBlock:(void (^)(NSError *error))completion;
+
 @end

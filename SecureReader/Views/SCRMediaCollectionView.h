@@ -10,6 +10,7 @@
 #import "SCRItem.h"
 #import <SwipeView.h>
 #import "SCRMediaCollectionViewDownloadView.h"
+#import "SCRMediaItem.h"
 
 IB_DESIGNABLE
 
@@ -17,13 +18,18 @@ IB_DESIGNABLE
 
 @property (nonatomic) IBInspectable NSInteger downloadViewHeight;
 @property (nonatomic) IBInspectable NSInteger imageViewHeight;
+@property (nonatomic) IBInspectable NSInteger noImagesViewHeight;
 
 @property (strong) IBOutlet UIView *contentView;
 @property (strong) IBOutlet UIPageControl *pageControl;
 
-@property BOOL showDownloadButtonIfNotLoaded;
+@property IBInspectable BOOL showDownloadButtonIfNotLoaded;
 
-- (void) setItem:(SCRItem *)item;
-- (void) createThumbnails:(BOOL)downloadIfNeeded;
+- (void) setItem:(NSObject *)item;
+- (void) createThumbnails:(BOOL)downloadIfNeeded completion:(void(^)())completion;
+
+- (int) numberOfImages;
+- (int) currentImageIndex;
+- (SCRMediaItem *) currentImageMediaItem;
 
 @end

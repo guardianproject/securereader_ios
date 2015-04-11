@@ -26,7 +26,7 @@
 
 @interface SCRMediaCollectionView ()
 @property (nonatomic, strong) NSLayoutConstraint *heightConstraint;
-@property (nonatomic, weak) SCRItem *item;
+@property (nonatomic, weak) NSObject *item;
 @property (nonatomic, strong) NSMutableArray *mediaItems;
 @property (nonatomic, strong) dispatch_queue_t imageQueue;
 @end
@@ -44,6 +44,7 @@
         // Default values
         self.downloadViewHeight = 80;
         self.imageViewHeight = 200;
+        self.noImagesViewHeight = 0;
         
         self.mediaItems = [NSMutableArray array];
         
@@ -71,7 +72,7 @@
     }
 }
 
-- (void) setItem:(SCRItem *)item
+- (void) setItem:(NSObject *)item
 {
     if (_item != item)
     {
@@ -80,14 +81,17 @@
         {
             [self.mediaItems removeAllObjects];
             [[SCRDatabaseManager sharedInstance].readConnection readWithBlock:^(YapDatabaseReadTransaction *transaction) {
-                [_item enumerateMediaItemsInTransaction:transaction block:^(SCRMediaItem *mediaItem, BOOL *stop) {
-                    SCRMediaCollectionViewItem *item = [SCRMediaCollectionViewItem new];
-                    item.mediaItem = mediaItem;
-                    item.view = nil;
-                    item.downloading = NO;
-                    item.downloaded = [[SCRAppDelegate sharedAppDelegate].fileManager hasDataForPath:mediaItem.localPath];
-                    [self.mediaItems addObject:item];
-                }];
+                if ([_item respondsToSelector:@selector(enumerateMediaItemsInTransaction:block:)])
+                {
+                    [_item performSelector:@selector(enumerateMediaItemsInTransaction:block:) withObject:transaction withObject:^(SCRMediaItem *mediaItem, BOOL *stop) {
+                        SCRMediaCollectionViewItem *item = [SCRMediaCollectionViewItem new];
+                        item.mediaItem = mediaItem;
+                        item.view = nil;
+                        item.downloading = NO;
+                        item.downloaded = [[SCRAppDelegate sharedAppDelegate].fileManager hasDataForPath:mediaItem.localPath];
+                        [self.mediaItems addObject:item];
+                    }];
+                }
             }];
         }
     }
@@ -110,11 +114,11 @@
     }
     else
     {
-        self.heightConstraint.constant = 0;
+        self.heightConstraint.constant = [self noImagesViewHeight];
     }
 }
 
-- (void) createThumbnails:(BOOL)downloadIfNeeded
+- (void) createThumbnails:(BOOL)downloadIfNeeded completion:(void(^)())completion;
 {
     if (_item != nil)
     {
@@ -131,29 +135,43 @@
                     if (mediaItem.downloaded && mediaItem.view != nil)
                         continue;
                     
-                    if ([[SCRAppDelegate sharedAppDelegate].fileManager hasDataForPath:mediaItem.mediaItem.localPath])
+                    if (mediaItem.view == nil)
                     {
-                        [self mediaItemCreate:mediaItem];
-                    }
-                    else if (downloadIfNeeded)
-                    {
-                        [self mediaItemDownload:mediaItem];
-                    }
-                    else if (self.showDownloadButtonIfNotLoaded)
-                    {
-                        if (mediaItem.view == nil)
-                        {
-                            dispatch_async(dispatch_get_main_queue(), ^{
-                                CGRect frame = CGRectMake(0, 0, self.contentView.bounds.size.width, [self imageViewHeight]);
-                                SCRMediaCollectionViewDownloadView *view = [[SCRMediaCollectionViewDownloadView alloc] initWithFrame:frame];
-                                view.delegate = self;
-                                mediaItem.view = view;
-                                [(SwipeView *)self.contentView reloadData];
-                            });
-                        }
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            CGRect frame = CGRectMake(0, 0, self.contentView.bounds.size.width, [self imageViewHeight]);
+                            SCRMediaCollectionViewDownloadView *view = [[SCRMediaCollectionViewDownloadView alloc] initWithFrame:frame];
+                            view.delegate = self;
+                            mediaItem.view = view;
+                            if ([[SCRAppDelegate sharedAppDelegate].fileManager hasDataForPath:mediaItem.mediaItem.localPath])
+                            {
+                                [view.activityView setHidden:NO];
+                                [view.activityView startAnimating];
+                                [view.downloadButton setHidden:YES];
+                                dispatch_async(self.imageQueue, ^{
+                                    [self mediaItemCreate:mediaItem];
+                                });
+                            }
+                            else if (downloadIfNeeded)
+                            {
+                                [view.activityView setHidden:NO];
+                                [view.activityView startAnimating];
+                                [view.downloadButton setHidden:YES];
+                                [self mediaItemDownload:mediaItem];
+                            }
+                            else
+                            {
+                                [view.activityView setHidden:YES];
+                                [view.downloadButton setHidden:self.showDownloadButtonIfNotLoaded];
+                            }
+                        });
                     }
                 }
             }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [(SwipeView *)self.contentView reloadData];
+                if (completion != nil)
+                    completion();
+            });
         });
     }
 }
@@ -213,6 +231,7 @@
             else if (mediaItem.view != nil && [mediaItem.view isKindOfClass:[SCRMediaCollectionViewDownloadView class]])
             {
                 [[(SCRMediaCollectionViewDownloadView *)mediaItem.view downloadButton] setHidden:NO];
+                [[(SCRMediaCollectionViewDownloadView *)mediaItem.view activityView] stopAnimating];
                 [[(SCRMediaCollectionViewDownloadView *)mediaItem.view activityView] setHidden:YES];
             }
 
@@ -242,15 +261,7 @@
 
 - (NSInteger)numberOfItemsInSwipeView:(SwipeView *)swipeView
 {
-    __block int count = 0;
-    @synchronized(self.mediaItems)
-    {
-        [self.mediaItems enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            SCRMediaCollectionViewItem *mediaItem = obj;
-            if (mediaItem.view != nil)
-                count++;
-        }];
-    }
+    int count = [self numberOfImages];
     [self.pageControl setNumberOfPages:count];
     return count;
 }
@@ -260,26 +271,34 @@
     [self.pageControl setCurrentPage:[swipeView currentItemIndex]];
 }
 
-- (UIView *)swipeView:(SwipeView *)swipeView viewForItemAtIndex:(NSInteger)index reusingView:(UIView *)view
+- (int)numberOfImages
 {
-    __block UIView *imageView = nil;
-    __block int count = 0;
     @synchronized(self.mediaItems)
     {
-        [self.mediaItems enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            SCRMediaCollectionViewItem *mediaItem = obj;
-            if (mediaItem.view != nil)
-            {
-                if (count == index)
-                {
-                    imageView = mediaItem.view;
-                    *stop = YES;
-                }
-                count++;
-            }
-        }];
+        return (int)self.mediaItems.count;
     }
-    return imageView;
+}
+
+- (int)currentImageIndex
+{
+    SwipeView *swipe = (SwipeView *)contentView;
+    return (int)swipe.currentItemIndex;
+}
+
+- (SCRMediaItem *)currentImageMediaItem
+{
+    @synchronized(self.mediaItems)
+    {
+        return [[self.mediaItems objectAtIndex:[self currentImageIndex]] mediaItem];
+    }
+}
+
+- (UIView *)swipeView:(SwipeView *)swipeView viewForItemAtIndex:(NSInteger)index reusingView:(UIView *)view
+{
+    @synchronized(self.mediaItems)
+    {
+        return [[self.mediaItems objectAtIndex:index] view];
+    }
 }
 
 - (void)downloadButtonClicked:(SCRMediaCollectionViewDownloadView *)view
@@ -294,6 +313,7 @@
                 {
                     [[(SCRMediaCollectionViewDownloadView *)mediaItem.view downloadButton] setHidden:YES];
                     [[(SCRMediaCollectionViewDownloadView *)mediaItem.view activityView] setHidden:NO];
+                    [[(SCRMediaCollectionViewDownloadView *)mediaItem.view activityView] startAnimating];
                 }
                 *stop = YES;
                 [self mediaItemDownload:mediaItem];
