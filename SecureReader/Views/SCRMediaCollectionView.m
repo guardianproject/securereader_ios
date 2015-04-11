@@ -145,18 +145,22 @@
                             if ([[SCRAppDelegate sharedAppDelegate].fileManager hasDataForPath:mediaItem.mediaItem.localPath])
                             {
                                 [view.activityView setHidden:NO];
+                                [view.activityView startAnimating];
                                 [view.downloadButton setHidden:YES];
-                                [self mediaItemCreate:mediaItem];
+                                dispatch_async(self.imageQueue, ^{
+                                    [self mediaItemCreate:mediaItem];
+                                });
                             }
                             else if (downloadIfNeeded)
                             {
                                 [view.activityView setHidden:NO];
+                                [view.activityView startAnimating];
                                 [view.downloadButton setHidden:YES];
                                 [self mediaItemDownload:mediaItem];
                             }
                             else
                             {
-                                [view.activityView setHidden:mediaItem.downloading];
+                                [view.activityView setHidden:YES];
                                 [view.downloadButton setHidden:self.showDownloadButtonIfNotLoaded];
                             }
                         });
@@ -227,6 +231,7 @@
             else if (mediaItem.view != nil && [mediaItem.view isKindOfClass:[SCRMediaCollectionViewDownloadView class]])
             {
                 [[(SCRMediaCollectionViewDownloadView *)mediaItem.view downloadButton] setHidden:NO];
+                [[(SCRMediaCollectionViewDownloadView *)mediaItem.view activityView] stopAnimating];
                 [[(SCRMediaCollectionViewDownloadView *)mediaItem.view activityView] setHidden:YES];
             }
 
@@ -268,16 +273,10 @@
 
 - (int)numberOfImages
 {
-    __block int count = 0;
     @synchronized(self.mediaItems)
     {
-        [self.mediaItems enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            SCRMediaCollectionViewItem *mediaItem = obj;
-            if (mediaItem.view != nil)
-                count++;
-        }];
+        return (int)self.mediaItems.count;
     }
-    return count;
 }
 
 - (int)currentImageIndex
@@ -292,29 +291,14 @@
     {
         return [[self.mediaItems objectAtIndex:[self currentImageIndex]] mediaItem];
     }
-    return nil;
 }
 
 - (UIView *)swipeView:(SwipeView *)swipeView viewForItemAtIndex:(NSInteger)index reusingView:(UIView *)view
 {
-    __block UIView *imageView = nil;
-    __block int count = 0;
     @synchronized(self.mediaItems)
     {
-        [self.mediaItems enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            SCRMediaCollectionViewItem *mediaItem = obj;
-            if (mediaItem.view != nil)
-            {
-                if (count == index)
-                {
-                    imageView = mediaItem.view;
-                    *stop = YES;
-                }
-                count++;
-            }
-        }];
+        return [[self.mediaItems objectAtIndex:index] view];
     }
-    return imageView;
 }
 
 - (void)downloadButtonClicked:(SCRMediaCollectionViewDownloadView *)view
@@ -329,6 +313,7 @@
                 {
                     [[(SCRMediaCollectionViewDownloadView *)mediaItem.view downloadButton] setHidden:YES];
                     [[(SCRMediaCollectionViewDownloadView *)mediaItem.view activityView] setHidden:NO];
+                    [[(SCRMediaCollectionViewDownloadView *)mediaItem.view activityView] startAnimating];
                 }
                 *stop = YES;
                 [self mediaItemDownload:mediaItem];

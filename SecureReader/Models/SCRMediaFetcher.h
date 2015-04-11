@@ -6,11 +6,11 @@
 //  Copyright (c) 2015 Guardian Project. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "SCRNetworkFeetcher.h"
 
 @class SCRMediaItem, IOCipher;
 
-@interface SCRMediaFetcher : NSObject
+@interface SCRMediaFetcher : SCRNetworkFeetcher
 /*
  The queue on which downloadMediaItem:completionBlock will be called. defaults to the main queue;
  */

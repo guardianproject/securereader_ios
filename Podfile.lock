@@ -33,7 +33,7 @@ PODS:
     - GCDWebServer/Core (= 3.2.2)
   - GCDWebServer/Core (3.2.2)
   - HockeySDK (3.6.2)
-  - InAppSettingsKit (2.4.3)
+  - InAppSettingsKit (2.5)
   - IOCipher/common (0.1.0):
     - libsqlfs/SQLCipher
   - IOCipher/GCDWebServer (0.1.0):
@@ -69,7 +69,7 @@ PODS:
   - URLMock/SubclassResponsibility (1.2.3):
     - URLMock/TestHelpers
   - URLMock/TestHelpers (1.2.3)
-  - wpxmlrpc (0.7)
+  - wpxmlrpc (0.8)
   - YapDatabase/common (2.6.1):
     - CocoaLumberjack (~> 1)
   - YapDatabase/SQLCipher (2.6.1):
@@ -109,7 +109,7 @@ SPEC CHECKSUMS:
   FormatterKit: bddde83e054edf9d9ee14f9de3b3a5103db256f4
   GCDWebServer: 5320220ad0d497da8e7beca1396f0c82d4f83730
   HockeySDK: 51ade1aff04463137e852797d2eb4dfb2511d6a9
-  InAppSettingsKit: 8f4bf298c6d1452e1c1520029d857bf028afc46b
+  InAppSettingsKit: d872c25e20fcc7d9d33554e5be63070a07a443a7
   IOCipher: 2bcc56103fbdd9cd9139a5b030ebb97ed6fbc4b9
   libsqlfs: 179e4fb40b8c07fd0ee7933ec4c0b9f4815cbd0e
   Mantle: 60acd0cd363e27d945bda0a6b8e90577112d28f3
@@ -123,7 +123,7 @@ SPEC CHECKSUMS:
   SwipeView: bd67cfaf7760c036438446b3ccb28a3b84fce009
   SWTableViewCell: 2a94aadc9d47b2b611fa064566bf57948b95b579
   URLMock: 5d14a89942559f7948793d2f9aaffc25a6af2166
-  wpxmlrpc: 3d804d4dca483ddb5d84443f7ea3adb45f46d7fa
+  wpxmlrpc: 053c9cbed13dcec08515a4ffeb51780f6e858cc7
   YapDatabase: 13566c87dc9226a0f15d755edba08e8ad94cac9f
 
 COCOAPODS: 0.36.3

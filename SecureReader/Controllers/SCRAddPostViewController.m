@@ -36,6 +36,8 @@
         self.item.uuid = [[NSUUID UUID] UUIDString];
         self.isEditing = NO;
     }
+    [self.imagePlaceholder setHidden:YES];
+    [self.operationButtons setHidden:YES];
     [self populateUIfromItem];
 }
 

@@ -20,6 +20,7 @@
 #import "SCRDatabaseManager.h"
 #import "SCRFeedFetcher.h"
 #import "SCRFileManager.h"
+#import "NSUserDefaults+SecureReader.h"
 #import "SCRPassphraseManager.h"
 
 @interface SCRAppDelegate() <BITHockeyManagerDelegate>
@@ -40,6 +41,9 @@
 #ifndef DEBUG
     [[BITHockeyManager sharedHockeyManager].authenticator authenticateInstallation];
 #endif
+    
+    _torManager = [[SCRTorManager alloc] init];
+    [self loginWithPassphrase:@"password"];
     
     [NSBundle setLanguage:[SCRSettings getUiLanguage]];
     [SCRTheme initialize];

@@ -19,3 +19,5 @@
 "Add_Post_Pick_Image_SubTitle" = "Select source";
 "Add_Post_Pick_Image_Camera" = "Camera";
 "Add_Post_Pick_Image_Library" = "Photos";
+"Post_Draft_Action_Edit" = "Edit";
+"Post_Draft_Action_Delete" = "Delete";

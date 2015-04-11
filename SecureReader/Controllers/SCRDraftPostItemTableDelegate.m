@@ -67,6 +67,7 @@
         cell.tagCollectionViewBottomConstraint.constant = 10;
         cell.tagCollectionView.delegate = self;
         cell.tagCollectionView.dataSource = self;
+        [cell.tagCollectionView reloadData];
     }
     else
     {

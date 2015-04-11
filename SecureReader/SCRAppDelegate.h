@@ -12,13 +12,15 @@
 #import "SCRMediaFetcher.h"
 #import "SCRFeed.h"
 #import "SCRItem.h"
+#import "SCRTorManager.h"
 
 @interface SCRAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (nonatomic, strong, readonly) SCRFeedFetcher *feedFetcher;
-@property (strong, nonatomic, readonly) SCRFileManager *fileManager;
-@property (strong, nonatomic, readonly) SCRMediaFetcher *mediaFetcher;
+@property (nonatomic, strong, readonly) SCRFileManager *fileManager;
+@property (nonatomic, strong, readonly) SCRMediaFetcher *mediaFetcher;
+@property (nonatomic, strong, readonly) SCRTorManager *torManager;
 
 + (SCRAppDelegate*) sharedAppDelegate;
 

@@ -8,6 +8,7 @@
 
 #import "SCRDatabaseManager.h"
 #import "YapDatabaseView.h"
+#import "YapDatabaseOptions.h"
 #import "YapDatabaseRelationship.h"
 #import "YapDatabaseFullTextSearch.h"
 #import "YapDatabaseSearchResultsView.h"

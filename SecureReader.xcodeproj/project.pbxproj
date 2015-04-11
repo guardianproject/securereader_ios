@@ -8,11 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		3BB24D68EE03667F19CC9704 /* libPods-SecureReaderTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5735327C43C1B3AC8034225E /* libPods-SecureReaderTests.a */; };
+		632A10831ACF528500E05075 /* SCRNetworkFeetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 632A10821ACF528500E05075 /* SCRNetworkFeetcher.m */; };
+		632A10871ACF594400E05075 /* NSUserDefaults+SecureReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 632A10861ACF594400E05075 /* NSUserDefaults+SecureReader.m */; };
 		633AB7361A9FE8E600A0F3F9 /* SCRMediaItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 633AB7351A9FE8E600A0F3F9 /* SCRMediaItem.m */; };
 		633AB7391A9FE9A800A0F3F9 /* SCRMediaFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 633AB7381A9FE9A800A0F3F9 /* SCRMediaFetcher.m */; };
 		633AB73B1A9FFCEA00A0F3F9 /* SecureReaderDownloadTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 633AB73A1A9FFCEA00A0F3F9 /* SecureReaderDownloadTests.m */; };
 		633D23DC1AA0EBF2008D1C28 /* SCRFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 633D23DB1AA0EBF2008D1C28 /* SCRFileManager.m */; };
 		633D23DF1AA0EC78008D1C28 /* SCRMediaServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 633D23DE1AA0EC78008D1C28 /* SCRMediaServer.m */; };
+		633FEABB1ACE023300A628AF /* SCRTorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 633FEABA1ACE023300A628AF /* SCRTorManager.m */; };
 		63775E891AAF97B4006CE553 /* Octocat.png in Resources */ = {isa = PBXBuildFile; fileRef = 63775E881AAF97B4006CE553 /* Octocat.png */; };
 		63775E8B1AAF9BE4006CE553 /* SecureReaderMediaServerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 63775E8A1AAF9BE4006CE553 /* SecureReaderMediaServerTest.m */; };
 		63775E8F1AAFB00F006CE553 /* NSData+SecureReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 63775E8E1AAFB00F006CE553 /* NSData+SecureReader.m */; };
@@ -121,6 +124,10 @@
 /* Begin PBXFileReference section */
 		5735327C43C1B3AC8034225E /* libPods-SecureReaderTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SecureReaderTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5982780EDA69C66A355A7531 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		632A10811ACF528500E05075 /* SCRNetworkFeetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRNetworkFeetcher.h; sourceTree = "<group>"; };
+		632A10821ACF528500E05075 /* SCRNetworkFeetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRNetworkFeetcher.m; sourceTree = "<group>"; };
+		632A10851ACF594400E05075 /* NSUserDefaults+SecureReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSUserDefaults+SecureReader.h"; path = "Categories/NSUserDefaults+SecureReader.h"; sourceTree = "<group>"; };
+		632A10861ACF594400E05075 /* NSUserDefaults+SecureReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSUserDefaults+SecureReader.m"; path = "Categories/NSUserDefaults+SecureReader.m"; sourceTree = "<group>"; };
 		633AB7341A9FE8E600A0F3F9 /* SCRMediaItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRMediaItem.h; sourceTree = "<group>"; };
 		633AB7351A9FE8E600A0F3F9 /* SCRMediaItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRMediaItem.m; sourceTree = "<group>"; };
 		633AB7371A9FE9A800A0F3F9 /* SCRMediaFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRMediaFetcher.h; sourceTree = "<group>"; };
@@ -130,6 +137,8 @@
 		633D23DB1AA0EBF2008D1C28 /* SCRFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRFileManager.m; sourceTree = "<group>"; };
 		633D23DD1AA0EC78008D1C28 /* SCRMediaServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SCRMediaServer.h; path = SecureReader/Feed/SCRMediaServer.h; sourceTree = SOURCE_ROOT; };
 		633D23DE1AA0EC78008D1C28 /* SCRMediaServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SCRMediaServer.m; path = SecureReader/Feed/SCRMediaServer.m; sourceTree = SOURCE_ROOT; };
+		633FEAB91ACE023300A628AF /* SCRTorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRTorManager.h; sourceTree = "<group>"; };
+		633FEABA1ACE023300A628AF /* SCRTorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRTorManager.m; sourceTree = "<group>"; };
 		63775E881AAF97B4006CE553 /* Octocat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Octocat.png; path = "Test Assets/Octocat.png"; sourceTree = "<group>"; };
 		63775E8A1AAF9BE4006CE553 /* SecureReaderMediaServerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecureReaderMediaServerTest.m; sourceTree = "<group>"; };
 		63775E8D1AAFB00F006CE553 /* NSData+SecureReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSData+SecureReader.h"; path = "Categories/NSData+SecureReader.h"; sourceTree = "<group>"; };
@@ -310,6 +319,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		632A10841ACF529800E05075 /* Network Operations */ = {
+			isa = PBXGroup;
+			children = (
+				632A10811ACF528500E05075 /* SCRNetworkFeetcher.h */,
+				632A10821ACF528500E05075 /* SCRNetworkFeetcher.m */,
+				D90F59351A19ECBE008F2DCB /* SCRFeedFetcher.h */,
+				D90F59361A19ECBE008F2DCB /* SCRFeedFetcher.m */,
+				633AB7371A9FE9A800A0F3F9 /* SCRMediaFetcher.h */,
+				633AB7381A9FE9A800A0F3F9 /* SCRMediaFetcher.m */,
+			);
+			name = "Network Operations";
+			sourceTree = "<group>";
+		};
 		633D23D91AA0EBC6008D1C28 /* File Management */ = {
 			isa = PBXGroup;
 			children = (
@@ -336,6 +358,8 @@
 			children = (
 				63775E8D1AAFB00F006CE553 /* NSData+SecureReader.h */,
 				63775E8E1AAFB00F006CE553 /* NSData+SecureReader.m */,
+				632A10851ACF594400E05075 /* NSUserDefaults+SecureReader.h */,
+				632A10861ACF594400E05075 /* NSUserDefaults+SecureReader.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -512,6 +536,8 @@
 				92C2A7401AA74BDF00B18672 /* SCRFeedShareViewController.m */,
 				92DD08811ACAD010001A0F59 /* SCRAddPostViewController.h */,
 				92DD08821ACAD010001A0F59 /* SCRAddPostViewController.m */,
+				633FEAB91ACE023300A628AF /* SCRTorManager.h */,
+				633FEABA1ACE023300A628AF /* SCRTorManager.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -651,10 +677,7 @@
 				D90F59381A19F617008F2DCB /* SCRDatabaseManager.h */,
 				D90F59391A19F617008F2DCB /* SCRDatabaseManager.m */,
 				92BD50971A07A36A00F3BD22 /* Models */,
-				D90F59351A19ECBE008F2DCB /* SCRFeedFetcher.h */,
-				D90F59361A19ECBE008F2DCB /* SCRFeedFetcher.m */,
-				633AB7371A9FE9A800A0F3F9 /* SCRMediaFetcher.h */,
-				633AB7381A9FE9A800A0F3F9 /* SCRMediaFetcher.m */,
+				632A10841ACF529800E05075 /* Network Operations */,
 			);
 			name = Feed;
 			path = Models;
@@ -865,6 +888,7 @@
 				D90F593A1A19F617008F2DCB /* SCRDatabaseManager.m in Sources */,
 				92BD50A11A07A38900F3BD22 /* SCRItemView.m in Sources */,
 				929BE4BE1A7913A700641647 /* SCRLabel.m in Sources */,
+				632A10871ACF594400E05075 /* NSUserDefaults+SecureReader.m in Sources */,
 				63775E8F1AAFB00F006CE553 /* NSData+SecureReader.m in Sources */,
 				92E8CF8D1AD3C91D00756F9E /* SCREditTagsTextView.m in Sources */,
 				92A4D2A51A31F1D40091479A /* SCRPanicViewController.m in Sources */,
@@ -881,6 +905,7 @@
 				9276CCF41ACC1FBB00A6B0E3 /* SCRSentPostItemTableDelegate.m in Sources */,
 				633AB7361A9FE8E600A0F3F9 /* SCRMediaItem.m in Sources */,
 				929EEF8119F4F5940020BD75 /* SCRSelectLanguageViewController.m in Sources */,
+				633FEABB1ACE023300A628AF /* SCRTorManager.m in Sources */,
 				920582881A6EA25000E152D9 /* SCRGradientBackgroundView.m in Sources */,
 				92C2A7411AA74BDF00B18672 /* SCRFeedShareViewController.m in Sources */,
 				9205828B1A6EA80900E152D9 /* SCRAuthorView.m in Sources */,
@@ -910,6 +935,7 @@
 				9276CCF11ACBF6AF00A6B0E3 /* SCRDraftPostItemTableDelegate.m in Sources */,
 				925AE5801A404161001E182F /* SCRMoreViewController.m in Sources */,
 				633AB7391A9FE9A800A0F3F9 /* SCRMediaFetcher.m in Sources */,
+				632A10831ACF528500E05075 /* SCRNetworkFeetcher.m in Sources */,
 				929BE4C11A79293900641647 /* SCRTextView.m in Sources */,
 				D9317B891A886A95005DA904 /* NSFormatter+SecureReader.m in Sources */,
 				929EEF8519F4F5940020BD75 /* UIView+Theming.m in Sources */,
