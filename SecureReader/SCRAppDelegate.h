@@ -24,9 +24,8 @@
 
 + (SCRAppDelegate*) sharedAppDelegate;
 
-- (BOOL)hasCreatedPassphrase;
-- (BOOL)isLoggedIn;
-- (BOOL)loginWithPassphrase:(NSString *)passphrase;
+/** Set up database. Will return NO if db passphrase is incorrect */
+- (BOOL) setupDatabase;
 
 //-(void) addFeed:(SCRFeed *)feed;
 -(void) removeFeed:(SCRFeed *)feed;

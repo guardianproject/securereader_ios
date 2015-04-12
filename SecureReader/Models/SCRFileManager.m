@@ -15,9 +15,10 @@
 
 @implementation SCRFileManager
 
-- (void)setupWithPath:(NSString *)path password:(NSString *)password
+- (BOOL)setupWithPath:(NSString *)path password:(NSString *)password
 {
     _ioCipher = [[IOCipher alloc] initWithPath:path password:password];
+    return _ioCipher != nil;
 }
 
 - (BOOL)hasDataForPath:(NSString *)path
@@ -76,6 +77,14 @@
     });
     
     return sharedInstance;
+}
+
++ (NSString*) defaultDatabasePath {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
+    NSString *applicationSupportDirectory = [paths firstObject];
+    NSString *databaseName = @"media.sqlite";
+    NSString *databasePath = [applicationSupportDirectory stringByAppendingPathComponent:databaseName];
+    return databasePath;
 }
 
 @end

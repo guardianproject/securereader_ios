@@ -16,6 +16,7 @@
 #import "SCRItem.h"
 #import "SCRFeed.h"
 #import "SCRPostItem.h"
+#import "SCRPassphraseManager.h"
 
 NSString *const kSCRAllFeedItemsViewName = @"kSCRAllFeedItemsViewName";
 NSString *const kSCRAllFeedItemsUngroupedViewName = @"kSCRAllFeedItemsUngroupedViewName";
@@ -28,49 +29,57 @@ NSString *const kSCRAllFeedsSearchViewName = @"kSCRAllFeedsSearchViewName";
 NSString *const kSCRRelationshipExtensionName = @"kSCRRelationshipExtensionName";
 NSString *const kSCRAllPostItemsViewName = @"kSCRAllPostItemsViewName";
 
+
 @implementation SCRDatabaseManager
+@synthesize database = _database;
 
 - (instancetype) init
 {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
-    NSString *applicationSupportDirectory = [paths firstObject];
-    NSString *databaseDirectoryName = @"SecureReader.database";
-    NSString *databaseDirectoryPath = [applicationSupportDirectory stringByAppendingPathComponent:databaseDirectoryName];
-    NSString *databaseName = @"SecureReader.sqlite";
-    
-    return [self initWithPath:[databaseDirectoryPath stringByAppendingPathComponent:databaseName]];
+    NSString *databasePath = [[self class] defaultDatabasePath];
+    return [self initWithPath:databasePath];
 }
 
 - (instancetype) initWithPath:(NSString *)path {
     if (self = [super init]) {
-        NSAssert([path length] > 0, @"Required path");
-        
-        NSString *directory = [path stringByDeletingLastPathComponent];
-        
-        [[NSFileManager defaultManager] createDirectoryAtPath:directory withIntermediateDirectories:YES attributes:nil error:nil];
-        
-        YapDatabaseOptions *options = [[YapDatabaseOptions alloc] init];
-        options.corruptAction = YapDatabaseCorruptAction_Fail;
-        options.cipherKeyBlock = ^{
-            // Fetch from keychain or in-memory passphrase
-            NSString *passphrase = @"super secure password";
-            if (!passphrase.length) {
-                [NSException raise:@"Must have passphrase of length > 0" format:@"password length is %d.", (int)passphrase.length];
-            }
-            return [passphrase dataUsingEncoding:NSUTF8StringEncoding];
-        };
-        _database = [[YapDatabase alloc] initWithPath:path
-                                           serializer:NULL
-                                         deserializer:NULL
-                                              options:options];
-        self.database.defaultObjectCacheEnabled = YES;
-        self.database.defaultObjectCacheLimit = 5000;
-        self.database.defaultObjectPolicy = YapDatabasePolicyShare;
-        _readWriteConnection = [self.database newConnection];
-        _readConnection = [self.database newConnection];
-        [self registerViews];
+        [self setupDatabaseAtPath:path];
     }
     return self;
+}
+
+- (void) setupDatabaseAtPath:(NSString*)path {
+    NSAssert([path length] > 0, @"Required path");
+    NSString *directory = [path stringByDeletingLastPathComponent];
+    [[NSFileManager defaultManager] createDirectoryAtPath:directory withIntermediateDirectories:YES attributes:nil error:nil];
+    YapDatabaseOptions *options = [[YapDatabaseOptions alloc] init];
+    options.corruptAction = YapDatabaseCorruptAction_Fail;
+    options.cipherKeyBlock = ^{
+        NSString *passphrase = [[SCRPassphraseManager sharedInstance] databasePassphrase];
+        NSData *passphraseData = [passphrase dataUsingEncoding:NSUTF8StringEncoding];
+        if (!passphraseData.length) {
+            [NSException raise:@"Must have passphrase of length > 0" format:@"password length is %d.", (int)passphrase.length];
+        }
+        return passphraseData;
+    };
+    _database = [[YapDatabase alloc] initWithPath:path serializer:nil deserializer:nil options:options];
+    if (!_database) {
+        return;
+    }
+    self.database.defaultObjectCacheEnabled = YES;
+    self.database.defaultObjectCacheLimit = 5000;
+    self.database.defaultObjectPolicy = YapDatabasePolicyShare;
+    _readWriteConnection = [self.database newConnection];
+    _readConnection = [self.database newConnection];
+    [self registerViews];
+}
+
+// Database will be nil if password is incorrect
+- (YapDatabase*) database {
+    if (_database) {
+        return _database;
+    } else {
+        [self setupDatabaseAtPath:[[self class] defaultDatabasePath]];
+    }
+    return _database;
 }
 
 - (void) registerViews {
@@ -227,6 +236,22 @@ NSString *const kSCRAllPostItemsViewName = @"kSCRAllPostItemsViewName";
         _sharedInstance = [[[self class] alloc] init];
     });
     return _sharedInstance;
+}
+
++ (NSString*) defaultDatabasePath {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
+    NSString *applicationSupportDirectory = [paths firstObject];
+    NSString *databaseDirectoryName = @"SecureReader.database";
+    NSString *databaseDirectoryPath = [applicationSupportDirectory stringByAppendingPathComponent:databaseDirectoryName];
+    NSString *databaseName = @"SecureReader.sqlite";
+    NSString *databasePath = [databaseDirectoryPath stringByAppendingPathComponent:databaseName];
+    return databasePath;
+}
+
++ (BOOL) databaseExists {
+    NSString *dbPath = [[self class] defaultDatabasePath];
+    BOOL exists = [[NSFileManager defaultManager] fileExistsAtPath:dbPath];
+    return exists;
 }
 
 

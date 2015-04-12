@@ -57,6 +57,7 @@ PODS:
   - SQLCipher/common (3.1.0)
   - SQLCipher/fts (3.1.0):
     - SQLCipher/common
+  - SSKeychain (1.2.3)
   - SwipeView (1.3.2)
   - SWTableViewCell (0.3.7)
   - URLMock (1.2.3):
@@ -85,11 +86,12 @@ DEPENDENCIES:
   - MWFeedParser/NSString+HTML (~> 1.0)
   - PureLayout (~> 2.0)
   - RSSAtomKit (from `Submodules/RSSAtomKit/RSSAtomKit.podspec`)
+  - SSKeychain (~> 1.2)
   - SwipeView (~> 1.3)
   - SWTableViewCell (~> 0.3.7)
   - URLMock (~> 1.2.3)
   - wpxmlrpc (~> 0.5)
-  - YapDatabase/SQLCipher (~> 2.5)
+  - YapDatabase/SQLCipher (~> 2.6)
 
 EXTERNAL SOURCES:
   CPAProxy:
@@ -117,6 +119,7 @@ SPEC CHECKSUMS:
   RSSAtomKit: 81636ed61cf61508c272877c88847d83235304c9
   SOCKit: c7376ac262bea9115b8f749358f762522a47d392
   SQLCipher: c44fcca49c31483c2489cfb79aa7a69407f3794a
+  SSKeychain: 3f42991739c6c60a9cf1bbd4dff6c0d3694bcf3d
   SwipeView: bd67cfaf7760c036438446b3ccb28a3b84fce009
   SWTableViewCell: 2a94aadc9d47b2b611fa064566bf57948b95b579
   URLMock: 5d14a89942559f7948793d2f9aaffc25a6af2166

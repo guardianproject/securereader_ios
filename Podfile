@@ -3,12 +3,13 @@ platform :ios, '7.0'
 source 'https://github.com/CocoaPods/Specs.git'
 
 pod 'InAppSettingsKit', '~> 2.2'
-pod 'YapDatabase/SQLCipher', '~> 2.5'
+pod 'YapDatabase/SQLCipher', '~> 2.6'
 pod 'PureLayout', '~> 2.0'
 pod 'Mantle', '~> 1.5'
 pod 'FormatterKit/TimeIntervalFormatter', '~> 1.6'
 pod 'wpxmlrpc', '~> 0.5'
 pod 'HockeySDK', '~> 3.6'
+pod 'SSKeychain', '~> 1.2'
 
 pod 'MWFeedParser/NSString+HTML', '~> 1.0'
 

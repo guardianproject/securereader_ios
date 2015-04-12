@@ -45,20 +45,6 @@ NSString * const kFontSizeAdjustmentSettingsKey = @"fontSizeAdjustment";
     [self onChange:kDownloadMediaSettingsKey];
 }
 
-+ (NSString *)getPassphrase
-{
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *ret = [userDefaults stringForKey:@"passphrase"];
-    return ret;
-}
-
-+ (void) setPassphrase:(NSString *)passphrase
-{
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setValue:passphrase forKey:@"passphrase"];
-    [userDefaults synchronize];
-}
-
 + (NSInteger) lockTimeout
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];

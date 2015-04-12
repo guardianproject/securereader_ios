@@ -10,17 +10,14 @@
 #import "SCRNavigationController.h"
 #import "SCRAppDelegate.h"
 #import "SCRSettings.h"
+#import <LocalAuthentication/LocalAuthentication.h>
+#import "SCRPassphraseManager.h"
 
 @interface SCRLoginViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *editPassphrase;
 @end
 
 @implementation SCRLoginViewController
-{
-    UIViewController *destinationViewController;
-    UINavigationController *navigationViewController;
-    BOOL animateDestination;
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -32,24 +29,33 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void) setDestinationViewController:(UIViewController *)viewController navigationController:(UINavigationController *)navigationController animated:(BOOL)animated
-{
-    destinationViewController = viewController;
-    navigationViewController = navigationController;
-    animateDestination = animated;
-}
 
 - (IBAction)loginButtonClicked:(id)sender
 {
-    //TEMP
-    if ([[SCRAppDelegate sharedAppDelegate] loginWithPassphrase:_editPassphrase.text])
-    {
-        if (destinationViewController != nil && navigationViewController != nil)
-        {
-            [navigationViewController pushViewController:destinationViewController animated:NO];
-        }
-        [self dismissViewControllerAnimated:YES completion:nil];
+    NSString *passphrase = _editPassphrase.text;
+    [[SCRPassphraseManager sharedInstance] setDatabasePassphrase:passphrase storeInKeychain:NO];
+    BOOL success = [[SCRAppDelegate sharedAppDelegate] setupDatabase];
+    if (success) {
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        UIViewController *rootVC = [storyboard instantiateInitialViewController];
+        [UIView transitionFromView:[SCRAppDelegate sharedAppDelegate].window.rootViewController.view
+                            toView:rootVC.view
+                          duration:0.65f
+                           options:UIViewAnimationOptionTransitionFlipFromRight
+                        completion:^(BOOL finished){
+                            [SCRAppDelegate sharedAppDelegate].window.rootViewController = rootVC;
+                        }];
+    } else {
+        // incorrect passphrase
+        [[[UIAlertView alloc] initWithTitle:@"Incorrect Passphrase" message:@"Ok." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
     }
+    
+}
+
+- (void) viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    //[self checkTouchID];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -65,6 +71,32 @@
         [_editPassphrase resignFirstResponder];
     }
     [super touchesBegan:touches withEvent:event];
+}
+
+- (void) checkTouchID {
+    if (![LAContext class]) {
+        return;
+    }
+    LAContext *myContext = [[LAContext alloc] init];
+    NSError *authError = nil;
+    NSString *myLocalizedReasonString = NSLocalizedString(@"Unlock app with TouchID", @"prompt for TouchID");
+    
+    if ([myContext canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:&authError]) {
+        [myContext evaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics
+                  localizedReason:myLocalizedReasonString
+                            reply:^(BOOL success, NSError *error) {
+                                if (success) {
+                                    // User authenticated successfully, take appropriate action
+                                } else {
+                                    if (error.code == LAErrorUserFallback) {
+                                        
+                                    }
+                                    // User did not authenticate successfully, look at error and take appropriate action
+                                }
+                            }];
+    } else {
+        // Could not evaluate policy; look at authError and present an appropriate message to user
+    }
 }
 
 /*

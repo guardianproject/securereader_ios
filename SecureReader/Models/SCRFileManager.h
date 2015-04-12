@@ -14,7 +14,7 @@
 
 @property (nonatomic, strong, readonly) IOCipher *ioCipher;
 
-- (void)setupWithPath:(NSString *)path password:(NSString *)password;
+- (BOOL)setupWithPath:(NSString *)path password:(NSString *)password;
 
 - (BOOL)hasDataForPath:(NSString *)path;
 
@@ -27,5 +27,8 @@
                completion:(void (^)(BOOL sucess, NSError *error))completion;
 
 + (instancetype)sharedInstance;
+
+/** Default path for database */
++ (NSString *) defaultDatabasePath;
 
 @end
