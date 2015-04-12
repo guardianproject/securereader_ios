@@ -43,7 +43,6 @@
 #endif
     
     _torManager = [[SCRTorManager alloc] init];
-    [self loginWithPassphrase:@"password"];
     
     [NSBundle setLanguage:[SCRSettings getUiLanguage]];
     [SCRTheme initialize];

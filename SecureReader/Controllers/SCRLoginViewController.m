@@ -55,7 +55,7 @@
 - (void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    [self checkTouchID];
+    //[self checkTouchID];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
