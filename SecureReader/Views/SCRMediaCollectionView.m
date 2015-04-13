@@ -161,7 +161,7 @@
                             else
                             {
                                 [view.activityView setHidden:YES];
-                                [view.downloadButton setHidden:self.showDownloadButtonIfNotLoaded];
+                                [view.downloadButton setHidden:!self.showDownloadButtonIfNotLoaded];
                             }
                         });
                     }
