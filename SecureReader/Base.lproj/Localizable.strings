@@ -21,3 +21,7 @@
 "Add_Post_Pick_Image_Library" = "Photos";
 "Post_Draft_Action_Edit" = "Edit";
 "Post_Draft_Action_Delete" = "Delete";
+"Post_Draft_Delete_Alert_Title" = "Delete this post?";
+"Post_Draft_Delete_Alert_Message" = "It will be permanently removed.";
+"Post_Draft_Delete_Alert_Delete" = "Delete";
+"Post_Draft_Delete_Alert_Cancel" = "Cancel";

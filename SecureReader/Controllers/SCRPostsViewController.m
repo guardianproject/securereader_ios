@@ -27,6 +27,7 @@
 #import "SCRAddPostViewController.h"
 #import "SCRSentPostItemTableDelegate.h"
 #import "SCRDraftPostItemTableDelegate.h"
+#import "UIAlertView+SecureReader.h"
 
 @interface SCRPostsViewController ()
 @property (nonatomic, strong) SCRSentPostItemTableDelegate *postsTableDelegate;
@@ -117,7 +118,17 @@
                         [self editDraftItem:item];
                         break;
                     case 1:
-                        [self deleteDraftItem:item];
+                        {
+                        UIAlertView *deleteAction = [[UIAlertView alloc] initWithTitle:getLocalizedString(@"Post_Draft_Delete_Alert_Title", @"Delete this post?")
+                                                                               message:getLocalizedString(@"Post_Draft_Delete_Alert_Message", @"It will be permanently removed.")
+                                                                              delegate:self
+                                                                     cancelButtonTitle:getLocalizedString(@"Post_Draft_Delete_Alert_Cancel", @"Cancel")
+                                                                     otherButtonTitles:getLocalizedString(@"Post_Draft_Delete_Alert_Delete", @"Delete"), nil];
+                        [deleteAction showWithCompletion:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                            if (buttonIndex == 1)
+                                [self deleteDraftItem:item];
+                        }];
+                        }
                         break;
                 }
             }

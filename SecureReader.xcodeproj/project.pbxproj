@@ -25,6 +25,7 @@
 		9205828B1A6EA80900E152D9 /* SCRAuthorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9205828A1A6EA80900E152D9 /* SCRAuthorView.m */; };
 		9205828D1A6EA8F500E152D9 /* SCRAuthorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9205828C1A6EA8F500E152D9 /* SCRAuthorView.xib */; };
 		921135771A7A70D40049D82B /* SCRFeedListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 921135761A7A70D40049D82B /* SCRFeedListViewController.m */; };
+		9219347B1ADBCD14001B1A73 /* UIAlertView+SecureReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 9219347A1ADBCD14001B1A73 /* UIAlertView+SecureReader.m */; };
 		9228CAD91AA9A97000DD3E44 /* SCRFeedListCellWithDescription.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9228CAD81AA9A97000DD3E44 /* SCRFeedListCellWithDescription.xib */; };
 		922DC28019FE920C00FB1274 /* SCRFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 922DC27F19FE920C00FB1274 /* SCRFeedViewController.m */; };
 		9239049E1A07E365004EEE7E /* background_debut_light.png in Resources */ = {isa = PBXBuildFile; fileRef = 9239049D1A07E365004EEE7E /* background_debut_light.png */; };
@@ -152,6 +153,8 @@
 		9205828C1A6EA8F500E152D9 /* SCRAuthorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SCRAuthorView.xib; sourceTree = "<group>"; };
 		921135751A7A70D40049D82B /* SCRFeedListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRFeedListViewController.h; sourceTree = "<group>"; };
 		921135761A7A70D40049D82B /* SCRFeedListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRFeedListViewController.m; sourceTree = "<group>"; };
+		921934791ADBCD14001B1A73 /* UIAlertView+SecureReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIAlertView+SecureReader.h"; path = "Categories/UIAlertView+SecureReader.h"; sourceTree = "<group>"; };
+		9219347A1ADBCD14001B1A73 /* UIAlertView+SecureReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIAlertView+SecureReader.m"; path = "Categories/UIAlertView+SecureReader.m"; sourceTree = "<group>"; };
 		9228CAD81AA9A97000DD3E44 /* SCRFeedListCellWithDescription.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SCRFeedListCellWithDescription.xib; sourceTree = "<group>"; };
 		922DC27E19FE920C00FB1274 /* SCRFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SCRFeedViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		922DC27F19FE920C00FB1274 /* SCRFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SCRFeedViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -360,6 +363,8 @@
 				63775E8E1AAFB00F006CE553 /* NSData+SecureReader.m */,
 				632A10851ACF594400E05075 /* NSUserDefaults+SecureReader.h */,
 				632A10861ACF594400E05075 /* NSUserDefaults+SecureReader.m */,
+				921934791ADBCD14001B1A73 /* UIAlertView+SecureReader.h */,
+				9219347A1ADBCD14001B1A73 /* UIAlertView+SecureReader.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -902,6 +907,7 @@
 				D9E6575F1A234363000E6301 /* SCRFeed.m in Sources */,
 				928036691A27D4FF0081801A /* SCRItemPageViewController.m in Sources */,
 				9276CCEE1ACBE9CB00A6B0E3 /* SCRPostItem.m in Sources */,
+				9219347B1ADBCD14001B1A73 /* UIAlertView+SecureReader.m in Sources */,
 				9276CCF41ACC1FBB00A6B0E3 /* SCRSentPostItemTableDelegate.m in Sources */,
 				633AB7361A9FE8E600A0F3F9 /* SCRMediaItem.m in Sources */,
 				929EEF8119F4F5940020BD75 /* SCRSelectLanguageViewController.m in Sources */,
