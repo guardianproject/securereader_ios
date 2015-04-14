@@ -33,6 +33,9 @@
 - (IBAction)loginButtonClicked:(id)sender
 {
     NSString *passphrase = _editPassphrase.text;
+    if (passphrase.length == 0) {
+        return;
+    }
     [[SCRPassphraseManager sharedInstance] setDatabasePassphrase:passphrase storeInKeychain:NO];
     BOOL success = [[SCRAppDelegate sharedAppDelegate] setupDatabase];
     if (success) {

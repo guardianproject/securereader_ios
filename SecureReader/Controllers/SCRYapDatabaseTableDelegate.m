@@ -40,18 +40,21 @@
 - (YapDatabaseConnection*) readConnection {
     if (!_readConnection) {
         _readConnection = [[SCRDatabaseManager sharedInstance].database newConnection];
+        [self setupMappings];
     }
     return _readConnection;
 }
 
 - (void) removeYapConnections:(NSNotification*)notification {
     self.readConnection = nil;
+    self.yapMappings = nil;
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:YapDatabaseModifiedNotification object:nil];
 }
 
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:SCRRemoveYapConnectionsNotification object:[SCRDatabaseManager sharedInstance]];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:YapDatabaseModifiedNotification object:self.readConnection.database];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:YapDatabaseModifiedNotification object:nil];
 }
 
 - (BOOL)isActive

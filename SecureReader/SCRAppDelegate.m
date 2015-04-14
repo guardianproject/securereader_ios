@@ -79,8 +79,11 @@
 {
     NSLog (@"time exceeded!!");
     
-    [[SCRDatabaseManager sharedInstance] teardownDatabase];
     _feedFetcher = nil;
+    [self.mediaFetcher invalidate];
+    _mediaFetcher = nil;
+    _fileManager = nil;
+    [[SCRDatabaseManager sharedInstance] teardownDatabase];
     [[SCRPassphraseManager sharedInstance] clearDatabasePassphraseFromMemory];
 
     UIViewController *rootVC = self.window.rootViewController;

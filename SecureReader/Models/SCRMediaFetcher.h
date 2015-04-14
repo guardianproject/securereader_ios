@@ -25,6 +25,9 @@
  */
 - (instancetype)initWithSessionConfiguration:(NSURLSessionConfiguration *)sessionConfiguration storage:(IOCipher *)ioCipher;
 
+/** Invalidates the internal NSURLSession */
+- (void) invalidate;
+
 /**
  Asynchronously download a SCRMediaItem. Uses the mediaItem remoteURL and localPath to fetch from and store in IOCipher.
  

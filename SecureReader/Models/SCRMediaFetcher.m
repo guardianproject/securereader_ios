@@ -54,6 +54,11 @@ typedef void (^SCRURLSesssionDataTaskCompletion)(NSURLSessionTask *dataTask, NSE
     return self;
 }
 
+- (void) invalidate {
+    [self.urlSession invalidateAndCancel];
+    self.urlSession = nil;
+}
+
 - (dispatch_queue_t)completionQueue
 {
     if (!_completionQueue) {
