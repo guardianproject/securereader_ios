@@ -12,6 +12,8 @@
 #import "SCRSettings.h"
 #import "SCRApplication.h"
 #import "SCRAppDelegate.h"
+#import "SCRHelpHintViewController.h"
+#import "SCRMoreViewController.h"
 
 @interface SCRSelectLanguageViewController ()
 @property NSArray *languages;
@@ -74,7 +76,8 @@
 
 - (IBAction)getStartedButtonClicked:(id)sender
 {
-    [self performSegueWithIdentifier:@"segueToCreatePassphrase" sender:self];
+//    [self performSegueWithIdentifier:@"segueToCreatePassphrase" sender:self];
+    [self performSegueWithIdentifier:@"segueToHint" sender:self];
     [self removeFromParentViewController];
 }
 
