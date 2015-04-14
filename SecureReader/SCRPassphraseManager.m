@@ -58,12 +58,20 @@ static NSString * const SCRPassphraseService    = @"info.guardianproject.SecureR
     }
 }
 
-/** Removes passphrase from memory and/or keychain */
-- (void) clearDatabasePassphrase {
+
+- (void) clearDatabasePassphraseFromMemory {
     if (self.inMemoryPassphrase) {
         self.inMemoryPassphrase = nil;
     }
+}
+- (void) clearDatabasePassphraseFromKeychain {
     [SSKeychain deletePasswordForService:SCRPassphraseService account:SCRDatabasePassphraseKey];
+}
+
+/** Removes passphrase from memory and/or keychain */
+- (void) clearDatabasePassphrase {
+    [self clearDatabasePassphraseFromMemory];
+    [self clearDatabasePassphraseFromKeychain];
 }
 
 /** Returns a new complex passphrase (to be stored in the keychain) */

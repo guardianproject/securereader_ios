@@ -17,8 +17,10 @@
 - (void) setDatabasePassphrase:(NSString*)databasePassphrase
                storeInKeychain:(BOOL)storeInKeychain;
 
-/** Removes passphrase from memory and/or keychain */
+/** Removes passphrase from memory and keychain */
 - (void) clearDatabasePassphrase;
+- (void) clearDatabasePassphraseFromMemory;
+- (void) clearDatabasePassphraseFromKeychain;
 
 /** Returns a new complex passphrase (to be stored in the keychain) */
 - (NSString*) generateNewPassphrase;
