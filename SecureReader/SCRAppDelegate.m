@@ -74,17 +74,22 @@
 -(void)applicationDidTimeout:(NSNotification *) notif
 {
     NSLog (@"time exceeded!!");
-    SCRNavigationController *navController = (SCRNavigationController *)self.window.rootViewController;
-    UIViewController *vcCurrent = [navController visibleViewController];
+    
+    //[[SCRDatabaseManager sharedInstance] teardownDatabase];
+    [[SCRPassphraseManager sharedInstance] clearDatabasePassphraseFromMemory];
+
+    UIViewController *rootVC = self.window.rootViewController;
+    UIViewController *vcCurrent = rootVC;
+    if ([rootVC isKindOfClass:[UINavigationController class]]) {
+        vcCurrent = ((UINavigationController*)rootVC).visibleViewController;
+    }
+    
     if ([vcCurrent class] != [SCRSelectLanguageViewController class] &&
         [vcCurrent class] != [SCRCreatePassphraseViewController class] &&
         [vcCurrent class] != [SCRLoginViewController class])
     {
         SCRLoginViewController *vcLogin = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"login"];
-        vcLogin.modalPresentationStyle = UIModalPresentationFullScreen;
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [(SCRNavigationController *)self.window.rootViewController presentViewController:vcLogin animated:YES completion:nil];
-        });
+        self.window.rootViewController = vcLogin;
     }
 }
 
