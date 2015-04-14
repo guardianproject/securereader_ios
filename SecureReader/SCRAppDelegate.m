@@ -22,6 +22,8 @@
 #import "SCRFileManager.h"
 #import "NSUserDefaults+SecureReader.h"
 #import "SCRPassphraseManager.h"
+#import "DDLog.h"
+#import "DDTTYLogger.h"
 
 @interface SCRAppDelegate() <BITHockeyManagerDelegate>
 @end
@@ -34,6 +36,8 @@
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [DDLog addLogger:[DDTTYLogger sharedInstance]];
+
     [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:@"075cafe8595cb96f0c502f380e104a54"
                                                            delegate:self];
     [[BITHockeyManager sharedHockeyManager].authenticator setIdentificationType:BITAuthenticatorIdentificationTypeDevice];
@@ -75,7 +79,8 @@
 {
     NSLog (@"time exceeded!!");
     
-    //[[SCRDatabaseManager sharedInstance] teardownDatabase];
+    [[SCRDatabaseManager sharedInstance] teardownDatabase];
+    _feedFetcher = nil;
     [[SCRPassphraseManager sharedInstance] clearDatabasePassphraseFromMemory];
 
     UIViewController *rootVC = self.window.rootViewController;

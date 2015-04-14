@@ -20,6 +20,8 @@ extern NSString *const kSCRAllFeedsSearchViewName;
 extern NSString *const kSCRRelationshipExtensionName;
 extern NSString *const kSCRAllPostItemsViewName;
 
+extern NSString *const SCRRemoveYapConnectionsNotification;
+
 @interface SCRDatabaseManager : NSObject
 
 @property (nonatomic, strong, readonly) YapDatabase *database;
@@ -28,6 +30,9 @@ extern NSString *const kSCRAllPostItemsViewName;
 @property (nonatomic, strong, readonly) YapDatabaseConnection *readWriteConnection;
 
 - (instancetype) initWithPath:(NSString *)path;
+
+/** Removes all connections and nils out database */
+- (void) teardownDatabase;
 
 + (instancetype) sharedInstance;
 

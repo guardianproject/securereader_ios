@@ -26,8 +26,6 @@
           completionQueue:(dispatch_queue_t)completionQueue
                completion:(void (^)(BOOL sucess, NSError *error))completion;
 
-+ (instancetype)sharedInstance;
-
 /** Default path for database */
 + (NSString *) defaultDatabasePath;
 

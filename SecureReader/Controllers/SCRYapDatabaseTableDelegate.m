@@ -31,12 +31,26 @@
         self.prototypes = [[NSMutableDictionary alloc] init];
         [self registerCellTypesInTable:tableView];
         [self setupMappings];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeYapConnections:) name:SCRRemoveYapConnectionsNotification object:[SCRDatabaseManager sharedInstance]];
+
     }
     return self;
 }
 
+- (YapDatabaseConnection*) readConnection {
+    if (!_readConnection) {
+        _readConnection = [[SCRDatabaseManager sharedInstance].database newConnection];
+    }
+    return _readConnection;
+}
+
+- (void) removeYapConnections:(NSNotification*)notification {
+    self.readConnection = nil;
+}
+
 - (void)dealloc
 {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:SCRRemoveYapConnectionsNotification object:[SCRDatabaseManager sharedInstance]];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:YapDatabaseModifiedNotification object:self.readConnection.database];
 }
 
@@ -156,10 +170,11 @@
         [self.delegate didSelectRowAtIndexPath:indexPath delegate:self];
 }
 
+
+
 #pragma mark YapDatabase
 
 - (void) setupMappings {
-    self.readConnection = [[SCRDatabaseManager sharedInstance].database newConnection];
     [self createMappings];
     
     // Freeze our databaseConnection on the current commit.

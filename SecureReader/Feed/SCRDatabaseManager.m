@@ -28,7 +28,12 @@ NSString *const kSCRUnsubscribedFeedsViewName = @"kSCRUnsubscribedFeedsViewName"
 NSString *const kSCRAllFeedsSearchViewName = @"kSCRAllFeedsSearchViewName";
 NSString *const kSCRRelationshipExtensionName = @"kSCRRelationshipExtensionName";
 NSString *const kSCRAllPostItemsViewName = @"kSCRAllPostItemsViewName";
+NSString *const SCRRemoveYapConnectionsNotification = @"SCRRemoveYapConnectionsNotification";
 
+
+@interface SCRDatabaseManager()
+@property (nonatomic, strong) YapDatabaseConnection *registrationConnection;
+@end
 
 @implementation SCRDatabaseManager
 @synthesize database = _database;
@@ -69,6 +74,7 @@ NSString *const kSCRAllPostItemsViewName = @"kSCRAllPostItemsViewName";
     self.database.defaultObjectPolicy = YapDatabasePolicyShare;
     _readWriteConnection = [self.database newConnection];
     _readConnection = [self.database newConnection];
+    _registrationConnection = [self.database newConnection];
     [self registerViews];
 }
 
@@ -82,10 +88,17 @@ NSString *const kSCRAllPostItemsViewName = @"kSCRAllPostItemsViewName";
     return _database;
 }
 
+- (void) teardownDatabase {
+    _readWriteConnection = nil;
+    _readConnection = nil;
+    _registrationConnection = nil;
+    [[NSNotificationCenter defaultCenter] postNotificationName:SCRRemoveYapConnectionsNotification object:self];
+    _database = nil;
+}
+
 - (void) registerViews {
-    
     YapDatabaseRelationship *databaseRelationship = [[YapDatabaseRelationship alloc] init];
-    [self.database registerExtension:databaseRelationship withName:kSCRRelationshipExtensionName];
+    [self.database registerExtension:databaseRelationship withName:kSCRRelationshipExtensionName connection:self.registrationConnection];
     [self registerAllFeedItemsView];
     [self registerAllFeedItemsUngroupedView];
     [self registerAllFeedsView];
@@ -105,7 +118,7 @@ NSString *const kSCRAllPostItemsViewName = @"kSCRAllPostItemsViewName";
         return [item2.publicationDate compare:item1.publicationDate];
     }];
     YapDatabaseView *databaseView = [[YapDatabaseView alloc] initWithGrouping:grouping sorting:sorting versionTag:@"3" options:nil];
-    [self.database registerExtension:databaseView withName:kSCRAllFeedItemsViewName];
+    [self.database registerExtension:databaseView withName:kSCRAllFeedItemsViewName connection:self.registrationConnection];
     [self registerFavoriteFeedItemsView];
     [self registerReceivedFeedItemsView];
 }
@@ -121,7 +134,7 @@ NSString *const kSCRAllPostItemsViewName = @"kSCRAllPostItemsViewName";
         return [item2.publicationDate compare:item1.publicationDate];
     }];
     YapDatabaseView *databaseView = [[YapDatabaseView alloc] initWithGrouping:grouping sorting:sorting versionTag:@"1" options:nil];
-    [self.database registerExtension:databaseView withName:kSCRAllFeedItemsUngroupedViewName];
+    [self.database registerExtension:databaseView withName:kSCRAllFeedItemsUngroupedViewName connection:self.registrationConnection];
 }
 
 - (void) registerFavoriteFeedItemsView {
@@ -138,7 +151,7 @@ NSString *const kSCRAllPostItemsViewName = @"kSCRAllPostItemsViewName";
     [[YapDatabaseFilteredView alloc] initWithParentViewName:kSCRAllFeedItemsViewName
                                              filtering:filtering];
     
-    [self.database registerExtension:filteredView withName:kSCRFavoriteFeedItemsViewName];
+    [self.database registerExtension:filteredView withName:kSCRFavoriteFeedItemsViewName connection:self.registrationConnection];
 }
 
 - (void) registerReceivedFeedItemsView {
@@ -152,7 +165,7 @@ NSString *const kSCRAllPostItemsViewName = @"kSCRAllPostItemsViewName";
     YapDatabaseFilteredView *filteredView =
     [[YapDatabaseFilteredView alloc] initWithParentViewName:kSCRAllFeedItemsViewName
                                                   filtering:filtering];
-    [self.database registerExtension:filteredView withName:kSCRReceivedFeedItemsViewName];
+    [self.database registerExtension:filteredView withName:kSCRReceivedFeedItemsViewName connection:self.registrationConnection];
 }
 
 - (void) registerAllFeedsView {
@@ -168,7 +181,7 @@ NSString *const kSCRAllPostItemsViewName = @"kSCRAllPostItemsViewName";
     }];
     YapDatabaseView *databaseView = [[YapDatabaseView alloc] initWithGrouping:grouping sorting:sorting versionTag:@"1" options:nil];
     
-    [self.database registerExtension:databaseView withName:kSCRAllFeedsViewName];
+    [self.database registerExtension:databaseView withName:kSCRAllFeedsViewName connection:self.registrationConnection];
         
     YapDatabaseViewFiltering *filtering = [YapDatabaseViewFiltering withObjectBlock:^BOOL (NSString *group, NSString *collection, NSString *key, id object)
     {
@@ -177,7 +190,7 @@ NSString *const kSCRAllPostItemsViewName = @"kSCRAllPostItemsViewName";
     
     YapDatabaseFilteredView *subscribedFeedsView = [[YapDatabaseFilteredView alloc] initWithParentViewName:kSCRAllFeedsViewName filtering:filtering];
     
-    [self.database registerExtension:subscribedFeedsView withName:kSCRSubscribedFeedsViewName];
+    [self.database registerExtension:subscribedFeedsView withName:kSCRSubscribedFeedsViewName connection:self.registrationConnection];
     
     filtering = [YapDatabaseViewFiltering withObjectBlock:^BOOL (NSString *group, NSString *collection, NSString *key, id object)
                                            {
@@ -185,7 +198,7 @@ NSString *const kSCRAllPostItemsViewName = @"kSCRAllPostItemsViewName";
                                            }];
     
     YapDatabaseFilteredView *unsubscribedFeedsView = [[YapDatabaseFilteredView alloc] initWithParentViewName:kSCRAllFeedsViewName filtering:filtering];
-    [self.database registerExtension:unsubscribedFeedsView withName:kSCRUnsubscribedFeedsViewName];
+    [self.database registerExtension:unsubscribedFeedsView withName:kSCRUnsubscribedFeedsViewName connection:self.registrationConnection];
 }
 
 - (void) registerAllFeedsSearchView {
@@ -202,7 +215,7 @@ NSString *const kSCRAllPostItemsViewName = @"kSCRAllPostItemsViewName";
                                                                                     handler:fullTextSearchHandler
                                                                                  versionTag:@"2"];
     
-    [self.database registerExtension:fts withName:@"SCRAllFeedsSearchViewNameFTS"];
+    [self.database registerExtension:fts withName:@"SCRAllFeedsSearchViewNameFTS" connection:self.registrationConnection];
 
     YapDatabaseSearchResultsViewOptions *searchViewOptions = [[YapDatabaseSearchResultsViewOptions alloc] init];
     searchViewOptions.isPersistent = NO;
@@ -211,7 +224,7 @@ NSString *const kSCRAllPostItemsViewName = @"kSCRAllPostItemsViewName";
                                                       parentViewName:kSCRAllFeedsViewName
                                                           versionTag:@"1"
                                                              options:searchViewOptions];
-    [self.database registerExtension:searchResultsView withName:kSCRAllFeedsSearchViewName];
+    [self.database registerExtension:searchResultsView withName:kSCRAllFeedsSearchViewName connection:self.registrationConnection];
 }
 
 - (void) registerAllPostItemsView {
@@ -226,7 +239,7 @@ NSString *const kSCRAllPostItemsViewName = @"kSCRAllPostItemsViewName";
         return [item2.lastEdited compare:item1.lastEdited];
     }];
     YapDatabaseView *databaseView = [[YapDatabaseView alloc] initWithGrouping:grouping sorting:sorting versionTag:@"1" options:nil];
-    [self.database registerExtension:databaseView withName:kSCRAllPostItemsViewName];
+    [self.database registerExtension:databaseView withName:kSCRAllPostItemsViewName connection:self.registrationConnection];
 }
 
 + (instancetype) sharedInstance {

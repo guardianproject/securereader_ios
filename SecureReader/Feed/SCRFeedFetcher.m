@@ -16,7 +16,7 @@
 @interface SCRFeedFetcher()
 @property (nonatomic, strong) RSSAtomKit *atomKit;
 @property (nonatomic, strong) dispatch_queue_t callbackQueue;
-@property (nonatomic, strong) YapDatabaseConnection *databaseConnection;
+@property (nonatomic, weak) YapDatabaseConnection *databaseConnection;
 
 
 @end
