@@ -32,6 +32,7 @@
 		923FFFA11AA4A75600BC83D6 /* SCRItemTagCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 923FFFA01AA4A75600BC83D6 /* SCRItemTagCell.xib */; };
 		923FFFA41AA4AA2B00BC83D6 /* SCRItemTagCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 923FFFA31AA4AA2B00BC83D6 /* SCRItemTagCell.m */; };
 		924BBFC01A08DCEB00A32940 /* InAppSettings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 924BBFBF1A08DCEB00A32940 /* InAppSettings.bundle */; };
+		925101B01ADCF16C006DB7DE /* SCRHelpHintViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 925101AF1ADCF16C006DB7DE /* SCRHelpHintViewController.m */; };
 		925AE5801A404161001E182F /* SCRMoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 925AE57F1A404161001E182F /* SCRMoreViewController.m */; };
 		9268080C1ABC4C5E00EB9225 /* SCRMediaCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9268080B1ABC4C5E00EB9225 /* SCRMediaCollectionView.m */; };
 		9268080E1ABC4C6F00EB9225 /* SCRMediaCollectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9268080D1ABC4C6F00EB9225 /* SCRMediaCollectionView.xib */; };
@@ -163,6 +164,8 @@
 		923FFFA21AA4AA2B00BC83D6 /* SCRItemTagCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRItemTagCell.h; sourceTree = "<group>"; };
 		923FFFA31AA4AA2B00BC83D6 /* SCRItemTagCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRItemTagCell.m; sourceTree = "<group>"; };
 		924BBFBF1A08DCEB00A32940 /* InAppSettings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = InAppSettings.bundle; sourceTree = "<group>"; };
+		925101AE1ADCF16C006DB7DE /* SCRHelpHintViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRHelpHintViewController.h; sourceTree = "<group>"; };
+		925101AF1ADCF16C006DB7DE /* SCRHelpHintViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRHelpHintViewController.m; sourceTree = "<group>"; };
 		925AE57E1A404161001E182F /* SCRMoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRMoreViewController.h; sourceTree = "<group>"; };
 		925AE57F1A404161001E182F /* SCRMoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRMoreViewController.m; sourceTree = "<group>"; };
 		9268080A1ABC4C5E00EB9225 /* SCRMediaCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRMediaCollectionView.h; sourceTree = "<group>"; };
@@ -543,6 +546,8 @@
 				92DD08821ACAD010001A0F59 /* SCRAddPostViewController.m */,
 				633FEAB91ACE023300A628AF /* SCRTorManager.h */,
 				633FEABA1ACE023300A628AF /* SCRTorManager.m */,
+				925101AE1ADCF16C006DB7DE /* SCRHelpHintViewController.h */,
+				925101AF1ADCF16C006DB7DE /* SCRHelpHintViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -913,6 +918,7 @@
 				929EEF8119F4F5940020BD75 /* SCRSelectLanguageViewController.m in Sources */,
 				633FEABB1ACE023300A628AF /* SCRTorManager.m in Sources */,
 				920582881A6EA25000E152D9 /* SCRGradientBackgroundView.m in Sources */,
+				925101B01ADCF16C006DB7DE /* SCRHelpHintViewController.m in Sources */,
 				92C2A7411AA74BDF00B18672 /* SCRFeedShareViewController.m in Sources */,
 				9205828B1A6EA80900E152D9 /* SCRAuthorView.m in Sources */,
 				92B9E9721A9C5FE100A2BED9 /* SCRSegmentedControl.m in Sources */,

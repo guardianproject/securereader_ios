@@ -184,9 +184,9 @@ static NSMutableDictionary *themes = nil;
         }
         else if ([property isEqualToString:@"corners"])
         {
-            if ([control isKindOfClass:[UIControl class]])
+            if ([control isKindOfClass:[UIView class]])
             {
-                UIControl *uiControl = (UIControl *)control;
+                UIView *uiControl = (UIView *)control;
                 if (uiControl.layer != nil)
                 {
                     if (save)
@@ -194,6 +194,36 @@ static NSMutableDictionary *themes = nil;
                     NSNumber *value = (NSNumber*)[self getNillableProperty:property fromDict:style];
                     if (value != nil)
                         uiControl.layer.cornerRadius = [value floatValue];
+                }
+            }
+        }
+        else if ([property isEqualToString:@"edgeThickness"])
+        {
+            if ([control isKindOfClass:[UIView class]])
+            {
+                UIView *uiControl = (UIView *)control;
+                if (uiControl.layer != nil)
+                {
+                    if (save)
+                        [SCRTheme saveProperty:property value:[NSNumber numberWithFloat:uiControl.layer.borderWidth] forControl:control];
+                    NSNumber *value = (NSNumber*)[self getNillableProperty:property fromDict:style];
+                    if (value != nil)
+                        uiControl.layer.borderWidth = [value floatValue];
+                }
+            }
+        }
+        else if ([property isEqualToString:@"edgeColor"])
+        {
+            if ([control isKindOfClass:[UIView class]])
+            {
+                UIView *uiControl = (UIView *)control;
+                if (uiControl.layer != nil)
+                {
+                    if (save)
+                        [SCRTheme saveProperty:property value:[UIColor colorWithCGColor:uiControl.layer.borderColor] forControl:control];
+                    UIColor *color = [self colorWithPropertyValue:[self getNillableProperty:property fromDict:style]];
+                    if (color != nil)
+                        uiControl.layer.borderColor = [color CGColor];
                 }
             }
         }

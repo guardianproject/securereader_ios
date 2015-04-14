@@ -194,5 +194,35 @@
 		<key>parent</key>
 		<string>ItemContentStyle</string>
 	</dict>
+	<key>HintStyle</key>
+	<dict>
+		<key>corners</key>
+		<integer>15</integer>
+		<key>edgeColor</key>
+		<string>#ffffffff</string>
+		<key>edgeThickness</key>
+		<integer>2</integer>
+	</dict>
+	<key>HintBackgroundStyle</key>
+	<dict>
+		<key>backgroundColor</key>
+		<string>#a0404040</string>
+	</dict>
+	<key>HintTextStyle</key>
+	<dict>
+		<key>textSize</key>
+		<integer>20</integer>
+		<key>textColor</key>
+		<string>#ffffffff</string>
+	</dict>
+	<key>HintButtonStyle</key>
+	<dict>
+		<key>corners</key>
+		<integer>5</integer>
+		<key>tintColor</key>
+		<string>#ffffffff</string>
+		<key>backgroundColor</key>
+		<string>@Colors/highlightColor</string>
+	</dict>
 </dict>
 </plist>
