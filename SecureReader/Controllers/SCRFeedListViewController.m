@@ -248,9 +248,9 @@ shouldReloadTableForSearchString:(NSString *)searchString
         feedListCell.rightUtilityButtons = [self rightButtonsExplore];
         feedListCell.iconViewWidthConstraint.constant = 70;
         if ([self.feedsToAdd containsObject:item])
-            [feedListCell.iconView setImage:[UIImage imageNamed:@"ic_action2_chat.png"]];
+            [feedListCell.iconView setImage:[UIImage imageNamed:@"ic_toggle_selected"]];
         else
-            [feedListCell.iconView setImage:[UIImage imageNamed:@"ic_action2_share.png"]];
+            [feedListCell.iconView setImage:[UIImage imageNamed:@"ic_toggle_add"]];
         [feedListCell.iconView setHidden:NO];
     }
     else
@@ -258,9 +258,9 @@ shouldReloadTableForSearchString:(NSString *)searchString
         feedListCell.rightUtilityButtons = [self rightButtonsExplore];
         feedListCell.iconViewWidthConstraint.constant = 70;
         if ([(SCRFeed*)item subscribed])
-            [feedListCell.iconView setImage:[UIImage imageNamed:@"ic_action2_chat.png"]];
+            [feedListCell.iconView setImage:[UIImage imageNamed:@"ic_toggle_selected"]];
         else
-            [feedListCell.iconView setImage:[UIImage imageNamed:@"ic_action2_share.png"]];
+            [feedListCell.iconView setImage:[UIImage imageNamed:@"ic_toggle_add"]];
         [feedListCell.iconView setHidden:NO];
     }
     feedListCell.delegate = self;
@@ -269,27 +269,22 @@ shouldReloadTableForSearchString:(NSString *)searchString
 - (NSArray *)rightButtonsFollowing
 {
     NSMutableArray *rightUtilityButtons = [NSMutableArray new];
-    [rightUtilityButtons sw_addUtilityButtonWithColor:
-     [UIColor colorWithRed:0.78f green:0.78f blue:0.8f alpha:1.0]
-                                                title:getLocalizedString(@"Feed_List_Action_Unfollow", @"Unfollow")];
-    [rightUtilityButtons sw_addUtilityButtonWithColor:
-     [UIColor colorWithRed:1.0f green:0.231f blue:0.188 alpha:1.0f]
-                                                title:getLocalizedString(@"Feed_List_Action_Delete", @"Delete")];
-    
+    NSArray *objects = [[NSBundle mainBundle] loadNibNamed:@"SCRSwipeUtilityButtons" owner:self options:nil];
+    [rightUtilityButtons addObject:[objects objectAtIndex:1]]; // Unfollow
+    [rightUtilityButtons addObject:[objects objectAtIndex:0]]; // Delete
     return rightUtilityButtons;
 }
 
 - (NSArray *)rightButtonsExplore
 {
     NSMutableArray *rightUtilityButtons = [NSMutableArray new];
-    [rightUtilityButtons sw_addUtilityButtonWithColor:
-     [UIColor colorWithRed:1.0f green:0.231f blue:0.188 alpha:1.0f]
-                                                title:getLocalizedString(@"Feed_List_Action_Delete", @"Delete")];
+    NSArray *objects = [[NSBundle mainBundle] loadNibNamed:@"SCRSwipeUtilityButtons" owner:self options:nil];
+    [rightUtilityButtons addObject:[objects objectAtIndex:0]]; // Delete
     return rightUtilityButtons;
 }
 
 - (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerRightUtilityButtonWithIndex:(NSInteger)index {
-
+    
     // Find table view
     //
     id view = [cell superview];
@@ -301,32 +296,30 @@ shouldReloadTableForSearchString:(NSString *)searchString
     NSIndexPath *indexPath = [tableView indexPathForCell:cell];
     if (indexPath != nil)
     {
-        SCRFeed *feed = (SCRFeed *)[(SCRYapDatabaseTableDelegate *)tableView.dataSource itemForIndexPath:indexPath];
+        SCRYapDatabaseTableDelegate *tableDelegate = (SCRYapDatabaseTableDelegate *)tableView.dataSource;
+        SCRFeed *feed = (SCRFeed *)[tableDelegate itemForIndexPath:indexPath];
         if (feed != nil)
         {
-            // Pretty sloppy this, allocating new objects for the comparison, but done seldom so...
-            //
-            if ([cell.rightUtilityButtons sw_isEqualToButtons:[self rightButtonsFollowing]])
+            UIView *selectedButton = [cell.rightUtilityButtons objectAtIndex:index];
+            
+            if (tableDelegate == self.subscribedTableDelegate)
             {
-                switch (index) {
-                    case 0:
-                        [[SCRAppDelegate sharedAppDelegate] setFeed:feed subscribed:NO];
-                        if (feed.userAdded)
-                            [[SCRAppDelegate sharedAppDelegate] removeFeed:feed];
-                        break;
-                    case 1:
-                        {
+                if ([@"delete" isEqualToString:selectedButton.restorationIdentifier])
+                {
+                    [[SCRAppDelegate sharedAppDelegate] setFeed:feed subscribed:NO];
+                    if (feed.userAdded)
                         [[SCRAppDelegate sharedAppDelegate] removeFeed:feed];
-                        break;
-                        }
+                }
+                else if ([@"unfollow" isEqualToString:selectedButton.restorationIdentifier])
+                {
+                    [[SCRAppDelegate sharedAppDelegate] removeFeed:feed];
                 }
             }
-            else if ([cell.rightUtilityButtons sw_isEqualToButtons:[self rightButtonsExplore]])
+            else
             {
-                switch (index) {
-                    case 0:
-                        [[SCRAppDelegate sharedAppDelegate] removeFeed:feed];
-                        break;
+                if ([@"delete" isEqualToString:selectedButton.restorationIdentifier])
+                {
+                    [[SCRAppDelegate sharedAppDelegate] removeFeed:feed];
                 }
             }
         }

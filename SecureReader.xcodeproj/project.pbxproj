@@ -24,6 +24,7 @@
 		920582881A6EA25000E152D9 /* SCRGradientBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 920582871A6EA25000E152D9 /* SCRGradientBackgroundView.m */; };
 		9205828B1A6EA80900E152D9 /* SCRAuthorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9205828A1A6EA80900E152D9 /* SCRAuthorView.m */; };
 		9205828D1A6EA8F500E152D9 /* SCRAuthorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9205828C1A6EA8F500E152D9 /* SCRAuthorView.xib */; };
+		920C421C1ADE5243005AB590 /* SCRSwipeUtilityButtons.xib in Resources */ = {isa = PBXBuildFile; fileRef = 920C421B1ADE5243005AB590 /* SCRSwipeUtilityButtons.xib */; };
 		921135771A7A70D40049D82B /* SCRFeedListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 921135761A7A70D40049D82B /* SCRFeedListViewController.m */; };
 		9219347B1ADBCD14001B1A73 /* UIAlertView+SecureReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 9219347A1ADBCD14001B1A73 /* UIAlertView+SecureReader.m */; };
 		9228CAD91AA9A97000DD3E44 /* SCRFeedListCellWithDescription.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9228CAD81AA9A97000DD3E44 /* SCRFeedListCellWithDescription.xib */; };
@@ -152,6 +153,7 @@
 		920582891A6EA80900E152D9 /* SCRAuthorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRAuthorView.h; sourceTree = "<group>"; };
 		9205828A1A6EA80900E152D9 /* SCRAuthorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRAuthorView.m; sourceTree = "<group>"; };
 		9205828C1A6EA8F500E152D9 /* SCRAuthorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SCRAuthorView.xib; sourceTree = "<group>"; };
+		920C421B1ADE5243005AB590 /* SCRSwipeUtilityButtons.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SCRSwipeUtilityButtons.xib; sourceTree = "<group>"; };
 		921135751A7A70D40049D82B /* SCRFeedListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRFeedListViewController.h; sourceTree = "<group>"; };
 		921135761A7A70D40049D82B /* SCRFeedListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRFeedListViewController.m; sourceTree = "<group>"; };
 		921934791ADBCD14001B1A73 /* UIAlertView+SecureReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIAlertView+SecureReader.h"; path = "Categories/UIAlertView+SecureReader.h"; sourceTree = "<group>"; };
@@ -618,6 +620,7 @@
 				92E7B96D1A41A2AE0038DBCE /* SCRReceiveShareView.xib */,
 				9279F8071A67E2940029572B /* SCRItemCellNoPhotos.xib */,
 				9279F8091A67FBE50029572B /* SCRItemCellLandscapePhotos.xib */,
+				920C421B1ADE5243005AB590 /* SCRSwipeUtilityButtons.xib */,
 				92AE0DB61ACD2F70006CE1B8 /* SCRPostItemCellDraft.h */,
 				92AE0DB71ACD2F70006CE1B8 /* SCRPostItemCellDraft.m */,
 				9276CCF51ACC225800A6B0E3 /* SCRPostItemCellDraft.xib */,
@@ -797,6 +800,7 @@
 				924BBFC01A08DCEB00A32940 /* InAppSettings.bundle in Resources */,
 				9279F8011A67B4E90029572B /* ic_action2_favorite.png in Resources */,
 				9279F80A1A67FBE50029572B /* SCRItemCellLandscapePhotos.xib in Resources */,
+				920C421C1ADE5243005AB590 /* SCRSwipeUtilityButtons.xib in Resources */,
 				92A4D2AA1A31FE720091479A /* ic_action_panic.png in Resources */,
 				9284FA771A3899730085638D /* ic_panic_lg@2x.png in Resources */,
 				9284FA751A3899730085638D /* ic_panic_down@2x.png in Resources */,

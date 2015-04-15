@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="wcY-0f-5Mo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="wcY-0f-5Mo">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -1433,7 +1433,7 @@
         <scene sceneID="GMY-V2-Y2K">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wT4-0b-VLR" customClass="SCRNavigationController" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="News" image="ic_menu_news.png" id="bIm-L5-JQq"/>
+                    <tabBarItem key="tabBarItem" title="News" image="ic_tab_news" id="bIm-L5-JQq"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="8kQ-c1-0qE">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1471,7 +1471,7 @@
         <scene sceneID="1F5-Eg-R8I">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kOB-dq-pM6" customClass="SCRNavigationController" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Favorites" image="ic_menu_news.png" id="KKQ-Rl-YyL"/>
+                    <tabBarItem key="tabBarItem" title="Favorites" image="ic_tab_favorites" id="KKQ-Rl-YyL"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="q06-lS-T9s">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1490,7 +1490,7 @@
         <scene sceneID="kSF-Wn-AaA">
             <objects>
                 <navigationController title="Posts" automaticallyAdjustsScrollViewInsets="NO" id="9b8-tQ-QPR" customClass="SCRNavigationController" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Posts" image="ic_menu_chat.png" id="MY7-Dh-4ZY"/>
+                    <tabBarItem key="tabBarItem" title="Posts" image="ic_tab_posts" id="MY7-Dh-4ZY"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="5zx-TA-f7o">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1585,7 +1585,7 @@
         <scene sceneID="50Q-j2-kdO">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="CjV-5L-a6j" customClass="SCRNavigationController" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="more" id="SSW-CG-dtW"/>
+                    <tabBarItem key="tabBarItem" image="ic_tab_more" id="SSW-CG-dtW"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Vs8-wB-VYy">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1635,8 +1635,6 @@
         <image name="ic_action2_share.png" width="24" height="24"/>
         <image name="ic_action_panic.png" width="24" height="24"/>
         <image name="ic_launcher.png" width="96" height="96"/>
-        <image name="ic_menu_chat.png" width="24" height="24"/>
-        <image name="ic_menu_news.png" width="24" height="24"/>
         <image name="ic_menu_stories.png" width="24" height="24"/>
         <image name="ic_panic_down.png" width="139" height="84"/>
         <image name="ic_panic_lg.png" width="139" height="139"/>
@@ -1645,6 +1643,10 @@
         <image name="ic_post_delete" width="24" height="24"/>
         <image name="ic_post_swap" width="24" height="24"/>
         <image name="ic_post_view" width="24" height="24"/>
+        <image name="ic_tab_favorites" width="15" height="20"/>
+        <image name="ic_tab_more" width="21" height="5"/>
+        <image name="ic_tab_news" width="20" height="17"/>
+        <image name="ic_tab_posts" width="20" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="jfR-Cp-4YG"/>
