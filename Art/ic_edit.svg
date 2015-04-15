@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="31px" height="32px" viewBox="0 0 31 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.2.2 (9983) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_edit</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Posts" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Posts---Drafts" sketch:type="MSArtboardGroup" transform="translate(-636.000000, -567.000000)" fill="#929292">
+            <g id="draft---thumbnail" sketch:type="MSLayerGroup" transform="translate(0.000000, 257.000000)">
+                <g id="ic_edit" transform="translate(636.000000, 310.000000)" sketch:type="MSShapeGroup">
+                    <path d="M23.574,4.115 L1.249,26.501 L0.526,31.466 L5.491,30.744 L27.816,8.357 L23.574,4.115 L23.574,4.115 Z M4.799,28.577 L3.385,27.162 L24.991,5.555 L26.406,6.97 L4.799,28.577 L4.799,28.577 Z" id="Shape-4"></path>
+                    <path d="M28.929,7.307 L31.004,5.169 C31.004,5.169 30.739,3.28 29.671,2.211 C28.618,1.159 26.761,0.927 26.761,0.927 L24.687,3.064 L28.929,7.307 L28.929,7.307 Z" id="Shape-2"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

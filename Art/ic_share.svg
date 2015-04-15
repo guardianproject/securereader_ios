@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="38px" height="54px" viewBox="0 0 38 54" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.2.2 (9983) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_share</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Feeds" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g sketch:type="MSArtboardGroup" transform="translate(-656.000000, -50.000000)" id="ic_share" fill="#929292">
+            <path d="M674,53.9977405 L674,84.0087986 L676.001,84.0087986 L676.001,53.7379473 L682.507,60.2447986 C682.684,60.4277986 682.975,60.4237986 683.158,60.2337986 L683.985,59.4427986 C684.168,59.2537986 684.172,58.9507986 683.994,58.7667986 L676.460451,51.2332501 C676.446348,51.1306158 676.400743,51.0308786 676.324,50.9507986 L675.57,50.1467986 C675.385,49.9547986 675.091,49.9507986 674.913,50.1367986 L666.525,58.6287986 C666.346,58.8147986 666.352,59.1207986 666.536,59.3117986 L667.29,60.1157986 C667.474,60.3077986 667.768,60.3117986 667.947,60.1257986 L674,53.9977405 Z M658,67.0087986 L658,101.008799 L692,101.008799 L692,67.0087986 L680,67.0087986 L680,65.0087986 L694,65.0087986 L694,103.008799 L656,103.008799 L656,65.0087986 L670,65.0087986 L670,67.0087986 L658,67.0087986 Z" sketch:type="MSShapeGroup"></path>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="42px" height="10px" viewBox="0 0 42 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.2.2 (9983) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_tab_more</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Feeds" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g sketch:type="MSArtboardGroup" transform="translate(-655.000000, -1286.000000)" id="Group" stroke="#CECECC" stroke-width="2" fill="#CECECC">
+            <g sketch:type="MSLayerGroup" transform="translate(0.000000, 1242.000000)">
+                <path d="M659.653633,44.5 C662.086097,44.5 664.057933,46.5141527 664.057933,48.9996594 C664.057933,51.484485 662.086097,53.5 659.653633,53.5 C657.221169,53.5 655.25,51.484485 655.25,48.9996594 C655.25,46.5141527 657.221169,44.5 659.653633,44.5 Z M675.916278,44.5 C678.348742,44.5 680.319911,46.5141527 680.319911,48.9996594 C680.319911,51.484485 678.348742,53.5 675.916278,53.5 C673.483814,53.5 671.511978,51.484485 671.511978,48.9996594 C671.512645,46.5141527 673.48448,44.5 675.916278,44.5 Z M696.583222,48.9996594 C696.583222,51.484485 694.611387,53.5 692.178923,53.5 C689.747125,53.5 687.77529,51.484485 687.77529,48.9996594 C687.77529,46.5141527 689.747125,44.5 692.178923,44.5 C694.611387,44.5 696.583222,46.5141527 696.583222,48.9996594 Z" id="ic_tab_more" sketch:type="MSShapeGroup"></path>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="29px" height="40px" viewBox="0 0 29 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.2.2 (9983) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_tab_favorites</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Feeds" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g sketch:type="MSArtboardGroup" transform="translate(-361.000000, -1269.000000)" id="Group" fill="#CECECC">
+            <g sketch:type="MSLayerGroup" transform="translate(0.000000, 1242.000000)">
+                <g id="ic_tab_favorites" transform="translate(361.000000, 27.000000)" sketch:type="MSShapeGroup">
+                    <path d="M0.348,39.1777778 L14.5658077,30.4266667 L28.7825,39.1777778 L28.7825,0.34 L0.348,0.34 L0.348,39.1777778 Z M21.3016154,26.2244444 L14.5658077,22.1988889 L7.82776923,26.2244444 L9.59007692,18.5977778 L3.66403846,13.4588889 L11.4918077,12.77 L14.5669231,5.57 L17.6409231,12.77 L25.4698077,13.4588889 L19.5448846,18.5977778 L21.3016154,26.2244444 L21.3016154,26.2244444 Z" id="Shape"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

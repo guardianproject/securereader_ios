@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="28px" height="28px" viewBox="0 0 28 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.2.2 (9983) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_search</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Feeds" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Feeds-2" sketch:type="MSArtboardGroup" transform="translate(-55.000000, -264.000000)" fill="#333333">
+            <g id="Search-White" sketch:type="MSLayerGroup" transform="translate(0.000000, 217.000000)">
+                <path d="M74.3593372,64.1879769 L82.608283,72.485 L80.4995732,74.606 L72.2784777,66.3379641 C70.5168842,67.7025209 68.3099499,68.514 65.9145788,68.514 C60.1491812,68.514 55.4754212,63.813 55.4754212,58.014 C55.4754212,52.214 60.1491812,47.514 65.9145788,47.514 C71.6809706,47.514 76.3537363,52.215 76.3537363,58.014 C76.3537363,60.3215155 75.6137062,62.4551767 74.3593372,64.1879769 L74.3593372,64.1879769 Z M65.9165672,50.511 C70.0345663,50.511 73.3741025,53.869 73.3741025,58.011 C73.3741025,62.154 70.0355605,65.511 65.9165672,65.511 C61.7985681,65.511 58.4600261,62.153 58.4600261,58.011 C58.4600261,53.869 61.7985681,50.511 65.9165672,50.511 Z" id="ic_search" sketch:type="MSShapeGroup"></path>
+            </g>
+        </g>
+    </g>
+</svg>
