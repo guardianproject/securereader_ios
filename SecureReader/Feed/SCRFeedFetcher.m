@@ -16,7 +16,7 @@
 @interface SCRFeedFetcher()
 @property (nonatomic, strong) RSSAtomKit *atomKit;
 @property (nonatomic, strong) dispatch_queue_t callbackQueue;
-@property (nonatomic, weak) YapDatabaseConnection *databaseConnection;
+@property (nonatomic, strong) YapDatabaseConnection *databaseConnection;
 
 
 @end
@@ -34,19 +34,20 @@
                            sessionConfiguration:(NSURLSessionConfiguration *)sessionConfiguration {
     if (self = [self init]) {
         self.databaseConnection = connection;
-        self.atomKit = [[RSSAtomKit alloc] initWithSessionConfiguration:sessionConfiguration];
+        _atomKit = [[RSSAtomKit alloc] initWithSessionConfiguration:sessionConfiguration];
         [self registerRSSAtomKitClasses];
     }
     return self;
 }
 
-- (RSSAtomKit *)atomKit
+- (void)setUrlSessionConfiguration:(NSURLSessionConfiguration *)urlSessionConfiguration
 {
-    if (!_atomKit) {
-        _atomKit = [[RSSAtomKit alloc] initWithSessionConfiguration:[NSURLSessionConfiguration ephemeralSessionConfiguration]];
-        [self registerRSSAtomKitClasses];
-    }
-    return _atomKit;
+    self.atomKit.urlSessionConfiguration = urlSessionConfiguration;
+}
+
+- (NSURLSessionConfiguration *)urlSessionConfiguration
+{
+    return self.atomKit.urlSessionConfiguration;
 }
 
 - (void)registerRSSAtomKitClasses

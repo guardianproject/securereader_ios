@@ -11,6 +11,9 @@
 @class SCRMediaItem, IOCipher;
 
 @interface SCRMediaFetcher : SCRNetworkFeetcher
+
+@property (nonatomic, strong, readonly) NSURLSession *urlSession;
+
 /*
  The queue on which downloadMediaItem:completionBlock will be called. defaults to the main queue;
  */

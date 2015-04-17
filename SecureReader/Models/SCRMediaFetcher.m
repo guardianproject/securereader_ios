@@ -25,7 +25,6 @@ typedef void (^SCRURLSesssionDataTaskCompletion)(NSURLSessionTask *dataTask, NSE
 
 @interface SCRMediaFetcher () <NSURLSessionDataDelegate>
 
-@property (nonatomic, strong) NSURLSession *urlSession;
 @property (nonatomic, strong) NSMutableDictionary *dataTaskDictionary;
 @property (nonatomic, strong) IOCipher *ioCipher;
 
@@ -49,14 +48,27 @@ typedef void (^SCRURLSesssionDataTaskCompletion)(NSURLSessionTask *dataTask, NSE
         self.operationQueue = [[NSOperationQueue alloc] init];
         self.operationQueue.maxConcurrentOperationCount = 1;
         
-        self.urlSession = [NSURLSession sessionWithConfiguration:sessionConfiguration delegate:self delegateQueue:self.operationQueue];
+        self.urlSessionConfiguration = sessionConfiguration;
     }
     return self;
 }
 
+- (void)setUrlSessionConfiguration:(NSURLSessionConfiguration *)urlSessionConfiguration
+{
+    if (![self.urlSession.configuration isEqual:urlSessionConfiguration]) {
+        [self invalidate];
+        _urlSession = [NSURLSession sessionWithConfiguration:urlSessionConfiguration delegate:self delegateQueue:self.operationQueue];
+    }
+}
+
+- (NSURLSessionConfiguration *)urlSessionConfiguration
+{
+    return self.urlSession.configuration;
+}
+
 - (void) invalidate {
     [self.urlSession invalidateAndCancel];
-    self.urlSession = nil;
+    _urlSession = nil;
 }
 
 - (dispatch_queue_t)completionQueue

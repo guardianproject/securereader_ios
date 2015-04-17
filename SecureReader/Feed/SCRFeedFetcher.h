@@ -13,7 +13,6 @@
 @interface SCRFeedFetcher : SCRNetworkFeetcher
 
 
-
 - (instancetype)initWithReadWriteYapConnection:(YapDatabaseConnection *)connection
                           sessionConfiguration:(NSURLSessionConfiguration *)sessionConfiguration;
 

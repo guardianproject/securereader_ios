@@ -13,6 +13,7 @@
 #import "SCRMediaItem.h"
 #import "SCRItem.h"
 #import "SCRFeed.h"
+#import "SCRPassphraseManager.h"
 
 @interface SecureReaderYapTests : XCTestCase
 
@@ -47,6 +48,7 @@ NSString *const kSecureReaderYapTestsRSSURL = @"http://test.fake/rss";
 - (void)setupDatabseAtPath:(NSString *)path
 {
     //Need to setup a different database per method becuase yap has static variable it checks
+    [[SCRPassphraseManager sharedInstance] setDatabasePassphrase:@"password" storeInKeychain:NO];
     self.databaseManager = [[SCRDatabaseManager alloc] initWithPath:path];
     
     XCTAssertNotNil(self.databaseManager.database,@"No database");
@@ -56,7 +58,7 @@ NSString *const kSecureReaderYapTestsRSSURL = @"http://test.fake/rss";
 
 - (NSURLSessionConfiguration *)setupURLMock
 {
-    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration ephemeralSessionConfiguration];
     [UMKMockURLProtocol enable];
     configuration.protocolClasses = @[[UMKMockURLProtocol class]];
     
@@ -217,6 +219,7 @@ NSString *const kSecureReaderYapTestsRSSURL = @"http://test.fake/rss";
 - (void)testDelete
 {
     NSString *path = [NSTemporaryDirectory() stringByAppendingPathComponent:NSStringFromSelector(_cmd)];
+    
     [self setupDatabseAtPath:path];
     XCTestExpectation *expectation = [self expectationWithDescription:@"expectation"];
     [self importDefaultFeed:^(NSError *error) {
@@ -247,7 +250,7 @@ NSString *const kSecureReaderYapTestsRSSURL = @"http://test.fake/rss";
         [expectation fulfill];
     }];
     
-    [self waitForExpectationsWithTimeout:10 handler:^(NSError *error) {
+    [self waitForExpectationsWithTimeout:500 handler:^(NSError *error) {
         if (error) {
             NSLog(@"Timeout Error");
         }

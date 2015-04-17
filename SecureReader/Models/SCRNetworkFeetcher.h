@@ -18,4 +18,11 @@
  */
 @property (nonatomic, strong, readonly) NSOperationQueue *networkOperationQueue;
 
+/**
+ This is the url session that will be used for network requests. This must be set in the init method or
+ otherwise before netweork requests.
+ 
+ */
+@property (nonatomic, strong) NSURLSessionConfiguration *urlSessionConfiguration;
+
 @end

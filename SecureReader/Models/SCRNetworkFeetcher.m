@@ -7,7 +7,7 @@
 //
 
 #import "SCRNetworkFeetcher.h"
-#import "CPAProxy.h"
+#import "SCRTorManager.h"
 
 @implementation SCRNetworkFeetcher
 
@@ -19,18 +19,25 @@
 - (instancetype)init {
     if (self = [super init]) {
         _networkOperationQueue = [[NSOperationQueue alloc] init];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(torNotificationReceived:) name:CPAProxyDidStartSetupNotification object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(torNotificationReceived:) name:CPAProxyDidFinishSetupNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(networkNotificationReceived:)
+                                                     name:kSCRTorManagerNetworkStatusNotification
+                                                   object:nil];
     }
     return self;
 }
 
-- (void)torNotificationReceived:(NSNotification *)notification
+- (void)networkNotificationReceived:(NSNotification *)notification
 {
-    if ([notification.name isEqualToString:CPAProxyDidStartSetupNotification] ) {
-        self.networkOperationQueue.suspended = YES;
-    } else if ([notification.name isEqualToString:CPAProxyDidFinishSetupNotification]) {
-        self.networkOperationQueue.suspended = NO;
+    NSURLSessionConfiguration *configuration = notification.userInfo[KSCRTorManagerURLSessionConfigurationKey];
+    if (configuration) {
+        self.urlSessionConfiguration = configuration;
+    }
+    
+    NSNumber *paused = notification.userInfo[kSCRTorManagerNetworkPauseKey];
+    
+    if (paused) {
+        self.networkOperationQueue.suspended = [paused boolValue];
     }
 }
 

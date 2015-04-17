@@ -144,21 +144,27 @@
     }
     
     YapDatabaseConnection *databaseConnection = [SCRDatabaseManager sharedInstance].readWriteConnection;
-    _feedFetcher = [[SCRFeedFetcher alloc] initWithReadWriteYapConnection:databaseConnection sessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    
+    ////// Setup Feed Fetcher //////
+    _feedFetcher = [[SCRFeedFetcher alloc] initWithReadWriteYapConnection:databaseConnection sessionConfiguration:[self.torManager currentConfiguration]];
+    self.feedFetcher.networkOperationQueue.suspended = self.torManager.proxyManager.status == CPAStatusConnecting;
     NSArray *feedURLs = @[@"http://www.voanews.com/api/epiqq",
                           @"http://www.theguardian.com/world/rss",
                           @"http://feeds.washingtonpost.com/rss/world",
                           @"http://www.nytimes.com/services/xml/rss/nyt/InternationalHome.xml",
                           @"http://rss.cnn.com/rss/cnn_topstories.rss",
                           @"http://rss.cnn.com/rss/cnn_world.rss"];
+    //Onion address to check tor settings
+    //NSArray *feedURLs = @[@"http://7rmath4ro2of2a42.onion/index.atom"];
     [feedURLs enumerateObjectsUsingBlock:^(NSString *feedURLString, NSUInteger idx, BOOL *stop) {
         [self.feedFetcher fetchFeedDataFromURL:[NSURL URLWithString:feedURLString] completionQueue:nil completion:nil];
     }];
     
-    //Setup media fetcher
-    _mediaFetcher = [[SCRMediaFetcher alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]
+    ////// Setup Media Fetcher //////
+    _mediaFetcher = [[SCRMediaFetcher alloc] initWithSessionConfiguration:[self.torManager currentConfiguration]
                                                                                   storage:self.fileManager.ioCipher];
     self.mediaFetcher.completionQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    self.mediaFetcher.networkOperationQueue.suspended = self.torManager.proxyManager.status == CPAStatusConnecting;
     return YES;
 }
 
