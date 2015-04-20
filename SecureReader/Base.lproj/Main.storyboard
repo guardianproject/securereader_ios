@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="wcY-0f-5Mo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="wcY-0f-5Mo">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -51,7 +51,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_panic_down.png" translatesAutoresizingMaskIntoConstraints="NO" id="ohW-OB-BPy">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="ic_panic_down.png" translatesAutoresizingMaskIntoConstraints="NO" id="ohW-OB-BPy">
                                 <rect key="frame" x="231" y="331" width="139" height="84"/>
                             </imageView>
                             <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_panic_lg.png" translatesAutoresizingMaskIntoConstraints="NO" id="Sgy-lf-j4b">
@@ -1452,7 +1452,7 @@
         <scene sceneID="Xd4-Nl-awH">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="aBa-dl-8RC" customClass="SCRNavigationController" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Feeds" image="ic_menu_stories.png" id="uYb-je-uQM"/>
+                    <tabBarItem key="tabBarItem" title="Feeds" image="ic_tab_feeds" id="uYb-je-uQM"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="0kS-UH-kE0">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1635,7 +1635,6 @@
         <image name="ic_action2_share.png" width="24" height="24"/>
         <image name="ic_action_panic.png" width="24" height="24"/>
         <image name="ic_launcher.png" width="96" height="96"/>
-        <image name="ic_menu_stories.png" width="24" height="24"/>
         <image name="ic_panic_down.png" width="139" height="84"/>
         <image name="ic_panic_lg.png" width="139" height="139"/>
         <image name="ic_post_add" width="82" height="82"/>
@@ -1644,6 +1643,7 @@
         <image name="ic_post_swap" width="24" height="24"/>
         <image name="ic_post_view" width="24" height="24"/>
         <image name="ic_tab_favorites" width="15" height="20"/>
+        <image name="ic_tab_feeds" width="18" height="17"/>
         <image name="ic_tab_more" width="21" height="5"/>
         <image name="ic_tab_news" width="20" height="17"/>
         <image name="ic_tab_posts" width="20" height="20"/>
