@@ -102,7 +102,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_launcher.png" translatesAutoresizingMaskIntoConstraints="NO" id="Hiu-1n-FBm">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="paik_launcher" translatesAutoresizingMaskIntoConstraints="NO" id="Hiu-1n-FBm">
                                 <rect key="frame" x="200" y="66" width="200" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="hQ2-cf-i0h"/>
@@ -1634,7 +1634,6 @@
         <image name="ic_action2_font.png" width="24" height="24"/>
         <image name="ic_action2_share.png" width="24" height="24"/>
         <image name="ic_action_panic.png" width="24" height="24"/>
-        <image name="ic_launcher.png" width="96" height="96"/>
         <image name="ic_panic_down.png" width="139" height="84"/>
         <image name="ic_panic_lg.png" width="139" height="139"/>
         <image name="ic_post_add" width="82" height="82"/>
@@ -1647,6 +1646,7 @@
         <image name="ic_tab_more" width="21" height="5"/>
         <image name="ic_tab_news" width="20" height="17"/>
         <image name="ic_tab_posts" width="20" height="20"/>
+        <image name="paik_launcher" width="60" height="60"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="jfR-Cp-4YG"/>
