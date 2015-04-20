@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="120px" height="120px" viewBox="0 0 120 120" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.2.2 (9983) - http://www.bohemiancoding.com/sketch -->
+    <title>paik_launcher</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="paik_launcher" sketch:type="MSArtboardGroup">
+            <g id="Icon-Edge-2-+-paik" sketch:type="MSLayerGroup">
+                <rect id="Icon-Edge-2" stroke="#FFFFFF" fill="#FFFFFF" sketch:type="MSShapeGroup" x="0" y="0" width="120" height="120" rx="28"></rect>
+                <g id="paik" transform="translate(7.281250, 12.250000)" sketch:type="MSShapeGroup">
+                    <g id="Group">
+                        <g id="Shape" fill="#A7CC5E">
+                            <path d="M41.0616431,0.076529154 L42.3051663,25.0250333 L62.912122,35.2289205 L41.0616431,0.076529154 Z"></path>
+                            <path d="M82.8084929,69.2588843 C82.910005,69.105826 83.0115171,68.9782774 83.1130292,68.8252191 L69.282006,45.4328077 L64.7139617,38.086009 L42.4066784,27.0403011 L42.7619708,34.1064929 L17.7138609,32.4228516 L18.5767137,38.4176353 L58.2425655,65.5599752 L57.2528226,67.0395389 L16.9271421,39.4635337 L15.8866431,32.3208127 L0.203024194,31.2749143 L17.866129,50.203125 C19.5664567,69.2078649 34.615625,83.5953458 53.9536794,83.5953458 C61.2879284,83.5953458 68.4191532,81.4015101 74.3829889,77.3454649 L74.3576109,77.2944455 C77.631376,75.0751 80.4737147,72.3455602 82.8084929,69.2588843 L82.8084929,69.2588843 Z"></path>
+                        </g>
+                        <path d="M90.193498,36.1217607 L90.193498,33.9789444 C89.8382056,28.8259813 86.3867944,24.3107612 80.6006048,24.3107612 C75.0935736,24.3107612 71.4391381,28.6474133 71.0330897,33.1371237 L71.0330897,41.3257431 L14.9730343,13.5456603 L18.5767137,38.4941644 L58.2171875,65.6109947 L57.684249,66.3762862 L74.1545867,77.4985232 L74.4083669,77.3454649 C83.6713458,71.0700743 89.8382056,60.6621094 90.193498,48.3154059 L90.218876,40.2288253 L94.3047379,38.3155964 L90.193498,36.1217607 L90.193498,36.1217607 Z" id="Shape" fill="#CEDC29"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
