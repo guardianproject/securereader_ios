@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 15.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="52px" height="52px"
+	 viewBox="0 0 52 52" enable-background="new 0 0 52 52" xml:space="preserve">
+<title>ic_toggle_unselected</title>
+<desc>Created with Sketch.</desc>
+<g id="Feeds" sketch:type="MSPage">
+	<g id="Feeds---Share" transform="translate(-649.000000, -461.000000)" sketch:type="MSArtboardGroup">
+		<g id="ic_toggle_unselected" transform="translate(649.000000, 461.000000)" sketch:type="MSLayerGroup">
+			<g id="Oval-45" sketch:type="MSShapeGroup">
+				<path fill="#FBFBFB" d="M26,51.19C12.11,51.19,0.81,39.89,0.81,26S12.11,0.81,26,0.81S51.19,12.11,51.19,26
+					S39.89,51.19,26,51.19z"/>
+				<path fill="#C7C7CC" d="M26,1.62c13.443,0,24.38,10.937,24.38,24.38S39.443,50.38,26,50.38S1.62,39.443,1.62,26
+					S12.557,1.62,26,1.62 M26,0C11.641,0,0,11.641,0,26s11.641,26,26,26s26-11.641,26-26S40.359,0,26,0L26,0z"/>
+			</g>
+		</g>
+	</g>
+</g>
+</svg>
