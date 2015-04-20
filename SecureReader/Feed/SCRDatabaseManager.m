@@ -207,7 +207,8 @@ NSString *const SCRRemoveYapConnectionsNotification = @"SCRRemoveYapConnectionsN
         if ([object isKindOfClass:[SCRFeed class]]) {
             SCRFeed *feed = (SCRFeed *)object;
             [dict setObject:feed.title forKey:@"title"];
-            [dict setObject:feed.feedDescription forKey:@"description"];
+            if (feed.feedDescription != nil)
+                [dict setObject:feed.feedDescription forKey:@"description"];
         }
     }];
     
