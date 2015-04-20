@@ -78,7 +78,14 @@
         }
     });
     
-    NSString *urlString = [NSString stringWithFormat:WEB_SEARCH_URL_FORMAT, [SCRSettings getUiLanguage], searchString];
+    NSString *encodedSearchString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(
+                                                                                  NULL,
+                                                                                  (CFStringRef)searchString,
+                                                                                  NULL,
+                                                                                  (CFStringRef)@"!*'();:@&=+$,/?%#[]",
+                                                                                  kCFStringEncodingUTF8 ));
+    
+    NSString *urlString = [NSString stringWithFormat:WEB_SEARCH_URL_FORMAT, [SCRSettings getUiLanguage], encodedSearchString];
     NSURL *url = [[NSURL alloc] initWithString:urlString];
     
     [[SCRAppDelegate sharedAppDelegate].feedFetcher fetchFeedsFromOPMLURL:url
