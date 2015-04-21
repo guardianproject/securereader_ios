@@ -66,11 +66,11 @@
     SCRFeedListCell *feedListCell = (SCRFeedListCell *)cell;
     if ([self.selectedFeeds containsObject:(SCRFeed*)item])
     {
-        [feedListCell.iconView setImage:[UIImage imageNamed:@"ic_action2_chat.png"]];
+        [feedListCell.iconView setImage:[UIImage imageNamed:@"ic_toggle_selected"]];
     }
     else
     {
-        [feedListCell.iconView setImage:[UIImage imageNamed:@"ic_action2_share.png"]];
+        [feedListCell.iconView setImage:[UIImage imageNamed:@"ic_toggle_unselected"]];
     }
 }
 

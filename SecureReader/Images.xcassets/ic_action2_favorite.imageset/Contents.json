@@ -3,17 +3,17 @@
   {
    "idiom" : "universal",
    "scale" : "1x",
-   "filename" : "paik_launcher.png"
+   "filename" : "ic_action2_favorite.png"
   },
   {
    "idiom" : "universal",
    "scale" : "2x",
-   "filename" : "paik_launcher@2x.png"
+   "filename" : "ic_action2_favorite@2x.png"
   },
   {
    "idiom" : "universal",
    "scale" : "3x",
-   "filename" : "paik_launcher@3x.png"
+   "filename" : "ic_action2_favorite@3x.png"
   }
  ],
  "info" : {

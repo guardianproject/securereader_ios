@@ -51,7 +51,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="ic_panic_down.png" translatesAutoresizingMaskIntoConstraints="NO" id="ohW-OB-BPy">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_panic_down.png" translatesAutoresizingMaskIntoConstraints="NO" id="ohW-OB-BPy">
                                 <rect key="frame" x="231" y="331" width="139" height="84"/>
                             </imageView>
                             <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_panic_lg.png" translatesAutoresizingMaskIntoConstraints="NO" id="Sgy-lf-j4b">
@@ -1066,7 +1066,7 @@
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="LhR-Mf-esK"/>
-                                    <barButtonItem image="ic_action2_font.png" id="mS3-ST-dNH">
+                                    <barButtonItem image="ic_action2_font" id="mS3-ST-dNH">
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="theme" value="FullScreenButtonStyle"/>
                                         </userDefinedRuntimeAttributes>
@@ -1075,7 +1075,7 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="gvW-On-kd1"/>
-                                    <barButtonItem image="ic_action2_favorite.png" id="wRx-Fr-Els">
+                                    <barButtonItem image="ic_action2_favorite" id="wRx-Fr-Els">
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="theme" value="FullScreenButtonStyle"/>
                                         </userDefinedRuntimeAttributes>
@@ -1084,7 +1084,7 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="0Tl-Ye-E2c"/>
-                                    <barButtonItem image="ic_action2_chat.png" id="OTb-GQ-XGA">
+                                    <barButtonItem image="ic_action2_chat" id="OTb-GQ-XGA">
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="theme" value="FullScreenButtonStyle"/>
                                         </userDefinedRuntimeAttributes>
@@ -1093,7 +1093,7 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="cxh-l2-Jls"/>
-                                    <barButtonItem image="ic_action2_share.png" id="qnC-f6-hce">
+                                    <barButtonItem image="ic_action2_share" id="qnC-f6-hce">
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="theme" value="FullScreenButtonStyle"/>
                                         </userDefinedRuntimeAttributes>
@@ -1629,10 +1629,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ic_action2_chat.png" width="24" height="24"/>
-        <image name="ic_action2_favorite.png" width="24" height="24"/>
-        <image name="ic_action2_font.png" width="24" height="24"/>
-        <image name="ic_action2_share.png" width="24" height="24"/>
+        <image name="ic_action2_chat" width="24" height="24"/>
+        <image name="ic_action2_favorite" width="24" height="24"/>
+        <image name="ic_action2_font" width="24" height="24"/>
+        <image name="ic_action2_share" width="24" height="24"/>
         <image name="ic_action_panic.png" width="24" height="24"/>
         <image name="ic_panic_down.png" width="139" height="84"/>
         <image name="ic_panic_lg.png" width="139" height="139"/>

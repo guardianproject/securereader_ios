@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 15.0.0, SVG Export Plug-In  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [
+	<!ENTITY ns_flows "http://ns.adobe.com/Flows/1.0/">
+]>
+<svg version="1.1"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
+	 x="0px" y="0px" width="48px" height="48px" viewBox="-9.098 -9.427 48 48"
+	 overflow="visible" enable-background="new -9.098 -9.427 48 48" xml:space="preserve">
+<defs>
+</defs>
+<path fill="#CECECC" d="M27.303,21.8c1.25-2.2,1.908-4.676,1.908-7.195C29.211,6.552,22.659,0,14.605,0S0,6.552,0,14.604
+	C0,22.658,6.552,29.21,14.605,29.21c2.32,0,4.619-0.559,6.681-1.62l8.52,2.1L27.303,21.8z M26.206,26.319l-5.254-1.295l-0.415,0.23
+	c-1.81,1.01-3.861,1.544-5.932,1.544c-6.723,0-12.194-5.47-12.194-12.194c0-6.723,5.472-12.192,12.194-12.192
+	c6.725,0,12.194,5.47,12.194,12.192c0,2.256-0.635,4.473-1.835,6.408l-0.291,0.472L26.206,26.319z"/>
+<circle fill="#CECECC" cx="7.805" cy="14.479" r="2.003"/>
+<circle fill="#CECECC" cx="14.596" cy="14.479" r="2.003"/>
+<circle fill="#CECECC" cx="21.59" cy="14.479" r="2.003"/>
+</svg>
