@@ -8,10 +8,6 @@
 "Language_Name_English" = "Engelska";
 "Language_Name_Swedish" = "Svenska";
 "Author_Name_String" = "AV %@";
-"Feed_List_Action_Follow" = "Följ";
-"Feed_List_Action_Unfollow" = "Avfölj";
-"Feed_List_Action_Delete" = "Radera";
-"Feed_List_Action_Followed" = "Redan Följd";
 "Feed_List_Search_Done" = "Klar";
 "Add_Post_Item_No_Title" = "(Titel saknas)";
 "Add_Post_Item_No_Description" = "(Beskrivning saknas)";
@@ -19,8 +15,6 @@
 "Add_Post_Pick_Image_SubTitle" = "Bildkälla";
 "Add_Post_Pick_Image_Camera" = "Kamera";
 "Add_Post_Pick_Image_Library" = "Bilder";
-"Post_Draft_Action_Edit" = "Redigera";
-"Post_Draft_Action_Delete" = "Radera";
 "Post_Draft_Delete_Alert_Title" = "Radera detta inlägg?";
 "Post_Draft_Delete_Alert_Message" = "Inlägget kommer att tas bort permament.";
 "Post_Draft_Delete_Alert_Delete" = "Radera";

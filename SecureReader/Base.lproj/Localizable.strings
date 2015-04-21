@@ -8,10 +8,6 @@
 "Language_Name_English" = "English";
 "Language_Name_Swedish" = "Swedish";
 "Author_Name_String" = "BY %@";
-"Feed_List_Action_Follow" = "Follow";
-"Feed_List_Action_Unfollow" = "Unfollow";
-"Feed_List_Action_Delete" = "Delete";
-"Feed_List_Action_Followed" = "Already Followed";
 "Feed_List_Search_Done" = "Done";
 "Add_Post_Item_No_Title" = "(No title set)";
 "Add_Post_Item_No_Description" = "(No description set)";
@@ -19,8 +15,6 @@
 "Add_Post_Pick_Image_SubTitle" = "Select source";
 "Add_Post_Pick_Image_Camera" = "Camera";
 "Add_Post_Pick_Image_Library" = "Photos";
-"Post_Draft_Action_Edit" = "Edit";
-"Post_Draft_Action_Delete" = "Delete";
 "Post_Draft_Delete_Alert_Title" = "Delete this post?";
 "Post_Draft_Delete_Alert_Message" = "It will be permanently removed.";
 "Post_Draft_Delete_Alert_Delete" = "Delete";

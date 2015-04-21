@@ -1,23 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
-        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" restorationIdentifier="delete" id="bah-RN-TAU" userLabel="Delete">
+        <view contentMode="scaleToFill" restorationIdentifier="delete" id="0LK-5V-4d1" userLabel="Delete">
             <rect key="frame" x="0.0" y="0.0" width="100" height="75"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="86h-ID-zMN">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A6W-VV-UHG">
                     <rect key="frame" x="34" y="17" width="33" height="40"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_delete" translatesAutoresizingMaskIntoConstraints="NO" id="6Kk-r4-IxQ" userLabel="icon">
+                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_delete" translatesAutoresizingMaskIntoConstraints="NO" id="vae-3r-BSd" userLabel="icon">
                             <rect key="frame" x="9" y="0.0" width="15" height="21"/>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delete" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FFu-g4-Yg1" userLabel="label">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delete" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xp1-cd-mqf" userLabel="label">
                             <rect key="frame" x="0.0" y="26" width="33" height="14"/>
                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -25,20 +24,20 @@
                         </label>
                     </subviews>
                     <constraints>
-                        <constraint firstItem="FFu-g4-Yg1" firstAttribute="top" secondItem="6Kk-r4-IxQ" secondAttribute="bottom" constant="5" id="CVK-Rr-U8j"/>
-                        <constraint firstItem="6Kk-r4-IxQ" firstAttribute="top" secondItem="86h-ID-zMN" secondAttribute="top" id="Cg1-id-RKg"/>
-                        <constraint firstItem="6Kk-r4-IxQ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="86h-ID-zMN" secondAttribute="leading" priority="999" id="QU6-Jd-L07"/>
-                        <constraint firstAttribute="centerX" secondItem="FFu-g4-Yg1" secondAttribute="centerX" id="aOo-Q8-fCs"/>
-                        <constraint firstItem="FFu-g4-Yg1" firstAttribute="leading" secondItem="86h-ID-zMN" secondAttribute="leading" priority="999" id="uJ4-GB-cOh"/>
-                        <constraint firstAttribute="bottom" secondItem="FFu-g4-Yg1" secondAttribute="bottom" id="uvY-Dl-IDa"/>
-                        <constraint firstAttribute="centerX" secondItem="6Kk-r4-IxQ" secondAttribute="centerX" id="xHV-hV-8Mt"/>
+                        <constraint firstAttribute="centerX" secondItem="Xp1-cd-mqf" secondAttribute="centerX" id="0KI-FZ-at1"/>
+                        <constraint firstItem="vae-3r-BSd" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="A6W-VV-UHG" secondAttribute="leading" priority="999" id="8B6-eY-s4u"/>
+                        <constraint firstItem="Xp1-cd-mqf" firstAttribute="leading" secondItem="A6W-VV-UHG" secondAttribute="leading" priority="999" id="GUg-Vd-soO"/>
+                        <constraint firstItem="vae-3r-BSd" firstAttribute="top" secondItem="A6W-VV-UHG" secondAttribute="top" id="Vgg-te-LyO"/>
+                        <constraint firstItem="Xp1-cd-mqf" firstAttribute="top" secondItem="vae-3r-BSd" secondAttribute="bottom" constant="5" id="dgp-UU-eaE"/>
+                        <constraint firstAttribute="centerX" secondItem="vae-3r-BSd" secondAttribute="centerX" id="lkt-Bd-Edd"/>
+                        <constraint firstAttribute="bottom" secondItem="Xp1-cd-mqf" secondAttribute="bottom" id="lqF-iV-23m"/>
                     </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstAttribute="centerX" secondItem="86h-ID-zMN" secondAttribute="centerX" id="BtR-za-ioq"/>
-                <constraint firstAttribute="centerY" secondItem="86h-ID-zMN" secondAttribute="centerY" id="CDn-1h-RQV"/>
+                <constraint firstAttribute="centerX" secondItem="A6W-VV-UHG" secondAttribute="centerX" id="rPW-XL-MdE"/>
+                <constraint firstAttribute="centerY" secondItem="A6W-VV-UHG" secondAttribute="centerY" id="siP-bm-gRb"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <nil key="simulatedTopBarMetrics"/>
@@ -46,17 +45,17 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="213" y="69.5"/>
         </view>
-        <view contentMode="scaleToFill" restorationIdentifier="unfollow" id="YcF-9T-n34" userLabel="Unfollow">
+        <view contentMode="scaleToFill" restorationIdentifier="unfollow" id="Le3-Hb-ZQF" userLabel="Unfollow">
             <rect key="frame" x="0.0" y="0.0" width="100" height="75"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lkz-4D-pVq">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TmM-wf-ggp">
                     <rect key="frame" x="27" y="18" width="46" height="38"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_unfollow" translatesAutoresizingMaskIntoConstraints="NO" id="5Zr-CF-S1x" userLabel="icon">
+                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_unfollow" translatesAutoresizingMaskIntoConstraints="NO" id="Pcd-Ns-W1V" userLabel="icon">
                             <rect key="frame" x="13" y="0.0" width="19" height="19"/>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unfollow" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zMO-Ai-VK0" userLabel="label">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unfollow" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e2h-B5-t0l" userLabel="label">
                             <rect key="frame" x="0.0" y="24" width="46" height="14"/>
                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -64,20 +63,60 @@
                         </label>
                     </subviews>
                     <constraints>
-                        <constraint firstAttribute="centerX" secondItem="5Zr-CF-S1x" secondAttribute="centerX" id="43V-ee-JLl"/>
-                        <constraint firstAttribute="centerX" secondItem="zMO-Ai-VK0" secondAttribute="centerX" id="ATU-V8-TEK"/>
-                        <constraint firstItem="5Zr-CF-S1x" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="lkz-4D-pVq" secondAttribute="leading" priority="999" id="ObG-Er-mLV"/>
-                        <constraint firstItem="zMO-Ai-VK0" firstAttribute="top" secondItem="5Zr-CF-S1x" secondAttribute="bottom" constant="5" id="aCz-Wo-G1C"/>
-                        <constraint firstItem="zMO-Ai-VK0" firstAttribute="leading" secondItem="lkz-4D-pVq" secondAttribute="leading" priority="999" id="enB-Lf-PRu"/>
-                        <constraint firstItem="5Zr-CF-S1x" firstAttribute="top" secondItem="lkz-4D-pVq" secondAttribute="top" id="fpg-hQ-blY"/>
-                        <constraint firstAttribute="bottom" secondItem="zMO-Ai-VK0" secondAttribute="bottom" id="kJD-7h-5iy"/>
+                        <constraint firstAttribute="centerX" secondItem="Pcd-Ns-W1V" secondAttribute="centerX" id="3Cr-sg-i73"/>
+                        <constraint firstItem="Pcd-Ns-W1V" firstAttribute="top" secondItem="TmM-wf-ggp" secondAttribute="top" id="3Kq-mZ-s40"/>
+                        <constraint firstItem="e2h-B5-t0l" firstAttribute="leading" secondItem="TmM-wf-ggp" secondAttribute="leading" priority="999" id="a4y-s4-vAv"/>
+                        <constraint firstItem="e2h-B5-t0l" firstAttribute="top" secondItem="Pcd-Ns-W1V" secondAttribute="bottom" constant="5" id="hbQ-HK-yIu"/>
+                        <constraint firstItem="Pcd-Ns-W1V" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="TmM-wf-ggp" secondAttribute="leading" priority="999" id="hgL-0O-l4n"/>
+                        <constraint firstAttribute="centerX" secondItem="e2h-B5-t0l" secondAttribute="centerX" id="nnB-on-zg9"/>
+                        <constraint firstAttribute="bottom" secondItem="e2h-B5-t0l" secondAttribute="bottom" id="sHC-t6-YWR"/>
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" white="0.53452155285654446" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="0.53452155290000003" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="centerX" secondItem="lkz-4D-pVq" secondAttribute="centerX" id="gQM-GH-avq"/>
-                <constraint firstAttribute="centerY" secondItem="lkz-4D-pVq" secondAttribute="centerY" id="gy8-Gj-wsn"/>
+                <constraint firstAttribute="centerY" secondItem="TmM-wf-ggp" secondAttribute="centerY" id="GPC-9I-ebg"/>
+                <constraint firstAttribute="centerX" secondItem="TmM-wf-ggp" secondAttribute="centerX" id="tel-yV-qnC"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="213" y="69.5"/>
+        </view>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" restorationIdentifier="edit" id="cy2-Lo-S2Q" userLabel="Edit">
+            <rect key="frame" x="0.0" y="0.0" width="100" height="75"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ff0-CL-WDZ">
+                    <rect key="frame" x="38" y="16" width="24" height="43"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_new_post" translatesAutoresizingMaskIntoConstraints="NO" id="1vy-KP-JID" userLabel="icon">
+                            <rect key="frame" x="0.0" y="0.0" width="23" height="24"/>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hfE-aa-W3N" userLabel="label">
+                            <rect key="frame" x="0.0" y="29" width="24" height="14"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="centerX" secondItem="1vy-KP-JID" secondAttribute="centerX" id="0Qg-Tq-z7M"/>
+                        <constraint firstItem="1vy-KP-JID" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ff0-CL-WDZ" secondAttribute="leading" priority="999" id="70G-6k-dw2"/>
+                        <constraint firstItem="hfE-aa-W3N" firstAttribute="leading" secondItem="ff0-CL-WDZ" secondAttribute="leading" priority="999" id="Ilu-g7-iiE"/>
+                        <constraint firstItem="1vy-KP-JID" firstAttribute="top" secondItem="ff0-CL-WDZ" secondAttribute="top" id="Q1O-4O-bVk"/>
+                        <constraint firstAttribute="bottom" secondItem="hfE-aa-W3N" secondAttribute="bottom" id="bPa-BS-QCo"/>
+                        <constraint firstItem="hfE-aa-W3N" firstAttribute="top" secondItem="1vy-KP-JID" secondAttribute="bottom" constant="5" id="glk-FK-uA3"/>
+                        <constraint firstAttribute="centerX" secondItem="hfE-aa-W3N" secondAttribute="centerX" id="j3Y-GT-vDh"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.53452155290000003" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="centerX" secondItem="ff0-CL-WDZ" secondAttribute="centerX" id="aXS-AP-PDC"/>
+                <constraint firstAttribute="centerY" secondItem="ff0-CL-WDZ" secondAttribute="centerY" id="qrV-b8-QCQ"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <nil key="simulatedTopBarMetrics"/>
@@ -88,6 +127,7 @@
     </objects>
     <resources>
         <image name="ic_delete" width="15" height="21"/>
+        <image name="ic_new_post" width="23" height="24"/>
         <image name="ic_unfollow" width="19" height="19"/>
     </resources>
 </document>

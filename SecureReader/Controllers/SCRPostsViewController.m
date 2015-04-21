@@ -73,13 +73,9 @@
 - (NSArray *)rightButtonsDraft
 {
     NSMutableArray *rightUtilityButtons = [NSMutableArray new];
-    [rightUtilityButtons sw_addUtilityButtonWithColor:
-     [UIColor colorWithRed:0.78f green:0.78f blue:0.8f alpha:1.0]
-                                                title:getLocalizedString(@"Post_Draft_Action_Unfollow", @"Edit")];
-    [rightUtilityButtons sw_addUtilityButtonWithColor:
-     [UIColor colorWithRed:1.0f green:0.231f blue:0.188 alpha:1.0f]
-                                                title:getLocalizedString(@"Post_Draft_Action_Delete", @"Delete")];
-    
+    NSArray *objects = [[NSBundle mainBundle] loadNibNamed:@"SCRSwipeUtilityButtons" owner:self options:nil];
+    [rightUtilityButtons addObject:[objects objectAtIndex:2]]; // Edit
+    [rightUtilityButtons addObject:[objects objectAtIndex:0]]; // Delete
     return rightUtilityButtons;
 }
 
@@ -111,30 +107,25 @@
         SCRPostItem *item = (SCRPostItem*)[tableDelegate itemForIndexPath:indexPath];
         if (item != nil)
         {
-            if ([cell.rightUtilityButtons sw_isEqualToButtons:[self rightButtonsDraft]])
+            UIView *selectedButton = [cell.rightUtilityButtons objectAtIndex:index];
+            
+            if (tableDelegate == self.draftsTableDelegate)
             {
-                switch (index) {
-                    case 0:
-                        [self editDraftItem:item];
-                        break;
-                    case 1:
-                        {
-                        UIAlertView *deleteAction = [[UIAlertView alloc] initWithTitle:getLocalizedString(@"Post_Draft_Delete_Alert_Title", @"Delete this post?")
-                                                                               message:getLocalizedString(@"Post_Draft_Delete_Alert_Message", @"It will be permanently removed.")
-                                                                              delegate:self
-                                                                     cancelButtonTitle:getLocalizedString(@"Post_Draft_Delete_Alert_Cancel", @"Cancel")
-                                                                     otherButtonTitles:getLocalizedString(@"Post_Draft_Delete_Alert_Delete", @"Delete"), nil];
-                        [deleteAction showWithCompletion:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                            if (buttonIndex == 1)
-                                [self deleteDraftItem:item];
-                        }];
-                        }
-                        break;
+                if ([@"edit" isEqualToString:selectedButton.restorationIdentifier])
+                {
+                    [self editDraftItem:item];
                 }
-            }
-            else if ([cell.rightUtilityButtons sw_isEqualToButtons:[self rightButtonsPost]])
-            {
-                switch (index) {
+                else if ([@"delete" isEqualToString:selectedButton.restorationIdentifier])
+                {
+                    UIAlertView *deleteAction = [[UIAlertView alloc] initWithTitle:getLocalizedString(@"Post_Draft_Delete_Alert_Title", @"Delete this post?")
+                                                                           message:getLocalizedString(@"Post_Draft_Delete_Alert_Message", @"It will be permanently removed.")
+                                                                          delegate:self
+                                                                 cancelButtonTitle:getLocalizedString(@"Post_Draft_Delete_Alert_Cancel", @"Cancel")
+                                                                 otherButtonTitles:getLocalizedString(@"Post_Draft_Delete_Alert_Delete", @"Delete"), nil];
+                    [deleteAction showWithCompletion:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                        if (buttonIndex == 1)
+                            [self deleteDraftItem:item];
+                    }];
                 }
             }
         }
