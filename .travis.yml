@@ -18,4 +18,4 @@ install:
 before_script:
   - pod install
 script:
-  - xctool -workspace SecureReader.xcworkspace -scheme SecureReaderTests -sdk iphonesimulator -arch i386 test
+  - xctool -workspace SecureReader.xcworkspace -scheme SecureReader -sdk iphonesimulator -arch i386 build
