@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="wcY-0f-5Mo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="wcY-0f-5Mo">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
@@ -270,6 +270,15 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OdY-8q-Zch">
+                                <rect key="frame" x="420" y="515" width="184" height="30"/>
+                                <state key="normal" title="Skip">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="skipButtonPressed:" destination="1bD-Nz-oIn" eventType="touchUpInside" id="RdK-ZV-SXI"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -284,13 +293,16 @@
                             <constraint firstItem="FIB-E0-LcG" firstAttribute="leading" secondItem="3zn-rl-cSZ" secondAttribute="leadingMargin" id="PpB-wW-R4W"/>
                             <constraint firstItem="FIB-E0-LcG" firstAttribute="top" secondItem="0aQ-XQ-xi1" secondAttribute="bottom" constant="8" id="RDh-Y6-C8U"/>
                             <constraint firstAttribute="centerX" secondItem="sqX-hY-kql" secondAttribute="centerX" id="ToK-dK-M8b"/>
+                            <constraint firstItem="OdY-8q-Zch" firstAttribute="centerY" secondItem="sqX-hY-kql" secondAttribute="centerY" id="VAz-X8-eIV"/>
                             <constraint firstItem="8D5-lH-j9E" firstAttribute="top" secondItem="FIB-E0-LcG" secondAttribute="bottom" constant="8" id="VR1-5N-S92"/>
                             <constraint firstItem="tiP-dv-3CJ" firstAttribute="top" secondItem="uj9-2b-hUt" secondAttribute="bottom" constant="100" id="d7t-rt-4Wl"/>
                             <constraint firstItem="uj9-2b-hUt" firstAttribute="top" secondItem="3zn-rl-cSZ" secondAttribute="topMargin" constant="50" id="jWl-uB-pzy"/>
                             <constraint firstItem="8D5-lH-j9E" firstAttribute="top" secondItem="FIB-E0-LcG" secondAttribute="bottom" constant="8" id="mB3-YJ-6dq"/>
                             <constraint firstItem="FIB-E0-LcG" firstAttribute="trailing" secondItem="3zn-rl-cSZ" secondAttribute="trailingMargin" id="q0f-lh-FLw"/>
                             <constraint firstItem="tiP-dv-3CJ" firstAttribute="leading" secondItem="3zn-rl-cSZ" secondAttribute="leadingMargin" id="qCn-cn-dbF"/>
+                            <constraint firstItem="OdY-8q-Zch" firstAttribute="leading" secondItem="sqX-hY-kql" secondAttribute="trailing" constant="20" id="qZC-xq-z5r"/>
                             <constraint firstItem="8D5-lH-j9E" firstAttribute="trailing" secondItem="3zn-rl-cSZ" secondAttribute="trailingMargin" id="quA-QP-qA4"/>
+                            <constraint firstItem="OdY-8q-Zch" firstAttribute="trailing" secondItem="3zn-rl-cSZ" secondAttribute="trailingMargin" constant="20" id="xAT-qT-KD6"/>
                             <constraint firstItem="0aQ-XQ-xi1" firstAttribute="leading" secondItem="3zn-rl-cSZ" secondAttribute="leadingMargin" id="ye2-fN-KrG"/>
                         </constraints>
                     </view>

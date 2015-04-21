@@ -18,17 +18,9 @@
 
 @implementation SCRCreatePassphraseViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-}
-
 - (void)viewWillAppear:(BOOL)animated
 {
     [self.navigationController setNavigationBarHidden:YES];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
 }
 
 - (IBAction)openAppButtonClicked:(id)sender
@@ -44,6 +36,10 @@
     NSString *passphrase = _editPassphrase.text;
     [[SCRPassphraseManager sharedInstance] setDatabasePassphrase:passphrase storeInKeychain:NO];
     
+    [self attemptAppSetup];
+}
+
+- (void) attemptAppSetup {
     BOOL success = [[SCRAppDelegate sharedAppDelegate] setupDatabase];
     if (!success) {
         [[[UIAlertView alloc] initWithTitle:@"Database Error" message:@"Ok." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
@@ -52,6 +48,12 @@
         [self performSegueWithIdentifier:@"segueToMain" sender:self];
         [self removeFromParentViewController];
     }
+}
+
+- (IBAction)skipButtonPressed:(id)sender {
+    NSString *passphrase = [[SCRPassphraseManager sharedInstance] generateNewPassphrase];
+    [[SCRPassphraseManager sharedInstance] setDatabasePassphrase:passphrase storeInKeychain:YES];
+    [self attemptAppSetup];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
