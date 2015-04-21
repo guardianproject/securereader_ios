@@ -36,9 +36,19 @@
         self.databaseConnection = connection;
         _atomKit = [[RSSAtomKit alloc] initWithSessionConfiguration:sessionConfiguration];
         [self registerRSSAtomKitClasses];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeYapConnections:) name:SCRRemoveYapConnectionsNotification object:[SCRDatabaseManager sharedInstance]];
     }
     return self;
 }
+
+- (void) removeYapConnections:(NSNotification*)notification {
+    self.databaseConnection = nil;
+}
+
+- (void) dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:SCRRemoveYapConnectionsNotification object:[SCRDatabaseManager sharedInstance]];
+}
+
 
 - (void)setUrlSessionConfiguration:(NSURLSessionConfiguration *)urlSessionConfiguration
 {
