@@ -21,6 +21,7 @@
 		63775E8F1AAFB00F006CE553 /* NSData+SecureReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 63775E8E1AAFB00F006CE553 /* NSData+SecureReader.m */; };
 		63775E911AB0F2CB006CE553 /* SecureReaderYapTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 63775E901AB0F2CB006CE553 /* SecureReaderYapTests.m */; };
 		63775E931AB0FFDE006CE553 /* nytimes.xml in Resources */ = {isa = PBXBuildFile; fileRef = 63775E921AB0FFDE006CE553 /* nytimes.xml */; };
+		63BE303D1AE70ECD003799D4 /* SCRNotificationsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BE303C1AE70ECD003799D4 /* SCRNotificationsView.m */; };
 		920582881A6EA25000E152D9 /* SCRGradientBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 920582871A6EA25000E152D9 /* SCRGradientBackgroundView.m */; };
 		9205828B1A6EA80900E152D9 /* SCRAuthorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9205828A1A6EA80900E152D9 /* SCRAuthorView.m */; };
 		9205828D1A6EA8F500E152D9 /* SCRAuthorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9205828C1A6EA8F500E152D9 /* SCRAuthorView.xib */; };
@@ -139,6 +140,8 @@
 		63775E8E1AAFB00F006CE553 /* NSData+SecureReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSData+SecureReader.m"; path = "Categories/NSData+SecureReader.m"; sourceTree = "<group>"; };
 		63775E901AB0F2CB006CE553 /* SecureReaderYapTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecureReaderYapTests.m; sourceTree = "<group>"; };
 		63775E921AB0FFDE006CE553 /* nytimes.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = nytimes.xml; path = "Test Assets/nytimes.xml"; sourceTree = "<group>"; };
+		63BE303B1AE70ECD003799D4 /* SCRNotificationsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRNotificationsView.h; sourceTree = "<group>"; };
+		63BE303C1AE70ECD003799D4 /* SCRNotificationsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRNotificationsView.m; sourceTree = "<group>"; };
 		920582861A6EA25000E152D9 /* SCRGradientBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRGradientBackgroundView.h; sourceTree = "<group>"; };
 		920582871A6EA25000E152D9 /* SCRGradientBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRGradientBackgroundView.m; sourceTree = "<group>"; };
 		920582891A6EA80900E152D9 /* SCRAuthorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRAuthorView.h; sourceTree = "<group>"; };
@@ -628,6 +631,8 @@
 				927EE44D1ACA9B230023AA1D /* SCRMediaCollectionViewDownloadView.xib */,
 				92E8CF8B1AD3C91D00756F9E /* SCREditTagsTextView.h */,
 				92E8CF8C1AD3C91D00756F9E /* SCREditTagsTextView.m */,
+				63BE303B1AE70ECD003799D4 /* SCRNotificationsView.h */,
+				63BE303C1AE70ECD003799D4 /* SCRNotificationsView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -875,6 +880,7 @@
 				92B23C4C1A5D442F00FFD963 /* SCRAllFeedsViewController.m in Sources */,
 				92E7B96C1A4186D60038DBCE /* SCRItemViewControllerSegue.m in Sources */,
 				92D169731A30A5C200A84608 /* SCRFeedListCell.m in Sources */,
+				63BE303D1AE70ECD003799D4 /* SCRNotificationsView.m in Sources */,
 				92E7B9741A41C8E60038DBCE /* SCRReceiveShareViewController.m in Sources */,
 				92B9E97F1A9E1A9F00A2BED9 /* SCRFeedTableDelegate.m in Sources */,
 				D9E6575F1A234363000E6301 /* SCRFeed.m in Sources */,
