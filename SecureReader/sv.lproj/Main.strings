@@ -1,15 +1,189 @@
-/* Class = "IBUIButton"; normalTitle = "GET STARTED"; ObjectID = "6yP-Wd-LOe"; */
+/* Class = "UILabel"; text = "About"; ObjectID = "1Ng-Ad-Uh9"; */
+"1Ng-Ad-Uh9.text" = "Om";
+
+/* Class = "UIViewController"; title = "Manage Feeds"; ObjectID = "1YJ-Df-8xT"; */
+"1YJ-Df-8xT.title" = "Hantera Flöden";
+
+/* Class = "UIViewController"; title = "Create Passphrase"; ObjectID = "1bD-Nz-oIn"; */
+"1bD-Nz-oIn.title" = "Skapa Lösenord";
+
+/* Class = "UITableViewController"; title = "Settings"; ObjectID = "1qY-y1-unP"; */
+"1qY-y1-unP.title" = "Inställningar";
+
+/* Class = "UILabel"; text = "Share App"; ObjectID = "2Xw-SW-kOp"; */
+"2Xw-SW-kOp.text" = "Dela App";
+
+/* Class = "UITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."; ObjectID = "4vz-a6-cEX"; */
+"4vz-a6-cEX.text" = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.";
+
+/* Class = "UIViewController"; title = "Posts"; ObjectID = "5Mu-TI-8Ub"; */
+"5Mu-TI-8Ub.title" = "Inlägg";
+
+/* Class = "UIButton"; normalTitle = "GET STARTED"; ObjectID = "6yP-Wd-LOe"; */
 "6yP-Wd-LOe.normalTitle" = "SÄTT IGÅNG";
 
-/* Class = "IBUINavigationItem"; title = "Language"; ObjectID = "Ctb-zM-vlQ"; */
+/* Class = "UINavigationController"; title = "Posts"; ObjectID = "9b8-tQ-QPR"; */
+"9b8-tQ-QPR.title" = "Inlägg";
+
+/* Class = "UINavigationItem"; title = "All Feeds"; ObjectID = "97d-nj-rXa"; */
+"97d-nj-rXa.title" = "Alla Flöden";
+
+/* Class = "UILabel"; text = "Subtitle"; ObjectID = "A99-kn-Ejx"; */
+"A99-kn-Ejx.text" = "Undertitel";
+
+/* Class = "UILabel"; text = "Label sdkfjh sdf kjhfsd fshdkfjh sdkfh sdfkjh sdfkjhs dfkjshdfsdf kjhd asdkjha sdk asdhkaj sdkjahsd"; ObjectID = "AhW-0L-8EY"; */
+"AhW-0L-8EY.text" = "Label sdkfjh sdf kjhfsd fshdkfjh sdkfh sdfkjh sdfkjhs dfkjshdfsdf kjhd asdkjha sdk asdhkaj sdkjahsd";
+
+/* Class = "UINavigationItem"; title = "Language"; ObjectID = "Ctb-zM-vlQ"; */
 "Ctb-zM-vlQ.title" = "Språk";
 
-/* Class = "IBUIBarButtonItem"; title = "Save"; ObjectID = "Hkg-oX-HWc"; */
+/* Class = "UIButton"; normalTitle = "DELETE"; ObjectID = "EB2-33-vKV"; */
+"EB2-33-vKV.normalTitle" = "RADERA";
+
+/* Class = "UILabel"; text = "Repeat"; ObjectID = "FIB-E0-LcG"; */
+"FIB-E0-LcG.text" = "Upprepa";
+
+/* Class = "UILabel"; text = "Settings"; ObjectID = "GtC-r7-ma2"; */
+"GtC-r7-ma2.text" = "Inställningar";
+
+/* Class = "UIButton"; normalTitle = "REPLACE"; ObjectID = "Hbp-MZ-Gjy"; */
+"Hbp-MZ-Gjy.normalTitle" = "ERSÄTT";
+
+/* Class = "UIBarButtonItem"; title = "Save"; ObjectID = "Hkg-oX-HWc"; */
 "Hkg-oX-HWc.title" = "Spara";
 
-/* Class = "IBUILabel"; text = "This is a localized string!"; ObjectID = "QdG-Sb-e5G"; */
+/* Class = "UILabel"; text = "My Posts"; ObjectID = "IYU-Jn-k1V"; */
+"IYU-Jn-k1V.text" = "Mina Inlägg";
+
+/* Class = "UINavigationItem"; title = "Posts"; ObjectID = "J3r-ci-WJW"; */
+"J3r-ci-WJW.title" = "Inlägg";
+
+/* Class = "UILabel"; text = "Swipe down to delete personal data"; ObjectID = "JrE-xH-ei5"; */
+"JrE-xH-ei5.text" = "Svep nedåt för att radera personlig information";
+
+/* Class = "UITabBarItem"; title = "Favorites"; ObjectID = "KKQ-Rl-YyL"; */
+"KKQ-Rl-YyL.title" = "Favoriter";
+
+/* Class = "UIButton"; normalTitle = "ADD MORE"; ObjectID = "Kas-eU-iMj"; */
+"Kas-eU-iMj.normalTitle" = "LÄGG TILL";
+
+/* Class = "UINavigationItem"; title = "Feeds"; ObjectID = "L7S-JU-Emx"; */
+"L7S-JU-Emx.title" = "Flöden";
+
+/* Class = "UINavigationItem"; title = "Add Post"; ObjectID = "LXK-o7-itM"; */
+"LXK-o7-itM.title" = "Skapa Inlägg";
+
+/* Class = "UITabBarItem"; title = "Posts"; ObjectID = "MY7-Dh-4ZY"; */
+"MY7-Dh-4ZY.title" = "Inlägg";
+
+/* Class = "UIBarButtonItem"; title = "Cancel"; ObjectID = "N7I-dk-nLh"; */
+"N7I-dk-nLh.title" = "Avbryt";
+
+/* Class = "UINavigationItem"; title = "All Feeds"; ObjectID = "OKW-af-rFH"; */
+"OKW-af-rFH.title" = "Alla Flöden";
+
+/* Class = "UILabel"; text = "This is a localized string!"; ObjectID = "QdG-Sb-e5G"; */
 "QdG-Sb-e5G.text" = "Det här är svenska!";
 
-/* Class = "IBUIViewController"; title = "Login"; ObjectID = "u4e-FS-idg"; */
-"u4e-FS-idg.title" = "Inloggning";
+/* Class = "UIViewController"; title = "Add Post"; ObjectID = "RIg-BG-i7z"; */
+"RIg-BG-i7z.title" = "Skapa Inlägg";
+
+/* Class = "UINavigationItem"; title = "Panic"; ObjectID = "UQp-yT-RyE"; */
+"UQp-yT-RyE.title" = "Panik";
+
+/* Class = "UILabel"; text = "Subtitle"; ObjectID = "Udm-Mf-U41"; */
+"Udm-Mf-U41.text" = "Undertitel";
+
+/* Class = "UILabel"; text = "Login"; ObjectID = "VBG-Sb-iFV"; */
+"VBG-Sb-iFV.text" = "Logga in";
+
+/* Class = "UINavigationItem"; title = "More"; ObjectID = "W3V-ZH-RNJ"; */
+"W3V-ZH-RNJ.title" = "Mer";
+
+/* Class = "UILabel"; text = "Subtitle"; ObjectID = "WL9-e7-PGa"; */
+"WL9-e7-PGa.text" = "Undertitel";
+
+/* Class = "UILabel"; text = "Passphrase"; ObjectID = "WLc-bv-wXH"; */
+"WLc-bv-wXH.text" = "Lösenord";
+
+/* Class = "UINavigationItem"; title = "Share"; ObjectID = "WYs-F0-9DE"; */
+"WYs-F0-9DE.title" = "Dela";
+
+/* Class = "UIButton"; normalTitle = "VIEW"; ObjectID = "ZI8-O9-DZX"; */
+"ZI8-O9-DZX.normalTitle" = "VISA";
+
+/* Class = "UIViewController"; title = "Placeholder"; ObjectID = "aZE-v5-VRg"; */
+"aZE-v5-VRg.title" = "Platshållare";
+
+/* Class = "UISegmentedControl"; b3A-kU-CRj.segmentTitles[0] = "MY POSTS"; ObjectID = "b3A-kU-CRj"; */
+"b3A-kU-CRj.segmentTitles[0]" = "MINA INLÄGG";
+
+/* Class = "UISegmentedControl"; b3A-kU-CRj.segmentTitles[1] = "DRAFTS"; ObjectID = "b3A-kU-CRj"; */
+"b3A-kU-CRj.segmentTitles[1]" = "UTKAST";
+
+/* Class = "UITabBarItem"; title = "News"; ObjectID = "bIm-L5-JQq"; */
+"bIm-L5-JQq.title" = "Nyheter";
+
+/* Class = "UITableViewSection"; headerTitle = "SECURITY SERVICES"; ObjectID = "bTs-fh-3ep"; */
+"bTs-fh-3ep.headerTitle" = "SÄKERHETSTJÄNSTER";
+
+/* Class = "UIViewController"; title = "Main Content"; ObjectID = "bv6-37-Bdc"; */
+"bv6-37-Bdc.title" = "Huvudinnehåll";
+
+/* Class = "UINavigationItem"; title = "Title"; ObjectID = "eRY-G4-MOM"; */
+"eRY-G4-MOM.title" = "Rubrik";
+
+/* Class = "UIButton"; normalTitle = "Receive share screen - push to close"; ObjectID = "eaT-Lr-aX6"; */
+"eaT-Lr-aX6.normalTitle" = "Ta emot delningar - tryck för att stänga";
+
+/* Class = "UILabel"; text = "This is a label explaining what needs to be explained in the screen."; ObjectID = "f6t-ZW-7bp"; */
+"f6t-ZW-7bp.text" = "Den här texten förklarar vad som ska förklaras i skärmbilden.";
+
+/* Class = "UIButton"; normalTitle = "I get it!"; ObjectID = "gUb-Pp-FdZ"; */
+"gUb-Pp-FdZ.normalTitle" = "Jag förstår!";
+
+/* Class = "UINavigationItem"; title = "Receive Share"; ObjectID = "kvR-28-70Q"; */
+"kvR-28-70Q.title" = "Ta emot delning";
+
+/* Class = "UIButton"; normalTitle = "Login"; ObjectID = "o0V-O8-hvd"; */
+"o0V-O8-hvd.normalTitle" = "Logga in";
+
+/* Class = "UIBarButtonItem"; title = "Share"; ObjectID = "qhX-o0-Xc6"; */
+"qhX-o0-Xc6.title" = "Dela";
+
+/* Class = "UIButton"; normalTitle = "OPEN APP"; ObjectID = "sqX-hY-kql"; */
+"sqX-hY-kql.normalTitle" = "ÖPPNA APP";
+
+/* Class = "UILabel"; text = "Passphrase"; ObjectID = "tiP-dv-3CJ"; */
+"tiP-dv-3CJ.text" = "Lösenord";
+
+/* Class = "UIViewController"; title = "Welcome"; ObjectID = "u4e-FS-idg"; */
+"u4e-FS-idg.title" = "Välkommen";
+
+/* Class = "UINavigationItem"; title = "Favorites"; ObjectID = "uWf-id-meN"; */
+"uWf-id-meN.title" = "Favoriter";
+
+/* Class = "UITabBarItem"; title = "Feeds"; ObjectID = "uYb-je-uQM"; */
+"uYb-je-uQM.title" = "Flöden";
+
+/* Class = "UILabel"; text = "Create Passphrase"; ObjectID = "uj9-2b-hUt"; */
+"uj9-2b-hUt.text" = "Skapa Lösenord";
+
+/* Class = "UIViewController"; title = "Main Content"; ObjectID = "vpR-Gw-cn5"; */
+"vpR-Gw-cn5.title" = "Huvudinnehåll";
+
+/* Class = "UISegmentedControl"; yFE-c1-6DC.segmentTitles[0] = "Following"; ObjectID = "yFE-c1-6DC"; */
+"yFE-c1-6DC.segmentTitles[0]" = "Följda";
+
+/* Class = "UISegmentedControl"; yFE-c1-6DC.segmentTitles[1] = "Explore"; ObjectID = "yFE-c1-6DC"; */
+"yFE-c1-6DC.segmentTitles[1]" = "Utforska";
+
+/* Class = "UIViewController"; title = "Panic"; ObjectID = "z6q-7u-hD7"; */
+"z6q-7u-hD7.title" = "Panik";
+
+/* Class = "UILabel"; text = "Stories Received"; ObjectID = "zJ0-AS-4JT"; */
+"zJ0-AS-4JT.text" = "Mottagna Artiklar";
+
+/* Class = "UILabel"; text = "Media Downloads"; ObjectID = "zb4-sp-nWg"; */
+"zb4-sp-nWg.text" = "Medianedladdningar";
 

@@ -50,7 +50,7 @@
                         }];
     } else {
         // incorrect passphrase
-        [[[UIAlertView alloc] initWithTitle:@"Incorrect Passphrase" message:@"Ok." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Login.Incorrect.Title", @"Alert title for incorrect passphrase entered") message:NSLocalizedString(@"Login.Incorrect.Message", @"Alert message for incorrect passphrase entered") delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil] show];
     }
     
 }
@@ -82,7 +82,7 @@
     }
     LAContext *myContext = [[LAContext alloc] init];
     NSError *authError = nil;
-    NSString *myLocalizedReasonString = NSLocalizedString(@"Unlock app with TouchID", @"prompt for TouchID");
+    NSString *myLocalizedReasonString = NSLocalizedString(@"Login.UnlockWithTouchID", @"prompt for TouchID");
     
     if ([myContext canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:&authError]) {
         [myContext evaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics

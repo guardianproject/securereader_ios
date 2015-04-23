@@ -42,7 +42,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.languages = [[NSArray alloc] initWithObjects:getLocalizedString(@"Language_Name_English", @"English") , getLocalizedString(@"Language_Name_Swedish", @"Swedish"), nil];
+    self.languages = [[NSArray alloc] initWithObjects:NSLocalizedString(@"English", @"Language name for English") , NSLocalizedString(@"Svenska", @"Language name for Swedish"), nil];
     self.languageCodes = [[NSArray alloc] initWithObjects:@"en", @"sv", nil];
     
     [pickerLanguage setDataSource:self];
@@ -97,6 +97,7 @@
     NSString *newLanguage = [self.languageCodes objectAtIndex:row];
     [SCRSettings setUiLanguage:newLanguage];
     [NSBundle setLanguage:newLanguage];
+    [SCRTheme reinitialize];
     UIViewController *cont = [self.storyboard instantiateViewControllerWithIdentifier:self.restorationIdentifier];
     [[SCRAppDelegate sharedAppDelegate].window setRootViewController:cont];
 }
@@ -193,9 +194,10 @@
 
 - (NSString*) getLanguageDisplayName:(NSString*)languageCode;
 {
-    if ([@"sv" isEqualToString:languageCode])
-        return getLocalizedString(@"Language_Name_Swedish", @"Swedish");
-    return getLocalizedString(@"Language_Name_English", @"English");
+    NSUInteger idx = [self.languageCodes indexOfObject:languageCode];
+    if (idx != NSNotFound)
+        return [self.languages objectAtIndex:idx];
+    return [self.languages objectAtIndex:0];
 }
 
 @end

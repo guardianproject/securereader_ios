@@ -26,6 +26,9 @@
 		9205828B1A6EA80900E152D9 /* SCRAuthorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9205828A1A6EA80900E152D9 /* SCRAuthorView.m */; };
 		9205828D1A6EA8F500E152D9 /* SCRAuthorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9205828C1A6EA8F500E152D9 /* SCRAuthorView.xib */; };
 		920C421C1ADE5243005AB590 /* SCRSwipeUtilityButtons.xib in Resources */ = {isa = PBXBuildFile; fileRef = 920C421B1ADE5243005AB590 /* SCRSwipeUtilityButtons.xib */; };
+		920C8D881AE8DBF700FAF494 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 920C8D8A1AE8DBF700FAF494 /* Localizable.strings */; };
+		920C8D971AE934A500FAF494 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 920C8D991AE934A500FAF494 /* InfoPlist.strings */; };
+		920C8D9C1AE934A600FAF494 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 920C8D9E1AE934A600FAF494 /* InfoPlist.strings */; };
 		921135771A7A70D40049D82B /* SCRFeedListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 921135761A7A70D40049D82B /* SCRFeedListViewController.m */; };
 		9219347B1ADBCD14001B1A73 /* UIAlertView+SecureReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 9219347A1ADBCD14001B1A73 /* UIAlertView+SecureReader.m */; };
 		9228CAD91AA9A97000DD3E44 /* SCRFeedListCellWithDescription.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9228CAD81AA9A97000DD3E44 /* SCRFeedListCellWithDescription.xib */; };
@@ -67,7 +70,6 @@
 		929EEF8419F4F5940020BD75 /* SCRTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 929EEF7D19F4F5940020BD75 /* SCRTheme.m */; };
 		929EEF8519F4F5940020BD75 /* UIView+Theming.m in Sources */ = {isa = PBXBuildFile; fileRef = 929EEF7F19F4F5940020BD75 /* UIView+Theming.m */; };
 		929EEF8719F4F5F30020BD75 /* Styles.plist in Resources */ = {isa = PBXBuildFile; fileRef = 929EEF8619F4F5F30020BD75 /* Styles.plist */; };
-		929EEF8C19F4FC9D0020BD75 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 929EEF8E19F4FC9D0020BD75 /* Localizable.strings */; };
 		929EEF9319F5110D0020BD75 /* SCRCreatePassphraseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 929EEF9219F5110D0020BD75 /* SCRCreatePassphraseViewController.m */; };
 		929EEF9619F549080020BD75 /* SCRNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 929EEF9519F549080020BD75 /* SCRNavigationController.m */; };
 		92A4D2A51A31F1D40091479A /* SCRPanicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A4D2A41A31F1D40091479A /* SCRPanicViewController.m */; };
@@ -148,6 +150,10 @@
 		9205828A1A6EA80900E152D9 /* SCRAuthorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRAuthorView.m; sourceTree = "<group>"; };
 		9205828C1A6EA8F500E152D9 /* SCRAuthorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SCRAuthorView.xib; sourceTree = "<group>"; };
 		920C421B1ADE5243005AB590 /* SCRSwipeUtilityButtons.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SCRSwipeUtilityButtons.xib; sourceTree = "<group>"; };
+		920C8D8E1AE9145700FAF494 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Localizable.strings; sourceTree = "<group>"; };
+		920C8D901AE92FA500FAF494 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		920C8D981AE934A500FAF494 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		920C8D9D1AE934A600FAF494 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		921135751A7A70D40049D82B /* SCRFeedListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRFeedListViewController.h; sourceTree = "<group>"; };
 		921135761A7A70D40049D82B /* SCRFeedListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRFeedListViewController.m; sourceTree = "<group>"; };
 		921934791ADBCD14001B1A73 /* UIAlertView+SecureReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIAlertView+SecureReader.h"; path = "Categories/UIAlertView+SecureReader.h"; sourceTree = "<group>"; };
@@ -217,8 +223,6 @@
 		929EEF8619F4F5F30020BD75 /* Styles.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Styles.plist; sourceTree = "<group>"; };
 		929EEF8819F4F84D0020BD75 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Main.strings; sourceTree = "<group>"; };
 		929EEF8919F4F84D0020BD75 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		929EEF8D19F4FC9D0020BD75 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; lineEnding = 0; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.simpleColoring; };
-		929EEF8F19F4FCA40020BD75 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; lineEnding = 0; name = sv; path = sv.lproj/Localizable.strings; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.simpleColoring; };
 		929EEF9119F5110D0020BD75 /* SCRCreatePassphraseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SCRCreatePassphraseViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		929EEF9219F5110D0020BD75 /* SCRCreatePassphraseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SCRCreatePassphraseViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		929EEF9419F549080020BD75 /* SCRNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SCRNavigationController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -461,7 +465,6 @@
 				929EEF5A19F4EB100020BD75 /* Images.xcassets */,
 				929EEF5C19F4EB100020BD75 /* LaunchScreen.xib */,
 				929EEF4A19F4EB100020BD75 /* Supporting Files */,
-				929EEF8E19F4FC9D0020BD75 /* Localizable.strings */,
 				92BD50AA1A07A74500F3BD22 /* Temporary Files */,
 				924BBFBF1A08DCEB00A32940 /* InAppSettings.bundle */,
 			);
@@ -471,6 +474,8 @@
 		929EEF4A19F4EB100020BD75 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				920C8D9E1AE934A600FAF494 /* InfoPlist.strings */,
+				920C8D8A1AE8DBF700FAF494 /* Localizable.strings */,
 				929EEF4B19F4EB100020BD75 /* Info.plist */,
 				929EEF4C19F4EB100020BD75 /* main.m */,
 			);
@@ -493,6 +498,7 @@
 		929EEF6719F4EB100020BD75 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				920C8D991AE934A500FAF494 /* InfoPlist.strings */,
 				929EEF6819F4EB100020BD75 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -760,9 +766,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				923FFFA11AA4A75600BC83D6 /* SCRItemTagCell.xib in Resources */,
-				929EEF8C19F4FC9D0020BD75 /* Localizable.strings in Resources */,
 				92E7B96E1A41A2AE0038DBCE /* SCRReceiveShareView.xib in Resources */,
 				9228CAD91AA9A97000DD3E44 /* SCRFeedListCellWithDescription.xib in Resources */,
+				920C8D9C1AE934A600FAF494 /* InfoPlist.strings in Resources */,
 				9284FA741A3899730085638D /* ic_panic_down.png in Resources */,
 				929EEF5919F4EB100020BD75 /* Main.storyboard in Resources */,
 				9268080E1ABC4C6F00EB9225 /* SCRMediaCollectionView.xib in Resources */,
@@ -770,6 +776,7 @@
 				9284FA761A3899730085638D /* ic_panic_lg.png in Resources */,
 				9279F8081A67E2940029572B /* SCRItemCellNoPhotos.xib in Resources */,
 				92C3F0901A80CDE000DFA438 /* SCRFeedListCell.xib in Resources */,
+				920C8D881AE8DBF700FAF494 /* Localizable.strings in Resources */,
 				924BBFC01A08DCEB00A32940 /* InAppSettings.bundle in Resources */,
 				9279F80A1A67FBE50029572B /* SCRItemCellLandscapePhotos.xib in Resources */,
 				920C421C1ADE5243005AB590 /* SCRSwipeUtilityButtons.xib in Resources */,
@@ -792,6 +799,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				63775E891AAF97B4006CE553 /* Octocat.png in Resources */,
+				920C8D971AE934A500FAF494 /* InfoPlist.strings in Resources */,
 				63775E931AB0FFDE006CE553 /* nytimes.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -955,6 +963,31 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		920C8D8A1AE8DBF700FAF494 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				920C8D8E1AE9145700FAF494 /* sv */,
+				920C8D901AE92FA500FAF494 /* Base */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		920C8D991AE934A500FAF494 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				920C8D981AE934A500FAF494 /* sv */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		920C8D9E1AE934A600FAF494 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				920C8D9D1AE934A600FAF494 /* sv */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		929EEF5719F4EB100020BD75 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -971,15 +1004,6 @@
 				929EEF8919F4F84D0020BD75 /* sv */,
 			);
 			name = LaunchScreen.xib;
-			sourceTree = "<group>";
-		};
-		929EEF8E19F4FC9D0020BD75 /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				929EEF8D19F4FC9D0020BD75 /* Base */,
-				929EEF8F19F4FCA40020BD75 /* sv */,
-			);
-			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

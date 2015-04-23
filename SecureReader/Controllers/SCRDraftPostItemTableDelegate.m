@@ -49,10 +49,10 @@
     
     cell.titleView.text = item.title;
     if (cell.titleView.text.length == 0)
-        cell.titleView.text = getLocalizedString(@"Add_Post_Item_No_Title", @"(No title set)");
+        cell.titleView.text = NSLocalizedString(@"Posts.Draft.NoTitlePlaceholder", @"Title placeholder in drafts");
     cell.textView.text = item.content;
     if (cell.textView.text.length == 0)
-        cell.textView.text = getLocalizedString(@"Add_Post_Item_No_Description", @"(No description set)");
+        cell.textView.text = NSLocalizedString(@"Posts.Draft.NoDescriptionPlaceholder", @"Description placeholder in drafts");
     [cell.btnEdit addTarget:self action:@selector(editButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [cell.btnDelete addTarget:self action:@selector(deleteButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [cell.mediaCollectionView setItem:item];

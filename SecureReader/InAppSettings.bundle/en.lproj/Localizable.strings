@@ -1,0 +1,87 @@
+/* Message for AddPost -> pick image when no sources are available */
+$0
+
+/* Title for AddPost -> pick image when no sources are available */
+$0
+
+/* Post screen: Alert message, get image from gallery */
+$0
+
+/* Post screen: pick image from camera */
+$0
+
+/* Post screen: pick image from photos */
+$0
+
+/* Post screen: Alert title, get image from gallery */
+$0
+
+/* Message for create passphrase, db failure */
+$0
+
+/* Title for create passphrase, db failure */
+$0
+
+/* Message for create passphrase, mismatched passwords */
+$0
+
+/* Title for create passphrase, mismatched passwords */
+$0
+
+/* Language name for English */
+$0
+
+/* Navbar title for all feeds */
+$0
+
+/* Navbar title for favorites */
+$0
+
+/* Navbar default title for items list */
+$0
+
+/* Navbar title for received items */
+$0
+
+/* Done with feed search button */
+$0
+
+/* Author name string */
+$0
+
+/* Alert message for incorrect passphrase entered */
+$0
+
+/* Alert title for incorrect passphrase entered */
+$0
+
+/* prompt for TouchID */
+$0
+
+/* No comment provided by engineer. */
+$0
+
+/* Delete post action cancel */
+$0
+
+/* Delete post action delete */
+$0
+
+/* Message when deleting post */
+$0
+
+/* Title when deleting post */
+$0
+
+/* Description placeholder in drafts */
+$0
+
+/* Title placeholder in drafts */
+$0
+
+/* Number of selected items for sharing */
+$0
+
+/* Language name for Swedish */
+$0
+

@@ -12,8 +12,6 @@
 #define kPanicStartNotification @"Panic"
 #define kSettingChangedNotification @"SettingChanged"
 
-#define getLocalizedString(key, defaultVal)   [[NSBundle mainBundle] localizedStringForKey:key value:defaultVal table:nil]
-
 @interface SCRApplication : UIApplication
 
 + (SCRApplication*) sharedApplication;

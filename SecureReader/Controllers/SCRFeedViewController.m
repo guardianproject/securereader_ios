@@ -59,26 +59,23 @@
 {
     switch (type) {
         case SCRFeedViewTypeAllFeeds:
-            self.navigationItem.title = @"All feeds";
+            self.navigationItem.title = NSLocalizedString(@"FeedList.Navbar.AllFeeds", @"Navbar title for all feeds");
             break;
             
         case SCRFeedViewTypeFavorites:
-            self.navigationItem.title = @"Favorites";
+            self.navigationItem.title = NSLocalizedString(@"FeedList.Navbar.Favorites", @"Navbar title for favorites");
             break;
             
         case SCRFeedViewTypeFeed:
-            if (feed != nil)
-                self.navigationItem.title = feed.title;
-            else
-                self.navigationItem.title = @"Feed";
+            self.navigationItem.title = feed.title;
             break;
             
         case SCRFeedViewTypeReceived:
-            self.navigationItem.title = @"Received";
+            self.navigationItem.title = NSLocalizedString(@"FeedList.Navbar.Received", @"Navbar title for received items");
             break;
             
         default:
-            self.navigationItem.title = @"Feed";
+            self.navigationItem.title = NSLocalizedString(@"FeedList.Navbar.Feed", @"Navbar default title for items list");
             break;
     }
 

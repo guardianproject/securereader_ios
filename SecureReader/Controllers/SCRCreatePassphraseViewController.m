@@ -30,7 +30,7 @@
 
     if (![_editPassphrase.text isEqualToString:_editPassphraseVerify.text])
     {
-        [[[UIAlertView alloc] initWithTitle:@"Create Passphrase" message:@"Passphrases did not match, please try again." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"CreatePassphrase.Mismatched.Title", @"Title for create passphrase, mismatched passwords") message:NSLocalizedString(@"CreatePassphrase.Mismatched.Message", @"Message for create passphrase, mismatched passwords") delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil] show];
         return;
     }
     NSString *passphrase = _editPassphrase.text;
@@ -42,9 +42,8 @@
 - (void) attemptAppSetup {
     BOOL success = [[SCRAppDelegate sharedAppDelegate] setupDatabase];
     if (!success) {
-        [[[UIAlertView alloc] initWithTitle:@"Database Error" message:@"Ok." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"CreatePassphrase.DBError.Title", @"Title for create passphrase, db failure") message:NSLocalizedString(@"CreatePassphrase.DBError.Message", @"Message for create passphrase, db failure") delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil] show];
     } else {
-        [[[UIAlertView alloc] initWithTitle:@"Create Passphrase" message:@"Ok." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
         [self performSegueWithIdentifier:@"segueToMain" sender:self];
         [self removeFromParentViewController];
     }

@@ -68,9 +68,9 @@
     self.authorView.labelDate.text = [NSDateFormatter localizedStringFromDate:self.item.publicationDate dateStyle:NSDateFormatterLongStyle timeStyle:NSDateFormatterNoStyle];
     self.authorView.labelTime.text = [NSDateFormatter localizedStringFromDate:self.item.publicationDate dateStyle:NSDateFormatterNoStyle timeStyle:NSDateFormatterShortStyle];
     if (self.item.author != nil && self.item.author.name != nil)
-        self.authorView.labelAuthorName.text = [NSString stringWithFormat:getLocalizedString(@"Author_Name_String", @"BY %@"), self.item.author.name];
+        self.authorView.labelAuthorName.text = [NSString stringWithFormat:NSLocalizedString(@"ItemPage.AuthorName", @"Author name string"), self.item.author.name];
     else if (self.item.author != nil && self.item.author.email != nil)
-        self.authorView.labelAuthorName.text = [NSString stringWithFormat:getLocalizedString(@"Author_Name_String", @"BY %@"), self.item.author.email];
+        self.authorView.labelAuthorName.text = [NSString stringWithFormat:NSLocalizedString(@"ItemPage.AuthorName", @"Author name string"), self.item.author.email];
     else
         self.authorView.labelAuthorName.text = @"";
     self.authorView.labelAuthorName.text = [self.authorView.labelAuthorName.text uppercaseString];

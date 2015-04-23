@@ -175,17 +175,17 @@
     
     if(hasCamera && hasSavedPics)
     {
-        UIAlertController* alert = [UIAlertController alertControllerWithTitle:getLocalizedString(@"Add_Post_Pick_Image_Title", @"Pick Image")
-                                                                       message:getLocalizedString(@"Add_Post_Pick_Image_SubTitle", @"Select source")
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"AddPost.PickImage.PickSource.Title", @"Post screen: Alert title, get image from gallery")
+                                                                       message:NSLocalizedString(@"AddPost.PickImage.PickSource.Message", @"Post screen: Alert message, get image from gallery")
                                                                 preferredStyle:UIAlertControllerStyleActionSheet];
         
-        UIAlertAction* libraryAction = [UIAlertAction actionWithTitle:getLocalizedString(@"Add_Post_Pick_Image_Library", @"Photos") style:UIAlertActionStyleDefault
+        UIAlertAction* libraryAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"AddPost.PickImage.PickSource.Option.Photos", @"Post screen: pick image from photos") style:UIAlertActionStyleDefault
                                                               handler:^(UIAlertAction * action) {
                                                                   [self getImageFromGallery:sender];
                                                               }];
         
         [alert addAction:libraryAction];
-        UIAlertAction* cameraAction = [UIAlertAction actionWithTitle:getLocalizedString(@"Add_Post_Pick_Image_Camera", @"Camera") style:UIAlertActionStyleDefault
+        UIAlertAction* cameraAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"AddPost.PickImage.PickSource.Option.Camera", @"Post screen: pick image from camera") style:UIAlertActionStyleDefault
                                                              handler:^(UIAlertAction * action) {
                                                                  [self getImageFromCamera:sender];
                                                              }];
@@ -210,7 +210,7 @@
     }
     else
     {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"No Image Source Available." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"AddPost.PickImage.NoSource.Title", "Title for AddPost -> pick image when no sources are available") message:NSLocalizedString(@"AddPost.PickImage.NoSource.Message", @"Message for AddPost -> pick image when no sources are available") delegate:self cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil, nil];
         [alert show];
         alert = nil;
     }

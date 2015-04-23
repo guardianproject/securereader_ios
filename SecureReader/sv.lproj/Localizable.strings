@@ -1,21 +1,87 @@
-/* 
-  Localizable.strings
-  SecureReader
+/* Message for AddPost -> pick image when no sources are available */
+"AddPost.PickImage.NoSource.Message" = "Ingen bildkälla hittades.";
 
-  Created by N-Pex on 2014-10-20.
-  Copyright (c) 2014 Guardian Project. All rights reserved.
-*/
-"Language_Name_English" = "Engelska";
-"Language_Name_Swedish" = "Svenska";
-"Author_Name_String" = "AV %@";
-"Feed_List_Search_Done" = "Klar";
-"Add_Post_Item_No_Title" = "(Titel saknas)";
-"Add_Post_Item_No_Description" = "(Beskrivning saknas)";
-"Add_Post_Pick_Image_Title" = "Välj bild";
-"Add_Post_Pick_Image_SubTitle" = "Bildkälla";
-"Add_Post_Pick_Image_Camera" = "Kamera";
-"Add_Post_Pick_Image_Library" = "Bilder";
-"Post_Draft_Delete_Alert_Title" = "Radera detta inlägg?";
-"Post_Draft_Delete_Alert_Message" = "Inlägget kommer att tas bort permament.";
-"Post_Draft_Delete_Alert_Delete" = "Radera";
-"Post_Draft_Delete_Alert_Cancel" = "Avbryt";
+/* Title for AddPost -> pick image when no sources are available */
+"AddPost.PickImage.NoSource.Title" = "Välj Bild";
+
+/* Post screen: Alert message, get image from gallery */
+"AddPost.PickImage.PickSource.Message" = "Välj bildkälla";
+
+/* Post screen: pick image from camera */
+"AddPost.PickImage.PickSource.Option.Camera" = "Kamera";
+
+/* Post screen: pick image from photos */
+"AddPost.PickImage.PickSource.Option.Photos" = "Foton";
+
+/* Post screen: Alert title, get image from gallery */
+"AddPost.PickImage.PickSource.Title" = "Välj Bild";
+
+/* Message for create passphrase, db failure */
+"CreatePassphrase.DBError.Message" = "Ett databasfel inträffade.";
+
+/* Title for create passphrase, db failure */
+"CreatePassphrase.DBError.Title" = "Skapa Lösenord";
+
+/* Message for create passphrase, mismatched passwords */
+"CreatePassphrase.Mismatched.Message" = "Lösenorden matchade inte, vänligen försök igen.";
+
+/* Title for create passphrase, mismatched passwords */
+"CreatePassphrase.Mismatched.Title" = "Skapa Lösenord";
+
+/* Language name for English */
+"English" = "English";
+
+/* Navbar title for all feeds */
+"FeedList.Navbar.AllFeeds" = "Alla Flöden";
+
+/* Navbar title for favorites */
+"FeedList.Navbar.Favorites" = "Favoriter";
+
+/* Navbar default title for items list */
+"FeedList.Navbar.Feed" = "Flöde";
+
+/* Navbar title for received items */
+"FeedList.Navbar.Received" = "Mottagna";
+
+/* Done with feed search button */
+"FeedSearch.Button.Done" = "Klar";
+
+/* Author name string */
+"ItemPage.AuthorName" = "AV %@";
+
+/* Alert message for incorrect passphrase entered */
+"Login.Incorrect.Message" = "Fel lösenord, vänligen försök igen.";
+
+/* Alert title for incorrect passphrase entered */
+"Login.Incorrect.Title" = "Logga in";
+
+/* prompt for TouchID */
+"Login.UnlockWithTouchID" = "Lås upp appen med TouchID";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
+
+/* Delete post action cancel */
+"Posts.Draft.Delete.Cancel" = "Avbryt";
+
+/* Delete post action delete */
+"Posts.Draft.Delete.Delete" = "Radera";
+
+/* Message when deleting post */
+"Posts.Draft.Delete.Message" = "Det kommer att tas bort permanent.";
+
+/* Title when deleting post */
+"Posts.Draft.Delete.Title" = "Radera inlägg?";
+
+/* Description placeholder in drafts */
+"Posts.Draft.NoDescriptionPlaceholder" = "(Beskrivning saknas)";
+
+/* Title placeholder in drafts */
+"Posts.Draft.NoTitlePlaceholder" = "(Rubrik saknas)";
+
+/* Number of selected items for sharing */
+"Share.Feeds.SelectedItems" = "%lu Markerade";
+
+/* Language name for Swedish */
+"Svenska" = "Svenska";
+

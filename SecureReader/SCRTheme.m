@@ -49,10 +49,17 @@ static NSMutableDictionary *themes = nil;
             //[[UIBarItem appearance] setTheme:@"UIBarButton"];
             
             id barButtonAppearanceInSearchBar = [UIBarButtonItem appearanceWhenContainedIn:[UISearchBar class], nil];
-            [barButtonAppearanceInSearchBar setTitle:getLocalizedString(@"Feed_List_Search_Done", @"Done")];
+            [barButtonAppearanceInSearchBar setTitle:NSLocalizedString(@"FeedSearch.Button.Done", @"Done with feed search button")];
         }
     }
 }
+
++(void) reinitialize
+{
+    themes = nil;
+    [self initialize];
+}
+
 + (void) saveProperty:(NSString *)property value:(NSObject *)obj forControl:(NSObject *)control
 {
     NSMutableDictionary *savedStyle = objc_getAssociatedObject(control, &_savedStyle);

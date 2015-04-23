@@ -40,7 +40,7 @@
 
 - (void) updateTitle
 {
-    [self setTitle:[NSString stringWithFormat:@"%lu Selected", (unsigned long)self.selectedFeeds.count]];
+    [self setTitle:[NSString localizedStringWithFormat:NSLocalizedString(@"Share.Feeds.SelectedItems", @"Number of selected items for sharing"), (unsigned long)self.selectedFeeds.count]];
 }
 
 - (void)didSelectRowAtIndexPath:(NSIndexPath *)indexPath delegate:(SCRYapDatabaseTableDelegate *)delegate

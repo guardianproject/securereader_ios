@@ -117,11 +117,11 @@
                 }
                 else if ([@"delete" isEqualToString:selectedButton.restorationIdentifier])
                 {
-                    UIAlertView *deleteAction = [[UIAlertView alloc] initWithTitle:getLocalizedString(@"Post_Draft_Delete_Alert_Title", @"Delete this post?")
-                                                                           message:getLocalizedString(@"Post_Draft_Delete_Alert_Message", @"It will be permanently removed.")
+                    UIAlertView *deleteAction = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Posts.Draft.Delete.Title", @"Title when deleting post")
+                                                                           message:NSLocalizedString(@"Posts.Draft.Delete.Message", @"Message when deleting post")
                                                                           delegate:self
-                                                                 cancelButtonTitle:getLocalizedString(@"Post_Draft_Delete_Alert_Cancel", @"Cancel")
-                                                                 otherButtonTitles:getLocalizedString(@"Post_Draft_Delete_Alert_Delete", @"Delete"), nil];
+                                                                 cancelButtonTitle:NSLocalizedString(@"Posts.Draft.Delete.Cancel", @"Delete post action cancel")
+                                                                 otherButtonTitles:NSLocalizedString(@"Posts.Draft.Delete.Delete", @"Delete post action delete"), nil];
                     [deleteAction showWithCompletion:^(UIAlertView *alertView, NSInteger buttonIndex) {
                         if (buttonIndex == 1)
                             [self deleteDraftItem:item];
