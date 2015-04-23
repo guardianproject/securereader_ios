@@ -32,7 +32,7 @@
 "English" = "English";
 
 /* Navbar title for all feeds */
-"FeedList.Navbar.AllFeeds" = "AllFeeds";
+"FeedList.Navbar.AllFeeds" = "All Feeds";
 
 /* Navbar title for favorites */
 "FeedList.Navbar.Favorites" = "Favorites";

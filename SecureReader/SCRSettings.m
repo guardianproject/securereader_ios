@@ -19,7 +19,7 @@ NSString * const kFontSizeAdjustmentSettingsKey = @"fontSizeAdjustment";
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *ret = [userDefaults stringForKey:@"uiLanguage"];
     if (ret == nil)
-        ret = @"en";
+        ret = @"Base";
     return ret;
 }
 
