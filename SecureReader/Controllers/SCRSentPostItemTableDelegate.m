@@ -9,6 +9,7 @@
 #import "SCRSentPostItemTableDelegate.h"
 #import "SCRItemView.h"
 #import "SCRPostItem.h"
+#import "NSFormatter+SecureReader.h"
 
 @implementation SCRSentPostItemTableDelegate
 
@@ -38,7 +39,14 @@
 {
     SCRItemView *cell = (SCRItemView *)genericcell;
     SCRPostItem *item = (SCRPostItem *)genericitem;
+    
+    // Store item pointer
+    cell.item = item;
+    
     cell.titleView.text = item.title;
+    cell.sourceView.labelSource.text = @"";
+    cell.sourceView.labelDate.text = [[NSFormatter scr_sharedIntervalFormatter] stringForTimeIntervalFromDate:[NSDate date] toDate:item.lastEdited];
+    [cell.mediaCollectionView setItem:item];
 }
 
 @end

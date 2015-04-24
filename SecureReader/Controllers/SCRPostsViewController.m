@@ -74,7 +74,6 @@
 {
     NSMutableArray *rightUtilityButtons = [NSMutableArray new];
     NSArray *objects = [[NSBundle mainBundle] loadNibNamed:@"SCRSwipeUtilityButtons" owner:self options:nil];
-    [rightUtilityButtons addObject:[objects objectAtIndex:2]]; // Edit
     [rightUtilityButtons addObject:[objects objectAtIndex:0]]; // Delete
     return rightUtilityButtons;
 }
@@ -173,6 +172,20 @@
     [[SCRDatabaseManager sharedInstance].readWriteConnection asyncReadWriteWithBlock:^(YapDatabaseReadWriteTransaction *transaction) {
         [transaction removeObjectForKey:item.yapKey inCollection:[[item class] yapCollection]];
     }];
+}
+
+- (void)didSelectRowAtIndexPath:(NSIndexPath *)indexPath delegate:(SCRYapDatabaseTableDelegate *)delegate
+{
+    [delegate.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    SCRPostItem *item = (SCRPostItem*)[delegate itemForIndexPath:indexPath];
+    if (item != nil)
+    {
+        if (delegate == self.draftsTableDelegate)
+        {
+            [self editDraftItem:item];
+        }
+    }
 }
 
 @end

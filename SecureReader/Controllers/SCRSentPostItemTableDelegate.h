@@ -7,7 +7,8 @@
 //
 
 #import "SCRYapDatabaseTableDelegate.h"
+#import "SCRItemTableDelegate.h"
 
-@interface SCRSentPostItemTableDelegate : SCRYapDatabaseTableDelegate
+@interface SCRSentPostItemTableDelegate : SCRItemTableDelegate
 
 @end
