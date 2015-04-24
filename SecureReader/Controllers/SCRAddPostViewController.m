@@ -43,8 +43,8 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    [super viewWillDisappear:animated];
     [self saveDraft];
+    [super viewWillDisappear:animated];
 }
 
 - (void) showPostBarButton:(BOOL) show
@@ -287,6 +287,7 @@
                 }
                 else
                     self.item.mediaItemsYapKeys = [NSArray arrayWithObject:mediaItem.yapKey];
+                [self populateItemFromUI];
                 [self.item saveWithTransaction:transaction];
                 [[SCRAppDelegate sharedAppDelegate].mediaFetcher saveMediaItem:mediaItem data:png completionBlock:^(NSError *error) {
                     [self updateMediaCollectionView];
