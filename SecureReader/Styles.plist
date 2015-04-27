@@ -7,6 +7,13 @@
 		<key>highlightColor</key>
 		<string>#ff6cc01d</string>
 	</dict>
+	<key>HilitedTintStyle</key>
+	<dict>
+		<key>textColor</key>
+		<string>@Colors/highlightColor</string>
+		<key>tintColor</key>
+		<string>@Colors/highlightColor</string>
+	</dict>
 	<key>SCRSegmentedControl</key>
 	<dict>
 		<key>edgeHeight</key>
@@ -227,6 +234,13 @@
 		<string>#ffffffff</string>
 		<key>backgroundColor</key>
 		<string>@Colors/highlightColor</string>
+	</dict>
+	<key>MoreSectionStyle</key>
+	<dict>
+		<key>textSize</key>
+		<integer>12</integer>
+		<key>textColor</key>
+		<string>#ff888888</string>
 	</dict>
 </dict>
 </plist>

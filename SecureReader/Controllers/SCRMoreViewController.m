@@ -10,6 +10,7 @@
 #import "SCRFeedViewController.h"
 #import "SCRReceiveShareView.h"
 #import "SCRNavigationController.h"
+#import "UIView+Theming.h"
 
 @interface SCRMoreViewController ()
 
@@ -43,5 +44,17 @@
     return [super shouldPerformSegueWithIdentifier:identifier sender:sender];
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    
+    UILabel *myLabel = [[UILabel alloc] init];
+    myLabel.frame = CGRectMake(12, 8, 320, 20);
+    myLabel.text = [self tableView:tableView titleForHeaderInSection:section];
+    myLabel.theme = @"MoreSectionStyle";
+    
+    UIView *headerView = [[UIView alloc] init];
+    [headerView addSubview:myLabel];
+    
+    return headerView;
+}
 
 @end
