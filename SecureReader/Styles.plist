@@ -5,7 +5,7 @@
 	<key>Colors</key>
 	<dict>
 		<key>highlightColor</key>
-		<string>#ff95ab55</string>
+		<string>#ff6cc01d</string>
 	</dict>
 	<key>SCRSegmentedControl</key>
 	<dict>
@@ -40,12 +40,12 @@
 	</dict>
 	<key>TabBarItemStyle</key>
 	<dict>
-		<key>parent</key>
-		<string>NavigationBarItemStyle</string>
+		<key>tintColor</key>
+		<string>#ff888888</string>
 		<key>backgroundColorSelected</key>
 		<string>@Colors/highlightColor</string>
 		<key>edgeHeight</key>
-		<integer>2</integer>
+		<integer>3</integer>
 	</dict>
 	<key>NavigationBarItemStyle</key>
 	<dict>
