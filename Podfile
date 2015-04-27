@@ -1,5 +1,5 @@
 platform :ios, '7.0'
-
+xcodeproj 'SecureReader.xcodeproj'
 source 'https://github.com/CocoaPods/Specs.git'
 
 pod 'InAppSettingsKit', '~> 2.2'

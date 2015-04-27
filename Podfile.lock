@@ -1,23 +1,23 @@
 PODS:
-  - AFNetworking (2.5.2):
-    - AFNetworking/NSURLConnection (= 2.5.2)
-    - AFNetworking/NSURLSession (= 2.5.2)
-    - AFNetworking/Reachability (= 2.5.2)
-    - AFNetworking/Security (= 2.5.2)
-    - AFNetworking/Serialization (= 2.5.2)
-    - AFNetworking/UIKit (= 2.5.2)
-  - AFNetworking/NSURLConnection (2.5.2):
+  - AFNetworking (2.5.3):
+    - AFNetworking/NSURLConnection (= 2.5.3)
+    - AFNetworking/NSURLSession (= 2.5.3)
+    - AFNetworking/Reachability (= 2.5.3)
+    - AFNetworking/Security (= 2.5.3)
+    - AFNetworking/Serialization (= 2.5.3)
+    - AFNetworking/UIKit (= 2.5.3)
+  - AFNetworking/NSURLConnection (2.5.3):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.5.2):
+  - AFNetworking/NSURLSession (2.5.3):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/Reachability (2.5.2)
-  - AFNetworking/Security (2.5.2)
-  - AFNetworking/Serialization (2.5.2)
-  - AFNetworking/UIKit (2.5.2):
+  - AFNetworking/Reachability (2.5.3)
+  - AFNetworking/Security (2.5.3)
+  - AFNetworking/Serialization (2.5.3)
+  - AFNetworking/UIKit (2.5.3):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - CocoaAsyncSocket (7.4.1)
@@ -29,11 +29,11 @@ PODS:
   - CPAProxy (1.0.0):
     - CocoaAsyncSocket
   - FormatterKit/TimeIntervalFormatter (1.8.0)
-  - GCDWebServer (3.2.2):
-    - GCDWebServer/Core (= 3.2.2)
-  - GCDWebServer/Core (3.2.2)
-  - HockeySDK (3.6.2)
-  - InAppSettingsKit (2.5)
+  - GCDWebServer (3.2.3):
+    - GCDWebServer/Core (= 3.2.3)
+  - GCDWebServer/Core (3.2.3)
+  - HockeySDK (3.6.4)
+  - InAppSettingsKit (2.5.2)
   - IOCipher/common (0.1.0):
     - libsqlfs/SQLCipher
   - IOCipher/GCDWebServer (0.1.0):
@@ -48,7 +48,7 @@ PODS:
   - Mantle/extobjc (1.5.4)
   - MWFeedParser/NSString+HTML (1.0.1)
   - Ono (1.2.1)
-  - PureLayout (2.0.5)
+  - PureLayout (2.0.6)
   - RSSAtomKit (0.1.0):
     - AFNetworking (~> 2.5)
     - Mantle (~> 1.5)
@@ -102,20 +102,20 @@ EXTERNAL SOURCES:
     :path: Submodules/RSSAtomKit/RSSAtomKit.podspec
 
 SPEC CHECKSUMS:
-  AFNetworking: fefbce9660acb17f48ae0011292d4da0f457bf36
+  AFNetworking: e1d86c2a96bb5d2e7408da36149806706ee122fe
   CocoaAsyncSocket: 7cbf214b27f8e7f7574db6a3fd96352ffaed433d
   CocoaLumberjack: 628fca2e88ef06f7cf6817309aa405f325d9a6fa
   CPAProxy: 2f0d2ef592b28e0686b5a100ad663bdd3e51900b
   FormatterKit: bddde83e054edf9d9ee14f9de3b3a5103db256f4
-  GCDWebServer: 5320220ad0d497da8e7beca1396f0c82d4f83730
-  HockeySDK: 51ade1aff04463137e852797d2eb4dfb2511d6a9
-  InAppSettingsKit: d872c25e20fcc7d9d33554e5be63070a07a443a7
+  GCDWebServer: 0f68bdc06d035f285f2d1ef0ac35ed46be040a71
+  HockeySDK: c07cdd580296737edcd0963e292c19885a53f563
+  InAppSettingsKit: 90b3f9b99d857f95fd1422467d857de143cac099
   IOCipher: 2bcc56103fbdd9cd9139a5b030ebb97ed6fbc4b9
   libsqlfs: 179e4fb40b8c07fd0ee7933ec4c0b9f4815cbd0e
   Mantle: 60acd0cd363e27d945bda0a6b8e90577112d28f3
   MWFeedParser: 2cf646014c1baf6ad1b08c480b40a08180079247
   Ono: 1122212de602280cc7af19d7ab12ee98a3fc0339
-  PureLayout: a0fe75f1cf485801e7e00b723b8a3c32dca558e2
+  PureLayout: f25f0bb904d5ccfe6e31da3cb869185259f02e0d
   RSSAtomKit: 81636ed61cf61508c272877c88847d83235304c9
   SOCKit: c7376ac262bea9115b8f749358f762522a47d392
   SQLCipher: c44fcca49c31483c2489cfb79aa7a69407f3794a
