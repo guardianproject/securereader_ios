@@ -12,6 +12,7 @@
 #import "SCRFeedViewController.h"
 #import "UIView+Theming.h"
 #import "SCRDatabaseManager.h"
+#import "SCRTheme.h"
 
 @interface SCRMainViewController ()
 
@@ -22,6 +23,24 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.tabBar setTheme:@"TabBarItemStyle"];
+    int edgeHeight = [(NSNumber*)[SCRTheme getProperty:@"edgeHeight" forTheme:@"TabBarItemStyle"] intValue];
+    UIColor *backgroundColorSelected = [SCRTheme getColorProperty:@"backgroundColorSelected" forTheme:@"TabBarItemStyle"];
+    CGRect rect = CGRectMake(0, 0, 1, self.tabBar.bounds.size.height);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextClearRect(context, rect);
+    CGContextSetFillColorWithColor(context, [backgroundColorSelected CGColor]);
+    CGContextFillRect(context, CGRectMake(0, self.tabBar.bounds.size.height - edgeHeight, 1, edgeHeight));
+    UIImage *backgroundSelected = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    [self.tabBar setSelectionIndicatorImage:[backgroundSelected resizableImageWithCapInsets:UIEdgeInsetsZero resizingMode:UIImageResizingModeStretch]];;
+    
+    for (UITabBarItem *item in self.tabBar.items)
+    {
+        item.title = nil;
+        item.imageInsets = UIEdgeInsetsMake(9, 0, -9, 0);
+    }
+    
     self.delegate = self;
 }
 

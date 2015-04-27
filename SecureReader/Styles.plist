@@ -42,6 +42,10 @@
 	<dict>
 		<key>parent</key>
 		<string>NavigationBarItemStyle</string>
+		<key>backgroundColorSelected</key>
+		<string>@Colors/highlightColor</string>
+		<key>edgeHeight</key>
+		<integer>2</integer>
 	</dict>
 	<key>NavigationBarItemStyle</key>
 	<dict>
