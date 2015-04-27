@@ -9,8 +9,11 @@
 #import "SCRNetworkFeetcher.h"
 
 @class SCRMediaItem, IOCipher;
+@protocol SCRMediaFetcherDelegate;
 
 @interface SCRMediaFetcher : SCRNetworkFeetcher
+
+@property (nonatomic, weak) id<SCRMediaFetcherDelegate> delegate;
 
 @property (nonatomic, strong, readonly) NSURLSession *urlSession;
 
@@ -48,4 +51,11 @@
  */
 - (void)saveMediaItem:(SCRMediaItem *)mediaItem data:(NSData *)data completionBlock:(void (^)(NSError *error))completion;
 
+@end
+
+@protocol SCRMediaFetcherDelegate <NSObject>
+@optional
+- (void) mediaDownloadStarted:(SCRMediaItem *)mediaItem;
+- (void) mediaDownloadProgress:(SCRMediaItem *)mediaItem downloaded:(NSUInteger)bytes ofTotal:(NSUInteger)total;
+- (void) mediaDownloadCompleted:(SCRMediaItem *)mediaItem withError:(NSError *)error;
 @end

@@ -92,8 +92,11 @@
 
 - (void)onCellConfigured:(UITableViewCell *)cell forItem:(NSObject *)item atIndexPath:(NSIndexPath *)indexPath
 {
-    BOOL download = ([self isActive] && [SCRSettings downloadMedia] && self.tableView.dragging == NO && self.tableView.decelerating == NO);
-    [((SCRItemView *)cell).mediaCollectionView createThumbnails:download completion:nil];
+    if (self.tableView.dragging == NO && self.tableView.decelerating == NO)
+    {
+        BOOL download = ([self isActive] && [SCRSettings downloadMedia]);
+        [((SCRItemView *)cell).mediaCollectionView createThumbnails:download completion:nil];
+    }
 }
 
 

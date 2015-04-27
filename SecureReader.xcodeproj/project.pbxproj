@@ -95,6 +95,8 @@
 		92C3F0901A80CDE000DFA438 /* SCRFeedListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92C3F08F1A80CDE000DFA438 /* SCRFeedListCell.xib */; };
 		92C458391A233EAA00835B10 /* SCRItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C458381A233EAA00835B10 /* SCRItemViewController.m */; };
 		92D169731A30A5C200A84608 /* SCRFeedListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92D169721A30A5C200A84608 /* SCRFeedListCell.m */; };
+		92D2128F1AEE3F7700549740 /* SCRMediaDownloadsTableDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 92D2128E1AEE3F7700549740 /* SCRMediaDownloadsTableDelegate.m */; };
+		92D212921AEE5E8300549740 /* SCRMediaDownloadsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92D212911AEE5E8300549740 /* SCRMediaDownloadsViewController.m */; };
 		92DD08831ACAD010001A0F59 /* SCRAddPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DD08821ACAD010001A0F59 /* SCRAddPostViewController.m */; };
 		92E7B96C1A4186D60038DBCE /* SCRItemViewControllerSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7B96B1A4186D60038DBCE /* SCRItemViewControllerSegue.m */; };
 		92E7B96E1A41A2AE0038DBCE /* SCRReceiveShareView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92E7B96D1A41A2AE0038DBCE /* SCRReceiveShareView.xib */; };
@@ -269,6 +271,10 @@
 		92C458381A233EAA00835B10 /* SCRItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRItemViewController.m; sourceTree = "<group>"; };
 		92D169711A30A5C200A84608 /* SCRFeedListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRFeedListCell.h; sourceTree = "<group>"; };
 		92D169721A30A5C200A84608 /* SCRFeedListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRFeedListCell.m; sourceTree = "<group>"; };
+		92D2128D1AEE3F7700549740 /* SCRMediaDownloadsTableDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRMediaDownloadsTableDelegate.h; sourceTree = "<group>"; };
+		92D2128E1AEE3F7700549740 /* SCRMediaDownloadsTableDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRMediaDownloadsTableDelegate.m; sourceTree = "<group>"; };
+		92D212901AEE5E8300549740 /* SCRMediaDownloadsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRMediaDownloadsViewController.h; sourceTree = "<group>"; };
+		92D212911AEE5E8300549740 /* SCRMediaDownloadsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRMediaDownloadsViewController.m; sourceTree = "<group>"; };
 		92DD08811ACAD010001A0F59 /* SCRAddPostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRAddPostViewController.h; sourceTree = "<group>"; };
 		92DD08821ACAD010001A0F59 /* SCRAddPostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRAddPostViewController.m; sourceTree = "<group>"; };
 		92E7B96A1A4186D60038DBCE /* SCRItemViewControllerSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SCRItemViewControllerSegue.h; path = Controllers/SCRItemViewControllerSegue.h; sourceTree = "<group>"; };
@@ -544,6 +550,8 @@
 				633FEABA1ACE023300A628AF /* SCRTorManager.m */,
 				925101AE1ADCF16C006DB7DE /* SCRHelpHintViewController.h */,
 				925101AF1ADCF16C006DB7DE /* SCRHelpHintViewController.m */,
+				92D212901AEE5E8300549740 /* SCRMediaDownloadsViewController.h */,
+				92D212911AEE5E8300549740 /* SCRMediaDownloadsViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -580,6 +588,8 @@
 				9276CCF01ACBF6AF00A6B0E3 /* SCRDraftPostItemTableDelegate.m */,
 				9276CCF21ACC1FBB00A6B0E3 /* SCRSentPostItemTableDelegate.h */,
 				9276CCF31ACC1FBB00A6B0E3 /* SCRSentPostItemTableDelegate.m */,
+				92D2128D1AEE3F7700549740 /* SCRMediaDownloadsTableDelegate.h */,
+				92D2128E1AEE3F7700549740 /* SCRMediaDownloadsTableDelegate.m */,
 			);
 			name = "Table Delegates";
 			sourceTree = "<group>";
@@ -881,6 +891,7 @@
 				92BD509A1A07A36A00F3BD22 /* SCRItem.m in Sources */,
 				92E7B9711A41A30F0038DBCE /* SCRReceiveShareView.m in Sources */,
 				D90F593A1A19F617008F2DCB /* SCRDatabaseManager.m in Sources */,
+				92D212921AEE5E8300549740 /* SCRMediaDownloadsViewController.m in Sources */,
 				92BD50A11A07A38900F3BD22 /* SCRItemView.m in Sources */,
 				929BE4BE1A7913A700641647 /* SCRLabel.m in Sources */,
 				632A10871ACF594400E05075 /* NSUserDefaults+SecureReader.m in Sources */,
@@ -891,6 +902,7 @@
 				929EEF9319F5110D0020BD75 /* SCRCreatePassphraseViewController.m in Sources */,
 				92B23C4C1A5D442F00FFD963 /* SCRAllFeedsViewController.m in Sources */,
 				92E7B96C1A4186D60038DBCE /* SCRItemViewControllerSegue.m in Sources */,
+				92D2128F1AEE3F7700549740 /* SCRMediaDownloadsTableDelegate.m in Sources */,
 				92D169731A30A5C200A84608 /* SCRFeedListCell.m in Sources */,
 				63BE303D1AE70ECD003799D4 /* SCRNotificationsView.m in Sources */,
 				92E7B9741A41C8E60038DBCE /* SCRReceiveShareViewController.m in Sources */,

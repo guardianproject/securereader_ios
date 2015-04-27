@@ -14,6 +14,7 @@ typedef void (^SCRURLSesssionDataTaskCompletion)(NSURLSessionTask *dataTask, NSE
 
 @interface SCRURLSessionDataTaskInfo : NSObject 
 
+@property (nonatomic, strong) SCRMediaItem *item;
 @property (nonatomic, strong) NSString *localPath;
 @property (nonatomic, copy) SCRURLSesssionDataTaskCompletion completion;
 @property (nonatomic) NSUInteger offset;
@@ -88,7 +89,7 @@ typedef void (^SCRURLSesssionDataTaskCompletion)(NSURLSessionTask *dataTask, NSE
     
     NSURLSessionDataTask *dataTask = [self.urlSession dataTaskWithURL:mediaItem.url];
     
-    [self addDataTask:dataTask forLocalPath:[mediaItem localPath] completion:^(NSURLSessionTask *task, NSError *error) {
+    [self addDataTask:dataTask forMediaItem:mediaItem completion:^(NSURLSessionTask *task, NSError *error) {
         completion(error);
     }];
     [dataTask resume];
@@ -125,18 +126,24 @@ typedef void (^SCRURLSesssionDataTaskCompletion)(NSURLSessionTask *dataTask, NSE
 //Taken mostly from http://www.objc.io/issue-2/low-level-concurrency-apis.html
 
 
-- (void)addDataTask:(NSURLSessionDataTask *)dataTask forLocalPath:(NSString *)localPath completion:(SCRURLSesssionDataTaskCompletion)completion
+- (void)addDataTask:(NSURLSessionDataTask *)dataTask forMediaItem:(SCRMediaItem *)mediaItem completion:(SCRURLSesssionDataTaskCompletion)completion
 {
     __block SCRURLSessionDataTaskInfo *taskInfo = [[SCRURLSessionDataTaskInfo alloc] init];
-    taskInfo.localPath = localPath;
+    taskInfo.item = mediaItem;
+    taskInfo.localPath = mediaItem.localPath;
     taskInfo.completion = completion;
     taskInfo.offset = 0;
     
     dispatch_async(self.isolationQueue, ^{
-        if (dataTask && [localPath length]) {
+        if (dataTask && [mediaItem.localPath length]) {
             [self.dataTaskDictionary setObject:taskInfo forKey:@(dataTask.taskIdentifier)];
         }
     });
+    
+    if (_delegate != nil && [_delegate respondsToSelector:@selector(mediaDownloadStarted:)])
+    {
+        [_delegate mediaDownloadStarted:mediaItem];
+    }
 }
 
 - (SCRURLSessionDataTaskInfo *)infoForTask:(NSURLSessionTask *)task
@@ -177,6 +184,11 @@ typedef void (^SCRURLSesssionDataTaskCompletion)(NSURLSessionTask *dataTask, NSE
             }
         }
         info.offset += [data length];
+        
+        if (_delegate != nil && [_delegate respondsToSelector:@selector(mediaDownloadProgress:downloaded:ofTotal:)])
+        {
+            [_delegate mediaDownloadProgress:info.item downloaded:info.offset ofTotal:[dataTask countOfBytesExpectedToReceive]];
+        }
     }
 }
 
@@ -190,7 +202,11 @@ typedef void (^SCRURLSesssionDataTaskCompletion)(NSURLSessionTask *dataTask, NSE
                 info.completion(task,error);
             });
         }
+        if (_delegate != nil && [_delegate respondsToSelector:@selector(mediaDownloadCompleted:withError:)])
+        {
+            [_delegate mediaDownloadCompleted:info.item withError:error];
+        }
     }
-    
 }
+
 @end
