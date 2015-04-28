@@ -13,6 +13,7 @@
 #import "YapDatabaseFullTextSearch.h"
 #import "YapDatabaseSearchResultsView.h"
 #import "YapDatabaseFilteredView.h"
+#import "YapDatabaseSecondaryIndex.h"
 #import "SCRItem.h"
 #import "SCRFeed.h"
 #import "SCRPostItem.h"
@@ -30,6 +31,9 @@ NSString *const kSCRRelationshipExtensionName = @"kSCRRelationshipExtensionName"
 NSString *const kSCRAllPostItemsViewName = @"kSCRAllPostItemsViewName";
 NSString *const SCRRemoveYapConnectionsNotification = @"SCRRemoveYapConnectionsNotification";
 
+/** Secondary Index Constatns */
+NSString *const kSCRSecondaryIndexExtensionName = @"kSCRSecondaryIndexExtensionName";
+NSString *const kSCRSubscribedFeedsColumnName = @"kSCRSubscribedFeedsColumnName";
 
 @interface SCRDatabaseManager()
 @property (nonatomic, strong) YapDatabaseConnection *registrationConnection;
@@ -76,6 +80,7 @@ NSString *const SCRRemoveYapConnectionsNotification = @"SCRRemoveYapConnectionsN
     _readConnection = [self.database newConnection];
     _registrationConnection = [self.database newConnection];
     [self registerViews];
+    [self registerSecondaryIndex];
 }
 
 // Database will be nil if password is incorrect
@@ -241,6 +246,23 @@ NSString *const SCRRemoveYapConnectionsNotification = @"SCRRemoveYapConnectionsN
     }];
     YapDatabaseView *databaseView = [[YapDatabaseView alloc] initWithGrouping:grouping sorting:sorting versionTag:@"1" options:nil];
     [self.database registerExtension:databaseView withName:kSCRAllPostItemsViewName connection:self.registrationConnection];
+}
+
+- (void)registerSecondaryIndex {
+    YapDatabaseSecondaryIndexSetup *setup = [[YapDatabaseSecondaryIndexSetup alloc] init];
+    [setup addColumn:kSCRSubscribedFeedsColumnName withType:YapDatabaseSecondaryIndexTypeInteger];
+    
+    YapDatabaseSecondaryIndexHandler *handler = [YapDatabaseSecondaryIndexHandler withObjectBlock:^(NSMutableDictionary *dict, NSString *collection, NSString *key, id object) {
+        
+        if ([object isKindOfClass:[SCRFeed class]]) {
+            SCRFeed *feed = (SCRFeed *)object;
+            [dict setObject:@(feed.subscribed) forKey:kSCRSubscribedFeedsColumnName];
+        }
+    }];
+    
+    YapDatabaseSecondaryIndex *index = [[YapDatabaseSecondaryIndex alloc] initWithSetup:setup handler:handler];
+    
+    [self.database registerExtension:index withName:kSCRSecondaryIndexExtensionName];
 }
 
 + (instancetype) sharedInstance {

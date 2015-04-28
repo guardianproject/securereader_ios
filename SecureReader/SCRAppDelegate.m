@@ -147,7 +147,10 @@
     
     ////// Setup Feed Fetcher //////
     _feedFetcher = [[SCRFeedFetcher alloc] initWithReadWriteYapConnection:databaseConnection sessionConfiguration:[self.torManager currentConfiguration]];
-    self.feedFetcher.networkOperationQueue.suspended = self.torManager.proxyManager.status == CPAStatusConnecting;
+    if ([[NSUserDefaults standardUserDefaults] scr_useTor] && self.torManager.proxyManager.status != CPAStatusOpen) {
+        self.feedFetcher.networkOperationQueue.suspended = YES;
+    }
+    /*
     NSArray *feedURLs = @[@"http://www.voanews.com/api/epiqq",
                           @"http://www.theguardian.com/world/rss",
                           @"http://feeds.washingtonpost.com/rss/world",
@@ -159,12 +162,14 @@
     [feedURLs enumerateObjectsUsingBlock:^(NSString *feedURLString, NSUInteger idx, BOOL *stop) {
         [self.feedFetcher fetchFeedDataFromURL:[NSURL URLWithString:feedURLString] completionQueue:nil completion:nil];
     }];
+     */
+    [self.feedFetcher refreshSubscribedFeedsWithCompletionQueue:NULL completion:NULL];
     
     ////// Setup Media Fetcher //////
     _mediaFetcher = [[SCRMediaFetcher alloc] initWithSessionConfiguration:[self.torManager currentConfiguration]
                                                                                   storage:self.fileManager.ioCipher];
     self.mediaFetcher.completionQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    self.mediaFetcher.networkOperationQueue.suspended = self.torManager.proxyManager.status == CPAStatusConnecting;
+    self.mediaFetcher.networkOperationQueue.suspended = self.feedFetcher.networkOperationQueue.suspended;
     _mediaDownloadsTableDelegate = [[SCRMediaDownloadsTableDelegate alloc] initWithMediaFetcher:_mediaFetcher];
     return YES;
 }

@@ -20,6 +20,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setFeedViewType:SCRFeedViewTypeAllFeeds feed:nil];
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(refreshPulled:) forControlEvents:UIControlEventValueChanged];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -38,6 +41,13 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)refreshPulled:(id)sender
+{
+    [((SCRAppDelegate *)[UIApplication sharedApplication].delegate).feedFetcher refreshSubscribedFeedsWithCompletionQueue:dispatch_get_main_queue() completion:^{
+        [self.refreshControl endRefreshing];
+    }];
 }
 
 #pragma - mark Tor Methods

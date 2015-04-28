@@ -12,6 +12,8 @@
 #import "SCRItem.h"
 #import "SCRFeed.h"
 #import "SCRMediaItem.h"
+#import "YapDatabaseQuery.h"
+#import "YapDatabaseSecondaryIndexTransaction.h"
 
 @interface SCRFeedFetcher()
 @property (nonatomic, strong) RSSAtomKit *atomKit;
@@ -65,6 +67,36 @@
     [self.atomKit.parser registerFeedClass:[SCRFeed class]];
     [self.atomKit.parser registerItemClass:[SCRItem class]];
     [self.atomKit.parser registerMediaItemClass:[SCRMediaItem class]];
+}
+
+- (void)refreshSubscribedFeedsWithCompletionQueue:(dispatch_queue_t)completionQueue completion:(void (^)(void))completion
+{
+    if (!completionQueue) {
+        completionQueue = dispatch_get_main_queue();
+    }
+    
+    [self.databaseConnection asyncReadWithBlock:^(YapDatabaseReadTransaction *transaction) {
+        dispatch_group_t group = dispatch_group_create();
+        NSString *queryString = [NSString stringWithFormat:@"Where %@ = %d",kSCRSubscribedFeedsColumnName,YES];
+        YapDatabaseQuery *query = [YapDatabaseQuery queryWithFormat:queryString];
+        
+        [[transaction ext:kSCRSecondaryIndexExtensionName] enumerateKeysAndObjectsMatchingQuery:query usingBlock:^(NSString *collection, NSString *key, id object, BOOL *stop) {
+            
+            if ([object isKindOfClass:[SCRFeed class]]) {
+                SCRFeed *feed = (SCRFeed *)object;
+                dispatch_group_enter(group);
+                [self fetchFeedDataFromURL:feed.xmlURL completionQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0) completion:^(NSError *error) {
+                    dispatch_group_leave(group);
+                }];
+            }
+        }];
+        
+        dispatch_group_notify(group, completionQueue, ^{
+            if (completion) {
+                completion();
+            }
+        });
+    }];
 }
 
 /**

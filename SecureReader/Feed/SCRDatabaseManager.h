@@ -20,6 +20,10 @@ extern NSString *const kSCRAllFeedsSearchViewName;
 extern NSString *const kSCRRelationshipExtensionName;
 extern NSString *const kSCRAllPostItemsViewName;
 
+/** Secondary Index Constatns */
+extern NSString *const kSCRSecondaryIndexExtensionName;
+extern NSString *const kSCRSubscribedFeedsColumnName;
+
 extern NSString *const SCRRemoveYapConnectionsNotification;
 
 @interface SCRDatabaseManager : NSObject

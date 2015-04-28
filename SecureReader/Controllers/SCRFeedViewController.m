@@ -33,10 +33,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    //UIRefreshControl *refreshControl = [[UIRefreshControl alloc]
-    //                                    init];
-    //refreshControl.tintColor = [UIColor magentaColor];
-    //self.refreshControl = refreshControl;
 }
 
 - (void) viewDidAppear:(BOOL)animated {
