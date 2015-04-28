@@ -20,7 +20,6 @@
 @property (nonatomic, strong) dispatch_queue_t callbackQueue;
 @property (nonatomic, strong) YapDatabaseConnection *databaseConnection;
 
-
 @end
 
 @implementation SCRFeedFetcher
@@ -28,6 +27,7 @@
 - (instancetype) init {
     if (self = [super init]) {
         self.callbackQueue = dispatch_queue_create("SCRFeedFetcher callback queue", 0);
+        _isRefreshing = NO;
     }
     return self;
 }
@@ -69,8 +69,17 @@
     [self.atomKit.parser registerMediaItemClass:[SCRMediaItem class]];
 }
 
-- (void)refreshSubscribedFeedsWithCompletionQueue:(dispatch_queue_t)completionQueue completion:(void (^)(void))completion
+- (BOOL)refreshSubscribedFeedsWithCompletionQueue:(dispatch_queue_t)completionQueue completion:(void (^)(void))completion
 {
+    // Only allow one refresh operation at a time
+    if (self.isRefreshing) {
+        return NO;
+    }
+    
+    [self willChangeValueForKey:NSStringFromSelector(@selector(isRefreshing))];
+    _isRefreshing = YES;
+    [self didChangeValueForKey:NSStringFromSelector(@selector(isRefreshing))];
+    
     if (!completionQueue) {
         completionQueue = dispatch_get_main_queue();
     }
@@ -92,11 +101,16 @@
         }];
         
         dispatch_group_notify(group, completionQueue, ^{
+            [self willChangeValueForKey:NSStringFromSelector(@selector(isRefreshing))];
+            _isRefreshing = NO;
+            [self didChangeValueForKey:NSStringFromSelector(@selector(isRefreshing))];
             if (completion) {
                 completion();
             }
         });
     }];
+    
+    return YES;
 }
 
 /**

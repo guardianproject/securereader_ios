@@ -11,7 +11,11 @@
 #import "SCRAppDelegate.h"
 #import "SCRNotificationsView.h"
 
+static void * kSCRAllFeedsViewControllerContext = &kSCRAllFeedsViewControllerContext;
+
 @interface SCRAllFeedsViewController ()
+
+@property (nonatomic, weak) SCRFeedFetcher *feedFetcher;
 
 @end
 
@@ -20,6 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setFeedViewType:SCRFeedViewTypeAllFeeds feed:nil];
+    self.feedFetcher = ((SCRAppDelegate *)[UIApplication sharedApplication].delegate).feedFetcher;
     
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(refreshPulled:) forControlEvents:UIControlEventValueChanged];
@@ -34,20 +39,63 @@
     [self updateHeaderWithTorStatus:currentStatus];
     
     /** Get Notifications for Tor status changes */
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedTorNotificatoin:) name:CPAProxyDidStartSetupNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedTorNotificatoin:) name:CPAProxyDidFinishSetupNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receivedTorNotificatoin:)
+                                                 name:CPAProxyDidStartSetupNotification
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receivedTorNotificatoin:)
+                                                 name:CPAProxyDidFinishSetupNotification
+                                               object:nil];
+    
+    if (self.feedFetcher.isRefreshing) {
+        [self.refreshControl beginRefreshing];
+    } else {
+        [self.refreshControl endRefreshing];
+    }
+    
+    /** KVO */
+    [self.feedFetcher addObserver:self
+           forKeyPath:NSStringFromSelector(@selector(isRefreshing))
+              options:NSKeyValueObservingOptionNew
+              context:kSCRAllFeedsViewControllerContext];
 }
 
-- (void)viewWillDisappear:(BOOL)animated
+- (void)viewDidDisappear:(BOOL)animated
 {
+    [super viewDidDisappear:animated];
+    [self.feedFetcher removeObserver:self forKeyPath:NSStringFromSelector(@selector(isRefreshing)) context:kSCRAllFeedsViewControllerContext];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)refreshPulled:(id)sender
 {
-    [((SCRAppDelegate *)[UIApplication sharedApplication].delegate).feedFetcher refreshSubscribedFeedsWithCompletionQueue:dispatch_get_main_queue() completion:^{
+    BOOL didStartRefreshing = [self.feedFetcher refreshSubscribedFeedsWithCompletionQueue:dispatch_get_main_queue() completion:^{
         [self.refreshControl endRefreshing];
     }];
+    
+    if (!didStartRefreshing) {
+        [self.refreshControl endRefreshing];
+    }
+}
+
+#pragma - mark KVO
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if (context == kSCRAllFeedsViewControllerContext && [keyPath isEqualToString:NSStringFromSelector(@selector(isRefreshing))]) {
+        
+        BOOL isRefreshing = [change[NSKeyValueChangeNewKey] boolValue];
+        
+        // Possibly redundant if the pull to refresh starts the refresh
+        // but if refresh is started from somewhere else (after launch) then the refresh control will reflect current refresh status
+        if (isRefreshing) {
+            [self.refreshControl beginRefreshing];
+        } else {
+            [self.refreshControl endRefreshing];
+        }
+        
+    }
 }
 
 #pragma - mark Tor Methods

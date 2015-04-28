@@ -12,6 +12,8 @@
 
 @interface SCRFeedFetcher : SCRNetworkFeetcher
 
+/** Whether there is a refresh ongoing is KVO compliant */
+@property (nonatomic, readonly) BOOL isRefreshing;
 
 - (instancetype)initWithReadWriteYapConnection:(YapDatabaseConnection *)connection
                           sessionConfiguration:(NSURLSessionConfiguration *)sessionConfiguration;
@@ -23,9 +25,12 @@
  *
  * @param completionQueue the queue the completion block with be called on (defaults to the main queue)
  * @param completion teh completion block will be called once all feeds have been updated
+ *
+ * @return Returns whether a refresh is started. Only one refresh is allowed at a time so if isRefreshing is YES then this will return NO
+ *          and the completion block will not be called at all.
  */
 
-- (void)refreshSubscribedFeedsWithCompletionQueue:(dispatch_queue_t)completionQueue
+- (BOOL)refreshSubscribedFeedsWithCompletionQueue:(dispatch_queue_t)completionQueue
                                        completion:(void (^)(void))completion;
 
 /**
