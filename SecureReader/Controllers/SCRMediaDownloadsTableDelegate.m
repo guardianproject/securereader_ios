@@ -55,7 +55,7 @@
     return self;
 }
 
-- (void)mediaDownloadStarted:(SCRMediaItem *)mediaItem
+- (void)mediaFetcher:(SCRMediaFetcher *)mediaFetcher didStartDownload:(SCRMediaItem *)mediaItem
 {
     [[SCRDatabaseManager sharedInstance].readConnection readWithBlock:^(YapDatabaseReadTransaction *transaction) {
         [mediaItem enumerateItemsInTransaction:transaction block:^(SCRItem *item, BOOL *stop) {
@@ -93,15 +93,15 @@
     });
 }
 
-- (void)mediaDownloadProgress:(SCRMediaItem *)mediaItem downloaded:(NSUInteger)bytes ofTotal:(NSUInteger)total
+- (void)mediaFetcher:(SCRMediaFetcher *)mediaFetcher didDownloadProgress:(SCRMediaItem *)mediaItem downloaded:(NSUInteger)countOfBytesReceived ofTotal:(NSUInteger)countOfBytesExpectedToReceive
 {
     for (SCRItemDownloadInfo *itemInfo in self.downloads)
     {
         SCRMediaDownloadInfo *mediaInfo = [itemInfo mediaInfoWithMediaItem:mediaItem];
         if (mediaInfo != nil)
         {
-            mediaInfo.bytesDownloaded = bytes;
-            mediaInfo.bytesTotal = total;
+            mediaInfo.bytesDownloaded = countOfBytesReceived;
+            mediaInfo.bytesTotal = countOfBytesExpectedToReceive;
         }
     }
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -109,7 +109,7 @@
     });
 }
 
-- (void)mediaDownloadCompleted:(SCRMediaItem *)mediaItem withError:(NSError *)error
+- (void)mediaFetcher:(SCRMediaFetcher *)mediaFetcher didCompleteDownload:(SCRMediaItem *)mediaItem withError:(NSError *)error
 {
     for (SCRItemDownloadInfo *itemInfo in self.downloads)
     {

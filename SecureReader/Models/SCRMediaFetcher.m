@@ -15,6 +15,7 @@ typedef void (^SCRURLSesssionDataTaskCompletion)(NSURLSessionTask *dataTask, NSE
 @interface SCRURLSessionDataTaskInfo : NSObject 
 
 @property (nonatomic, strong) SCRMediaItem *item;
+@property (nonatomic, weak) NSURLSessionTask *sessionTask;
 @property (nonatomic, strong) NSString *localPath;
 @property (nonatomic, copy) SCRURLSesssionDataTaskCompletion completion;
 @property (nonatomic) NSUInteger offset;
@@ -83,16 +84,18 @@ typedef void (^SCRURLSesssionDataTaskCompletion)(NSURLSessionTask *dataTask, NSE
 
 - (void)downloadMediaItem:(SCRMediaItem *)mediaItem completionBlock:(void (^)(NSError *))completion
 {
-    if (!completion) {
-        return;
-    }
-    
-    NSURLSessionDataTask *dataTask = [self.urlSession dataTaskWithURL:mediaItem.url];
-    
-    [self addDataTask:dataTask forMediaItem:mediaItem completion:^(NSURLSessionTask *task, NSError *error) {
-        completion(error);
+    [self.networkOperationQueue addOperationWithBlock:^{
+        NSURLSessionDataTask *dataTask = [self.urlSession dataTaskWithURL:mediaItem.url];
+        dataTask.taskDescription = mediaItem.yapKey;
+        
+        [self addDataTask:dataTask forMediaItem:mediaItem completion:^(NSURLSessionTask *task, NSError *error) {
+            if (completion) {
+                completion(error);
+            }
+        }];
+        [dataTask resume];
     }];
-    [dataTask resume];
+    
 }
 
 - (void)saveMediaItem:(SCRMediaItem *)mediaItem data:(NSData *)data completionBlock:(void (^)(NSError *error))completion
@@ -130,27 +133,28 @@ typedef void (^SCRURLSesssionDataTaskCompletion)(NSURLSessionTask *dataTask, NSE
 {
     __block SCRURLSessionDataTaskInfo *taskInfo = [[SCRURLSessionDataTaskInfo alloc] init];
     taskInfo.item = mediaItem;
+    taskInfo.sessionTask = dataTask;
     taskInfo.localPath = mediaItem.localPath;
     taskInfo.completion = completion;
     taskInfo.offset = 0;
     
     dispatch_async(self.isolationQueue, ^{
         if (dataTask && [mediaItem.localPath length]) {
-            [self.dataTaskDictionary setObject:taskInfo forKey:@(dataTask.taskIdentifier)];
+            [self.dataTaskDictionary setObject:taskInfo forKey:mediaItem.yapKey];
         }
     });
     
-    if (_delegate != nil && [_delegate respondsToSelector:@selector(mediaDownloadStarted:)])
+    if ([self.delegate respondsToSelector:@selector(mediaFetcher:didStartDownload:)])
     {
-        [_delegate mediaDownloadStarted:mediaItem];
+        [self.delegate mediaFetcher:self didStartDownload:mediaItem];
     }
 }
 
-- (SCRURLSessionDataTaskInfo *)infoForTask:(NSURLSessionTask *)task
+- (SCRURLSessionDataTaskInfo *)infoForKey:(NSString *)key
 {
     __block SCRURLSessionDataTaskInfo *dataInfo = nil;
     dispatch_sync(self.isolationQueue, ^{
-        dataInfo = [self.dataTaskDictionary objectForKey:@(task.taskIdentifier)];
+        dataInfo = [self.dataTaskDictionary objectForKey:key];
     });
     
     return dataInfo;
@@ -160,7 +164,7 @@ typedef void (^SCRURLSesssionDataTaskCompletion)(NSURLSessionTask *dataTask, NSE
 {
     dispatch_async(self.isolationQueue, ^{
         if (dataTask) {
-            [self.dataTaskDictionary removeObjectForKey:@(dataTask.taskIdentifier)];
+            [self.dataTaskDictionary removeObjectForKey:dataTask.taskDescription];
         }
     });
 }
@@ -171,7 +175,7 @@ typedef void (^SCRURLSesssionDataTaskCompletion)(NSURLSessionTask *dataTask, NSE
 {
     if([session isEqual:self.urlSession])
     {
-        SCRURLSessionDataTaskInfo *info = [self infoForTask:dataTask];
+        SCRURLSessionDataTaskInfo *info = [self infoForKey:dataTask.taskDescription];
         
         NSError *error = nil;
         [self receivedData:data forPath:info.localPath atOffset:info.offset error:&error];
@@ -185,9 +189,9 @@ typedef void (^SCRURLSesssionDataTaskCompletion)(NSURLSessionTask *dataTask, NSE
         }
         info.offset += [data length];
         
-        if (_delegate != nil && [_delegate respondsToSelector:@selector(mediaDownloadProgress:downloaded:ofTotal:)])
+        if ([self.delegate respondsToSelector:@selector(mediaFetcher:didDownloadProgress:downloaded:ofTotal:)])
         {
-            [_delegate mediaDownloadProgress:info.item downloaded:info.offset ofTotal:[dataTask countOfBytesExpectedToReceive]];
+            [self.delegate mediaFetcher:self didDownloadProgress:info.item downloaded:info.offset ofTotal:dataTask.countOfBytesExpectedToReceive];
         }
     }
 }
@@ -195,18 +199,28 @@ typedef void (^SCRURLSesssionDataTaskCompletion)(NSURLSessionTask *dataTask, NSE
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error
 {
     if([session isEqual:self.urlSession]) {
-        SCRURLSessionDataTaskInfo *info = [self infoForTask:task];
+        SCRURLSessionDataTaskInfo *info = [self infoForKey:task.taskDescription];
         if (info.completion)
         {
             dispatch_async(self.completionQueue, ^{
                 info.completion(task,error);
             });
         }
-        if (_delegate != nil && [_delegate respondsToSelector:@selector(mediaDownloadCompleted:withError:)])
+        if ([self.delegate respondsToSelector:@selector(mediaFetcher:didCompleteDownload:withError:)])
         {
-            [_delegate mediaDownloadCompleted:info.item withError:error];
+            [_delegate mediaFetcher:self didCompleteDownload:info.item withError:error];
         }
     }
+}
+
+- (NSURLSessionTask *)taskForMediaYapKey:(NSString *)yapKey
+{
+    NSURLSessionTask *task = nil;
+    if ([yapKey length]) {
+        SCRURLSessionDataTaskInfo *taskInfo = [self infoForKey:yapKey];
+        task = taskInfo.sessionTask;
+    }
+    return task;
 }
 
 @end
