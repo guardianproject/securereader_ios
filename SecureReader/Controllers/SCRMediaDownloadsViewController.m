@@ -9,6 +9,7 @@
 #import "SCRMediaDownloadsViewController.h"
 #import "SCRAppDelegate.h"
 #import "SCRItemView.h"
+#import "UIView+Theming.h"
 
 @interface SCRMediaDownloadsViewController ()
 @property (nonatomic, strong) SCRMediaFetcherWatcher *watcher;
@@ -48,6 +49,21 @@
     if ([self.watcher numberOfCompleteItems] > 0)
         sections += 1;
     return sections;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    
+    UITableViewHeaderFooterView *header = [[UITableViewHeaderFooterView alloc] init];
+    header.textLabel.text = [self tableView:tableView titleForHeaderInSection:section];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [header.textLabel setTheme:@"MediaDownloadsSectionStyle"];
+    });
+    return header;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 50;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section

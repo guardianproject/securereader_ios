@@ -242,5 +242,10 @@
 		<key>textColor</key>
 		<string>#ff888888</string>
 	</dict>
+	<key>MediaDownloadsSectionStyle</key>
+	<dict>
+		<key>parent</key>
+		<string>MoreSectionStyle</string>
+	</dict>
 </dict>
 </plist>
