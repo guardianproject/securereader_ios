@@ -8,15 +8,19 @@
 
 #import "SCRMediaDownloadsViewController.h"
 #import "SCRAppDelegate.h"
+#import "SCRItemView.h"
 
 @interface SCRMediaDownloadsViewController ()
 @property (nonatomic, strong) SCRMediaFetcherWatcher *watcher;
+@property (nonatomic, strong) SCRItemView *prototype;
 @end
 
 @implementation SCRMediaDownloadsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    UINib *nib = [UINib nibWithNibName:@"SCRItemCellMediaDownloads" bundle:nil];
+    [self.tableView registerNib:nib forCellReuseIdentifier:@"cellMediaDownload"];
     self.watcher = [[SCRAppDelegate sharedAppDelegate] mediaFetcherWatcher];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -61,42 +65,67 @@
         return [self.watcher numberOfCompleteItems];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView
-         cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (void) configureCell:(SCRItemView *)cell forIndexPath:(NSIndexPath *)indexPath
 {
     long index = indexPath.row;
     if (indexPath.section == 1)
         index += [self.watcher numberOfInProgressItems];
     SCRItemDownloadInfo *itemInfo = [self.watcher.downloads objectAtIndex:index];
     
-    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
-    if (cell == nil)
-        cell = [self.tableView dequeueReusableCellWithIdentifier:@"cell"];
-    
-    cell.textLabel.text = [itemInfo.item title];
+    [cell.mediaCollectionView setItem:itemInfo.item];
+    cell.titleView.text = [itemInfo.item title];
     
     if ([itemInfo isComplete])
     {
-        cell.detailTextLabel.text = NSLocalizedString(@"MediaDownloads.Progress.Done", @"Display string for download done");
+        cell.textView.text = NSLocalizedString(@"MediaDownloads.Progress.Done", @"Display string for download done");
     }
     else
     {
         NSUInteger bytesTotal = [itemInfo bytesTotal];
         if (bytesTotal > 0)
         {
-            cell.detailTextLabel.text = [NSString localizedStringWithFormat:NSLocalizedString(@"MediaDownloads.Progress.Bytes", @"Display string for profress with byte count"), (int)(100.0f * [itemInfo bytesDownloaded]) / bytesTotal, [NSByteCountFormatter stringFromByteCount:bytesTotal countStyle:NSByteCountFormatterCountStyleFile]];
+            cell.textView.text = [NSString localizedStringWithFormat:NSLocalizedString(@"MediaDownloads.Progress.Bytes", @"Display string for profress with byte count"), (int)(100.0f * [itemInfo bytesDownloaded]) / bytesTotal, [NSByteCountFormatter stringFromByteCount:bytesTotal countStyle:NSByteCountFormatterCountStyleFile]];
         }
         else
         {
-            cell.detailTextLabel.text = [NSString localizedStringWithFormat:NSLocalizedString(@"MediaDownloads.Progress.Items", @"Display string for profress with item count"), [itemInfo numberOfCompleteItems], [itemInfo.mediaInfos count]];
+            cell.textView.text = [NSString localizedStringWithFormat:NSLocalizedString(@"MediaDownloads.Progress.Items", @"Display string for profress with item count"), [itemInfo numberOfCompleteItems], [itemInfo.mediaInfos count]];
         }
-    }//%lu%% of %@ downloaded  %lu of %lu items downloaded
+    }
+}
+
+-(CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 100;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (self.prototype == nil)
+        self.prototype = [self.tableView dequeueReusableCellWithIdentifier:@"cellMediaDownload"];
+    [self configureCell:self.prototype forIndexPath:indexPath];
+    [self.prototype setNeedsUpdateConstraints];
+    [self.prototype updateConstraintsIfNeeded];
+    self.prototype.bounds = CGRectMake(0.0f, 0.0f, CGRectGetWidth(tableView.bounds), CGRectGetHeight(self.prototype.bounds));
+    [self.prototype setNeedsLayout];
+    [self.prototype layoutIfNeeded];
+    CGSize size = [self.prototype.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    return size.height+1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    SCRItemView *cell = [self.tableView dequeueReusableCellWithIdentifier:@"cellMediaDownload" forIndexPath:indexPath];
+    [self configureCell:cell forIndexPath:indexPath];
+    [cell.mediaCollectionView createThumbnails:NO completion:nil];
     return cell;
 }
 
 - (void)needsUpdate
 {
-    [self.tableView reloadData];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+    });
 }
 
 @end

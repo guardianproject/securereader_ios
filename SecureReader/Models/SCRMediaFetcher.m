@@ -214,7 +214,7 @@ typedef void (^SCRURLSesssionDataTaskCompletion)(NSURLSessionTask *dataTask, NSE
     }
 }
 
-- (NSURLSessionTask *)taskForMediaYapKey:(NSString *)yapKey
+- (NSURLSessionTask *)taskForMediaItemYapKey:(NSString *)yapKey
 {
     NSURLSessionTask *task = nil;
     if ([yapKey length]) {

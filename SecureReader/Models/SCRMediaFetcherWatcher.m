@@ -104,7 +104,7 @@
 
 #pragma mark MediaFetcher delegate
 
-- (void)mediaDownloadStarted:(SCRMediaItem *)mediaItem
+-(void)mediaFetcher:(SCRMediaFetcher *)mediaFetcher didStartDownload:(SCRMediaItem *)mediaItem
 {
     [[SCRDatabaseManager sharedInstance].readConnection readWithBlock:^(YapDatabaseReadTransaction *transaction) {
         [mediaItem enumerateItemsInTransaction:transaction block:^(SCRItem *item, BOOL *stop) {
@@ -141,22 +141,22 @@
         [self.delegate needsUpdate];
 }
 
-- (void)mediaDownloadProgress:(SCRMediaItem *)mediaItem downloaded:(NSUInteger)bytes ofTotal:(NSUInteger)total
+- (void)mediaFetcher:(SCRMediaFetcher *)mediaFetcher didDownloadProgress:(SCRMediaItem *)mediaItem downloaded:(NSUInteger)countOfBytesReceived ofTotal:(NSUInteger)countOfBytesExpectedToReceive
 {
     for (SCRItemDownloadInfo *itemInfo in self.downloads)
     {
         SCRMediaItemDownloadInfo *mediaInfo = [itemInfo mediaInfoWithMediaItem:mediaItem];
         if (mediaInfo != nil)
         {
-            mediaInfo.bytesDownloaded = bytes;
-            mediaInfo.bytesTotal = total;
+            mediaInfo.bytesDownloaded = countOfBytesReceived;
+            mediaInfo.bytesTotal = countOfBytesExpectedToReceive;
         }
     }
     if (self.delegate != nil)
         [self.delegate needsUpdate];
 }
 
-- (void)mediaDownloadCompleted:(SCRMediaItem *)mediaItem withError:(NSError *)error
+- (void)mediaFetcher:(SCRMediaFetcher *)mediaFetcher didCompleteDownload:(SCRMediaItem *)mediaItem withError:(NSError *)error
 {
     for (SCRItemDownloadInfo *itemInfo in self.downloads)
     {

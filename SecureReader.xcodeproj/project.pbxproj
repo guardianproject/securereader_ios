@@ -34,6 +34,7 @@
 		9219347B1ADBCD14001B1A73 /* UIAlertView+SecureReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 9219347A1ADBCD14001B1A73 /* UIAlertView+SecureReader.m */; };
 		9228CAD91AA9A97000DD3E44 /* SCRFeedListCellWithDescription.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9228CAD81AA9A97000DD3E44 /* SCRFeedListCellWithDescription.xib */; };
 		922DC28019FE920C00FB1274 /* SCRFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 922DC27F19FE920C00FB1274 /* SCRFeedViewController.m */; };
+		9231A9D91AF0CEFC007C3597 /* SCRItemCellMediaDownloads.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9231A9D81AF0CEFC007C3597 /* SCRItemCellMediaDownloads.xib */; };
 		9239049E1A07E365004EEE7E /* background_debut_light.png in Resources */ = {isa = PBXBuildFile; fileRef = 9239049D1A07E365004EEE7E /* background_debut_light.png */; };
 		923FFFA11AA4A75600BC83D6 /* SCRItemTagCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 923FFFA01AA4A75600BC83D6 /* SCRItemTagCell.xib */; };
 		923FFFA41AA4AA2B00BC83D6 /* SCRItemTagCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 923FFFA31AA4AA2B00BC83D6 /* SCRItemTagCell.m */; };
@@ -165,6 +166,7 @@
 		9228CAD81AA9A97000DD3E44 /* SCRFeedListCellWithDescription.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SCRFeedListCellWithDescription.xib; sourceTree = "<group>"; };
 		922DC27E19FE920C00FB1274 /* SCRFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SCRFeedViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		922DC27F19FE920C00FB1274 /* SCRFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SCRFeedViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		9231A9D81AF0CEFC007C3597 /* SCRItemCellMediaDownloads.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SCRItemCellMediaDownloads.xib; sourceTree = "<group>"; };
 		9239049D1A07E365004EEE7E /* background_debut_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_debut_light.png; sourceTree = "<group>"; };
 		923FFFA01AA4A75600BC83D6 /* SCRItemTagCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SCRItemTagCell.xib; sourceTree = "<group>"; };
 		923FFFA21AA4AA2B00BC83D6 /* SCRItemTagCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRItemTagCell.h; sourceTree = "<group>"; };
@@ -624,6 +626,7 @@
 				92E7B96D1A41A2AE0038DBCE /* SCRReceiveShareView.xib */,
 				9279F8071A67E2940029572B /* SCRItemCellNoPhotos.xib */,
 				9279F8091A67FBE50029572B /* SCRItemCellLandscapePhotos.xib */,
+				9231A9D81AF0CEFC007C3597 /* SCRItemCellMediaDownloads.xib */,
 				920C421B1ADE5243005AB590 /* SCRSwipeUtilityButtons.xib */,
 				92AE0DB61ACD2F70006CE1B8 /* SCRPostItemCellDraft.h */,
 				92AE0DB71ACD2F70006CE1B8 /* SCRPostItemCellDraft.m */,
@@ -778,6 +781,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9231A9D91AF0CEFC007C3597 /* SCRItemCellMediaDownloads.xib in Resources */,
 				923FFFA11AA4A75600BC83D6 /* SCRItemTagCell.xib in Resources */,
 				92E7B96E1A41A2AE0038DBCE /* SCRReceiveShareView.xib in Resources */,
 				9228CAD91AA9A97000DD3E44 /* SCRFeedListCellWithDescription.xib in Resources */,

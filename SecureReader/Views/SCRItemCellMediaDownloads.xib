@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cellMediaDownload" rowHeight="545" id="PGr-wP-C6m" customClass="SCRItemView">
+            <rect key="frame" x="0.0" y="0.0" width="611" height="495"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" horizontalHuggingPriority="1000" tableViewCell="PGr-wP-C6m" id="Vsj-cI-wSw">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="321"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6EF-k3-RWx" customClass="SCRMediaCollectionView">
+                        <rect key="frame" x="20" y="20" width="80" height="80"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="80" id="3WG-Ha-bDg"/>
+                            <constraint firstAttribute="width" constant="80" id="n8v-6O-fMO"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="downloadViewHeight">
+                                <integer key="value" value="80"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="imageViewHeight">
+                                <integer key="value" value="80"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="noImagesViewHeight">
+                                <integer key="value" value="80"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="showDownloadButtonIfNotLoaded" value="NO"/>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="e3q-Al-ORy" customClass="SCRLabel">
+                        <rect key="frame" x="120" y="20" width="471" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="theme" value="PostDraftTitleStyle"/>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Label" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="560" translatesAutoresizingMaskIntoConstraints="NO" id="kUa-bj-aXe" userLabel="Content" customClass="SCRLabel">
+                        <rect key="frame" x="20" y="458" width="571" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="theme" value="PostDraftContentStyle"/>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dsh-BJ-86s" customClass="SCRGradientBackgroundView">
+                        <rect key="frame" x="0.0" y="479" width="611" height="15"/>
+                        <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="15" id="qro-Uh-cXY"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="theme" value="ListItemShadowStyle"/>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="e3q-Al-ORy" secondAttribute="trailing" constant="20" id="2uY-jG-CgK"/>
+                    <constraint firstItem="kUa-bj-aXe" firstAttribute="top" relation="greaterThanOrEqual" secondItem="6EF-k3-RWx" secondAttribute="bottom" constant="20" id="3pV-60-eGV"/>
+                    <constraint firstItem="kUa-bj-aXe" firstAttribute="top" relation="greaterThanOrEqual" secondItem="e3q-Al-ORy" secondAttribute="bottom" constant="20" id="Ail-zi-80Y"/>
+                    <constraint firstItem="dsh-BJ-86s" firstAttribute="leading" secondItem="Vsj-cI-wSw" secondAttribute="leading" id="BQA-ee-BX6"/>
+                    <constraint firstItem="kUa-bj-aXe" firstAttribute="leading" secondItem="Vsj-cI-wSw" secondAttribute="leading" constant="20" id="DWo-ky-4Qk"/>
+                    <constraint firstItem="6EF-k3-RWx" firstAttribute="leading" secondItem="Vsj-cI-wSw" secondAttribute="leading" constant="20" id="FGq-LP-rDW"/>
+                    <constraint firstAttribute="bottom" secondItem="dsh-BJ-86s" secondAttribute="bottom" id="GUh-fz-7aP"/>
+                    <constraint firstAttribute="trailing" secondItem="kUa-bj-aXe" secondAttribute="trailing" constant="20" id="Zm9-fX-zNY"/>
+                    <constraint firstItem="dsh-BJ-86s" firstAttribute="top" secondItem="kUa-bj-aXe" secondAttribute="bottom" id="jVV-qa-3Lc"/>
+                    <constraint firstItem="e3q-Al-ORy" firstAttribute="top" secondItem="Vsj-cI-wSw" secondAttribute="top" constant="20" id="lrf-ji-CqS"/>
+                    <constraint firstItem="6EF-k3-RWx" firstAttribute="top" secondItem="Vsj-cI-wSw" secondAttribute="top" constant="20" id="oUr-7J-FQD"/>
+                    <constraint firstAttribute="trailing" secondItem="dsh-BJ-86s" secondAttribute="trailing" id="pf5-mJ-XPS"/>
+                    <constraint firstItem="e3q-Al-ORy" firstAttribute="leading" secondItem="6EF-k3-RWx" secondAttribute="trailing" constant="20" id="qzb-e3-VcP"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="mediaCollectionView" destination="6EF-k3-RWx" id="Yyb-ir-uhh"/>
+                <outlet property="textView" destination="kUa-bj-aXe" id="ruy-cd-leJ"/>
+                <outlet property="titleView" destination="e3q-Al-ORy" id="Lrq-Kc-ofN"/>
+            </connections>
+            <point key="canvasLocation" x="394.5" y="196.5"/>
+        </tableViewCell>
+    </objects>
+</document>
