@@ -51,11 +51,18 @@
  */
 - (void)saveMediaItem:(SCRMediaItem *)mediaItem data:(NSData *)data completionBlock:(void (^)(NSError *error))completion;
 
+- (NSURLSessionTask *)taskForMediaItemYapKey:(NSString *)yapKey;
+
 @end
 
 @protocol SCRMediaFetcherDelegate <NSObject>
 @optional
-- (void) mediaDownloadStarted:(SCRMediaItem *)mediaItem;
-- (void) mediaDownloadProgress:(SCRMediaItem *)mediaItem downloaded:(NSUInteger)bytes ofTotal:(NSUInteger)total;
-- (void) mediaDownloadCompleted:(SCRMediaItem *)mediaItem withError:(NSError *)error;
+- (void) mediaFetcher:(SCRMediaFetcher *)mediaFetcher didStartDownload:(SCRMediaItem *)mediaItem;
+
+- (void) mediaFetcher:(SCRMediaFetcher *)mediaFetcher
+  didDownloadProgress:(SCRMediaItem *)mediaItem
+           downloaded:(NSUInteger)countOfBytesReceived
+              ofTotal:(NSUInteger)countOfBytesExpectedToReceive;
+
+- (void) mediaFetcher:(SCRMediaFetcher *)mediaFetcher didCompleteDownload:(SCRMediaItem *)mediaItem withError:(NSError *)error;
 @end
