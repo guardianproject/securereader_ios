@@ -53,12 +53,30 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
-    UITableViewHeaderFooterView *header = [[UITableViewHeaderFooterView alloc] init];
-    header.textLabel.text = [self tableView:tableView titleForHeaderInSection:section];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [header.textLabel setTheme:@"MediaDownloadsSectionStyle"];
-    });
-    return header;
+    UIView* view = [[UIView alloc] init];
+    UILabel* label = [[UILabel alloc] init];
+    
+    [view setTheme:@"MediaDownloadsSectionStyle"];
+    label.text = [self tableView: tableView titleForHeaderInSection: section];
+    label.textAlignment = NSTextAlignmentCenter;
+    [label setTheme:@"MediaDownloadsSectionStyle"];
+    [label sizeToFit];
+    label.translatesAutoresizingMaskIntoConstraints = NO;
+    [view addSubview:label];
+    [view addConstraints:
+     @[[NSLayoutConstraint constraintWithItem:label
+                                    attribute:NSLayoutAttributeLeading
+                                    relatedBy:NSLayoutRelationEqual
+                                       toItem:view
+                                    attribute:NSLayoutAttributeLeading
+                                   multiplier:1 constant:15],
+       [NSLayoutConstraint constraintWithItem:label
+                                    attribute:NSLayoutAttributeCenterY
+                                    relatedBy:NSLayoutRelationEqual
+                                       toItem:view
+                                    attribute:NSLayoutAttributeCenterY
+                                   multiplier:1 constant:0]]];
+    return view;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -81,12 +99,17 @@
         return [self.watcher numberOfCompleteItems];
 }
 
-- (void) configureCell:(SCRItemView *)cell forIndexPath:(NSIndexPath *)indexPath
+- (long) indexFromIndexPath:(NSIndexPath *)indexPath
 {
     long index = indexPath.row;
     if (indexPath.section == 1)
         index += [self.watcher numberOfInProgressItems];
-    SCRItemDownloadInfo *itemInfo = [self.watcher.downloads objectAtIndex:index];
+    return index;
+}
+
+- (void) configureCell:(SCRItemView *)cell forIndexPath:(NSIndexPath *)indexPath
+{
+    SCRItemDownloadInfo *itemInfo = [self.watcher.downloads objectAtIndex:[self indexFromIndexPath:indexPath]];
     
     [cell.mediaCollectionView setItem:itemInfo.item];
     cell.titleView.text = [itemInfo.item title];
@@ -136,6 +159,16 @@
     [cell.mediaCollectionView createThumbnails:NO completion:nil];
     return cell;
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    SCRItemDownloadInfo *itemInfo = [self.watcher.downloads objectAtIndex:[self indexFromIndexPath:indexPath]];
+    if ([itemInfo isComplete])
+    {
+        [self.tabBarController setSelectedIndex:0];
+    }
+ }
 
 - (void)needsUpdate
 {

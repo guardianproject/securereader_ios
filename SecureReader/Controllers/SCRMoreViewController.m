@@ -46,12 +46,30 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
-    UITableViewHeaderFooterView *header = [[UITableViewHeaderFooterView alloc] init];
-    header.textLabel.text = [self tableView:tableView titleForHeaderInSection:section];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [header.textLabel setTheme:@"MoreSectionStyle"];
-    });
-    return header;
+    UIView* view = [[UIView alloc] init];
+    UILabel* label = [[UILabel alloc] init];
+    
+    [view setTheme:@"MoreSectionStyle"];
+    label.text = [self tableView: tableView titleForHeaderInSection: section];
+    label.textAlignment = NSTextAlignmentCenter;
+    [label setTheme:@"MoreSectionStyle"];
+    [label sizeToFit];
+    label.translatesAutoresizingMaskIntoConstraints = NO;
+    [view addSubview:label];
+    [view addConstraints:
+     @[[NSLayoutConstraint constraintWithItem:label
+                                    attribute:NSLayoutAttributeLeading
+                                    relatedBy:NSLayoutRelationEqual
+                                       toItem:view
+                                    attribute:NSLayoutAttributeLeading
+                                   multiplier:1 constant:15],
+       [NSLayoutConstraint constraintWithItem:label
+                                    attribute:NSLayoutAttributeCenterY
+                                    relatedBy:NSLayoutRelationEqual
+                                       toItem:view
+                                    attribute:NSLayoutAttributeCenterY
+                                   multiplier:1 constant:0]]];
+    return view;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section

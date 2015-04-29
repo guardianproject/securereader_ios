@@ -237,6 +237,8 @@
 	</dict>
 	<key>MoreSectionStyle</key>
 	<dict>
+		<key>backgroundColor</key>
+		<string>#ffe4e4e4</string>
 		<key>textSize</key>
 		<integer>12</integer>
 		<key>textColor</key>
