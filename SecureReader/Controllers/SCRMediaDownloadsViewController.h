@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SCRMediaFetcherWatcher.h"
 
-@interface SCRMediaDownloadsViewController : UITableViewController
-
+@interface SCRMediaDownloadsViewController : UITableViewController<SCRMediaFetcherWatcherDelegate, UITableViewDataSource, UITableViewDelegate>
 @end

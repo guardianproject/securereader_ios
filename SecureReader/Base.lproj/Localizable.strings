@@ -58,6 +58,21 @@
 /* prompt for TouchID */
 "Login.UnlockWithTouchID" = "Unlock app with TouchID";
 
+/* Display string for profress with byte count */
+"MediaDownloads.Progress.Bytes" = "%lu%% of %@ downloaded";
+
+/* Display string for download done */
+"MediaDownloads.Progress.Done" = "Done";
+
+/* Display string for profress with item count */
+"MediaDownloads.Progress.Items" = "%lu of %lu items downloaded";
+
+/* Section header for the complete items */
+"MediaDownloads.SectionHeader.Complete" = "COMPLETE";
+
+/* Section header for the items in progress */
+"MediaDownloads.SectionHeader.InProgress" = "IN PROGRESS";
+
 /* No comment provided by engineer. */
 "OK" = "OK";
 
@@ -84,4 +99,7 @@
 
 /* Language name for Swedish */
 "Svenska" = "Svenska";
+
+/* Label for alert for when tor is starting */
+"Tor starting" = "Tor starting";
 

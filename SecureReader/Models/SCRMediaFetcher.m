@@ -112,6 +112,7 @@ typedef void (^SCRURLSesssionDataTaskCompletion)(NSURLSessionTask *dataTask, NSE
 
 - (void)receivedData:(NSData *)data forPath:(NSString *)path atOffset:(NSUInteger)offset error:(NSError **)error;
 {
+    [NSThread sleepForTimeInterval:3];
     [data enumerateByteRangesUsingBlock:^(const void *bytes, NSRange byteRange, BOOL *stop) {
         NSError *err = nil;
         [self.ioCipher writeDataToFileAtPath:path data:[NSData dataWithBytesNoCopy:(void*)bytes length:byteRange.length freeWhenDone:NO] offset:(offset+byteRange.location) error:&err];
