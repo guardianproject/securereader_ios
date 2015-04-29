@@ -92,6 +92,9 @@
                         [self.mediaItems addObject:item];
                     }];
                 }
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [(SwipeView *)self.contentView reloadData];
+                });
             }];
         }
     }
