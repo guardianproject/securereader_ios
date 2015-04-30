@@ -61,8 +61,8 @@
 
 - (void) mediaFetcher:(SCRMediaFetcher *)mediaFetcher
   didDownloadProgress:(SCRMediaItem *)mediaItem
-           downloaded:(NSUInteger)countOfBytesReceived
-              ofTotal:(NSUInteger)countOfBytesExpectedToReceive;
+           downloaded:(int64_t)countOfBytesReceived
+              ofTotal:(int64_t)countOfBytesExpectedToReceive;
 
 - (void) mediaFetcher:(SCRMediaFetcher *)mediaFetcher didCompleteDownload:(SCRMediaItem *)mediaItem withError:(NSError *)error;
 @end

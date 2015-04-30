@@ -25,6 +25,7 @@
 {
     if (self = [super initWithURL:url]) {
         self.yapKey = [[self class] mediaItemKeyForURL:self.url];
+        self.dataStatus = SCRMediaItemStatusNotDownloaded;
     }
     return self;
 }
@@ -33,6 +34,7 @@
 {
     if (self = [super initWithFeedType:feedType xmlElement:xmlElement]) {
         self.yapKey = [[self class] mediaItemKeyForURL:self.url];
+        self.dataStatus = SCRMediaItemStatusNotDownloaded;
     }
     return self;
 }

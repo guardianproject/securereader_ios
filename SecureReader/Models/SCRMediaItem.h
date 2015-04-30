@@ -11,7 +11,15 @@
 
 @class SCRItem, YapDatabaseReadTransaction;
 
+typedef NS_ENUM(NSUInteger, SCRMediaItemStatus) {
+    SCRMediaItemStatusNotDownloaded = 0,
+    SCRMediaItemStatusDownloading   = 1,
+    SCRMediaItemStatusDownloaded    = 2
+};
+
 @interface SCRMediaItem : RSSMediaItem <SCRYapObject>
+
+@property (nonatomic) SCRMediaItemStatus dataStatus;
 
 /** Local path for used in IOCipher */
 - (NSString *)localPath;

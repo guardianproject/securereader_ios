@@ -19,6 +19,8 @@ extern NSString *const kSCRUnsubscribedFeedsViewName;
 extern NSString *const kSCRAllFeedsSearchViewName;
 extern NSString *const kSCRRelationshipExtensionName;
 extern NSString *const kSCRAllPostItemsViewName;
+extern NSString *const kSCRAllMediaItemsViewName;
+extern NSString *const kSCRMediaItemsFilteredViewName;
 
 /** Secondary Index Constatns */
 extern NSString *const kSCRSecondaryIndexExtensionName;

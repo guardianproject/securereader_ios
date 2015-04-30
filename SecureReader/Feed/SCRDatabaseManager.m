@@ -17,6 +17,7 @@
 #import "SCRItem.h"
 #import "SCRFeed.h"
 #import "SCRPostItem.h"
+#import "SCRMediaItem.h"
 #import "SCRPassphraseManager.h"
 
 NSString *const kSCRAllFeedItemsViewName = @"kSCRAllFeedItemsViewName";
@@ -29,6 +30,8 @@ NSString *const kSCRUnsubscribedFeedsViewName = @"kSCRUnsubscribedFeedsViewName"
 NSString *const kSCRAllFeedsSearchViewName = @"kSCRAllFeedsSearchViewName";
 NSString *const kSCRRelationshipExtensionName = @"kSCRRelationshipExtensionName";
 NSString *const kSCRAllPostItemsViewName = @"kSCRAllPostItemsViewName";
+NSString *const kSCRAllMediaItemsViewName = @"kSCRAllMediaItemsViewName";
+NSString *const kSCRMediaItemsFilteredViewName = @"kSCRMediaItemsFilteredViewName";
 NSString *const SCRRemoveYapConnectionsNotification = @"SCRRemoveYapConnectionsNotification";
 
 /** Secondary Index Constatns */
@@ -109,6 +112,8 @@ NSString *const kSCRSubscribedFeedsColumnName = @"kSCRSubscribedFeedsColumnName"
     [self registerAllFeedsView];
     [self registerAllFeedsSearchView];
     [self registerAllPostItemsView];
+    [self registerAllMediaItemsView];
+    [self registerMediaItemsFilteredView];
 }
 
 - (void) registerAllFeedItemsView {
@@ -246,6 +251,40 @@ NSString *const kSCRSubscribedFeedsColumnName = @"kSCRSubscribedFeedsColumnName"
     }];
     YapDatabaseView *databaseView = [[YapDatabaseView alloc] initWithGrouping:grouping sorting:sorting versionTag:@"1" options:nil];
     [self.database registerExtension:databaseView withName:kSCRAllPostItemsViewName connection:self.registrationConnection];
+}
+
+- (void)registerAllMediaItemsView {
+    
+    YapDatabaseViewGrouping *grouping  = [YapDatabaseViewGrouping withKeyBlock:^NSString *(NSString *collection, NSString *key) {
+        return collection;
+    }];
+    
+    YapDatabaseViewSorting *sorting = [YapDatabaseViewSorting withObjectBlock:^NSComparisonResult(NSString *group, NSString *collection1, NSString *key1, id object1, NSString *collection2, NSString *key2, id object2) {
+        
+        if ([object1 isKindOfClass:[SCRMediaItem class]] && [object2 isKindOfClass:[SCRMediaItem class]]) {
+            SCRMediaItem *mediaItem1 = (SCRMediaItem *)object1;
+            SCRMediaItem *mediaItem2 = (SCRMediaItem *)object2;
+            
+            return [mediaItem1.url.absoluteString compare:mediaItem2.url.absoluteString];
+        }
+        return NSOrderedSame;
+    }];
+    
+    YapDatabaseViewOptions *options = [[YapDatabaseViewOptions alloc] init];
+    NSSet *whiteListSet = [NSSet setWithObject:[SCRMediaItem yapCollection]];
+    options.allowedCollections = [[YapWhitelistBlacklist alloc] initWithWhitelist:whiteListSet];
+    
+    YapDatabaseView *view = [[YapDatabaseView alloc] initWithGrouping:grouping sorting:sorting versionTag:@"1" options:options];
+    [self.database registerExtension:view withName:kSCRAllMediaItemsViewName];
+}
+
+- (void)registerMediaItemsFilteredView
+{
+    YapDatabaseViewFiltering *filtering = [YapDatabaseViewFiltering withObjectBlock:^BOOL(NSString *group, NSString *collection, NSString *key, id object) {
+        return YES;
+    }];
+    YapDatabaseFilteredView *filteredview = [[YapDatabaseFilteredView alloc] initWithParentViewName:kSCRAllMediaItemsViewName filtering:filtering];
+    [self.database registerExtension:filteredview withName:kSCRMediaItemsFilteredViewName];
 }
 
 - (void)registerSecondaryIndex {

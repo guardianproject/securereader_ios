@@ -9,6 +9,8 @@
 #import "SCRMediaFetcher.h"
 #import "SCRMediaItem.h"
 #import "IOCipher.h"
+#import "SCRMediaItem.h"
+#import "SCRDatabaseManager.h"
 
 typedef void (^SCRURLSesssionDataTaskCompletion)(NSURLSessionTask *dataTask, NSError *error);
 
@@ -94,8 +96,18 @@ typedef void (^SCRURLSesssionDataTaskCompletion)(NSURLSessionTask *dataTask, NSE
             }
         }];
         [dataTask resume];
+        [self updateMediaItemKey:mediaItem.yapKey withStatus:SCRMediaItemStatusDownloading];
     }];
     
+}
+
+- (void)updateMediaItemKey:(NSString *)key withStatus:(SCRMediaItemStatus)status
+{
+    [[SCRDatabaseManager sharedInstance].readWriteConnection readWriteWithBlock:^(YapDatabaseReadWriteTransaction *transaction) {
+        SCRMediaItem *mediaItem = [transaction objectForKey:key inCollection:[SCRMediaItem yapCollection]];
+        mediaItem.dataStatus = status;
+        [mediaItem saveWithTransaction:transaction];
+    }];
 }
 
 - (void)saveMediaItem:(SCRMediaItem *)mediaItem data:(NSData *)data completionBlock:(void (^)(NSError *error))completion
@@ -200,7 +212,16 @@ typedef void (^SCRURLSesssionDataTaskCompletion)(NSURLSessionTask *dataTask, NSE
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error
 {
     if([session isEqual:self.urlSession]) {
+        
         SCRURLSessionDataTaskInfo *info = [self infoForKey:task.taskDescription];
+        
+        if (error) {
+            [self updateMediaItemKey:info.item.yapKey withStatus:SCRMediaItemStatusNotDownloaded];
+        } else {
+            [self updateMediaItemKey:info.item.yapKey withStatus:SCRMediaItemStatusDownloaded];
+        }
+        
+        
         if (info.completion)
         {
             dispatch_async(self.completionQueue, ^{

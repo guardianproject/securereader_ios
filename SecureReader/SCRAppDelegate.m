@@ -170,7 +170,6 @@
                                                                                   storage:self.fileManager.ioCipher];
     self.mediaFetcher.completionQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     self.mediaFetcher.networkOperationQueue.suspended = self.feedFetcher.networkOperationQueue.suspended;
-    _mediaFetcherWatcher = [[SCRMediaFetcherWatcher alloc] initWithMediaFetcher:_mediaFetcher];
     return YES;
 }
 
