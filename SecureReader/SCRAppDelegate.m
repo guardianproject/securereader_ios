@@ -22,6 +22,7 @@
 #import "SCRFileManager.h"
 #import "NSUserDefaults+SecureReader.h"
 #import "SCRPassphraseManager.h"
+#import "YapDatabaseViewTransaction.h"
 #import "DDLog.h"
 #import "DDTTYLogger.h"
 
@@ -127,6 +128,78 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+- (void)startAsyncFetchingFeedsWithDatabaseConnection:(YapDatabaseConnection *)databaseConnection
+{
+    ////// Setup Feed Fetcher //////
+    _feedFetcher = [[SCRFeedFetcher alloc] initWithReadWriteYapConnection:databaseConnection sessionConfiguration:[self.torManager currentConfiguration]];
+    if ([[NSUserDefaults standardUserDefaults] scr_useTor] && self.torManager.proxyManager.status != CPAStatusOpen) {
+        self.feedFetcher.networkOperationQueue.suspended = YES;
+    }
+    
+    ////// Setup Media Fetcher //////
+    _mediaFetcher = [[SCRMediaFetcher alloc] initWithSessionConfiguration:[self.torManager currentConfiguration]
+                                                                  storage:self.fileManager.ioCipher];
+    self.mediaFetcher.completionQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    self.mediaFetcher.networkOperationQueue.suspended = self.feedFetcher.networkOperationQueue.suspended;
+    _mediaFetcherWatcher = [[SCRMediaFetcherWatcher alloc] initWithMediaFetcher:_mediaFetcher];
+    
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    
+    __block BOOL existsFeeds = NO;
+    [databaseConnection asyncReadWithBlock:^(YapDatabaseReadTransaction *transaction) {
+        existsFeeds = ![[transaction ext:kSCRAllFeedsViewName] isEmpty];
+    } completionQueue:queue completionBlock:^{
+        if (!existsFeeds) {
+            NSString *defaultOPMLPath = [[NSBundle mainBundle] pathForResource:@"default" ofType:@"opml"];
+            NSURL *fileURL = [NSURL fileURLWithPath:defaultOPMLPath];
+            
+            [self.feedFetcher fetchFeedsFromOPMLURL:fileURL completionBlock:^(NSArray *feeds, NSError *error) {
+                
+                dispatch_group_t group = dispatch_group_create();
+                for (SCRFeed *feed in feeds) {
+                    
+                    dispatch_group_enter(group);
+                    [self.feedFetcher fetchFeedDataFromURL:feed.xmlURL completionQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0) completion:^(NSError *error) {
+                        
+                        dispatch_group_leave(group);
+                    }];
+                    
+                }
+                
+                dispatch_group_notify(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                    [databaseConnection asyncReadWriteWithBlock:^(YapDatabaseReadWriteTransaction *transaction) {
+                        NSArray *feedKeys = [transaction allKeysInCollection:[SCRFeed yapCollection]];
+                        for (NSString *key in feedKeys) {
+                            SCRFeed *feed = [transaction objectForKey:key inCollection:[SCRFeed yapCollection]];
+                            feed.userAdded = NO;
+                            feed.subscribed = YES;
+                            [feed saveWithTransaction:transaction];
+                        }
+                    }];
+                });
+                
+                
+                
+            } completionQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)];
+            
+            
+        } else {
+            [self.feedFetcher refreshSubscribedFeedsWithCompletionQueue:NULL completion:NULL];
+        }
+    }];
+    /*
+     * Test Feeds
+         NSArray *feedURLs = @[@"http://www.voanews.com/api/epiqq",
+         @"http://www.theguardian.com/world/rss",
+         @"http://feeds.washingtonpost.com/rss/world",
+         @"http://www.nytimes.com/services/xml/rss/nyt/InternationalHome.xml",
+         @"http://rss.cnn.com/rss/cnn_topstories.rss",
+         @"http://rss.cnn.com/rss/cnn_world.rss"];
+         //Onion address to check tor settings
+         //NSArray *feedURLs = @[@"http://7rmath4ro2of2a42.onion/index.atom"];
+     */
+}
+
 /** Set up database. Will return NO if db passphrase is incorrect */
 - (BOOL)setupDatabase
 {
@@ -145,32 +218,8 @@
     
     YapDatabaseConnection *databaseConnection = [SCRDatabaseManager sharedInstance].readWriteConnection;
     
-    ////// Setup Feed Fetcher //////
-    _feedFetcher = [[SCRFeedFetcher alloc] initWithReadWriteYapConnection:databaseConnection sessionConfiguration:[self.torManager currentConfiguration]];
-    if ([[NSUserDefaults standardUserDefaults] scr_useTor] && self.torManager.proxyManager.status != CPAStatusOpen) {
-        self.feedFetcher.networkOperationQueue.suspended = YES;
-    }
-    /*
-    NSArray *feedURLs = @[@"http://www.voanews.com/api/epiqq",
-                          @"http://www.theguardian.com/world/rss",
-                          @"http://feeds.washingtonpost.com/rss/world",
-                          @"http://www.nytimes.com/services/xml/rss/nyt/InternationalHome.xml",
-                          @"http://rss.cnn.com/rss/cnn_topstories.rss",
-                          @"http://rss.cnn.com/rss/cnn_world.rss"];
-    //Onion address to check tor settings
-    //NSArray *feedURLs = @[@"http://7rmath4ro2of2a42.onion/index.atom"];
-    [feedURLs enumerateObjectsUsingBlock:^(NSString *feedURLString, NSUInteger idx, BOOL *stop) {
-        [self.feedFetcher fetchFeedDataFromURL:[NSURL URLWithString:feedURLString] completionQueue:nil completion:nil];
-    }];
-     */
-    //[self.feedFetcher refreshSubscribedFeedsWithCompletionQueue:NULL completion:NULL];
+    [self startAsyncFetchingFeedsWithDatabaseConnection:databaseConnection];
     
-    ////// Setup Media Fetcher //////
-    _mediaFetcher = [[SCRMediaFetcher alloc] initWithSessionConfiguration:[self.torManager currentConfiguration]
-                                                                                  storage:self.fileManager.ioCipher];
-    self.mediaFetcher.completionQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    self.mediaFetcher.networkOperationQueue.suspended = self.feedFetcher.networkOperationQueue.suspended;
-    _mediaFetcherWatcher = [[SCRMediaFetcherWatcher alloc] initWithMediaFetcher:_mediaFetcher];
     return YES;
 }
 

@@ -16,6 +16,7 @@
 		633D23DC1AA0EBF2008D1C28 /* SCRFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 633D23DB1AA0EBF2008D1C28 /* SCRFileManager.m */; };
 		633D23DF1AA0EC78008D1C28 /* SCRMediaServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 633D23DE1AA0EC78008D1C28 /* SCRMediaServer.m */; };
 		633FEABB1ACE023300A628AF /* SCRTorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 633FEABA1ACE023300A628AF /* SCRTorManager.m */; };
+		635B8C7F1AF96954009D976C /* default.opml in Resources */ = {isa = PBXBuildFile; fileRef = 635B8C7E1AF96954009D976C /* default.opml */; };
 		63775E891AAF97B4006CE553 /* Octocat.png in Resources */ = {isa = PBXBuildFile; fileRef = 63775E881AAF97B4006CE553 /* Octocat.png */; };
 		63775E8B1AAF9BE4006CE553 /* SecureReaderMediaServerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 63775E8A1AAF9BE4006CE553 /* SecureReaderMediaServerTest.m */; };
 		63775E8F1AAFB00F006CE553 /* NSData+SecureReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 63775E8E1AAFB00F006CE553 /* NSData+SecureReader.m */; };
@@ -140,6 +141,7 @@
 		633D23DE1AA0EC78008D1C28 /* SCRMediaServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SCRMediaServer.m; path = SecureReader/Feed/SCRMediaServer.m; sourceTree = SOURCE_ROOT; };
 		633FEAB91ACE023300A628AF /* SCRTorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRTorManager.h; sourceTree = "<group>"; };
 		633FEABA1ACE023300A628AF /* SCRTorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRTorManager.m; sourceTree = "<group>"; };
+		635B8C7E1AF96954009D976C /* default.opml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = default.opml; sourceTree = "<group>"; };
 		63775E881AAF97B4006CE553 /* Octocat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Octocat.png; path = "Test Assets/Octocat.png"; sourceTree = "<group>"; };
 		63775E8A1AAF9BE4006CE553 /* SecureReaderMediaServerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecureReaderMediaServerTest.m; sourceTree = "<group>"; };
 		63775E8D1AAFB00F006CE553 /* NSData+SecureReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSData+SecureReader.h"; path = "Categories/NSData+SecureReader.h"; sourceTree = "<group>"; };
@@ -490,6 +492,7 @@
 				920C8D8A1AE8DBF700FAF494 /* Localizable.strings */,
 				929EEF4B19F4EB100020BD75 /* Info.plist */,
 				929EEF4C19F4EB100020BD75 /* main.m */,
+				635B8C7E1AF96954009D976C /* default.opml */,
 				920C8DA31AE93A6D00FAF494 /* Localizable.stringsdict */,
 			);
 			name = "Supporting Files";
@@ -808,6 +811,7 @@
 				929EEF5B19F4EB100020BD75 /* Images.xcassets in Resources */,
 				92BD50A31A07A38900F3BD22 /* SCRSourceView.xib in Resources */,
 				9205828D1A6EA8F500E152D9 /* SCRAuthorView.xib in Resources */,
+				635B8C7F1AF96954009D976C /* default.opml in Resources */,
 				92BD50AE1A07A74500F3BD22 /* img_local_share.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

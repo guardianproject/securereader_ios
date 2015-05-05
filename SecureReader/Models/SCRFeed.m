@@ -25,7 +25,10 @@
 - (NSString*) yapKey {
     
     if (!_yapKey) {
-        if ([self.xmlURL.absoluteString length]) {
+        if ([self.sourceURL.absoluteString length]) {
+            _yapKey = [self.sourceURL absoluteString];
+        }
+        else if ([self.xmlURL.absoluteString length]) {
             _yapKey = [self.xmlURL absoluteString];
         }
         else if([self.htmlURL.absoluteString length]) {
@@ -42,10 +45,13 @@
 }
 
 - (NSString*) yapGroup {
+    
     if ([self.htmlURL.absoluteString length]) {
         return [self.htmlURL host];
-    } else {
+    } else if ([self.xmlURL host]) {
         return [self.xmlURL host];
+    } else {
+        return [self.sourceURL host];
     }
 }
 

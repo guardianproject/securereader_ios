@@ -94,7 +94,7 @@
             if ([object isKindOfClass:[SCRFeed class]]) {
                 SCRFeed *feed = (SCRFeed *)object;
                 dispatch_group_enter(group);
-                [self fetchFeedDataFromURL:feed.xmlURL completionQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0) completion:^(NSError *error) {
+                [self fetchFeedDataFromURL:feed.sourceURL completionQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0) completion:^(NSError *error) {
                     dispatch_group_leave(group);
                 }];
             }
@@ -118,6 +118,9 @@
  *
  *  @param url rss feed url
  */
+
+//Instead pass whole SRCFeed item to check if things have change URL and yap key wise that database needs to be modified
+//maybe unsubscribe old one so old content is still around
 - (void) fetchFeedDataFromURL:(NSURL*)url completionQueue:(dispatch_queue_t)completionQueue completion:(void (^)(NSError *))completion {\
     
     if (!completionQueue) {
