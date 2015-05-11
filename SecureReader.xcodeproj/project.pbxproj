@@ -17,6 +17,7 @@
 		633D23DF1AA0EC78008D1C28 /* SCRMediaServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 633D23DE1AA0EC78008D1C28 /* SCRMediaServer.m */; };
 		633FEABB1ACE023300A628AF /* SCRTorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 633FEABA1ACE023300A628AF /* SCRTorManager.m */; };
 		635B8C7F1AF96954009D976C /* default.opml in Resources */ = {isa = PBXBuildFile; fileRef = 635B8C7E1AF96954009D976C /* default.opml */; };
+		636180DE1B015A95008048A0 /* SCRPanicController.m in Sources */ = {isa = PBXBuildFile; fileRef = 636180DD1B015A95008048A0 /* SCRPanicController.m */; };
 		63775E891AAF97B4006CE553 /* Octocat.png in Resources */ = {isa = PBXBuildFile; fileRef = 63775E881AAF97B4006CE553 /* Octocat.png */; };
 		63775E8B1AAF9BE4006CE553 /* SecureReaderMediaServerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 63775E8A1AAF9BE4006CE553 /* SecureReaderMediaServerTest.m */; };
 		63775E8F1AAFB00F006CE553 /* NSData+SecureReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 63775E8E1AAFB00F006CE553 /* NSData+SecureReader.m */; };
@@ -142,6 +143,8 @@
 		633FEAB91ACE023300A628AF /* SCRTorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRTorManager.h; sourceTree = "<group>"; };
 		633FEABA1ACE023300A628AF /* SCRTorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRTorManager.m; sourceTree = "<group>"; };
 		635B8C7E1AF96954009D976C /* default.opml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = default.opml; sourceTree = "<group>"; };
+		636180DC1B015A95008048A0 /* SCRPanicController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRPanicController.h; sourceTree = "<group>"; };
+		636180DD1B015A95008048A0 /* SCRPanicController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRPanicController.m; sourceTree = "<group>"; };
 		63775E881AAF97B4006CE553 /* Octocat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Octocat.png; path = "Test Assets/Octocat.png"; sourceTree = "<group>"; };
 		63775E8A1AAF9BE4006CE553 /* SecureReaderMediaServerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecureReaderMediaServerTest.m; sourceTree = "<group>"; };
 		63775E8D1AAFB00F006CE553 /* NSData+SecureReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSData+SecureReader.h"; path = "Categories/NSData+SecureReader.h"; sourceTree = "<group>"; };
@@ -423,6 +426,8 @@
 			children = (
 				92A4D2A31A31F1D40091479A /* SCRPanicViewController.h */,
 				92A4D2A41A31F1D40091479A /* SCRPanicViewController.m */,
+				636180DC1B015A95008048A0 /* SCRPanicController.h */,
+				636180DD1B015A95008048A0 /* SCRPanicController.m */,
 			);
 			name = Panic;
 			sourceTree = "<group>";
@@ -897,6 +902,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				92BD509A1A07A36A00F3BD22 /* SCRItem.m in Sources */,
+				636180DE1B015A95008048A0 /* SCRPanicController.m in Sources */,
 				92E7B9711A41A30F0038DBCE /* SCRReceiveShareView.m in Sources */,
 				D90F593A1A19F617008F2DCB /* SCRDatabaseManager.m in Sources */,
 				92D212921AEE5E8300549740 /* SCRMediaDownloadsViewController.m in Sources */,
