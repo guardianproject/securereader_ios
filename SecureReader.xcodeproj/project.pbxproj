@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3BB24D68EE03667F19CC9704 /* libPods-SecureReaderTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5735327C43C1B3AC8034225E /* libPods-SecureReaderTests.a */; };
-		632A10831ACF528500E05075 /* SCRNetworkFeetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 632A10821ACF528500E05075 /* SCRNetworkFeetcher.m */; };
+		632A10831ACF528500E05075 /* SCRNetworkFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 632A10821ACF528500E05075 /* SCRNetworkFetcher.m */; };
 		632A10871ACF594400E05075 /* NSUserDefaults+SecureReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 632A10861ACF594400E05075 /* NSUserDefaults+SecureReader.m */; };
 		633AB7361A9FE8E600A0F3F9 /* SCRMediaItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 633AB7351A9FE8E600A0F3F9 /* SCRMediaItem.m */; };
 		633AB7391A9FE9A800A0F3F9 /* SCRMediaFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 633AB7381A9FE9A800A0F3F9 /* SCRMediaFetcher.m */; };
@@ -126,8 +126,8 @@
 /* Begin PBXFileReference section */
 		5735327C43C1B3AC8034225E /* libPods-SecureReaderTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SecureReaderTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5982780EDA69C66A355A7531 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		632A10811ACF528500E05075 /* SCRNetworkFeetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRNetworkFeetcher.h; sourceTree = "<group>"; };
-		632A10821ACF528500E05075 /* SCRNetworkFeetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRNetworkFeetcher.m; sourceTree = "<group>"; };
+		632A10811ACF528500E05075 /* SCRNetworkFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRNetworkFetcher.h; sourceTree = "<group>"; };
+		632A10821ACF528500E05075 /* SCRNetworkFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRNetworkFetcher.m; sourceTree = "<group>"; };
 		632A10851ACF594400E05075 /* NSUserDefaults+SecureReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSUserDefaults+SecureReader.h"; path = "Categories/NSUserDefaults+SecureReader.h"; sourceTree = "<group>"; };
 		632A10861ACF594400E05075 /* NSUserDefaults+SecureReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSUserDefaults+SecureReader.m"; path = "Categories/NSUserDefaults+SecureReader.m"; sourceTree = "<group>"; };
 		633AB7341A9FE8E600A0F3F9 /* SCRMediaItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRMediaItem.h; sourceTree = "<group>"; };
@@ -331,8 +331,8 @@
 		632A10841ACF529800E05075 /* Network Operations */ = {
 			isa = PBXGroup;
 			children = (
-				632A10811ACF528500E05075 /* SCRNetworkFeetcher.h */,
-				632A10821ACF528500E05075 /* SCRNetworkFeetcher.m */,
+				632A10811ACF528500E05075 /* SCRNetworkFetcher.h */,
+				632A10821ACF528500E05075 /* SCRNetworkFetcher.m */,
 				D90F59351A19ECBE008F2DCB /* SCRFeedFetcher.h */,
 				D90F59361A19ECBE008F2DCB /* SCRFeedFetcher.m */,
 				633AB7371A9FE9A800A0F3F9 /* SCRMediaFetcher.h */,
@@ -953,7 +953,7 @@
 				9276CCF11ACBF6AF00A6B0E3 /* SCRDraftPostItemTableDelegate.m in Sources */,
 				925AE5801A404161001E182F /* SCRMoreViewController.m in Sources */,
 				633AB7391A9FE9A800A0F3F9 /* SCRMediaFetcher.m in Sources */,
-				632A10831ACF528500E05075 /* SCRNetworkFeetcher.m in Sources */,
+				632A10831ACF528500E05075 /* SCRNetworkFetcher.m in Sources */,
 				929BE4C11A79293900641647 /* SCRTextView.m in Sources */,
 				D9317B891A886A95005DA904 /* NSFormatter+SecureReader.m in Sources */,
 				929EEF8519F4F5940020BD75 /* UIView+Theming.m in Sources */,

@@ -6,11 +6,11 @@
 //  Copyright (c) 2014 Guardian Project. All rights reserved.
 //
 
-#import "SCRNetworkFeetcher.h"
+#import "SCRNetworkFetcher.h"
 
 @class YapDatabaseConnection;
 
-@interface SCRFeedFetcher : SCRNetworkFeetcher
+@interface SCRFeedFetcher : SCRNetworkFetcher
 
 /** Whether there is a refresh ongoing is KVO compliant */
 @property (nonatomic, readonly) BOOL isRefreshing;

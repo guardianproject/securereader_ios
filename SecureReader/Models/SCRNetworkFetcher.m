@@ -6,10 +6,10 @@
 //  Copyright (c) 2015 Guardian Project. All rights reserved.
 //
 
-#import "SCRNetworkFeetcher.h"
+#import "SCRNetworkFetcher.h"
 #import "SCRTorManager.h"
 
-@implementation SCRNetworkFeetcher
+@implementation SCRNetworkFetcher
 
 - (void)dealloc
 {

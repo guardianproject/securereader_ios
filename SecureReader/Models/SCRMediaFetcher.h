@@ -6,12 +6,12 @@
 //  Copyright (c) 2015 Guardian Project. All rights reserved.
 //
 
-#import "SCRNetworkFeetcher.h"
+#import "SCRNetworkFetcher.h"
 
 @class SCRMediaItem, IOCipher;
 @protocol SCRMediaFetcherDelegate;
 
-@interface SCRMediaFetcher : SCRNetworkFeetcher
+@interface SCRMediaFetcher : SCRNetworkFetcher
 
 @property (nonatomic, weak) id<SCRMediaFetcherDelegate> delegate;
 

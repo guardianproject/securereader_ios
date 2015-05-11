@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface SCRNetworkFeetcher : NSObject
+@interface SCRNetworkFetcher : NSObject
 
 /**
  This is an operation queue that all network requests should be passed on. The purpose opf this queue 
