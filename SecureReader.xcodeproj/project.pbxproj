@@ -41,6 +41,8 @@
 		923FFFA11AA4A75600BC83D6 /* SCRItemTagCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 923FFFA01AA4A75600BC83D6 /* SCRItemTagCell.xib */; };
 		923FFFA41AA4AA2B00BC83D6 /* SCRItemTagCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 923FFFA31AA4AA2B00BC83D6 /* SCRItemTagCell.m */; };
 		924BBFC01A08DCEB00A32940 /* InAppSettings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 924BBFBF1A08DCEB00A32940 /* InAppSettings.bundle */; };
+		924E966C1B02402C008A838A /* onboard1.svg in Resources */ = {isa = PBXBuildFile; fileRef = 924E966A1B02402C008A838A /* onboard1.svg */; };
+		924E96701B02536C008A838A /* SCRTorOptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 924E966F1B02536C008A838A /* SCRTorOptionViewController.m */; };
 		925101B01ADCF16C006DB7DE /* SCRHelpHintViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 925101AF1ADCF16C006DB7DE /* SCRHelpHintViewController.m */; };
 		925AE5801A404161001E182F /* SCRMoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 925AE57F1A404161001E182F /* SCRMoreViewController.m */; };
 		926599081AEFAE25009357AD /* SCRMediaFetcherWatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 926599071AEFAE25009357AD /* SCRMediaFetcherWatcher.m */; };
@@ -177,6 +179,9 @@
 		923FFFA21AA4AA2B00BC83D6 /* SCRItemTagCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRItemTagCell.h; sourceTree = "<group>"; };
 		923FFFA31AA4AA2B00BC83D6 /* SCRItemTagCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRItemTagCell.m; sourceTree = "<group>"; };
 		924BBFBF1A08DCEB00A32940 /* InAppSettings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = InAppSettings.bundle; sourceTree = "<group>"; };
+		924E966A1B02402C008A838A /* onboard1.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = onboard1.svg; sourceTree = "<group>"; };
+		924E966E1B02536C008A838A /* SCRTorOptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRTorOptionViewController.h; sourceTree = "<group>"; };
+		924E966F1B02536C008A838A /* SCRTorOptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRTorOptionViewController.m; sourceTree = "<group>"; };
 		925101AE1ADCF16C006DB7DE /* SCRHelpHintViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRHelpHintViewController.h; sourceTree = "<group>"; };
 		925101AF1ADCF16C006DB7DE /* SCRHelpHintViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRHelpHintViewController.m; sourceTree = "<group>"; };
 		925AE57E1A404161001E182F /* SCRMoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRMoreViewController.h; sourceTree = "<group>"; };
@@ -408,6 +413,8 @@
 				929EEF7719F4F5940020BD75 /* SCRSelectLanguageViewController.m */,
 				929EEF9119F5110D0020BD75 /* SCRCreatePassphraseViewController.h */,
 				929EEF9219F5110D0020BD75 /* SCRCreatePassphraseViewController.m */,
+				924E966E1B02536C008A838A /* SCRTorOptionViewController.h */,
+				924E966F1B02536C008A838A /* SCRTorOptionViewController.m */,
 			);
 			name = "Startup Flow";
 			sourceTree = "<group>";
@@ -670,6 +677,7 @@
 		92BD50AA1A07A74500F3BD22 /* Temporary Files */ = {
 			isa = PBXGroup;
 			children = (
+				924E966A1B02402C008A838A /* onboard1.svg */,
 				9284FA701A3899730085638D /* ic_panic_down.png */,
 				9284FA711A3899730085638D /* ic_panic_down@2x.png */,
 				9284FA721A3899730085638D /* ic_panic_lg.png */,
@@ -803,6 +811,7 @@
 				9279F8081A67E2940029572B /* SCRItemCellNoPhotos.xib in Resources */,
 				92C3F0901A80CDE000DFA438 /* SCRFeedListCell.xib in Resources */,
 				920C8D881AE8DBF700FAF494 /* Localizable.strings in Resources */,
+				924E966C1B02402C008A838A /* onboard1.svg in Resources */,
 				924BBFC01A08DCEB00A32940 /* InAppSettings.bundle in Resources */,
 				9279F80A1A67FBE50029572B /* SCRItemCellLandscapePhotos.xib in Resources */,
 				920C421C1ADE5243005AB590 /* SCRSwipeUtilityButtons.xib in Resources */,
@@ -913,6 +922,7 @@
 				92E8CF8D1AD3C91D00756F9E /* SCREditTagsTextView.m in Sources */,
 				92A4D2A51A31F1D40091479A /* SCRPanicViewController.m in Sources */,
 				92DD08831ACAD010001A0F59 /* SCRAddPostViewController.m in Sources */,
+				924E96701B02536C008A838A /* SCRTorOptionViewController.m in Sources */,
 				929EEF9319F5110D0020BD75 /* SCRCreatePassphraseViewController.m in Sources */,
 				92B23C4C1A5D442F00FFD963 /* SCRAllFeedsViewController.m in Sources */,
 				92E7B96C1A4186D60038DBCE /* SCRItemViewControllerSegue.m in Sources */,

@@ -48,11 +48,12 @@
     [pickerLanguage setDataSource:self];
     [pickerLanguage setDelegate:self];
     
-    [labelCurrentLanguage setText:[self getLanguageDisplayName:[SCRSettings getUiLanguage]]];
     labelCurrentLanguage.userInteractionEnabled = YES;
     UITapGestureRecognizer *tapGesture =
     [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(selectLanguageButtonClicked:)];
     [labelCurrentLanguage addGestureRecognizer:tapGesture];
+    
+    [_svgIllustration setImage:[SVGKImage imageNamed:@"onboard1.svg"]];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -72,13 +73,6 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (IBAction)getStartedButtonClicked:(id)sender
-{
-//    [self performSegueWithIdentifier:@"segueToCreatePassphrase" sender:self];
-    [self performSegueWithIdentifier:@"segueToHint" sender:self];
-    [self removeFromParentViewController];
 }
 
 - (IBAction)selectLanguageButtonClicked:(id)sender

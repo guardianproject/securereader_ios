@@ -7,13 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <SVGKit.h>
 
 @interface SCRSelectLanguageViewController : UIViewController<UIPickerViewDataSource, UIPickerViewDelegate>
 @property (weak, nonatomic) IBOutlet UIPickerView *pickerLanguage;
 @property (weak, nonatomic) IBOutlet UIView *pickerFrame;
 @property (weak, nonatomic) IBOutlet UILabel *labelCurrentLanguage;
+@property (weak, nonatomic) IBOutlet SVGKFastImageView *svgIllustration;
 
-- (IBAction)getStartedButtonClicked:(id)sender;
 - (IBAction)selectLanguageButtonClicked:(id)sender;
 - (IBAction)saveLanguageButtonClicked:(id)sender;
 

@@ -2,6 +2,49 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>OnboardingScreen1Style</key>
+	<dict>
+		<key>backgroundColor</key>
+		<string>#ff5ed4f6</string>
+	</dict>
+	<key>OnboardingScreen2Style</key>
+	<dict>
+		<key>backgroundColor</key>
+		<string>#ffc40027</string>
+	</dict>
+	<key>OnboardingTextHeadingStyle</key>
+	<dict>
+		<key>backgroundColor</key>
+		<string>#00000000</string>
+		<key>tintColor</key>
+		<string>#ffffffff</string>
+		<key>textColor</key>
+		<string>#ffffffff</string>
+		<key>textSize</key>
+		<integer>20</integer>
+	</dict>
+	<key>OnboardingTextContentStyle</key>
+	<dict>
+		<key>backgroundColor</key>
+		<string>#00000000</string>
+		<key>tintColor</key>
+		<string>#ffffffff</string>
+		<key>textColor</key>
+		<string>#ffffffff</string>
+		<key>textSize</key>
+		<integer>16</integer>
+	</dict>
+	<key>OnboardingTextActionStyle</key>
+	<dict>
+		<key>backgroundColor</key>
+		<string>#ffdddddd</string>
+		<key>tintColor</key>
+		<string>#ff777777</string>
+		<key>textColor</key>
+		<string>#ff777777</string>
+		<key>textSize</key>
+		<integer>14</integer>
+	</dict>
 	<key>Colors</key>
 	<dict>
 		<key>highlightColor</key>
