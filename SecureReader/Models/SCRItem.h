@@ -36,4 +36,7 @@ extern NSString *const kSCRFeedEdgeName;
 
 - (void)enumerateMediaItemsInTransaction:(YapDatabaseReadTransaction *)readTransaction block:(void (^)(SCRMediaItem *mediaItem,BOOL *stop))block;
 
+
++ (void)removeItemsOlderThan:(NSDate *)date withReadWriteTransaction:(YapDatabaseReadWriteTransaction *)transaction storage:(IOCipher *)storage;
+
 @end

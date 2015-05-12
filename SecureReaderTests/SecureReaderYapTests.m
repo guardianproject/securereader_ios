@@ -257,4 +257,37 @@ NSString *const kSecureReaderYapTestsRSSURL = @"http://test.fake/rss";
     }];
 }
 
+- (void)testItemExpires
+{
+    NSString *path = [NSTemporaryDirectory() stringByAppendingPathComponent:NSStringFromSelector(_cmd)];
+    
+    [self setupDatabseAtPath:path];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"testItemExipres"];
+    [self importDefaultFeed:^(NSError *error) {
+        
+        //wait 2 seconds so the dates are different 
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.databaseManager.readWriteConnection readWriteWithBlock:^(YapDatabaseReadWriteTransaction *transaction) {
+                [SCRItem removeItemsOlderThan:[NSDate date] withReadWriteTransaction:transaction storage:nil];
+            }];
+            
+            __block NSArray *keys = nil;
+            [self.databaseManager.readWriteConnection readWithBlock:^(YapDatabaseReadTransaction *transaction) {
+                keys = [transaction allKeysInCollection:[SCRItem yapCollection]];
+            }];
+            
+            XCTAssertTrue([keys count] == 0, @"Found items");
+            
+            [expectation fulfill];
+        });
+        
+    }];
+    
+    [self waitForExpectationsWithTimeout:500 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Timeout");
+        }
+    }];
+}
+
 @end

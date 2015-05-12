@@ -111,6 +111,33 @@ NSString *const kSCRFeedEdgeName      = @"kSCRFeedEdgeName";
     return self;
 }
 
+#pragma - mark Class Methods
+
++ (void)removeItemsOlderThan:(NSDate *)date withReadWriteTransaction:(YapDatabaseReadWriteTransaction *)transaction storage:(IOCipher *)storage
+{
+    __block NSMutableArray *keysToRemove = [[NSMutableArray alloc] init];
+    __block NSMutableArray *mediaItemsToRemove = [[NSMutableArray alloc] init];
+    [transaction enumerateKeysAndMetadataInCollection:[self yapCollection] usingBlock:^(NSString *key, id metadata, BOOL *stop) {
+        if ([metadata isKindOfClass:[NSDate class]]) {
+            NSDate *objectDate = (NSDate *)metadata;
+            if ([date compare:objectDate] == NSOrderedDescending) {
+                [keysToRemove addObject:key];
+                SCRItem *item = [transaction objectForKey:key inCollection:[self yapCollection]];
+                [item enumerateMediaItemsInTransaction:transaction block:^(SCRMediaItem *mediaItem, BOOL *stop) {
+                    [mediaItemsToRemove addObject:mediaItem];
+                }];
+            }
+        }
+    }];
+    
+    for (SCRMediaItem *mediaItem in mediaItemsToRemove) {
+        [storage removeItemAtPath:[mediaItem localPath] error:nil];
+        [transaction removeObjectForKey:mediaItem.yapKey inCollection:[SCRMediaItem yapCollection]];
+    }
+    
+    [transaction removeObjectsForKeys:keysToRemove inCollection:[self yapCollection]];
+}
+
 #pragma - mark MTLModel Methods
 
 + (NSDictionary *)encodingBehaviorsByPropertyKey {
@@ -120,5 +147,7 @@ NSString *const kSCRFeedEdgeName      = @"kSCRFeedEdgeName";
     
     return dictionary;
 }
+
+
 
 @end

@@ -155,6 +155,10 @@
                         if ([item isKindOfClass:[SCRItem class]]) {
                             SCRItem *nativeItem = (SCRItem*)item;
                             SCRItem *existingItem = [transaction objectForKey:nativeItem.yapKey inCollection:[[nativeItem class] yapCollection]];
+                            id itemMetaData = [transaction metadataForKey:nativeItem.yapKey inCollection:[[nativeItem class] yapCollection]];
+                            if (!itemMetaData) {
+                                itemMetaData = [NSDate date];
+                            }
                             if (existingItem) {
                                 nativeItem.isFavorite = existingItem.isFavorite;
                                 nativeItem.isReceived = existingItem.isReceived;
@@ -175,7 +179,7 @@
                             }
                             
                             
-                            [transaction setObject:nativeItem forKey:nativeItem.yapKey inCollection:[[nativeItem class] yapCollection]];
+                            [transaction setObject:nativeItem forKey:nativeItem.yapKey inCollection:[[nativeItem class] yapCollection] withMetadata:itemMetaData]   ;
                         }
                     }];
                 } completionBlock:^{

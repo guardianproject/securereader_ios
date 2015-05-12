@@ -70,6 +70,16 @@ NSString *const kSCRSubscribedFeedsColumnName = @"kSCRSubscribedFeedsColumnName"
         return passphraseData;
     };
     _database = [[YapDatabase alloc] initWithPath:path serializer:nil deserializer:nil options:options];
+    
+    //Waiting on https://github.com/yapstudios/YapDatabase/issues/171
+    /*
+     _database = [[YapDatabase alloc] initWithPath:path
+     objectSerializer:nil
+     objectDeserializer:nil
+     metadataSerializer:[YapDatabase timestampSerializer]
+     metadataDeserializer:[YapDatabase timestampDeserializer]
+     options:options];
+     */
     if (!_database) {
         return;
     }
