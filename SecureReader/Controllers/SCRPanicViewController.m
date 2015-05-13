@@ -56,11 +56,7 @@
             } completion:^(BOOL finished)
              {
                  [panicDragThumb setHidden:YES];
-                 [SCRPanicController clearAllDataCompletionQueue:nil completion:^(NSError *error) {
-                     //Not sure what to do here maybe exit(0) or somehow go to the onboarding?
-                     exit(0);
-                 }];
-                 [[NSNotificationCenter defaultCenter] postNotificationName:kPanicStartNotification object:nil];
+                 [SCRPanicController showPanicConfirmationDialogInViewController:self];
              }
              ];
         }

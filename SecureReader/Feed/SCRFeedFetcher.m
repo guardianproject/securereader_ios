@@ -121,10 +121,18 @@
 
 //Instead pass whole SRCFeed item to check if things have change URL and yap key wise that database needs to be modified
 //maybe unsubscribe old one so old content is still around
-- (void) fetchFeedDataFromURL:(NSURL*)url completionQueue:(dispatch_queue_t)completionQueue completion:(void (^)(NSError *))completion {\
+- (void) fetchFeedDataFromURL:(NSURL*)url completionQueue:(dispatch_queue_t)completionQueue completion:(void (^)(NSError *))completion {
     
     if (!completionQueue) {
         completionQueue = dispatch_get_main_queue();
+    }
+    
+    NSAssert(url != nil, @"url cannot be nil!");
+    if (!url) {
+        dispatch_async(completionQueue, ^{
+            completion([NSError errorWithDomain:@"securereader.feedfetcher" code:100 userInfo:@{NSLocalizedDescriptionKey: @"Invalid URL"}]);
+        });
+        return;
     }
     
     [self.networkOperationQueue addOperationWithBlock:^{
