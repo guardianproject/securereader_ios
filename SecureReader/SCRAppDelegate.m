@@ -130,11 +130,15 @@
 }
 
 -(void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
-    // Don't fetch in the background w/ Tor
-    if (![SCRSettings useTor] && !self.torManager.proxyManager.isConnected) {
+    // Don't fetch in the background w/ Tor or if user uses complex password
+    if (![SCRSettings useTor] &&
+        !self.torManager.proxyManager.isConnected &&
+        [SCRPassphraseManager sharedInstance].databasePassphrase.length > 0) {
         [self.feedFetcher refreshSubscribedFeedsWithCompletionQueue:dispatch_get_main_queue() completion:^{
             completionHandler(UIBackgroundFetchResultNewData);
         }];
+    } else {
+        completionHandler(UIBackgroundFetchResultFailed);
     }
 }
 
