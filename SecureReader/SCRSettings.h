@@ -11,6 +11,10 @@
 @interface SCRSettings : NSObject
 
 extern NSString * const kFontSizeAdjustmentSettingsKey;
+extern NSString * const kSCRSyncFrequencyKey;
+extern NSString * const kSCRSyncDataOverCellularKey;
+extern NSString *const kSCRUseTorKey;
+
 
 + (NSString *)getUiLanguage;
 + (void) setUiLanguage:(NSString *)languageCode;
@@ -22,5 +26,11 @@ extern NSString * const kFontSizeAdjustmentSettingsKey;
 
 + (float)fontSizeAdjustment;
 + (void)setFontSizeAdjustment:(float)fontSizeAdjustment;
+
++ (BOOL) backgroundSyncEnabled;
++ (BOOL) syncDataOverCellular;
++ (BOOL) useTor;
+
++ (void) loadDefaultsFromSettingsDictionary:(NSDictionary*)settingsDictionary;
 
 @end

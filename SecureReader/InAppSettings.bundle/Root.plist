@@ -132,16 +132,14 @@
 			<key>Key</key>
 			<string>syncFrequency</string>
 			<key>DefaultValue</key>
-			<string>WhenRunning</string>
+			<string>InBackground</string>
 			<key>Titles</key>
 			<array>
-				<string>Manual</string>
 				<string>When app is running</string>
 				<string>In background</string>
 			</array>
 			<key>Values</key>
 			<array>
-				<string>Manual</string>
 				<string>WhenRunning</string>
 				<string>InBackground</string>
 			</array>

@@ -9,9 +9,7 @@
 #import "SCRTorManager.h"
 
 #import "IASKSettingsReader.h"
-#import "NSUserDefaults+SecureReader.h"
-
-NSString *const kSCRUseTorKey = @"useTor";
+#import "SCRSettings.h"
 
 NSString *const kSCRTorManagerNetworkStatusNotification = @"kSCRTorManagerNetworkStatusNotification";
 
@@ -54,7 +52,7 @@ NSString *const KSCRTorManagerURLSessionConfigurationKey = @"KSCRTorManagerURLSe
         
         _proxyManager = [[CPAProxyManager alloc] initWithConfiguration:configuration];
         
-        if ([[NSUserDefaults standardUserDefaults] scr_useTor]) {
+        if ([SCRSettings useTor]) {
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [self.proxyManager setupWithCompletion:NULL progress:NULL];
             });
@@ -84,23 +82,22 @@ NSString *const KSCRTorManagerURLSessionConfigurationKey = @"KSCRTorManagerURLSe
 
 - (NSURLSessionConfiguration *)currentConfiguration
 {
-    BOOL useTor = [[NSUserDefaults standardUserDefaults] scr_useTor];
+    BOOL useTor = [SCRSettings useTor];
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration ephemeralSessionConfiguration];
+    if ([SCRSettings syncDataOverCellular]) {
+        configuration.allowsCellularAccess = YES;
+    } else {
+        configuration.allowsCellularAccess = NO;
+    }
     if (useTor) {
-        
         NSString *host = self.proxyManager.SOCKSHost;
         NSNumber *port = @(self.proxyManager.SOCKSPort);
-        
-        NSURLSessionConfiguration *configuration = nil;
         if ([host length]) {
-            configuration = [NSURLSessionConfiguration ephemeralSessionConfiguration];
             configuration.connectionProxyDictionary = @{(__bridge NSString *)kCFStreamPropertySOCKSProxyHost:host,
-                                                        (__bridge NSString *)kCFStreamPropertySOCKSProxyPort:port}
-            ;
+                                                        (__bridge NSString *)kCFStreamPropertySOCKSProxyPort:port};
         }
-        return configuration;
     }
-    
-    return [NSURLSessionConfiguration ephemeralSessionConfiguration];
+    return configuration;
 }
 
 - (void)sendConfigurationChangedNotification

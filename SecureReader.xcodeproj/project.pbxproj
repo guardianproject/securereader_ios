@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		3BB24D68EE03667F19CC9704 /* libPods-SecureReaderTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5735327C43C1B3AC8034225E /* libPods-SecureReaderTests.a */; };
 		632A10831ACF528500E05075 /* SCRNetworkFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 632A10821ACF528500E05075 /* SCRNetworkFetcher.m */; };
-		632A10871ACF594400E05075 /* NSUserDefaults+SecureReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 632A10861ACF594400E05075 /* NSUserDefaults+SecureReader.m */; };
 		633AB7361A9FE8E600A0F3F9 /* SCRMediaItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 633AB7351A9FE8E600A0F3F9 /* SCRMediaItem.m */; };
 		633AB7391A9FE9A800A0F3F9 /* SCRMediaFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 633AB7381A9FE9A800A0F3F9 /* SCRMediaFetcher.m */; };
 		633AB73B1A9FFCEA00A0F3F9 /* SecureReaderDownloadTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 633AB73A1A9FFCEA00A0F3F9 /* SecureReaderDownloadTests.m */; };
@@ -131,8 +130,6 @@
 		5982780EDA69C66A355A7531 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		632A10811ACF528500E05075 /* SCRNetworkFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRNetworkFetcher.h; sourceTree = "<group>"; };
 		632A10821ACF528500E05075 /* SCRNetworkFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRNetworkFetcher.m; sourceTree = "<group>"; };
-		632A10851ACF594400E05075 /* NSUserDefaults+SecureReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSUserDefaults+SecureReader.h"; path = "Categories/NSUserDefaults+SecureReader.h"; sourceTree = "<group>"; };
-		632A10861ACF594400E05075 /* NSUserDefaults+SecureReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSUserDefaults+SecureReader.m"; path = "Categories/NSUserDefaults+SecureReader.m"; sourceTree = "<group>"; };
 		633AB7341A9FE8E600A0F3F9 /* SCRMediaItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRMediaItem.h; sourceTree = "<group>"; };
 		633AB7351A9FE8E600A0F3F9 /* SCRMediaItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRMediaItem.m; sourceTree = "<group>"; };
 		633AB7371A9FE9A800A0F3F9 /* SCRMediaFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRMediaFetcher.h; sourceTree = "<group>"; };
@@ -310,6 +307,7 @@
 		D9317B881A886A95005DA904 /* NSFormatter+SecureReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFormatter+SecureReader.m"; sourceTree = "<group>"; };
 		D93AA6471AD6FEB7001B8602 /* SCRPassphraseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRPassphraseManager.h; sourceTree = "<group>"; };
 		D93AA6481AD6FEB7001B8602 /* SCRPassphraseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRPassphraseManager.m; sourceTree = "<group>"; };
+		D94FACCE1B0524D0005D5A85 /* SecureReader.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SecureReader.entitlements; sourceTree = "<group>"; };
 		D9DCD4451A2344CA003C0522 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		D9E6575D1A234363000E6301 /* SCRFeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRFeed.h; sourceTree = "<group>"; };
 		D9E6575E1A234363000E6301 /* SCRFeed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRFeed.m; sourceTree = "<group>"; };
@@ -377,8 +375,6 @@
 			children = (
 				63775E8D1AAFB00F006CE553 /* NSData+SecureReader.h */,
 				63775E8E1AAFB00F006CE553 /* NSData+SecureReader.m */,
-				632A10851ACF594400E05075 /* NSUserDefaults+SecureReader.h */,
-				632A10861ACF594400E05075 /* NSUserDefaults+SecureReader.m */,
 				921934791ADBCD14001B1A73 /* UIAlertView+SecureReader.h */,
 				9219347A1ADBCD14001B1A73 /* UIAlertView+SecureReader.m */,
 			);
@@ -472,6 +468,7 @@
 		929EEF4919F4EB100020BD75 /* SecureReader */ = {
 			isa = PBXGroup;
 			children = (
+				D94FACCE1B0524D0005D5A85 /* SecureReader.entitlements */,
 				929EEF8619F4F5F30020BD75 /* Styles.plist */,
 				D90F59341A19EC43008F2DCB /* Feed */,
 				633D23D91AA0EBC6008D1C28 /* File Management */,
@@ -765,6 +762,18 @@
 				TargetAttributes = {
 					929EEF4619F4EB100020BD75 = {
 						CreatedOnToolsVersion = 6.0.1;
+						DevelopmentTeam = 4T8JLQR6GR;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.DataProtection = {
+								enabled = 1;
+							};
+							com.apple.Passbook = {
+								enabled = 0;
+							};
+						};
 					};
 					929EEF6219F4EB100020BD75 = {
 						CreatedOnToolsVersion = 6.0.1;
@@ -917,7 +926,6 @@
 				92D212921AEE5E8300549740 /* SCRMediaDownloadsViewController.m in Sources */,
 				92BD50A11A07A38900F3BD22 /* SCRItemView.m in Sources */,
 				929BE4BE1A7913A700641647 /* SCRLabel.m in Sources */,
-				632A10871ACF594400E05075 /* NSUserDefaults+SecureReader.m in Sources */,
 				63775E8F1AAFB00F006CE553 /* NSData+SecureReader.m in Sources */,
 				92E8CF8D1AD3C91D00756F9E /* SCREditTagsTextView.m in Sources */,
 				92A4D2A51A31F1D40091479A /* SCRPanicViewController.m in Sources */,
@@ -1140,10 +1148,13 @@
 			baseConfigurationReference = DBA503BDF49A23BF85C3B2EA /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = SecureReader/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -1152,11 +1163,13 @@
 			baseConfigurationReference = A21561AE6A5B97BAE0C7EADE /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = SecureReader/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "2a959e51-3be8-47a0-9f62-9a82e6d4a91a";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

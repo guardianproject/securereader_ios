@@ -20,11 +20,11 @@
 #import "SCRDatabaseManager.h"
 #import "SCRFeedFetcher.h"
 #import "SCRFileManager.h"
-#import "NSUserDefaults+SecureReader.h"
 #import "SCRPassphraseManager.h"
 #import "YapDatabaseViewTransaction.h"
 #import "DDLog.h"
 #import "DDTTYLogger.h"
+#import "IASKSettingsReader.h"
 
 @interface SCRAppDelegate() <BITHockeyManagerDelegate>
 @end
@@ -52,8 +52,14 @@
     [NSBundle setLanguage:[SCRSettings getUiLanguage]];
     [SCRTheme initialize];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidTimeout:) name:kApplicationDidTimeoutNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(settingsUpdated:) name:kIASKAppSettingChanged object:nil];
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    
+    // Load default settings
+    IASKSettingsReader *settingsReader = [[IASKSettingsReader alloc] initWithSettingsFileNamed:@"Root" applicationBundle:[NSBundle mainBundle]];
+    NSDictionary *settingsDictionary = [settingsReader settingsDictionary];
+    [SCRSettings loadDefaultsFromSettingsDictionary:settingsDictionary];
 
     UIViewController *mainViewController = nil;
     if (![SCRDatabaseManager databaseExists])
@@ -73,7 +79,18 @@
             self.window.rootViewController = mainViewController;
         }
     }
+    
+    [self configureBackgroundSync];
+    
     return YES;
+}
+
+- (void) settingsUpdated:(NSNotification*)notification {
+    if ([notification.object isKindOfClass:[NSString class]]) {
+        if ([((NSString *)notification.object) isEqualToString:kSCRSyncFrequencyKey]) {
+            [self configureBackgroundSync];
+        }
+    }
 }
 
 -(void)applicationDidTimeout:(NSNotification *) notif
@@ -99,6 +116,25 @@
     {
         SCRLoginViewController *vcLogin = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"login"];
         self.window.rootViewController = vcLogin;
+    }
+}
+
+- (void) configureBackgroundSync {
+    BOOL backgroundSyncEnabled = [SCRSettings backgroundSyncEnabled];
+    if (backgroundSyncEnabled) {
+        [[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
+    } else {
+        [[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalNever];
+    }
+    
+}
+
+-(void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+    // Don't fetch in the background w/ Tor
+    if (![SCRSettings useTor] && !self.torManager.proxyManager.isConnected) {
+        [self.feedFetcher refreshSubscribedFeedsWithCompletionQueue:dispatch_get_main_queue() completion:^{
+            completionHandler(UIBackgroundFetchResultNewData);
+        }];
     }
 }
 
@@ -132,7 +168,7 @@
 {
     ////// Setup Feed Fetcher //////
     _feedFetcher = [[SCRFeedFetcher alloc] initWithReadWriteYapConnection:databaseConnection sessionConfiguration:[self.torManager currentConfiguration]];
-    if ([[NSUserDefaults standardUserDefaults] scr_useTor] && self.torManager.proxyManager.status != CPAStatusOpen) {
+    if ([SCRSettings useTor] && self.torManager.proxyManager.status != CPAStatusOpen) {
         self.feedFetcher.networkOperationQueue.suspended = YES;
     }
     

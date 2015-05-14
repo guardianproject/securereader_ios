@@ -13,6 +13,10 @@
 
 NSString * const kDownloadMediaSettingsKey = @"downloadMedia";
 NSString * const kFontSizeAdjustmentSettingsKey = @"fontSizeAdjustment";
+NSString * const kSCRSyncFrequencyKey = @"syncFrequency";
+NSString * const kSCRSyncDataOverCellularKey = @"syncNetwork";
+NSString * const kSCRUseTorKey = @"useTor";
+
 
 + (NSString *)getUiLanguage
 {
@@ -72,6 +76,41 @@ NSString * const kFontSizeAdjustmentSettingsKey = @"fontSizeAdjustment";
 {
     NSDictionary *dict = [[NSMutableDictionary alloc] initWithObjectsAndKeys:key, @"key", nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:kSettingChangedNotification object:self userInfo:dict];
+}
+
++ (BOOL) backgroundSyncEnabled {
+    NSString *backgroundSyncValue = [[NSUserDefaults standardUserDefaults] objectForKey:kSCRSyncFrequencyKey];
+    if ([backgroundSyncValue isEqualToString:@"InBackground"]) {
+        return YES;
+    }
+    return NO;
+}
+
++ (BOOL) syncDataOverCellular {
+    NSString *syncDataOverCellularValue = [[NSUserDefaults standardUserDefaults] objectForKey:kSCRSyncDataOverCellularKey];
+    if ([syncDataOverCellularValue isEqualToString:@"WifiAndMobile"]) {
+        return YES;
+    }
+    return NO;
+}
+
++ (BOOL) useTor {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:kSCRUseTorKey];
+}
+
+
++ (void) loadDefaultsFromSettingsDictionary:(NSDictionary*)settingsDictionary {
+    NSMutableDictionary *defaults = [NSMutableDictionary dictionary];
+    NSArray *preferenceSpecifiers = [settingsDictionary objectForKey:@"PreferenceSpecifiers"];
+    [preferenceSpecifiers enumerateObjectsUsingBlock:^(NSDictionary *preference, NSUInteger idx, BOOL *stop) {
+        id defaultValue = [preference objectForKey:@"DefaultValue"];
+        NSString *key = [preference objectForKey:@"Key"];
+        if (defaultValue && key) {
+            [defaults setObject:defaultValue forKey:key];
+        }
+    }];
+    
+    [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
 }
 
 @end
