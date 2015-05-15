@@ -12,6 +12,11 @@
 		<key>backgroundColor</key>
 		<string>#ffc40027</string>
 	</dict>
+	<key>OnboardingScreen3Style</key>
+	<dict>
+		<key>backgroundColor</key>
+		<string>#ff2400ff</string>
+	</dict>
 	<key>OnboardingTextHeadingStyle</key>
 	<dict>
 		<key>backgroundColor</key>
@@ -21,7 +26,7 @@
 		<key>textColor</key>
 		<string>#ffffffff</string>
 		<key>textSize</key>
-		<integer>20</integer>
+		<integer>22</integer>
 	</dict>
 	<key>OnboardingTextContentStyle</key>
 	<dict>
@@ -32,7 +37,7 @@
 		<key>textColor</key>
 		<string>#ffffffff</string>
 		<key>textSize</key>
-		<integer>16</integer>
+		<integer>15</integer>
 	</dict>
 	<key>OnboardingTextActionStyle</key>
 	<dict>
@@ -113,6 +118,11 @@
 	<dict>
 		<key>backgroundColor</key>
 		<string>#ffffffff</string>
+	</dict>
+	<key>FeedListCategoryStyle</key>
+	<dict>
+		<key>textColor</key>
+		<string>#fff9ff04</string>
 	</dict>
 	<key>FeedListTitleStyle</key>
 	<dict>

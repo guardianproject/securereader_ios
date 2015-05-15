@@ -44,6 +44,8 @@
 		924E96701B02536C008A838A /* SCRTorOptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 924E966F1B02536C008A838A /* SCRTorOptionViewController.m */; };
 		925101B01ADCF16C006DB7DE /* SCRHelpHintViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 925101AF1ADCF16C006DB7DE /* SCRHelpHintViewController.m */; };
 		925AE5801A404161001E182F /* SCRMoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 925AE57F1A404161001E182F /* SCRMoreViewController.m */; };
+		9260151E1B03925600768D9B /* SCRPickFeedsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9260151D1B03925600768D9B /* SCRPickFeedsViewController.m */; };
+		926015201B03A31C00768D9B /* onboarding_feeds.opml in Resources */ = {isa = PBXBuildFile; fileRef = 9260151F1B03A31C00768D9B /* onboarding_feeds.opml */; };
 		926599081AEFAE25009357AD /* SCRMediaFetcherWatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 926599071AEFAE25009357AD /* SCRMediaFetcherWatcher.m */; };
 		9268080C1ABC4C5E00EB9225 /* SCRMediaCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9268080B1ABC4C5E00EB9225 /* SCRMediaCollectionView.m */; };
 		9268080E1ABC4C6F00EB9225 /* SCRMediaCollectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9268080D1ABC4C6F00EB9225 /* SCRMediaCollectionView.xib */; };
@@ -51,6 +53,10 @@
 		9276CCF11ACBF6AF00A6B0E3 /* SCRDraftPostItemTableDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9276CCF01ACBF6AF00A6B0E3 /* SCRDraftPostItemTableDelegate.m */; };
 		9276CCF41ACC1FBB00A6B0E3 /* SCRSentPostItemTableDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9276CCF31ACC1FBB00A6B0E3 /* SCRSentPostItemTableDelegate.m */; };
 		9276CCF61ACC225800A6B0E3 /* SCRPostItemCellDraft.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9276CCF51ACC225800A6B0E3 /* SCRPostItemCellDraft.xib */; };
+		9277D3AE1B060DFA00C4F957 /* SCRFeedListCategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9277D3AD1B060DFA00C4F957 /* SCRFeedListCategoryCell.xib */; };
+		9277D3B31B0628B700C4F957 /* SCRFeedListCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9277D3B21B0628B700C4F957 /* SCRFeedListCategoryCell.m */; };
+		9277D3B61B062E8300C4F957 /* category_default.svg in Resources */ = {isa = PBXBuildFile; fileRef = 9277D3B41B062E8300C4F957 /* category_default.svg */; };
+		9277D3B71B062E8300C4F957 /* category_sports.svg in Resources */ = {isa = PBXBuildFile; fileRef = 9277D3B51B062E8300C4F957 /* category_sports.svg */; };
 		9279F8061A67B9300029572B /* UIBarItem+Theming.m in Sources */ = {isa = PBXBuildFile; fileRef = 9279F8051A67B9300029572B /* UIBarItem+Theming.m */; };
 		9279F8081A67E2940029572B /* SCRItemCellNoPhotos.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9279F8071A67E2940029572B /* SCRItemCellNoPhotos.xib */; };
 		9279F80A1A67FBE50029572B /* SCRItemCellLandscapePhotos.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9279F8091A67FBE50029572B /* SCRItemCellLandscapePhotos.xib */; };
@@ -183,6 +189,9 @@
 		925101AF1ADCF16C006DB7DE /* SCRHelpHintViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRHelpHintViewController.m; sourceTree = "<group>"; };
 		925AE57E1A404161001E182F /* SCRMoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRMoreViewController.h; sourceTree = "<group>"; };
 		925AE57F1A404161001E182F /* SCRMoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRMoreViewController.m; sourceTree = "<group>"; };
+		9260151C1B03925600768D9B /* SCRPickFeedsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRPickFeedsViewController.h; sourceTree = "<group>"; };
+		9260151D1B03925600768D9B /* SCRPickFeedsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRPickFeedsViewController.m; sourceTree = "<group>"; };
+		9260151F1B03A31C00768D9B /* onboarding_feeds.opml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = onboarding_feeds.opml; sourceTree = "<group>"; };
 		926599061AEFAE25009357AD /* SCRMediaFetcherWatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRMediaFetcherWatcher.h; sourceTree = "<group>"; };
 		926599071AEFAE25009357AD /* SCRMediaFetcherWatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRMediaFetcherWatcher.m; sourceTree = "<group>"; };
 		9268080A1ABC4C5E00EB9225 /* SCRMediaCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRMediaCollectionView.h; sourceTree = "<group>"; };
@@ -195,6 +204,11 @@
 		9276CCF21ACC1FBB00A6B0E3 /* SCRSentPostItemTableDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRSentPostItemTableDelegate.h; sourceTree = "<group>"; };
 		9276CCF31ACC1FBB00A6B0E3 /* SCRSentPostItemTableDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRSentPostItemTableDelegate.m; sourceTree = "<group>"; };
 		9276CCF51ACC225800A6B0E3 /* SCRPostItemCellDraft.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SCRPostItemCellDraft.xib; sourceTree = "<group>"; };
+		9277D3AD1B060DFA00C4F957 /* SCRFeedListCategoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SCRFeedListCategoryCell.xib; sourceTree = "<group>"; };
+		9277D3B11B0628B700C4F957 /* SCRFeedListCategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRFeedListCategoryCell.h; sourceTree = "<group>"; };
+		9277D3B21B0628B700C4F957 /* SCRFeedListCategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRFeedListCategoryCell.m; sourceTree = "<group>"; };
+		9277D3B41B062E8300C4F957 /* category_default.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = category_default.svg; sourceTree = "<group>"; };
+		9277D3B51B062E8300C4F957 /* category_sports.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = category_sports.svg; sourceTree = "<group>"; };
 		9279F8041A67B9300029572B /* UIBarItem+Theming.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarItem+Theming.h"; sourceTree = "<group>"; };
 		9279F8051A67B9300029572B /* UIBarItem+Theming.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarItem+Theming.m"; sourceTree = "<group>"; };
 		9279F8071A67E2940029572B /* SCRItemCellNoPhotos.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SCRItemCellNoPhotos.xib; sourceTree = "<group>"; };
@@ -407,10 +421,12 @@
 			children = (
 				929EEF7619F4F5940020BD75 /* SCRSelectLanguageViewController.h */,
 				929EEF7719F4F5940020BD75 /* SCRSelectLanguageViewController.m */,
-				929EEF9119F5110D0020BD75 /* SCRCreatePassphraseViewController.h */,
-				929EEF9219F5110D0020BD75 /* SCRCreatePassphraseViewController.m */,
 				924E966E1B02536C008A838A /* SCRTorOptionViewController.h */,
 				924E966F1B02536C008A838A /* SCRTorOptionViewController.m */,
+				929EEF9119F5110D0020BD75 /* SCRCreatePassphraseViewController.h */,
+				929EEF9219F5110D0020BD75 /* SCRCreatePassphraseViewController.m */,
+				9260151C1B03925600768D9B /* SCRPickFeedsViewController.h */,
+				9260151D1B03925600768D9B /* SCRPickFeedsViewController.m */,
 			);
 			name = "Startup Flow";
 			sourceTree = "<group>";
@@ -674,6 +690,9 @@
 		92BD50AA1A07A74500F3BD22 /* Temporary Files */ = {
 			isa = PBXGroup;
 			children = (
+				9277D3B41B062E8300C4F957 /* category_default.svg */,
+				9277D3B51B062E8300C4F957 /* category_sports.svg */,
+				9260151F1B03A31C00768D9B /* onboarding_feeds.opml */,
 				924E966A1B02402C008A838A /* onboard1.svg */,
 				9284FA701A3899730085638D /* ic_panic_down.png */,
 				9284FA711A3899730085638D /* ic_panic_down@2x.png */,
@@ -693,6 +712,9 @@
 				92D169721A30A5C200A84608 /* SCRFeedListCell.m */,
 				92C3F08F1A80CDE000DFA438 /* SCRFeedListCell.xib */,
 				9228CAD81AA9A97000DD3E44 /* SCRFeedListCellWithDescription.xib */,
+				9277D3B11B0628B700C4F957 /* SCRFeedListCategoryCell.h */,
+				9277D3B21B0628B700C4F957 /* SCRFeedListCategoryCell.m */,
+				9277D3AD1B060DFA00C4F957 /* SCRFeedListCategoryCell.xib */,
 			);
 			name = Feeds;
 			sourceTree = "<group>";
@@ -806,7 +828,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				926015201B03A31C00768D9B /* onboarding_feeds.opml in Resources */,
 				9231A9D91AF0CEFC007C3597 /* SCRItemCellMediaDownloads.xib in Resources */,
+				9277D3AE1B060DFA00C4F957 /* SCRFeedListCategoryCell.xib in Resources */,
 				923FFFA11AA4A75600BC83D6 /* SCRItemTagCell.xib in Resources */,
 				92E7B96E1A41A2AE0038DBCE /* SCRReceiveShareView.xib in Resources */,
 				9228CAD91AA9A97000DD3E44 /* SCRFeedListCellWithDescription.xib in Resources */,
@@ -817,6 +841,7 @@
 				9268080E1ABC4C6F00EB9225 /* SCRMediaCollectionView.xib in Resources */,
 				9239049E1A07E365004EEE7E /* background_debut_light.png in Resources */,
 				9284FA761A3899730085638D /* ic_panic_lg.png in Resources */,
+				9277D3B61B062E8300C4F957 /* category_default.svg in Resources */,
 				9279F8081A67E2940029572B /* SCRItemCellNoPhotos.xib in Resources */,
 				92C3F0901A80CDE000DFA438 /* SCRFeedListCell.xib in Resources */,
 				920C8D881AE8DBF700FAF494 /* Localizable.strings in Resources */,
@@ -826,6 +851,7 @@
 				920C421C1ADE5243005AB590 /* SCRSwipeUtilityButtons.xib in Resources */,
 				92A4D2AA1A31FE720091479A /* ic_action_panic.png in Resources */,
 				9284FA771A3899730085638D /* ic_panic_lg@2x.png in Resources */,
+				9277D3B71B062E8300C4F957 /* category_sports.svg in Resources */,
 				9284FA751A3899730085638D /* ic_panic_down@2x.png in Resources */,
 				929EEF5E19F4EB100020BD75 /* LaunchScreen.xib in Resources */,
 				929EEF8719F4F5F30020BD75 /* Styles.plist in Resources */,
@@ -955,6 +981,7 @@
 				929EEF5019F4EB100020BD75 /* SCRAppDelegate.m in Sources */,
 				92C458391A233EAA00835B10 /* SCRItemViewController.m in Sources */,
 				92B23C4F1A5D823700FFD963 /* SCRFavoritesViewController.m in Sources */,
+				9277D3B31B0628B700C4F957 /* SCRFeedListCategoryCell.m in Sources */,
 				D93AA6491AD6FEB7001B8602 /* SCRPassphraseManager.m in Sources */,
 				929EEF4D19F4EB100020BD75 /* main.m in Sources */,
 				92B23C491A5D303800FFD963 /* SCRMainViewController.m in Sources */,
@@ -981,6 +1008,7 @@
 				929BE4C11A79293900641647 /* SCRTextView.m in Sources */,
 				D9317B891A886A95005DA904 /* NSFormatter+SecureReader.m in Sources */,
 				929EEF8519F4F5940020BD75 /* UIView+Theming.m in Sources */,
+				9260151E1B03925600768D9B /* SCRPickFeedsViewController.m in Sources */,
 				921135771A7A70D40049D82B /* SCRFeedListViewController.m in Sources */,
 				929EEF8319F4F5940020BD75 /* SCRSettings.m in Sources */,
 				633D23DC1AA0EBF2008D1C28 /* SCRFileManager.m in Sources */,

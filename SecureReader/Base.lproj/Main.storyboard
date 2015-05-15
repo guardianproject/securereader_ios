@@ -225,7 +225,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Zc-Cv-3uB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2833" y="-555"/>
+            <point key="canvasLocation" x="-3131" y="-555"/>
         </scene>
         <!--Create Passphrase-->
         <scene sceneID="C7O-4U-T5Q">
@@ -1801,7 +1801,7 @@ It also helps get you access to information that may typically be unavailable in
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="getStartedButtonClicked:" destination="K4n-fz-2MT" eventType="touchUpInside" id="kwf-eX-XNM"/>
-                                    <segue destination="jqY-fv-BjM" kind="showDetail" id="640-wW-Cxr"/>
+                                    <segue destination="9Wz-EC-CbZ" kind="showDetail" id="9Yt-ri-RbP"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CZ4-uj-rjT">
@@ -1818,7 +1818,7 @@ It also helps get you access to information that may typically be unavailable in
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="getStartedButtonClicked:" destination="K4n-fz-2MT" eventType="touchUpInside" id="Bro-QU-081"/>
-                                    <segue destination="jqY-fv-BjM" kind="showDetail" identifier="next" id="t01-Tq-0YT"/>
+                                    <segue destination="9Wz-EC-CbZ" kind="showDetail" id="87I-Fd-lKx"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1852,7 +1852,78 @@ It also helps get you access to information that may typically be unavailable in
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K4n-fz-2MT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2072" y="-555"/>
+            <point key="canvasLocation" x="-2494" y="-555"/>
+        </scene>
+        <!--Pick Feeds View Controller-->
+        <scene sceneID="GhL-2o-5fM">
+            <objects>
+                <viewController id="9Wz-EC-CbZ" customClass="SCRPickFeedsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ktm-vf-Bsx"/>
+                        <viewControllerLayoutGuide type="bottom" id="93A-Ur-BqO"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="yH5-q6-8bk">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="QM5-ZU-zls">
+                                <rect key="frame" x="0.0" y="20" width="600" height="530"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5M5-5V-l9a">
+                                <rect key="frame" x="0.0" y="550" width="543" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="pbV-Pk-4ck"/>
+                                </constraints>
+                                <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="50" maxY="0.0"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="theme" value="OnboardingTextActionStyle"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="getStartedButtonClicked:" destination="CNQ-Pl-C5o" eventType="touchUpInside" id="pFI-5r-rKA"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qoO-C7-NPn">
+                                <rect key="frame" x="543" y="550" width="57" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="x7m-IN-bbc"/>
+                                </constraints>
+                                <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="20" maxY="0.0"/>
+                                <state key="normal" title="Done">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="theme" value="OnboardingTextActionStyle"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="getStartedButtonClicked:" destination="CNQ-Pl-C5o" eventType="touchUpInside" id="ks3-hT-aZc"/>
+                                    <segue destination="jqY-fv-BjM" kind="showDetail" id="D89-cb-6Ia"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="QM5-ZU-zls" firstAttribute="leading" secondItem="yH5-q6-8bk" secondAttribute="leading" id="2WG-55-hk2"/>
+                            <constraint firstItem="93A-Ur-BqO" firstAttribute="top" secondItem="qoO-C7-NPn" secondAttribute="bottom" id="9GX-ze-2NR"/>
+                            <constraint firstItem="qoO-C7-NPn" firstAttribute="leading" secondItem="5M5-5V-l9a" secondAttribute="trailing" id="A6z-4J-Man"/>
+                            <constraint firstAttribute="trailing" secondItem="qoO-C7-NPn" secondAttribute="trailing" id="DSA-RW-SMt"/>
+                            <constraint firstItem="qoO-C7-NPn" firstAttribute="top" secondItem="QM5-ZU-zls" secondAttribute="bottom" id="MuD-le-vhx"/>
+                            <constraint firstAttribute="trailing" secondItem="QM5-ZU-zls" secondAttribute="trailing" id="X7D-z5-xxM"/>
+                            <constraint firstItem="5M5-5V-l9a" firstAttribute="leading" secondItem="yH5-q6-8bk" secondAttribute="leading" id="nFV-f8-jCO"/>
+                            <constraint firstItem="QM5-ZU-zls" firstAttribute="top" secondItem="ktm-vf-Bsx" secondAttribute="bottom" id="oCf-vn-1aq"/>
+                            <constraint firstItem="93A-Ur-BqO" firstAttribute="top" secondItem="5M5-5V-l9a" secondAttribute="bottom" id="wEP-Xb-nJN"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="QM5-ZU-zls" id="see-a5-wKu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CNQ-Pl-C5o" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1855" y="-555"/>
         </scene>
     </scenes>
     <resources>
@@ -1875,6 +1946,6 @@ It also helps get you access to information that may typically be unavailable in
         <image name="ic_tab_posts" width="20" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="640-wW-Cxr"/>
+        <segue reference="9Yt-ri-RbP"/>
     </inferredMetricsTieBreakers>
 </document>
