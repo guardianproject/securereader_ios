@@ -8,7 +8,7 @@
 
 #import "SCRNetworkFetcher.h"
 
-@class YapDatabaseConnection;
+@class YapDatabaseConnection, RSSParser;
 
 @interface SCRFeedFetcher : SCRNetworkFetcher
 
@@ -54,5 +54,7 @@
 - (void) fetchFeedsFromOPMLURL:(NSURL *)url
                completionBlock:(void (^)(NSArray *feeds, NSError *error))completionBlock
                completionQueue:(dispatch_queue_t)completionQueue;
+
++ (RSSParser *)defaultParser;
 
 @end

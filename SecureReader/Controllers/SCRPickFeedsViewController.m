@@ -12,6 +12,7 @@
 #import "SCRAppDelegate.h"
 #import "SCRFeedListCell.h"
 #import "SCRFeedListCategoryCell.h"
+#import "RSSParser.h"
 
 @interface SCRPickFeedsViewController ()
 @property (nonatomic, strong) NSMutableDictionary *feedsDictionary;
@@ -36,12 +37,14 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
-    SCRFeedFetcher *feedFetcher = [[SCRFeedFetcher alloc] initWithReadWriteYapConnection:nil sessionConfiguration:nil];
-
-    NSURL *urlOmpl = [[NSBundle mainBundle] URLForResource: @"onboarding_feeds" withExtension:@"opml"];
-    [feedFetcher fetchFeedsFromOPMLURL:urlOmpl completionBlock:^(NSArray *feeds, NSError *error) {
+    NSString *opmlPath = [[NSBundle mainBundle] pathForResource:@"onboarding_feeds" ofType:@"opml"];
+    NSData *opmlData = [NSData dataWithContentsOfFile:opmlPath];
+    
+    RSSParser *parser = [SCRFeedFetcher defaultParser];
+    
+    [parser feedsFromOPMLData:opmlData completionBlock:^(NSArray *feeds, NSError *error) {
         [self processFeeds:feeds];
-    } completionQueue:nil];
+    } completionQueue:dispatch_get_main_queue()];
 }
 
 - (void) viewDidAppear:(BOOL)animated {

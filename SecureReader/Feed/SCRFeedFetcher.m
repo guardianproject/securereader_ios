@@ -37,7 +37,7 @@
     if (self = [self init]) {
         self.databaseConnection = connection;
         _atomKit = [[RSSAtomKit alloc] initWithSessionConfiguration:sessionConfiguration];
-        [self registerRSSAtomKitClasses];
+        [[self class] registerDefaultRSSAtomKitClassesWithParser:self.atomKit.parser];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeYapConnections:) name:SCRRemoveYapConnectionsNotification object:[SCRDatabaseManager sharedInstance]];
     }
     return self;
@@ -62,12 +62,7 @@
     return self.atomKit.urlSessionConfiguration;
 }
 
-- (void)registerRSSAtomKitClasses
-{
-    [self.atomKit.parser registerFeedClass:[SCRFeed class]];
-    [self.atomKit.parser registerItemClass:[SCRItem class]];
-    [self.atomKit.parser registerMediaItemClass:[SCRMediaItem class]];
-}
+
 
 - (BOOL)refreshSubscribedFeedsWithCompletionQueue:(dispatch_queue_t)completionQueue completion:(void (^)(void))completion
 {
@@ -205,6 +200,20 @@
 
 - (void) fetchFeedsFromOPMLURL:(NSURL *)url completionBlock:(void (^)(NSArray *, NSError *))completionBlock completionQueue:(dispatch_queue_t)completionQueue{
     [self.atomKit parseFeedsFromOPMLURL:url completionBlock:completionBlock completionQueue:completionQueue];
+}
+
++ (RSSParser *)defaultParser
+{
+    RSSParser *parser = [[RSSParser alloc] init];
+    [self registerDefaultRSSAtomKitClassesWithParser:parser];
+    return parser;
+}
+
++ (void)registerDefaultRSSAtomKitClassesWithParser:(RSSParser *)parser
+{
+    [parser registerFeedClass:[SCRFeed class]];
+    [parser registerItemClass:[SCRItem class]];
+    [parser registerMediaItemClass:[SCRMediaItem class]];
 }
 
 
