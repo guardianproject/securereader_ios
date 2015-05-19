@@ -9,12 +9,14 @@
 #import "RSSFeed.h"
 #import "SCRYapObject.h"
 
+@import UIKit;
 @class SCRItem, YapDatabaseReadTransaction, IOCipher;
 
 @interface SCRFeed : RSSFeed <SCRYapObject>
 
 @property (nonatomic) BOOL subscribed;
 @property (nonatomic) BOOL userAdded;
+@property (nonatomic, strong) UIImage *feedImage;
 
 - (void)enumerateItemsInTransaction:(YapDatabaseReadTransaction *)readTransaction block:(void (^)(SCRItem *item, BOOL *stop))block;
 

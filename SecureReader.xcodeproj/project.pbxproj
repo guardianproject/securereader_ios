@@ -15,6 +15,7 @@
 		633D23DC1AA0EBF2008D1C28 /* SCRFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 633D23DB1AA0EBF2008D1C28 /* SCRFileManager.m */; };
 		633D23DF1AA0EC78008D1C28 /* SCRMediaServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 633D23DE1AA0EC78008D1C28 /* SCRMediaServer.m */; };
 		633FEABB1ACE023300A628AF /* SCRTorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 633FEABA1ACE023300A628AF /* SCRTorManager.m */; };
+		634680901B0AAB8E00D9A1C5 /* SCRFeedIconFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 6346808F1B0AAB8E00D9A1C5 /* SCRFeedIconFetcher.m */; };
 		635B8C7F1AF96954009D976C /* default.opml in Resources */ = {isa = PBXBuildFile; fileRef = 635B8C7E1AF96954009D976C /* default.opml */; };
 		636180DE1B015A95008048A0 /* SCRPanicController.m in Sources */ = {isa = PBXBuildFile; fileRef = 636180DD1B015A95008048A0 /* SCRPanicController.m */; };
 		63775E891AAF97B4006CE553 /* Octocat.png in Resources */ = {isa = PBXBuildFile; fileRef = 63775E881AAF97B4006CE553 /* Octocat.png */; };
@@ -147,6 +148,8 @@
 		633D23DE1AA0EC78008D1C28 /* SCRMediaServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SCRMediaServer.m; path = SecureReader/Feed/SCRMediaServer.m; sourceTree = SOURCE_ROOT; };
 		633FEAB91ACE023300A628AF /* SCRTorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRTorManager.h; sourceTree = "<group>"; };
 		633FEABA1ACE023300A628AF /* SCRTorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRTorManager.m; sourceTree = "<group>"; };
+		6346808E1B0AAB8E00D9A1C5 /* SCRFeedIconFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SCRFeedIconFetcher.h; path = SecureReader/Feed/SCRFeedIconFetcher.h; sourceTree = SOURCE_ROOT; };
+		6346808F1B0AAB8E00D9A1C5 /* SCRFeedIconFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SCRFeedIconFetcher.m; path = SecureReader/Feed/SCRFeedIconFetcher.m; sourceTree = SOURCE_ROOT; };
 		635B8C7E1AF96954009D976C /* default.opml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = default.opml; sourceTree = "<group>"; };
 		636180DC1B015A95008048A0 /* SCRPanicController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRPanicController.h; sourceTree = "<group>"; };
 		636180DD1B015A95008048A0 /* SCRPanicController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRPanicController.m; sourceTree = "<group>"; };
@@ -355,6 +358,8 @@
 				632A10821ACF528500E05075 /* SCRNetworkFetcher.m */,
 				D90F59351A19ECBE008F2DCB /* SCRFeedFetcher.h */,
 				D90F59361A19ECBE008F2DCB /* SCRFeedFetcher.m */,
+				6346808E1B0AAB8E00D9A1C5 /* SCRFeedIconFetcher.h */,
+				6346808F1B0AAB8E00D9A1C5 /* SCRFeedIconFetcher.m */,
 				633AB7371A9FE9A800A0F3F9 /* SCRMediaFetcher.h */,
 				633AB7381A9FE9A800A0F3F9 /* SCRMediaFetcher.m */,
 				926599061AEFAE25009357AD /* SCRMediaFetcherWatcher.h */,
@@ -964,6 +969,7 @@
 				63BE303D1AE70ECD003799D4 /* SCRNotificationsView.m in Sources */,
 				92E7B9741A41C8E60038DBCE /* SCRReceiveShareViewController.m in Sources */,
 				92B9E97F1A9E1A9F00A2BED9 /* SCRFeedTableDelegate.m in Sources */,
+				634680901B0AAB8E00D9A1C5 /* SCRFeedIconFetcher.m in Sources */,
 				D9E6575F1A234363000E6301 /* SCRFeed.m in Sources */,
 				928036691A27D4FF0081801A /* SCRItemPageViewController.m in Sources */,
 				9276CCEE1ACBE9CB00A6B0E3 /* SCRPostItem.m in Sources */,
