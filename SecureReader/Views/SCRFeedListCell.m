@@ -30,4 +30,9 @@
     [super layoutSubviews];
 }
 
+- (void) prepareForReuse {
+    [super prepareForReuse];
+    self.imageView.image = [UIImage imageNamed:@"ic_feed_placeholder"];
+}
+
 @end

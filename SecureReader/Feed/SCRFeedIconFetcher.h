@@ -12,7 +12,6 @@
 
 @interface SCRFeedIconFetcher : SCRNetworkFetcher
 
-
 - (instancetype) initWithSessionConfiguration:(NSURLSessionConfiguration *)configuration;
 
 - (void)fetchIconForURL:(NSURL *)url

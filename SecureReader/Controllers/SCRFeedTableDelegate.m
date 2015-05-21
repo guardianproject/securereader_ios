@@ -9,6 +9,8 @@
 #import "SCRFeedTableDelegate.h"
 #import "SCRFeedListCell.h"
 #import "SCRFeed.h"
+#import "SCRFeedIconFetcher.h"
+#import "SCRAppDelegate.h"
 
 @implementation SCRFeedTableDelegate
 
@@ -35,6 +37,27 @@
     cell.titleView.text = feed.title;
     if (cell.descriptionView != nil)
         cell.descriptionView.text = feed.feedDescription;
+    
+    if (feed.feedImage) {
+        cell.imageView.image = feed.feedImage;
+    } else {
+        NSURLSessionConfiguration *sessionConfiguration = [SCRAppDelegate sharedAppDelegate].torManager.currentConfiguration;
+        SCRFeedIconFetcher *iconFetcher = [[SCRFeedIconFetcher alloc] initWithSessionConfiguration:sessionConfiguration];
+        NSURL *url = feed.htmlURL;
+        if (!url) {
+            url = feed.xmlURL;
+        }
+        if (!url) {
+            url = feed.sourceURL;
+        }
+        [iconFetcher fetchIconForURL:url completionQueue:dispatch_get_main_queue() completion:^(UIImage *image, NSError *error) {
+            if (image) {
+                feed.feedImage = image;
+                cell.imageView.image = image;
+                [cell setNeedsLayout];
+            }
+        }];
+    }
 }
 
 @end

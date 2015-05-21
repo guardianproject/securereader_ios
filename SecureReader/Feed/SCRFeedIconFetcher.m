@@ -20,8 +20,17 @@
 
 - (void)fetchIconForURL:(NSURL *)url completionQueue:(dispatch_queue_t)queue completion:(void (^)(UIImage *, NSError *))completion
 {
+    if (!completion) {
+        return;
+    }
     if (!queue) {
         queue = dispatch_get_main_queue();
+    }
+    if (!url) {
+        dispatch_async(queue, ^{
+            completion(nil, [NSError errorWithDomain:@"info.guardianproject.SecureReader" code:124 userInfo:@{NSLocalizedDescriptionKey: @"No URL supplied!"}]);
+        });
+        return;
     }
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -42,26 +51,27 @@
                     }
                     else {
                         UIImage *image = [UIImage imageWithData:data];
-                        dispatch_async(queue, ^{
-                            completion(image,nil);
-                        });
+                        if (image) {
+                            dispatch_async(queue, ^{
+                                completion(image,nil);
+                            });
+                        } else {
+                            dispatch_async(queue, ^{
+                                completion(nil, [NSError errorWithDomain:@"info.guardianproject.SecureReader" code:123 userInfo:@{NSLocalizedDescriptionKey: @"Error decoding UIImage from NSData"}]);
+                            });
+                        }
+                        
                     }
                 }];
                 [dataTask resume];
             }];
-            
         } else {
             //Error
             dispatch_async(queue, ^{
                 completion(nil,nil);
             });
         }
-        
-        
-        
-        
     });
-    
 }
 
 @end
