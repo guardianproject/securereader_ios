@@ -16,7 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [_svgIllustration setImage:[SVGKImage imageNamed:@"onboard1.svg"]];
+    [_svgIllustration setImage:[SVGKImage imageNamed:@"onboard-01.svg"]];
 }
 
 @end

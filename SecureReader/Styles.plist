@@ -5,12 +5,12 @@
 	<key>OnboardingScreen1Style</key>
 	<dict>
 		<key>backgroundColor</key>
-		<string>#ff5ed4f6</string>
+		<string>#ff69d9f7</string>
 	</dict>
 	<key>OnboardingScreen2Style</key>
 	<dict>
 		<key>backgroundColor</key>
-		<string>#ffc40027</string>
+		<string>#ffd0021b</string>
 	</dict>
 	<key>OnboardingScreen3Style</key>
 	<dict>
