@@ -10,6 +10,7 @@
 
 #import "IASKSettingsReader.h"
 #import "SCRSettings.h"
+#import "SCRTheme.h"
 
 NSString *const kSCRTorManagerNetworkStatusNotification = @"kSCRTorManagerNetworkStatusNotification";
 
@@ -122,6 +123,7 @@ NSString *const KSCRTorManagerURLSessionConfigurationKey = @"KSCRTorManagerURLSe
     } else {
         [self sendConfigurationChangedNotification];
     }
+    [self updateTorIndicator];
 }
 
 - (void)torStarted:(NSNotification *)notification
@@ -133,8 +135,32 @@ NSString *const KSCRTorManagerURLSessionConfigurationKey = @"KSCRTorManagerURLSe
     });
 }
 
+- (void) updateTorIndicator {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        BOOL usingTor = [SCRSettings useTor] && self.proxyManager.status == CPAStatusOpen;
+        UIColor *color = nil;
+        if (usingTor) {
+            color = [SCRTheme torColor];
+        } else {
+            color = [SCRTheme defaultNavbarColor];
+        }
+        if ([[UINavigationBar class] respondsToSelector:@selector(appearance)]) {
+            [[UINavigationBar appearance] setBarTintColor:color];
+        }
+        // janky hack to force UIAppearance update
+        NSArray *windows = [UIApplication sharedApplication].windows;
+        for (UIWindow *window in windows) {
+            for (UIView *view in window.subviews) {
+                [view removeFromSuperview];
+                [window addSubview:view];
+            }
+        }
+    });
+}
+
 - (void)torReady:(NSNotification *)notification
 {
+    [self updateTorIndicator];
     [self sendConfigurationChangedNotification];
 }
 

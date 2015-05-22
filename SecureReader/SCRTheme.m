@@ -342,4 +342,13 @@ static NSMutableDictionary *themes = nil;
     return [UIColor colorWithPatternImage:image];
 }
 
++ (UIColor*) torColor {
+    UIColor * color = [UIColor colorWithRed:230/255.0f green:255/255.0f blue:221/255.0f alpha:1.0f];
+    return color;
+}
+
++ (UIColor*) defaultNavbarColor {
+    return [UIColor colorWithRed:(247/255.0) green:(247/255.0) blue:(247/255.0) alpha:1];
+}
+
 @end

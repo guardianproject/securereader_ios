@@ -15,4 +15,7 @@
 + (NSObject*) getProperty:(NSString *)property forTheme:(NSString*)theme;
 + (UIColor*) getColorProperty:(NSString *)property forTheme:(NSString*)theme;
 
++ (UIColor*) torColor;
++ (UIColor*) defaultNavbarColor;
+
 @end

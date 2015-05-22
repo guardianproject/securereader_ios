@@ -10,6 +10,7 @@
 #import "SCRTorManager.h"
 #import "SCRAppDelegate.h"
 #import "SCRNotificationsView.h"
+#import "SCRTheme.h"
 
 static void * kSCRAllFeedsViewControllerContext = &kSCRAllFeedsViewControllerContext;
 
@@ -113,11 +114,11 @@ static void * kSCRAllFeedsViewControllerContext = &kSCRAllFeedsViewControllerCon
 {
     if (status == CPAStatusConnecting) {
         SCRNotificationsView *notificationsView = [[SCRNotificationsView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 33)];
-        notificationsView.backgroundColor = [UIColor darkGrayColor];
+        notificationsView.backgroundColor = [SCRTheme torColor];
         notificationsView.textLabel.text = NSLocalizedString(@"Tor starting", @"Label for alert for when tor is starting");
-        notificationsView.textLabel.textColor = [UIColor whiteColor];
+        notificationsView.textLabel.textColor = [UIColor lightGrayColor];
         notificationsView.textLabel.textAlignment = NSTextAlignmentCenter;
-        UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+        UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
         notificationsView.accessoryView = activityIndicator;
         [activityIndicator startAnimating];
         self.tableView.tableHeaderView = notificationsView;
