@@ -9,14 +9,12 @@
 #import "SCRTorOptionViewController.h"
 
 @interface SCRTorOptionViewController ()
-
 @end
 
 @implementation SCRTorOptionViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [_svgIllustration setImage:[SVGKImage imageNamed:@"onboard-01.svg"]];
 }
 
 @end

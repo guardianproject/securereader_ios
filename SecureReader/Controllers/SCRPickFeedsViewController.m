@@ -121,11 +121,11 @@
     NSString *category = (NSString *)[_feedsDictionary.allKeys objectAtIndex:section];
     if ([@"Sports" isEqualToString:category])
     {
-        [cell.categoryImage setImage:[SVGKImage imageNamed:@"category_sports.svg"]];
+        [cell.categoryImage setArtworkPath:@"onboard-category"];
     }
     else
     {
-        [cell.categoryImage setImage:[SVGKImage imageNamed:@"category_default.svg"]];
+        [cell.categoryImage setArtworkPath:@"onboard-category"];
     }
     return cell;
 }

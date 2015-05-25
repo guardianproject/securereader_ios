@@ -25,6 +25,7 @@
 #import "DDLog.h"
 #import "DDTTYLogger.h"
 #import "IASKSettingsReader.h"
+#import <SVGgh/SVGgh.h>
 
 @interface SCRAppDelegate() <BITHockeyManagerDelegate>
 @end
@@ -61,6 +62,10 @@
     NSDictionary *settingsDictionary = [settingsReader settingsDictionary];
     [SCRSettings loadDefaultsFromSettingsDictionary:settingsDictionary];
 
+    MakeSureSVGghLinks(); // classes only used in Storyboards might not link otherwise
+    [GHControlFactory setDefaultScheme:kColorSchemeEmpty];
+    [GHControlFactory setDefaultTextColor:[UIColor greenColor]];
+    
     UIViewController *mainViewController = nil;
     if (![SCRDatabaseManager databaseExists])
     {

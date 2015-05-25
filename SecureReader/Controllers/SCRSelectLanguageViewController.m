@@ -52,8 +52,6 @@
     UITapGestureRecognizer *tapGesture =
     [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(selectLanguageButtonClicked:)];
     [labelCurrentLanguage addGestureRecognizer:tapGesture];
-    
-    [_svgIllustration setImage:[SVGKImage imageNamed:@"onboard-01.svg"]];
 }
 
 - (void)viewWillAppear:(BOOL)animated

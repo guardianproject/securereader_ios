@@ -31,9 +31,7 @@ pod 'SWTableViewCell', '~> 0.3.7'
 pod 'SwipeView', '~> 1.3'
 
 # SVG file support (onboarding illustrations)
-# SVGKit 2.x is required but not yet released. The latest 2.x commit requires CocoaLumberjack 2.x which
-# we cannot support since other dependencies require 1.9.
-pod 'SVGKit', :git => 'https://github.com/SVGKit/SVGKit.git', :commit => '4f397c1551ce17fe0ed8d601cc821798060945f8'
+pod 'SVGgh', '~> 1.1'
 
 target "SecureReaderTests" do
     pod 'IOCipher/GCDWebServer', :path => 'Submodules/IOCipher/IOCipher.podspec'

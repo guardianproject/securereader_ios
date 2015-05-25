@@ -58,8 +58,6 @@
 		9276CCF61ACC225800A6B0E3 /* SCRPostItemCellDraft.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9276CCF51ACC225800A6B0E3 /* SCRPostItemCellDraft.xib */; };
 		9277D3AE1B060DFA00C4F957 /* SCRFeedListCategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9277D3AD1B060DFA00C4F957 /* SCRFeedListCategoryCell.xib */; };
 		9277D3B31B0628B700C4F957 /* SCRFeedListCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9277D3B21B0628B700C4F957 /* SCRFeedListCategoryCell.m */; };
-		9277D3B61B062E8300C4F957 /* category_default.svg in Resources */ = {isa = PBXBuildFile; fileRef = 9277D3B41B062E8300C4F957 /* category_default.svg */; };
-		9277D3B71B062E8300C4F957 /* category_sports.svg in Resources */ = {isa = PBXBuildFile; fileRef = 9277D3B51B062E8300C4F957 /* category_sports.svg */; };
 		9279F8061A67B9300029572B /* UIBarItem+Theming.m in Sources */ = {isa = PBXBuildFile; fileRef = 9279F8051A67B9300029572B /* UIBarItem+Theming.m */; };
 		9279F8081A67E2940029572B /* SCRItemCellNoPhotos.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9279F8071A67E2940029572B /* SCRItemCellNoPhotos.xib */; };
 		9279F80A1A67FBE50029572B /* SCRItemCellLandscapePhotos.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9279F8091A67FBE50029572B /* SCRItemCellLandscapePhotos.xib */; };
@@ -214,8 +212,6 @@
 		9277D3AD1B060DFA00C4F957 /* SCRFeedListCategoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SCRFeedListCategoryCell.xib; sourceTree = "<group>"; };
 		9277D3B11B0628B700C4F957 /* SCRFeedListCategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRFeedListCategoryCell.h; sourceTree = "<group>"; };
 		9277D3B21B0628B700C4F957 /* SCRFeedListCategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRFeedListCategoryCell.m; sourceTree = "<group>"; };
-		9277D3B41B062E8300C4F957 /* category_default.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = category_default.svg; sourceTree = "<group>"; };
-		9277D3B51B062E8300C4F957 /* category_sports.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = category_sports.svg; sourceTree = "<group>"; };
 		9279F8041A67B9300029572B /* UIBarItem+Theming.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarItem+Theming.h"; sourceTree = "<group>"; };
 		9279F8051A67B9300029572B /* UIBarItem+Theming.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarItem+Theming.m"; sourceTree = "<group>"; };
 		9279F8071A67E2940029572B /* SCRItemCellNoPhotos.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SCRItemCellNoPhotos.xib; sourceTree = "<group>"; };
@@ -702,8 +698,6 @@
 		92BD50AA1A07A74500F3BD22 /* Temporary Files */ = {
 			isa = PBXGroup;
 			children = (
-				9277D3B41B062E8300C4F957 /* category_default.svg */,
-				9277D3B51B062E8300C4F957 /* category_sports.svg */,
 				9260151F1B03A31C00768D9B /* onboarding_feeds.opml */,
 				9284FA701A3899730085638D /* ic_panic_down.png */,
 				9284FA711A3899730085638D /* ic_panic_down@2x.png */,
@@ -852,7 +846,6 @@
 				9268080E1ABC4C6F00EB9225 /* SCRMediaCollectionView.xib in Resources */,
 				9239049E1A07E365004EEE7E /* background_debut_light.png in Resources */,
 				9284FA761A3899730085638D /* ic_panic_lg.png in Resources */,
-				9277D3B61B062E8300C4F957 /* category_default.svg in Resources */,
 				9279F8081A67E2940029572B /* SCRItemCellNoPhotos.xib in Resources */,
 				92C3F0901A80CDE000DFA438 /* SCRFeedListCell.xib in Resources */,
 				925FF9811B0F645A00CBB148 /* onboard-02.svg in Resources */,
@@ -863,7 +856,6 @@
 				92A4D2AA1A31FE720091479A /* ic_action_panic.png in Resources */,
 				925FF9821B0F645A00CBB148 /* onboard-category.svg in Resources */,
 				9284FA771A3899730085638D /* ic_panic_lg@2x.png in Resources */,
-				9277D3B71B062E8300C4F957 /* category_sports.svg in Resources */,
 				925FF9801B0F645A00CBB148 /* onboard-01.svg in Resources */,
 				9284FA751A3899730085638D /* ic_panic_down@2x.png in Resources */,
 				929EEF5E19F4EB100020BD75 /* LaunchScreen.xib in Resources */,

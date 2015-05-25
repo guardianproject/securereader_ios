@@ -7,8 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <SVGKit.h>
 
 @interface SCRTorOptionViewController : UIViewController
-@property (weak, nonatomic) IBOutlet SVGKFastImageView *svgIllustration;
 @end

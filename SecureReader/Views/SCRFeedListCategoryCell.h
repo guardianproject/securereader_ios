@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <SVGKit.h>
+#import <SVGgh/SVGgh.h>
 
 @interface SCRFeedListCategoryCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet SVGKImageView *categoryImage;
+@property (weak, nonatomic) IBOutlet SVGDocumentView *categoryImage;
 @property (weak, nonatomic) IBOutlet UILabel *titleView;
 
 @end
