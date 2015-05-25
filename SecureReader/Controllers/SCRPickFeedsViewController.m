@@ -13,10 +13,12 @@
 #import "SCRFeedListCell.h"
 #import "SCRFeedListCategoryCell.h"
 #import "RSSParser.h"
+#import "NSString+SecureReader.h"
 
 @interface SCRPickFeedsViewController ()
 @property (nonatomic, strong) NSMutableDictionary *feedsDictionary;
 @property (nonatomic, strong) UITableViewCell *prototype;
+@property (nonatomic, strong) NSArray *feeds;
 @end
 
 @implementation SCRPickFeedsViewController
@@ -37,14 +39,43 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
-    NSString *opmlPath = [[NSBundle mainBundle] pathForResource:@"onboarding_feeds" ofType:@"opml"];
+    NSString *opmlPath = [[NSBundle mainBundle] pathForResource:@"default" ofType:@"opml"];
     NSData *opmlData = [NSData dataWithContentsOfFile:opmlPath];
     
     RSSParser *parser = [SCRFeedFetcher defaultParser];
     
     [parser feedsFromOPMLData:opmlData completionBlock:^(NSArray *feeds, NSError *error) {
+        self.feeds = feeds;
         [self processFeeds:feeds];
     } completionQueue:dispatch_get_main_queue()];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    // Save all subscribed feeds to a property list so that we can
+    // add them later, when we have created the DB. Only add hashes for the URLs, to avoid
+    // plain text URLs being kept.
+    NSURL *tmpDirURL = [NSURL fileURLWithPath:NSTemporaryDirectory() isDirectory:YES];
+    NSURL *processedFileURL = [[tmpDirURL URLByAppendingPathComponent:@"filtered"] URLByAppendingPathExtension:@"opml"];
+
+    NSMutableArray *array = [NSMutableArray new];
+    for (SCRFeed *feed in self.feeds)
+    {
+        if (feed.subscribed)
+            [array addObject:[[feed.xmlURL absoluteString] scr_md5]];
+    }
+    
+    NSString *errorStr;
+    NSData *dataRep = [NSPropertyListSerialization dataFromPropertyList:array
+                                                                 format:NSPropertyListXMLFormat_v1_0
+                                                       errorDescription:&errorStr];
+    if (!dataRep) {
+        // Handle error
+    }
+    else{
+        [dataRep writeToURL:processedFileURL atomically:YES];
+    }
+    
 }
 
 - (void) viewDidAppear:(BOOL)animated {

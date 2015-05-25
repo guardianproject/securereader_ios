@@ -26,6 +26,7 @@
 #import "DDTTYLogger.h"
 #import "IASKSettingsReader.h"
 #import <SVGgh/SVGgh.h>
+#import "NSString+SecureReader.h"
 
 @interface SCRAppDelegate() <BITHockeyManagerDelegate>
 @end
@@ -195,20 +196,50 @@
         existsFeeds = ![[transaction ext:kSCRAllFeedsViewName] isEmpty];
     } completionQueue:queue completionBlock:^{
         if (!existsFeeds) {
+            
+            // Check if we have a file pre-processed by onboarding
+            //
+            NSArray *filteredFeeds = nil;
+            
+            NSURL *tmpDirURL = [NSURL fileURLWithPath:NSTemporaryDirectory() isDirectory:YES];
+            NSURL *processedFileURL = [[tmpDirURL URLByAppendingPathComponent:@"filtered"] URLByAppendingPathExtension:@"opml"];
+            if ([[NSFileManager defaultManager] fileExistsAtPath:[processedFileURL path]])
+            {
+                NSError *err = nil;
+                NSData *propertyListData = [NSData dataWithContentsOfURL:processedFileURL];
+                if (propertyListData != nil)
+                    filteredFeeds = [NSPropertyListSerialization propertyListWithData:propertyListData options:NSPropertyListImmutable format:NULL error:&err];
+            }
+            
             NSString *defaultOPMLPath = [[NSBundle mainBundle] pathForResource:@"default" ofType:@"opml"];
             NSURL *fileURL = [NSURL fileURLWithPath:defaultOPMLPath];
             
             [self.feedFetcher fetchFeedsFromOPMLURL:fileURL completionBlock:^(NSArray *feeds, NSError *error) {
                 
                 dispatch_group_t group = dispatch_group_create();
-                for (SCRFeed *feed in feeds) {
-                    
+                for (int i = 0; i < feeds.count; i++)
+                {
+                    SCRFeed *feed = [feeds objectAtIndex:i];
                     dispatch_group_enter(group);
-                    [self.feedFetcher fetchFeedDataFromURL:feed.xmlURL completionQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0) completion:^(NSError *error) {
+                    if (filteredFeeds == nil || [filteredFeeds containsObject:[[feed.xmlURL absoluteString] scr_md5]])
+                    {
+                        [self.feedFetcher fetchFeedDataFromURL:feed.xmlURL completionQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0) completion:^(NSError *error) {
                         
-                        dispatch_group_leave(group);
-                    }];
-                    
+                            dispatch_group_leave(group);
+                        }];
+                    }
+                    else
+                    {
+                        [databaseConnection asyncReadWriteWithBlock:^(YapDatabaseReadWriteTransaction *transaction) {
+                            // Temporarily set userAdded to YES here. Kind of ugly, but easiest way to tell which should
+                            // be subscribed and which should not in the code below.
+                            feed.userAdded = YES;
+                            feed.subscribed = NO;
+                            [feed saveWithTransaction:transaction];
+                        } completionQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0) completionBlock:^{
+                            dispatch_group_leave(group);
+                        }];
+                    }
                 }
                 
                 dispatch_group_notify(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -216,8 +247,9 @@
                         NSArray *feedKeys = [transaction allKeysInCollection:[SCRFeed yapCollection]];
                         for (NSString *key in feedKeys) {
                             SCRFeed *feed = [transaction objectForKey:key inCollection:[SCRFeed yapCollection]];
+                            if (feed.userAdded != YES)
+                                feed.subscribed = YES;
                             feed.userAdded = NO;
-                            feed.subscribed = YES;
                             [feed saveWithTransaction:transaction];
                         }
                     }];
