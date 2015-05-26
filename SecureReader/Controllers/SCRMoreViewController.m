@@ -41,6 +41,15 @@
         [self.navigationController pushViewController:feedViewController animated:YES];
         return NO;
     }
+    if ([identifier isEqualToString:@"shareAppLinkSegue"]) {
+        // Possibly replace with direct App Store link
+        NSURL *appURL = [NSURL URLWithString:@"https://guardianproject.info/apps/courier/"];
+        NSString *appName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"];
+        NSString *shareString = [NSString stringWithFormat:NSLocalizedString(@"Download %@", @"for sharing a link to the app, e.g. Download Courier. %@ will be replaced by the app name at runtime."), appName];
+        UIActivityViewController *shareView = [[UIActivityViewController alloc] initWithActivityItems:@[shareString, appURL] applicationActivities:nil];
+        [self presentViewController:shareView animated:YES completion:nil];
+        return NO;
+    }
     return [super shouldPerformSegueWithIdentifier:identifier sender:sender];
 }
 
@@ -77,6 +86,10 @@
     if ([[self tableView:tableView titleForHeaderInSection:section] length] == 0)
         return 0;
     return 50;
+}
+
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 @end

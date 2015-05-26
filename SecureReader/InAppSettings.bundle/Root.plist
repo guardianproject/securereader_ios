@@ -28,32 +28,6 @@
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
-			<string>Panic</string>
-		</dict>
-		<dict>
-			<key>Titles</key>
-			<array>
-				<string>Wipe entire app</string>
-				<string>Wipe my content</string>
-			</array>
-			<key>Values</key>
-			<array>
-				<string>wipeAll</string>
-				<string>wipeData</string>
-			</array>
-			<key>Type</key>
-			<string>PSMultiValueSpecifier</string>
-			<key>Title</key>
-			<string>Action</string>
-			<key>Key</key>
-			<string>panicAction</string>
-			<key>DefaultValue</key>
-			<string>wipeData</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSGroupSpecifier</string>
-			<key>Title</key>
 			<string>Login</string>
 		</dict>
 		<dict>
@@ -83,40 +57,6 @@
 			</array>
 			<key>FooterText</key>
 			<string>Locking allows your information to be encrypted and stored safely on your device. Choose timeout.</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSMultiValueSpecifier</string>
-			<key>Title</key>
-			<string>Wrong Passphrase Attempts</string>
-			<key>Key</key>
-			<string>passphraseAttempts</string>
-			<key>DefaultValue</key>
-			<string>3</string>
-			<key>Titles</key>
-			<array>
-				<string>2</string>
-				<string>3</string>
-				<string>Do not wipe the app because of a wrong passphrase</string>
-			</array>
-			<key>Values</key>
-			<array>
-				<string>2</string>
-				<string>3</string>
-				<string>0</string>
-			</array>
-			<key>FooterText</key>
-			<string>Choose the number of times a wrong passphrase can be entered before your personal data is wiped from the app.</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSToggleSwitchSpecifier</string>
-			<key>Title</key>
-			<string>Kill Passphrase</string>
-			<key>Key</key>
-			<string>useKillPassphrase</string>
-			<key>DefaultValue</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>Type</key>
