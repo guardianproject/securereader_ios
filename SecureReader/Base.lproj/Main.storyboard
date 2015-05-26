@@ -264,7 +264,7 @@
                                     <action selector="openAppButtonClicked:" destination="UYk-Mv-gub" eventType="touchUpInside" id="HLz-fJ-3XY"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0aQ-XQ-xi1">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0aQ-XQ-xi1">
                                 <rect key="frame" x="16" y="200" width="568" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
@@ -272,7 +272,7 @@
                                     <outlet property="delegate" destination="1bD-Nz-oIn" id="WqR-Sw-Q8d"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8D5-lH-j9E">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8D5-lH-j9E">
                                 <rect key="frame" x="16" y="267" width="568" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
@@ -286,7 +286,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Repeat" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FIB-E0-LcG">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Repeat" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FIB-E0-LcG">
                                 <rect key="frame" x="16" y="238" width="568" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -372,7 +372,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r6V-Is-GTi">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r6V-Is-GTi">
                                 <rect key="frame" x="16" y="200" width="568" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
@@ -734,7 +734,7 @@
                                                                     <action selector="replaceMediaButtonClicked:" destination="RIg-BG-i7z" eventType="touchUpInside" id="o9d-qf-Hz4"/>
                                                                 </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZI8-O9-DZX">
+                                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZI8-O9-DZX">
                                                                 <rect key="frame" x="293" y="5" width="138" height="40"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                                 <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -1169,35 +1169,38 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WRF-Wn-b7n">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <items>
-                                    <barButtonItem style="plain" id="1gX-kf-Haw">
-                                        <view key="customView" contentMode="scaleToFill" horizontalHuggingPriority="1000" id="4jr-04-YZS">
-                                            <rect key="frame" x="0.0" y="0.0" width="305" height="33"/>
+                                    <barButtonItem width="10" style="plain" systemItem="fixedSpace" id="tUP-9q-ZT6"/>
+                                    <barButtonItem style="plain" id="YAl-eA-q2T">
+                                        <view key="customView" contentMode="scaleToFill" id="9A7-xD-nYt">
+                                            <rect key="frame" x="77" y="5.5" width="100" height="33"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_action2_chat" translatesAutoresizingMaskIntoConstraints="NO" id="OZ6-M0-VtG">
-                                                    <rect key="frame" x="10" y="1" width="32" height="32"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="32" id="LFu-TR-RKp"/>
-                                                        <constraint firstAttribute="height" constant="32" id="xfw-sO-6KD"/>
-                                                    </constraints>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_action2_chat" translatesAutoresizingMaskIntoConstraints="NO" id="5zs-ga-vLC">
+                                                    <rect key="frame" x="0.0" y="5" width="24" height="24"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="theme" value="FullScreenButtonStyle"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" text="COMMENTS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VIV-e2-qfh" customClass="SCRLabel">
-                                                    <rect key="frame" x="52" y="1" width="243" height="32"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="COMMENT" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YKR-G0-z5o">
+                                                    <rect key="frame" x="29" y="10.5" width="53" height="12"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="theme" value="FullScreenButtonStyle"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
-                                                <constraint firstItem="OZ6-M0-VtG" firstAttribute="leading" secondItem="4jr-04-YZS" secondAttribute="leading" constant="10" id="1IE-3b-OHD"/>
-                                                <constraint firstItem="OZ6-M0-VtG" firstAttribute="height" secondItem="VIV-e2-qfh" secondAttribute="height" id="7VG-Cd-UJB"/>
-                                                <constraint firstItem="VIV-e2-qfh" firstAttribute="leading" secondItem="OZ6-M0-VtG" secondAttribute="trailing" constant="10" id="drp-TY-SnC"/>
-                                                <constraint firstAttribute="trailing" secondItem="VIV-e2-qfh" secondAttribute="trailing" constant="10" id="fMf-Fg-qmX"/>
-                                                <constraint firstAttribute="centerY" secondItem="OZ6-M0-VtG" secondAttribute="centerY" id="foa-Rx-fgh"/>
-                                                <constraint firstAttribute="centerY" secondItem="VIV-e2-qfh" secondAttribute="centerY" id="poa-b5-0zW"/>
+                                                <constraint firstItem="YKR-G0-z5o" firstAttribute="leading" secondItem="5zs-ga-vLC" secondAttribute="trailing" constant="5" id="6yp-dz-apR"/>
+                                                <constraint firstAttribute="centerY" secondItem="5zs-ga-vLC" secondAttribute="centerY" id="CSM-NE-K2a"/>
+                                                <constraint firstAttribute="centerY" secondItem="YKR-G0-z5o" secondAttribute="centerY" id="boC-jz-Ya0"/>
+                                                <constraint firstItem="5zs-ga-vLC" firstAttribute="leading" secondItem="9A7-xD-nYt" secondAttribute="leading" id="jeP-Pe-d2S"/>
                                             </constraints>
                                         </view>
                                     </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Smy-hE-RP9"/>
                                     <barButtonItem image="ic_action2_font" id="mS3-ST-dNH">
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="theme" value="FullScreenButtonStyle"/>
@@ -1220,8 +1223,11 @@
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="theme" value="FullScreenButtonStyle"/>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="shareItem:" destination="QE5-Ij-pB9" id="Fpb-kV-Ndl"/>
+                                        </connections>
                                     </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="vjM-hW-2w0"/>
+                                    <barButtonItem width="10" style="plain" systemItem="fixedSpace" id="uP6-fS-Uq2"/>
                                 </items>
                             </toolbar>
                         </subviews>
@@ -1762,14 +1768,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="di7-fd-JdS" customClass="SVGDocumentView">
+                            <view contentMode="center" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="di7-fd-JdS" customClass="SVGDocumentView">
                                 <rect key="frame" x="20" y="30" width="560" height="307"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="artworkPath" value="onboard-02"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="theme" value="OnboardingScreen2Style"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="1000" text="Paik is designed to work with Tor. Would you like to use it?" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="560" translatesAutoresizingMaskIntoConstraints="NO" id="SbE-YW-Mv9" customClass="SCRLabel">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="1000" misplaced="YES" text="Paik is designed to work with Tor. Would you like to use it?" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="560" translatesAutoresizingMaskIntoConstraints="NO" id="SbE-YW-Mv9" customClass="SCRLabel">
                                 <rect key="frame" x="20" y="357" width="560" height="21"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>

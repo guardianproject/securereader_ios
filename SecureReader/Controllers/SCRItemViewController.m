@@ -148,6 +148,19 @@
     [self updateFavoriteIcon];
 }
 
+- (IBAction)shareItem:(id)sender
+{
+    SCRItemPageViewController *itemPage = [[self.pageViewController viewControllers] objectAtIndex:0];
+    if (itemPage != nil)
+    {
+        SCRItem *item = itemPage.item;
+        
+        // TODO - share
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Share" message:[NSString stringWithFormat:@"Share this item: %@", item.title] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+}
+
 - (void) showTextSizeView
 {
     [self.view addGestureRecognizer:self.textSizeViewGestureRecognizer];
