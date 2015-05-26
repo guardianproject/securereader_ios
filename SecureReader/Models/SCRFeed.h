@@ -17,6 +17,7 @@
 @property (nonatomic) BOOL subscribed;
 @property (nonatomic) BOOL userAdded;
 @property (nonatomic, strong) UIImage *feedImage;
+@property (nonatomic, strong) NSDate *lastFetchedFeedImageDate;
 
 - (void)enumerateItemsInTransaction:(YapDatabaseReadTransaction *)readTransaction block:(void (^)(SCRItem *item, BOOL *stop))block;
 

@@ -150,6 +150,9 @@
                     SCRFeed *existingFeed = [transaction objectForKey:nativeFeed.yapKey inCollection:[[nativeFeed class] yapCollection]];
                     if (existingFeed) {
                         nativeFeed.subscribed = existingFeed.subscribed;
+                        nativeFeed.userAdded = existingFeed.userAdded;
+                        nativeFeed.feedImage = existingFeed.feedImage;
+                        nativeFeed.lastFetchedFeedImageDate = existingFeed.lastFetchedFeedImageDate;
                     }
                     [transaction setObject:nativeFeed forKey:nativeFeed.yapKey inCollection:[[nativeFeed class] yapCollection]];
                     

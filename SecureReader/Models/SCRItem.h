@@ -40,7 +40,7 @@ extern NSString *const kSCRFeedEdgeName;
  Removes SCRItems in the database and their media items where the the data in the yap metadata field is older than a date.
  
  @param date The date to compare the items metadata date object to.
- @param   Set to YES and favorites will be deleted as well
+ @param includingFavorites Set to YES and favorites will be deleted as well
  @param transaction The transaction to perfrom all database actions with
  @param storage The encrypted storage where the media items are stored
  */

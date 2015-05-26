@@ -174,8 +174,12 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-- (void)startAsyncFetchingFeedsWithDatabaseConnection:(YapDatabaseConnection *)databaseConnection
+- (void)startAsyncFetchingFeedsWithDatabaseConnection:(YapDatabaseConnection *)databaseConnection completionQueue:(dispatch_queue_t)completionQueue completions:(dispatch_block_t)completion
 {
+    if (!completionQueue) {
+        completionQueue = dispatch_get_main_queue();
+    }
+    
     ////// Setup Feed Fetcher //////
     _feedFetcher = [[SCRFeedFetcher alloc] initWithReadWriteYapConnection:databaseConnection sessionConfiguration:[self.torManager currentConfiguration]];
     if ([SCRSettings useTor] && self.torManager.proxyManager.status != CPAStatusOpen) {
@@ -252,7 +256,7 @@
                             feed.userAdded = NO;
                             [feed saveWithTransaction:transaction];
                         }
-                    }];
+                    } completionQueue:completionQueue completionBlock:completion];
                 });
                 
                 
@@ -261,7 +265,7 @@
             
             
         } else {
-            [self.feedFetcher refreshSubscribedFeedsWithCompletionQueue:NULL completion:NULL];
+            [self.feedFetcher refreshSubscribedFeedsWithCompletionQueue:completionQueue completion:completion];
         }
     }];
     /*
@@ -295,7 +299,13 @@
     
     YapDatabaseConnection *databaseConnection = [SCRDatabaseManager sharedInstance].readWriteConnection;
     
-    [self startAsyncFetchingFeedsWithDatabaseConnection:databaseConnection];
+    [self startAsyncFetchingFeedsWithDatabaseConnection:databaseConnection completionQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0) completions:^{
+        [databaseConnection asyncReadWriteWithBlock:^(YapDatabaseReadWriteTransaction *transaction) {
+            NSInteger daysAgo = 30;
+            NSDate *expiredDate = [NSDate dateWithTimeInterval:-1*daysAgo*24*60*60 sinceDate:[NSDate date]];
+            [SCRItem removeItemsOlderThan:expiredDate includeFavorites:NO withReadWriteTransaction:transaction storage:self.fileManager.ioCipher];
+        }];
+    }];
     
     return YES;
 }
