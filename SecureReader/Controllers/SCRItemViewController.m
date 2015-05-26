@@ -16,6 +16,7 @@
 #import "SCRTheme.h"
 #import "UIBarItem+Theming.h"
 #import "SCRAppDelegate.h"
+#import "NSString+HTML.h"
 
 @interface SCRItemViewController ()
 @property SCRFeedViewController *itemDataSource;
@@ -154,10 +155,20 @@
     if (itemPage != nil)
     {
         SCRItem *item = itemPage.item;
+        NSMutableArray *items = [NSMutableArray array];
+        if (item.title) {
+            [items addObject:item.title];
+        }
+        if (item.itemDescription) {
+            NSString *body = [item.itemDescription stringByConvertingHTMLToPlainText];
+            [items addObject:body];
+        }
+        if (item.linkURL) {
+            [items addObject:item.linkURL];
+        }
         
-        // TODO - share
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Share" message:[NSString stringWithFormat:@"Share this item: %@", item.title] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [alert show];
+        UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:items applicationActivities:nil];
+        [self presentViewController:activityViewController animated:YES completion:nil];
     }
 }
 
