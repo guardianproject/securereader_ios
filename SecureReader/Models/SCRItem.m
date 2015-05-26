@@ -113,7 +113,7 @@ NSString *const kSCRFeedEdgeName      = @"kSCRFeedEdgeName";
 
 #pragma - mark Class Methods
 
-+ (void)removeItemsOlderThan:(NSDate *)date withReadWriteTransaction:(YapDatabaseReadWriteTransaction *)transaction storage:(IOCipher *)storage
++ (void)removeItemsOlderThan:(NSDate *)date includeFavorites:(BOOL)includingFavorites withReadWriteTransaction:(YapDatabaseReadWriteTransaction *)transaction storage:(IOCipher *)storage
 {
     __block NSMutableArray *keysToRemove = [[NSMutableArray alloc] init];
     __block NSMutableArray *mediaItemsToRemove = [[NSMutableArray alloc] init];
@@ -121,11 +121,15 @@ NSString *const kSCRFeedEdgeName      = @"kSCRFeedEdgeName";
         if ([metadata isKindOfClass:[NSDate class]]) {
             NSDate *objectDate = (NSDate *)metadata;
             if ([date compare:objectDate] == NSOrderedDescending) {
-                [keysToRemove addObject:key];
                 SCRItem *item = [transaction objectForKey:key inCollection:[self yapCollection]];
-                [item enumerateMediaItemsInTransaction:transaction block:^(SCRMediaItem *mediaItem, BOOL *stop) {
-                    [mediaItemsToRemove addObject:mediaItem];
-                }];
+                
+                if (!item.isFavorite || includingFavorites) {
+                    [keysToRemove addObject:key];
+                    
+                    [item enumerateMediaItemsInTransaction:transaction block:^(SCRMediaItem *mediaItem, BOOL *stop) {
+                        [mediaItemsToRemove addObject:mediaItem];
+                    }];
+                }
             }
         }
     }];
