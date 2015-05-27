@@ -16,6 +16,7 @@ NSString * const kFontSizeAdjustmentSettingsKey = @"fontSizeAdjustment";
 NSString * const kSCRSyncFrequencyKey = @"syncFrequency";
 NSString * const kSCRSyncDataOverCellularKey = @"syncNetwork";
 NSString * const kSCRUseTorKey = @"useTor";
+NSString * const kSCRArticleExpirationKey = @"articleExpiration";
 
 
 + (NSString *)getUiLanguage
@@ -55,6 +56,14 @@ NSString * const kSCRUseTorKey = @"useTor";
     if ([userDefaults objectForKey:@"lockTimeout"] == nil)
         return 60 * 60 * 24;
     return [userDefaults integerForKey:@"lockTimeout"];
+}
+
++ (NSInteger) articleExpiration
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    if ([userDefaults objectForKey:kSCRArticleExpirationKey] == nil)
+        return 60 * 60 * 24 * 30;
+    return [userDefaults integerForKey:kSCRArticleExpirationKey];
 }
 
 + (float)fontSizeAdjustment

@@ -23,6 +23,7 @@ extern NSString *const kSCRUseTorKey;
 + (void)setDownloadMedia:(BOOL)downloadMedia;
 
 + (NSInteger) lockTimeout;
++ (NSInteger) articleExpiration;
 
 + (float)fontSizeAdjustment;
 + (void)setFontSizeAdjustment:(float)fontSizeAdjustment;
