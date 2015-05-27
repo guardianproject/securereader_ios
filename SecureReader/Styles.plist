@@ -169,12 +169,21 @@
 	</dict>
 	<key>FullScreenButtonStyle</key>
 	<dict>
+		<key>textColor</key>
+		<string>#ff888888</string>
 		<key>onTintColor</key>
 		<string>#ffff0000</string>
 		<key>corners</key>
 		<integer>0</integer>
 		<key>tintColor</key>
-		<string>#ff95ab55</string>
+		<string>#ff888888</string>
+	</dict>
+	<key>FullScreenButtonBadgeStyle</key>
+	<dict>
+		<key>textColor</key>
+		<string>#ffffffff</string>
+		<key>backgroundColor</key>
+		<string>#ff00cf00</string>
 	</dict>
 	<key>ItemTitleStyle</key>
 	<dict>

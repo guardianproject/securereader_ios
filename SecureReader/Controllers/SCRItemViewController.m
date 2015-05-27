@@ -16,6 +16,7 @@
 #import "SCRTheme.h"
 #import "UIBarItem+Theming.h"
 #import "SCRAppDelegate.h"
+#import "UIView+Theming.h"
 
 @interface SCRItemViewController ()
 @property SCRFeedViewController *itemDataSource;
@@ -38,6 +39,8 @@
     [super viewDidLoad];
     pageViewController = [[self childViewControllers] objectAtIndex:0];
     pageViewController.delegate = self;
+    
+    [self.buttonComment setBadge:@"0"];
     
     self.textSizeViewGestureRecognizer = [[UIGestureRecognizer alloc] initWithTarget:self action:@selector(handleTextSizeGesture:)];
     [self.textSizeViewGestureRecognizer setEnabled:YES];
@@ -131,6 +134,18 @@
              
 
 #pragma mark - Toolbar buttons
+
+- (IBAction)commentButtonClicked:(id)sender
+{
+    SCRItemPageViewController *itemPage = [[self.pageViewController viewControllers] objectAtIndex:0];
+    if (itemPage != nil)
+    {
+        SCRItem *item = itemPage.item;
+        
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Comment" message:[NSString stringWithFormat:@"Comment this item: %@", item.title] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [alert show];
+    }
+}
 
 - (IBAction)textSizeItemClicked:(id)sender
 {

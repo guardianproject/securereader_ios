@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "SCRFeedViewController.h"
+#import "SCRCommentsBarButton.h"
 
 @interface SCRItemViewController : UIViewController<UIPageViewControllerDataSource, UIPageViewControllerDelegate, UIGestureRecognizerDelegate>
 
@@ -17,6 +18,8 @@
 @property (weak, nonatomic) IBOutlet UIView *textSizeView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *textSizeViewHeightConstraint;
 @property (weak, nonatomic) IBOutlet UISlider *textSizeSlider;
+
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *buttonFavorite;
+@property (weak, nonatomic) IBOutlet SCRCommentsBarButton *buttonComment;
 
 @end
