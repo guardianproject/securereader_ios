@@ -59,8 +59,7 @@ PODS:
   - SQLCipher/fts (3.1.0):
     - SQLCipher/common
   - SSKeychain (1.2.3)
-  - SVGKit (2.x):
-    - CocoaLumberjack
+  - SVGgh (1.1)
   - SwipeView (1.3.2)
   - SWTableViewCell (0.3.7)
   - URLMock (1.2.3):
@@ -92,7 +91,7 @@ DEPENDENCIES:
   - PureLayout (~> 2.0)
   - RSSAtomKit (from `Submodules/RSSAtomKit/RSSAtomKit.podspec`)
   - SSKeychain (~> 1.2)
-  - SVGKit (from `https://github.com/SVGKit/SVGKit.git`, commit `4f397c1551ce17fe0ed8d601cc821798060945f8`)
+  - SVGgh (~> 1.1)
   - SwipeView (~> 1.3)
   - SWTableViewCell (~> 0.3.7)
   - URLMock (~> 1.2.3)
@@ -109,17 +108,11 @@ EXTERNAL SOURCES:
     :git: https://github.com/steipete/PSTAlertController.git
   RSSAtomKit:
     :path: Submodules/RSSAtomKit/RSSAtomKit.podspec
-  SVGKit:
-    :commit: 4f397c1551ce17fe0ed8d601cc821798060945f8
-    :git: https://github.com/SVGKit/SVGKit.git
 
 CHECKOUT OPTIONS:
   PSTAlertController:
     :commit: 68a1327dbf71a6d1b97a121352bc774f469abd14
     :git: https://github.com/steipete/PSTAlertController.git
-  SVGKit:
-    :commit: 4f397c1551ce17fe0ed8d601cc821798060945f8
-    :git: https://github.com/SVGKit/SVGKit.git
 
 SPEC CHECKSUMS:
   AFNetworking: e1d86c2a96bb5d2e7408da36149806706ee122fe
@@ -141,7 +134,7 @@ SPEC CHECKSUMS:
   SOCKit: c7376ac262bea9115b8f749358f762522a47d392
   SQLCipher: c44fcca49c31483c2489cfb79aa7a69407f3794a
   SSKeychain: 3f42991739c6c60a9cf1bbd4dff6c0d3694bcf3d
-  SVGKit: ad429d65c72c8d84115a504208a9fa097ee7fdbb
+  SVGgh: 691afb3bfa4535e5e19436ad1beaea4d0a1adbd9
   SwipeView: bd67cfaf7760c036438446b3ccb28a3b84fce009
   SWTableViewCell: 2a94aadc9d47b2b611fa064566bf57948b95b579
   URLMock: 5d14a89942559f7948793d2f9aaffc25a6af2166

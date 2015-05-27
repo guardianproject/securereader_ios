@@ -36,7 +36,14 @@ extern NSString *const kSCRFeedEdgeName;
 
 - (void)enumerateMediaItemsInTransaction:(YapDatabaseReadTransaction *)readTransaction block:(void (^)(SCRMediaItem *mediaItem,BOOL *stop))block;
 
-
-+ (void)removeItemsOlderThan:(NSDate *)date withReadWriteTransaction:(YapDatabaseReadWriteTransaction *)transaction storage:(IOCipher *)storage;
+/**
+ Removes SCRItems in the database and their media items where the the data in the yap metadata field is older than a date.
+ 
+ @param date The date to compare the items metadata date object to.
+ @param includingFavorites Set to YES and favorites will be deleted as well
+ @param transaction The transaction to perfrom all database actions with
+ @param storage The encrypted storage where the media items are stored
+ */
++ (void)removeItemsOlderThan:(NSDate *)date includeFavorites:(BOOL)includingFavorites withReadWriteTransaction:(YapDatabaseReadWriteTransaction *)transaction storage:(IOCipher *)storage;
 
 @end
