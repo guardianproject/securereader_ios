@@ -268,7 +268,7 @@ NSString *const kSecureReaderYapTestsRSSURL = @"http://test.fake/rss";
         //wait 2 seconds so the dates are different 
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self.databaseManager.readWriteConnection readWriteWithBlock:^(YapDatabaseReadWriteTransaction *transaction) {
-                [SCRItem removeItemsOlderThan:[NSDate date] withReadWriteTransaction:transaction storage:nil];
+                [SCRItem removeItemsOlderThan:[NSDate date] includeFavorites:YES withReadWriteTransaction:transaction storage:nil];
             }];
             
             __block NSArray *keys = nil;
