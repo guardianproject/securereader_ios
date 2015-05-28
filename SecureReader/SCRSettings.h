@@ -23,6 +23,10 @@ extern NSString *const kSCRUseTorKey;
 + (void)setDownloadMedia:(BOOL)downloadMedia;
 
 + (NSInteger) lockTimeout;
+
+/**
+ @return the number of days after an article should expire
+ */
 + (NSInteger) articleExpiration;
 
 + (float)fontSizeAdjustment;
