@@ -58,12 +58,12 @@ NSString * const kSCRArticleExpirationKey = @"articleExpiration";
     return [userDefaults integerForKey:@"lockTimeout"];
 }
 
-+ (NSInteger) articleExpiration
++ (NSTimeInterval) articleExpiration
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     if ([userDefaults objectForKey:kSCRArticleExpirationKey] == nil)
         return 60 * 60 * 24 * 30;
-    return [userDefaults integerForKey:kSCRArticleExpirationKey];
+    return [userDefaults doubleForKey:kSCRArticleExpirationKey];
 }
 
 + (float)fontSizeAdjustment

@@ -301,8 +301,8 @@
     
     [self startAsyncFetchingFeedsWithDatabaseConnection:databaseConnection completionQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0) completions:^{
         [databaseConnection asyncReadWriteWithBlock:^(YapDatabaseReadWriteTransaction *transaction) {
-            NSInteger daysAgo = [SCRSettings articleExpiration];
-            NSDate *expiredDate = [NSDate dateWithTimeInterval:-1*daysAgo*24*60*60 sinceDate:[NSDate date]];
+            NSTimeInterval timeAgo = [SCRSettings articleExpiration];
+            NSDate *expiredDate = [NSDate dateWithTimeInterval:-1*timeAgo sinceDate:[NSDate date]];
             [SCRItem removeItemsOlderThan:expiredDate includeFavorites:NO withReadWriteTransaction:transaction storage:self.fileManager.ioCipher];
         }];
     }];

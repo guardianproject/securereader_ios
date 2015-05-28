@@ -25,9 +25,9 @@ extern NSString *const kSCRUseTorKey;
 + (NSInteger) lockTimeout;
 
 /**
- @return the number of days after an article should expire
+ @return a timeInterval in seconds after an article should expire
  */
-+ (NSInteger) articleExpiration;
++ (NSTimeInterval) articleExpiration;
 
 + (float)fontSizeAdjustment;
 + (void)setFontSizeAdjustment:(float)fontSizeAdjustment;
