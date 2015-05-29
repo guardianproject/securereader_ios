@@ -36,6 +36,9 @@ extern NSString *const kSCRUseTorKey;
 + (BOOL) syncDataOverCellular;
 + (BOOL) useTor;
 
++ (BOOL) hasShownInitialSettingsHelp;
++ (void) setHasShownInitialSettingsHelp:(BOOL)hasShownInitialSettingsHelp;
+
 + (void) loadDefaultsFromSettingsDictionary:(NSDictionary*)settingsDictionary;
 
 @end

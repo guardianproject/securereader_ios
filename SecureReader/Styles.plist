@@ -270,7 +270,7 @@
 	<key>HintStyle</key>
 	<dict>
 		<key>corners</key>
-		<integer>15</integer>
+		<integer>20</integer>
 		<key>edgeColor</key>
 		<string>#ffffffff</string>
 		<key>edgeThickness</key>

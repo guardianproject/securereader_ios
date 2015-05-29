@@ -57,6 +57,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
     self.textSizeSlider.value = [SCRSettings fontSizeAdjustment];
 }
 

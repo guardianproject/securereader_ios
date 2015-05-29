@@ -130,12 +130,28 @@ static NSMutableDictionary *themes = nil;
 
 + (UIColor*) getColorProperty:(NSString *)property forTheme:(NSString*)theme
 {
-    NSObject *value = [SCRTheme getProperty:property forTheme:theme];
-    if (value != nil)
+    if (theme != nil)
     {
-        return [self colorWithPropertyValue:value];
+        NSObject *value = [SCRTheme getProperty:property forTheme:theme];
+        if (value != nil)
+        {
+            return [self colorWithPropertyValue:value];
+        }
     }
     return nil;
+}
+
++ (int) getIntegerProperty:(NSString *)property forTheme:(NSString*)theme withDefaultValue:(int)defaultValue
+{
+    if (theme != nil)
+    {
+        NSNumber *value = (NSNumber*)[SCRTheme getProperty:property forTheme:theme];
+        if (value != nil)
+        {
+            return [value intValue];
+        }
+    }
+    return defaultValue;
 }
 
 + (void) applyStyle:(NSDictionary *)style toControl:(NSObject *)control save:(BOOL)save

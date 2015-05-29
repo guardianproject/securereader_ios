@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SCRHelpHintViewController.h"
 
-@interface SCRMainViewController : UITabBarController<UITabBarControllerDelegate>
+@interface SCRMainViewController : UITabBarController<UITabBarControllerDelegate, SCRHelpHintViewControllerDelegate>
 
 - (IBAction)showPanicAction:(id)sender;
 - (IBAction)receiveShareAction:(id)sender;

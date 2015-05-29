@@ -17,6 +17,7 @@ NSString * const kSCRSyncFrequencyKey = @"syncFrequency";
 NSString * const kSCRSyncDataOverCellularKey = @"syncNetwork";
 NSString * const kSCRUseTorKey = @"useTor";
 NSString * const kSCRArticleExpirationKey = @"articleExpiration";
+NSString * const kSCRHasShownInitialSettingsHelpKey = @"hasShownInitialSettingsHelp";
 
 
 + (NSString *)getUiLanguage
@@ -107,6 +108,20 @@ NSString * const kSCRArticleExpirationKey = @"articleExpiration";
     return [[NSUserDefaults standardUserDefaults] boolForKey:kSCRUseTorKey];
 }
 
++ (BOOL)hasShownInitialSettingsHelp
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    if ([userDefaults objectForKey:kSCRHasShownInitialSettingsHelpKey] != nil)
+        return [userDefaults boolForKey:kSCRHasShownInitialSettingsHelpKey];
+    return NO;
+}
+
++ (void)setHasShownInitialSettingsHelp:(BOOL)hasShownInitialSettingsHelp
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setBool:hasShownInitialSettingsHelp forKey:kSCRHasShownInitialSettingsHelpKey];
+    [self onChange:kSCRHasShownInitialSettingsHelpKey];
+}
 
 + (void) loadDefaultsFromSettingsDictionary:(NSDictionary*)settingsDictionary {
     NSMutableDictionary *defaults = [NSMutableDictionary dictionary];

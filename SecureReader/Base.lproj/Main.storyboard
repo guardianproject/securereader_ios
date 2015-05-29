@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="wcY-0f-5Mo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="wcY-0f-5Mo">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -457,35 +457,35 @@
             <point key="canvasLocation" x="2427" y="3029"/>
         </scene>
         <!--Help Hint View Controller-->
-        <scene sceneID="EUS-Vj-UEJ">
+        <scene sceneID="VAh-28-H6p">
             <objects>
-                <viewController storyboardIdentifier="hintSettings1" id="jqY-fv-BjM" customClass="SCRHelpHintViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="hint" id="Pha-ZN-we7" customClass="SCRHelpHintViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="mC0-Jz-Xc6"/>
-                        <viewControllerLayoutGuide type="bottom" id="hod-JX-iZh"/>
+                        <viewControllerLayoutGuide type="top" id="5Q4-Ce-cGi"/>
+                        <viewControllerLayoutGuide type="bottom" id="HDX-JJ-bs3"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="EAZ-T8-PHh">
+                    <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="P7B-xc-Xad">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GyC-JO-bLb" userLabel="Shader">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fd1-Zg-ZFL" userLabel="Shader">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="0.64000000000000001" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.33333333329999998" alpha="0.64000000000000001" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="theme" value="HintBackgroundStyle"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cIk-dF-rDb" userLabel="hilite">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hn5-Ci-WTL" userLabel="hilite">
                                 <rect key="frame" x="35" y="20" width="200" height="70"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="6X5-bu-Nw4"/>
-                                    <constraint firstAttribute="height" constant="70" id="Z0Q-h7-HqF"/>
+                                    <constraint firstAttribute="height" constant="70" id="37N-Qt-bQx"/>
+                                    <constraint firstAttribute="width" constant="200" id="fWS-Jx-3KN"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="theme" value="HintStyle"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is a label explaining what needs to be explained in the screen." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f6t-ZW-7bp" customClass="SCRLabel">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is a label explaining what needs to be explained in the screen." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QlR-Dv-512" customClass="SCRLabel">
                                 <rect key="frame" x="20" y="110" width="560" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -494,7 +494,7 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="theme" value="HintTextStyle"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gUb-Pp-FdZ">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cRf-gD-m8v">
                                 <rect key="frame" x="493" y="151" width="87" height="58"/>
                                 <color key="backgroundColor" red="0.42272565210000002" green="1" blue="0.47146066089999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <inset key="contentEdgeInsets" minX="20" minY="20" maxX="20" maxY="20"/>
@@ -505,40 +505,37 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="theme" value="HintButtonStyle"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="doneButtonPressed:" destination="jqY-fv-BjM" eventType="touchUpInside" id="Pkr-Hg-q4v"/>
+                                    <action selector="doneButtonPressed:" destination="Pha-ZN-we7" eventType="touchUpInside" id="0yi-YZ-GET"/>
                                 </connections>
                             </button>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="cIk-dF-rDb" firstAttribute="leading" secondItem="EAZ-T8-PHh" secondAttribute="leading" constant="35" id="15v-qn-2zR"/>
-                            <constraint firstItem="gUb-Pp-FdZ" firstAttribute="top" secondItem="f6t-ZW-7bp" secondAttribute="bottom" constant="20" id="AAG-hm-ubM"/>
-                            <constraint firstAttribute="trailing" secondItem="GyC-JO-bLb" secondAttribute="trailing" id="Tkb-8y-Ies"/>
-                            <constraint firstItem="f6t-ZW-7bp" firstAttribute="top" secondItem="cIk-dF-rDb" secondAttribute="bottom" constant="20" id="UhP-IB-US1"/>
-                            <constraint firstAttribute="trailing" secondItem="f6t-ZW-7bp" secondAttribute="trailing" constant="20" id="Wqc-gH-egi"/>
-                            <constraint firstAttribute="trailing" secondItem="gUb-Pp-FdZ" secondAttribute="trailing" constant="20" id="c2D-uX-pjr"/>
-                            <constraint firstItem="GyC-JO-bLb" firstAttribute="leading" secondItem="EAZ-T8-PHh" secondAttribute="leading" id="c6T-z5-wCV"/>
-                            <constraint firstItem="cIk-dF-rDb" firstAttribute="top" secondItem="EAZ-T8-PHh" secondAttribute="top" constant="20" id="ccL-Rb-aJy"/>
-                            <constraint firstAttribute="bottom" secondItem="GyC-JO-bLb" secondAttribute="bottom" id="rh9-SY-8gE"/>
-                            <constraint firstItem="f6t-ZW-7bp" firstAttribute="leading" secondItem="EAZ-T8-PHh" secondAttribute="leading" constant="20" id="tPb-co-56S"/>
-                            <constraint firstItem="GyC-JO-bLb" firstAttribute="top" secondItem="EAZ-T8-PHh" secondAttribute="top" id="uC0-Ep-SHb"/>
+                            <constraint firstAttribute="trailing" secondItem="fd1-Zg-ZFL" secondAttribute="trailing" id="1Zc-IT-MTY"/>
+                            <constraint firstAttribute="trailing" secondItem="cRf-gD-m8v" secondAttribute="trailing" constant="20" id="76L-DC-qLU"/>
+                            <constraint firstItem="Hn5-Ci-WTL" firstAttribute="leading" secondItem="P7B-xc-Xad" secondAttribute="leading" constant="35" id="8Gx-KK-v98"/>
+                            <constraint firstItem="QlR-Dv-512" firstAttribute="top" secondItem="Hn5-Ci-WTL" secondAttribute="bottom" constant="20" id="Fn3-qr-g1S"/>
+                            <constraint firstAttribute="bottom" secondItem="fd1-Zg-ZFL" secondAttribute="bottom" id="OvT-cS-zkL"/>
+                            <constraint firstItem="QlR-Dv-512" firstAttribute="leading" secondItem="P7B-xc-Xad" secondAttribute="leading" constant="20" id="RBD-kh-wnb"/>
+                            <constraint firstAttribute="trailing" secondItem="QlR-Dv-512" secondAttribute="trailing" constant="20" id="YX0-oQ-AQp"/>
+                            <constraint firstItem="cRf-gD-m8v" firstAttribute="top" secondItem="QlR-Dv-512" secondAttribute="bottom" constant="20" id="Z3s-Hf-aCZ"/>
+                            <constraint firstItem="Hn5-Ci-WTL" firstAttribute="top" secondItem="P7B-xc-Xad" secondAttribute="top" constant="20" id="jrn-SO-vwt"/>
+                            <constraint firstItem="fd1-Zg-ZFL" firstAttribute="top" secondItem="P7B-xc-Xad" secondAttribute="top" id="o32-0N-les"/>
+                            <constraint firstItem="fd1-Zg-ZFL" firstAttribute="leading" secondItem="P7B-xc-Xad" secondAttribute="leading" id="oqr-Wh-g5h"/>
                         </constraints>
                     </view>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="targetStoryboardId" value="settings"/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="targetSettingsKey" value="downloadMedia"/>
-                    </userDefinedRuntimeAttributes>
                     <connections>
-                        <outlet property="hiliteHeight" destination="Z0Q-h7-HqF" id="oCP-jC-LlU"/>
-                        <outlet property="hiliteView" destination="cIk-dF-rDb" id="fAE-uA-cFp"/>
-                        <outlet property="hiliteWidth" destination="6X5-bu-Nw4" id="mwl-VJ-duv"/>
-                        <outlet property="hiliteX" destination="15v-qn-2zR" id="KHe-Ks-x7n"/>
-                        <outlet property="hiliteY" destination="ccL-Rb-aJy" id="0OD-N4-tSe"/>
-                        <segue destination="1bD-Nz-oIn" kind="show" identifier="next" id="a42-Lr-W08"/>
+                        <outlet property="descriptionView" destination="QlR-Dv-512" id="kiV-og-N1X"/>
+                        <outlet property="hiliteHeight" destination="37N-Qt-bQx" id="uCb-kX-0c4"/>
+                        <outlet property="hiliteView" destination="Hn5-Ci-WTL" id="aZk-0v-ULk"/>
+                        <outlet property="hiliteWidth" destination="fWS-Jx-3KN" id="Q3f-q0-g5C"/>
+                        <outlet property="hiliteX" destination="8Gx-KK-v98" id="0j7-nm-b0C"/>
+                        <outlet property="hiliteY" destination="jrn-SO-vwt" id="fKU-rJ-CEi"/>
+                        <outlet property="shaderView" destination="fd1-Zg-ZFL" id="kfs-gz-qTP"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dlQ-gF-F5e" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="drh-Fl-QFQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1093" y="-1277"/>
+            <point key="canvasLocation" x="-1880" y="6206"/>
         </scene>
         <!--Receive Share-->
         <scene sceneID="f55-gL-gr2">
@@ -935,7 +932,7 @@
                                             <segue destination="zOI-2E-a1E" kind="show" id="hbX-if-9Sg"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="1Ng-Ad-Uh9" style="IBUITableViewCellStyleDefault" id="uhy-Kn-1NP">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="help" textLabel="1Ng-Ad-Uh9" style="IBUITableViewCellStyleDefault" id="uhy-Kn-1NP">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uhy-Kn-1NP" id="r23-7j-phv">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -949,7 +946,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="GtC-r7-ma2" style="IBUITableViewCellStyleDefault" id="5yb-o0-TqP">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="settings" textLabel="GtC-r7-ma2" style="IBUITableViewCellStyleDefault" id="5yb-o0-TqP">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5yb-o0-TqP" id="B3s-2A-05A">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -1004,7 +1001,7 @@
                                             <segue destination="chX-Ml-Eqw" kind="presentation" identifier="shareAppLinkSegue" id="SF0-Nq-pUg"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="l7n-LK-uGc" style="IBUITableViewCellStyleDefault" id="17u-Dj-mHX">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="receiveShare" textLabel="l7n-LK-uGc" style="IBUITableViewCellStyleDefault" id="17u-Dj-mHX">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="17u-Dj-mHX" id="5N4-rQ-uDM">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -1715,7 +1712,7 @@
         <scene sceneID="50Q-j2-kdO">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="CjV-5L-a6j" customClass="SCRNavigationController" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" image="ic_tab_more" id="SSW-CG-dtW"/>
+                    <tabBarItem key="tabBarItem" tag="4711" image="ic_tab_more" id="SSW-CG-dtW"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Vs8-wB-VYy">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1909,7 +1906,7 @@ It also helps get you access to information that may typically be unavailable in
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="getStartedButtonClicked:" destination="CNQ-Pl-C5o" eventType="touchUpInside" id="ks3-hT-aZc"/>
-                                    <segue destination="jqY-fv-BjM" kind="showDetail" id="D89-cb-6Ia"/>
+                                    <segue destination="1bD-Nz-oIn" kind="showDetail" id="jCA-PJ-hYA"/>
                                 </connections>
                             </button>
                         </subviews>

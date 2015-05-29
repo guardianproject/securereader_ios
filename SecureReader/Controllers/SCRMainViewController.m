@@ -13,9 +13,13 @@
 #import "UIView+Theming.h"
 #import "SCRDatabaseManager.h"
 #import "SCRTheme.h"
+#import "SCRSettings.h"
+#import "SCRPulseView.h"
+#import "SCRMoreViewController.h"
+#import "SCRHelpHintViewController.h"
 
 @interface SCRMainViewController ()
-
+@property (nonatomic, strong) SCRPulseView *settingsHintView;
 @end
 
 @implementation SCRMainViewController
@@ -44,6 +48,21 @@
     self.delegate = self;
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    if (![SCRSettings hasShownInitialSettingsHelp])
+    {
+        // A single tab item's width is the entire width of the tab bar divided by number of items
+        CGFloat tabItemWidth = self.tabBar.frame.size.width / self.tabBar.items.count;
+        CGFloat positionX = 4 * tabItemWidth;
+        CGFloat positionY = self.tabBar.frame.origin.y;
+        
+        _settingsHintView = [[SCRPulseView alloc] initWithFrame:CGRectMake(positionX, positionY - 10, 40, 40)];
+        [self.view addSubview:_settingsHintView];
+    }
+}
+
 - (IBAction)showPanicAction:(id)sender
 {
     UIViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"panic"];
@@ -62,5 +81,31 @@
     });
 }
 
+- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController
+{
+    if (viewController.tabBarItem.tag == 4711 && _settingsHintView != nil)
+    {
+        [_settingsHintView removeFromSuperview];
+        _settingsHintView = nil;
+        NSLog(@"Show hint!");
+        
+        UINavigationController *moreController = (UINavigationController *)viewController;
+        
+        SCRHelpHintViewController *hintController = [self.storyboard instantiateViewControllerWithIdentifier:@"hint"];
+        [hintController setTargetViewController:moreController.topViewController];
+        [hintController addTarget:@"help" withText:@"This is the help item"];
+        [hintController addTarget:@"settings" withText:@"This is the settings"];
+        [hintController setDelegate:self];
+        [self addChildViewController:hintController];
+        [self.view addSubview:hintController.view];
+        return YES;
+    }
+    return YES;
+}
+
+- (void)helpHintViewControllerDidClose:(SCRHelpHintViewController *)viewController
+{
+    [SCRSettings setHasShownInitialSettingsHelp:YES];
+}
 
 @end

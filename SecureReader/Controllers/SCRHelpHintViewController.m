@@ -9,67 +9,61 @@
 #import "SCRHelpHintViewController.h"
 #import <IASKAppSettingsViewController.h>
 #import <IASKSettingsReader.h>
+#import "SCRAppDelegate.h"
+#import "UIView+Theming.h"
+#import "SCRTheme.h"
 
 @interface SCRHelpHintViewController ()
-@property (nonatomic, strong) UIViewController *targetViewController;
-@property (nonatomic, strong) NSIndexPath *targetIndexPath;
-@property (nonatomic, strong) UIView *targetView;
+@property (strong, nonatomic) NSMutableArray *arrayTargets;
+@property (strong, nonatomic) NSMutableArray *arrayTexts;
+@property (nonatomic) int currentTarget;
 @end
 
 @implementation SCRHelpHintViewController
 
--(id)awakeAfterUsingCoder:(NSCoder *)aDecoder
-{
-    id ret = [super awakeAfterUsingCoder:aDecoder];
-    if (self.targetStoryboardId != nil)
-    {
-        self.targetViewController = [self.storyboard instantiateViewControllerWithIdentifier:self.targetStoryboardId];
-        [self addChildViewController:self.targetViewController];
-    }
-    return ret;
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.targetViewController.view setUserInteractionEnabled:NO];
-    [self.view insertSubview:self.targetViewController.view atIndex:0];
-
+    
     if (self.hiliteView != nil)
     {
         [_hiliteView.layer setMasksToBounds:YES];
     }
-    
-    if (self.targetSettingsKey != nil)
+
+    if (self.currentTarget < self.arrayTargets.count)
+        self.descriptionView.text = [self.arrayTexts objectAtIndex:self.currentTarget];
+
+    if (self.targetViewController != nil && [self.targetViewController isKindOfClass:[UITableViewController class]])
     {
-        if ([self.targetViewController isKindOfClass:[IASKAppSettingsViewController class]])
-        {
-            IASKAppSettingsViewController *settingsViewController = (IASKAppSettingsViewController *)self.targetViewController;
-            self.targetIndexPath = [settingsViewController.settingsReader indexPathForKey:self.targetSettingsKey];
-            if (self.targetIndexPath != nil)
-            {
-                //TODO wrap instead of stealing the delegate!
-                settingsViewController.tableView.delegate = self;
-            }
-        }
+        UITableViewController *controller = (UITableViewController *)self.targetViewController;
+        controller.tableView.delegate = self;
     }
 }
 
-- (void)setTargetSettingsKey:(NSString *)settingsKey
+- (void)addTarget:(NSString *)targetIdentifier withText:(NSString *)text
 {
-    _targetSettingsKey = settingsKey;
+    if (self.arrayTargets == nil)
+    {
+        self.arrayTargets = [NSMutableArray array];
+        self.arrayTexts = [NSMutableArray array];
+        self.currentTarget = 0;
+    }
+    [self.arrayTargets addObject:targetIdentifier];
+    [self.arrayTexts addObject:text];
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.targetIndexPath != nil && [self.targetIndexPath compare:indexPath] == NSOrderedSame)
+    if (self.arrayTargets != nil && self.currentTarget < self.arrayTargets.count && [[self.arrayTargets objectAtIndex:self.currentTarget] isEqualToString:cell.reuseIdentifier])
     {
         [cell setNeedsLayout];
         [cell layoutIfNeeded];
         
         CGRect frame = cell.textLabel.frame;
         CGRect targetRect = [self.view convertRect:frame fromView:cell];
-        targetRect = CGRectInset(targetRect, -11, -7);
-        
+        targetRect = CGRectInset(targetRect, -5, -5);
+
+        [self updateHilite:targetRect];
         self.hiliteX.constant = targetRect.origin.x;
         self.hiliteY.constant = targetRect.origin.y;
         self.hiliteWidth.constant = targetRect.size.width;
@@ -80,15 +74,40 @@
 
 - (void)doneButtonPressed:(id)sender
 {
-    if ([self shouldPerformSegueWithIdentifier:@"next" sender:self])
+    self.currentTarget += 1;
+    if (self.currentTarget >= self.arrayTargets.count)
     {
-        [self performSegueWithIdentifier:@"next" sender:self];
+        if (self.delegate != nil)
+            [self.delegate helpHintViewControllerDidClose:self];
+        [self.view removeFromSuperview];
         [self removeFromParentViewController];
     }
     else
     {
-        [self dismissViewControllerAnimated:YES completion:nil];
+        self.descriptionView.text = [self.arrayTexts objectAtIndex:self.currentTarget];
+        if (self.targetViewController != nil && [self.targetViewController isKindOfClass:[UITableViewController class]])
+        {
+            UITableViewController *controller = (UITableViewController *)self.targetViewController;
+            [controller.tableView reloadData];
+        }
     }
+}
+
+- (void)updateHilite:(CGRect)hiliteRect
+{
+    CAShapeLayer *mask = [CAShapeLayer layer];
+    mask.frame = self.shaderView.bounds;
+
+    int radius = [SCRTheme getIntegerProperty:@"corners" forTheme:self.hiliteView.theme withDefaultValue:10];
+    
+    UIBezierPath *path = [UIBezierPath bezierPathWithRect:self.shaderView.bounds];
+    [path appendPath:[UIBezierPath bezierPathWithRoundedRect:hiliteRect cornerRadius:radius]];
+    mask.path = path.CGPath;
+    mask.fillRule = kCAFillRuleEvenOdd;
+    mask.fillColor = [UIColor blackColor].CGColor;
+    mask.strokeColor = [UIColor blackColor].CGColor;
+    mask.lineWidth = 0;
+    self.shaderView.layer.mask = mask;
 }
 
 @end

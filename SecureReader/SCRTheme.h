@@ -14,6 +14,7 @@
 + (void) applyTheme:(NSString*)theme toControl:(NSObject*)control;
 + (NSObject*) getProperty:(NSString *)property forTheme:(NSString*)theme;
 + (UIColor*) getColorProperty:(NSString *)property forTheme:(NSString*)theme;
++ (int) getIntegerProperty:(NSString *)property forTheme:(NSString*)theme withDefaultValue:(int)defaultValue;
 
 + (UIColor*) torColor;
 + (UIColor*) defaultNavbarColor;
