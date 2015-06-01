@@ -271,10 +271,6 @@
 	<dict>
 		<key>corners</key>
 		<integer>20</integer>
-		<key>edgeColor</key>
-		<string>#ffffffff</string>
-		<key>edgeThickness</key>
-		<integer>2</integer>
 	</dict>
 	<key>HintBackgroundStyle</key>
 	<dict>
@@ -284,7 +280,7 @@
 	<key>HintTextStyle</key>
 	<dict>
 		<key>textSize</key>
-		<integer>20</integer>
+		<integer>24</integer>
 		<key>textColor</key>
 		<string>#ffffffff</string>
 	</dict>

@@ -495,10 +495,10 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cRf-gD-m8v">
-                                <rect key="frame" x="493" y="151" width="87" height="58"/>
+                                <rect key="frame" x="491" y="151" width="89" height="58"/>
                                 <color key="backgroundColor" red="0.42272565210000002" green="1" blue="0.47146066089999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <inset key="contentEdgeInsets" minX="20" minY="20" maxX="20" maxY="20"/>
-                                <state key="normal" title="I get it!">
+                                <state key="normal" title="GOT IT">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -524,6 +524,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="buttonView" destination="cRf-gD-m8v" id="vv7-np-tc7"/>
                         <outlet property="descriptionView" destination="QlR-Dv-512" id="kiV-og-N1X"/>
                         <outlet property="hiliteHeight" destination="37N-Qt-bQx" id="uCb-kX-0c4"/>
                         <outlet property="hiliteView" destination="Hn5-Ci-WTL" id="aZk-0v-ULk"/>

@@ -97,7 +97,11 @@
         [hintController addTarget:@"settings" withText:@"This is the settings"];
         [hintController setDelegate:self];
         [self addChildViewController:hintController];
+        [hintController.view setAlpha:0.0];
         [self.view addSubview:hintController.view];
+        [UIView animateWithDuration:kSCRHintViewAnimationFadeInDuration animations:^{
+            [hintController.view setAlpha:1.0];
+        }];
         return YES;
     }
     return YES;

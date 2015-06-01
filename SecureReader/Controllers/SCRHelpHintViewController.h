@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+#define kSCRHintViewAnimationFadeInDuration 0.5
+#define kSCRHintViewAnimationFadeOutDuration 0.5
+#define kSCRHintViewAnimationTextFadeInDuration 0.3
+#define kSCRHintViewAnimationTextFadeOutDuration 0.3
+#define kSCRHintViewAnimationHiliteMoveDuration 0.5
+
 @protocol SCRHelpHintViewControllerDelegate;
 
 @interface SCRHelpHintViewController : UIViewController<UITableViewDelegate>
@@ -17,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UIView *shaderView;
 @property (weak, nonatomic) IBOutlet UIView *hiliteView;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionView;
+@property (weak, nonatomic) IBOutlet UIButton *buttonView;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *hiliteX;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *hiliteY;
