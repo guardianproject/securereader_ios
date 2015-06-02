@@ -29,6 +29,14 @@
     return self;
 }
 
+- (NSString *)yapKey
+{
+    if (!_yapKey) {
+        _yapKey = [[NSUUID UUID] UUIDString];
+    }
+    return _yapKey;
+}
+
 - (instancetype)initWithFeedType:(RSSFeedType)feedType xmlElement:(ONOXMLElement *)xmlElement
 {
     if (self = [super initWithFeedType:feedType xmlElement:xmlElement]) {
@@ -39,7 +47,10 @@
 
 - (NSString *)localPath
 {
-    return [NSString pathWithComponents:@[@"/media",self.yapKey,self.url.lastPathComponent]];
+    if (self.yapKey && self.url.lastPathComponent) {
+         return [NSString pathWithComponents:@[@"/media",self.yapKey,self.url.lastPathComponent]];
+    }
+    return nil;
 }
 
 - (NSURL *)localURLWithPort:(NSUInteger)port

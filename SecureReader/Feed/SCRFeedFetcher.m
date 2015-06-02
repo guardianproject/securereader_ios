@@ -89,7 +89,11 @@
             if ([object isKindOfClass:[SCRFeed class]]) {
                 SCRFeed *feed = (SCRFeed *)object;
                 dispatch_group_enter(group);
-                [self fetchFeedDataFromURL:feed.sourceURL completionQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0) completion:^(NSError *error) {
+                NSURL *url = feed.sourceURL;
+                if (!url) {
+                    url = feed.xmlURL;
+                }
+                [self fetchFeedDataFromURL:url completionQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0) completion:^(NSError *error) {
                     dispatch_group_leave(group);
                 }];
             }
