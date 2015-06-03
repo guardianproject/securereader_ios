@@ -11,7 +11,7 @@ pod 'wpxmlrpc', '~> 0.5'
 pod 'HockeySDK', '~> 3.6'
 pod 'SSKeychain', '~> 1.2'
 pod 'PSTAlertController', :git => 'https://github.com/steipete/PSTAlertController.git', :commit => '68a1327dbf71a6d1b97a121352bc774f469abd14'
-
+pod 'VENTouchLock', '~> 1.0'
 
 pod 'MWFeedParser/NSString+HTML', '~> 1.0'
 

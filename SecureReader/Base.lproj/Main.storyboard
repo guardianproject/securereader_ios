@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="wcY-0f-5Mo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="wcY-0f-5Mo">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -26,7 +26,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lOr-V6-s7D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1517" y="459"/>
+            <point key="canvasLocation" x="-1559" y="177"/>
         </scene>
         <!--Panic-->
         <scene sceneID="bH4-tK-diU">
@@ -143,7 +143,7 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="getStartedButtonClicked:" destination="9Zc-Cv-3uB" eventType="touchUpInside" id="Xcj-Eg-i5B"/>
-                                    <segue destination="S3m-Xa-Cvg" kind="showDetail" identifier="next" id="PQZ-iE-E8h"/>
+                                    <segue destination="S3m-Xa-Cvg" kind="show" identifier="next" id="PQZ-iE-E8h"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CRl-vC-2qP">
@@ -228,6 +228,84 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Zc-Cv-3uB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-3131" y="-555"/>
+        </scene>
+        <!--Setup Touch ID-->
+        <scene sceneID="EUh-cp-mRU">
+            <objects>
+                <viewController title="Setup Touch ID" id="9oR-lX-5GM" customClass="SCRSetupTouchIDViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="TPu-Qy-ZjA"/>
+                        <viewControllerLayoutGuide type="bottom" id="PZv-Yo-zfZ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="YFD-mp-wOY">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Protect your privacy." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sTr-d0-IAJ">
+                                <rect key="frame" x="26" y="40" width="189" height="26"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap the icon to use TouchID with Paik." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oft-d2-RV8">
+                                <rect key="frame" x="26" y="81" width="292" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8UP-jo-75z">
+                                <rect key="frame" x="218" y="226" width="164" height="148"/>
+                                <state key="normal" image="touchid">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="touchIDButtonPressed:" destination="9oR-lX-5GM" eventType="touchUpInside" id="k2J-ZO-F5G"/>
+                                </connections>
+                            </button>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ljz-5K-RfX">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="hbN-xc-4p8"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem title="Set Complex Password" id="QhM-A5-usy">
+                                        <connections>
+                                            <segue destination="1bD-Nz-oIn" kind="show" identifier="createPassphraseSegue" id="CId-lE-kVL"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Qp9-Ck-k5Y"/>
+                                    <barButtonItem title="Skip" id="klE-ZI-yK6">
+                                        <connections>
+                                            <segue destination="wcY-0f-5Mo" kind="show" identifier="segueToMain" id="Nqd-7j-aof"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" red="0.87952512502670288" green="0.33864662051200867" blue="0.86392116546630859" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="Oft-d2-RV8" firstAttribute="top" secondItem="sTr-d0-IAJ" secondAttribute="bottom" constant="15" id="2bw-Ys-2V7"/>
+                            <constraint firstItem="PZv-Yo-zfZ" firstAttribute="top" secondItem="ljz-5K-RfX" secondAttribute="bottom" id="5rk-mR-Txn"/>
+                            <constraint firstItem="sTr-d0-IAJ" firstAttribute="leading" secondItem="Oft-d2-RV8" secondAttribute="leading" id="8By-DP-6j4"/>
+                            <constraint firstItem="sTr-d0-IAJ" firstAttribute="leading" secondItem="YFD-mp-wOY" secondAttribute="leadingMargin" constant="10" id="9pU-H5-W0L"/>
+                            <constraint firstAttribute="width" secondItem="ljz-5K-RfX" secondAttribute="width" id="G75-3C-thC"/>
+                            <constraint firstAttribute="centerY" secondItem="8UP-jo-75z" secondAttribute="centerY" id="Hif-eF-DYo"/>
+                            <constraint firstItem="sTr-d0-IAJ" firstAttribute="top" secondItem="TPu-Qy-ZjA" secondAttribute="bottom" constant="20" id="gd6-h6-d6C"/>
+                            <constraint firstAttribute="centerX" secondItem="8UP-jo-75z" secondAttribute="centerX" id="iYj-lc-y5P"/>
+                            <constraint firstAttribute="centerX" secondItem="ljz-5K-RfX" secondAttribute="centerX" id="m4l-ME-YfK"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems/>
+                    <connections>
+                        <outlet property="subtitleLabel" destination="Oft-d2-RV8" id="T3V-Yz-g1Y"/>
+                        <outlet property="topLabel" destination="sTr-d0-IAJ" id="kNN-AY-Bn6"/>
+                        <outlet property="touchIDButton" destination="8UP-jo-75z" id="TiQ-hg-QVE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9km-Id-sh5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1139" y="-1135"/>
         </scene>
         <!--Create Passphrase-->
         <scene sceneID="C7O-4U-T5Q">
@@ -336,7 +414,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UYk-Mv-gub" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1093" y="-447"/>
+            <point key="canvasLocation" x="-846" y="-377"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="45J-1P-EgM">
@@ -1811,7 +1889,7 @@ It also helps get you access to information that may typically be unavailable in
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="getStartedButtonClicked:" destination="K4n-fz-2MT" eventType="touchUpInside" id="kwf-eX-XNM"/>
-                                    <segue destination="9Wz-EC-CbZ" kind="showDetail" id="9Yt-ri-RbP"/>
+                                    <segue destination="9Wz-EC-CbZ" kind="show" id="9Yt-ri-RbP"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CZ4-uj-rjT">
@@ -1828,7 +1906,7 @@ It also helps get you access to information that may typically be unavailable in
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="getStartedButtonClicked:" destination="K4n-fz-2MT" eventType="touchUpInside" id="Bro-QU-081"/>
-                                    <segue destination="9Wz-EC-CbZ" kind="showDetail" id="87I-Fd-lKx"/>
+                                    <segue destination="9Wz-EC-CbZ" kind="show" id="87I-Fd-lKx"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1907,7 +1985,7 @@ It also helps get you access to information that may typically be unavailable in
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="getStartedButtonClicked:" destination="CNQ-Pl-C5o" eventType="touchUpInside" id="ks3-hT-aZc"/>
-                                    <segue destination="1bD-Nz-oIn" kind="showDetail" id="jCA-PJ-hYA"/>
+                                    <segue destination="9oR-lX-5GM" kind="show" id="OHj-dI-4Md"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1950,8 +2028,10 @@ It also helps get you access to information that may typically be unavailable in
         <image name="ic_tab_more" width="21" height="5"/>
         <image name="ic_tab_news" width="20" height="17"/>
         <image name="ic_tab_posts" width="20" height="20"/>
+        <image name="touchid" width="164" height="148"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="9Yt-ri-RbP"/>
+        <segue reference="Nqd-7j-aof"/>
+        <segue reference="87I-Fd-lKx"/>
     </inferredMetricsTieBreakers>
 </document>
