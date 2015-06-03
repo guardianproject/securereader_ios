@@ -40,7 +40,6 @@
 - (YapDatabaseConnection*) readConnection {
     if (!_readConnection) {
         _readConnection = [[SCRDatabaseManager sharedInstance].database newConnection];
-        [self setupMappings];
     }
     return _readConnection;
 }

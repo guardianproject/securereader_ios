@@ -83,17 +83,4 @@ static NSString * const SCRPassphraseService    = @"info.guardianproject.SecureR
     return passphrase;
 }
 
-/** Short PIN for restricting app UI to be stored in keychain (can be used when passphrase is stored in keychain) */
-- (void) setPIN:(NSString*)PIN {
-    if (PIN.length == 0) {
-        [SSKeychain deletePasswordForService:SCRPassphraseService account:SCRPINKey];
-    }
-    [SSKeychain setPassword:PIN forService:SCRPassphraseService account:SCRPINKey];
-}
-
-/** Short PIN for restricting app UI stored in keychain */
-- (NSString*) PIN {
-    return [SSKeychain passwordForService:SCRPassphraseService account:SCRPINKey];
-}
-
 @end

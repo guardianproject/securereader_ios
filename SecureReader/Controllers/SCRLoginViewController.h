@@ -11,5 +11,6 @@
 @interface SCRLoginViewController : UIViewController
 
 - (IBAction)loginButtonClicked:(id)sender;
+@property (strong, nonatomic) IBOutlet UILabel *passphraseLabel;
 
 @end
