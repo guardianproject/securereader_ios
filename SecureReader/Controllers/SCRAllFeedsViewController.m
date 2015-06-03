@@ -11,6 +11,8 @@
 #import "SCRAppDelegate.h"
 #import "SCRNotificationsView.h"
 #import "SCRTheme.h"
+#import "SCRApplication.h"
+#import <KVOController/FBKVOController.h>
 
 static void * kSCRAllFeedsViewControllerContext = &kSCRAllFeedsViewControllerContext;
 
@@ -56,16 +58,13 @@ static void * kSCRAllFeedsViewControllerContext = &kSCRAllFeedsViewControllerCon
     }
     
     /** KVO */
-    [self.feedFetcher addObserver:self
-           forKeyPath:NSStringFromSelector(@selector(isRefreshing))
-              options:NSKeyValueObservingOptionNew
-              context:kSCRAllFeedsViewControllerContext];
+    
+    [self.KVOController observe:self.feedFetcher keyPath:NSStringFromSelector(@selector(isRefreshing)) options:NSKeyValueObservingOptionNew action:@selector(isRefreshingChanged:)];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
-    [self.feedFetcher removeObserver:self forKeyPath:NSStringFromSelector(@selector(isRefreshing)) context:kSCRAllFeedsViewControllerContext];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
@@ -82,21 +81,17 @@ static void * kSCRAllFeedsViewControllerContext = &kSCRAllFeedsViewControllerCon
 
 #pragma - mark KVO
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-    if (context == kSCRAllFeedsViewControllerContext && [keyPath isEqualToString:NSStringFromSelector(@selector(isRefreshing))]) {
-        
-        BOOL isRefreshing = [change[NSKeyValueChangeNewKey] boolValue];
-        
-        // Possibly redundant if the pull to refresh starts the refresh
-        // but if refresh is started from somewhere else (after launch) then the refresh control will reflect current refresh status
-        if (isRefreshing) {
-            [self.refreshControl beginRefreshing];
-        } else {
-            [self.refreshControl endRefreshing];
-        }
-        
+- (void)isRefreshingChanged:(id)sender {
+    BOOL isRefreshing = self.feedFetcher.isRefreshing;
+    
+    // Possibly redundant if the pull to refresh starts the refresh
+    // but if refresh is started from somewhere else (after launch) then the refresh control will reflect current refresh status
+    if (isRefreshing) {
+        [self.refreshControl beginRefreshing];
+    } else {
+        [self.refreshControl endRefreshing];
     }
+    
 }
 
 #pragma - mark Tor Methods

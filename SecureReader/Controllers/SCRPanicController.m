@@ -11,6 +11,7 @@
 #import "PSTAlertController.h"
 #import "SCRApplication.h"
 #import "SCRAppDelegate.h"
+#import "SCRTouchLock.h"
 
 @implementation SCRPanicController
 
@@ -72,7 +73,7 @@
         NSError *error = nil;
         [self clearConentsOfDirectory:directory error:&error];
         if (error) {
-            NSAssert(error == nil, @"Error deleting item at path %@", directory);
+            //DDLogError(@"Error deleting item at path %@", directory);
         }
     }];
     
@@ -83,7 +84,7 @@
     
     ////// Keychain //////
     [[SCRPassphraseManager sharedInstance] clearDatabasePassphrase];
-    [[SCRPassphraseManager sharedInstance] setPIN:nil];
+    [[SCRTouchLock sharedInstance] deletePasscode];
     
     // force exit
     exit(0);

@@ -464,17 +464,27 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The app is currently locked. Please login to continue." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jgh-Aj-Oo3">
+                                <rect key="frame" x="26" y="289" width="548" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="o0V-O8-hvd" secondAttribute="centerX" id="0p7-ul-hVM"/>
                             <constraint firstItem="r6V-Is-GTi" firstAttribute="top" secondItem="WLc-bv-wXH" secondAttribute="bottom" constant="8" id="ASj-eb-0KV"/>
                             <constraint firstAttribute="trailingMargin" secondItem="r6V-Is-GTi" secondAttribute="trailing" id="DAp-Fh-Lex"/>
+                            <constraint firstItem="jgh-Aj-Oo3" firstAttribute="leading" secondItem="JDg-Nx-U9U" secondAttribute="leadingMargin" constant="10" id="I0r-L4-MCt"/>
                             <constraint firstItem="4tN-ae-DLy" firstAttribute="top" secondItem="o0V-O8-hvd" secondAttribute="bottom" constant="50" id="MBO-Cx-9gH"/>
                             <constraint firstItem="VBG-Sb-iFV" firstAttribute="top" secondItem="JDg-Nx-U9U" secondAttribute="topMargin" constant="50" id="PYy-he-hUe"/>
                             <constraint firstAttribute="trailingMargin" secondItem="WLc-bv-wXH" secondAttribute="trailing" id="R0y-hv-mar"/>
+                            <constraint firstAttribute="centerY" secondItem="jgh-Aj-Oo3" secondAttribute="centerY" id="XrX-Gq-6M1"/>
                             <constraint firstItem="r6V-Is-GTi" firstAttribute="leading" secondItem="JDg-Nx-U9U" secondAttribute="leadingMargin" id="eie-W6-Xtq"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="jgh-Aj-Oo3" secondAttribute="trailing" constant="10" id="jY7-8W-1Dg"/>
                             <constraint firstAttribute="centerX" secondItem="VBG-Sb-iFV" secondAttribute="centerX" id="mtI-cb-IhK"/>
                             <constraint firstItem="WLc-bv-wXH" firstAttribute="leading" secondItem="JDg-Nx-U9U" secondAttribute="leadingMargin" id="n3d-as-Ix4"/>
+                            <constraint firstAttribute="centerX" secondItem="jgh-Aj-Oo3" secondAttribute="centerX" id="sLY-W1-asZ"/>
                             <constraint firstItem="WLc-bv-wXH" firstAttribute="top" secondItem="VBG-Sb-iFV" secondAttribute="bottom" constant="100" id="vUu-v4-30v"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
@@ -483,6 +493,7 @@
                     </view>
                     <connections>
                         <outlet property="editPassphrase" destination="r6V-Is-GTi" id="A35-aI-UHK"/>
+                        <outlet property="passphraseLabel" destination="WLc-bv-wXH" id="qRt-rA-wMk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IZO-GV-t3z" userLabel="First Responder" sceneMemberID="firstResponder"/>

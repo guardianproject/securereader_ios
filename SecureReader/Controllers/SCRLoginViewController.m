@@ -12,9 +12,11 @@
 #import "SCRSettings.h"
 #import <LocalAuthentication/LocalAuthentication.h>
 #import "SCRPassphraseManager.h"
+#import "SCRTouchLock.h"
 
 @interface SCRLoginViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *editPassphrase;
+@property (nonatomic) BOOL passcodeSuccess;
 @end
 
 @implementation SCRLoginViewController
@@ -32,11 +34,20 @@
 
 - (IBAction)loginButtonClicked:(id)sender
 {
-    NSString *passphrase = _editPassphrase.text;
-    if (passphrase.length == 0) {
-        return;
+    if ([[SCRTouchLock sharedInstance] isPasscodeSet]) {
+        [self showPasscodePrompt];
+    } else {
+        NSString *passphrase = _editPassphrase.text;
+        if (passphrase.length == 0) {
+            return;
+        }
+        [[SCRPassphraseManager sharedInstance] setDatabasePassphrase:passphrase storeInKeychain:NO];
+        [self attemptAppSetup];
     }
-    [[SCRPassphraseManager sharedInstance] setDatabasePassphrase:passphrase storeInKeychain:NO];
+    
+}
+
+- (void) attemptAppSetup {
     BOOL success = [[SCRAppDelegate sharedAppDelegate] setupDatabase];
     if (success) {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -52,13 +63,59 @@
         // incorrect passphrase
         [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Login.Incorrect.Title", @"Alert title for incorrect passphrase entered") message:NSLocalizedString(@"Login.Incorrect.Message", @"Alert message for incorrect passphrase entered") delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil] show];
     }
-    
+}
+
+- (void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    if ([[SCRTouchLock sharedInstance] isPasscodeSet]) {
+        self.passphraseLabel.hidden = YES;
+        self.editPassphrase.hidden = YES;
+    } else {
+        self.passphraseLabel.hidden = NO;
+        self.editPassphrase.hidden = NO;
+    }
 }
 
 - (void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    //[self checkTouchID];
+    // Prevent showing passcode view twice
+    if (self.passcodeSuccess) {
+        return;
+    }
+    [self showPasscodePrompt];
+}
+
+- (void) showPasscodePrompt {
+    if ([[SCRTouchLock sharedInstance] isPasscodeSet]) {
+        if ([SCRTouchLock canUseTouchID]) {
+            [[SCRTouchLock sharedInstance] requestTouchIDWithCompletion:^(VENTouchLockTouchIDResponse response) {
+                if (response == VENTouchLockTouchIDResponseUsePasscode ||
+                    response == VENTouchLockTouchIDResponseCanceled) {
+                    [self showEnterPasscodeViewController];
+                } else if (response == VENTouchLockTouchIDResponseSuccess) {
+                    self.passcodeSuccess = YES;
+                    [self attemptAppSetup];
+                }
+            } reason:NSLocalizedString(@"Use TouchID to unlock the app.", @"touchID prompt")];
+        } else {
+            [self showEnterPasscodeViewController];
+        }
+    }
+}
+
+- (void) showEnterPasscodeViewController {
+    VENTouchLockEnterPasscodeViewController *enterPasscodeVC = [[VENTouchLockEnterPasscodeViewController alloc] init];
+    __weak VENTouchLockEnterPasscodeViewController *weakVC = enterPasscodeVC;
+    enterPasscodeVC.willFinishWithResult = ^(BOOL success) {
+        if (success) {
+            self.passcodeSuccess = YES;
+            [weakVC dismissViewControllerAnimated:YES completion:^{
+                [self attemptAppSetup];
+            }];
+        }
+    };
+    [self presentViewController:[enterPasscodeVC embeddedInNavigationController] animated:YES completion:nil];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -74,32 +131,6 @@
         [_editPassphrase resignFirstResponder];
     }
     [super touchesBegan:touches withEvent:event];
-}
-
-- (void) checkTouchID {
-    if (![LAContext class]) {
-        return;
-    }
-    LAContext *myContext = [[LAContext alloc] init];
-    NSError *authError = nil;
-    NSString *myLocalizedReasonString = NSLocalizedString(@"Login.UnlockWithTouchID", @"prompt for TouchID");
-    
-    if ([myContext canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:&authError]) {
-        [myContext evaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics
-                  localizedReason:myLocalizedReasonString
-                            reply:^(BOOL success, NSError *error) {
-                                if (success) {
-                                    // User authenticated successfully, take appropriate action
-                                } else {
-                                    if (error.code == LAErrorUserFallback) {
-                                        
-                                    }
-                                    // User did not authenticate successfully, look at error and take appropriate action
-                                }
-                            }];
-    } else {
-        // Could not evaluate policy; look at authError and present an appropriate message to user
-    }
 }
 
 /*

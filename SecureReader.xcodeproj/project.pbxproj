@@ -121,6 +121,7 @@
 		D9317B891A886A95005DA904 /* NSFormatter+SecureReader.m in Sources */ = {isa = PBXBuildFile; fileRef = D9317B881A886A95005DA904 /* NSFormatter+SecureReader.m */; };
 		D93AA6491AD6FEB7001B8602 /* SCRPassphraseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D93AA6481AD6FEB7001B8602 /* SCRPassphraseManager.m */; };
 		D98DA07D1B1F9AD800852715 /* SCRSetupTouchIDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D98DA07C1B1F9AD800852715 /* SCRSetupTouchIDViewController.m */; };
+		D98DA0801B1FA7C500852715 /* SCRTouchLock.m in Sources */ = {isa = PBXBuildFile; fileRef = D98DA07F1B1FA7C500852715 /* SCRTouchLock.m */; };
 		D9E6575F1A234363000E6301 /* SCRFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E6575E1A234363000E6301 /* SCRFeed.m */; };
 		F6AA97CBC086528EBF0FFA97 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5982780EDA69C66A355A7531 /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -335,6 +336,8 @@
 		D94FACCE1B0524D0005D5A85 /* SecureReader.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SecureReader.entitlements; sourceTree = "<group>"; };
 		D98DA07B1B1F9AD800852715 /* SCRSetupTouchIDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRSetupTouchIDViewController.h; sourceTree = "<group>"; };
 		D98DA07C1B1F9AD800852715 /* SCRSetupTouchIDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRSetupTouchIDViewController.m; sourceTree = "<group>"; };
+		D98DA07E1B1FA7C500852715 /* SCRTouchLock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRTouchLock.h; sourceTree = "<group>"; };
+		D98DA07F1B1FA7C500852715 /* SCRTouchLock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRTouchLock.m; sourceTree = "<group>"; };
 		D9DCD4451A2344CA003C0522 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		D9E6575D1A234363000E6301 /* SCRFeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRFeed.h; sourceTree = "<group>"; };
 		D9E6575E1A234363000E6301 /* SCRFeed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRFeed.m; sourceTree = "<group>"; };
@@ -436,6 +439,8 @@
 		925AE57A1A401B02001E182F /* Startup Flow */ = {
 			isa = PBXGroup;
 			children = (
+				D98DA07E1B1FA7C500852715 /* SCRTouchLock.h */,
+				D98DA07F1B1FA7C500852715 /* SCRTouchLock.m */,
 				D98DA07B1B1F9AD800852715 /* SCRSetupTouchIDViewController.h */,
 				D98DA07C1B1F9AD800852715 /* SCRSetupTouchIDViewController.m */,
 				929EEF7619F4F5940020BD75 /* SCRSelectLanguageViewController.h */,
@@ -993,6 +998,7 @@
 				9219347B1ADBCD14001B1A73 /* UIAlertView+SecureReader.m in Sources */,
 				9276CCF41ACC1FBB00A6B0E3 /* SCRSentPostItemTableDelegate.m in Sources */,
 				633AB7361A9FE8E600A0F3F9 /* SCRMediaItem.m in Sources */,
+				D98DA0801B1FA7C500852715 /* SCRTouchLock.m in Sources */,
 				929EEF8119F4F5940020BD75 /* SCRSelectLanguageViewController.m in Sources */,
 				633FEABB1ACE023300A628AF /* SCRTorManager.m in Sources */,
 				920582881A6EA25000E152D9 /* SCRGradientBackgroundView.m in Sources */,

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SCRTouchLock.h"
 
 @interface SCRPassphraseManager : NSObject
 
@@ -24,11 +25,6 @@
 
 /** Returns a new complex passphrase (to be stored in the keychain) */
 - (NSString*) generateNewPassphrase;
-
-/** Short PIN for restricting app UI to be stored in keychain (can be used when passphrase is stored in keychain) */
-- (void) setPIN:(NSString*)PIN;
-/** Short PIN for restricting app UI stored in keychain */
-- (NSString*) PIN;
 
 + (instancetype) sharedInstance;
 
