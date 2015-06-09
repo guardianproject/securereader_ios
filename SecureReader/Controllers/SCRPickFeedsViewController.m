@@ -14,6 +14,7 @@
 #import "SCRFeedListCategoryCell.h"
 #import "RSSParser.h"
 #import "NSString+SecureReader.h"
+#import "SCRPassphraseManager.h"
 
 @interface SCRPickFeedsViewController ()
 @property (nonatomic, strong) NSMutableDictionary *feedsDictionary;
@@ -50,6 +51,15 @@
     } completionQueue:dispatch_get_main_queue()];
 }
 
+- (BOOL) shouldPerformSegueWithIdentifier:(nonnull NSString *)identifier sender:(nullable id)sender {
+    if ([identifier isEqualToString:@"finishFeedCuration"]) {
+        // Setup db on first run
+        NSString *passphrase = [[SCRPassphraseManager sharedInstance] generateNewPassphrase];
+        [[SCRPassphraseManager sharedInstance] setDatabasePassphrase:passphrase storeInKeychain:YES];
+    }
+    return YES;
+}
+
 - (void)viewWillDisappear:(BOOL)animated
 {
     // Save all subscribed feeds to a property list so that we can
@@ -77,6 +87,7 @@
     }
     
 }
+
 
 - (void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];

@@ -33,33 +33,14 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 - (BOOL) shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
-    if ([identifier isEqualToString:@"segueToMain"]) {
-        [self generateAndStoreDatabasePassphrase];
-        return [self attemptAppSetup];
-    } else if ([identifier isEqualToString:@"createPassphraseSegue"]) {
+    if ([identifier isEqualToString:@"createPassphraseSegue"]) {
         [[SCRTouchLock sharedInstance] deletePasscode];
         return YES;
     }
     return YES;
 }
 
-- (void) generateAndStoreDatabasePassphrase {
-    // skip PIN setup
-    NSString *passphrase = [[SCRPassphraseManager sharedInstance] generateNewPassphrase];
-    [[SCRPassphraseManager sharedInstance] setDatabasePassphrase:passphrase storeInKeychain:YES];
-
-}
 
 - (BOOL) attemptAppSetup {
     BOOL success = [[SCRAppDelegate sharedAppDelegate] setupDatabase];
@@ -74,18 +55,6 @@
 - (IBAction)touchIDButtonPressed:(id)sender {
     // show PIN setup
     VENTouchLockCreatePasscodeViewController *createPasscodeVC = [[VENTouchLockCreatePasscodeViewController alloc] init];
-    __weak VENTouchLockCreatePasscodeViewController *weakVC = createPasscodeVC;
-    createPasscodeVC.willFinishWithResult = ^(BOOL success) {
-        if (success) {
-            [weakVC dismissViewControllerAnimated:YES completion:^{
-                [self generateAndStoreDatabasePassphrase];
-                if ([self attemptAppSetup]) {
-                    [self performSegueWithIdentifier:@"segueToMain" sender:self];
-                    [self removeFromParentViewController];
-                }
-            }];
-        }
-    };
     [self presentViewController:[createPasscodeVC embeddedInNavigationController] animated:YES completion:nil];
 }
 @end
