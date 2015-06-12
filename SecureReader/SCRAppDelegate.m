@@ -28,6 +28,8 @@
 #import <SVGgh/SVGgh.h>
 #import "NSString+SecureReader.h"
 #import "SCRTouchLock.h"
+#import "sqlite3.h"
+#import "IOCipher.h"
 
 @interface SCRAppDelegate() <BITHockeyManagerDelegate>
 @end
@@ -109,9 +111,36 @@
     _feedFetcher = nil;
     [self.mediaFetcher invalidate];
     _mediaFetcher = nil;
-    _fileManager = nil;
+    
+    NSString *databasePath = [SCRDatabaseManager sharedInstance].database.databasePath;
+
     [[SCRDatabaseManager sharedInstance] teardownDatabase];
+    
+    // Changing to complex DB passphrase
+    NSString *newPassphrase = notif.userInfo[kNewPasswordUserInfoKey];
+    if (newPassphrase.length > 0) {
+        NSString *oldPassphrase = [SCRPassphraseManager sharedInstance].databasePassphrase;
+        [self.fileManager.ioCipher changePassword:newPassphrase oldPassword:oldPassphrase];
+        sqlite3 *db = NULL;
+        int err = sqlite3_open([databasePath UTF8String], &db);
+        if (db && err == SQLITE_OK) {
+            err = sqlite3_key(db, [oldPassphrase UTF8String], (int)[oldPassphrase lengthOfBytesUsingEncoding:NSUTF8StringEncoding]);
+            if (err == SQLITE_OK) {
+                err = sqlite3_rekey(db, [newPassphrase UTF8String], (int)[newPassphrase lengthOfBytesUsingEncoding:NSUTF8StringEncoding]);
+            }
+            err = sqlite3_close_v2(db);
+        }
+        if (err != SQLITE_OK) {
+            const char *error_str = sqlite3_errstr(err);
+            NSString *errorString = [NSString stringWithUTF8String:error_str];
+            NSLog(@"Error changing database key: %@", errorString);
+        }
+    }
+    
+    _fileManager = nil;
     [[SCRPassphraseManager sharedInstance] clearDatabasePassphraseFromMemory];
+    
+    
 
     UIViewController *rootVC = self.window.rootViewController;
     UIViewController *vcCurrent = rootVC;
@@ -119,9 +148,7 @@
         vcCurrent = ((UINavigationController*)rootVC).visibleViewController;
     }
     
-    if ([vcCurrent class] != [SCRSelectLanguageViewController class] &&
-        [vcCurrent class] != [SCRCreatePassphraseViewController class] &&
-        [vcCurrent class] != [SCRLoginViewController class])
+    if ([vcCurrent class] != [SCRLoginViewController class])
     {
         SCRLoginViewController *vcLogin = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"login"];
         self.window.rootViewController = vcLogin;

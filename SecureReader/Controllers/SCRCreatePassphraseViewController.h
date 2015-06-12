@@ -10,7 +10,5 @@
 
 @interface SCRCreatePassphraseViewController : UIViewController<UITextFieldDelegate>
 
-- (IBAction)openAppButtonClicked:(id)sender;
-- (IBAction)skipButtonPressed:(id)sender;
 
 @end
