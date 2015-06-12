@@ -10,6 +10,7 @@
 #import "SCRSettings.h"
 #import "SCRAppDelegate.h"
 #import "SCRPassphraseManager.h"
+#import "SCRConstants.h"
 
 @interface SCRCreatePassphraseViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *editPassphrase;
@@ -18,12 +19,7 @@
 
 @implementation SCRCreatePassphraseViewController
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [self.navigationController setNavigationBarHidden:YES];
-}
-
-- (IBAction)openAppButtonClicked:(id)sender
+- (IBAction)setPassphrasePressed:(id)sender
 {
     if ([_editPassphrase.text length] == 0 && [_editPassphraseVerify.text length] == 0)
         return;
@@ -34,25 +30,17 @@
         return;
     }
     NSString *passphrase = _editPassphrase.text;
-    [[SCRPassphraseManager sharedInstance] setDatabasePassphrase:passphrase storeInKeychain:NO];
-    
-    [self attemptAppSetup];
-}
-
-- (void) attemptAppSetup {
-    BOOL success = [[SCRAppDelegate sharedAppDelegate] setupDatabase];
-    if (!success) {
-        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"CreatePassphrase.DBError.Title", @"Title for create passphrase, db failure") message:NSLocalizedString(@"CreatePassphrase.DBError.Message", @"Message for create passphrase, db failure") delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil] show];
-    } else {
-        [self performSegueWithIdentifier:@"segueToMain" sender:self];
-        [self removeFromParentViewController];
+    if (passphrase.length == 0) {
+        return;
     }
-}
-
-- (IBAction)skipButtonPressed:(id)sender {
-    NSString *passphrase = [[SCRPassphraseManager sharedInstance] generateNewPassphrase];
-    [[SCRPassphraseManager sharedInstance] setDatabasePassphrase:passphrase storeInKeychain:YES];
-    [self attemptAppSetup];
+    
+    // Remove PIN because it's not really needed w/ complex passcode
+    [[SCRTouchLock sharedInstance] deletePasscode];
+    
+    [[[UIAlertView alloc] initWithTitle:nil message:NSLocalizedString(@"You will now need to enter your password every time you launch the app.", @"dialog for complex passphrase creation") delegate:nil cancelButtonTitle:nil otherButtonTitles:NSLocalizedString(@"OK", nil), nil] show];
+    
+    /** Time out the app, do sqlite3_rekey with new key */
+    [[NSNotificationCenter defaultCenter] postNotificationName:kApplicationDidTimeoutNotification object:nil userInfo:@{kNewPasswordUserInfoKey: passphrase}];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -80,17 +68,5 @@
     }
     [super touchesBegan:touches withEvent:event];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
-
 
 @end

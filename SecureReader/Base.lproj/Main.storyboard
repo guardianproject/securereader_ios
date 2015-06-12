@@ -335,9 +335,12 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gCH-BV-rVN">
-                                <rect key="frame" x="247" y="468" width="107" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gCH-BV-rVN">
+                                <rect key="frame" x="246" y="468" width="108" height="30"/>
                                 <state key="normal" title="Set Passphrase"/>
+                                <connections>
+                                    <action selector="setPassphrasePressed:" destination="1bD-Nz-oIn" eventType="touchUpInside" id="yMR-6n-0FZ"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -396,7 +399,7 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="loginButtonClicked:" destination="IZO-GV-t3z" eventType="touchUpInside" id="fPX-J4-nsT"/>
-                                    <segue destination="wcY-0f-5Mo" kind="show" id="h85-gh-6Jg"/>
+                                    <segue destination="wcY-0f-5Mo" kind="show" identifier="loginSegue" id="h85-gh-6Jg"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VBG-Sb-iFV">
@@ -2029,7 +2032,7 @@ It also helps get you access to information that may typically be unavailable in
         <image name="touchid" width="164" height="148"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="vmW-Fe-xQR"/>
+        <segue reference="h85-gh-6Jg"/>
         <segue reference="87I-Fd-lKx"/>
     </inferredMetricsTieBreakers>
 </document>

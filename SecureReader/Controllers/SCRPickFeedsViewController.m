@@ -54,8 +54,13 @@
 - (BOOL) shouldPerformSegueWithIdentifier:(nonnull NSString *)identifier sender:(nullable id)sender {
     if ([identifier isEqualToString:@"finishFeedCuration"]) {
         // Setup db on first run
+        [[SCRTouchLock sharedInstance] deletePasscode];
         NSString *passphrase = [[SCRPassphraseManager sharedInstance] generateNewPassphrase];
         [[SCRPassphraseManager sharedInstance] setDatabasePassphrase:passphrase storeInKeychain:YES];
+        BOOL success = [[SCRAppDelegate sharedAppDelegate] setupDatabase];
+        if (!success) {
+            NSLog(@"Error setting up database!");
+        }
     }
     return YES;
 }
@@ -99,6 +104,7 @@
     _feedsDictionary = [NSMutableDictionary new];
     for (SCRFeed *feed in feeds)
     {
+        feed.subscribed = YES; //default all feeds to subscribed
         id<NSCopying> category = [NSNull null];
         if ([feed.feedCategory length] > 0)
             category = feed.feedCategory;

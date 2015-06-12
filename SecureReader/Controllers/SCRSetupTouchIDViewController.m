@@ -33,15 +33,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (BOOL) shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
-    if ([identifier isEqualToString:@"createPassphraseSegue"]) {
-        [[SCRTouchLock sharedInstance] deletePasscode];
-        return YES;
-    }
-    return YES;
-}
-
-
 - (BOOL) attemptAppSetup {
     BOOL success = [[SCRAppDelegate sharedAppDelegate] setupDatabase];
     if (!success) {
