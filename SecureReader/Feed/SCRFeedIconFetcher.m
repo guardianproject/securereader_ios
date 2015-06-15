@@ -41,29 +41,25 @@
         {
             NSURL *faviconURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@://%@/favicon.ico",scheme,hostname]];
             
-            [self.networkOperationQueue addOperationWithBlock:^{
-                NSURLSession *session = [NSURLSession sessionWithConfiguration:self.urlSessionConfiguration];
-                NSURLSessionDataTask *dataTask = [session dataTaskWithURL:faviconURL completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-                    if (error) {
+            [self downloadDataFor:faviconURL completionQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0) completionBlock:^(NSData *data, NSURLResponse *response, NSError *error) {
+                if (error) {
+                    dispatch_async(queue, ^{
+                        completion(nil,error);
+                    });
+                }
+                else {
+                    UIImage *image = [UIImage imageWithData:data];
+                    if (image) {
                         dispatch_async(queue, ^{
-                            completion(nil,error);
+                            completion(image,nil);
+                        });
+                    } else {
+                        dispatch_async(queue, ^{
+                            completion(nil, [NSError errorWithDomain:@"info.guardianproject.SecureReader" code:123 userInfo:@{NSLocalizedDescriptionKey: @"Error decoding UIImage from NSData"}]);
                         });
                     }
-                    else {
-                        UIImage *image = [UIImage imageWithData:data];
-                        if (image) {
-                            dispatch_async(queue, ^{
-                                completion(image,nil);
-                            });
-                        } else {
-                            dispatch_async(queue, ^{
-                                completion(nil, [NSError errorWithDomain:@"info.guardianproject.SecureReader" code:123 userInfo:@{NSLocalizedDescriptionKey: @"Error decoding UIImage from NSData"}]);
-                            });
-                        }
-                        
-                    }
-                }];
-                [dataTask resume];
+                    
+                }
             }];
         } else {
             //Error

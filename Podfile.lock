@@ -28,11 +28,14 @@ PODS:
     - CocoaLumberjack/Core
   - CPAProxy (1.0.0):
     - CocoaAsyncSocket
+  - DZReadability (0.2.2):
+    - HTMLReader
   - FormatterKit/TimeIntervalFormatter (1.8.0)
   - GCDWebServer (3.2.3):
     - GCDWebServer/Core (= 3.2.3)
   - GCDWebServer/Core (3.2.3)
   - HockeySDK (3.6.4)
+  - HTMLReader (0.7.1)
   - InAppSettingsKit (2.5.2)
   - IOCipher/common (0.1.0):
     - libsqlfs/SQLCipher
@@ -83,6 +86,7 @@ PODS:
 
 DEPENDENCIES:
   - CPAProxy (from `Submodules/CPAProxy/CPAProxy.podspec`)
+  - DZReadability (~> 0.2)
   - FormatterKit/TimeIntervalFormatter (~> 1.6)
   - HockeySDK (~> 3.6)
   - InAppSettingsKit (~> 2.2)
@@ -124,9 +128,11 @@ SPEC CHECKSUMS:
   CocoaAsyncSocket: 7cbf214b27f8e7f7574db6a3fd96352ffaed433d
   CocoaLumberjack: 628fca2e88ef06f7cf6817309aa405f325d9a6fa
   CPAProxy: 2f0d2ef592b28e0686b5a100ad663bdd3e51900b
+  DZReadability: 7137c553bdde494b80f7a860f7984b238adf5ac4
   FormatterKit: bddde83e054edf9d9ee14f9de3b3a5103db256f4
   GCDWebServer: 0f68bdc06d035f285f2d1ef0ac35ed46be040a71
   HockeySDK: c07cdd580296737edcd0963e292c19885a53f563
+  HTMLReader: e6ba09514d125f45e810b6c6c1cebf3542f04d89
   InAppSettingsKit: 90b3f9b99d857f95fd1422467d857de143cac099
   IOCipher: 2bcc56103fbdd9cd9139a5b030ebb97ed6fbc4b9
   KVOController: 9fd8f0343670994e4b6f9f0b31f5a45663f3e1cf

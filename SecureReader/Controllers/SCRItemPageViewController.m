@@ -1,3 +1,4 @@
+
 //
 //  SCRItemPageViewController.m
 //  SecureReader
@@ -14,6 +15,7 @@
 #import "RSSPerson.h"
 #import "SCRApplication.h"
 #import "SCRSettings.h"
+#import "SCRReadablityViewController.h"
 
 @interface SCRItemPageViewController ()
 
@@ -83,6 +85,18 @@
     self.contentView.text = [self.item.itemDescription stringByConvertingHTMLToPlainText];
 
     [self.view layoutIfNeeded];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    [super prepareForSegue:segue sender:sender];
+    if ([segue.destinationViewController isKindOfClass:[UINavigationController class]]) {
+        UINavigationController *navigationController = (UINavigationController *)segue.destinationViewController;
+        if ([navigationController.topViewController isKindOfClass:[SCRReadablityViewController class]]) {
+            SCRReadablityViewController *viewController = (SCRReadablityViewController *)navigationController.topViewController;
+            viewController.item = self.item;
+        }
+    }
 }
 
 @end

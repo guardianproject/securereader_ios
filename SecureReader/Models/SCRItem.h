@@ -29,6 +29,8 @@ extern NSString *const kSCRFeedEdgeName;
 
 @property (nonatomic, strong) NSArray *mediaItemsYapKeys;
 
+- (NSString *)pathForDownloadedHTML;
+
 // TEMP - replace with real property!
 - (NSArray *)tags;
 
