@@ -1508,9 +1508,30 @@
                     <view key="view" contentMode="scaleToFill" id="cmh-48-jVf">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z3k-aI-cSf">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </webView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="z3k-aI-cSf" firstAttribute="top" secondItem="cmh-48-jVf" secondAttribute="top" id="Jyi-0H-Vgt"/>
+                            <constraint firstItem="z3k-aI-cSf" firstAttribute="leading" secondItem="cmh-48-jVf" secondAttribute="leading" id="d35-Kd-9QN"/>
+                            <constraint firstItem="p07-dh-j6T" firstAttribute="top" secondItem="z3k-aI-cSf" secondAttribute="bottom" id="ebh-Hq-bnb"/>
+                            <constraint firstAttribute="trailing" secondItem="z3k-aI-cSf" secondAttribute="trailing" id="jvi-qT-dr7"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="2ct-Hd-ieO"/>
+                    <navigationItem key="navigationItem" id="2ct-Hd-ieO">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="bNy-Ww-PIM">
+                            <connections>
+                                <action selector="doneButtonPressed:" destination="m7I-Zg-aGr" id="IKt-X5-wqW"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="webView" destination="z3k-aI-cSf" id="b9X-VF-pEf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E77-zT-rA7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

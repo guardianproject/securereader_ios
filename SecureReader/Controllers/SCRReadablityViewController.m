@@ -44,15 +44,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    ////// UIBarButtonItem //////
-    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneButtonPressed:)];
-    self.navigationItem.rightBarButtonItem = doneButton;
-    
-    ////// WebView //////
-    _webView = [[UIWebView alloc] initForAutoLayout];
-    [self.view addSubview:self.webView];
-    [self.webView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -99,7 +90,7 @@
     }
 }
 
-- (void)doneButtonPressed:(id)sender
+- (IBAction)doneButtonPressed:(id)sender
 {
     [self.navigationController dismissViewControllerAnimated:self completion:nil];
 }

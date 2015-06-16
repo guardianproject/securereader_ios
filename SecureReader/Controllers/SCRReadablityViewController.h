@@ -12,7 +12,7 @@
 
 @interface SCRReadablityViewController : UIViewController
 
-@property (nonatomic, strong, readonly) UIWebView *webView;
+@property (nonatomic, strong, readonly) IBOutlet UIWebView *webView;
 @property (nonatomic, strong) SCRItem *item;
 
 @end
