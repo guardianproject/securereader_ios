@@ -11,6 +11,7 @@
 #import "SCRReceiveShareView.h"
 #import "SCRNavigationController.h"
 #import "UIView+Theming.h"
+#import "SCRSettings.h"
 
 @interface SCRMoreViewController ()
 
@@ -21,9 +22,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self.cellDisplayPhotos setAccessoryType:([SCRSettings downloadMedia] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone)];
+    
+    // Set version number label
     NSString * version = [[NSBundle mainBundle] objectForInfoDictionaryKey: @"CFBundleShortVersionString"];
     NSString * build = [[NSBundle mainBundle] objectForInfoDictionaryKey: (NSString *)kCFBundleVersionKey];
-    
     self.versionLabel.text = [NSString stringWithFormat:@"%@(%@) %@", version, build, [self getBuildDate]];
 }
 
@@ -95,6 +98,11 @@
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if ([tableView indexPathForCell:self.cellDisplayPhotos] == indexPath)
+    {
+        [SCRSettings setDownloadMedia:![SCRSettings downloadMedia]];
+        [self.cellDisplayPhotos setAccessoryType:([SCRSettings downloadMedia] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone)];
+    }
 }
 
 - (NSString *) getBuildDate {

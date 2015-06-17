@@ -57,6 +57,11 @@
 	</dict>
 	<key>HilitedTintStyle</key>
 	<dict>
+		<key>tintColor</key>
+		<string>@Colors/highlightColor</string>
+	</dict>
+	<key>HilitedTintAndTextStyle</key>
+	<dict>
 		<key>textColor</key>
 		<string>@Colors/highlightColor</string>
 		<key>tintColor</key>

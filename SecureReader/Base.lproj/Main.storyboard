@@ -408,7 +408,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r6V-Is-GTi">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r6V-Is-GTi">
                                 <rect key="frame" x="16" y="200" width="568" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
@@ -781,7 +781,7 @@
                                                                     <action selector="replaceMediaButtonClicked:" destination="RIg-BG-i7z" eventType="touchUpInside" id="o9d-qf-Hz4"/>
                                                                 </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZI8-O9-DZX">
+                                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZI8-O9-DZX">
                                                                 <rect key="frame" x="293" y="5" width="138" height="40"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                                 <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -982,6 +982,24 @@
                         <sections>
                             <tableViewSection id="beA-NW-UuX">
                                 <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="displayPhotos" textLabel="EKa-sY-58h" style="IBUITableViewCellStyleDefault" id="ohw-pX-E1V">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ohw-pX-E1V" id="hLM-bY-sAC">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Display Photos" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="EKa-sY-58h">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="theme" value="HilitedTintStyle"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="zb4-sp-nWg" style="IBUITableViewCellStyleDefault" id="5Qu-i2-o01">
                                         <rect key="frame" x="0.0" y="64" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
@@ -1097,7 +1115,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="theme" value="HilitedTintStyle"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="theme" value="HilitedTintAndTextStyle"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                             </subviews>
@@ -1144,6 +1162,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="cellDisplayPhotos" destination="ohw-pX-E1V" id="xqH-rV-xSM"/>
                         <outlet property="versionLabel" destination="PdZ-Fi-cVM" id="R7O-4b-p33"/>
                     </connections>
                 </tableViewController>
@@ -1866,14 +1885,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="di7-fd-JdS" customClass="SVGDocumentView">
+                            <view contentMode="center" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="di7-fd-JdS" customClass="SVGDocumentView">
                                 <rect key="frame" x="20" y="30" width="560" height="307"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="artworkPath" value="onboard-02"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="theme" value="OnboardingScreen2Style"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="1000" text="Paik is designed to work with Tor. Would you like to use it?" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="560" translatesAutoresizingMaskIntoConstraints="NO" id="SbE-YW-Mv9" customClass="SCRLabel">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="1000" misplaced="YES" text="Paik is designed to work with Tor. Would you like to use it?" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="560" translatesAutoresizingMaskIntoConstraints="NO" id="SbE-YW-Mv9" customClass="SCRLabel">
                                 <rect key="frame" x="20" y="357" width="560" height="21"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -2052,7 +2071,7 @@ It also helps get you access to information that may typically be unavailable in
         <image name="touchid" width="164" height="148"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="h85-gh-6Jg"/>
+        <segue reference="vmW-Fe-xQR"/>
         <segue reference="87I-Fd-lKx"/>
     </inferredMetricsTieBreakers>
 </document>

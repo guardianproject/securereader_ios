@@ -32,7 +32,7 @@
 
 @property (weak, nonatomic) UIViewController *targetViewController;
 
--(void) addTarget:(NSString *)targetIdentifier withText:(NSString *)text;
+- (void)addTarget:(NSString *)targetIdentifier withText:(NSString *)text wholeCell:(BOOL)wholeCell;
 
 @end
 

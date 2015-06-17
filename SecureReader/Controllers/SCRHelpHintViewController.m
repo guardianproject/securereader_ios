@@ -13,9 +13,28 @@
 #import "UIView+Theming.h"
 #import "SCRTheme.h"
 
+@interface SCRHelpHintTarget : NSObject
+@property (nonatomic, strong) NSString *target;
+@property (nonatomic, strong) NSString *text;
+@property (nonatomic) BOOL wholeCellIsTarget;
+@end
+
+@implementation SCRHelpHintTarget
+- (instancetype) initWithTarget:(NSString *)target text:(NSString *)text wholeCell:(BOOL)wholeCell
+{
+    self = [super init];
+    if (self != nil)
+    {
+        self.target = target;
+        self.text = text;
+        self.wholeCellIsTarget = wholeCell;
+    }
+    return self;
+}
+@end
+
 @interface SCRHelpHintViewController ()
 @property (strong, nonatomic) NSMutableArray *arrayTargets;
-@property (strong, nonatomic) NSMutableArray *arrayTexts;
 @property (nonatomic) int cornerRadius;
 @property (nonatomic) int currentTarget;
 @property (nonatomic) CGRect currentHiliteRect;
@@ -44,7 +63,7 @@
     self.shaderView.layer.mask = mask;
     
     if (self.currentTarget < self.arrayTargets.count)
-        self.descriptionView.text = [self.arrayTexts objectAtIndex:self.currentTarget];
+        self.descriptionView.text = [[self.arrayTargets objectAtIndex:self.currentTarget] text];
 
     if (self.targetViewController != nil && [self.targetViewController isKindOfClass:[UITableViewController class]])
     {
@@ -53,32 +72,39 @@
     }
 }
 
-- (void)addTarget:(NSString *)targetIdentifier withText:(NSString *)text
+- (void)addTarget:(NSString *)targetIdentifier withText:(NSString *)text wholeCell:(BOOL)wholeCell
 {
     if (self.arrayTargets == nil)
     {
         self.arrayTargets = [NSMutableArray array];
-        self.arrayTexts = [NSMutableArray array];
         self.currentTarget = 0;
     }
-    [self.arrayTargets addObject:targetIdentifier];
-    [self.arrayTexts addObject:text];
+    [self.arrayTargets addObject:[[SCRHelpHintTarget alloc] initWithTarget:targetIdentifier text:text wholeCell:wholeCell]];
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.arrayTargets != nil && self.currentTarget < self.arrayTargets.count && [[self.arrayTargets objectAtIndex:self.currentTarget] isEqualToString:cell.reuseIdentifier])
+    if (self.arrayTargets != nil && self.currentTarget < self.arrayTargets.count && [[[self.arrayTargets objectAtIndex:self.currentTarget] target]isEqualToString:cell.reuseIdentifier])
     {
         [cell setNeedsLayout];
         [cell layoutIfNeeded];
         
-        CGRect frame = cell.textLabel.frame;
-        CGSize textSize = [[cell.textLabel text] sizeWithAttributes:@{NSFontAttributeName:[cell.textLabel font]}];
-        frame.size.width = textSize.width;
+        CGRect targetRect = CGRectZero;
         
-        CGRect targetRect = [self.view convertRect:frame fromView:cell];
-        targetRect = CGRectInset(targetRect, -10, -5);
-
+        if ([[self.arrayTargets objectAtIndex:self.currentTarget] wholeCellIsTarget])
+        {
+            targetRect = [self.view convertRect:cell.frame fromView:cell];
+        }
+        else
+        {
+            CGRect frame = cell.textLabel.frame;
+            CGSize textSize = [[cell.textLabel text] sizeWithAttributes:@{NSFontAttributeName:[cell.textLabel font]}];
+            frame.size.width = textSize.width;
+        
+            targetRect = [self.view convertRect:frame fromView:cell];
+            targetRect = CGRectInset(targetRect, -10, -5);
+        }
+        
         [self updateHilite:targetRect animated:!CGRectIsNull(self.currentHiliteRect)];
     }
 }
@@ -163,7 +189,7 @@
 
 - (void)animationDidStop:(CAAnimation *)theAnimation finished:(BOOL)flag
 {
-    self.descriptionView.text = [self.arrayTexts objectAtIndex:self.currentTarget];
+    self.descriptionView.text = [[self.arrayTargets objectAtIndex:self.currentTarget] text];
 
     [UIView animateWithDuration:kSCRHintViewAnimationTextFadeInDuration animations:^{
         self.buttonView.alpha = 1.0;
