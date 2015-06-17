@@ -12,7 +12,10 @@
 
 @interface SCRReadabilityViewController : UIViewController
 
-@property (nonatomic, strong, readonly) IBOutlet UIWebView *webView;
+@property (nonatomic, strong) IBOutlet UIWebView *webView;
+@property (nonatomic, strong) IBOutlet UISegmentedControl *segmentedControl;
 @property (nonatomic, strong) SCRItem *item;
+
+- (IBAction)segmentedControlDidChange:(id)sender;
 
 @end

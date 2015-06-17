@@ -1523,6 +1523,18 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="2ct-Hd-ieO">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="ZGv-WW-YVA">
+                            <rect key="frame" x="180" y="7" width="240" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="Readability"/>
+                                <segment title="Web"/>
+                            </segments>
+                            <connections>
+                                <action selector="segmentedControlDidChange:" destination="m7I-Zg-aGr" eventType="valueChanged" id="Sje-ms-Ue2"/>
+                            </connections>
+                        </segmentedControl>
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="bNy-Ww-PIM">
                             <connections>
                                 <action selector="doneButtonPressed:" destination="m7I-Zg-aGr" id="IKt-X5-wqW"/>
@@ -1530,6 +1542,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="segmentedControl" destination="ZGv-WW-YVA" id="W4j-6o-Osz"/>
                         <outlet property="webView" destination="z3k-aI-cSf" id="b9X-VF-pEf"/>
                     </connections>
                 </viewController>

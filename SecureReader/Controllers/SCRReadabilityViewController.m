@@ -14,6 +14,7 @@
 #import "DZReadability.h"
 #import "SCRAppDelegate.h"
 #import "IOCipher.h"
+#import "SCRSettings.h"
 
 @interface SCRReadabilityViewController ()
 
@@ -49,6 +50,9 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    if ([SCRSettings useTor]) {
+        [self.segmentedControl removeFromSuperview];
+    }
     [self loadNewFile];
 }
 
@@ -57,6 +61,26 @@
     if (![_item isEqual:item]) {
         _item = item;
         [self loadNewFile];
+    }
+}
+
+#pragma - mark Button Actions
+
+- (IBAction)doneButtonPressed:(id)sender
+{
+    [self.navigationController dismissViewControllerAnimated:self completion:nil];
+}
+
+- (IBAction)segmentedControlDidChange:(id)sender
+{
+    if ([sender isKindOfClass:[UISegmentedControl class]]) {
+        UISegmentedControl *segmententedControl = (UISegmentedControl *)sender;
+        if (segmententedControl.selectedSegmentIndex == 0) {
+            [self loadNewFile];
+        } else if (segmententedControl.selectedSegmentIndex == 1) {
+            NSURLRequest *request = [NSURLRequest requestWithURL:self.item.linkURL];
+            [self.webView loadRequest:request];
+        }
     }
 }
 
@@ -88,11 +112,6 @@
             loadBlock(nil);
         });
     }
-}
-
-- (IBAction)doneButtonPressed:(id)sender
-{
-    [self.navigationController dismissViewControllerAnimated:self completion:nil];
 }
 
 - (void)loadHTMLFile:(NSData *)data
