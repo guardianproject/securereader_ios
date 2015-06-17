@@ -10,4 +10,6 @@
 
 @interface SCRMoreViewController : UITableViewController
 
+@property (nonatomic, weak) IBOutlet UILabel *versionLabel;
+
 @end

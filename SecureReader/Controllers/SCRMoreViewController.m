@@ -20,6 +20,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    NSString * version = [[NSBundle mainBundle] objectForInfoDictionaryKey: @"CFBundleShortVersionString"];
+    NSString * build = [[NSBundle mainBundle] objectForInfoDictionaryKey: (NSString *)kCFBundleVersionKey];
+    
+    self.versionLabel.text = [NSString stringWithFormat:@"%@(%@) %@", version, build, [self getBuildDate]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -90,6 +95,18 @@
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (NSString *) getBuildDate {
+    // Get build date and time, format to 'yyMMddHHmm'
+    NSString *dateStr = [NSString stringWithFormat:@"%@ %@", [NSString stringWithUTF8String:__DATE__], [NSString stringWithUTF8String:__TIME__]];
+    
+    // Convert to date
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"LLL d yyyy HH:mm:ss"];
+    NSDate *date = [dateFormat dateFromString:dateStr];
+    
+    return [NSDateFormatter localizedStringFromDate:date dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterShortStyle];
 }
 
 @end
