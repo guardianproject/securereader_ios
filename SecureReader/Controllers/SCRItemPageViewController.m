@@ -15,7 +15,7 @@
 #import "RSSPerson.h"
 #import "SCRApplication.h"
 #import "SCRSettings.h"
-#import "SCRReadablityViewController.h"
+#import "SCRReadabilityViewController.h"
 
 @interface SCRItemPageViewController ()
 
@@ -92,8 +92,8 @@
     [super prepareForSegue:segue sender:sender];
     if ([segue.destinationViewController isKindOfClass:[UINavigationController class]]) {
         UINavigationController *navigationController = (UINavigationController *)segue.destinationViewController;
-        if ([navigationController.topViewController isKindOfClass:[SCRReadablityViewController class]]) {
-            SCRReadablityViewController *viewController = (SCRReadablityViewController *)navigationController.topViewController;
+        if ([navigationController.topViewController isKindOfClass:[SCRReadabilityViewController class]]) {
+            SCRReadabilityViewController *viewController = (SCRReadabilityViewController *)navigationController.topViewController;
             viewController.item = self.item;
         }
     }

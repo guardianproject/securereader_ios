@@ -24,7 +24,7 @@
 		63775E911AB0F2CB006CE553 /* SecureReaderYapTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 63775E901AB0F2CB006CE553 /* SecureReaderYapTests.m */; };
 		63775E931AB0FFDE006CE553 /* nytimes.xml in Resources */ = {isa = PBXBuildFile; fileRef = 63775E921AB0FFDE006CE553 /* nytimes.xml */; };
 		6388E9721B2F68FF00D556E6 /* SCRHTMLFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 6388E9711B2F68FF00D556E6 /* SCRHTMLFetcher.m */; };
-		6388E9751B2F763500D556E6 /* SCRReadablityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6388E9741B2F763500D556E6 /* SCRReadablityViewController.m */; };
+		6388E9751B2F763500D556E6 /* SCRReadabilityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6388E9741B2F763500D556E6 /* SCRReadabilityViewController.m */; };
 		63BE303D1AE70ECD003799D4 /* SCRNotificationsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BE303C1AE70ECD003799D4 /* SCRNotificationsView.m */; };
 		920582881A6EA25000E152D9 /* SCRGradientBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 920582871A6EA25000E152D9 /* SCRGradientBackgroundView.m */; };
 		9205828B1A6EA80900E152D9 /* SCRAuthorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9205828A1A6EA80900E152D9 /* SCRAuthorView.m */; };
@@ -168,8 +168,8 @@
 		63775E921AB0FFDE006CE553 /* nytimes.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = nytimes.xml; path = "Test Assets/nytimes.xml"; sourceTree = "<group>"; };
 		6388E9701B2F68FF00D556E6 /* SCRHTMLFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SCRHTMLFetcher.h; path = SecureReader/Feed/SCRHTMLFetcher.h; sourceTree = SOURCE_ROOT; };
 		6388E9711B2F68FF00D556E6 /* SCRHTMLFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SCRHTMLFetcher.m; path = SecureReader/Feed/SCRHTMLFetcher.m; sourceTree = SOURCE_ROOT; };
-		6388E9731B2F763500D556E6 /* SCRReadablityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRReadablityViewController.h; sourceTree = "<group>"; };
-		6388E9741B2F763500D556E6 /* SCRReadablityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRReadablityViewController.m; sourceTree = "<group>"; };
+		6388E9731B2F763500D556E6 /* SCRReadabilityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRReadabilityViewController.h; sourceTree = "<group>"; };
+		6388E9741B2F763500D556E6 /* SCRReadabilityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRReadabilityViewController.m; sourceTree = "<group>"; };
 		63BE303B1AE70ECD003799D4 /* SCRNotificationsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRNotificationsView.h; sourceTree = "<group>"; };
 		63BE303C1AE70ECD003799D4 /* SCRNotificationsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRNotificationsView.m; sourceTree = "<group>"; };
 		920582861A6EA25000E152D9 /* SCRGradientBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRGradientBackgroundView.h; sourceTree = "<group>"; };
@@ -623,8 +623,8 @@
 				925101AF1ADCF16C006DB7DE /* SCRHelpHintViewController.m */,
 				92D212901AEE5E8300549740 /* SCRMediaDownloadsViewController.h */,
 				92D212911AEE5E8300549740 /* SCRMediaDownloadsViewController.m */,
-				6388E9731B2F763500D556E6 /* SCRReadablityViewController.h */,
-				6388E9741B2F763500D556E6 /* SCRReadablityViewController.m */,
+				6388E9731B2F763500D556E6 /* SCRReadabilityViewController.h */,
+				6388E9741B2F763500D556E6 /* SCRReadabilityViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1036,7 +1036,7 @@
 				92B23C4F1A5D823700FFD963 /* SCRFavoritesViewController.m in Sources */,
 				9277D3B31B0628B700C4F957 /* SCRFeedListCategoryCell.m in Sources */,
 				D93AA6491AD6FEB7001B8602 /* SCRPassphraseManager.m in Sources */,
-				6388E9751B2F763500D556E6 /* SCRReadablityViewController.m in Sources */,
+				6388E9751B2F763500D556E6 /* SCRReadabilityViewController.m in Sources */,
 				929EEF4D19F4EB100020BD75 /* main.m in Sources */,
 				92B23C491A5D303800FFD963 /* SCRMainViewController.m in Sources */,
 				9268080C1ABC4C5E00EB9225 /* SCRMediaCollectionView.m in Sources */,

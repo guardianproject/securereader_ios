@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Guardian Project. All rights reserved.
 //
 
-#import "SCRReadablityViewController.h"
+#import "SCRReadabilityViewController.h"
 #import "PureLayout.h"
 #import "SCRItem.h"
 #import "SCRFileManager.h"
@@ -15,7 +15,7 @@
 #import "SCRAppDelegate.h"
 #import "IOCipher.h"
 
-@interface SCRReadablityViewController ()
+@interface SCRReadabilityViewController ()
 
 @property (nonatomic, strong) SCRHTMLFetcher *htmlFetcher;
 @property (nonatomic, strong) DZReadability *readability;
@@ -23,7 +23,7 @@
 
 @end
 
-@implementation SCRReadablityViewController
+@implementation SCRReadabilityViewController
 
 - (SCRFileManager *)fileManager
 {

@@ -1497,10 +1497,10 @@
             </objects>
             <point key="canvasLocation" x="-688" y="4569"/>
         </scene>
-        <!--Readablity View Controller-->
+        <!--Readability View Controller-->
         <scene sceneID="on5-F0-m1a">
             <objects>
-                <viewController id="m7I-Zg-aGr" customClass="SCRReadablityViewController" sceneMemberID="viewController">
+                <viewController id="m7I-Zg-aGr" customClass="SCRReadabilityViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Hbz-MM-Sfk"/>
                         <viewControllerLayoutGuide type="bottom" id="p07-dh-j6T"/>
