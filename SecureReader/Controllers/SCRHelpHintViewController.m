@@ -38,6 +38,7 @@
 @property (nonatomic) int cornerRadius;
 @property (nonatomic) int currentTarget;
 @property (nonatomic) CGRect currentHiliteRect;
+@property (nonatomic, weak) id<UITableViewDelegate> originalDelegate;
 @end
 
 @implementation SCRHelpHintViewController
@@ -68,6 +69,7 @@
     if (self.targetViewController != nil && [self.targetViewController isKindOfClass:[UITableViewController class]])
     {
         UITableViewController *controller = (UITableViewController *)self.targetViewController;
+        self.originalDelegate = controller.tableView.delegate;
         controller.tableView.delegate = self;
     }
 }
@@ -123,6 +125,11 @@
                 [self.delegate helpHintViewControllerDidClose:self];
             [self.view removeFromSuperview];
             [self removeFromParentViewController];
+            if (self.originalDelegate != nil)
+            {
+                UITableViewController *controller = (UITableViewController *)self.targetViewController;
+                controller.tableView.delegate = self.originalDelegate;
+            }
         }];
     }
     else
