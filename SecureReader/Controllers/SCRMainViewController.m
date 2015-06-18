@@ -51,15 +51,15 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    if (![SCRSettings hasShownInitialSettingsHelp])
+    if (![SCRSettings hasShownInitialSettingsHelp] && _settingsHintView == nil)
     {
         // A single tab item's width is the entire width of the tab bar divided by number of items
         CGFloat tabItemWidth = self.tabBar.frame.size.width / self.tabBar.items.count;
         CGFloat positionX = 4 * tabItemWidth;
-        CGFloat positionY = self.tabBar.frame.origin.y;
+        CGFloat positionY = 0;
         
         _settingsHintView = [[SCRPulseView alloc] initWithFrame:CGRectMake(positionX, positionY - 10, 40, 40)];
-        [self.view addSubview:_settingsHintView];
+        [self.tabBar addSubview:_settingsHintView];
     }
 }
 
