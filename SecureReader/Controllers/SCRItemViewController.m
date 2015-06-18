@@ -17,6 +17,7 @@
 #import "UIBarItem+Theming.h"
 #import "SCRAppDelegate.h"
 #import "NSString+HTML.h"
+#import "SCRItemCommentsViewController.h"
 
 @interface SCRItemViewController ()
 @property SCRFeedViewController *itemDataSource;
@@ -142,9 +143,11 @@
     if (itemPage != nil)
     {
         SCRItem *item = itemPage.item;
-        
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Comment" message:[NSString stringWithFormat:@"Comment this item: %@", item.title] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-    [alert show];
+        SCRItemCommentsViewController *commentsController = (SCRItemCommentsViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"fullScreenItemCommentsView"];
+        [commentsController setItem:item];
+        UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+        self.navigationItem.backBarButtonItem = backItem;
+        [self.navigationController pushViewController:commentsController animated:YES];
     }
 }
 

@@ -41,6 +41,7 @@
 		9239049E1A07E365004EEE7E /* background_debut_light.png in Resources */ = {isa = PBXBuildFile; fileRef = 9239049D1A07E365004EEE7E /* background_debut_light.png */; };
 		923FFFA11AA4A75600BC83D6 /* SCRItemTagCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 923FFFA01AA4A75600BC83D6 /* SCRItemTagCell.xib */; };
 		923FFFA41AA4AA2B00BC83D6 /* SCRItemTagCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 923FFFA31AA4AA2B00BC83D6 /* SCRItemTagCell.m */; };
+		924B2E521B33059400BEF8C6 /* SCRItemCommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 924B2E511B33059400BEF8C6 /* SCRItemCommentsViewController.m */; };
 		924BBFC01A08DCEB00A32940 /* InAppSettings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 924BBFBF1A08DCEB00A32940 /* InAppSettings.bundle */; };
 		924E96701B02536C008A838A /* SCRTorOptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 924E966F1B02536C008A838A /* SCRTorOptionViewController.m */; };
 		925101B01ADCF16C006DB7DE /* SCRHelpHintViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 925101AF1ADCF16C006DB7DE /* SCRHelpHintViewController.m */; };
@@ -191,6 +192,8 @@
 		923FFFA01AA4A75600BC83D6 /* SCRItemTagCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SCRItemTagCell.xib; sourceTree = "<group>"; };
 		923FFFA21AA4AA2B00BC83D6 /* SCRItemTagCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRItemTagCell.h; sourceTree = "<group>"; };
 		923FFFA31AA4AA2B00BC83D6 /* SCRItemTagCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRItemTagCell.m; sourceTree = "<group>"; };
+		924B2E501B33059400BEF8C6 /* SCRItemCommentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRItemCommentsViewController.h; sourceTree = "<group>"; };
+		924B2E511B33059400BEF8C6 /* SCRItemCommentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRItemCommentsViewController.m; sourceTree = "<group>"; };
 		924BBFBF1A08DCEB00A32940 /* InAppSettings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = InAppSettings.bundle; sourceTree = "<group>"; };
 		924E966E1B02536C008A838A /* SCRTorOptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRTorOptionViewController.h; sourceTree = "<group>"; };
 		924E966F1B02536C008A838A /* SCRTorOptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRTorOptionViewController.m; sourceTree = "<group>"; };
@@ -615,6 +618,8 @@
 				925101AF1ADCF16C006DB7DE /* SCRHelpHintViewController.m */,
 				92D212901AEE5E8300549740 /* SCRMediaDownloadsViewController.h */,
 				92D212911AEE5E8300549740 /* SCRMediaDownloadsViewController.m */,
+				924B2E501B33059400BEF8C6 /* SCRItemCommentsViewController.h */,
+				924B2E511B33059400BEF8C6 /* SCRItemCommentsViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1050,6 +1055,7 @@
 				632A10831ACF528500E05075 /* SCRNetworkFetcher.m in Sources */,
 				929BE4C11A79293900641647 /* SCRTextView.m in Sources */,
 				92C867A51B13626400E44A4A /* NSString+SecureReader.m in Sources */,
+				924B2E521B33059400BEF8C6 /* SCRItemCommentsViewController.m in Sources */,
 				92654F2F1B15FB04005FCC0C /* SCRPulseView.m in Sources */,
 				D9317B891A886A95005DA904 /* NSFormatter+SecureReader.m in Sources */,
 				929EEF8519F4F5940020BD75 /* UIView+Theming.m in Sources */,
