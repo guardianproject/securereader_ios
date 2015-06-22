@@ -16,6 +16,12 @@
 /* Post screen: Alert title, get image from gallery */
 "AddPost.PickImage.PickSource.Title" = "Pick Image";
 
+/* No comment provided by engineer. */
+"OK" = "OK";
+
+/* Title for panic alert */
+"Clear Data" = "Clear Data";
+
 /* Message for create passphrase, db failure */
 "CreatePassphrase.DBError.Message" = "A database error has occured.";
 
@@ -27,6 +33,12 @@
 
 /* Title for create passphrase, mismatched passwords */
 "CreatePassphrase.Mismatched.Title" = "Create passphrase";
+
+/* panic delete button */
+"Delete" = "Delete";
+
+/* for sharing a link to the app, e.g. Download Courier. %@ will be replaced by the app name at runtime. */
+"Download %@" = "Download %@";
 
 /* Language name for English */
 "English" = "English";
@@ -54,9 +66,6 @@
 
 /* Alert title for incorrect passphrase entered */
 "Login.Incorrect.Title" = "Login";
-
-/* prompt for TouchID */
-"Login.UnlockWithTouchID" = "Unlock app with TouchID";
 
 /* Display string for profress with byte count */
 "MediaDownloads.Progress.Bytes" = "%lu%% of %@ downloaded";
@@ -94,12 +103,27 @@
 /* Title placeholder in drafts */
 "Posts.Draft.NoTitlePlaceholder" = "(No title set)";
 
+/* label for PIN setup */
+"Protect your data with a PIN." = "Protect your data with a PIN.";
+
+/* Button for setting up PIN */
+"Setup PIN" = "Setup PIN";
+
 /* Number of selected items for sharing */
 "Share.Feeds.SelectedItems" = "%lu Selected";
 
 /* Language name for Swedish */
 "Svenska" = "Svenska";
 
+/* Message for panic alert */
+"This will permanently clear all app data and close the app. This operation is irreversible!" = "This will permanently clear all app data and close the app. This operation is irreversible!";
+
 /* Label for alert for when tor is starting */
 "Tor starting" = "Tor starting";
+
+/* touchID prompt */
+"Use TouchID to unlock the app." = "Use TouchID to unlock the app.";
+
+/* dialog for complex passphrase creation */
+"You will now need to enter your password every time you launch the app." = "You will now need to enter your password every time you launch the app.";
 
