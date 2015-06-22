@@ -93,6 +93,7 @@
         
         SCRHelpHintViewController *hintController = [self.storyboard instantiateViewControllerWithIdentifier:@"hint"];
         [hintController setTargetViewController:moreController.topViewController];
+#warning Placeholder text
         [hintController addTarget:@"help" withText:@"This is the help item"];
         [hintController addTarget:@"settings" withText:@"This is the settings"];
         [hintController setDelegate:self];

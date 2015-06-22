@@ -143,6 +143,7 @@
     {
         SCRItem *item = itemPage.item;
         
+#warning Placeholder text
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Comment" message:[NSString stringWithFormat:@"Comment this item: %@", item.title] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     [alert show];
     }
