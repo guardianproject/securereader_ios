@@ -71,6 +71,10 @@
     
     [self hideTrendingView:NO];
     [self showShareBarButton:YES];
+    
+    // Hide empty rows at end of table
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    self.searchDisplayController.searchResultsTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 - (void) viewDidAppear:(BOOL)animated {
