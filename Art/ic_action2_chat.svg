@@ -1,19 +1,19 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 15.0.0, SVG Export Plug-In  -->
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [
-	<!ENTITY ns_flows "http://ns.adobe.com/Flows/1.0/">
-]>
-<svg version="1.1"
-	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
-	 x="0px" y="0px" width="48px" height="48px" viewBox="-9.098 -9.427 48 48"
-	 overflow="visible" enable-background="new -9.098 -9.427 48 48" xml:space="preserve">
-<defs>
-</defs>
-<path fill="#CECECC" d="M27.303,21.8c1.25-2.2,1.908-4.676,1.908-7.195C29.211,6.552,22.659,0,14.605,0S0,6.552,0,14.604
-	C0,22.658,6.552,29.21,14.605,29.21c2.32,0,4.619-0.559,6.681-1.62l8.52,2.1L27.303,21.8z M26.206,26.319l-5.254-1.295l-0.415,0.23
-	c-1.81,1.01-3.861,1.544-5.932,1.544c-6.723,0-12.194-5.47-12.194-12.194c0-6.723,5.472-12.192,12.194-12.192
-	c6.725,0,12.194,5.47,12.194,12.192c0,2.256-0.635,4.473-1.835,6.408l-0.291,0.472L26.206,26.319z"/>
-<circle fill="#CECECC" cx="7.805" cy="14.479" r="2.003"/>
-<circle fill="#CECECC" cx="14.596" cy="14.479" r="2.003"/>
-<circle fill="#CECECC" cx="21.59" cy="14.479" r="2.003"/>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="42px" height="42px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.2 (12043) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_action2_chat</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Story" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g sketch:type="MSArtboardGroup" transform="translate(-63.000000, -1271.000000)" id="ic_action2_chat-+-COMMENT-+-Rectangle-4-+-100" fill="#929292">
+            <g sketch:type="MSLayerGroup" transform="translate(63.000000, 1265.000000)">
+                <g id="ic_action2_chat" transform="translate(0.000000, 6.000000)" sketch:type="MSShapeGroup">
+                    <path d="M38.2242,30.52 C39.9742,27.44 40.8954,23.9736 40.8954,20.447 C40.8954,9.1728 31.7226,0 20.447,0 C9.1714,0 0,9.1728 0,20.4456 C0,31.7212 9.1728,40.894 20.447,40.894 C23.695,40.894 26.9136,40.1114 29.8004,38.626 L41.7284,41.566 L38.2242,30.52 L38.2242,30.52 Z M36.6884,36.8466 L29.3328,35.0336 L28.7518,35.3556 C26.2178,36.7696 23.3464,37.5172 20.447,37.5172 C11.0348,37.5172 3.3754,29.8592 3.3754,20.4456 C3.3754,11.0334 11.0362,3.3768 20.447,3.3768 C29.862,3.3768 37.5186,11.0348 37.5186,20.4456 C37.5186,23.604 36.6296,26.7078 34.9496,29.4168 L34.5422,30.0776 L36.6884,36.8466 L36.6884,36.8466 Z" id="Shape"></path>
+                    <circle id="Oval" cx="10.927" cy="20.2706" r="2.8042"></circle>
+                    <circle id="Oval" cx="20.4344" cy="20.2706" r="2.8042"></circle>
+                    <circle id="Oval" cx="30.226" cy="20.2706" r="2.8042"></circle>
+                </g>
+            </g>
+        </g>
+    </g>
 </svg>
