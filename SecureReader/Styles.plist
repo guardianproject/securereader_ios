@@ -177,7 +177,7 @@
 		<key>textColor</key>
 		<string>#ff888888</string>
 		<key>onTintColor</key>
-		<string>#ffff0000</string>
+		<string>@Colors/highlightColor</string>
 		<key>corners</key>
 		<integer>0</integer>
 		<key>tintColor</key>
