@@ -312,5 +312,23 @@
 		<key>parent</key>
 		<string>MoreSectionStyle</string>
 	</dict>
+	<key>CommentsViewStyle</key>
+	<dict>
+		<key>backgroundColor</key>
+		<string>#ffaaaaaa</string>
+	</dict>
+	<key>CommentsEditViewStyle</key>
+	<dict>
+		<key>textSize</key>
+		<integer>14</integer>
+		<key>textColorDisabled</key>
+		<string>#ffaaaaaa</string>
+		<key>corners</key>
+		<integer>5</integer>
+		<key>textColor</key>
+		<string>#ff000000</string>
+		<key>backgroundColor</key>
+		<string>#ffffffff</string>
+	</dict>
 </dict>
 </plist>

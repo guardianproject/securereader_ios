@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "SCRItem.h"
+#import "SCRTextView.h"
 
-@interface SCRItemCommentsViewController : UIViewController
+@interface SCRItemCommentsViewController : UIViewController<UITextViewDelegate>
 
 @property (strong, nonatomic) SCRItem *item;
-@property (weak, nonatomic) IBOutlet UILabel *label;
+@property (weak, nonatomic) IBOutlet SCRTextView *commentsView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *commentsViewBottomConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *commentsViewHeightConstraint;
 
 @end

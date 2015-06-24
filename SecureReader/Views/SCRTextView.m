@@ -75,6 +75,7 @@
     [super setFont:[font fontWithSize:(font.pointSize + [SCRSettings fontSizeAdjustment])]];
 }
 
+
 - (void) setDelegate:(id<UITextViewDelegate>)delegate
 {
     self.originalDelegate = delegate;
@@ -134,7 +135,7 @@
 - (BOOL) textViewShouldBeginEditing:(UITextView *)textView
 {
     BOOL ret = YES;
-    if (self.originalDelegate != nil && self.originalDelegate != self)
+    if (self.originalDelegate != nil && self.originalDelegate != self && [self.originalDelegate respondsToSelector:@selector(textViewShouldBeginEditing:)])
         ret = [self.originalDelegate textViewShouldBeginEditing:textView];
     if (ret && self.isDisplayingPrompt)
     {
@@ -149,7 +150,7 @@
     {
         [self showPrompt:YES];
     }
-    if (self.originalDelegate != nil && self.originalDelegate != self)
+    if (self.originalDelegate != nil && self.originalDelegate != self && [self.originalDelegate respondsToSelector:@selector(textViewDidEndEditing:)])
         [self.originalDelegate textViewDidEndEditing:textView];
 }
 
@@ -171,6 +172,12 @@
     {
         [self showPrompt:YES];
     }
+}
+
+- (void)textViewDidChange:(UITextView *)textView
+{
+    if (self.originalDelegate != nil && self.originalDelegate != self && [self.originalDelegate respondsToSelector:@selector(textViewDidChange:)])
+        [self.originalDelegate textViewDidChange:textView];
 }
 
 @end
