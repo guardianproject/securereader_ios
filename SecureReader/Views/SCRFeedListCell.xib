@@ -31,7 +31,6 @@
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_feed_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="DtA-HQ-ggq">
                         <rect key="frame" x="20" y="80" width="40" height="40"/>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="40" id="BGu-s0-huo"/>
                             <constraint firstAttribute="height" constant="40" id="CXV-wD-lUn"/>
