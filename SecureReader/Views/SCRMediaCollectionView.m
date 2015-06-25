@@ -42,7 +42,7 @@
     if (self)
     {
         // Default values
-        self.downloadViewHeight = 80;
+        self.downloadViewHeight = 110;
         self.imageViewHeight = 200;
         self.noImagesViewHeight = 0;
         
