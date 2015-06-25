@@ -167,11 +167,11 @@
     {
         [self showPrompt:NO];
     }
-    if (self.lineHeightInPercent != nil && [self.lineHeightInPercent intValue] != 100)
+    if (self.lineHeightInPercent != nil && [self.lineHeightInPercent intValue] != 100 && text != nil)
     {
         NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
         paragraphStyle.lineHeightMultiple = [self.lineHeightInPercent floatValue] / 100.0;
-        NSDictionary *attrsDictionary = @{ NSFontAttributeName: self.font, NSParagraphStyleAttributeName: paragraphStyle};
+        NSDictionary *attrsDictionary = @{ NSFontAttributeName: self.font, NSParagraphStyleAttributeName: paragraphStyle, NSForegroundColorAttributeName: self.textColor};
         [self setAttributedText:[[NSAttributedString alloc] initWithString:text attributes:attrsDictionary]];
     }
 

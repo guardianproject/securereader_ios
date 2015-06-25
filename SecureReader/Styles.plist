@@ -204,7 +204,7 @@
 		<key>textSize</key>
 		<integer>17</integer>
 		<key>textColor</key>
-		<string>#ffff0000</string>
+		<string>#ff000000</string>
 		<key>lineHeightInPercent</key>
 		<integer>150</integer>
 	</dict>
