@@ -10,14 +10,6 @@
 
 @implementation SCRFeedIconFetcher
 
-- (instancetype) initWithSessionConfiguration:(NSURLSessionConfiguration *)configuration
-{
-    if (self = [self init]) {
-        self.urlSessionConfiguration = configuration;
-    }
-    return self;
-}
-
 - (void)fetchIconForURL:(NSURL *)url completionQueue:(dispatch_queue_t)queue completion:(void (^)(UIImage *, NSError *))completion
 {
     if (!completion) {

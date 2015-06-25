@@ -24,17 +24,17 @@
 
 @implementation SCRFeedFetcher
 
-- (instancetype) init {
-    if (self = [super init]) {
-        self.callbackQueue = dispatch_queue_create("SCRFeedFetcher callback queue", 0);
-        _isRefreshing = NO;
-    }
-    return self;
+- (instancetype) initWithSessionConfiguration:(NSURLSessionConfiguration *)sessionConfiguration {
+    self = [self initWithSessionConfiguration:sessionConfiguration readWriteYapConnection:nil];
+    @throw [NSException exceptionWithName:@"Wrong initializer" reason:@"Use initWithSessionConfiguration:readWriteYapConnection: instead" userInfo:nil];
+    return nil;
 }
 
-- (instancetype) initWithReadWriteYapConnection:(YapDatabaseConnection *)connection
-                           sessionConfiguration:(NSURLSessionConfiguration *)sessionConfiguration {
-    if (self = [self init]) {
+- (instancetype)initWithSessionConfiguration:(NSURLSessionConfiguration *)sessionConfiguration
+                      readWriteYapConnection:(YapDatabaseConnection *)connection {
+    if (self = [super initWithSessionConfiguration:sessionConfiguration]) {
+        self.callbackQueue = dispatch_queue_create("SCRFeedFetcher callback queue", 0);
+        _isRefreshing = NO;
         self.databaseConnection = connection;
         _atomKit = [[RSSAtomKit alloc] initWithSessionConfiguration:sessionConfiguration];
         [[self class] registerDefaultRSSAtomKitClassesWithParser:self.atomKit.parser];

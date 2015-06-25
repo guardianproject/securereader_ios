@@ -211,7 +211,7 @@
     }
     
     ////// Setup Feed Fetcher //////
-    _feedFetcher = [[SCRFeedFetcher alloc] initWithReadWriteYapConnection:databaseConnection sessionConfiguration:[self.torManager currentConfiguration]];
+    _feedFetcher = [[SCRFeedFetcher alloc] initWithSessionConfiguration:[self.torManager currentConfiguration] readWriteYapConnection:databaseConnection];
     if ([SCRSettings useTor] && self.torManager.proxyManager.status != CPAStatusOpen) {
         self.feedFetcher.networkOperationQueue.suspended = YES;
     }

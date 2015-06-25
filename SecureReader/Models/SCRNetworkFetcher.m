@@ -16,8 +16,9 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (instancetype)init {
+- (instancetype)initWithSessionConfiguration:(NSURLSessionConfiguration *)sessionConfiguration {
     if (self = [super init]) {
+        _urlSessionConfiguration = sessionConfiguration;
         _networkOperationQueue = [[NSOperationQueue alloc] init];
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(networkNotificationReceived:)

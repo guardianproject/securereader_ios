@@ -25,4 +25,6 @@
  */
 @property (nonatomic, strong) NSURLSessionConfiguration *urlSessionConfiguration;
 
+- (instancetype)initWithSessionConfiguration:(NSURLSessionConfiguration *)sessionConfiguration NS_DESIGNATED_INITIALIZER;
+
 @end

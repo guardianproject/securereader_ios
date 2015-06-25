@@ -15,8 +15,9 @@
 /** Whether there is a refresh ongoing is KVO compliant */
 @property (nonatomic, readonly) BOOL isRefreshing;
 
-- (instancetype)initWithReadWriteYapConnection:(YapDatabaseConnection *)connection
-                          sessionConfiguration:(NSURLSessionConfiguration *)sessionConfiguration;
+- (instancetype)initWithSessionConfiguration:(NSURLSessionConfiguration *)sessionConfiguration
+                      readWriteYapConnection:(YapDatabaseConnection *)connection NS_DESIGNATED_INITIALIZER
+                          ;
 
 /**
  * Asynchronously goes through all subscribed feeds in the database and uses fetchFeedDataFromURL:completionQueue:completion

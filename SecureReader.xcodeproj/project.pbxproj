@@ -117,6 +117,8 @@
 		92E7B9711A41A30F0038DBCE /* SCRReceiveShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7B9701A41A30F0038DBCE /* SCRReceiveShareView.m */; };
 		92E7B9741A41C8E60038DBCE /* SCRReceiveShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7B9731A41C8E60038DBCE /* SCRReceiveShareViewController.m */; };
 		92E8CF8D1AD3C91D00756F9E /* SCREditTagsTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E8CF8C1AD3C91D00756F9E /* SCREditTagsTextView.m */; };
+		D901FE001B3B8E4C00106D53 /* SCRWordpressClient.m in Sources */ = {isa = PBXBuildFile; fileRef = D901FDFF1B3B8E4C00106D53 /* SCRWordpressClient.m */; };
+		D901FE021B3B93F200106D53 /* SCRWordpressTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D901FE011B3B93F200106D53 /* SCRWordpressTests.m */; };
 		D90F59371A19ECBE008F2DCB /* SCRFeedFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = D90F59361A19ECBE008F2DCB /* SCRFeedFetcher.m */; };
 		D90F593A1A19F617008F2DCB /* SCRDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D90F59391A19F617008F2DCB /* SCRDatabaseManager.m */; };
 		D9317B891A886A95005DA904 /* NSFormatter+SecureReader.m in Sources */ = {isa = PBXBuildFile; fileRef = D9317B881A886A95005DA904 /* NSFormatter+SecureReader.m */; };
@@ -328,6 +330,9 @@
 		A21561AE6A5B97BAE0C7EADE /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		B6D79F343A572BF139F79DDE /* Pods-SecureReaderTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SecureReaderTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SecureReaderTests/Pods-SecureReaderTests.release.xcconfig"; sourceTree = "<group>"; };
 		D63F575D235A327D686329F6 /* Pods-SecureReaderTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SecureReaderTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SecureReaderTests/Pods-SecureReaderTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D901FDFE1B3B8E4C00106D53 /* SCRWordpressClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRWordpressClient.h; sourceTree = "<group>"; };
+		D901FDFF1B3B8E4C00106D53 /* SCRWordpressClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRWordpressClient.m; sourceTree = "<group>"; };
+		D901FE011B3B93F200106D53 /* SCRWordpressTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRWordpressTests.m; sourceTree = "<group>"; };
 		D90F59351A19ECBE008F2DCB /* SCRFeedFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SCRFeedFetcher.h; path = SecureReader/Feed/SCRFeedFetcher.h; sourceTree = SOURCE_ROOT; };
 		D90F59361A19ECBE008F2DCB /* SCRFeedFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SCRFeedFetcher.m; path = SecureReader/Feed/SCRFeedFetcher.m; sourceTree = SOURCE_ROOT; };
 		D90F59381A19F617008F2DCB /* SCRDatabaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SCRDatabaseManager.h; path = SecureReader/Feed/SCRDatabaseManager.h; sourceTree = SOURCE_ROOT; };
@@ -521,6 +526,7 @@
 				929EEF8619F4F5F30020BD75 /* Styles.plist */,
 				D90F59341A19EC43008F2DCB /* Feed */,
 				633D23D91AA0EBC6008D1C28 /* File Management */,
+				D901FDFB1B3B76BB00106D53 /* Wordpress */,
 				92BD509B1A07A38900F3BD22 /* Views */,
 				929EEF7319F4F5940020BD75 /* Controllers */,
 				929EEF9019F50B900020BD75 /* Language & Theming Support */,
@@ -560,6 +566,7 @@
 		929EEF6619F4EB100020BD75 /* SecureReaderTests */ = {
 			isa = PBXGroup;
 			children = (
+				D901FE011B3B93F200106D53 /* SCRWordpressTests.m */,
 				929EEF6919F4EB100020BD75 /* SecureReaderTests.m */,
 				63775E901AB0F2CB006CE553 /* SecureReaderYapTests.m */,
 				633AB73A1A9FFCEA00A0F3F9 /* SecureReaderDownloadTests.m */,
@@ -753,6 +760,16 @@
 				9277D3AD1B060DFA00C4F957 /* SCRFeedListCategoryCell.xib */,
 			);
 			name = Feeds;
+			sourceTree = "<group>";
+		};
+		D901FDFB1B3B76BB00106D53 /* Wordpress */ = {
+			isa = PBXGroup;
+			children = (
+				D901FDFE1B3B8E4C00106D53 /* SCRWordpressClient.h */,
+				D901FDFF1B3B8E4C00106D53 /* SCRWordpressClient.m */,
+			);
+			name = Wordpress;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		D90F59341A19EC43008F2DCB /* Feed */ = {
@@ -1008,6 +1025,7 @@
 				D98DA07D1B1F9AD800852715 /* SCRSetupTouchIDViewController.m in Sources */,
 				63BE303D1AE70ECD003799D4 /* SCRNotificationsView.m in Sources */,
 				92E7B9741A41C8E60038DBCE /* SCRReceiveShareViewController.m in Sources */,
+				D901FE001B3B8E4C00106D53 /* SCRWordpressClient.m in Sources */,
 				92B9E97F1A9E1A9F00A2BED9 /* SCRFeedTableDelegate.m in Sources */,
 				634680901B0AAB8E00D9A1C5 /* SCRFeedIconFetcher.m in Sources */,
 				D9E6575F1A234363000E6301 /* SCRFeed.m in Sources */,
@@ -1075,6 +1093,7 @@
 			files = (
 				63775E911AB0F2CB006CE553 /* SecureReaderYapTests.m in Sources */,
 				929EEF6A19F4EB100020BD75 /* SecureReaderTests.m in Sources */,
+				D901FE021B3B93F200106D53 /* SCRWordpressTests.m in Sources */,
 				633AB73B1A9FFCEA00A0F3F9 /* SecureReaderDownloadTests.m in Sources */,
 				63775E8B1AAF9BE4006CE553 /* SecureReaderMediaServerTest.m in Sources */,
 			);

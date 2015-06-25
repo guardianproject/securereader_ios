@@ -78,7 +78,8 @@ NSString *const kSecureReaderYapTestsRSSURL = @"http://test.fake/rss";
 {
     YapDatabaseConnection *connection = [self.databaseManager.database newConnection];
     NSURLSessionConfiguration *configuration = [self setupURLMock];
-    SCRFeedFetcher *feedFetcher = [[SCRFeedFetcher alloc] initWithReadWriteYapConnection:connection sessionConfiguration:configuration];
+    SCRFeedFetcher *feedFetcher = [[SCRFeedFetcher alloc] initWithSessionConfiguration:configuration
+                                   readWriteYapConnection:connection];
     
     NSURL *url = [NSURL URLWithString:kSecureReaderYapTestsRSSURL];
     
