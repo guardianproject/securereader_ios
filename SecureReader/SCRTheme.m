@@ -260,6 +260,14 @@ static NSMutableDictionary *themes = nil;
             if (value != nil)
                 [control performSelector:@selector(setFont:) withObject:[font fontWithSize:[value floatValue]]];
         }
+        else if ([property isEqualToString:@"lineHeightInPercent"] && [control respondsToSelector:@selector(setLineHeightInPercent:)])
+        {
+            if (save && [control respondsToSelector:@selector(lineHeightInPercent)])
+                [SCRTheme saveProperty:property value:[control performSelector:@selector(lineHeightInPercent)] forControl:control];
+            NSNumber *value = (NSNumber*)[self getNillableProperty:property fromDict:style];
+            if (value != nil)
+                [control performSelector:@selector(setLineHeightInPercent:) withObject:value];
+        }
         else if ([property isEqualToString:@"backgroundGradientV"])
         {
             NSMutableArray *colorArray = nil;

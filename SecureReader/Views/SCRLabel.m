@@ -81,4 +81,19 @@
     [super setFont:[font fontWithSize:(font.pointSize + [SCRSettings fontSizeAdjustment])]];
 }
 
+- (void)setText:(NSString *)text
+{
+    if (self.lineHeightInPercent != nil && [self.lineHeightInPercent intValue] != 100)
+    {
+        NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+        paragraphStyle.lineHeightMultiple = [self.lineHeightInPercent floatValue] / 100.0;
+        NSDictionary *attrsDictionary = @{ NSFontAttributeName: self.font, NSParagraphStyleAttributeName: paragraphStyle};
+        [self setAttributedText:[[NSAttributedString alloc] initWithString:text attributes:attrsDictionary]];
+    }
+    else
+    {
+        [super setText:text];
+    }
+}
+
 @end

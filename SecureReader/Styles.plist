@@ -193,16 +193,20 @@
 	<key>ItemTitleStyle</key>
 	<dict>
 		<key>textSize</key>
-		<integer>18</integer>
+		<integer>20</integer>
 		<key>textColor</key>
 		<string>#ff000000</string>
+		<key>lineHeightInPercent</key>
+		<integer>120</integer>
 	</dict>
 	<key>ItemContentStyle</key>
 	<dict>
 		<key>textSize</key>
-		<integer>14</integer>
+		<integer>17</integer>
 		<key>textColor</key>
-		<string>#ff000000</string>
+		<string>#ffff0000</string>
+		<key>lineHeightInPercent</key>
+		<integer>150</integer>
 	</dict>
 	<key>SourceStyle</key>
 	<dict>
@@ -212,14 +216,14 @@
 	<key>SourceTitleStyle</key>
 	<dict>
 		<key>textSize</key>
-		<integer>10</integer>
+		<integer>12</integer>
 		<key>textColor</key>
 		<string>#ff95ab55</string>
 	</dict>
 	<key>SourceTimeStyle</key>
 	<dict>
 		<key>textSize</key>
-		<integer>10</integer>
+		<integer>12</integer>
 		<key>textColor</key>
 		<string>#ff999999</string>
 	</dict>
