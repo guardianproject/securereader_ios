@@ -47,6 +47,18 @@
     [super viewWillDisappear:animated];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self registerForKeyboardNotifications];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [self unregisterForKeyboardNotifications];
+    [super viewDidDisappear:animated];
+}
+
 - (void) showPostBarButton:(BOOL) show
 {
     if (show)
@@ -315,6 +327,45 @@
             [self.imagePlaceholder setHidden:([self.mediaCollectionView numberOfImages] > 0)];
         }];
     });
+}
+
+- (void)registerForKeyboardNotifications
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWasShown:)
+                                                 name:UIKeyboardDidShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillBeHidden:)
+                                                 name:UIKeyboardWillHideNotification object:nil];
+    
+}
+
+- (void)unregisterForKeyboardNotifications
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+}
+
+- (void)keyboardWasShown:(NSNotification*)aNotification
+{
+    NSDictionary* info = [aNotification userInfo];
+    CGSize kbSize = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
+    self.bottomConstraint.constant = kbSize.height;
+}
+
+// Called when the UIKeyboardWillHideNotification is sent
+- (void)keyboardWillBeHidden:(NSNotification*)aNotification
+{
+    self.bottomConstraint.constant = 0;
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    UITouch *touch = [[event allTouches] anyObject];
+    if (![[touch view] isKindOfClass:[UITextView class]]) {
+        [self.view endEditing:YES];
+    }
+    [super touchesBegan:touches withEvent:event];
 }
 
 @end

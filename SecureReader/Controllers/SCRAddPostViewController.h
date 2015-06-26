@@ -21,5 +21,6 @@
 @property (weak, nonatomic) IBOutlet UIView *imagePlaceholder;
 
 -(void) editItem:(SCRPostItem *)item;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomConstraint;
 
 @end

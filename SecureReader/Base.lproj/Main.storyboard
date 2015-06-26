@@ -1004,6 +1004,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="bottomConstraint" destination="shE-WC-z3Y" id="5sI-vG-tek"/>
                         <outlet property="descriptionView" destination="inT-tN-8CT" id="R7i-WZ-dPR"/>
                         <outlet property="imagePlaceholder" destination="7ut-3w-aLj" id="mc6-2h-Cbh"/>
                         <outlet property="mediaCollectionView" destination="QkV-hT-nyT" id="uTQ-MS-lzQ"/>
