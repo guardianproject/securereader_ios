@@ -697,14 +697,7 @@
                             <outlet property="delegate" destination="vpR-Gw-cn5" id="rYg-YJ-gyr"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="All Feeds" id="OKW-af-rFH">
-                        <barButtonItem key="rightBarButtonItem" image="ic_action_panic.png" id="5wd-tf-Kl2">
-                            <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <action selector="showPanicAction:" destination="xR6-0a-Ivk" id="3Ue-AG-DWz"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="All Feeds" id="OKW-af-rFH"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xR6-0a-Ivk" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -725,14 +718,7 @@
                         </connections>
                     </tableView>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Favorites" id="uWf-id-meN">
-                        <barButtonItem key="rightBarButtonItem" image="ic_action_panic.png" id="W7r-MY-45Z">
-                            <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <action selector="showPanicAction:" destination="nQH-BR-xc4" id="dB8-XE-hwb"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Favorites" id="uWf-id-meN"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nQH-BR-xc4" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -999,8 +985,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Add Post" id="LXK-o7-itM">
-                        <barButtonItem key="rightBarButtonItem" image="ic_action_panic.png" id="XiC-AE-jLN">
-                            <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <barButtonItem key="rightBarButtonItem" title="Post" id="VS0-jF-udY">
+                            <connections>
+                                <action selector="post:" destination="RIg-BG-i7z" id="FEy-2B-DUJ"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -1200,14 +1188,7 @@
                             <outlet property="delegate" destination="261-VX-Bsq" id="eqn-74-9KN"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="More" id="W3V-ZH-RNJ">
-                        <barButtonItem key="rightBarButtonItem" image="ic_action_panic.png" id="QAw-gc-ADo">
-                            <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <action selector="showPanicAction:" destination="I3k-dS-19o" id="PWk-zj-f36"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="More" id="W3V-ZH-RNJ"/>
                     <connections>
                         <outlet property="cellClearAppData" destination="qMg-fm-Dhr" id="eFn-Io-Myj"/>
                         <outlet property="cellDisplayPhotos" destination="ohw-pX-E1V" id="xqH-rV-xSM"/>
@@ -1417,14 +1398,7 @@
                         </variation>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="kyR-eg-9Ic">
-                        <barButtonItem key="rightBarButtonItem" image="ic_action_panic.png" id="Xxs-Yy-PFt">
-                            <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <action selector="showPanicAction:" destination="Yt3-ew-Hc6" id="c54-g0-ZtQ"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="kyR-eg-9Ic"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -1708,14 +1682,7 @@
                         </constraints>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Feeds" id="L7S-JU-Emx">
-                        <barButtonItem key="rightBarButtonItem" image="ic_action_panic.png" id="3Lx-7D-qwA">
-                            <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <action selector="showPanicAction:" destination="G7w-kN-stV" id="so2-Tj-g3r"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Feeds" id="L7S-JU-Emx"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -1876,10 +1843,9 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Posts" id="J3r-ci-WJW">
-                        <barButtonItem key="rightBarButtonItem" image="ic_action_panic.png" id="8WS-WD-znO">
-                            <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="F47-ES-RhW">
                             <connections>
-                                <action selector="showPanicAction:" destination="Goi-ts-YqS" id="HeH-NG-zC4"/>
+                                <action selector="addPost:" destination="5Mu-TI-8Ub" id="huA-Ks-JVD"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -1925,14 +1891,7 @@
                             <outlet property="delegate" destination="bv6-37-Bdc" id="Req-tm-h0g"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="All Feeds" id="97d-nj-rXa">
-                        <barButtonItem key="rightBarButtonItem" image="ic_action_panic.png" id="LTB-hk-VH0">
-                            <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <action selector="showPanicAction:" destination="vXI-4h-2pi" id="0Df-aB-e1o"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="All Feeds" id="97d-nj-rXa"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vXI-4h-2pi" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2122,7 +2081,6 @@ It also helps get you access to information that may typically be unavailable in
         <image name="ic_action2_favorite" width="24" height="24"/>
         <image name="ic_action2_font" width="24" height="24"/>
         <image name="ic_action2_share" width="24" height="24"/>
-        <image name="ic_action_panic.png" width="24" height="24"/>
         <image name="ic_panic_down.png" width="139" height="84"/>
         <image name="ic_panic_lg.png" width="139" height="139"/>
         <image name="ic_post_add" width="82" height="82"/>

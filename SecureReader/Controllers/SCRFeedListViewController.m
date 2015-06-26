@@ -343,11 +343,11 @@ shouldReloadTableForSearchString:(NSString *)searchString
     if (show)
     {
         UIBarButtonItem *btnShare = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(share:)];
-        [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:self.navigationItem.rightBarButtonItem, btnShare, nil]];
+        [self.navigationItem setRightBarButtonItem:btnShare];
     }
     else
     {
-        [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObject:self.navigationItem.rightBarButtonItem]];
+        [self.navigationItem setRightBarButtonItem:nil];
     }
 }
 

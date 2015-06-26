@@ -24,7 +24,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self showPostBarButton:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -57,19 +56,6 @@
 {
     [self unregisterForKeyboardNotifications];
     [super viewDidDisappear:animated];
-}
-
-- (void) showPostBarButton:(BOOL) show
-{
-    if (show)
-    {
-        UIBarButtonItem *btnPost = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"AddPost.Post", @"Post navbar button title") style:UIBarButtonItemStylePlain target:self action:@selector(post:)];
-        [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:self.navigationItem.rightBarButtonItem, btnPost, nil]];
-    }
-    else
-    {
-        [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObject:self.navigationItem.rightBarButtonItem]];
-    }
 }
 
 - (void)editItem:(SCRPostItem *)item
@@ -117,7 +103,7 @@
     self.item.lastEdited = [NSDate dateWithTimeIntervalSinceNow:0];
 }
 
-- (void)post:(id)sender
+- (IBAction)post:(id)sender
 {
     [self populateItemFromUI];
     

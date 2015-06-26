@@ -46,9 +46,6 @@
     self.draftsTableDelegate = [[SCRDraftPostItemTableDelegate alloc] initWithTableView:self.tableView viewName:kSCRAllPostItemsViewName delegate:self];
     [self.postsTableDelegate setActive:YES];
     
-    UIBarButtonItem *btnAddPost = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(addPost:)];
-    [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:self.navigationItem.rightBarButtonItem, btnAddPost, nil]];
-
     self.tableView.allowsMultipleSelectionDuringEditing = NO;
 
     // Hide empty rows at end of table
@@ -146,7 +143,7 @@
     [self.draftsTableDelegate setActive:[self draftMode]];
 }
 
-- (void)addPost:(id)sender
+- (IBAction)addPost:(id)sender
 {
     SCRAddPostViewController *addPostViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"addPostViewController"];
     UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];

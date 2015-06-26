@@ -88,7 +88,6 @@
 		929EEF9319F5110D0020BD75 /* SCRCreatePassphraseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 929EEF9219F5110D0020BD75 /* SCRCreatePassphraseViewController.m */; };
 		929EEF9619F549080020BD75 /* SCRNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 929EEF9519F549080020BD75 /* SCRNavigationController.m */; };
 		92A4D2A51A31F1D40091479A /* SCRPanicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A4D2A41A31F1D40091479A /* SCRPanicViewController.m */; };
-		92A4D2AA1A31FE720091479A /* ic_action_panic.png in Resources */ = {isa = PBXBuildFile; fileRef = 92A4D2A61A31FE720091479A /* ic_action_panic.png */; };
 		92AE0DB81ACD2F70006CE1B8 /* SCRPostItemCellDraft.m in Sources */ = {isa = PBXBuildFile; fileRef = 92AE0DB71ACD2F70006CE1B8 /* SCRPostItemCellDraft.m */; };
 		92B23C491A5D303800FFD963 /* SCRMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B23C481A5D303800FFD963 /* SCRMainViewController.m */; };
 		92B23C4C1A5D442F00FFD963 /* SCRAllFeedsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B23C4B1A5D442F00FFD963 /* SCRAllFeedsViewController.m */; };
@@ -274,7 +273,6 @@
 		929EEF9519F549080020BD75 /* SCRNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SCRNavigationController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		92A4D2A31A31F1D40091479A /* SCRPanicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRPanicViewController.h; sourceTree = "<group>"; };
 		92A4D2A41A31F1D40091479A /* SCRPanicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRPanicViewController.m; sourceTree = "<group>"; };
-		92A4D2A61A31FE720091479A /* ic_action_panic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_action_panic.png; sourceTree = "<group>"; };
 		92AE0DB61ACD2F70006CE1B8 /* SCRPostItemCellDraft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRPostItemCellDraft.h; sourceTree = "<group>"; };
 		92AE0DB71ACD2F70006CE1B8 /* SCRPostItemCellDraft.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRPostItemCellDraft.m; sourceTree = "<group>"; };
 		92B23C471A5D303800FFD963 /* SCRMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRMainViewController.h; sourceTree = "<group>"; };
@@ -741,7 +739,6 @@
 				9284FA711A3899730085638D /* ic_panic_down@2x.png */,
 				9284FA721A3899730085638D /* ic_panic_lg.png */,
 				9284FA731A3899730085638D /* ic_panic_lg@2x.png */,
-				92A4D2A61A31FE720091479A /* ic_action_panic.png */,
 				9239049D1A07E365004EEE7E /* background_debut_light.png */,
 				92BD50AC1A07A74500F3BD22 /* img_local_share.png */,
 			);
@@ -909,7 +906,6 @@
 				924BBFC01A08DCEB00A32940 /* InAppSettings.bundle in Resources */,
 				9279F80A1A67FBE50029572B /* SCRItemCellLandscapePhotos.xib in Resources */,
 				920C421C1ADE5243005AB590 /* SCRSwipeUtilityButtons.xib in Resources */,
-				92A4D2AA1A31FE720091479A /* ic_action_panic.png in Resources */,
 				925FF9821B0F645A00CBB148 /* onboard-category.svg in Resources */,
 				9284FA771A3899730085638D /* ic_panic_lg@2x.png in Resources */,
 				925FF9801B0F645A00CBB148 /* onboard-01.svg in Resources */,
