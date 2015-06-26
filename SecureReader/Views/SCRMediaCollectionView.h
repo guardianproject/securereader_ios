@@ -20,6 +20,11 @@ IB_DESIGNABLE
 @property (nonatomic) IBInspectable NSInteger imageViewHeight;
 @property (nonatomic) IBInspectable NSInteger noImagesViewHeight;
 
+/**
+ * Set to true to show a solid color placeholder for images that are not loaded
+ */
+@property (nonatomic) BOOL showPlaceholders;
+
 @property (strong) IBOutlet UIView *contentView;
 @property (strong) IBOutlet UIPageControl *pageControl;
 
@@ -27,6 +32,7 @@ IB_DESIGNABLE
 
 - (void) setItem:(NSObject *)item;
 - (void) createThumbnails:(BOOL)downloadIfNeeded completion:(void(^)())completion;
+- (void) createViewForMediaItem:(SCRMediaItem *)mediaItem;
 
 - (int) numberOfImages;
 - (int) currentImageIndex;

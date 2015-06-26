@@ -24,6 +24,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.mediaCollectionView.showPlaceholders = YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -288,8 +289,9 @@
                     self.item.mediaItemsYapKeys = [NSArray arrayWithObject:mediaItem.yapKey];
                 [self populateItemFromUI];
                 [self.item saveWithTransaction:transaction];
+                [self updateMediaCollectionView];
                 [[SCRAppDelegate sharedAppDelegate].mediaFetcher saveMediaItem:mediaItem data:png completionBlock:^(NSError *error) {
-                    [self updateMediaCollectionView];
+                    [self.mediaCollectionView createViewForMediaItem:mediaItem];
                 }];
             }];
         }

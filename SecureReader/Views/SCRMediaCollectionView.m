@@ -161,6 +161,12 @@
                                 [view.downloadButton setHidden:YES];
                                 [self mediaItemDownload:mediaItem];
                             }
+                            else if (self.showPlaceholders)
+                            {
+                                [view.activityView setHidden:NO];
+                                [view.activityView startAnimating];
+                                [view.downloadButton setHidden:YES];
+                            }
                             else
                             {
                                 [view.activityView setHidden:YES];
@@ -195,6 +201,21 @@
             });
         }
     }];
+}
+
+- (void) createViewForMediaItem:(SCRMediaItem *)mediaItem
+{
+    @synchronized(self.mediaItems)
+    {
+        [self.mediaItems enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            SCRMediaCollectionViewItem *mediaViewItem = obj;
+            if ([mediaViewItem.mediaItem isEqual:mediaItem])
+            {
+                *stop = YES;
+                [self mediaItemCreate:mediaViewItem];
+            }
+        }];
+    }
 }
 
 - (void) mediaItemDownload:(SCRMediaCollectionViewItem *)mediaItem
