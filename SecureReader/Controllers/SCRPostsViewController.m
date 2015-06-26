@@ -28,6 +28,8 @@
 #import "SCRSentPostItemTableDelegate.h"
 #import "SCRDraftPostItemTableDelegate.h"
 #import "UIAlertView+SecureReader.h"
+#import "SCRItemViewController.h"
+#import "SCRItemViewControllerSegue.h"
 
 @interface SCRPostsViewController ()
 @property (nonatomic, strong) SCRSentPostItemTableDelegate *postsTableDelegate;
@@ -43,8 +45,14 @@
     self.postsTableDelegate = [[SCRSentPostItemTableDelegate alloc] initWithTableView:self.tableView viewName:kSCRAllPostItemsViewName delegate:self];
     self.draftsTableDelegate = [[SCRDraftPostItemTableDelegate alloc] initWithTableView:self.tableView viewName:kSCRAllPostItemsViewName delegate:self];
     [self.postsTableDelegate setActive:YES];
-    [self showAddPostBarButton:NO];
+    
+    UIBarButtonItem *btnAddPost = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(addPost:)];
+    [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:self.navigationItem.rightBarButtonItem, btnAddPost, nil]];
+
     self.tableView.allowsMultipleSelectionDuringEditing = NO;
+
+    // Hide empty rows at end of table
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -135,20 +143,6 @@
 - (IBAction)segmentedControlValueChanged:(id)sender {
     [self.postsTableDelegate setActive:![self draftMode]];
     [self.draftsTableDelegate setActive:[self draftMode]];
-    [self showAddPostBarButton:[self draftMode]];
-}
-
-- (void) showAddPostBarButton:(BOOL) show
-{
-    if (show)
-    {
-        UIBarButtonItem *btnAddPost = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(addPost:)];
-        [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:self.navigationItem.rightBarButtonItem, btnAddPost, nil]];
-    }
-    else
-    {
-        [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObject:self.navigationItem.rightBarButtonItem]];
-    }
 }
 
 - (void)addPost:(id)sender
@@ -186,7 +180,25 @@
         {
             [self editDraftItem:item];
         }
+        else if (delegate == self.postsTableDelegate)
+        {
+            [self showPostItem:indexPath];
+        }
     }
+}
+
+- (void)showPostItem:(NSIndexPath *)indexPath
+{
+    SCRItemViewController *itemViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"itemView"];
+    [itemViewController setDataView:self withStartAt:indexPath];
+    SCRItemViewControllerSegue *segue = [[SCRItemViewControllerSegue alloc] initWithIdentifier:@"" source:self destination:itemViewController];
+    [self prepareForSegue:segue sender:self];
+    [segue perform];
+}
+
+- (SCRItem *)itemForIndexPath:(NSIndexPath *)indexPath
+{
+    return (SCRItem*)[self.postsTableDelegate itemForIndexPath:indexPath];
 }
 
 @end

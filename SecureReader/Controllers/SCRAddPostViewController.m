@@ -51,7 +51,7 @@
 {
     if (show)
     {
-        UIBarButtonItem *btnPost = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemReply target:self action:@selector(post:)];
+        UIBarButtonItem *btnPost = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"AddPost.Post", @"Post navbar button title") style:UIBarButtonItemStylePlain target:self action:@selector(post:)];
         [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:self.navigationItem.rightBarButtonItem, btnPost, nil]];
     }
     else

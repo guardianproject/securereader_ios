@@ -20,7 +20,7 @@
 #import "SCRItemCommentsViewController.h"
 
 @interface SCRItemViewController ()
-@property SCRFeedViewController *itemDataSource;
+@property id<SCRItemViewControllerDataSource> itemDataSource;
 @property NSIndexPath *currentItemIndex;
 @property (weak, nonatomic) IBOutlet UIPageViewController *pageViewController;
 @property (weak, nonatomic) IBOutlet UIView *container;
@@ -110,9 +110,10 @@
 
 #pragma mark - Data
 
-- (void) setDataView:(SCRFeedViewController *)feedView withStartAt:(NSIndexPath *)indexPath
+
+- (void) setDataView:(id<SCRItemViewControllerDataSource>)dataView withStartAt:(NSIndexPath *)indexPath
 {
-    self.itemDataSource = feedView;
+    self.itemDataSource = dataView;
     self.currentItemIndex = indexPath;
     [self updateCurrentView];
 }

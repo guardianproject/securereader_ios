@@ -9,10 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "SCRFeedViewController.h"
 #import "SCRCommentsBarButton.h"
+#import "SCRItem.h"
+
+@protocol SCRItemViewControllerDataSource
+- (SCRItem*) itemForIndexPath:(NSIndexPath *)indexPath;
+@end
 
 @interface SCRItemViewController : UIViewController<UIPageViewControllerDataSource, UIPageViewControllerDelegate, UIGestureRecognizerDelegate>
 
-- (void) setDataView:(SCRFeedViewController *)feedView withStartAt:(NSIndexPath *)indexPath;
+- (void) setDataView:(id<SCRItemViewControllerDataSource>)dataView withStartAt:(NSIndexPath *)indexPath;
 
 @property (weak, nonatomic) IBOutlet UIToolbar *toolBar;
 @property (weak, nonatomic) IBOutlet UIView *textSizeView;

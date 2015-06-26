@@ -10,8 +10,9 @@
 #import <SWTableViewCell.h>
 #import "SCRYapDatabaseTableDelegate.h"
 #import "SCRDraftPostItemTableDelegate.h"
+#import "SCRItemViewController.h"
 
-@interface SCRPostsViewController : UIViewController<SWTableViewCellDelegate, SCRYapDatabaseTableDelegateDelegate, SCRDraftPostItemTableDelegateDelegate>
+@interface SCRPostsViewController : UIViewController<SWTableViewCellDelegate, SCRYapDatabaseTableDelegateDelegate, SCRDraftPostItemTableDelegateDelegate, SCRItemViewControllerDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 @end
