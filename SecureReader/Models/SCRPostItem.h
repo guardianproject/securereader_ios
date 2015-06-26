@@ -9,20 +9,15 @@
 #import "SCRItem.h"
 #import "SCRYapObject.h"
 
-@interface SCRPostItem : MTLModel<SCRYapObject>
+@interface SCRPostItem : SCRItem
 
 @property (nonatomic) NSString *uuid;
-@property (nonatomic) NSString *title;
-@property (nonatomic) NSString *content;
 @property (nonatomic) NSDate *lastEdited;
 @property (nonatomic) BOOL isSent;
 
-@property (nonatomic, strong) NSArray *tags;
-
-@property (nonatomic, strong) NSArray *mediaItemsYapKeys;
-
-- (void)removeMediaItemsWithReadWriteTransaction:(YapDatabaseReadWriteTransaction *)transaction storage:(IOCipher *)storage;
-
-- (void)enumerateMediaItemsInTransaction:(YapDatabaseReadTransaction *)readTransaction block:(void (^)(SCRMediaItem *mediaItem,BOOL *stop))block;
+@property (nonatomic, strong, readwrite) NSString *title;
+@property (nonatomic, strong, readwrite) NSString *itemDescription;
+@property (nonatomic, strong, readwrite) NSDate *publicationDate;
+@property (nonatomic) NSArray *tags;
 
 @end

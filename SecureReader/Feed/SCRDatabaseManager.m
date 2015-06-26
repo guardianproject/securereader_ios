@@ -123,7 +123,7 @@ NSString *const kSCRSubscribedFeedsColumnName = @"kSCRSubscribedFeedsColumnName"
 
 - (void) registerAllFeedItemsView {
     YapDatabaseViewGrouping *grouping = [YapDatabaseViewGrouping withObjectBlock:^NSString *(NSString *collection, NSString *key, id object) {
-        if ([object isKindOfClass:[SCRItem class]]) {
+        if ([object isKindOfClass:[SCRItem class]] && ![object isKindOfClass:[SCRPostItem class]]) {
             SCRItem *item = object;
             return item.yapGroup;
         }
@@ -140,7 +140,7 @@ NSString *const kSCRSubscribedFeedsColumnName = @"kSCRSubscribedFeedsColumnName"
 
 - (void) registerAllFeedItemsUngroupedView {
     YapDatabaseViewGrouping *grouping = [YapDatabaseViewGrouping withObjectBlock:^NSString *(NSString *collection, NSString *key, id object) {
-        if ([object isKindOfClass:[SCRItem class]]) {
+        if ([object isKindOfClass:[SCRItem class]] && ![object isKindOfClass:[SCRPostItem class]]) {
             return @"All";
         }
         return nil;

@@ -1445,6 +1445,7 @@
                     <connections>
                         <outlet property="buttonComment" destination="9A7-xD-nYt" id="85l-m9-PVi"/>
                         <outlet property="buttonFavorite" destination="wRx-Fr-Els" id="t5Z-Op-B5b"/>
+                        <outlet property="buttonFavoriteSpace" destination="cxh-l2-Jls" id="d4J-8E-LZy"/>
                         <outlet property="container" destination="rFg-cE-miZ" id="AVJ-Vl-ylJ"/>
                         <outlet property="textSizeSlider" destination="pob-cE-sOd" id="CXK-HE-x3D"/>
                         <outlet property="textSizeView" destination="B5F-sL-U7l" id="F8o-ps-9to"/>

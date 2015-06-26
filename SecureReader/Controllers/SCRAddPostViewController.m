@@ -69,7 +69,7 @@
 - (void)populateUIfromItem
 {
     self.titleView.text = self.item.title;
-    self.descriptionView.text = self.item.content;
+    self.descriptionView.text = self.item.itemDescription;
     self.tagView.text = [self.item.tags componentsJoinedByString:@" "];
     [self.mediaCollectionView setItem:self.item];
     [self.mediaCollectionView createThumbnails:NO completion:^{
@@ -81,7 +81,7 @@
 - (void)populateItemFromUI
 {
     self.item.title = self.titleView.text;
-    self.item.content = self.descriptionView.text;
+    self.item.itemDescription = self.descriptionView.text;
 
     // Get the tags and trim away all extra
     //
@@ -110,6 +110,7 @@
     [self populateItemFromUI];
     
     //TODO check valid for post
+    self.item.publicationDate = [NSDate dateWithTimeIntervalSinceNow:0];
     self.item.isSent = YES;
     [[SCRDatabaseManager sharedInstance].readWriteConnection asyncReadWriteWithBlock:^(YapDatabaseReadWriteTransaction *transaction) {
         [self.item saveWithTransaction:transaction];

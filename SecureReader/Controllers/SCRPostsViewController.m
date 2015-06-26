@@ -53,6 +53,7 @@
 
     // Hide empty rows at end of table
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -190,6 +191,7 @@
 - (void)showPostItem:(NSIndexPath *)indexPath
 {
     SCRItemViewController *itemViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"itemView"];
+    itemViewController.showsFavoriteButton = NO;
     [itemViewController setDataView:self withStartAt:indexPath];
     SCRItemViewControllerSegue *segue = [[SCRItemViewControllerSegue alloc] initWithIdentifier:@"" source:self destination:itemViewController];
     [self prepareForSegue:segue sender:self];

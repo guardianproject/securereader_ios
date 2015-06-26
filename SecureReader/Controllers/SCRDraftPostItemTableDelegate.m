@@ -50,7 +50,7 @@
     cell.titleView.text = item.title;
     if (cell.titleView.text.length == 0)
         cell.titleView.text = NSLocalizedString(@"Posts.Draft.NoTitlePlaceholder", @"Title placeholder in drafts");
-    cell.textView.text = item.content;
+    cell.textView.text = item.itemDescription;
     if (cell.textView.text.length == 0)
         cell.textView.text = NSLocalizedString(@"Posts.Draft.NoDescriptionPlaceholder", @"Description placeholder in drafts");
     [cell.btnEdit addTarget:self action:@selector(editButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
