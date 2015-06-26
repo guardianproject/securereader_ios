@@ -93,8 +93,8 @@
         
         SCRHelpHintViewController *hintController = [self.storyboard instantiateViewControllerWithIdentifier:@"hint"];
         [hintController setTargetViewController:moreController.topViewController];
-        [hintController addTarget:@"displayPhotos" withText:@"Turn photos off to sync text only. This helps you use less data." wholeCell:YES];
-        [hintController addTarget:@"settings" withText:@"This is the settings" wholeCell:NO];
+        [hintController addTarget:@"displayPhotos" withText:NSLocalizedString(@"HelpHint.DisplayPhotos", @"Hint for display photos") wholeCell:YES];
+        [hintController addTarget:@"clearAppData" withText:NSLocalizedString(@"HelpHint.ClearAppData", @"Hint for clear app data") wholeCell:NO];
         [hintController setDelegate:self];
         [self addChildViewController:hintController];
         [hintController.view setAlpha:0.0];

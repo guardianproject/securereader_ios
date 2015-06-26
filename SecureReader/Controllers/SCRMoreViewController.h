@@ -11,6 +11,7 @@
 @interface SCRMoreViewController : UITableViewController
 
 @property (nonatomic, weak) IBOutlet UITableViewCell *cellDisplayPhotos;
+@property (nonatomic, weak) IBOutlet UITableViewCell *cellClearAppData;
 @property (nonatomic, weak) IBOutlet UILabel *versionLabel;
 
 @end

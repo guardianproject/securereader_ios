@@ -111,6 +111,19 @@
     }
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    if (self.originalDelegate != nil)
+        return [self.originalDelegate tableView:tableView viewForHeaderInSection:section];
+    return nil;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if (self.originalDelegate != nil)
+        return [self.originalDelegate tableView:tableView heightForHeaderInSection:section];
+    return 0;
+}
+
 - (void)doneButtonPressed:(id)sender
 {
     self.currentTarget += 1;

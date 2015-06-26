@@ -12,6 +12,7 @@
 #import "SCRNavigationController.h"
 #import "UIView+Theming.h"
 #import "SCRSettings.h"
+#import "SCRPanicController.h"
 
 @interface SCRMoreViewController ()
 
@@ -103,6 +104,10 @@
         [SCRSettings setDownloadMedia:![SCRSettings downloadMedia]];
         [self.cellDisplayPhotos setAccessoryType:([SCRSettings downloadMedia] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone)];
     }
+    else if ([tableView indexPathForCell:self.cellClearAppData] == indexPath)
+    {
+        [self clearAppData];
+    }
 }
 
 - (NSString *) getBuildDate {
@@ -115,6 +120,11 @@
     NSDate *date = [dateFormat dateFromString:dateStr];
     
     return [NSDateFormatter localizedStringFromDate:date dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterShortStyle];
+}
+
+- (void)clearAppData
+{
+    [SCRPanicController showPanicConfirmationDialogInViewController:self];
 }
 
 @end

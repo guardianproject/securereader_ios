@@ -61,6 +61,12 @@ $0
 /* Done with feed search button */
 $0
 
+/* Hint for clear app data */
+"HelpHint.ClearAppData" = "HelpHint.ClearAppData";
+
+/* Hint for display photos */
+"HelpHint.DisplayPhotos" = "HelpHint.DisplayPhotos";
+
 /* Author name string */
 $0
 
