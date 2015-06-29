@@ -18,7 +18,7 @@
 #import "SCRDatabaseManager.h"
 #import "SCRAppDelegate.h"
 
-#define WEB_SEARCH_URL_FORMAT @"http://securereader.guardianproject.info/opml/find.php?lang=%1$@&term=%2$@"
+#define WEB_SEARCH_URL_FORMAT @"http://securereader.guardianproject.info/opml/find.php?lang=%1$@&term=%2$@&desc=1"
 
 @interface SCRFeedSearchTableDelegate()
 @property AFHTTPSessionManager *sessionManager;
