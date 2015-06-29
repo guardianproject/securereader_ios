@@ -22,7 +22,7 @@
 /**
  * Set whether the favorite button should be shown in the toolbar.
  */
-@property (nonatomic) BOOL showsFavoriteButton;
+@property (nonatomic) BOOL hidesFavoriteButton;
 
 @property (weak, nonatomic) IBOutlet UIToolbar *toolBar;
 @property (weak, nonatomic) IBOutlet UIView *textSizeView;

@@ -188,7 +188,7 @@
 - (void)showPostItem:(NSIndexPath *)indexPath
 {
     SCRItemViewController *itemViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"itemView"];
-    itemViewController.showsFavoriteButton = NO;
+    itemViewController.hidesFavoriteButton = YES;
     [itemViewController setDataView:self withStartAt:indexPath];
     SCRItemViewControllerSegue *segue = [[SCRItemViewControllerSegue alloc] initWithIdentifier:@"" source:self destination:itemViewController];
     [self prepareForSegue:segue sender:self];

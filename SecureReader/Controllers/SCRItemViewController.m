@@ -54,7 +54,7 @@
     self.favoriteButtonSelectedTintColor = [SCRTheme getColorProperty:@"onTintColor" forTheme:[self.buttonFavorite theme]];
     
     
-    if (!self.showsFavoriteButton)
+    if (self.hidesFavoriteButton)
     {
         // Remove the buttons from the toolbar
         NSMutableArray *toolbarButtons = [self.toolBar.items mutableCopy];
