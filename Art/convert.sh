@@ -1,6 +1,12 @@
 #!/bin/bash
 
-#Requires ImageMagick to be installed.
+# Requires ImageMagick to be installed.
+
+# Build the app icon from paik_launcher.svg
+convert -strip -background none paik_launcher.svg -resize 120x120 ../SecureReader/Images.xcassets/AppIcon.appiconset/paik_launcher@2x.png
+convert -strip -background none paik_launcher.svg -resize 180x180 ../SecureReader/Images.xcassets/AppIcon.appiconset/paik_launcher@3x.png
+convert -strip -background none paik_launcher.svg -resize 76x76 ../SecureReader/Images.xcassets/AppIcon.appiconset/paik_launcher.png
+convert -strip -background none paik_launcher.svg -resize 152x152 ../SecureReader/Images.xcassets/AppIcon.appiconset/paik_launcher@2x-1.png
 
 for f in *.svg;
 do

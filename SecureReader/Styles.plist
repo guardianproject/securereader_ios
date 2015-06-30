@@ -53,7 +53,9 @@
 	<key>Colors</key>
 	<dict>
 		<key>highlightColor</key>
-		<string>#ff6cc01d</string>
+		<string>#ff4caf50</string>
+		<key>secondaryHighlightColor</key>
+		<string>#ff8bc34a</string>
 	</dict>
 	<key>HilitedTintStyle</key>
 	<dict>
@@ -87,16 +89,16 @@
 	<key>FeedListSearchStyle</key>
 	<dict>
 		<key>tintColor</key>
-		<string>#ff95ab55</string>
+		<string>@Colors/highlightColor</string>
 		<key>textColor</key>
-		<string>#ff95ab55</string>
+		<string>@Colors/highlightColor</string>
 	</dict>
 	<key>FeedListSwitchStyle</key>
 	<dict>
 		<key>onTintColor</key>
-		<string>#ff95ab55</string>
+		<string>@Colors/highlightColor</string>
 		<key>tintColor</key>
-		<string>#ff95ab55</string>
+		<string>@Colors/highlightColor</string>
 	</dict>
 	<key>TabBarItemStyle</key>
 	<dict>
@@ -110,9 +112,9 @@
 	<key>NavigationBarItemStyle</key>
 	<dict>
 		<key>textColor</key>
-		<string>#ff95ab55</string>
+		<string>@Colors/highlightColor</string>
 		<key>tintColor</key>
-		<string>#ff95ab55</string>
+		<string>@Colors/highlightColor</string>
 	</dict>
 	<key>ListItemShadowStyle</key>
 	<dict>
@@ -170,7 +172,7 @@
 		<key>tintColor</key>
 		<string>#ffffffff</string>
 		<key>backgroundColor</key>
-		<string>#ff95ab55</string>
+		<string>@Colors/highlightColor</string>
 	</dict>
 	<key>FullScreenButtonStyle</key>
 	<dict>
@@ -218,7 +220,7 @@
 		<key>textSize</key>
 		<integer>12</integer>
 		<key>textColor</key>
-		<string>#ff95ab55</string>
+		<string>@Colors/highlightColor</string>
 	</dict>
 	<key>SourceTimeStyle</key>
 	<dict>
@@ -240,7 +242,7 @@
 	<key>AuthorSeparatorStyle</key>
 	<dict>
 		<key>backgroundColor</key>
-		<string>#ff95ab55</string>
+		<string>@Colors/highlightColor</string>
 	</dict>
 	<key>AuthorDateStyle</key>
 	<dict>
@@ -300,7 +302,7 @@
 		<key>tintColor</key>
 		<string>#ffffffff</string>
 		<key>backgroundColor</key>
-		<string>@Colors/highlightColor</string>
+		<string>@Colors/secondaryHighlightColor</string>
 	</dict>
 	<key>MoreSectionStyle</key>
 	<dict>
