@@ -30,6 +30,7 @@
 #import "UIAlertView+SecureReader.h"
 #import "SCRItemViewController.h"
 #import "SCRItemViewControllerSegue.h"
+#import "SCRRequireNicknameSegue.h"
 
 @interface SCRPostsViewController ()
 @property (nonatomic, strong) SCRSentPostItemTableDelegate *postsTableDelegate;
@@ -146,18 +147,20 @@
 - (IBAction)addPost:(id)sender
 {
     SCRAddPostViewController *addPostViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"addPostViewController"];
-    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
-    self.navigationItem.backBarButtonItem = backItem;
-    [self.navigationController pushViewController:addPostViewController animated:YES];
+    SCRRequireNicknameSegue *segue = [[SCRRequireNicknameSegue alloc] initWithIdentifier:@"" source:self destination:addPostViewController];
+    segue.alsoRequirePostPermission = YES;
+    [self prepareForSegue:segue sender:self];
+    [segue perform];
 }
 
 - (void)editDraftItem:(SCRPostItem *)item
 {
     SCRAddPostViewController *addPostViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"addPostViewController"];
     [addPostViewController editItem:item];
-    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
-    self.navigationItem.backBarButtonItem = backItem;
-    [self.navigationController pushViewController:addPostViewController animated:YES];
+    SCRRequireNicknameSegue *segue = [[SCRRequireNicknameSegue alloc] initWithIdentifier:@"" source:self destination:addPostViewController];
+    segue.alsoRequirePostPermission = YES;
+    [self prepareForSegue:segue sender:self];
+    [segue perform];
 }
 
 - (void)deleteDraftItem:(SCRPostItem *)item

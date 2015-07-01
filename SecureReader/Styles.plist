@@ -52,6 +52,8 @@
 	</dict>
 	<key>Colors</key>
 	<dict>
+		<key>disabledColor</key>
+		<string>#ffaaaaaa</string>
 		<key>highlightColor</key>
 		<string>#ff4caf50</string>
 		<key>secondaryHighlightColor</key>
@@ -335,6 +337,33 @@
 		<string>#ff000000</string>
 		<key>backgroundColor</key>
 		<string>#ffffffff</string>
+	</dict>
+	<key>CreateNicknameButtonStyle</key>
+	<dict>
+		<key>corners</key>
+		<integer>20</integer>
+		<key>textColorNormal</key>
+		<string>#ffffffff</string>
+		<key>backgroundColorNormal</key>
+		<string>@Colors/highlightColor</string>
+		<key>textColorDisabled</key>
+		<string>@Colors/disabledColor</string>
+		<key>borderColorDisabled</key>
+		<string>@Colors/disabledColor</string>
+		<key>borderWidthDisabled</key>
+		<integer>1</integer>
+	</dict>
+	<key>CreateNicknameDividerStyle</key>
+	<dict>
+		<key>backgroundColor</key>
+		<string>@Colors/disabledColor</string>
+	</dict>
+	<key>CreateNicknameTextStyle</key>
+	<dict>
+		<key>textSize</key>
+		<integer>14</integer>
+		<key>textColor</key>
+		<string>#ff000000</string>
 	</dict>
 </dict>
 </plist>

@@ -18,7 +18,8 @@ NSString * const kSCRSyncDataOverCellularKey = @"syncNetwork";
 NSString * const kSCRUseTorKey = @"useTor";
 NSString * const kSCRArticleExpirationKey = @"articleExpiration";
 NSString * const kSCRHasShownInitialSettingsHelpKey = @"hasShownInitialSettingsHelp";
-
+NSString * const kSCRUserNicknameKey = @"userNickname";
+NSString * const kSCRHasGivenPostPermissionKey = @"hasGivenPostPermission";
 
 + (NSString *)getUiLanguage
 {
@@ -121,6 +122,33 @@ NSString * const kSCRHasShownInitialSettingsHelpKey = @"hasShownInitialSettingsH
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setBool:hasShownInitialSettingsHelp forKey:kSCRHasShownInitialSettingsHelpKey];
     [self onChange:kSCRHasShownInitialSettingsHelpKey];
+}
+
++ (NSString *)userNickname
+{
+    return [[NSUserDefaults standardUserDefaults] stringForKey:kSCRUserNicknameKey];
+}
+
++ (void)setUserNickname:(NSString *)userNickname
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setValue:userNickname forKey:kSCRUserNicknameKey];
+    [userDefaults synchronize];
+}
+
++ (BOOL) hasGivenPostPermission
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    if ([userDefaults objectForKey:kSCRHasGivenPostPermissionKey] != nil)
+        return [userDefaults boolForKey:kSCRHasGivenPostPermissionKey];
+    return NO;
+}
+
++ (void) setHasGivenPostPermission:(BOOL)hasGivenPostPermission
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setBool:hasGivenPostPermission forKey:kSCRHasGivenPostPermissionKey];
+    [self onChange:kSCRHasGivenPostPermissionKey];
 }
 
 + (void) loadDefaultsFromSettingsDictionary:(NSDictionary*)settingsDictionary {

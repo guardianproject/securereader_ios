@@ -13,8 +13,9 @@
 extern NSString * const kFontSizeAdjustmentSettingsKey;
 extern NSString * const kSCRSyncFrequencyKey;
 extern NSString * const kSCRSyncDataOverCellularKey;
-extern NSString *const kSCRUseTorKey;
-
+extern NSString * const kSCRUseTorKey;
+extern NSString * const kSCRUserNicknameKey;
+extern NSString * const kSCRHasGivenPostPermissionKey;
 
 + (NSString *)getUiLanguage;
 + (void) setUiLanguage:(NSString *)languageCode;
@@ -38,6 +39,12 @@ extern NSString *const kSCRUseTorKey;
 
 + (BOOL) hasShownInitialSettingsHelp;
 + (void) setHasShownInitialSettingsHelp:(BOOL)hasShownInitialSettingsHelp;
+
++ (NSString *)userNickname;
++ (void) setUserNickname:(NSString *)userNickname;
+
++ (BOOL) hasGivenPostPermission;
++ (void) setHasGivenPostPermission:(BOOL)hasGivenPostPermission;
 
 + (void) loadDefaultsFromSettingsDictionary:(NSDictionary*)settingsDictionary;
 

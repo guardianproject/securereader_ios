@@ -153,6 +153,102 @@
             </objects>
             <point key="canvasLocation" x="-358" y="4559"/>
         </scene>
+        <!--Create Nickname-->
+        <scene sceneID="MKt-UR-5ax">
+            <objects>
+                <viewController storyboardIdentifier="createNickname" title="Create Nickname" id="0gb-eb-Y4t" customClass="SCRCreateNicknameViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Xpr-MT-Zwd"/>
+                        <viewControllerLayoutGuide type="bottom" id="W20-5X-ogF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="YGt-M6-UMb">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JdH-Qt-54S">
+                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="GTt-FP-68K"/>
+                                </constraints>
+                                <items>
+                                    <navigationItem title="Create a Nickname" id="LX5-F6-QEC">
+                                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="cancel" id="QN3-pI-5Px">
+                                            <connections>
+                                                <action selector="cancelClicked:" destination="0gb-eb-Y4t" id="Q3u-Eb-Mhs"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Nickname" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3lV-Xx-htH">
+                                <rect key="frame" x="16" y="114" width="568" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="0gb-eb-Y4t" id="OPD-hh-jdg"/>
+                                </connections>
+                            </textField>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Rv-x9-uyf">
+                                <rect key="frame" x="16" y="141" width="568" height="2"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="2" id="q4V-Eq-KZM"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="theme" value="CreateNicknameDividerStyle"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your nickname is displayed when you publish posts and comment." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W1N-49-wdI">
+                                <rect key="frame" x="16" y="163" width="568" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="theme" value="CreateNicknameTextStyle"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c4l-7L-fKc" customClass="SCRButton">
+                                <rect key="frame" x="46" y="234" width="508" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="XOF-SO-RLj"/>
+                                </constraints>
+                                <state key="normal" title="Continue"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="theme" value="CreateNicknameButtonStyle"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="continueClicked:" destination="0gb-eb-Y4t" eventType="touchUpInside" id="qPs-J5-3Z1"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="3lV-Xx-htH" firstAttribute="leading" secondItem="YGt-M6-UMb" secondAttribute="leadingMargin" id="3yy-Dv-mLN"/>
+                            <constraint firstItem="8Rv-x9-uyf" firstAttribute="leading" secondItem="YGt-M6-UMb" secondAttribute="leadingMargin" id="49l-zX-dpg"/>
+                            <constraint firstItem="3lV-Xx-htH" firstAttribute="top" secondItem="JdH-Qt-54S" secondAttribute="bottom" constant="50" id="7NQ-QC-fhJ"/>
+                            <constraint firstItem="W1N-49-wdI" firstAttribute="top" secondItem="8Rv-x9-uyf" secondAttribute="bottom" constant="20" id="AnW-Os-QBH"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="W1N-49-wdI" secondAttribute="trailing" id="CfZ-Xp-4j8"/>
+                            <constraint firstItem="JdH-Qt-54S" firstAttribute="top" secondItem="Xpr-MT-Zwd" secondAttribute="bottom" id="Do3-BR-rwI"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="8Rv-x9-uyf" secondAttribute="trailing" id="EDT-kk-JbQ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="3lV-Xx-htH" secondAttribute="trailing" id="LnU-aT-NNC"/>
+                            <constraint firstItem="c4l-7L-fKc" firstAttribute="leading" secondItem="YGt-M6-UMb" secondAttribute="leadingMargin" constant="30" id="O8K-fL-H6p"/>
+                            <constraint firstItem="W1N-49-wdI" firstAttribute="leading" secondItem="YGt-M6-UMb" secondAttribute="leadingMargin" id="dge-nR-Yg2"/>
+                            <constraint firstItem="c4l-7L-fKc" firstAttribute="top" secondItem="W1N-49-wdI" secondAttribute="bottom" constant="50" id="gXX-ip-aiM"/>
+                            <constraint firstItem="8Rv-x9-uyf" firstAttribute="top" secondItem="3lV-Xx-htH" secondAttribute="bottom" constant="10" id="hax-DE-SkR"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="c4l-7L-fKc" secondAttribute="trailing" constant="30" id="nTm-yg-QDq"/>
+                            <constraint firstAttribute="trailing" secondItem="JdH-Qt-54S" secondAttribute="trailing" id="ra3-3l-L2P"/>
+                            <constraint firstItem="JdH-Qt-54S" firstAttribute="leading" secondItem="YGt-M6-UMb" secondAttribute="leading" id="wXd-mP-qhV"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="buttonContinue" destination="c4l-7L-fKc" id="PFc-5C-6b6"/>
+                        <outlet property="nickname" destination="3lV-Xx-htH" id="1mM-SI-79L"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6cS-kb-SyZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="301" y="4559"/>
+        </scene>
         <!--Welcome-->
         <scene sceneID="ZO1-Ir-91O">
             <objects>
@@ -2075,6 +2171,102 @@ It also helps get you access to information that may typically be unavailable in
             </objects>
             <point key="canvasLocation" x="-1855" y="-555"/>
         </scene>
+        <!--Allow Posts-->
+        <scene sceneID="nRI-t6-NKm">
+            <objects>
+                <viewController storyboardIdentifier="allowPosts" title="Allow Posts" id="6kG-WQ-rUL" customClass="SCRAllowPostsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="PsP-qE-csq"/>
+                        <viewControllerLayoutGuide type="bottom" id="4JP-BH-0av"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="WEc-zt-mmT">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="buf-n5-sYI">
+                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="NOa-cq-HnW"/>
+                                </constraints>
+                                <items>
+                                    <navigationItem title="Share the News" id="Bfs-Rk-67O">
+                                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="cancel" id="xVm-7S-Qdd">
+                                            <connections>
+                                                <action selector="cancelClicked:" destination="6kG-WQ-rUL" id="b4f-lS-5HE"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zgl-Vz-dXS">
+                                <rect key="frame" x="16" y="114" width="568" height="122"/>
+                                <mutableString key="text">Paik provides a feed of noteworthy news to its community. Every post created will undergo a curation process before it is shared in the official Paik news feed.  Please read the &lt;a&gt;Terms and Conditions&lt;/a&gt; to understand the rights you grant when you share information with Paik.</mutableString>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="theme" value="CreateNicknameTextStyle"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OgG-UR-oXT" customClass="SCRButton">
+                                <rect key="frame" x="46" y="302" width="508" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Qfr-rM-lW8"/>
+                                </constraints>
+                                <state key="normal" title="Continue"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="theme" value="CreateNicknameButtonStyle"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="continueClicked:" destination="6kG-WQ-rUL" eventType="touchUpInside" id="shH-X6-Fme"/>
+                                </connections>
+                            </button>
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="ic_toggle_unselected" translatesAutoresizingMaskIntoConstraints="NO" id="i41-J6-Red">
+                                <rect key="frame" x="46" y="256" width="26" height="26"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="26" id="4FG-C9-dKP"/>
+                                    <constraint firstAttribute="height" constant="26" id="VN4-1h-mwR"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="I give permission to use my content." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ili-y9-2sH" customClass="SCRLabel">
+                                <rect key="frame" x="92" y="258" width="492" height="21"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="buf-n5-sYI" secondAttribute="trailing" id="3K0-Gt-nB1"/>
+                            <constraint firstItem="ili-y9-2sH" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Zgl-Vz-dXS" secondAttribute="bottom" priority="999" constant="20" id="7o9-lB-fSQ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="OgG-UR-oXT" secondAttribute="trailing" constant="30" id="B7d-hY-Cws"/>
+                            <constraint firstItem="buf-n5-sYI" firstAttribute="leading" secondItem="WEc-zt-mmT" secondAttribute="leading" id="DGk-zI-FNd"/>
+                            <constraint firstItem="buf-n5-sYI" firstAttribute="top" secondItem="PsP-qE-csq" secondAttribute="bottom" id="E6D-bW-f7P"/>
+                            <constraint firstItem="Zgl-Vz-dXS" firstAttribute="leading" secondItem="WEc-zt-mmT" secondAttribute="leadingMargin" id="Jbd-6V-ySf"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ili-y9-2sH" secondAttribute="trailing" id="Lbe-dQ-Evp"/>
+                            <constraint firstItem="i41-J6-Red" firstAttribute="centerY" secondItem="ili-y9-2sH" secondAttribute="centerY" constant="0.5" id="SeQ-Ca-SnR"/>
+                            <constraint firstItem="i41-J6-Red" firstAttribute="leading" secondItem="Zgl-Vz-dXS" secondAttribute="leading" constant="30" id="Snz-TM-rke"/>
+                            <constraint firstItem="Zgl-Vz-dXS" firstAttribute="top" secondItem="buf-n5-sYI" secondAttribute="bottom" constant="50" id="T9G-uu-pdq"/>
+                            <constraint firstItem="i41-J6-Red" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Zgl-Vz-dXS" secondAttribute="bottom" constant="20" id="YbZ-Mh-4gm"/>
+                            <constraint firstItem="OgG-UR-oXT" firstAttribute="top" relation="greaterThanOrEqual" secondItem="i41-J6-Red" secondAttribute="bottom" constant="20" id="aZl-Qv-Wee"/>
+                            <constraint firstItem="ili-y9-2sH" firstAttribute="leading" secondItem="i41-J6-Red" secondAttribute="trailing" constant="20" id="bkJ-H8-uhu"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Zgl-Vz-dXS" secondAttribute="trailing" id="cOB-eR-qSX"/>
+                            <constraint firstItem="OgG-UR-oXT" firstAttribute="leading" secondItem="WEc-zt-mmT" secondAttribute="leadingMargin" constant="30" id="dfk-fX-yYe"/>
+                            <constraint firstItem="OgG-UR-oXT" firstAttribute="top" relation="greaterThanOrEqual" secondItem="ili-y9-2sH" secondAttribute="bottom" priority="999" constant="20" id="yim-Fy-7ej"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="buttonContinue" destination="OgG-UR-oXT" id="F2F-mP-ZJ8"/>
+                        <outlet property="buttonPermission" destination="i41-J6-Red" id="x6a-Xl-Jh9"/>
+                        <outlet property="labelPermission" destination="ili-y9-2sH" id="if5-7g-DWx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5Hi-B3-d7L" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="301" y="3846"/>
+        </scene>
     </scenes>
     <resources>
         <image name="ic_action2_chat" width="21" height="21"/>
@@ -2093,6 +2285,7 @@ It also helps get you access to information that may typically be unavailable in
         <image name="ic_tab_more" width="21" height="5"/>
         <image name="ic_tab_news" width="20" height="17"/>
         <image name="ic_tab_posts" width="20" height="20"/>
+        <image name="ic_toggle_unselected" width="26" height="26"/>
         <image name="touchid" width="164" height="148"/>
     </resources>
     <inferredMetricsTieBreakers>
