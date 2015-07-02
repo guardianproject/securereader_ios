@@ -18,6 +18,7 @@
 #import "SCRAppDelegate.h"
 #import "NSString+HTML.h"
 #import "SCRItemCommentsViewController.h"
+#import "SCRRequireNicknameSegue.h"
 
 @interface SCRItemViewController ()
 @property id<SCRItemViewControllerDataSource> itemDataSource;
@@ -156,9 +157,9 @@
         SCRItem *item = itemPage.item;
         SCRItemCommentsViewController *commentsController = (SCRItemCommentsViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"fullScreenItemCommentsView"];
         [commentsController setItem:item];
-        UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
-        self.navigationItem.backBarButtonItem = backItem;
-        [self.navigationController pushViewController:commentsController animated:YES];
+        SCRRequireNicknameSegue *segue = [[SCRRequireNicknameSegue alloc] initWithIdentifier:@"" source:self destination:commentsController];
+        [self prepareForSegue:segue sender:self];
+        [segue perform];
     }
 }
 
