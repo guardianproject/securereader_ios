@@ -13,7 +13,7 @@ pod 'SSKeychain', '~> 1.2'
 pod 'PSTAlertController', :git => 'https://github.com/steipete/PSTAlertController.git', :commit => '68a1327dbf71a6d1b97a121352bc774f469abd14'
 pod 'VENTouchLock', '~> 1.0'
 pod 'KVOController', '~> 1.0'
-
+pod 'MRProgress', '~> 0.8'
 pod 'MWFeedParser/NSString+HTML', '~> 1.0'
 
 # Tor support

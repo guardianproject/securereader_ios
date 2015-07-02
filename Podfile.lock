@@ -47,6 +47,34 @@ PODS:
   - Mantle (1.5.4):
     - Mantle/extobjc (= 1.5.4)
   - Mantle/extobjc (1.5.4)
+  - MRProgress (0.8.2):
+    - MRProgress/ActivityIndicator (= 0.8.2)
+    - MRProgress/Blur (= 0.8.2)
+    - MRProgress/Circular (= 0.8.2)
+    - MRProgress/Icons (= 0.8.2)
+    - MRProgress/NavigationBarProgress (= 0.8.2)
+    - MRProgress/Overlay (= 0.8.2)
+  - MRProgress/ActivityIndicator (0.8.2):
+    - MRProgress/Stopable
+  - MRProgress/Blur (0.8.2):
+    - MRProgress/Helper
+  - MRProgress/Circular (0.8.2):
+    - MRProgress/Helper
+    - MRProgress/ProgressBaseClass
+    - MRProgress/Stopable
+  - MRProgress/Helper (0.8.2)
+  - MRProgress/Icons (0.8.2)
+  - MRProgress/NavigationBarProgress (0.8.2):
+    - MRProgress/ProgressBaseClass
+  - MRProgress/Overlay (0.8.2):
+    - MRProgress/ActivityIndicator
+    - MRProgress/Blur
+    - MRProgress/Circular
+    - MRProgress/Helper
+    - MRProgress/Icons
+  - MRProgress/ProgressBaseClass (0.8.2)
+  - MRProgress/Stopable (0.8.2):
+    - MRProgress/Helper
   - MWFeedParser/NSString+HTML (1.0.1)
   - Ono (1.2.1)
   - PSTAlertController (1.1.0)
@@ -89,6 +117,7 @@ DEPENDENCIES:
   - IOCipher/GCDWebServer (from `Submodules/IOCipher/IOCipher.podspec`)
   - KVOController (~> 1.0)
   - Mantle (~> 1.5)
+  - MRProgress (~> 0.8)
   - MWFeedParser/NSString+HTML (~> 1.0)
   - PSTAlertController (from `https://github.com/steipete/PSTAlertController.git`,
     commit `68a1327dbf71a6d1b97a121352bc774f469abd14`)
@@ -132,6 +161,7 @@ SPEC CHECKSUMS:
   KVOController: 9fd8f0343670994e4b6f9f0b31f5a45663f3e1cf
   libsqlfs: 179e4fb40b8c07fd0ee7933ec4c0b9f4815cbd0e
   Mantle: 60acd0cd363e27d945bda0a6b8e90577112d28f3
+  MRProgress: f4cfe862082418e8f542f077772283f425d6c699
   MWFeedParser: 2cf646014c1baf6ad1b08c480b40a08180079247
   Ono: 1122212de602280cc7af19d7ab12ee98a3fc0339
   PSTAlertController: cb21afcfa76c3229feec7db044afd4f60dab5892

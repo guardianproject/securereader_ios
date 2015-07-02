@@ -13,12 +13,16 @@
 #import "SCRTheme.h"
 #import "SCRApplication.h"
 #import <KVOController/FBKVOController.h>
+#import "MRCircularProgressView.h"
+#import "MRActivityIndicatorView.h"
 
 static void * kSCRAllFeedsViewControllerContext = &kSCRAllFeedsViewControllerContext;
 
 @interface SCRAllFeedsViewController ()
 
 @property (nonatomic, weak) SCRFeedFetcher *feedFetcher;
+
+@property (nonatomic, strong) SCRNotificationsView *notificationsView;
 
 @end
 
@@ -49,6 +53,9 @@ static void * kSCRAllFeedsViewControllerContext = &kSCRAllFeedsViewControllerCon
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(receivedTorNotificatoin:)
                                                  name:CPAProxyDidFinishSetupNotification
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedTorNotificatoin:)
+                                                 name:kSCRTorManagerBootstrapProgressNotification
                                                object:nil];
     
     if (self.feedFetcher.isRefreshing) {
@@ -102,25 +109,48 @@ static void * kSCRAllFeedsViewControllerContext = &kSCRAllFeedsViewControllerCon
         [self updateHeaderWithTorStatus:CPAStatusConnecting];
     } else if ([notification.name isEqualToString:CPAProxyDidFinishSetupNotification]) {
         [self updateHeaderWithTorStatus:CPAStatusOpen];
+    } else if ([notification.name isEqualToString:kSCRTorManagerBootstrapProgressNotification]) {
+        NSInteger progress = [notification.userInfo[kSCRTorManagerBootstrapProgressKey] integerValue];
+        [self updateHeaderWithTorProgress:progress];
     }
 }
 
 - (void)updateHeaderWithTorStatus:(CPAStatus)status
 {
     if (status == CPAStatusConnecting) {
-        SCRNotificationsView *notificationsView = [[SCRNotificationsView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 33)];
-        notificationsView.backgroundColor = [SCRTheme torColor];
-        notificationsView.textLabel.text = NSLocalizedString(@"Tor starting", @"Label for alert for when tor is starting");
-        notificationsView.textLabel.textColor = [UIColor lightGrayColor];
-        notificationsView.textLabel.textAlignment = NSTextAlignmentCenter;
-        UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-        notificationsView.accessoryView = activityIndicator;
+        self.notificationsView = [[SCRNotificationsView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 33)];
+        self.notificationsView.backgroundColor = [SCRTheme torColor];
+        self.notificationsView.textLabel.text = NSLocalizedString(@"Tor starting", @"Label for alert for when tor is starting");
+        self.notificationsView.textLabel.textColor = [UIColor lightGrayColor];
+        self.notificationsView.textLabel.textAlignment = NSTextAlignmentCenter;
+        MRActivityIndicatorView *activityIndicator = [[MRActivityIndicatorView alloc] init];
+        activityIndicator.tintColor = [UIColor lightGrayColor];
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = NO;
+        self.notificationsView.accessoryView = activityIndicator;
         [activityIndicator startAnimating];
-        self.tableView.tableHeaderView = notificationsView;
+        self.tableView.tableHeaderView = self.notificationsView;
     } else {
         //Remove header if exists
         self.tableView.tableHeaderView = nil;
+        self.notificationsView = nil;
     }
+}
+
+- (void)updateHeaderWithTorProgress:(NSInteger)progress {
+    MRCircularProgressView *circularProgressView = nil;
+    if ([self.notificationsView.accessoryView isKindOfClass:[MRCircularProgressView class]]) {
+        circularProgressView = (MRCircularProgressView *)self.notificationsView.accessoryView;
+    } else {
+        circularProgressView = [[MRCircularProgressView alloc] init];
+        circularProgressView.translatesAutoresizingMaskIntoConstraints = NO;
+        circularProgressView.tintColor = [UIColor lightGrayColor];
+    }
+    
+    [circularProgressView setProgress:progress/100.0 animated:YES];
+    //Weird hack to remove label
+    [circularProgressView.valueLabel removeFromSuperview];
+    
+    self.notificationsView.accessoryView = circularProgressView;
 }
 
 @end

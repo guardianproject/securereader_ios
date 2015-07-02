@@ -10,7 +10,7 @@
 #import "PureLayout.h"
 
 
-CGFloat const kSCRNotificationsViewMargin = 3;
+CGFloat const kSCRNotificationsViewMargin = 5;
 
 @interface SCRNotificationsView ()
 

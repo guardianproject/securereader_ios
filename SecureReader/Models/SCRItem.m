@@ -135,7 +135,10 @@ NSString *const kSCRFeedEdgeName      = @"kSCRFeedEdgeName";
     }];
     
     for (SCRMediaItem *mediaItem in mediaItemsToRemove) {
-        [storage removeItemAtPath:[mediaItem localPath] error:nil];
+        NSString *localPath = [mediaItem localPath];
+        if ([localPath length]){
+            [storage removeItemAtPath:localPath error:nil];
+        }
         [transaction removeObjectForKey:mediaItem.yapKey inCollection:[SCRMediaItem yapCollection]];
     }
     

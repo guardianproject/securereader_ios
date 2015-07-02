@@ -10,12 +10,16 @@
 #import "CPAProxy.h"
 
 extern NSString *const kSCRTorManagerNetworkStatusNotification;
+extern NSString *const kSCRTorManagerBootstrapProgressNotification;
+
+extern NSString *const kSCRTorManagerBootstrapProgressKey;
 
 /** Will be included in notification userinfo if the network operations need to be paused or resumes */
 extern NSString *const kSCRTorManagerNetworkPauseKey;
 
 /** Will be included in notification userinfo ifi the session configuration has changed*/
 extern NSString *const KSCRTorManagerURLSessionConfigurationKey;
+
 
 @interface SCRTorManager : NSObject
 
