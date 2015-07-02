@@ -8,6 +8,7 @@
 
 #import "SCRAllowPostsViewController.h"
 #import "SCRSettings.h"
+#import "SCRTheme.h"
 
 @interface SCRAllowPostsViewController ()
 @property (nonatomic) BOOL permissionGiven;
@@ -19,15 +20,14 @@
 {
     [super viewDidLoad];
 
+    self.infoTextView.linkTextAttributes = @{NSForegroundColorAttributeName:[SCRTheme getColorProperty:@"highlightColor" forTheme:@"Colors"]};
+    [self.infoTextView setAttributedText:[self autoLinkURLs:self.infoTextView.text]];
+    
     self.buttonPermission.userInteractionEnabled = YES;
     self.labelPermission.userInteractionEnabled = YES;
     [self.buttonPermission addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(buttonPermissionClicked:)]];
     [self.labelPermission addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(buttonPermissionClicked:)]];
     [self updateButtonStates];
-}
-
-- (IBAction)cancelClicked:(id)sender {
-    [self dismissViewControllerAnimated:self completion:nil];
 }
 
 - (IBAction)continueClicked:(id)sender {
@@ -54,6 +54,32 @@
         [self.buttonPermission setImage:[UIImage imageNamed:@"ic_toggle_unselected"]];
     }
     [self.buttonContinue setEnabled:self.permissionGiven];
+}
+
+- (NSAttributedString *)autoLinkURLs:(NSString *)string {
+    NSMutableAttributedString *linkedString = [[NSMutableAttributedString alloc] initWithString:string];
+    
+    NSError *error = NULL;
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"<a href=\"([^\"]+)\">([^<]+)</a>" options:NSRegularExpressionCaseInsensitive error:&error];
+    
+    NSArray *results = [regex matchesInString:string options:kNilOptions range:NSMakeRange(0, [string length])];
+    for(NSTextCheckingResult *match in [results reverseObjectEnumerator])
+    {
+        NSString *url = [string substringWithRange:[match rangeAtIndex:1]];
+        NSString *replacement = [string substringWithRange:[match rangeAtIndex:2]];
+        NSDictionary *attributes = @{ NSLinkAttributeName: url };
+        [linkedString addAttributes:attributes range:match.range];
+        [linkedString replaceCharactersInRange:match.range withString:replacement];
+    }
+    return linkedString;
+}
+
+- (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange
+{
+    UIViewController *destination = [self.storyboard instantiateViewControllerWithIdentifier:@"termsAndConditions"];
+    destination.modalPresentationStyle = UIModalPresentationFullScreen;
+    [self presentViewController:destination animated:YES completion:nil];
+    return NO;
 }
 
 @end

@@ -9,15 +9,8 @@
 #import "SCRCreateNicknameViewController.h"
 #import "SCRSettings.h"
 
-@interface SCRCreateNicknameViewController ()
-
-@end
-
 @implementation SCRCreateNicknameViewController
 
-- (IBAction)cancelClicked:(id)sender {
-    [self dismissViewControllerAnimated:self completion:nil];
-}
 
 - (IBAction)continueClicked:(id)sender {
     [self dismissViewControllerAnimated:self completion:^{

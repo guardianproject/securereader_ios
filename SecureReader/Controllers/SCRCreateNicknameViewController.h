@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SCRDismissableViewController.h"
 
-@interface SCRCreateNicknameViewController : UIViewController<UITextFieldDelegate>
+@interface SCRCreateNicknameViewController : SCRDismissableViewController<UITextFieldDelegate>
 @property (nonatomic, strong) UIStoryboardSegue *openingSegue;
 @property (weak, nonatomic) IBOutlet UITextField *nickname;
 @property (weak, nonatomic) IBOutlet UIButton *buttonContinue;

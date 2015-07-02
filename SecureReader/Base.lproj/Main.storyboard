@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="wcY-0f-5Mo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="wcY-0f-5Mo">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
@@ -174,7 +174,7 @@
                                     <navigationItem title="Create a Nickname" id="LX5-F6-QEC">
                                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="cancel" id="QN3-pI-5Px">
                                             <connections>
-                                                <action selector="cancelClicked:" destination="0gb-eb-Y4t" id="Q3u-Eb-Mhs"/>
+                                                <action selector="dismissSelf:" destination="0gb-eb-Y4t" id="T7k-mm-L3I"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -530,7 +530,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UYk-Mv-gub" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1430" y="3835"/>
+            <point key="canvasLocation" x="1725" y="3815"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="45J-1P-EgM">
@@ -2192,24 +2192,27 @@ It also helps get you access to information that may typically be unavailable in
                                     <navigationItem title="Share the News" id="Bfs-Rk-67O">
                                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="cancel" id="xVm-7S-Qdd">
                                             <connections>
-                                                <action selector="cancelClicked:" destination="6kG-WQ-rUL" id="b4f-lS-5HE"/>
+                                                <action selector="dismissSelf:" destination="6kG-WQ-rUL" id="B6V-0S-mXZ"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zgl-Vz-dXS">
-                                <rect key="frame" x="16" y="114" width="568" height="122"/>
-                                <mutableString key="text">Paik provides a feed of noteworthy news to its community. Every post created will undergo a curation process before it is shared in the official Paik news feed.  Please read the &lt;a&gt;Terms and Conditions&lt;/a&gt; to understand the rights you grant when you share information with Paik.</mutableString>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DQm-Tf-bTc">
+                                <rect key="frame" x="16" y="114" width="568" height="100"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <mutableString key="text">Paik provides a feed of noteworthy news to its community. Every post created will undergo a curation process before it is shared in the official Paik news feed.  Please read the &lt;a href="#terms"&gt;Terms and Conditions&lt;/a&gt; to understand the rights you grant when you share information with Paik.</mutableString>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="theme" value="CreateNicknameTextStyle"/>
                                 </userDefinedRuntimeAttributes>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OgG-UR-oXT" customClass="SCRButton">
-                                <rect key="frame" x="46" y="302" width="508" height="50"/>
+                                <connections>
+                                    <outlet property="delegate" destination="6kG-WQ-rUL" id="9S2-lS-LHu"/>
+                                </connections>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OgG-UR-oXT" customClass="SCRButton">
+                                <rect key="frame" x="46" y="300" width="508" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Qfr-rM-lW8"/>
                                 </constraints>
@@ -2221,16 +2224,16 @@ It also helps get you access to information that may typically be unavailable in
                                     <action selector="continueClicked:" destination="6kG-WQ-rUL" eventType="touchUpInside" id="shH-X6-Fme"/>
                                 </connections>
                             </button>
-                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="ic_toggle_unselected" translatesAutoresizingMaskIntoConstraints="NO" id="i41-J6-Red">
-                                <rect key="frame" x="46" y="256" width="26" height="26"/>
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_toggle_unselected" translatesAutoresizingMaskIntoConstraints="NO" id="i41-J6-Red">
+                                <rect key="frame" x="16" y="244" width="26" height="26"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="26" id="4FG-C9-dKP"/>
                                     <constraint firstAttribute="height" constant="26" id="VN4-1h-mwR"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="I give permission to use my content." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ili-y9-2sH" customClass="SCRLabel">
-                                <rect key="frame" x="92" y="258" width="492" height="21"/>
+                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I give permission to use my content." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ili-y9-2sH" customClass="SCRLabel">
+                                <rect key="frame" x="62" y="246" width="522" height="21"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -2240,32 +2243,82 @@ It also helps get you access to information that may typically be unavailable in
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="buf-n5-sYI" secondAttribute="trailing" id="3K0-Gt-nB1"/>
-                            <constraint firstItem="ili-y9-2sH" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Zgl-Vz-dXS" secondAttribute="bottom" priority="999" constant="20" id="7o9-lB-fSQ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="OgG-UR-oXT" secondAttribute="trailing" constant="30" id="B7d-hY-Cws"/>
                             <constraint firstItem="buf-n5-sYI" firstAttribute="leading" secondItem="WEc-zt-mmT" secondAttribute="leading" id="DGk-zI-FNd"/>
                             <constraint firstItem="buf-n5-sYI" firstAttribute="top" secondItem="PsP-qE-csq" secondAttribute="bottom" id="E6D-bW-f7P"/>
-                            <constraint firstItem="Zgl-Vz-dXS" firstAttribute="leading" secondItem="WEc-zt-mmT" secondAttribute="leadingMargin" id="Jbd-6V-ySf"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="DQm-Tf-bTc" secondAttribute="trailing" id="J3r-1N-XcU"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ili-y9-2sH" secondAttribute="trailing" id="Lbe-dQ-Evp"/>
+                            <constraint firstItem="i41-J6-Red" firstAttribute="top" secondItem="DQm-Tf-bTc" secondAttribute="bottom" constant="30" id="NM2-80-jCJ"/>
+                            <constraint firstItem="DQm-Tf-bTc" firstAttribute="top" secondItem="buf-n5-sYI" secondAttribute="bottom" constant="50" id="OkM-Q0-0hb"/>
                             <constraint firstItem="i41-J6-Red" firstAttribute="centerY" secondItem="ili-y9-2sH" secondAttribute="centerY" constant="0.5" id="SeQ-Ca-SnR"/>
-                            <constraint firstItem="i41-J6-Red" firstAttribute="leading" secondItem="Zgl-Vz-dXS" secondAttribute="leading" constant="30" id="Snz-TM-rke"/>
-                            <constraint firstItem="Zgl-Vz-dXS" firstAttribute="top" secondItem="buf-n5-sYI" secondAttribute="bottom" constant="50" id="T9G-uu-pdq"/>
-                            <constraint firstItem="i41-J6-Red" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Zgl-Vz-dXS" secondAttribute="bottom" constant="20" id="YbZ-Mh-4gm"/>
-                            <constraint firstItem="OgG-UR-oXT" firstAttribute="top" relation="greaterThanOrEqual" secondItem="i41-J6-Red" secondAttribute="bottom" constant="20" id="aZl-Qv-Wee"/>
+                            <constraint firstItem="i41-J6-Red" firstAttribute="leading" secondItem="WEc-zt-mmT" secondAttribute="leadingMargin" id="a7y-Js-tm7"/>
+                            <constraint firstItem="OgG-UR-oXT" firstAttribute="top" secondItem="i41-J6-Red" secondAttribute="bottom" constant="30" id="aZl-Qv-Wee"/>
                             <constraint firstItem="ili-y9-2sH" firstAttribute="leading" secondItem="i41-J6-Red" secondAttribute="trailing" constant="20" id="bkJ-H8-uhu"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Zgl-Vz-dXS" secondAttribute="trailing" id="cOB-eR-qSX"/>
                             <constraint firstItem="OgG-UR-oXT" firstAttribute="leading" secondItem="WEc-zt-mmT" secondAttribute="leadingMargin" constant="30" id="dfk-fX-yYe"/>
-                            <constraint firstItem="OgG-UR-oXT" firstAttribute="top" relation="greaterThanOrEqual" secondItem="ili-y9-2sH" secondAttribute="bottom" priority="999" constant="20" id="yim-Fy-7ej"/>
+                            <constraint firstItem="DQm-Tf-bTc" firstAttribute="leading" secondItem="WEc-zt-mmT" secondAttribute="leadingMargin" id="hyg-sr-7iY"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="buttonContinue" destination="OgG-UR-oXT" id="F2F-mP-ZJ8"/>
                         <outlet property="buttonPermission" destination="i41-J6-Red" id="x6a-Xl-Jh9"/>
+                        <outlet property="infoTextView" destination="DQm-Tf-bTc" id="5DQ-6j-sTO"/>
                         <outlet property="labelPermission" destination="ili-y9-2sH" id="if5-7g-DWx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Hi-B3-d7L" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="301" y="3846"/>
+        </scene>
+        <!--Terms and Conditions-->
+        <scene sceneID="csd-Xh-wh5">
+            <objects>
+                <viewController storyboardIdentifier="termsAndConditions" title="Terms and Conditions" id="Zyu-DA-fGY" customClass="SCRDismissableViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bXE-Xl-tsT"/>
+                        <viewControllerLayoutGuide type="bottom" id="p4k-aY-JAH"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9lm-lb-Z7O">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tdj-e4-Ytn">
+                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="ATK-fs-uaa"/>
+                                </constraints>
+                                <items>
+                                    <navigationItem title="Terms and Conditions" id="uk3-Bf-zsS">
+                                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="done" id="IRJ-Tu-JdF">
+                                            <connections>
+                                                <action selector="dismissSelf:" destination="Zyu-DA-fGY" id="xbc-Mk-Jc7"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iU6-FO-cfp">
+                                <rect key="frame" x="16" y="65" width="568" height="535"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="iU6-FO-cfp" firstAttribute="trailing" secondItem="9lm-lb-Z7O" secondAttribute="trailingMargin" id="3lB-VI-Gxm"/>
+                            <constraint firstItem="tdj-e4-Ytn" firstAttribute="top" secondItem="bXE-Xl-tsT" secondAttribute="bottom" id="ThT-kO-UIC"/>
+                            <constraint firstAttribute="trailing" secondItem="tdj-e4-Ytn" secondAttribute="trailing" id="ZJY-NM-de8"/>
+                            <constraint firstItem="iU6-FO-cfp" firstAttribute="leading" secondItem="9lm-lb-Z7O" secondAttribute="leadingMargin" id="ZSb-Mc-xxZ"/>
+                            <constraint firstItem="iU6-FO-cfp" firstAttribute="top" secondItem="tdj-e4-Ytn" secondAttribute="bottom" constant="1" id="iA5-jj-6hq"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="iU6-FO-cfp" secondAttribute="bottom" id="qAj-Zy-5db"/>
+                            <constraint firstItem="tdj-e4-Ytn" firstAttribute="leading" secondItem="9lm-lb-Z7O" secondAttribute="leading" id="wrv-3b-LZX"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3e5-cm-O2y" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1005" y="3846"/>
         </scene>
     </scenes>
     <resources>

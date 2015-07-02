@@ -46,6 +46,7 @@
 		924B2E521B33059400BEF8C6 /* SCRItemCommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 924B2E511B33059400BEF8C6 /* SCRItemCommentsViewController.m */; };
 		924BBFC01A08DCEB00A32940 /* InAppSettings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 924BBFBF1A08DCEB00A32940 /* InAppSettings.bundle */; };
 		924E96701B02536C008A838A /* SCRTorOptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 924E966F1B02536C008A838A /* SCRTorOptionViewController.m */; };
+		9250A6D41B453A6200645592 /* SCRDismissableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9250A6D31B453A6200645592 /* SCRDismissableViewController.m */; };
 		925101B01ADCF16C006DB7DE /* SCRHelpHintViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 925101AF1ADCF16C006DB7DE /* SCRHelpHintViewController.m */; };
 		925AE5801A404161001E182F /* SCRMoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 925AE57F1A404161001E182F /* SCRMoreViewController.m */; };
 		925FF9801B0F645A00CBB148 /* onboard-01.svg in Resources */ = {isa = PBXBuildFile; fileRef = 925FF97D1B0F645A00CBB148 /* onboard-01.svg */; };
@@ -206,6 +207,8 @@
 		924BBFBF1A08DCEB00A32940 /* InAppSettings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = InAppSettings.bundle; sourceTree = "<group>"; };
 		924E966E1B02536C008A838A /* SCRTorOptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRTorOptionViewController.h; sourceTree = "<group>"; };
 		924E966F1B02536C008A838A /* SCRTorOptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRTorOptionViewController.m; sourceTree = "<group>"; };
+		9250A6D21B453A6200645592 /* SCRDismissableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRDismissableViewController.h; sourceTree = "<group>"; };
+		9250A6D31B453A6200645592 /* SCRDismissableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRDismissableViewController.m; sourceTree = "<group>"; };
 		925101AE1ADCF16C006DB7DE /* SCRHelpHintViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRHelpHintViewController.h; sourceTree = "<group>"; };
 		925101AF1ADCF16C006DB7DE /* SCRHelpHintViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRHelpHintViewController.m; sourceTree = "<group>"; };
 		925AE57E1A404161001E182F /* SCRMoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRMoreViewController.h; sourceTree = "<group>"; };
@@ -643,6 +646,8 @@
 				920214CC1B42D061009FD0CE /* SCRCreateNicknameViewController.m */,
 				926D3DB81B4424EA00A66064 /* SCRAllowPostsViewController.h */,
 				926D3DB91B4424EA00A66064 /* SCRAllowPostsViewController.m */,
+				9250A6D21B453A6200645592 /* SCRDismissableViewController.h */,
+				9250A6D31B453A6200645592 /* SCRDismissableViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1096,6 +1101,7 @@
 				924B2E521B33059400BEF8C6 /* SCRItemCommentsViewController.m in Sources */,
 				92654F2F1B15FB04005FCC0C /* SCRPulseView.m in Sources */,
 				D9317B891A886A95005DA904 /* NSFormatter+SecureReader.m in Sources */,
+				9250A6D41B453A6200645592 /* SCRDismissableViewController.m in Sources */,
 				929EEF8519F4F5940020BD75 /* UIView+Theming.m in Sources */,
 				9260151E1B03925600768D9B /* SCRPickFeedsViewController.m in Sources */,
 				921135771A7A70D40049D82B /* SCRFeedListViewController.m in Sources */,
