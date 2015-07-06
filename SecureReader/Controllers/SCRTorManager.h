@@ -10,6 +10,7 @@
 #import "CPAProxy.h"
 
 extern NSString *const kSCRTorManagerNetworkStatusNotification;
+NSString *const kSCRTorManagerBootstrapProgressSummaryKey;
 extern NSString *const kSCRTorManagerBootstrapProgressNotification;
 
 extern NSString *const kSCRTorManagerBootstrapProgressKey;

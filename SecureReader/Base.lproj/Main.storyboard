@@ -620,7 +620,7 @@
         <!--Settings-->
         <scene sceneID="bNu-0m-etZ">
             <objects>
-                <tableViewController storyboardIdentifier="settings" title="Settings" id="1qY-y1-unP" customClass="IASKAppSettingsViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="settings" title="Settings" id="1qY-y1-unP" customClass="SCRAppSettingsViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="jcY-cd-st1">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2201,7 +2201,7 @@ It also helps get you access to information that may typically be unavailable in
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DQm-Tf-bTc">
                                 <rect key="frame" x="16" y="114" width="568" height="100"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <mutableString key="text">Paik provides a feed of noteworthy news to its community. Every post created will undergo a curation process before it is shared in the official Paik news feed.  Please read the &lt;a href="#terms"&gt;Terms and Conditions&lt;/a&gt; to understand the rights you grant when you share information with Paik.</mutableString>
+                                <string key="text">Paik provides a feed of noteworthy news to its community. Every post created will undergo a curation process before it is shared in the official Paik news feed.  Please read the &lt;a href="#terms"&gt;Terms and Conditions&lt;/a&gt; to understand the rights you grant when you share information with Paik.</string>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <userDefinedRuntimeAttributes>

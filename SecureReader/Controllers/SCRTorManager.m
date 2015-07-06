@@ -16,6 +16,7 @@ NSString *const kSCRTorManagerNetworkStatusNotification = @"kSCRTorManagerNetwor
 NSString *const kSCRTorManagerBootstrapProgressNotification = @"kSCRTorManagerBootstrapProgressNotification";
 
 NSString *const kSCRTorManagerBootstrapProgressKey = @"kSCRTorManagerBootstrapProgressKey";
+NSString *const kSCRTorManagerBootstrapProgressSummaryKey = @"kSCRTorManagerBootstrapProgresSummaryKey";
 NSString *const kSCRTorManagerNetworkPauseKey = @"kSCRTorManagerNetworkPauseKey";
 NSString *const KSCRTorManagerURLSessionConfigurationKey = @"KSCRTorManagerURLSessionConfigurationKey";
 
@@ -56,14 +57,8 @@ NSString *const KSCRTorManagerURLSessionConfigurationKey = @"KSCRTorManagerURLSe
         _proxyManager = [[CPAProxyManager alloc] initWithConfiguration:configuration];
         
         if ([SCRSettings useTor]) {
-            __weak typeof(self)weakSelf = self;
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [self.proxyManager setupWithCompletion:NULL progress:^(NSInteger progress, NSString *summaryString) {
-                    __strong typeof(weakSelf)strongSelf = weakSelf;
-                    [[NSNotificationCenter defaultCenter] postNotificationName:kSCRTorManagerBootstrapProgressNotification
-                                                                        object:strongSelf
-                                                                      userInfo:@{kSCRTorManagerBootstrapProgressKey:@(progress)}];
-                } callbackQueue:dispatch_get_main_queue()];
+                [self setupTor];
             });
             
         }
@@ -87,6 +82,22 @@ NSString *const KSCRTorManagerURLSessionConfigurationKey = @"KSCRTorManagerURLSe
         }];
     }
     return self;
+}
+
+- (void)setupTor {
+    __weak typeof(self)weakSelf = self;
+    [self.proxyManager setupWithCompletion:NULL progress:^(NSInteger progress, NSString *summaryString) {
+        __strong typeof(weakSelf)strongSelf = weakSelf;
+        
+        NSMutableDictionary *userInfo = [@{kSCRTorManagerBootstrapProgressKey:@(progress)} mutableCopy];
+        if ([summaryString length]) {
+            userInfo[kSCRTorManagerBootstrapProgressSummaryKey] = summaryString;
+        }
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:kSCRTorManagerBootstrapProgressNotification
+                                                            object:strongSelf
+                                                          userInfo:userInfo];
+    } callbackQueue:dispatch_get_main_queue()];
 }
 
 - (NSURLSessionConfiguration *)currentConfiguration
@@ -127,7 +138,7 @@ NSString *const KSCRTorManagerURLSessionConfigurationKey = @"KSCRTorManagerURLSe
     BOOL useTor = [notification.userInfo[kSCRUseTorKey] boolValue];
     
     if (useTor && self.proxyManager.status == CPAStatusClosed) {
-        [self.proxyManager setupWithCompletion:NULL progress:NULL];
+        [self setupTor];
     } else {
         [self sendConfigurationChangedNotification];
     }
