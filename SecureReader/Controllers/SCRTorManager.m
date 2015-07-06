@@ -85,19 +85,25 @@ NSString *const KSCRTorManagerURLSessionConfigurationKey = @"KSCRTorManagerURLSe
 }
 
 - (void)setupTor {
+    [self sendBootstrapProgress:0 summary:NSLocalizedString(@"Tor starting", @"Label for alert for when tor is starting")];
     __weak typeof(self)weakSelf = self;
     [self.proxyManager setupWithCompletion:NULL progress:^(NSInteger progress, NSString *summaryString) {
         __strong typeof(weakSelf)strongSelf = weakSelf;
         
-        NSMutableDictionary *userInfo = [@{kSCRTorManagerBootstrapProgressKey:@(progress)} mutableCopy];
-        if ([summaryString length]) {
-            userInfo[kSCRTorManagerBootstrapProgressSummaryKey] = summaryString;
-        }
+        [strongSelf sendBootstrapProgress:progress summary:summaryString];
         
-        [[NSNotificationCenter defaultCenter] postNotificationName:kSCRTorManagerBootstrapProgressNotification
-                                                            object:strongSelf
-                                                          userInfo:userInfo];
     } callbackQueue:dispatch_get_main_queue()];
+}
+
+- (void)sendBootstrapProgress:(NSInteger)progress summary:(NSString *)summary
+{
+    NSMutableDictionary *userInfo = [@{kSCRTorManagerBootstrapProgressKey:@(progress)} mutableCopy];
+    if ([summary length]) {
+        userInfo[kSCRTorManagerBootstrapProgressSummaryKey] = summary;
+    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:kSCRTorManagerBootstrapProgressNotification
+                                                        object:self
+                                                      userInfo:userInfo];
 }
 
 - (NSURLSessionConfiguration *)currentConfiguration

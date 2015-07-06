@@ -53,7 +53,13 @@
 - (void)torBootstrapProgress:(NSNotification *)notification
 {
     NSDictionary *userInfo = notification.userInfo;
-    self.torSummary = userInfo[kSCRTorManagerBootstrapProgressSummaryKey];
+    
+    NSInteger progress = [((NSNumber *)userInfo[kSCRTorManagerBootstrapProgressKey]) integerValue];
+    if (progress == 100) {
+        self.torSummary = nil;
+    } else {
+        self.torSummary = userInfo[kSCRTorManagerBootstrapProgressSummaryKey];
+    }
     NSIndexPath *indexPath = [self.settingsReader indexPathForKey:@"useTor"];
     [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
