@@ -10,7 +10,7 @@
 #import "CPAProxy.h"
 
 extern NSString *const kSCRTorManagerNetworkStatusNotification;
-NSString *const kSCRTorManagerBootstrapProgressSummaryKey;
+extern NSString *const kSCRTorManagerBootstrapProgressSummaryKey;
 extern NSString *const kSCRTorManagerBootstrapProgressNotification;
 
 extern NSString *const kSCRTorManagerBootstrapProgressKey;
@@ -36,5 +36,14 @@ extern NSString *const KSCRTorManagerURLSessionConfigurationKey;
  The current configuration based on the tor setting
  */
 - (NSURLSessionConfiguration *)currentConfiguration;
+
+/**
+ This method querires tor by sending a commond over the tor control port
+ 
+ @param resultBlock the result returned by tor
+ @param queue the queue that the resultBlock should be called on. Defaults to main
+ */
+- (void)currentBootstrapProgress:(void (^)(NSInteger progress, NSString *summary))resultBlock
+                           queue:(dispatch_queue_t)queue;
 
 @end

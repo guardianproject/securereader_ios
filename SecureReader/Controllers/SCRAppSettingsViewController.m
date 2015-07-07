@@ -9,6 +9,7 @@
 #import "SCRAppSettingsViewController.h"
 #import "IASKSettingsReader.h"
 #import "SCRTorManager.h"
+#import "SCRAppDelegate.h"
 
 @interface SCRAppSettingsViewController ()
 
@@ -26,6 +27,18 @@
                                              selector:@selector(torBootstrapProgress:)
                                                  name:kSCRTorManagerBootstrapProgressNotification
                                                object:nil];
+    
+    
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    __weak typeof(self)weakSelf = self;
+    [[SCRAppDelegate sharedAppDelegate].torManager currentBootstrapProgress:^(NSInteger progress, NSString *summary) {
+        __strong typeof(weakSelf)strongSelf = weakSelf;
+        [strongSelf updateTorSetting:progress summary:summary];
+    } queue:dispatch_get_main_queue()];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -55,12 +68,19 @@
     NSDictionary *userInfo = notification.userInfo;
     
     NSInteger progress = [((NSNumber *)userInfo[kSCRTorManagerBootstrapProgressKey]) integerValue];
+    NSString *summary = userInfo[kSCRTorManagerBootstrapProgressSummaryKey];
+    [self updateTorSetting:progress summary:summary];
+}
+
+- (void)updateTorSetting:(NSInteger)progress summary:(NSString *)summary
+{
     if (progress == 100) {
         self.torSummary = nil;
     } else {
-        self.torSummary = userInfo[kSCRTorManagerBootstrapProgressSummaryKey];
+        self.torSummary = summary;
     }
     NSIndexPath *indexPath = [self.settingsReader indexPathForKey:@"useTor"];
     [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    
 }
 @end

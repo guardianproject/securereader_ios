@@ -69,6 +69,14 @@ static void * kSCRAllFeedsViewControllerContext = &kSCRAllFeedsViewControllerCon
     [self.KVOController observe:self.feedFetcher keyPath:NSStringFromSelector(@selector(isRefreshing)) options:NSKeyValueObservingOptionNew action:@selector(isRefreshingChanged:)];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [[SCRAppDelegate sharedAppDelegate].torManager currentBootstrapProgress:^(NSInteger progress, NSString *summary) {
+        [self updateHeaderWithTorProgress:progress];
+    } queue:dispatch_get_main_queue()];
+}
+
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];

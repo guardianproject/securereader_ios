@@ -11,6 +11,7 @@
 #import "IASKSettingsReader.h"
 #import "SCRSettings.h"
 #import "SCRTheme.h"
+#import "CPAProxyResponseParser.h"
 
 NSString *const kSCRTorManagerNetworkStatusNotification = @"kSCRTorManagerNetworkStatusNotification";
 NSString *const kSCRTorManagerBootstrapProgressNotification = @"kSCRTorManagerBootstrapProgressNotification";
@@ -104,6 +105,28 @@ NSString *const KSCRTorManagerURLSessionConfigurationKey = @"KSCRTorManagerURLSe
     [[NSNotificationCenter defaultCenter] postNotificationName:kSCRTorManagerBootstrapProgressNotification
                                                         object:self
                                                       userInfo:userInfo];
+}
+
+- (void)currentBootstrapProgress:(void (^)(NSInteger progress, NSString *summary))resultblock queue:(dispatch_queue_t)queue
+{
+    if (!resultblock) {
+        return;
+    }
+    
+    if (!queue) {
+        queue = dispatch_get_main_queue();
+    }
+    
+    [self.proxyManager cpa_sendGetBootstrapInfoWithCompletion:^(NSString *responseString, NSError *error) {
+        NSInteger progress = [CPAProxyResponseParser bootstrapProgressForResponse:responseString];
+        NSString *summary = [CPAProxyResponseParser bootstrapSummaryForResponse:responseString];
+        
+        dispatch_async(queue, ^{
+            resultblock(progress,summary);
+        });
+        
+        
+    } completionQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)];
 }
 
 - (NSURLSessionConfiguration *)currentConfiguration
