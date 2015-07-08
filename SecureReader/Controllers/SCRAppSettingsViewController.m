@@ -75,7 +75,12 @@
 - (void)updateTorSetting:(NSInteger)progress summary:(NSString *)summary
 {
     if (progress == 100) {
-        self.torSummary = nil;
+        BOOL torEnabled = [[NSUserDefaults standardUserDefaults] boolForKey:@"useTor"];
+        if (torEnabled) {
+            self.torSummary = NSLocalizedString(@"Tor is running and enabled.", @"Shown when Tor is connected and enabled.");
+        } else {
+            self.torSummary = NSLocalizedString(@"Tor is running but disabled. Force quit to stop.", @"Shown when Tor is still connected but disabled in settings.");
+        }
     } else {
         self.torSummary = summary;
     }

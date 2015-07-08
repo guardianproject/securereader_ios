@@ -102,9 +102,11 @@ NSString *const KSCRTorManagerURLSessionConfigurationKey = @"KSCRTorManagerURLSe
     if ([summary length]) {
         userInfo[kSCRTorManagerBootstrapProgressSummaryKey] = summary;
     }
-    [[NSNotificationCenter defaultCenter] postNotificationName:kSCRTorManagerBootstrapProgressNotification
-                                                        object:self
-                                                      userInfo:userInfo];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:kSCRTorManagerBootstrapProgressNotification
+                                                            object:self
+                                                          userInfo:userInfo];
+    });
 }
 
 - (void)currentBootstrapProgress:(void (^)(NSInteger progress, NSString *summary))resultblock queue:(dispatch_queue_t)queue
