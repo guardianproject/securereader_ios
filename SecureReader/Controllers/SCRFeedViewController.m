@@ -13,7 +13,6 @@
 #import "YapDatabase.h"
 #import "SCRDatabaseManager.h"
 #import "YapDatabaseView.h"
-#import "UIImageView+AFNetworking.h"
 #import "SCRItemViewController.h"
 #import "SCRItemViewControllerSegue.h"
 #import "SCRAppDelegate.h"

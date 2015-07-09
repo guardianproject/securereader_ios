@@ -10,7 +10,6 @@
 #import "SCRItem.h"
 #import "SCRItemView.h"
 #import "NSFormatter+SecureReader.h"
-#import "UIImageView+AFNetworking.h"
 #import "SCRDatabaseManager.h"
 #import "SCRItemTagCell.h"
 #import "SCRMediaItem.h"

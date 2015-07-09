@@ -7,7 +7,6 @@
 //
 
 #import "SCRFeedListViewController.h"
-#import <AFNetworking.h>
 #import "Ono.h"
 #import "YapDatabase.h"
 #import "YapDatabaseFullTextSearch.h"

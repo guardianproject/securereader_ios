@@ -7,8 +7,6 @@
 //
 
 #import "SCRFeedSearchTableDelegate.h"
-#import <AFNetworking.h>
-#import "Ono.h"
 #import "YapDatabase.h"
 #import "YapDatabaseFullTextSearch.h"
 #import "YapDatabaseSearchQueue.h"
@@ -21,7 +19,6 @@
 #define WEB_SEARCH_URL_FORMAT @"http://securereader.guardianproject.info/opml/find.php?lang=%1$@&term=%2$@&desc=1"
 
 @interface SCRFeedSearchTableDelegate()
-@property AFHTTPSessionManager *sessionManager;
 @property (nonatomic, strong) YapDatabaseSearchQueue *searchQueue;
 @property NSArray *searchResults;
 @property (nonatomic, strong) YapDatabaseConnection *searchReadConnection;
@@ -34,15 +31,6 @@
     self = [super initWithTableView:tableView viewName:viewName delegate:delegate];
     if (self != nil)
     {
-        self.sessionManager = [[AFHTTPSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration ephemeralSessionConfiguration]];
-        AFHTTPResponseSerializer *serializer = [AFHTTPResponseSerializer serializer];
-        serializer.acceptableContentTypes  = [NSSet setWithObjects:@"application/opml",
-                                              nil];
-        self.sessionManager.responseSerializer = serializer;
-        [self.sessionManager setTaskWillPerformHTTPRedirectionBlock:^NSURLRequest *(NSURLSession *session, NSURLSessionTask *task, NSURLResponse *response, NSURLRequest *request) {
-            return request;
-        }];
-        
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeYapConnections:) name:SCRRemoveYapConnectionsNotification object:[SCRDatabaseManager sharedInstance]];
     }
     return self;

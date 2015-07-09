@@ -7,12 +7,10 @@
 //
 
 #import "SCRPostsViewController.h"
-#import <AFNetworking.h>
-#import "Ono.h"
 #import "YapDatabase.h"
 #import "YapDatabaseFullTextSearch.h"
 #import "YapDatabaseSearchQueue.h"
-#import <YapDatabaseSearchResultsViewTransaction.h>
+#import "YapDatabaseSearchResultsViewTransaction.h"
 #import "SCRDatabaseManager.h"
 #import "YapDatabaseView.h"
 #import "SCRItemView.h"

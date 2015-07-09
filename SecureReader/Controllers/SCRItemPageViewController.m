@@ -8,7 +8,6 @@
 
 #import "SCRItemPageViewController.h"
 #import "NSString+HTML.h"
-#import <UIImageView+AFNetworking.h>
 #import "NSFormatter+SecureReader.h"
 #import <Foundation/NSDateFormatter.h>
 #import "RSSPerson.h"

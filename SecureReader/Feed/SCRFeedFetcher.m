@@ -137,14 +137,16 @@
     [self.networkOperationQueue addOperationWithBlock:^{
         
         [self.atomKit parseFeedFromURL:url completionBlock:^(RSSFeed *feed, NSArray *items, NSError *error) {
-            NSLog(@"Parsed feed %@ with %lu items", feed.title, (unsigned long)items.count);
             if (error) {
+                NSLog(@"Error fetching feed at URL %@: %@", url, error);
                 if (completion) {
                     dispatch_async(completionQueue, ^{
                         completion(error);
                     });
                 }
                 return;
+            } else {
+                NSLog(@"Parsed feed %@ with %lu items", feed.title, (unsigned long)items.count);
             }
             
             if ([feed isKindOfClass:[SCRFeed class]]) {
