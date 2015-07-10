@@ -39,7 +39,7 @@ typedef void (^SCRURLSesssionDataTaskCompletion)(NSURLSessionTask *dataTask, NSE
 
 - (instancetype)initWithSessionConfiguration:(NSURLSessionConfiguration *)sessionConfiguration storage:(IOCipher *)ioCipher
 {
-    if (self = [self init]) {
+    if (self = [super initWithSessionConfiguration:sessionConfiguration]) {
         NSString *isolationLabel = [NSString stringWithFormat:@"%@.isolation.%p", [self class], self];
         self.isolationQueue = dispatch_queue_create([isolationLabel UTF8String], 0);
         

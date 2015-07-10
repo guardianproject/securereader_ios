@@ -16,9 +16,19 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+- (instancetype) init {
+    if (self = [self initWithSessionConfiguration:[NSURLSessionConfiguration ephemeralSessionConfiguration]]) {
+    }
+    return self;
+}
+
 - (instancetype)initWithSessionConfiguration:(NSURLSessionConfiguration *)sessionConfiguration {
     if (self = [super init]) {
-        _urlSessionConfiguration = sessionConfiguration;
+        if (sessionConfiguration) {
+            _urlSessionConfiguration = sessionConfiguration;
+        } else {
+            _urlSessionConfiguration = [NSURLSessionConfiguration ephemeralSessionConfiguration];
+        }
         _networkOperationQueue = [[NSOperationQueue alloc] init];
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(networkNotificationReceived:)

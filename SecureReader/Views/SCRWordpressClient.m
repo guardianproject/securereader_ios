@@ -10,8 +10,6 @@
 #import "WPXMLRPC.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 
-static NSString * const kWordpressKeychainService = @"wpkeychain";
-
 static NSString* SCRGetMimeTypeForExtension(NSString* extension) {
     NSCParameterAssert(extension.length > 0);
     NSString* mimeType = nil;
@@ -249,65 +247,21 @@ static NSString* SCRGetMimeTypeForExtension(NSString* extension) {
     NSParameterAssert(fileData.length > 0);
     NSParameterAssert(fileName.length > 0);
     NSString *extension = [fileName pathExtension];
-    NSString *mimeType = SCRGetMimeTypeForExtension(extension);
-    [self.networkOperationQueue addOperationWithBlock:^{
-        NSDictionary *dataStruct = @{@"name": fileName,
-                                     @"type": mimeType,
-                                     @"bits": fileData};
-        NSArray *parameters = [self buildParametersWithExtra:dataStruct];
-        WPXMLRPCEncoder *encoder = [[WPXMLRPCEncoder alloc] initWithMethod:@"wp.uploadFile" andParameters:parameters];
-        
-        NSError *error = nil;
-        NSData *data = [encoder dataEncodedWithError:&error];
-        if (error) {
+    NSString *tmpFilePath = [[self tmpFilePathForCache] stringByAppendingPathExtension:extension];
+    NSError *error = nil;
+    BOOL success = [fileData writeToFile:tmpFilePath options:0 error:&error];
+    if (!success) {
+        if (completionBlock) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 completionBlock(nil, nil, error);
             });
-            return;
         }
-        
-        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:self.rpcEndpoint];
-        [request setHTTPMethod:@"POST"];
-        [request setAllHTTPHeaderFields:@{@"Content-Type": @"text/xml"}];
-        NSURLSessionUploadTask *uploadTask = [self.urlSession uploadTaskWithRequest:request fromData:data completionHandler:^(NSData * __nullable data, NSURLResponse * __nullable response, NSError * __nullable error) {
-            if (error) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    completionBlock(nil, nil, error);
-                });
-                return;
-            }
-            WPXMLRPCDecoder *decoder = [[WPXMLRPCDecoder alloc] initWithData:data];
-            if ([decoder isFault] || [decoder object] == nil) {
-                error = [decoder error];
-            }
-            if (error) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    completionBlock(nil, nil, error);
-                });
-                return;
-            }
-            id object = decoder.object;
-            NSString *fileId = nil;
-            NSURL *url = nil;
-            if ([object isKindOfClass:[NSDictionary class]]) {
-                NSDictionary *responseDict = object;
-                NSString *urlString = responseDict[@"url"];
-                if (urlString) {
-                    url = [NSURL URLWithString:urlString];
-                }
-                fileId = responseDict[@"id"];
-            }
-            if (fileId && url) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    completionBlock(url, fileId, nil);
-                });
-            } else {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    completionBlock(nil, nil, [NSError errorWithDomain:@"info.gp" code:1235 userInfo:@{NSLocalizedDescriptionKey: @"Couldn't parse response"}]);
-                });
-            }
-        }];
-        [uploadTask resume];
+        return;
+    }
+    NSURL *fileURL = [NSURL fileURLWithPath:tmpFilePath];
+    [self uploadFileAtURL:fileURL completionBlock:^(NSURL *url, NSString *fileId, NSError *error) {
+        [[NSFileManager defaultManager] removeItemAtURL:fileURL error:nil];
+        completionBlock(url, fileId, error);
     }];
 }
 
