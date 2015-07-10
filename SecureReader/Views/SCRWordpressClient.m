@@ -273,6 +273,35 @@ static NSString* SCRGetMimeTypeForExtension(NSString* extension) {
     }
     NSString *fileName = [fileURL lastPathComponent];
     NSString *extension = [fileName pathExtension];
+    // not local file, must download first
+    if (![fileURL isFileURL]) {
+        [self.networkOperationQueue addOperationWithBlock:^{
+            NSURLSessionDownloadTask *downloadTask = [self.urlSession downloadTaskWithURL:fileURL completionHandler:^(NSURL * __nullable location, NSURLResponse * __nullable response, NSError * __nullable error) {
+                if (error) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        completionBlock(nil, nil, error);
+                    });
+                    return;
+                }
+                NSString *tmpFilePath = [[self tmpFilePathForCache] stringByAppendingPathExtension:extension];
+                NSURL *destionationFileURL = [NSURL fileURLWithPath:tmpFilePath];
+                [[NSFileManager defaultManager] copyItemAtURL:location toURL:destionationFileURL error:&error];
+                if (error) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        completionBlock(nil, nil, error);
+                    });
+                    return;
+                }
+                [self uploadFileAtURL:destionationFileURL completionBlock:^(NSURL *url, NSString *fileId, NSError *error) {
+                    [[NSFileManager defaultManager] removeItemAtURL:destionationFileURL error:nil];
+                    completionBlock(url, fileId, error);
+                }];
+            }];
+            [downloadTask resume];
+        }];
+        return;
+    }
+    
     NSString *mimeType = SCRGetMimeTypeForExtension(extension);
     NSError *error = nil;
     NSFileHandle *fileHandle = [NSFileHandle fileHandleForReadingFromURL:fileURL error:&error];

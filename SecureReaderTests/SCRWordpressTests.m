@@ -26,6 +26,7 @@
 - (void)tearDown {
     // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];
+    self.wpClient = nil;
 }
 
 - (void)testAccountCreation {
@@ -38,7 +39,9 @@
     }];
     self.expectation = [self expectationWithDescription:@"account creation"];
     [self waitForExpectationsWithTimeout:20 handler:^(NSError *error) {
-        NSLog(@"%@",error);
+        if (error) {
+            NSLog(@"%@",error);
+        }
     }];
 }
 
@@ -61,7 +64,9 @@
     }];
     self.expectation = [self expectationWithDescription:@"post creation"];
     [self waitForExpectationsWithTimeout:20 handler:^(NSError *error) {
-        NSLog(@"%@",error);
+        if (error) {
+            NSLog(@"%@",error);
+        }
     }];
 }
 
@@ -85,7 +90,9 @@
     }];
     self.expectation = [self expectationWithDescription:@"post image data"];
     [self waitForExpectationsWithTimeout:30 handler:^(NSError * __nullable error) {
-        NSLog(@"%@",error);
+        if (error) {
+            NSLog(@"%@",error);
+        }
     }];
 }
 
@@ -112,7 +119,34 @@
     }];
     self.expectation = [self expectationWithDescription:@"post image file"];
     [self waitForExpectationsWithTimeout:30 handler:^(NSError * __nullable error) {
-        NSLog(@"%@",error);
+        if (error) {
+            NSLog(@"%@",error);
+        }
+    }];
+}
+
+- (void) testUploadImageFromRemoteURL {
+    [self.wpClient requestNewAccountWithNickname:@"test" completionBlock:^(NSString *username, NSString *password, NSError *error) {
+        if (error) {
+            XCTFail(@"%@", error);
+            return;
+        }
+        [self.wpClient setUsername:username password:password];
+        
+        NSURL *fileURL = [NSURL URLWithString:@"https://guardianproject.info/wp-content/uploads/2014/05/feature.jpg"];
+        [self.wpClient uploadFileAtURL:fileURL completionBlock:^(NSURL *url, NSString *fileId, NSError *error) {
+            NSLog(@"Uploaded image at URL: %@", url);
+            XCTAssertNotNil(url);
+            XCTAssertNotNil(fileId);
+            XCTAssertNil(error);
+            [self.expectation fulfill];
+        }];
+    }];
+    self.expectation = [self expectationWithDescription:@"post image file"];
+    [self waitForExpectationsWithTimeout:60 handler:^(NSError * __nullable error) {
+        if (error) {
+            NSLog(@"%@",error);
+        }
     }];
 }
 
