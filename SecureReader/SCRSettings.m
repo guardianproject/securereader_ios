@@ -8,6 +8,7 @@
 
 #import "SCRSettings.h"
 #import "SCRApplication.h"
+#import "SSKeychain.h"
 
 @implementation SCRSettings
 
@@ -20,6 +21,9 @@ NSString * const kSCRArticleExpirationKey = @"articleExpiration";
 NSString * const kSCRHasShownInitialSettingsHelpKey = @"hasShownInitialSettingsHelp";
 NSString * const kSCRUserNicknameKey = @"userNickname";
 NSString * const kSCRHasGivenPostPermissionKey = @"hasGivenPostPermission";
+NSString * const kSCRWordpressUsernameKey = @"kSCRWordpressUsernameKey";
+NSString * const kSCRWordpressPasswordKey = @"kSCRWordpressPasswordKey";
+static NSString * const kSCRWordpressKeychainService = @"info.gp.secure_reader";
 
 + (NSString *)getUiLanguage
 {
@@ -132,8 +136,45 @@ NSString * const kSCRHasGivenPostPermissionKey = @"hasGivenPostPermission";
 + (void)setUserNickname:(NSString *)userNickname
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setValue:userNickname forKey:kSCRUserNicknameKey];
+    if (userNickname.length > 0) {
+        [userDefaults setValue:userNickname forKey:kSCRUserNicknameKey];
+    } else {
+        [userDefaults removeObjectForKey:kSCRUserNicknameKey];
+    }
     [userDefaults synchronize];
+}
+
++ (NSString*)wordpressUsername {
+    return [[NSUserDefaults standardUserDefaults] objectForKey:kSCRWordpressUsernameKey];
+}
++ (void) setWordpressUsername:(NSString*)wordpressUsername {
+    if (wordpressUsername.length > 0) {
+        [[NSUserDefaults standardUserDefaults] setObject:wordpressUsername forKey:kSCRWordpressUsernameKey];
+    } else {
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:kSCRWordpressUsernameKey];
+    }
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
++ (NSString*)wordpressPassword {
+    NSError *error = nil;
+    NSString *password = [SSKeychain passwordForService:kSCRWordpressKeychainService account:kSCRWordpressPasswordKey error:&error];
+    if (error) {
+        NSLog(@"Error fetching wordpress password: %@", error);
+    }
+    return password;
+}
+
++ (void) setWordpressPassword:(NSString*)wordpressPassword {
+    NSError *error = nil;
+    if (wordpressPassword.length > 0) {
+        [SSKeychain setPassword:wordpressPassword forService:kSCRWordpressKeychainService account:kSCRWordpressPasswordKey error:&error];
+    } else {
+        [SSKeychain deletePasswordForService:kSCRWordpressKeychainService account:kSCRWordpressPasswordKey error:&error];
+    }
+    if (error) {
+        NSLog(@"Error setting wordpress password: %@", error);
+    }
 }
 
 + (BOOL) hasGivenPostPermission

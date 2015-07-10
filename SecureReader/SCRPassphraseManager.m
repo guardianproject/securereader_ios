@@ -41,7 +41,11 @@ static NSString * const SCRPassphraseService    = @"info.guardianproject.SecureR
     if (self.inMemoryPassphrase) {
         passphrase = self.inMemoryPassphrase;
     } else {
-        passphrase = [SSKeychain passwordForService:SCRPassphraseService account:SCRDatabasePassphraseKey];
+        NSError *error = nil;
+        passphrase = [SSKeychain passwordForService:SCRPassphraseService account:SCRDatabasePassphraseKey error:&error];
+        if (error) {
+            NSLog(@"Error retreiving password from keychain: %@", error);
+        }
     }
     return passphrase;
 }
@@ -51,7 +55,11 @@ static NSString * const SCRPassphraseService    = @"info.guardianproject.SecureR
                storeInKeychain:(BOOL)storeInKeychain {
     NSAssert(databasePassphrase.length > 0, @"Passphrase must have non-zero length!");
     if (storeInKeychain) {
-        [SSKeychain setPassword:databasePassphrase forService:SCRPassphraseService account:SCRDatabasePassphraseKey];
+        NSError *error = nil;
+        [SSKeychain setPassword:databasePassphrase forService:SCRPassphraseService account:SCRDatabasePassphraseKey error:&error];
+        if (error) {
+            NSLog(@"Error setting password: %@", error);
+        }
     } else {
         [self clearDatabasePassphrase];
         self.inMemoryPassphrase = databasePassphrase;
@@ -65,7 +73,11 @@ static NSString * const SCRPassphraseService    = @"info.guardianproject.SecureR
     }
 }
 - (void) clearDatabasePassphraseFromKeychain {
-    [SSKeychain deletePasswordForService:SCRPassphraseService account:SCRDatabasePassphraseKey];
+    NSError *error = nil;
+    [SSKeychain deletePasswordForService:SCRPassphraseService account:SCRDatabasePassphraseKey error:&error];
+    if (error) {
+        NSLog(@"Error deleting password from keychain: %@", error);
+    }
 }
 
 /** Removes passphrase from memory and/or keychain */

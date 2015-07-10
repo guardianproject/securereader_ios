@@ -8,14 +8,31 @@
 
 #import "SCRCreateNicknameViewController.h"
 #import "SCRSettings.h"
+#import "SCRWordpressClient.h"
+#import "SCRConstants.h"
+#import "SCRAppDelegate.h"
+#import "MRProgress.h"
 
 @implementation SCRCreateNicknameViewController
 
 
 - (IBAction)continueClicked:(id)sender {
-    [self dismissViewControllerAnimated:self completion:^{
+    NSURL *wpURL = [NSURL URLWithString:kSCRWordpressEndpoint];
+    SCRWordpressClient *wpClient = [[SCRWordpressClient alloc] initWithSessionConfiguration:[[SCRAppDelegate sharedAppDelegate].torManager currentConfiguration] rpcEndpoint:wpURL];
+    [MRProgressOverlayView showOverlayAddedTo:self.view animated:YES];
+    [wpClient requestNewAccountWithNickname:self.nickname.text completionBlock:^(NSString *username, NSString *password, NSError *error) {
+        [MRProgressOverlayView dismissAllOverlaysForView:self.view animated:YES];
+        if (error) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error Creating Account", @"Shown when error creating wordpress acct") message:NSLocalizedString(@"Please try again later.", @"wordpress acct error") delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
+            [alert show];
+            return;
+        }
         [SCRSettings setUserNickname:self.nickname.text];
-        [self.openingSegue perform];
+        [SCRSettings setWordpressUsername:username];
+        [SCRSettings setWordpressPassword:password];
+        [self dismissViewControllerAnimated:self completion:^{
+            [self.openingSegue perform];
+        }];
     }];
 }
 

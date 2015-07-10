@@ -168,6 +168,11 @@ NSString *const KSCRTorManagerURLSessionConfigurationKey = @"KSCRTorManagerURLSe
 {
     BOOL useTor = [notification.userInfo[kSCRUseTorKey] boolValue];
     
+    // clear wordpress account when changing Tor settings
+    [SCRSettings setWordpressPassword:nil];
+    [SCRSettings setWordpressUsername:nil];
+    [SCRSettings setUserNickname:nil];
+    
     if (useTor && self.proxyManager.status == CPAStatusClosed) {
         [self setupTor];
     } else {

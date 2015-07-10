@@ -108,6 +108,16 @@
 {
     [self populateItemFromUI];
     
+    // upload images
+    if ([self.item isKindOfClass:[SCRPostItem class]]) {
+        [[SCRDatabaseManager sharedInstance].readConnection readWithBlock:^(YapDatabaseReadTransaction * __nonnull transaction) {
+            [self.item enumerateMediaItemsInTransaction:transaction block:^(SCRMediaItem *mediaItem, BOOL *stop) {
+                
+            }];
+
+        }];
+    }
+    
     //TODO check valid for post
     self.item.publicationDate = [NSDate dateWithTimeIntervalSinceNow:0];
     self.item.isSent = YES;
