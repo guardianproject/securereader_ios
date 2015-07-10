@@ -11,10 +11,16 @@
 
 @interface SCRWordpressClient : SCRNetworkFetcher
 
+/** wordpress xml-rpc endpoint */
+@property (nonatomic, strong, readonly) NSURL *rpcEndpoint;
+
 /**
  @param sessionConfiguration The configuration to be used for all subsequent downloads. Make sure to use a configuration policy that includes NSURLCacheStorageAllowedInMemoryOnly or NSURLCacheStorageNotAllowed.
+ @param rpcEndpoint wpxmlrpc endpoint
  */
-- (instancetype)initWithSessionConfiguration:(NSURLSessionConfiguration *)sessionConfiguration;
+- (instancetype)initWithSessionConfiguration:(NSURLSessionConfiguration *)sessionConfiguration
+                                 rpcEndpoint:(NSURL*)rpcEndpoint
+;
 
 /** Set username and password for authenticated requests */
 - (void) setUsername:(NSString*)username
@@ -28,4 +34,14 @@
 - (void) createPostWithTitle:(NSString*)title
                      content:(NSString*)content
              completionBlock:(void (^)(NSString *postId, NSError *error))completionBlock;
+
+/** Must be local file URL, can be large file */
+- (void) uploadFileAtURL:(NSURL*)fileURL
+         completionBlock:(void (^)(NSURL *url, NSString *fileId, NSError *error))completionBlock;
+
+/** fileData must fit in memory */
+- (void) uploadFileWithData:(NSData*)fileData
+                   fileName:(NSString*)fileName
+            completionBlock:(void (^)(NSURL *url, NSString *fileId, NSError *error))completionBlock;
+
 @end

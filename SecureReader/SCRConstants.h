@@ -13,3 +13,5 @@ extern NSString * const kPanicStartNotification;
 extern NSString * const kSettingChangedNotification;
 
 extern NSString * const kNewPasswordUserInfoKey;
+
+extern NSString * const kSCRWordpressEndpoint;

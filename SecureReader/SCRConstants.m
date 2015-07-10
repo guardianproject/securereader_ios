@@ -13,3 +13,5 @@ NSString * const kPanicStartNotification = @"kPanicStartNotification";
 NSString * const kSettingChangedNotification = @"kSettingChangedNotification";
 
 NSString * const kNewPasswordUserInfoKey = @"kNewPasswordUserInfoKey";
+
+NSString * const kSCRWordpressEndpoint = @"https://securereader.guardianproject.info/wordpress/xmlrpc.php";
