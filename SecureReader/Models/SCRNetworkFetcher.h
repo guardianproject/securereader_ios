@@ -27,4 +27,8 @@
 
 - (instancetype)initWithSessionConfiguration:(NSURLSessionConfiguration *)sessionConfiguration NS_DESIGNATED_INITIALIZER;
 
+- (void)downloadDataFor:(NSURL *)url
+        completionQueue:(dispatch_queue_t)completionQueue
+        completionBlock:(void (^)(NSData *data, NSURLResponse *response, NSError *error))completionBlock;
+
 @end

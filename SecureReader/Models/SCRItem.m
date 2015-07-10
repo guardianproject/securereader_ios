@@ -13,6 +13,7 @@
 #import "YapDatabaseRelationshipTransaction.h"
 #import "SCRDatabaseManager.h"
 #import "IOCipher.h"
+#import "NSString+SecureReader.h"
 
 NSString *const kSCRMediaItemEdgeName = @"kSCRMediaItemEdgeName";
 NSString *const kSCRFeedEdgeName      = @"kSCRFeedEdgeName";
@@ -46,6 +47,14 @@ NSString *const kSCRFeedEdgeName      = @"kSCRFeedEdgeName";
 - (NSArray *)tags
 {
     return [NSArray arrayWithObjects:@"Tag", @"Long tag", @"A really really long tag that will scroll", nil];
+}
+
+- (NSString *)pathForDownloadedHTML
+{
+    if ([self.yapKey length]) {
+        return [NSString pathWithComponents:@[@"/html",[self.yapKey scr_md5],@"index.html"]];
+    }
+    return nil;
 }
 
 - (void)removeMediaItemsWithReadWriteTransaction:(YapDatabaseReadWriteTransaction *)transaction storage:(IOCipher *)storage

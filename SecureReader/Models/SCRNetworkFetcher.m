@@ -42,4 +42,29 @@
     }
 }
 
+- (void)downloadDataFor:(NSURL *)url completionQueue:(dispatch_queue_t)completionQueue completionBlock:(void (^)(NSData *data, NSURLResponse *response, NSError *error))completionBlock
+{
+    if (!completionBlock || ![url.absoluteString length]) {
+        return;
+    }
+    
+    if (!completionQueue) {
+        completionQueue = dispatch_get_main_queue();
+    }
+    
+    __weak typeof(self)weakSelf = self;
+    [self.networkOperationQueue addOperationWithBlock:^{
+        __strong typeof(weakSelf)strongSelf = weakSelf;
+        NSURLSession *session = [NSURLSession sessionWithConfiguration:strongSelf.urlSessionConfiguration];
+        NSURLSessionDataTask *dataTask = [session dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+            dispatch_async(completionQueue, ^{
+                completionBlock(data,response,error);
+            });
+        }];
+        [dataTask resume];
+    }];
+    
+    
+}
+
 @end

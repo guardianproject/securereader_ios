@@ -14,6 +14,8 @@ pod 'PSTAlertController', :git => 'https://github.com/steipete/PSTAlertControlle
 pod 'VENTouchLock', '~> 1.0'
 pod 'KVOController', '~> 1.0'
 pod 'MRProgress', '~> 0.8'
+pod 'DZReadability', '~> 0.2'
+
 pod 'MWFeedParser/NSString+HTML', '~> 1.0'
 
 # Tor support

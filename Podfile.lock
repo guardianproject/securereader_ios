@@ -7,6 +7,8 @@ PODS:
     - CocoaLumberjack/Core
   - CPAProxy (1.0.0):
     - CocoaAsyncSocket
+  - DZReadability (0.2.2):
+    - HTMLReader
   - FormatterKit/TimeIntervalFormatter (1.8.0)
   - GCDWebServer (3.2.5):
     - GCDWebServer/Core (= 3.2.5)
@@ -87,6 +89,7 @@ PODS:
 
 DEPENDENCIES:
   - CPAProxy (from `Submodules/CPAProxy/CPAProxy.podspec`)
+  - DZReadability (~> 0.2)
   - FormatterKit/TimeIntervalFormatter (~> 1.6)
   - HockeySDK-Source (~> 3.7)
   - InAppSettingsKit (~> 2.2)
@@ -128,6 +131,7 @@ SPEC CHECKSUMS:
   CocoaAsyncSocket: 7cbf214b27f8e7f7574db6a3fd96352ffaed433d
   CocoaLumberjack: 628fca2e88ef06f7cf6817309aa405f325d9a6fa
   CPAProxy: 2f0d2ef592b28e0686b5a100ad663bdd3e51900b
+  DZReadability: 7137c553bdde494b80f7a860f7984b238adf5ac4
   FormatterKit: bddde83e054edf9d9ee14f9de3b3a5103db256f4
   GCDWebServer: d0e1b23785e3dfd6c87601323d0f7cae059aab18
   HockeySDK-Source: d620f330b23691017c141de6e25e5cdc8c67848c

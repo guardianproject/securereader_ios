@@ -26,7 +26,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lOr-V6-s7D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1559" y="177"/>
+            <point key="canvasLocation" x="-1555" y="195"/>
         </scene>
         <!--Panic-->
         <scene sceneID="bH4-tK-diU">
@@ -1584,22 +1584,33 @@
                                                     <userDefinedRuntimeAttribute type="string" keyPath="theme" value="ItemContentStyle"/>
                                                 </userDefinedRuntimeAttributes>
                                             </textView>
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aVq-GA-w0V">
+                                                <rect key="frame" x="246" y="306" width="109" height="30"/>
+                                                <state key="normal" title="View Full Article">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <segue destination="vHn-hr-oO6" kind="presentation" id="NSA-k8-wjl"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="AhW-0L-8EY" firstAttribute="leading" secondItem="zgO-vU-RGa" secondAttribute="leading" constant="20" id="42t-HE-Bzn"/>
                                             <constraint firstItem="4vz-a6-cEX" firstAttribute="leading" secondItem="zgO-vU-RGa" secondAttribute="leading" constant="20" id="7uz-qG-pvj"/>
-                                            <constraint firstAttribute="bottom" secondItem="4vz-a6-cEX" secondAttribute="bottom" constant="20" id="87D-B5-fUy"/>
                                             <constraint firstAttribute="trailing" secondItem="uoM-Ab-Efl" secondAttribute="trailing" id="IVC-DR-AhZ"/>
                                             <constraint firstItem="Edy-xh-Hc4" firstAttribute="top" secondItem="uoM-Ab-Efl" secondAttribute="bottom" constant="20" id="MAx-tB-0Pz"/>
                                             <constraint firstItem="7ve-Ed-M2b" firstAttribute="top" secondItem="AhW-0L-8EY" secondAttribute="bottom" constant="20" id="N64-IJ-0wi"/>
+                                            <constraint firstAttribute="bottom" secondItem="aVq-GA-w0V" secondAttribute="bottom" constant="19" id="QVX-RL-HVZ"/>
                                             <constraint firstItem="7ve-Ed-M2b" firstAttribute="leading" secondItem="zgO-vU-RGa" secondAttribute="leading" constant="20" id="Uxz-1C-n4L"/>
                                             <constraint firstItem="Edy-xh-Hc4" firstAttribute="leading" secondItem="zgO-vU-RGa" secondAttribute="leading" constant="20" id="VgO-b5-BV7"/>
+                                            <constraint firstAttribute="centerX" secondItem="aVq-GA-w0V" secondAttribute="centerX" id="XrQ-bA-Twb"/>
                                             <constraint firstItem="AhW-0L-8EY" firstAttribute="top" secondItem="Edy-xh-Hc4" secondAttribute="bottom" constant="8" id="ckh-NM-9gH"/>
                                             <constraint firstAttribute="trailing" secondItem="Edy-xh-Hc4" secondAttribute="trailing" constant="20" id="kOJ-Cg-MDN"/>
                                             <constraint firstItem="uoM-Ab-Efl" firstAttribute="top" secondItem="zgO-vU-RGa" secondAttribute="top" id="mdX-WK-xaE"/>
                                             <constraint firstItem="uoM-Ab-Efl" firstAttribute="leading" secondItem="zgO-vU-RGa" secondAttribute="leading" id="mkJ-Zw-84i"/>
                                             <constraint firstAttribute="trailing" secondItem="7ve-Ed-M2b" secondAttribute="trailing" constant="20" id="mt0-ua-r0C"/>
+                                            <constraint firstItem="aVq-GA-w0V" firstAttribute="top" secondItem="4vz-a6-cEX" secondAttribute="bottom" constant="14" id="rpW-o1-wPh"/>
                                             <constraint firstItem="4vz-a6-cEX" firstAttribute="top" secondItem="7ve-Ed-M2b" secondAttribute="bottom" constant="20" id="us1-hr-h7m"/>
                                             <constraint firstAttribute="trailing" secondItem="4vz-a6-cEX" secondAttribute="trailing" constant="20" id="vZI-PN-M6n"/>
                                             <constraint firstAttribute="trailing" secondItem="AhW-0L-8EY" secondAttribute="trailing" constant="20" id="wJW-zN-zRh"/>
@@ -1636,6 +1647,75 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VvZ-Ex-bpS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-358" y="3846"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="5yG-vg-Nam">
+            <objects>
+                <navigationController id="vHn-hr-oO6" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="CNq-lL-LnS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="m7I-Zg-aGr" kind="relationship" relationship="rootViewController" id="v8w-KC-Guv"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UQ6-Cd-wsD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-688" y="4569"/>
+        </scene>
+        <!--Readability View Controller-->
+        <scene sceneID="on5-F0-m1a">
+            <objects>
+                <viewController id="m7I-Zg-aGr" customClass="SCRReadabilityViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Hbz-MM-Sfk"/>
+                        <viewControllerLayoutGuide type="bottom" id="p07-dh-j6T"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cmh-48-jVf">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z3k-aI-cSf">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="z3k-aI-cSf" firstAttribute="top" secondItem="cmh-48-jVf" secondAttribute="top" id="Jyi-0H-Vgt"/>
+                            <constraint firstItem="z3k-aI-cSf" firstAttribute="leading" secondItem="cmh-48-jVf" secondAttribute="leading" id="d35-Kd-9QN"/>
+                            <constraint firstItem="p07-dh-j6T" firstAttribute="top" secondItem="z3k-aI-cSf" secondAttribute="bottom" id="ebh-Hq-bnb"/>
+                            <constraint firstAttribute="trailing" secondItem="z3k-aI-cSf" secondAttribute="trailing" id="jvi-qT-dr7"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="2ct-Hd-ieO">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="ZGv-WW-YVA">
+                            <rect key="frame" x="180" y="7" width="240" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="Readability"/>
+                                <segment title="Web"/>
+                            </segments>
+                            <connections>
+                                <action selector="segmentedControlDidChange:" destination="m7I-Zg-aGr" eventType="valueChanged" id="Sje-ms-Ue2"/>
+                            </connections>
+                        </segmentedControl>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="bNy-Ww-PIM">
+                            <connections>
+                                <action selector="doneButtonPressed:" destination="m7I-Zg-aGr" id="IKt-X5-wqW"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="segmentedControl" destination="ZGv-WW-YVA" id="W4j-6o-Osz"/>
+                        <outlet property="webView" destination="z3k-aI-cSf" id="b9X-VF-pEf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="E77-zT-rA7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="42" y="4569"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ke9-1p-PEd">
@@ -2201,7 +2281,9 @@ It also helps get you access to information that may typically be unavailable in
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DQm-Tf-bTc">
                                 <rect key="frame" x="16" y="114" width="568" height="100"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">Paik provides a feed of noteworthy news to its community. Every post created will undergo a curation process before it is shared in the official Paik news feed.  Please read the &lt;a href="#terms"&gt;Terms and Conditions&lt;/a&gt; to understand the rights you grant when you share information with Paik.</string>
+                                <string key="text">Paik provides a feed of noteworthy news to its community. Every post created will undergo a curation process before it is shared in the official Paik news feed.
+
+Please read the &lt;a href="#terms"&gt;Terms and Conditions&lt;/a&gt; to understand the rights you grant when you share information with Paik.</string>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <userDefinedRuntimeAttributes>
