@@ -22,6 +22,9 @@
                                  rpcEndpoint:(NSURL*)rpcEndpoint
 ;
 
+/** fully initialized client */
++ (instancetype) defaultClient;
+
 /** Set username and password for authenticated requests */
 - (void) setUsername:(NSString*)username
             password:(NSString*)password;

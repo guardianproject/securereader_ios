@@ -15,6 +15,6 @@
 
 - (instancetype)initWithIOCipher:(IOCipher *)cipher;
 
-- (void)startOnPort:(NSUInteger)port error:(NSError **)error;
+- (void)startOnPort:(uint16_t)port error:(NSError **)error;
 
 @end

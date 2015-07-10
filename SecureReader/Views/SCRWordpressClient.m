@@ -9,6 +9,8 @@
 #import "SCRWordpressClient.h"
 #import "WPXMLRPC.h"
 #import <MobileCoreServices/MobileCoreServices.h>
+#import "SCRAppDelegate.h"
+#import "SCRConstants.h"
 
 static NSString* SCRGetMimeTypeForExtension(NSString* extension) {
     NSCParameterAssert(extension.length > 0);
@@ -46,6 +48,12 @@ static NSString* SCRGetMimeTypeForExtension(NSString* extension) {
     return self;
 }
 
++ (instancetype) defaultClient {
+    NSURL *url = [NSURL URLWithString:kSCRWordpressEndpoint];
+    SCRWordpressClient *wpClient = [[SCRWordpressClient alloc] initWithSessionConfiguration:[SCRAppDelegate sharedAppDelegate].torManager.currentConfiguration rpcEndpoint:url];
+    return wpClient;
+}
+
 - (void)setUrlSessionConfiguration:(NSURLSessionConfiguration *)urlSessionConfiguration
 {
     if (![self.urlSession.configuration isEqual:urlSessionConfiguration]) {
@@ -68,6 +76,8 @@ static NSString* SCRGetMimeTypeForExtension(NSString* extension) {
  https://github.com/wordpress-mobile/WordPress-API-iOS/blob/master/WordPressApi/WordPressXMLRPCApi.m#L392
  */
 - (NSArray *)buildParametersWithExtra:(id)extra {
+    NSParameterAssert(self.username);
+    NSParameterAssert(self.password);
     NSMutableArray *result = [NSMutableArray array];
     [result addObject:@"1"];
     [result addObject:self.username];
@@ -244,6 +254,8 @@ static NSString* SCRGetMimeTypeForExtension(NSString* extension) {
 - (void) uploadFileWithData:(NSData*)fileData
                    fileName:(NSString*)fileName
             completionBlock:(void (^)(NSURL *url, NSString *fileId, NSError *error))completionBlock {
+    NSParameterAssert(self.username);
+    NSParameterAssert(self.password);
     NSParameterAssert(fileData.length > 0);
     NSParameterAssert(fileName.length > 0);
     NSString *extension = [fileName pathExtension];
@@ -266,6 +278,8 @@ static NSString* SCRGetMimeTypeForExtension(NSString* extension) {
 }
 
 - (void) uploadFileAtURL:(NSURL *)fileURL completionBlock:(void (^)(NSURL *, NSString *, NSError *))completionBlock {
+    NSParameterAssert(self.username);
+    NSParameterAssert(self.password);
     NSParameterAssert(fileURL != nil);
     NSParameterAssert(completionBlock);
     if (!completionBlock) {
@@ -273,6 +287,7 @@ static NSString* SCRGetMimeTypeForExtension(NSString* extension) {
     }
     NSString *fileName = [fileURL lastPathComponent];
     NSString *extension = [fileName pathExtension];
+    NSParameterAssert(extension.length > 0);
     // not local file, must download first
     if (![fileURL isFileURL]) {
         [self.networkOperationQueue addOperationWithBlock:^{

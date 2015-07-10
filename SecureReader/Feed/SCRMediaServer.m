@@ -41,9 +41,9 @@
     return self.webServer.port;
 }
 
-- (void)startOnPort:(NSUInteger)port error:(NSError *__autoreleasing *)error
+- (void)startOnPort:(uint16_t)port error:(NSError *__autoreleasing *)error
 {
-    if (port <1) {
+    if (port < 1) {
         port = 8080;
     }
     

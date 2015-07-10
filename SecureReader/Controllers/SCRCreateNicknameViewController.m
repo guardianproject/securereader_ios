@@ -17,8 +17,7 @@
 
 
 - (IBAction)continueClicked:(id)sender {
-    NSURL *wpURL = [NSURL URLWithString:kSCRWordpressEndpoint];
-    SCRWordpressClient *wpClient = [[SCRWordpressClient alloc] initWithSessionConfiguration:[[SCRAppDelegate sharedAppDelegate].torManager currentConfiguration] rpcEndpoint:wpURL];
+    SCRWordpressClient *wpClient = [SCRWordpressClient defaultClient];
     [MRProgressOverlayView showOverlayAddedTo:self.view animated:YES];
     [wpClient requestNewAccountWithNickname:self.nickname.text completionBlock:^(NSString *username, NSString *password, NSError *error) {
         [MRProgressOverlayView dismissAllOverlaysForView:self.view animated:YES];
