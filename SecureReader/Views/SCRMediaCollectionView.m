@@ -11,6 +11,7 @@
 #import "SCRAppDelegate.h"
 #import "SCRMediaItem.h"
 #import "SCRMediaCollectionViewDownloadView.h"
+#import "JTSImageViewController.h"
 
 @interface SCRMediaCollectionViewItem : NSObject
 
@@ -343,6 +344,41 @@
                 [self mediaItemDownload:mediaItem];
             }
         }];
+    }
+}
+
+- (void)swipeView:(SwipeView *)swipeView didSelectItemAtIndex:(NSInteger)index
+{
+    if (index < [self.mediaItems count]) {
+        SCRMediaCollectionViewItem *collectionViewItem = self.mediaItems[index];
+        
+        //Make sure the tapped view is an imageview and not the downloading view
+        if ([collectionViewItem.view isKindOfClass:[UIImageView class]]) {
+            JTSImageInfo *imageInfo = [[JTSImageInfo alloc] init];
+            imageInfo.image = ((UIImageView *)collectionViewItem.view).image;
+            imageInfo.referenceRect = collectionViewItem.view.frame;
+            imageInfo.referenceView = collectionViewItem.view.superview;
+            
+            // Setup view controller
+            JTSImageViewController *imageViewer = [[JTSImageViewController alloc]
+                                                   initWithImageInfo:imageInfo
+                                                   mode:JTSImageViewControllerMode_Image
+                                                   backgroundStyle:JTSImageViewControllerBackgroundOption_Blurred];
+            
+            // Get parent View Controller a bit ugly but it works
+            UIViewController *parentViewController = nil;
+            UIResponder *responder = collectionViewItem.view;
+            while ([responder isKindOfClass:[UIView class]]) {
+                responder = [responder nextResponder];
+            }
+            if ([responder isKindOfClass:[UIViewController class]]) {
+                parentViewController = (UIViewController *)responder;
+            }
+            
+            [imageViewer showFromViewController:parentViewController transition:JTSImageViewControllerTransition_FromOriginalPosition];
+        }
+        
+        
     }
 }
 

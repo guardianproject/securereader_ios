@@ -17,6 +17,7 @@ pod 'MRProgress', '~> 0.8'
 pod 'DZReadability', '~> 0.2'
 
 pod 'MWFeedParser/NSString+HTML', '~> 1.0'
+pod 'JTSImageViewController', '~> 1.4'
 
 # Tor support
 pod 'CPAProxy', :path => 'Submodules/CPAProxy/CPAProxy.podspec'
