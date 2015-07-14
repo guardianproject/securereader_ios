@@ -16,6 +16,8 @@ extern NSString * const kSCRSyncDataOverCellularKey;
 extern NSString * const kSCRUseTorKey;
 extern NSString * const kSCRUserNicknameKey;
 extern NSString * const kSCRHasGivenPostPermissionKey;
+extern NSString * const kSCRWordpressUsernameKey;
+extern NSString * const kSCRWordpressPasswordKey;
 
 + (NSString *)getUiLanguage;
 + (void) setUiLanguage:(NSString *)languageCode;
@@ -40,8 +42,13 @@ extern NSString * const kSCRHasGivenPostPermissionKey;
 + (BOOL) hasShownInitialSettingsHelp;
 + (void) setHasShownInitialSettingsHelp:(BOOL)hasShownInitialSettingsHelp;
 
+// wordpress
 + (NSString *)userNickname;
 + (void) setUserNickname:(NSString *)userNickname;
++ (NSString*)wordpressUsername;
++ (void) setWordpressUsername:(NSString*)wordpressUsername;
++ (NSString*)wordpressPassword;
++ (void) setWordpressPassword:(NSString*)wordpressPassword;
 
 + (BOOL) hasGivenPostPermission;
 + (void) setHasGivenPostPermission:(BOOL)hasGivenPostPermission;

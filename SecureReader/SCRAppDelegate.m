@@ -219,6 +219,12 @@
     ////// Setup Media Fetcher //////
     _mediaFetcher = [[SCRMediaFetcher alloc] initWithSessionConfiguration:[self.torManager currentConfiguration]
                                                                   storage:self.fileManager.ioCipher];
+    _mediaServer = [[SCRMediaServer alloc] initWithIOCipher:self.fileManager.ioCipher];
+    NSError *error = nil;
+    [self.mediaServer startOnPort:41242 error:&error];
+    if (error) {
+        NSLog(@"Error starting media server: %@", error);
+    }
     self.mediaFetcher.completionQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     self.mediaFetcher.networkOperationQueue.suspended = self.feedFetcher.networkOperationQueue.suspended;
     _mediaFetcherWatcher = [[SCRMediaFetcherWatcher alloc] initWithMediaFetcher:_mediaFetcher];

@@ -11,6 +11,9 @@
 #import "SCRApplication.h"
 #import "SCRAppDelegate.h"
 #import "SCRMediaItem.h"
+#import "MRProgress.h"
+#import "SCRWordpressClient.h"
+#import "SCRSettings.h"
 
 @interface SCRAddPostViewController ()
 @property (nonatomic, strong) SCRPostItem *item;
@@ -18,6 +21,7 @@
 @property (nonatomic) UIImagePickerController *imagePickerController;
 @property (nonatomic) UIPopoverController *imagePickerPopoverController;
 @property (nonatomic, weak) SCRMediaItem *imagePickerReplaceThisItem;
+@property (nonatomic, strong) MRProgressOverlayView *progressOverlayView;
 @end
 
 @implementation SCRAddPostViewController
@@ -108,14 +112,74 @@
 {
     [self populateItemFromUI];
     
-    //TODO check valid for post
-    self.item.publicationDate = [NSDate dateWithTimeIntervalSinceNow:0];
-    self.item.isSent = YES;
-    [[SCRDatabaseManager sharedInstance].readWriteConnection asyncReadWriteWithBlock:^(YapDatabaseReadWriteTransaction *transaction) {
-        [self.item saveWithTransaction:transaction];
-    }];
+    SCRWordpressClient *wpClient = [SCRWordpressClient defaultClient];
+    [wpClient setUsername:[SCRSettings wordpressUsername] password:[SCRSettings wordpressPassword]];
     
-    [self.navigationController popViewControllerAnimated:YES];
+    // upload images
+    self.progressOverlayView = [MRProgressOverlayView showOverlayAddedTo:self.view title:NSLocalizedString(@"Uploading Images", @"shown when uploading images to wordpress") mode:MRProgressOverlayViewModeIndeterminate animated:YES];
+    
+    dispatch_group_t uploadGroup = dispatch_group_create();
+    NSMutableArray *mediaURLs = [NSMutableArray array];
+    dispatch_group_enter(uploadGroup);
+    __block NSError *uploadError = nil;
+    [[SCRDatabaseManager sharedInstance].readConnection readWithBlock:^(YapDatabaseReadTransaction * __nonnull transaction) {
+        [self.item enumerateMediaItemsInTransaction:transaction block:^(SCRMediaItem *mediaItem, BOOL *stop) {
+            dispatch_group_enter(uploadGroup);
+            NSURL *url = [mediaItem localURLWithPort:[SCRAppDelegate sharedAppDelegate].mediaServer.port];
+            [wpClient uploadFileAtURL:url completionBlock:^(NSURL *url, NSString *fileId, NSError *error) {
+                dispatch_group_leave(uploadGroup);
+                if (url) {
+                    [mediaURLs addObject:url];
+                } else {
+                    uploadError = error;
+                    NSLog(@"Error uploading URL %@: %@", url, error);
+                }
+            }];
+        }];
+    }];
+    dispatch_group_leave(uploadGroup);
+    dispatch_group_notify(uploadGroup, dispatch_get_main_queue(), ^{
+        if (uploadError) {
+            [self.progressOverlayView setMode:MRProgressOverlayViewModeCross];
+            [self.progressOverlayView dismiss:YES];
+            return;
+        } else {
+            [self.progressOverlayView setMode:MRProgressOverlayViewModeCheckmark];
+        }
+        
+        // append uploaded images to item description
+        NSMutableString *newDescription = [self.item.itemDescription mutableCopy];
+        [mediaURLs enumerateObjectsUsingBlock:^(NSURL *url, NSUInteger idx, BOOL * __nonnull stop) {
+            [newDescription appendFormat:@"\n<a href=\"%@\">%@</a>", url.absoluteString, url.absoluteString];
+        }];
+        
+        //append tags to description
+        [self.item.tags enumerateObjectsUsingBlock:^(NSString *tag, NSUInteger idx, BOOL * __nonnull stop) {
+            [newDescription appendFormat:@"\n%@", tag];
+        }];
+        
+        [self.progressOverlayView setTitleLabelText:NSLocalizedString(@"Posting Story", @"Progress for posting a new story to wordpress")];
+        self.progressOverlayView.mode = MRProgressOverlayViewModeIndeterminate;
+        
+        [wpClient createPostWithTitle:self.item.title content:newDescription completionBlock:^(NSString *postId, NSError *error) {
+            if (error) {
+                self.progressOverlayView.mode = MRProgressOverlayViewModeCross;
+            } else {
+                self.progressOverlayView.mode = MRProgressOverlayViewModeCheckmark;
+                self.item.publicationDate = [NSDate date];
+                self.item.isSent = YES;
+                [[SCRDatabaseManager sharedInstance].readWriteConnection asyncReadWriteWithBlock:^(YapDatabaseReadWriteTransaction *transaction) {
+                    [self.item saveWithTransaction:transaction];
+                } completionBlock:^{
+                    [self.navigationController popViewControllerAnimated:YES];
+                }];
+            }
+            [self.progressOverlayView dismiss:YES];
+        }];
+        
+        
+        
+    });
 }
 
 - (void)saveDraft
@@ -262,10 +326,11 @@
         image = [info objectForKey:UIImagePickerControllerOriginalImage];
     if (image != nil)
     {
-        NSData *png = UIImagePNGRepresentation(image);
-        if (png != nil)
+        // TODO resize image
+        NSData *jpegData = UIImageJPEGRepresentation(image, 0.75);
+        if (jpegData != nil)
         {
-            NSString *path = [NSString stringWithFormat:@"post/%@", [[[NSUUID UUID] UUIDString] stringByReplacingOccurrencesOfString:@"-" withString:@""]];
+            NSString *path = [NSString stringWithFormat:@"post/%@.jpg", [[[NSUUID UUID] UUIDString] stringByReplacingOccurrencesOfString:@"-" withString:@""]];
             NSURL *url = [NSURL fileURLWithPath:path];
             SCRMediaItem *mediaItem = [[SCRMediaItem alloc] initWithURL:url];
             [[SCRDatabaseManager sharedInstance].readWriteConnection asyncReadWriteWithBlock:^(YapDatabaseReadWriteTransaction *transaction) {
@@ -290,8 +355,12 @@
                 [self populateItemFromUI];
                 [self.item saveWithTransaction:transaction];
                 [self updateMediaCollectionView];
-                [[SCRAppDelegate sharedAppDelegate].mediaFetcher saveMediaItem:mediaItem data:png completionBlock:^(NSError *error) {
-                    [self.mediaCollectionView createViewForMediaItem:mediaItem];
+                [[SCRAppDelegate sharedAppDelegate].mediaFetcher saveMediaItem:mediaItem data:jpegData completionBlock:^(NSError *error) {
+                    if (error) {
+                        NSLog(@"Error saving media item: %@", error);
+                    } else {
+                        [self.mediaCollectionView createViewForMediaItem:mediaItem];
+                    }
                 }];
             }];
         }

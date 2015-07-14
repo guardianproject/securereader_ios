@@ -18,7 +18,7 @@
     UIViewController *destination = self.destinationViewController;
     UIViewController *source = self.sourceViewController;
 
-    if ([[SCRSettings userNickname] length] == 0)
+    if ([[SCRSettings wordpressUsername] length] == 0)
     {
         destination = [source.storyboard instantiateViewControllerWithIdentifier:@"createNickname"];
         destination.modalPresentationStyle = UIModalPresentationFullScreen;

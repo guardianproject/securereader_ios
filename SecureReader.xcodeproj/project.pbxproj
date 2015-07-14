@@ -238,6 +238,11 @@
 		9268080D1ABC4C6F00EB9225 /* SCRMediaCollectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SCRMediaCollectionView.xib; sourceTree = "<group>"; };
 		926D3DB81B4424EA00A66064 /* SCRAllowPostsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRAllowPostsViewController.h; sourceTree = "<group>"; };
 		926D3DB91B4424EA00A66064 /* SCRAllowPostsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRAllowPostsViewController.m; sourceTree = "<group>"; };
+		927316581B4EF55B0041A241 /* en-US */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-US"; path = "en-US.lproj/Main.strings"; sourceTree = "<group>"; };
+		927316591B4EF55B0041A241 /* en-US */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-US"; path = "en-US.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		9273165A1B4EF55B0041A241 /* en-US */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-US"; path = "en-US.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		9273165B1B4EF5800041A241 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = Base; path = Base.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		9273165C1B4EF5820041A241 /* en-US */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = "en-US"; path = "en-US.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
 		9276CCEC1ACBE9CB00A6B0E3 /* SCRPostItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRPostItem.h; sourceTree = "<group>"; };
 		9276CCED1ACBE9CB00A6B0E3 /* SCRPostItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRPostItem.m; sourceTree = "<group>"; };
 		9276CCEF1ACBF6AF00A6B0E3 /* SCRDraftPostItemTableDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRDraftPostItemTableDelegate.h; sourceTree = "<group>"; };
@@ -913,6 +918,7 @@
 				en,
 				Base,
 				sv,
+				"en-US",
 			);
 			mainGroup = 929EEF3E19F4EB100020BD75;
 			productRefGroup = 929EEF4819F4EB100020BD75 /* Products */;
@@ -1163,6 +1169,7 @@
 			children = (
 				920C8D8E1AE9145700FAF494 /* sv */,
 				920C8D901AE92FA500FAF494 /* Base */,
+				9273165A1B4EF55B0041A241 /* en-US */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -1187,6 +1194,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				920C8DA21AE93A6D00FAF494 /* sv */,
+				9273165B1B4EF5800041A241 /* Base */,
+				9273165C1B4EF5820041A241 /* en-US */,
 			);
 			name = Localizable.stringsdict;
 			sourceTree = "<group>";
@@ -1196,6 +1205,7 @@
 			children = (
 				929EEF5819F4EB100020BD75 /* Base */,
 				929EEF8819F4F84D0020BD75 /* sv */,
+				927316581B4EF55B0041A241 /* en-US */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -1205,6 +1215,7 @@
 			children = (
 				929EEF5D19F4EB100020BD75 /* Base */,
 				929EEF8919F4F84D0020BD75 /* sv */,
+				927316591B4EF55B0041A241 /* en-US */,
 			);
 			name = LaunchScreen.xib;
 			sourceTree = "<group>";

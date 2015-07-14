@@ -1,0 +1,138 @@
+/* Message for AddPost -> pick image when no sources are available */
+"AddPost.PickImage.NoSource.Message" = "No image source available.";
+
+/* Title for AddPost -> pick image when no sources are available */
+"AddPost.PickImage.NoSource.Title" = "Pick Image";
+
+/* Post screen: Alert message, get image from gallery */
+"AddPost.PickImage.PickSource.Message" = "Please select image source";
+
+/* Post screen: pick image from camera */
+"AddPost.PickImage.PickSource.Option.Camera" = "Camera";
+
+/* Post screen: pick image from photos */
+"AddPost.PickImage.PickSource.Option.Photos" = "Photos";
+
+/* Post screen: Alert title, get image from gallery */
+"AddPost.PickImage.PickSource.Title" = "Pick Image";
+
+/* Post navbar button title */
+"AddPost.Post" = "Post";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
+
+/* Title for panic alert */
+"Clear Data" = "Clear Data";
+
+/* Message for create passphrase, db failure */
+"CreatePassphrase.DBError.Message" = "A database error has occured.";
+
+/* Title for create passphrase, db failure */
+"CreatePassphrase.DBError.Title" = "Create passphrase";
+
+/* Message for create passphrase, mismatched passwords */
+"CreatePassphrase.Mismatched.Message" = "The passwords did not match, please try again.";
+
+/* Title for create passphrase, mismatched passwords */
+"CreatePassphrase.Mismatched.Title" = "Create passphrase";
+
+/* panic delete button */
+"Delete" = "Delete";
+
+/* for sharing a link to the app, e.g. Download Courier. %@ will be replaced by the app name at runtime. */
+"Download %@" = "Download %@";
+
+/* Language name for English */
+"English" = "English";
+
+/* Navbar title for all feeds */
+"FeedList.Navbar.AllFeeds" = "All Feeds";
+
+/* Navbar title for favorites */
+"FeedList.Navbar.Favorites" = "Favorites";
+
+/* Navbar default title for items list */
+"FeedList.Navbar.Feed" = "Feed";
+
+/* Navbar title for received items */
+"FeedList.Navbar.Received" = "Received";
+
+/* Done with feed search button */
+"FeedSearch.Button.Done" = "Done";
+
+/* Hint for clear app data */
+"HelpHint.ClearAppData" = "Clear everything in the app, including passwords in one tap!";
+
+/* Hint for display photos */
+"HelpHint.DisplayPhotos" = "Turn photos off to sync text only. This helps you use less data.";
+
+/* Author name string */
+"ItemPage.AuthorName" = "BY %@";
+
+/* Alert message for incorrect passphrase entered */
+"Login.Incorrect.Message" = "Incorrect passphrase, please try again.";
+
+/* Alert title for incorrect passphrase entered */
+"Login.Incorrect.Title" = "Login";
+
+/* Display string for profress with byte count */
+"MediaDownloads.Progress.Bytes" = "%lu%% of %@ downloaded";
+
+/* Display string for download done */
+"MediaDownloads.Progress.Done" = "Done";
+
+/* Display string for profress with item count */
+"MediaDownloads.Progress.Items" = "%lu of %lu items downloaded";
+
+/* Section header for the complete items */
+"MediaDownloads.SectionHeader.Complete" = "COMPLETE";
+
+/* Section header for the items in progress */
+"MediaDownloads.SectionHeader.InProgress" = "IN PROGRESS";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
+
+/* Delete post action cancel */
+"Posts.Draft.Delete.Cancel" = "Cancel";
+
+/* Delete post action delete */
+"Posts.Draft.Delete.Delete" = "Delete";
+
+/* Message when deleting post */
+"Posts.Draft.Delete.Message" = "It will be permanently removed.";
+
+/* Title when deleting post */
+"Posts.Draft.Delete.Title" = "Delete this post?";
+
+/* Description placeholder in drafts */
+"Posts.Draft.NoDescriptionPlaceholder" = "(No description set)";
+
+/* Title placeholder in drafts */
+"Posts.Draft.NoTitlePlaceholder" = "(No title set)";
+
+/* label for PIN setup */
+"Protect your data with a PIN." = "Protect your data with a PIN.";
+
+/* Button for setting up PIN */
+"Setup PIN" = "Setup PIN";
+
+/* Number of selected items for sharing */
+"Share.Feeds.SelectedItems" = "%lu Selected";
+
+/* Language name for Swedish */
+"Svenska" = "Svenska";
+
+/* Message for panic alert */
+"This will permanently clear all app data and close the app. This operation is irreversible!" = "This will permanently clear all app data and close the app. This operation is irreversible!";
+
+/* Label for alert for when tor is starting */
+"Tor starting" = "Tor starting";
+
+/* touchID prompt */
+"Use TouchID to unlock the app." = "Use TouchID to unlock the app.";
+
+/* dialog for complex passphrase creation */
+"You will now need to enter your password every time you launch the app." = "You will now need to enter your password every time you launch the app.";
+
