@@ -24,6 +24,12 @@ extern NSString *const kSCRFeedEdgeName;
 /** yapKay for the parent SCRFeed */
 @property (nonatomic, strong) NSString *feedYapKey;
 
+/** From feed */
+@property (nonatomic, strong) NSURL *commentsURL;
+@property (nonatomic) NSUInteger commentCount;
+@property (nonatomic, strong) NSString *paikID;
+
+/** User/app added */
 @property (nonatomic) BOOL isFavorite;
 @property (nonatomic) BOOL isReceived;
 

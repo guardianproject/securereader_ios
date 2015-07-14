@@ -22,6 +22,7 @@
 @end
 
 NSString *const kSecureReaderYapTestsRSSURL = @"http://test.fake/rss";
+NSString *const kSEcureReaderYapTestsRSSULWithComments = @"http://test.fake/rsscomments";
 
 @implementation SecureReaderYapTests
 
@@ -62,28 +63,75 @@ NSString *const kSecureReaderYapTestsRSSURL = @"http://test.fake/rss";
     [UMKMockURLProtocol enable];
     configuration.protocolClasses = @[[UMKMockURLProtocol class]];
     
-    NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"nytimes" ofType:@"xml"];
-    __block NSData *data = [[NSFileManager defaultManager] contentsAtPath:path];
-    UMKMockHTTPResponder *responder = [UMKMockHTTPResponder mockHTTPResponderWithStatusCode:200 body:data];
-    UMKMockHTTPRequest *request = [UMKMockHTTPRequest mockHTTPGetRequestWithURL:[NSURL URLWithString:kSecureReaderYapTestsRSSURL]];
-    request.responder = responder;
+    NSString *nyTimesPath = [[NSBundle bundleForClass:[self class]] pathForResource:@"nytimes" ofType:@"xml"];
+    __block NSData *nyTimesData = [[NSFileManager defaultManager] contentsAtPath:nyTimesPath];
     
-    [UMKMockURLProtocol expectMockRequest:request];
+    [UMKMockURLProtocol expectMockRequest:[self requestWithURL:[NSURL URLWithString:kSecureReaderYapTestsRSSURL] data:nyTimesData]];
     
+    NSString *secureReaderPath = [[NSBundle bundleForClass:[self class]] pathForResource:@"secureReader" ofType:@"xml"];
+    __block NSData *secureReaderData = [[NSFileManager defaultManager] contentsAtPath:secureReaderPath];
+    
+    [UMKMockURLProtocol expectMockRequest:[self requestWithURL:[NSURL URLWithString:kSEcureReaderYapTestsRSSULWithComments] data:secureReaderData]];
     
     return configuration;
 }
 
-- (void)importDefaultFeed:(void (^)(NSError *error))completion
+- (UMKMockHTTPRequest *)requestWithURL:(NSURL *)url data:(NSData *)data
+{
+    UMKMockHTTPResponder *responder = [UMKMockHTTPResponder mockHTTPResponderWithStatusCode:200 body:data];
+    UMKMockHTTPRequest *request = [UMKMockHTTPRequest mockHTTPGetRequestWithURL:url];
+    request.responder = responder;
+    return request;
+}
+
+- (void)importFeed:(NSURL *)url completion:(void (^)(NSError *error))completion
 {
     YapDatabaseConnection *connection = [self.databaseManager.database newConnection];
     NSURLSessionConfiguration *configuration = [self setupURLMock];
     SCRFeedFetcher *feedFetcher = [[SCRFeedFetcher alloc] initWithSessionConfiguration:configuration
-                                   readWriteYapConnection:connection];
-    
-    NSURL *url = [NSURL URLWithString:kSecureReaderYapTestsRSSURL];
+                                                                readWriteYapConnection:connection];
     
     [feedFetcher fetchFeedDataFromURL:url completionQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0) completion:completion];
+}
+
+- (void)importDefaultFeed:(void (^)(NSError *error))completion
+{
+    [self importFeed:[NSURL URLWithString:kSecureReaderYapTestsRSSURL] completion:completion];
+}
+
+- (void)importFeedWithComments:(void (^)(NSError *error))completion {
+    [self importFeed:[NSURL URLWithString:kSEcureReaderYapTestsRSSULWithComments] completion:completion];
+}
+
+- (void)testFeedWithComments
+{
+    NSString *path = [NSTemporaryDirectory() stringByAppendingPathComponent:NSStringFromSelector(_cmd)];
+    [self setupDatabseAtPath:path];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"feedWithComments"];
+    [self importFeedWithComments:^(NSError *error) {
+        NSLog(@"Error");
+        XCTAssertNil(error,@"Found Error %@",error);
+        
+        [[self.databaseManager.database newConnection] readWithBlock:^(YapDatabaseReadTransaction *transaction) {
+            
+            [transaction enumerateKeysAndObjectsInCollection:[SCRItem yapCollection] usingBlock:^(NSString *key, SCRItem *item, BOOL *stop) {
+                
+                XCTAssertTrue([item.commentsURL absoluteString].length > 0,@"No comments URL");
+                XCTAssertTrue([item.paikID length] > 0, @"No paik ID");
+                
+            }];
+        }];
+        
+        
+        [expectation fulfill];
+    }];
+    
+    [self waitForExpectationsWithTimeout:30 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@",error);
+        }
+
+    }];
 }
 
 - (void)testStorage {

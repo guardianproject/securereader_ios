@@ -18,7 +18,43 @@
 NSString *const kSCRMediaItemEdgeName = @"kSCRMediaItemEdgeName";
 NSString *const kSCRFeedEdgeName      = @"kSCRFeedEdgeName";
 
+NSString *const kSCRFeedWfwPrefix = @"wfw";
+NSString *const kSCRFeedWfwNameSpace = @"http://wellformedweb.org/CommentAPI/";
+
+NSString *const kSCRFeedSlashPrefix = @"slash";
+NSString *const kSCRFeedSlashNameSpace = @"http://purl.org/rss/1.0/modules/slash/";
+
+NSString *const kSCRFeedPaikPrefix = @"paik";
+NSString *const kSCRFeedPaikNameSpace = @"http://securereader.guardianproject.info/paik";
+
 @implementation SCRItem
+
+#pragma - mark RSSItem method overrides
+- (instancetype)initWithFeedType:(RSSFeedType)feedType xmlElement:(ONOXMLElement *)xmlElement mediaItemClass:(Class)mediaItemClass
+{
+    if (self = [super initWithFeedType:feedType xmlElement:xmlElement mediaItemClass:mediaItemClass]) {
+        [self parseSpecialFeedValues:xmlElement];
+    }
+    return  self;
+}
+
+- (void)parseSpecialFeedValues:(ONOXMLElement *)xmlElement
+{
+    ONOXMLDocument *document = xmlElement.document;
+    
+    [document definePrefix:kSCRFeedWfwPrefix forDefaultNamespace:kSCRFeedWfwNameSpace];
+    [document definePrefix:kSCRFeedSlashPrefix forDefaultNamespace:kSCRFeedSlashNameSpace];
+    [document definePrefix:kSCRFeedPaikPrefix forDefaultNamespace:kSCRFeedPaikNameSpace];
+    
+    ONOXMLElement *wfw = [xmlElement firstChildWithXPath:[NSString stringWithFormat:@"%@:commentRss",kSCRFeedWfwPrefix]];
+    self.commentsURL = [NSURL URLWithString:[wfw stringValue]];
+    
+    ONOXMLElement *countElement = [xmlElement firstChildWithXPath:[NSString stringWithFormat:@"%@:comments",kSCRFeedSlashPrefix]];
+    self.commentCount = [countElement numberValue].unsignedIntegerValue;
+    
+    ONOXMLElement *paikIDElement = [xmlElement firstChildWithXPath:[NSString stringWithFormat:@"%@:id",kSCRFeedPaikPrefix]];
+    self.paikID = [paikIDElement stringValue];
+}
 
 #pragma mark SRCYapObject methods
 

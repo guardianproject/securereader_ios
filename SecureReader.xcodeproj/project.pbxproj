@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3BB24D68EE03667F19CC9704 /* libPods-SecureReaderTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5735327C43C1B3AC8034225E /* libPods-SecureReaderTests.a */; };
+		63215AF71B546A7F0040A1A0 /* secureReader.xml in Resources */ = {isa = PBXBuildFile; fileRef = 63215AF61B546A7F0040A1A0 /* secureReader.xml */; };
 		632A10831ACF528500E05075 /* SCRNetworkFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 632A10821ACF528500E05075 /* SCRNetworkFetcher.m */; };
 		633AB7361A9FE8E600A0F3F9 /* SCRMediaItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 633AB7351A9FE8E600A0F3F9 /* SCRMediaItem.m */; };
 		633AB7391A9FE9A800A0F3F9 /* SCRMediaFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 633AB7381A9FE9A800A0F3F9 /* SCRMediaFetcher.m */; };
@@ -150,6 +151,7 @@
 /* Begin PBXFileReference section */
 		5735327C43C1B3AC8034225E /* libPods-SecureReaderTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SecureReaderTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5982780EDA69C66A355A7531 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		63215AF61B546A7F0040A1A0 /* secureReader.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = secureReader.xml; path = "Test Assets/secureReader.xml"; sourceTree = "<group>"; };
 		632A10811ACF528500E05075 /* SCRNetworkFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRNetworkFetcher.h; sourceTree = "<group>"; };
 		632A10821ACF528500E05075 /* SCRNetworkFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRNetworkFetcher.m; sourceTree = "<group>"; };
 		633AB7341A9FE8E600A0F3F9 /* SCRMediaItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRMediaItem.h; sourceTree = "<group>"; };
@@ -431,6 +433,7 @@
 		63775E871AAF9602006CE553 /* Test Assets */ = {
 			isa = PBXGroup;
 			children = (
+				63215AF61B546A7F0040A1A0 /* secureReader.xml */,
 				63775E921AB0FFDE006CE553 /* nytimes.xml */,
 				63775E881AAF97B4006CE553 /* Octocat.png */,
 			);
@@ -967,6 +970,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				63775E891AAF97B4006CE553 /* Octocat.png in Resources */,
+				63215AF71B546A7F0040A1A0 /* secureReader.xml in Resources */,
 				920C8D971AE934A500FAF494 /* InfoPlist.strings in Resources */,
 				63775E931AB0FFDE006CE553 /* nytimes.xml in Resources */,
 			);

@@ -53,7 +53,6 @@ static NSString * const SCRPassphraseService    = @"info.guardianproject.SecureR
     if (storeInKeychain) {
         [SSKeychain setPassword:databasePassphrase forService:SCRPassphraseService account:SCRDatabasePassphraseKey];
     } else {
-        [self clearDatabasePassphrase];
         self.inMemoryPassphrase = databasePassphrase;
     }
 }
@@ -70,6 +69,9 @@ static NSString * const SCRPassphraseService    = @"info.guardianproject.SecureR
 
 /** Removes passphrase from memory and/or keychain */
 - (void) clearDatabasePassphrase {
+    
+    //This is just around for finding when the passphrase is cleared unintentionaly
+    @throw [NSException exceptionWithName:@"SCRPassPhraseCleared" reason:@"The passphrase was attempted to be cleared from memory and keychainn" userInfo:nil];
     [self clearDatabasePassphraseFromMemory];
     [self clearDatabasePassphraseFromKeychain];
 }
