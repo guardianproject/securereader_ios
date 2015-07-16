@@ -206,6 +206,8 @@
 		922DC27E19FE920C00FB1274 /* SCRFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SCRFeedViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		922DC27F19FE920C00FB1274 /* SCRFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SCRFeedViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		9231A9D81AF0CEFC007C3597 /* SCRItemCellMediaDownloads.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SCRItemCellMediaDownloads.xib; sourceTree = "<group>"; };
+		923658AB1B580431009778EC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/FeedCategories.strings; sourceTree = "<group>"; };
+		923658AC1B580436009778EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/FeedCategories.strings; sourceTree = "<group>"; };
 		9239049D1A07E365004EEE7E /* background_debut_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_debut_light.png; sourceTree = "<group>"; };
 		923FFFA01AA4A75600BC83D6 /* SCRItemTagCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SCRItemTagCell.xib; sourceTree = "<group>"; };
 		923FFFA21AA4AA2B00BC83D6 /* SCRItemTagCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRItemTagCell.h; sourceTree = "<group>"; };
@@ -299,7 +301,6 @@
 		929EEF9519F549080020BD75 /* SCRNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SCRNavigationController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		92A4D2A31A31F1D40091479A /* SCRPanicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRPanicViewController.h; sourceTree = "<group>"; };
 		92A4D2A41A31F1D40091479A /* SCRPanicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRPanicViewController.m; sourceTree = "<group>"; };
-		92A650F81B57BAB100CB9DFB /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/FeedCategories.strings; sourceTree = "<group>"; };
 		92A650FA1B57BAED00CB9DFB /* en-US */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-US"; path = "en-US.lproj/FeedCategories.strings"; sourceTree = "<group>"; };
 		92A650FB1B57BAEF00CB9DFB /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/FeedCategories.strings; sourceTree = "<group>"; };
 		92A650FE1B5802C400CB9DFB /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/FeedCategories.strings; sourceTree = "<group>"; };
@@ -1215,10 +1216,11 @@
 		92A650F91B57BAB100CB9DFB /* FeedCategories.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				92A650F81B57BAB100CB9DFB /* Base */,
 				92A650FA1B57BAED00CB9DFB /* en-US */,
 				92A650FB1B57BAEF00CB9DFB /* sv */,
 				92A650FE1B5802C400CB9DFB /* ar */,
+				923658AB1B580431009778EC /* en */,
+				923658AC1B580436009778EC /* Base */,
 			);
 			name = FeedCategories.strings;
 			sourceTree = "<group>";

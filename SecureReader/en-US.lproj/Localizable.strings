@@ -46,6 +46,9 @@
 /* Shown when error creating wordpress acct */
 "Error Creating Account" = "Error Creating Account";
 
+/* Language name for Farsi */
+"Farsi" = "Farsi";
+
 /* Navbar title for all feeds */
 "FeedList.Navbar.AllFeeds" = "All Feeds";
 
