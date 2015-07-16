@@ -54,6 +54,31 @@
 
 - (BOOL) shouldPerformSegueWithIdentifier:(nonnull NSString *)identifier sender:(nullable id)sender {
     if ([identifier isEqualToString:@"finishFeedCuration"]) {
+        
+        // Save all subscribed feeds to a property list so that we can
+        // add them later, when we have created the DB. Only add hashes for the URLs, to avoid
+        // plain text URLs being kept.
+        NSURL *tmpDirURL = [NSURL fileURLWithPath:NSTemporaryDirectory() isDirectory:YES];
+        NSURL *processedFileURL = [[tmpDirURL URLByAppendingPathComponent:@"filtered"] URLByAppendingPathExtension:@"opml"];
+        
+        NSMutableArray *array = [NSMutableArray new];
+        for (SCRFeed *feed in self.feeds)
+        {
+            if (feed.subscribed)
+                [array addObject:[[feed.xmlURL absoluteString] scr_md5]];
+        }
+        
+        NSString *errorStr;
+        NSData *dataRep = [NSPropertyListSerialization dataFromPropertyList:array
+                                                                     format:NSPropertyListXMLFormat_v1_0
+                                                           errorDescription:&errorStr];
+        if (!dataRep) {
+            // Handle error
+        }
+        else{
+            [dataRep writeToURL:processedFileURL atomically:YES];
+        }
+        
         // Setup db on first run
         [[SCRTouchLock sharedInstance] deletePasscode];
         NSString *passphrase = [[SCRPassphraseManager sharedInstance] generateNewPassphrase];
@@ -65,35 +90,6 @@
     }
     return YES;
 }
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    // Save all subscribed feeds to a property list so that we can
-    // add them later, when we have created the DB. Only add hashes for the URLs, to avoid
-    // plain text URLs being kept.
-    NSURL *tmpDirURL = [NSURL fileURLWithPath:NSTemporaryDirectory() isDirectory:YES];
-    NSURL *processedFileURL = [[tmpDirURL URLByAppendingPathComponent:@"filtered"] URLByAppendingPathExtension:@"opml"];
-
-    NSMutableArray *array = [NSMutableArray new];
-    for (SCRFeed *feed in self.feeds)
-    {
-        if (feed.subscribed)
-            [array addObject:[[feed.xmlURL absoluteString] scr_md5]];
-    }
-    
-    NSString *errorStr;
-    NSData *dataRep = [NSPropertyListSerialization dataFromPropertyList:array
-                                                                 format:NSPropertyListXMLFormat_v1_0
-                                                       errorDescription:&errorStr];
-    if (!dataRep) {
-        // Handle error
-    }
-    else{
-        [dataRep writeToURL:processedFileURL atomically:YES];
-    }
-    
-}
-
 
 - (void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
