@@ -2346,9 +2346,36 @@ It also </string>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="QM5-ZU-zls">
                                 <rect key="frame" x="0.0" y="20" width="600" height="530"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <view key="tableHeaderView" contentMode="scaleToFill" id="PCn-Aq-yUk">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Curate your daily feed." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iSy-oq-E2J">
+                                            <rect key="frame" x="8" y="8" width="584" height="28"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="theme" value="OnboardingTextContentStyle"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="bottomMargin" secondItem="iSy-oq-E2J" secondAttribute="bottom" id="G27-v9-M7I"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="iSy-oq-E2J" secondAttribute="trailing" id="M1N-ql-Z1a"/>
+                                        <constraint firstItem="iSy-oq-E2J" firstAttribute="top" secondItem="PCn-Aq-yUk" secondAttribute="topMargin" id="M5z-Jc-Nu9"/>
+                                        <constraint firstItem="iSy-oq-E2J" firstAttribute="leading" secondItem="PCn-Aq-yUk" secondAttribute="leadingMargin" id="isV-me-SVp"/>
+                                    </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="theme" value="OnboardingScreen3HeaderStyle"/>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="theme" value="OnboardingScreen3Style"/>
+                                </userDefinedRuntimeAttributes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5M5-5V-l9a">
+                            <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" misplaced="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5M5-5V-l9a">
                                 <rect key="frame" x="0.0" y="550" width="543" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="pbV-Pk-4ck"/>
@@ -2364,13 +2391,13 @@ It also </string>
                                     <action selector="getStartedButtonClicked:" destination="CNQ-Pl-C5o" eventType="touchUpInside" id="pFI-5r-rKA"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qoO-C7-NPn">
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qoO-C7-NPn">
                                 <rect key="frame" x="543" y="550" width="57" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="x7m-IN-bbc"/>
                                 </constraints>
                                 <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="20" maxY="0.0"/>
-                                <state key="normal" title="Done">
+                                <state key="normal" title="DONE">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -2382,7 +2409,6 @@ It also </string>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="QM5-ZU-zls" firstAttribute="leading" secondItem="yH5-q6-8bk" secondAttribute="leading" id="2WG-55-hk2"/>
                             <constraint firstItem="93A-Ur-BqO" firstAttribute="top" secondItem="qoO-C7-NPn" secondAttribute="bottom" id="9GX-ze-2NR"/>

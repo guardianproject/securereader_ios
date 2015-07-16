@@ -16,6 +16,12 @@
 /* Post screen: Alert title, get image from gallery */
 "AddPost.PickImage.PickSource.Title" = "Välj Bild";
 
+/* No comment provided by engineer. */
+"OK" = "OK";
+
+/* Title for panic alert */
+"Clear Data" = "Clear Data";
+
 /* Message for create passphrase, db failure */
 "CreatePassphrase.DBError.Message" = "Ett databasfel inträffade.";
 
@@ -28,8 +34,17 @@
 /* Title for create passphrase, mismatched passwords */
 "CreatePassphrase.Mismatched.Title" = "Skapa Lösenord";
 
+/* panic delete button */
+"Delete" = "Delete";
+
+/* for sharing a link to the app, e.g. Download Courier. %@ will be replaced by the app name at runtime. */
+"Download %@" = "Download %@";
+
 /* Language name for English */
 "English" = "English";
+
+/* Shown when error creating wordpress acct */
+"Error Creating Account" = "Error Creating Account";
 
 /* Navbar title for all feeds */
 "FeedList.Navbar.AllFeeds" = "Alla Flöden";
@@ -46,6 +61,12 @@
 /* Done with feed search button */
 "FeedSearch.Button.Done" = "Klar";
 
+/* Hint for clear app data */
+"HelpHint.ClearAppData" = "HelpHint.ClearAppData";
+
+/* Hint for display photos */
+"HelpHint.DisplayPhotos" = "HelpHint.DisplayPhotos";
+
 /* Author name string */
 "ItemPage.AuthorName" = "AV %@";
 
@@ -54,9 +75,6 @@
 
 /* Alert title for incorrect passphrase entered */
 "Login.Incorrect.Title" = "Logga in";
-
-/* prompt for TouchID */
-"Login.UnlockWithTouchID" = "Lås upp appen med TouchID";
 
 /* Display string for profress with byte count */
 "MediaDownloads.Progress.Bytes" = "%lu%% av %@ nedladdat";
@@ -76,6 +94,12 @@
 /* No comment provided by engineer. */
 "OK" = "OK";
 
+/* wordpress acct error */
+"Please try again later." = "Please try again later.";
+
+/* Progress for posting a new story to wordpress */
+"Posting Story" = "Posting Story";
+
 /* Delete post action cancel */
 "Posts.Draft.Delete.Cancel" = "Avbryt";
 
@@ -94,12 +118,36 @@
 /* Title placeholder in drafts */
 "Posts.Draft.NoTitlePlaceholder" = "(Rubrik saknas)";
 
+/* label for PIN setup */
+"Protect your data with a PIN." = "Protect your data with a PIN.";
+
+/* Button for setting up PIN */
+"Setup PIN" = "Setup PIN";
+
 /* Number of selected items for sharing */
 "Share.Feeds.SelectedItems" = "%lu Markerade";
 
 /* Language name for Swedish */
 "Svenska" = "Svenska";
 
+/* Message for panic alert */
+"This will permanently clear all app data and close the app. This operation is irreversible!" = "This will permanently clear all app data and close the app. This operation is irreversible!";
+
+/* Shown when Tor is connected and enabled. */
+"Tor is running and enabled." = "Tor is running and enabled.";
+
+/* Shown when Tor is still connected but disabled in settings. */
+"Tor is running but disabled. Force quit to stop." = "Tor is running but disabled. Force quit to stop.";
+
 /* Label for alert for when tor is starting */
 "Tor starting" = "Tor starting";
+
+/* shown when uploading images to wordpress */
+"Uploading Images" = "Uploading Images";
+
+/* touchID prompt */
+"Use TouchID to unlock the app." = "Use TouchID to unlock the app.";
+
+/* dialog for complex passphrase creation */
+"You will now need to enter your password every time you launch the app." = "You will now need to enter your password every time you launch the app.";
 

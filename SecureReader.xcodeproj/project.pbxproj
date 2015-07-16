@@ -96,6 +96,7 @@
 		929EEF9319F5110D0020BD75 /* SCRCreatePassphraseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 929EEF9219F5110D0020BD75 /* SCRCreatePassphraseViewController.m */; };
 		929EEF9619F549080020BD75 /* SCRNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 929EEF9519F549080020BD75 /* SCRNavigationController.m */; };
 		92A4D2A51A31F1D40091479A /* SCRPanicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A4D2A41A31F1D40091479A /* SCRPanicViewController.m */; };
+		92A650F71B57BAB100CB9DFB /* FeedCategories.strings in Resources */ = {isa = PBXBuildFile; fileRef = 92A650F91B57BAB100CB9DFB /* FeedCategories.strings */; };
 		92AE0DB81ACD2F70006CE1B8 /* SCRPostItemCellDraft.m in Sources */ = {isa = PBXBuildFile; fileRef = 92AE0DB71ACD2F70006CE1B8 /* SCRPostItemCellDraft.m */; };
 		92B23C491A5D303800FFD963 /* SCRMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B23C481A5D303800FFD963 /* SCRMainViewController.m */; };
 		92B23C4C1A5D442F00FFD963 /* SCRAllFeedsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B23C4B1A5D442F00FFD963 /* SCRAllFeedsViewController.m */; };
@@ -302,6 +303,9 @@
 		929EEF9519F549080020BD75 /* SCRNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SCRNavigationController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		92A4D2A31A31F1D40091479A /* SCRPanicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRPanicViewController.h; sourceTree = "<group>"; };
 		92A4D2A41A31F1D40091479A /* SCRPanicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRPanicViewController.m; sourceTree = "<group>"; };
+		92A650F81B57BAB100CB9DFB /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/FeedCategories.strings; sourceTree = "<group>"; };
+		92A650FA1B57BAED00CB9DFB /* en-US */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-US"; path = "en-US.lproj/FeedCategories.strings"; sourceTree = "<group>"; };
+		92A650FB1B57BAEF00CB9DFB /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/FeedCategories.strings; sourceTree = "<group>"; };
 		92AE0DB61ACD2F70006CE1B8 /* SCRPostItemCellDraft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRPostItemCellDraft.h; sourceTree = "<group>"; };
 		92AE0DB71ACD2F70006CE1B8 /* SCRPostItemCellDraft.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRPostItemCellDraft.m; sourceTree = "<group>"; };
 		92B23C471A5D303800FFD963 /* SCRMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRMainViewController.h; sourceTree = "<group>"; };
@@ -593,6 +597,7 @@
 				929EEF4C19F4EB100020BD75 /* main.m */,
 				635B8C7E1AF96954009D976C /* default.opml */,
 				920C8DA31AE93A6D00FAF494 /* Localizable.stringsdict */,
+				92A650F91B57BAB100CB9DFB /* FeedCategories.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -954,6 +959,7 @@
 				920C8D881AE8DBF700FAF494 /* Localizable.strings in Resources */,
 				924BBFC01A08DCEB00A32940 /* InAppSettings.bundle in Resources */,
 				9279F80A1A67FBE50029572B /* SCRItemCellLandscapePhotos.xib in Resources */,
+				92A650F71B57BAB100CB9DFB /* FeedCategories.strings in Resources */,
 				920C421C1ADE5243005AB590 /* SCRSwipeUtilityButtons.xib in Resources */,
 				925FF9821B0F645A00CBB148 /* onboard-category.svg in Resources */,
 				9284FA771A3899730085638D /* ic_panic_lg@2x.png in Resources */,
@@ -1218,6 +1224,16 @@
 				927316591B4EF55B0041A241 /* en-US */,
 			);
 			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		92A650F91B57BAB100CB9DFB /* FeedCategories.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				92A650F81B57BAB100CB9DFB /* Base */,
+				92A650FA1B57BAED00CB9DFB /* en-US */,
+				92A650FB1B57BAEF00CB9DFB /* sv */,
+			);
+			name = FeedCategories.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
