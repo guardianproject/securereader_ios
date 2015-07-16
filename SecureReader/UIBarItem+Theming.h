@@ -11,7 +11,6 @@
 
 @interface UIBarItem (Theming)
 
-@property (nonatomic, assign) NSString *theme UI_APPEARANCE_SELECTOR;
-- (void) setTheme:(NSString*)theme;
+@property (nonatomic, strong) IBInspectable NSString *theme;
 
 @end

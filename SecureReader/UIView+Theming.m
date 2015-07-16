@@ -9,8 +9,6 @@
 
 @implementation UIView (Theming)
 
-@dynamic theme;
-
 - (NSString *)theme
 {
     return [SCRTheme getThemeForControl:self];

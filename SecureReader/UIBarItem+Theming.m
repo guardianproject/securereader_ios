@@ -11,8 +11,6 @@
 
 @implementation UIBarItem (Theming)
 
-@dynamic theme;
-
 - (NSString *)theme
 {
     return [SCRTheme getThemeForControl:self];
