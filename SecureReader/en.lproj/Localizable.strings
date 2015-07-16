@@ -17,7 +17,7 @@
 "AddPost.PickImage.PickSource.Title" = "AddPost.PickImage.PickSource.Title";
 
 /* No comment provided by engineer. */
-"Cancel" = "Cancel";
+"OK" = "OK";
 
 /* Title for panic alert */
 "Clear Data" = "Clear Data";
@@ -66,9 +66,6 @@
 
 /* Hint for clear app data */
 "HelpHint.ClearAppData" = "HelpHint.ClearAppData";
-
-/* Hint for display photos */
-"HelpHint.DisplayPhotos" = "HelpHint.DisplayPhotos";
 
 /* Author name string */
 "ItemPage.AuthorName" = "ItemPage.AuthorName";

@@ -67,9 +67,6 @@
 /* Hint for clear app data */
 "HelpHint.ClearAppData" = "HelpHint.ClearAppData";
 
-/* Hint for display photos */
-"HelpHint.DisplayPhotos" = "HelpHint.DisplayPhotos";
-
 /* Author name string */
 "ItemPage.AuthorName" = "AV %@";
 

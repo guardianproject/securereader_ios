@@ -65,10 +65,7 @@
 "FeedSearch.Button.Done" = "Done";
 
 /* Hint for clear app data */
-"HelpHint.ClearAppData" = "Clear everything in the app, including passwords in one tap!";
-
-/* Hint for display photos */
-"HelpHint.DisplayPhotos" = "Turn photos off to sync text only. This helps you use less data.";
+"HelpHint.ClearAppData" = "Delete all information in the app including articles, feeds, posts and passwords.";
 
 /* Author name string */
 "ItemPage.AuthorName" = "BY %@";
