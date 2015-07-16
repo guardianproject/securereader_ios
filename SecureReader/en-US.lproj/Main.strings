@@ -1,4 +1,3 @@
-
 /* Class = "UIViewController"; title = "Create Nickname"; ObjectID = "0gb-eb-Y4t"; */
 "0gb-eb-Y4t.title" = "Create Nickname";
 
@@ -10,9 +9,6 @@
 
 /* Class = "UITableViewController"; title = "Settings"; ObjectID = "1qY-y1-unP"; */
 "1qY-y1-unP.title" = "Settings";
-
-/* Class = "UILabel"; text = "Share App"; ObjectID = "2Xw-SW-kOp"; */
-"2Xw-SW-kOp.text" = "Share App";
 
 /* Class = "UITextField"; placeholder = "Nickname"; ObjectID = "3lV-Xx-htH"; */
 "3lV-Xx-htH.placeholder" = "Nickname";
@@ -29,8 +25,8 @@
 /* Class = "UIViewController"; title = "Allow Posts"; ObjectID = "6kG-WQ-rUL"; */
 "6kG-WQ-rUL.title" = "Allow Posts";
 
-/* Class = "UIButton"; normalTitle = "Next"; ObjectID = "6yP-Wd-LOe"; */
-"6yP-Wd-LOe.normalTitle" = "Next";
+/* Class = "UIButton"; normalTitle = "NEXT"; ObjectID = "6yP-Wd-LOe"; */
+"6yP-Wd-LOe.normalTitle" = "NEXT";
 
 /* Class = "UINavigationItem"; title = "All Feeds"; ObjectID = "97d-nj-rXa"; */
 "97d-nj-rXa.title" = "All Feeds";
@@ -47,14 +43,14 @@
 /* Class = "UINavigationItem"; title = "Share the News"; ObjectID = "Bfs-Rk-67O"; */
 "Bfs-Rk-67O.title" = "Share the News";
 
-/* Class = "UIButton"; normalTitle = "Connect Tor"; ObjectID = "CZ4-uj-rjT"; */
-"CZ4-uj-rjT.normalTitle" = "Connect Tor";
+/* Class = "UIButton"; normalTitle = "CONNECT TOR"; ObjectID = "CZ4-uj-rjT"; */
+"CZ4-uj-rjT.normalTitle" = "CONNECT TOR";
 
 /* Class = "UINavigationItem"; title = "Language"; ObjectID = "Ctb-zM-vlQ"; */
 "Ctb-zM-vlQ.title" = "Language";
 
-/* Class = "UITextView"; text = "Paik provides a feed of noteworthy news to its community. Every post created will undergo a curation process before it is shared in the official Paik news feed.  Please read the <a href=\"#terms\">Terms and Conditions</a> to understand the rights you grant when you share information with Paik."; ObjectID = "DQm-Tf-bTc"; */
-"DQm-Tf-bTc.text" = "Paik provides a feed of noteworthy news to its community. Every post created will undergo a curation process before it is shared in the official Paik news feed.  Please read the <a href=\"#terms\">Terms and Conditions</a> to understand the rights you grant when you share information with Paik.";
+/* Class = "UITextView"; text = "Paik provides a feed of noteworthy news to its community. Every post created will undergo a curation process before it is shared in the official Paik news feed.\n\nPlease read the <a href=\"#terms\">Terms and Conditions</a> to understand the rights you grant when you share information with Paik."; ObjectID = "DQm-Tf-bTc"; */
+"DQm-Tf-bTc.text" = "Paik provides a feed of noteworthy news to its community. Every post created will undergo a curation process before it is shared in the official Paik news feed.\n\nPlease read the <a href=\"#terms\">Terms and Conditions</a> to understand the rights you grant when you share information with Paik.";
 
 /* Class = "UIButton"; normalTitle = "DELETE"; ObjectID = "EB2-33-vKV"; */
 "EB2-33-vKV.normalTitle" = "DELETE";
@@ -128,14 +124,11 @@
 /* Class = "UIViewController"; title = "Add Post"; ObjectID = "RIg-BG-i7z"; */
 "RIg-BG-i7z.title" = "Add Post";
 
-/* Class = "UILabel"; text = "Tor respects your privacy by concealing your identity as the app sends and receives infromation over the internet.\n\nIt also helps get you access to information that may typically be unavailable in your geography."; ObjectID = "RXC-M6-512"; */
-"RXC-M6-512.text" = "Tor respects your privacy by concealing your identity as the app sends and receives infromation over the internet.\n\nIt also helps get you access to information that may typically be unavailable in your geography.";
-
 /* Class = "UIViewController"; title = "Tor"; ObjectID = "S3m-Xa-Cvg"; */
 "S3m-Xa-Cvg.title" = "Tor";
 
-/* Class = "UILabel"; text = "Paik is designed to work with Tor. Would you like to use it?"; ObjectID = "SbE-YW-Mv9"; */
-"SbE-YW-Mv9.text" = "Paik is designed to work with Tor. Would you like to use it?";
+/* Class = "UILabel"; text = "Designed to work with Tor"; ObjectID = "SbE-YW-Mv9"; */
+"SbE-YW-Mv9.text" = "Designed to work with Tor";
 
 /* Class = "UINavigationItem"; title = "Panic"; ObjectID = "UQp-yT-RyE"; */
 "UQp-yT-RyE.title" = "Panic";
@@ -164,14 +157,23 @@
 /* Class = "UILabel"; text = "COMMENT"; ObjectID = "YKR-G0-z5o"; */
 "YKR-G0-z5o.text" = "COMMENT";
 
+/* Class = "UISegmentedControl"; ZGv-WW-YVA.segmentTitles[0] = "Readability"; ObjectID = "ZGv-WW-YVA"; */
+"ZGv-WW-YVA.segmentTitles[0]" = "Readability";
+
+/* Class = "UISegmentedControl"; ZGv-WW-YVA.segmentTitles[1] = "Web"; ObjectID = "ZGv-WW-YVA"; */
+"ZGv-WW-YVA.segmentTitles[1]" = "Web";
+
 /* Class = "UIButton"; normalTitle = "VIEW"; ObjectID = "ZI8-O9-DZX"; */
 "ZI8-O9-DZX.normalTitle" = "VIEW";
 
-/* Class = "UIButton"; normalTitle = "Not Now"; ObjectID = "Zvv-Vz-DTZ"; */
-"Zvv-Vz-DTZ.normalTitle" = "Not Now";
+/* Class = "UIButton"; normalTitle = "NOT NOW"; ObjectID = "Zvv-Vz-DTZ"; */
+"Zvv-Vz-DTZ.normalTitle" = "NOT NOW";
 
 /* Class = "UIViewController"; title = "Terms and Conditions"; ObjectID = "Zyu-DA-fGY"; */
 "Zyu-DA-fGY.title" = "Terms and Conditions";
+
+/* Class = "UIButton"; normalTitle = "View Full Article"; ObjectID = "aVq-GA-w0V"; */
+"aVq-GA-w0V.normalTitle" = "View Full Article";
 
 /* Class = "UIViewController"; title = "Placeholder"; ObjectID = "aZE-v5-VRg"; */
 "aZE-v5-VRg.title" = "Placeholder";
@@ -191,9 +193,6 @@
 /* Class = "UIButton"; normalTitle = "Continue"; ObjectID = "c4l-7L-fKc"; */
 "c4l-7L-fKc.normalTitle" = "Continue";
 
-/* Class = "UITableViewSection"; headerTitle = "LOCAL SHARE"; ObjectID = "cMG-Cc-h8v"; */
-"cMG-Cc-h8v.headerTitle" = "LOCAL SHARE";
-
 /* Class = "UIButton"; normalTitle = "GOT IT"; ObjectID = "cRf-gD-m8v"; */
 "cRf-gD-m8v.normalTitle" = "GOT IT";
 
@@ -205,6 +204,9 @@
 
 /* Class = "UIButton"; normalTitle = "Set Passphrase"; ObjectID = "gCH-BV-rVN"; */
 "gCH-BV-rVN.normalTitle" = "Set Passphrase";
+
+/* Class = "UILabel"; text = "Curate your daily feed."; ObjectID = "iSy-oq-E2J"; */
+"iSy-oq-E2J.text" = "Curate your daily feed.";
 
 /* Class = "UITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."; ObjectID = "iU6-FO-cfp"; */
 "iU6-FO-cfp.text" = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.";
@@ -218,14 +220,11 @@
 /* Class = "UINavigationItem"; title = "Receive Share"; ObjectID = "kvR-28-70Q"; */
 "kvR-28-70Q.title" = "Receive Share";
 
-/* Class = "UILabel"; text = "Receive a Share"; ObjectID = "l7n-LK-uGc"; */
-"l7n-LK-uGc.text" = "Receive a Share";
-
 /* Class = "UIButton"; normalTitle = "Login"; ObjectID = "o0V-O8-hvd"; */
 "o0V-O8-hvd.normalTitle" = "Login";
 
-/* Class = "UILabel"; text = "Read globally. Share locally without the internet!"; ObjectID = "p6Q-aK-Qil"; */
-"p6Q-aK-Qil.text" = "Read globally. Share locally without the internet!";
+/* Class = "UILabel"; text = "Your favorite RSS feeds in one spot"; ObjectID = "p6Q-aK-Qil"; */
+"p6Q-aK-Qil.text" = "Your favorite RSS feeds in one spot";
 
 /* Class = "UIButton"; normalTitle = "212"; ObjectID = "pKg-um-IG3"; */
 "pKg-um-IG3.normalTitle" = "212";
@@ -233,8 +232,8 @@
 /* Class = "UIBarButtonItem"; title = "Share"; ObjectID = "qhX-o0-Xc6"; */
 "qhX-o0-Xc6.title" = "Share";
 
-/* Class = "UIButton"; normalTitle = "Done"; ObjectID = "qoO-C7-NPn"; */
-"qoO-C7-NPn.normalTitle" = "Done";
+/* Class = "UIButton"; normalTitle = "DONE"; ObjectID = "qoO-C7-NPn"; */
+"qoO-C7-NPn.normalTitle" = "DONE";
 
 /* Class = "UILabel"; text = "Protect your privacy."; ObjectID = "sTr-d0-IAJ"; */
 "sTr-d0-IAJ.text" = "Protect your privacy.";
@@ -263,14 +262,9 @@
 /* Class = "UISegmentedControl"; yFE-c1-6DC.segmentTitles[1] = "Explore"; ObjectID = "yFE-c1-6DC"; */
 "yFE-c1-6DC.segmentTitles[1]" = "Explore";
 
-/* Class = "UILabel"; text = "Using Paik's Secure Share feature, you can share stories with people nearby, while offline."; ObjectID = "yc2-2b-XFL"; */
-"yc2-2b-XFL.text" = "Using Paik's Secure Share feature, you can share stories with people nearby, while offline.";
-
 /* Class = "UIViewController"; title = "Panic"; ObjectID = "z6q-7u-hD7"; */
 "z6q-7u-hD7.title" = "Panic";
 
-/* Class = "UILabel"; text = "Stories Received"; ObjectID = "zJ0-AS-4JT"; */
-"zJ0-AS-4JT.text" = "Stories Received";
-
 /* Class = "UITableViewController"; title = "Media Downloads"; ObjectID = "zOI-2E-a1E"; */
 "zOI-2E-a1E.title" = "Media Downloads";
+
