@@ -7,20 +7,22 @@
 </head>
 <body>
 
-<outline text="News">
-    <outline category="en_US" text="VOA News" htmlUrl="http://www.voanews.com/api/epiqq" xmlUrl="http://www.voanews.com/api/epiqq"/>
+<outline text="World News">
     <outline category="en_US" text="The Guardian World News" htmlUrl="http://feeds.theguardian.com/theguardian/world/rss" xmlUrl="http://feeds.theguardian.com/theguardian/world/rss"/>
+</outline>
+<outline text="National News">
+    <outline category="en_US" text="VOA News" htmlUrl="http://www.voanews.com/api/epiqq" xmlUrl="http://www.voanews.com/api/epiqq"/>
+</outline>
+<outline text="Arts &amp; Culture">
     <outline category="en_US" text="Washington Post World News" htmlUrl="http://feeds.washingtonpost.com/rss/world" xmlUrl="http://feeds.washingtonpost.com/rss/world"/>
+</outline>
+<outline text="Business">
+    <outline text="The Guardian - Business news" xmlUrl="http://www.theguardian.com/uk/business" tyle="rss" />
 </outline>
 <outline text="Sports">
     <outline text="The Guardian" xmlUrl="http://www.theguardian.com/uk/sport/rss" />
 </outline>
-<outline text="Entertainment" />
-<outline text="Science and Technology" />
-<outline text="Business and Finance">
-    <outline text="The Guardian - Business news" xmlUrl="http://www.theguardian.com/uk/business" tyle="rss" />
-</outline>
-<outline text="Popular">
+<outline text="Technology">
     <outline text="Schulman Show – Sveriges största tv-program på nätet " xmlUrl="http://www.aftonbladet.se/podcaster/article7226533.ab?service=podcast" type="rss" />
 </outline>
 
