@@ -36,8 +36,6 @@
 		9209378F1B1501CB003E030C /* SCRCommentsBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9209378E1B1501CB003E030C /* SCRCommentsBarButton.m */; };
 		920C421C1ADE5243005AB590 /* SCRSwipeUtilityButtons.xib in Resources */ = {isa = PBXBuildFile; fileRef = 920C421B1ADE5243005AB590 /* SCRSwipeUtilityButtons.xib */; };
 		920C8D881AE8DBF700FAF494 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 920C8D8A1AE8DBF700FAF494 /* Localizable.strings */; };
-		920C8D971AE934A500FAF494 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 920C8D991AE934A500FAF494 /* InfoPlist.strings */; };
-		920C8D9C1AE934A600FAF494 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 920C8D9E1AE934A600FAF494 /* InfoPlist.strings */; };
 		920C8DA11AE93A6D00FAF494 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 920C8DA31AE93A6D00FAF494 /* Localizable.stringsdict */; };
 		921135771A7A70D40049D82B /* SCRFeedListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 921135761A7A70D40049D82B /* SCRFeedListViewController.m */; };
 		9219347B1ADBCD14001B1A73 /* UIAlertView+SecureReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 9219347A1ADBCD14001B1A73 /* UIAlertView+SecureReader.m */; };
@@ -199,8 +197,6 @@
 		920C421B1ADE5243005AB590 /* SCRSwipeUtilityButtons.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SCRSwipeUtilityButtons.xib; sourceTree = "<group>"; };
 		920C8D8E1AE9145700FAF494 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Localizable.strings; sourceTree = "<group>"; };
 		920C8D901AE92FA500FAF494 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
-		920C8D981AE934A500FAF494 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		920C8D9D1AE934A600FAF494 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		920C8DA21AE93A6D00FAF494 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = sv; path = sv.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		921135751A7A70D40049D82B /* SCRFeedListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRFeedListViewController.h; sourceTree = "<group>"; };
 		921135761A7A70D40049D82B /* SCRFeedListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRFeedListViewController.m; sourceTree = "<group>"; };
@@ -306,6 +302,11 @@
 		92A650F81B57BAB100CB9DFB /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/FeedCategories.strings; sourceTree = "<group>"; };
 		92A650FA1B57BAED00CB9DFB /* en-US */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-US"; path = "en-US.lproj/FeedCategories.strings"; sourceTree = "<group>"; };
 		92A650FB1B57BAEF00CB9DFB /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/FeedCategories.strings; sourceTree = "<group>"; };
+		92A650FE1B5802C400CB9DFB /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/FeedCategories.strings; sourceTree = "<group>"; };
+		92A650FF1B5802C400CB9DFB /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Main.strings; sourceTree = "<group>"; };
+		92A651001B5802C400CB9DFB /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		92A651011B5802C400CB9DFB /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
+		92A651021B5802C400CB9DFB /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = ar; path = ar.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		92AE0DB61ACD2F70006CE1B8 /* SCRPostItemCellDraft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRPostItemCellDraft.h; sourceTree = "<group>"; };
 		92AE0DB71ACD2F70006CE1B8 /* SCRPostItemCellDraft.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRPostItemCellDraft.m; sourceTree = "<group>"; };
 		92B23C471A5D303800FFD963 /* SCRMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRMainViewController.h; sourceTree = "<group>"; };
@@ -591,7 +592,6 @@
 		929EEF4A19F4EB100020BD75 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				920C8D9E1AE934A600FAF494 /* InfoPlist.strings */,
 				920C8D8A1AE8DBF700FAF494 /* Localizable.strings */,
 				929EEF4B19F4EB100020BD75 /* Info.plist */,
 				929EEF4C19F4EB100020BD75 /* main.m */,
@@ -619,7 +619,6 @@
 		929EEF6719F4EB100020BD75 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				920C8D991AE934A500FAF494 /* InfoPlist.strings */,
 				929EEF6819F4EB100020BD75 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -924,6 +923,7 @@
 				Base,
 				sv,
 				"en-US",
+				ar,
 			);
 			mainGroup = 929EEF3E19F4EB100020BD75;
 			productRefGroup = 929EEF4819F4EB100020BD75 /* Products */;
@@ -946,7 +946,6 @@
 				923FFFA11AA4A75600BC83D6 /* SCRItemTagCell.xib in Resources */,
 				92E7B96E1A41A2AE0038DBCE /* SCRReceiveShareView.xib in Resources */,
 				9228CAD91AA9A97000DD3E44 /* SCRFeedListCellWithDescription.xib in Resources */,
-				920C8D9C1AE934A600FAF494 /* InfoPlist.strings in Resources */,
 				920C8DA11AE93A6D00FAF494 /* Localizable.stringsdict in Resources */,
 				9284FA741A3899730085638D /* ic_panic_down.png in Resources */,
 				929EEF5919F4EB100020BD75 /* Main.storyboard in Resources */,
@@ -983,7 +982,6 @@
 			files = (
 				63775E891AAF97B4006CE553 /* Octocat.png in Resources */,
 				63215AF71B546A7F0040A1A0 /* secureReader.xml in Resources */,
-				920C8D971AE934A500FAF494 /* InfoPlist.strings in Resources */,
 				63775E931AB0FFDE006CE553 /* nytimes.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1176,24 +1174,9 @@
 				920C8D8E1AE9145700FAF494 /* sv */,
 				920C8D901AE92FA500FAF494 /* Base */,
 				9273165A1B4EF55B0041A241 /* en-US */,
+				92A651011B5802C400CB9DFB /* ar */,
 			);
 			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-		920C8D991AE934A500FAF494 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				920C8D981AE934A500FAF494 /* sv */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		920C8D9E1AE934A600FAF494 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				920C8D9D1AE934A600FAF494 /* sv */,
-			);
-			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 		920C8DA31AE93A6D00FAF494 /* Localizable.stringsdict */ = {
@@ -1202,6 +1185,7 @@
 				920C8DA21AE93A6D00FAF494 /* sv */,
 				9273165B1B4EF5800041A241 /* Base */,
 				9273165C1B4EF5820041A241 /* en-US */,
+				92A651021B5802C400CB9DFB /* ar */,
 			);
 			name = Localizable.stringsdict;
 			sourceTree = "<group>";
@@ -1212,6 +1196,7 @@
 				929EEF5819F4EB100020BD75 /* Base */,
 				929EEF8819F4F84D0020BD75 /* sv */,
 				927316581B4EF55B0041A241 /* en-US */,
+				92A650FF1B5802C400CB9DFB /* ar */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -1222,6 +1207,7 @@
 				929EEF5D19F4EB100020BD75 /* Base */,
 				929EEF8919F4F84D0020BD75 /* sv */,
 				927316591B4EF55B0041A241 /* en-US */,
+				92A651001B5802C400CB9DFB /* ar */,
 			);
 			name = LaunchScreen.xib;
 			sourceTree = "<group>";
@@ -1232,6 +1218,7 @@
 				92A650F81B57BAB100CB9DFB /* Base */,
 				92A650FA1B57BAED00CB9DFB /* en-US */,
 				92A650FB1B57BAEF00CB9DFB /* sv */,
+				92A650FE1B5802C400CB9DFB /* ar */,
 			);
 			name = FeedCategories.strings;
 			sourceTree = "<group>";
