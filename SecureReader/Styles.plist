@@ -5,12 +5,12 @@
 	<key>OnboardingScreen1Style</key>
 	<dict>
 		<key>backgroundColor</key>
-		<string>#ff69d9f7</string>
+		<string>#ff436bde</string>
 	</dict>
 	<key>OnboardingScreen2Style</key>
 	<dict>
 		<key>backgroundColor</key>
-		<string>#ffd0021b</string>
+		<string>#ff43a647</string>
 	</dict>
 	<key>OnboardingScreen3Style</key>
 	<dict>
@@ -33,8 +33,6 @@
 		<key>backgroundColor</key>
 		<string>#00000000</string>
 		<key>tintColor</key>
-		<string>#ffffffff</string>
-		<key>textColor</key>
 		<string>#ffffffff</string>
 		<key>textSize</key>
 		<integer>15</integer>
