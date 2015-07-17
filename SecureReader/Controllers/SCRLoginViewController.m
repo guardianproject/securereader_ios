@@ -13,6 +13,8 @@
 #import <LocalAuthentication/LocalAuthentication.h>
 #import "SCRPassphraseManager.h"
 #import "SCRTouchLock.h"
+#import "PSTAlertController.h"
+#import "SCRPanicController.h"
 
 @interface SCRLoginViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *editPassphrase;
@@ -24,6 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self showPasscodePrompt];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -83,12 +86,11 @@
     if (self.passcodeSuccess) {
         return;
     }
-    [self showPasscodePrompt];
 }
 
 - (void) showPasscodePrompt {
     if ([[SCRTouchLock sharedInstance] isPasscodeSet]) {
-        if ([SCRTouchLock canUseTouchID]) {
+        if ([SCRTouchLock canUseTouchID] && [SCRTouchLock shouldUseTouchID]) {
             [[SCRTouchLock sharedInstance] requestTouchIDWithCompletion:^(VENTouchLockTouchIDResponse response) {
                 if (response == VENTouchLockTouchIDResponseUsePasscode ||
                     response == VENTouchLockTouchIDResponseCanceled) {
@@ -139,5 +141,8 @@
     return NO;
 }
 
+- (IBAction)forgotPasswordPressed:(id)sender {
+    [SCRPanicController showPanicConfirmationDialogInViewController:self];
+}
 
 @end

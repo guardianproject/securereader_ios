@@ -93,7 +93,6 @@
 		929EEF8719F4F5F30020BD75 /* Styles.plist in Resources */ = {isa = PBXBuildFile; fileRef = 929EEF8619F4F5F30020BD75 /* Styles.plist */; };
 		929EEF9319F5110D0020BD75 /* SCRCreatePassphraseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 929EEF9219F5110D0020BD75 /* SCRCreatePassphraseViewController.m */; };
 		929EEF9619F549080020BD75 /* SCRNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 929EEF9519F549080020BD75 /* SCRNavigationController.m */; };
-		92A4D2A51A31F1D40091479A /* SCRPanicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A4D2A41A31F1D40091479A /* SCRPanicViewController.m */; };
 		92A650F71B57BAB100CB9DFB /* FeedCategories.strings in Resources */ = {isa = PBXBuildFile; fileRef = 92A650F91B57BAB100CB9DFB /* FeedCategories.strings */; };
 		92AE0DB81ACD2F70006CE1B8 /* SCRPostItemCellDraft.m in Sources */ = {isa = PBXBuildFile; fileRef = 92AE0DB71ACD2F70006CE1B8 /* SCRPostItemCellDraft.m */; };
 		92B23C491A5D303800FFD963 /* SCRMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B23C481A5D303800FFD963 /* SCRMainViewController.m */; };
@@ -299,8 +298,6 @@
 		929EEF9219F5110D0020BD75 /* SCRCreatePassphraseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SCRCreatePassphraseViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		929EEF9419F549080020BD75 /* SCRNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SCRNavigationController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		929EEF9519F549080020BD75 /* SCRNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SCRNavigationController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		92A4D2A31A31F1D40091479A /* SCRPanicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRPanicViewController.h; sourceTree = "<group>"; };
-		92A4D2A41A31F1D40091479A /* SCRPanicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRPanicViewController.m; sourceTree = "<group>"; };
 		92A650FA1B57BAED00CB9DFB /* en-US */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-US"; path = "en-US.lproj/FeedCategories.strings"; sourceTree = "<group>"; };
 		92A650FB1B57BAEF00CB9DFB /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/FeedCategories.strings; sourceTree = "<group>"; };
 		92A650FE1B5802C400CB9DFB /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/FeedCategories.strings; sourceTree = "<group>"; };
@@ -516,8 +513,6 @@
 		925AE57C1A401C70001E182F /* Panic */ = {
 			isa = PBXGroup;
 			children = (
-				92A4D2A31A31F1D40091479A /* SCRPanicViewController.h */,
-				92A4D2A41A31F1D40091479A /* SCRPanicViewController.m */,
 				636180DC1B015A95008048A0 /* SCRPanicController.h */,
 				636180DD1B015A95008048A0 /* SCRPanicController.m */,
 			);
@@ -896,7 +891,7 @@
 				TargetAttributes = {
 					929EEF4619F4EB100020BD75 = {
 						CreatedOnToolsVersion = 6.0.1;
-						DevelopmentTeam = SF3NXKQQ64;
+						DevelopmentTeam = 4T8JLQR6GR;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -1068,7 +1063,6 @@
 				63775E8F1AAFB00F006CE553 /* NSData+SecureReader.m in Sources */,
 				920214D01B42D429009FD0CE /* SCRRequireNicknameSegue.m in Sources */,
 				92E8CF8D1AD3C91D00756F9E /* SCREditTagsTextView.m in Sources */,
-				92A4D2A51A31F1D40091479A /* SCRPanicViewController.m in Sources */,
 				92DD08831ACAD010001A0F59 /* SCRAddPostViewController.m in Sources */,
 				924E96701B02536C008A838A /* SCRTorOptionViewController.m in Sources */,
 				929EEF9319F5110D0020BD75 /* SCRCreatePassphraseViewController.m in Sources */,

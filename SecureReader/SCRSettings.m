@@ -24,6 +24,9 @@ NSString * const kSCRHasGivenPostPermissionKey = @"hasGivenPostPermission";
 NSString * const kSCRWordpressUsernameKey = @"kSCRWordpressUsernameKey";
 NSString * const kSCRWordpressPasswordKey = @"kSCRWordpressPasswordKey";
 static NSString * const kSCRWordpressKeychainService = @"info.gp.secure_reader";
+NSString * const kSCRPasscodeEnabledKey = @"passcodeEnabled";
+NSString * const kSCRUseTouchIDKey = @"useTouchID";
+NSString * const kSCRUseComplexPassphraseKey = @"useComplexPassphrase";
 
 + (NSString *)getUiLanguage
 {

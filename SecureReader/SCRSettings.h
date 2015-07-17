@@ -18,6 +18,10 @@ extern NSString * const kSCRUserNicknameKey;
 extern NSString * const kSCRHasGivenPostPermissionKey;
 extern NSString * const kSCRWordpressUsernameKey;
 extern NSString * const kSCRWordpressPasswordKey;
+extern NSString * const kSCRPasscodeEnabledKey;
+extern NSString * const kSCRUseTouchIDKey;
+extern NSString * const kSCRUseComplexPassphraseKey;
+
 
 + (NSString *)getUiLanguage;
 + (void) setUiLanguage:(NSString *)languageCode;
