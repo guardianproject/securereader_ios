@@ -18,6 +18,7 @@
 
 @interface SCRLoginViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *editPassphrase;
+@property (nonatomic, strong) VENTouchLockEnterPasscodeViewController *enterPasscodeVC;
 @property (nonatomic) BOOL passcodeSuccess;
 @end
 
@@ -26,14 +27,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self showPasscodePrompt];
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 
 - (IBAction)loginButtonClicked:(id)sender
 {
@@ -47,7 +41,6 @@
         [[SCRPassphraseManager sharedInstance] setDatabasePassphrase:passphrase storeInKeychain:NO];
         [self attemptAppSetup];
     }
-    
 }
 
 - (void) attemptAppSetup {
@@ -83,8 +76,8 @@
     [super viewDidAppear:animated];
     
     // Prevent showing passcode view twice
-    if (self.passcodeSuccess) {
-        return;
+    if (!self.enterPasscodeVC) {
+        [self showPasscodePrompt];
     }
 }
 
@@ -107,17 +100,21 @@
 }
 
 - (void) showEnterPasscodeViewController {
-    VENTouchLockEnterPasscodeViewController *enterPasscodeVC = [[VENTouchLockEnterPasscodeViewController alloc] init];
-    __weak VENTouchLockEnterPasscodeViewController *weakVC = enterPasscodeVC;
-    enterPasscodeVC.willFinishWithResult = ^(BOOL success) {
-        if (success) {
-            self.passcodeSuccess = YES;
-            [weakVC dismissViewControllerAnimated:YES completion:^{
-                [self attemptAppSetup];
-            }];
-        }
-    };
-    [self presentViewController:[enterPasscodeVC embeddedInNavigationController] animated:YES completion:nil];
+    if (!self.enterPasscodeVC) {
+        self.enterPasscodeVC = [[VENTouchLockEnterPasscodeViewController alloc] init];
+        __weak VENTouchLockEnterPasscodeViewController *weakVC = self.enterPasscodeVC;
+        __weak id weakSelf = self;
+        self.enterPasscodeVC.willFinishWithResult = ^(BOOL success) {
+            if (success) {
+                __strong SCRLoginViewController *strongSelf = weakSelf;
+                strongSelf.passcodeSuccess = YES;
+                [weakVC dismissViewControllerAnimated:YES completion:^{
+                    [strongSelf attemptAppSetup];
+                }];
+            }
+        };
+    }
+    [self presentViewController:[self.enterPasscodeVC embeddedInNavigationController] animated:YES completion:nil];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {

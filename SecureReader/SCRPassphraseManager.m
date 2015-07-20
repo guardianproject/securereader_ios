@@ -77,8 +77,9 @@ static NSString * const SCRPassphraseService    = @"info.guardianproject.SecureR
     if (error) {
         NSLog(@"Error deleting password from keychain: %@", error);
     }
+#warning Remove before shipping for production
     //This is just around for finding when the passphrase is cleared unintentionaly
-    @throw [NSException exceptionWithName:@"SCRPassPhraseCleared" reason:@"The passphrase was attempted to be cleared from memory and keychainn" userInfo:nil];
+    @throw [NSException exceptionWithName:@"SCRPassphraseCleared" reason:@"The passphrase was attempted to be cleared from keychain" userInfo:nil];
 }
 
 /** Removes passphrase from memory and/or keychain */
