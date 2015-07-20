@@ -6,6 +6,12 @@
 	<array>
 		<dict>
 			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string>Privacy</string>
+		</dict>
+		<dict>
+			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
 			<string>Use Tor</string>
@@ -16,29 +22,29 @@
 		</dict>
 		<dict>
 			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string>Lock App</string>
+		</dict>
+		<dict>
+			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
-			<string>Display images</string>
+			<string>Lock App</string>
 			<key>Key</key>
-			<string>downloadMedia</string>
+			<string>passcodeEnabled</string>
 			<key>DefaultValue</key>
 			<false/>
 		</dict>
 		<dict>
 			<key>Type</key>
-			<string>PSGroupSpecifier</string>
-			<key>Title</key>
-			<string>Login</string>
-		</dict>
-		<dict>
-			<key>Type</key>
 			<string>PSMultiValueSpecifier</string>
 			<key>Title</key>
-			<string>Lock Automatically</string>
+			<string>Lock Timeout</string>
 			<key>Key</key>
 			<string>lockTimeout</string>
 			<key>DefaultValue</key>
-			<string>86400</string>
+			<string>0</string>
 			<key>Titles</key>
 			<array>
 				<string>Immediate</string>
@@ -60,9 +66,29 @@
 		</dict>
 		<dict>
 			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>Touch ID</string>
+			<key>Key</key>
+			<string>useTouchID</string>
+			<key>DefaultValue</key>
+			<false/>
+		</dict>
+		<dict>
+			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
 			<string>Data Use &amp; Syncing</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>Display images</string>
+			<key>Key</key>
+			<string>downloadMedia</string>
+			<key>DefaultValue</key>
+			<true/>
 		</dict>
 		<dict>
 			<key>Type</key>

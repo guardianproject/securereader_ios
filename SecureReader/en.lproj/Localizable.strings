@@ -1,20 +1,20 @@
 /* Message for AddPost -> pick image when no sources are available */
-"AddPost.PickImage.NoSource.Message" = "Ingen bildkälla hittades.";
+"AddPost.PickImage.NoSource.Message" = "AddPost.PickImage.NoSource.Message";
 
 /* Title for AddPost -> pick image when no sources are available */
-"AddPost.PickImage.NoSource.Title" = "Välj Bild";
+"AddPost.PickImage.NoSource.Title" = "AddPost.PickImage.NoSource.Title";
 
 /* Post screen: Alert message, get image from gallery */
-"AddPost.PickImage.PickSource.Message" = "Välj bildkälla";
+"AddPost.PickImage.PickSource.Message" = "AddPost.PickImage.PickSource.Message";
 
 /* Post screen: pick image from camera */
-"AddPost.PickImage.PickSource.Option.Camera" = "Kamera";
+"AddPost.PickImage.PickSource.Option.Camera" = "AddPost.PickImage.PickSource.Option.Camera";
 
 /* Post screen: pick image from photos */
-"AddPost.PickImage.PickSource.Option.Photos" = "Foton";
+"AddPost.PickImage.PickSource.Option.Photos" = "AddPost.PickImage.PickSource.Option.Photos";
 
 /* Post screen: Alert title, get image from gallery */
-"AddPost.PickImage.PickSource.Title" = "Välj Bild";
+"AddPost.PickImage.PickSource.Title" = "AddPost.PickImage.PickSource.Title";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
@@ -23,16 +23,16 @@
 "Clear Data" = "Clear Data";
 
 /* Message for create passphrase, db failure */
-"CreatePassphrase.DBError.Message" = "Ett databasfel inträffade.";
+"CreatePassphrase.DBError.Message" = "CreatePassphrase.DBError.Message";
 
 /* Title for create passphrase, db failure */
-"CreatePassphrase.DBError.Title" = "Skapa Lösenord";
+"CreatePassphrase.DBError.Title" = "CreatePassphrase.DBError.Title";
 
 /* Message for create passphrase, mismatched passwords */
-"CreatePassphrase.Mismatched.Message" = "Lösenorden matchade inte, vänligen försök igen.";
+"CreatePassphrase.Mismatched.Message" = "CreatePassphrase.Mismatched.Message";
 
 /* Title for create passphrase, mismatched passwords */
-"CreatePassphrase.Mismatched.Title" = "Skapa Lösenord";
+"CreatePassphrase.Mismatched.Title" = "CreatePassphrase.Mismatched.Title";
 
 /* panic delete button */
 "Delete" = "Delete";
@@ -50,46 +50,46 @@
 "Farsi" = "Farsi";
 
 /* Navbar title for all feeds */
-"FeedList.Navbar.AllFeeds" = "Alla Flöden";
+"FeedList.Navbar.AllFeeds" = "FeedList.Navbar.AllFeeds";
 
 /* Navbar title for favorites */
-"FeedList.Navbar.Favorites" = "Favoriter";
+"FeedList.Navbar.Favorites" = "FeedList.Navbar.Favorites";
 
 /* Navbar default title for items list */
-"FeedList.Navbar.Feed" = "Flöde";
+"FeedList.Navbar.Feed" = "FeedList.Navbar.Feed";
 
 /* Navbar title for received items */
-"FeedList.Navbar.Received" = "Mottagna";
+"FeedList.Navbar.Received" = "FeedList.Navbar.Received";
 
 /* Done with feed search button */
-"FeedSearch.Button.Done" = "Klar";
+"FeedSearch.Button.Done" = "FeedSearch.Button.Done";
 
 /* Hint for clear app data */
 "HelpHint.ClearAppData" = "HelpHint.ClearAppData";
 
 /* Author name string */
-"ItemPage.AuthorName" = "AV %@";
+"ItemPage.AuthorName" = "ItemPage.AuthorName";
 
 /* Alert message for incorrect passphrase entered */
-"Login.Incorrect.Message" = "Fel lösenord, vänligen försök igen.";
+"Login.Incorrect.Message" = "Login.Incorrect.Message";
 
 /* Alert title for incorrect passphrase entered */
-"Login.Incorrect.Title" = "Logga in";
+"Login.Incorrect.Title" = "Login.Incorrect.Title";
 
 /* Display string for profress with byte count */
-"MediaDownloads.Progress.Bytes" = "%lu%% av %@ nedladdat";
+"MediaDownloads.Progress.Bytes" = "MediaDownloads.Progress.Bytes";
 
 /* Display string for download done */
-"MediaDownloads.Progress.Done" = "Klar";
+"MediaDownloads.Progress.Done" = "MediaDownloads.Progress.Done";
 
 /* Display string for profress with item count */
-"MediaDownloads.Progress.Items" = "%lu av %lu nedladdade";
+"MediaDownloads.Progress.Items" = "MediaDownloads.Progress.Items";
 
 /* Section header for the complete items */
-"MediaDownloads.SectionHeader.Complete" = "KLARA";
+"MediaDownloads.SectionHeader.Complete" = "MediaDownloads.SectionHeader.Complete";
 
 /* Section header for the items in progress */
-"MediaDownloads.SectionHeader.InProgress" = "NEDLADDAS";
+"MediaDownloads.SectionHeader.InProgress" = "MediaDownloads.SectionHeader.InProgress";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
@@ -101,22 +101,22 @@
 "Posting Story" = "Posting Story";
 
 /* Delete post action cancel */
-"Posts.Draft.Delete.Cancel" = "Avbryt";
+"Posts.Draft.Delete.Cancel" = "Posts.Draft.Delete.Cancel";
 
 /* Delete post action delete */
-"Posts.Draft.Delete.Delete" = "Radera";
+"Posts.Draft.Delete.Delete" = "Posts.Draft.Delete.Delete";
 
 /* Message when deleting post */
-"Posts.Draft.Delete.Message" = "Det kommer att tas bort permanent.";
+"Posts.Draft.Delete.Message" = "Posts.Draft.Delete.Message";
 
 /* Title when deleting post */
-"Posts.Draft.Delete.Title" = "Radera inlägg?";
+"Posts.Draft.Delete.Title" = "Posts.Draft.Delete.Title";
 
 /* Description placeholder in drafts */
-"Posts.Draft.NoDescriptionPlaceholder" = "(Beskrivning saknas)";
+"Posts.Draft.NoDescriptionPlaceholder" = "Posts.Draft.NoDescriptionPlaceholder";
 
 /* Title placeholder in drafts */
-"Posts.Draft.NoTitlePlaceholder" = "(Rubrik saknas)";
+"Posts.Draft.NoTitlePlaceholder" = "Posts.Draft.NoTitlePlaceholder";
 
 /* label for PIN setup */
 "Protect your data with a PIN." = "Protect your data with a PIN.";
@@ -125,7 +125,7 @@
 "Setup PIN" = "Setup PIN";
 
 /* Number of selected items for sharing */
-"Share.Feeds.SelectedItems" = "%lu Markerade";
+"Share.Feeds.SelectedItems" = "Share.Feeds.SelectedItems";
 
 /* Language name for Swedish */
 "Svenska" = "Svenska";

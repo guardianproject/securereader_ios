@@ -18,6 +18,7 @@
 
 @interface SCRPickFeedsViewController ()
 @property (nonatomic, strong) NSMutableDictionary *feedsDictionary;
+@property (nonatomic, strong) NSMutableArray *categoriesArray; // For deterministic ordering!
 @property (nonatomic, strong) UITableViewCell *prototype;
 @property (nonatomic, strong) NSArray *feeds;
 @end
@@ -53,6 +54,31 @@
 
 - (BOOL) shouldPerformSegueWithIdentifier:(nonnull NSString *)identifier sender:(nullable id)sender {
     if ([identifier isEqualToString:@"finishFeedCuration"]) {
+        
+        // Save all subscribed feeds to a property list so that we can
+        // add them later, when we have created the DB. Only add hashes for the URLs, to avoid
+        // plain text URLs being kept.
+        NSURL *tmpDirURL = [NSURL fileURLWithPath:NSTemporaryDirectory() isDirectory:YES];
+        NSURL *processedFileURL = [[tmpDirURL URLByAppendingPathComponent:@"filtered"] URLByAppendingPathExtension:@"opml"];
+        
+        NSMutableArray *array = [NSMutableArray new];
+        for (SCRFeed *feed in self.feeds)
+        {
+            if (feed.subscribed)
+                [array addObject:[[feed.xmlURL absoluteString] scr_md5]];
+        }
+        
+        NSString *errorStr;
+        NSData *dataRep = [NSPropertyListSerialization dataFromPropertyList:array
+                                                                     format:NSPropertyListXMLFormat_v1_0
+                                                           errorDescription:&errorStr];
+        if (!dataRep) {
+            // Handle error
+        }
+        else{
+            [dataRep writeToURL:processedFileURL atomically:YES];
+        }
+        
         // Setup db on first run
         [[SCRTouchLock sharedInstance] deletePasscode];
         NSString *passphrase = [[SCRPassphraseManager sharedInstance] generateNewPassphrase];
@@ -65,35 +91,6 @@
     return YES;
 }
 
-- (void)viewWillDisappear:(BOOL)animated
-{
-    // Save all subscribed feeds to a property list so that we can
-    // add them later, when we have created the DB. Only add hashes for the URLs, to avoid
-    // plain text URLs being kept.
-    NSURL *tmpDirURL = [NSURL fileURLWithPath:NSTemporaryDirectory() isDirectory:YES];
-    NSURL *processedFileURL = [[tmpDirURL URLByAppendingPathComponent:@"filtered"] URLByAppendingPathExtension:@"opml"];
-
-    NSMutableArray *array = [NSMutableArray new];
-    for (SCRFeed *feed in self.feeds)
-    {
-        if (feed.subscribed)
-            [array addObject:[[feed.xmlURL absoluteString] scr_md5]];
-    }
-    
-    NSString *errorStr;
-    NSData *dataRep = [NSPropertyListSerialization dataFromPropertyList:array
-                                                                 format:NSPropertyListXMLFormat_v1_0
-                                                       errorDescription:&errorStr];
-    if (!dataRep) {
-        // Handle error
-    }
-    else{
-        [dataRep writeToURL:processedFileURL atomically:YES];
-    }
-    
-}
-
-
 - (void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self.tableView reloadData];
@@ -101,19 +98,23 @@
 
 - (void) processFeeds:(NSArray *)feeds
 {
-    _feedsDictionary = [NSMutableDictionary new];
+    _feedsDictionary = [NSMutableDictionary dictionary];
+    _categoriesArray = [NSMutableArray array];
     for (SCRFeed *feed in feeds)
     {
         feed.subscribed = YES; //default all feeds to subscribed
-        id<NSCopying> category = [NSNull null];
+        NSString *category = nil;
         if ([feed.feedCategory length] > 0)
             category = feed.feedCategory;
+        
+        category = [[NSBundle mainBundle] localizedStringForKey:category value:category table:@"FeedCategories"];
         
         NSMutableArray *categoryFeeds = [_feedsDictionary objectForKey:category];
         if (categoryFeeds == nil)
         {
             categoryFeeds = [NSMutableArray new];
             [_feedsDictionary setObject:categoryFeeds forKey:category];
+            [_categoriesArray addObject:category];
         }
         [categoryFeeds addObject:feed];
     }
@@ -123,11 +124,11 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)sender
 {
-    return [_feedsDictionary count];
+    return [_categoriesArray count];
 }
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSMutableArray *sectionFeeds = [_feedsDictionary objectForKey:[_feedsDictionary.allKeys objectAtIndex:section]];
+    NSMutableArray *sectionFeeds = [_feedsDictionary objectForKey:[_categoriesArray objectAtIndex:section]];
     return [sectionFeeds count];
 }
 
@@ -150,10 +151,10 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    id<NSCopying> key = [_feedsDictionary.allKeys objectAtIndex:section];
-    if (key == [NSNull null])
+    NSString *key = [_categoriesArray objectAtIndex:section];
+    if (key.length == 0)
         return @"Uncategorized";
-    return (NSString *)key;
+    return key;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -166,7 +167,7 @@
     SCRFeedListCategoryCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellFeedCategory"];
     cell.titleView.text = [self tableView:tableView titleForHeaderInSection:section];
     
-    NSString *category = (NSString *)[_feedsDictionary.allKeys objectAtIndex:section];
+    NSString *category = (NSString *)[_categoriesArray objectAtIndex:section];
     if ([@"Sports" isEqualToString:category])
     {
         [cell.categoryImage setArtworkPath:@"onboard-category"];
@@ -219,7 +220,7 @@
 
 - (NSObject *) itemForIndexPath:(NSIndexPath *)indexPath
 {
-    NSMutableArray *feedsInSection = [_feedsDictionary objectForKey:[_feedsDictionary.allKeys objectAtIndex:indexPath.section]];
+    NSMutableArray *feedsInSection = [_feedsDictionary objectForKey:[_categoriesArray objectAtIndex:indexPath.section]];
     return [feedsInSection objectAtIndex:indexPath.row];
 }
 

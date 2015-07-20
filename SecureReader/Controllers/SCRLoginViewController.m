@@ -13,9 +13,12 @@
 #import <LocalAuthentication/LocalAuthentication.h>
 #import "SCRPassphraseManager.h"
 #import "SCRTouchLock.h"
+#import "PSTAlertController.h"
+#import "SCRPanicController.h"
 
 @interface SCRLoginViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *editPassphrase;
+@property (nonatomic, strong) VENTouchLockEnterPasscodeViewController *enterPasscodeVC;
 @property (nonatomic) BOOL passcodeSuccess;
 @end
 
@@ -25,12 +28,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 
 - (IBAction)loginButtonClicked:(id)sender
 {
@@ -44,7 +41,6 @@
         [[SCRPassphraseManager sharedInstance] setDatabasePassphrase:passphrase storeInKeychain:NO];
         [self attemptAppSetup];
     }
-    
 }
 
 - (void) attemptAppSetup {
@@ -80,15 +76,14 @@
     [super viewDidAppear:animated];
     
     // Prevent showing passcode view twice
-    if (self.passcodeSuccess) {
-        return;
+    if (!self.enterPasscodeVC) {
+        [self showPasscodePrompt];
     }
-    [self showPasscodePrompt];
 }
 
 - (void) showPasscodePrompt {
     if ([[SCRTouchLock sharedInstance] isPasscodeSet]) {
-        if ([SCRTouchLock canUseTouchID]) {
+        if ([SCRTouchLock canUseTouchID] && [SCRTouchLock shouldUseTouchID]) {
             [[SCRTouchLock sharedInstance] requestTouchIDWithCompletion:^(VENTouchLockTouchIDResponse response) {
                 if (response == VENTouchLockTouchIDResponseUsePasscode ||
                     response == VENTouchLockTouchIDResponseCanceled) {
@@ -105,17 +100,21 @@
 }
 
 - (void) showEnterPasscodeViewController {
-    VENTouchLockEnterPasscodeViewController *enterPasscodeVC = [[VENTouchLockEnterPasscodeViewController alloc] init];
-    __weak VENTouchLockEnterPasscodeViewController *weakVC = enterPasscodeVC;
-    enterPasscodeVC.willFinishWithResult = ^(BOOL success) {
-        if (success) {
-            self.passcodeSuccess = YES;
-            [weakVC dismissViewControllerAnimated:YES completion:^{
-                [self attemptAppSetup];
-            }];
-        }
-    };
-    [self presentViewController:[enterPasscodeVC embeddedInNavigationController] animated:YES completion:nil];
+    if (!self.enterPasscodeVC) {
+        self.enterPasscodeVC = [[VENTouchLockEnterPasscodeViewController alloc] init];
+        __weak VENTouchLockEnterPasscodeViewController *weakVC = self.enterPasscodeVC;
+        __weak id weakSelf = self;
+        self.enterPasscodeVC.willFinishWithResult = ^(BOOL success) {
+            if (success) {
+                __strong SCRLoginViewController *strongSelf = weakSelf;
+                strongSelf.passcodeSuccess = YES;
+                [weakVC dismissViewControllerAnimated:YES completion:^{
+                    [strongSelf attemptAppSetup];
+                }];
+            }
+        };
+    }
+    [self presentViewController:[self.enterPasscodeVC embeddedInNavigationController] animated:YES completion:nil];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -139,5 +138,8 @@
     return NO;
 }
 
+- (IBAction)forgotPasswordPressed:(id)sender {
+    [SCRPanicController showPanicConfirmationDialogInViewController:self];
+}
 
 @end

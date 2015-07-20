@@ -5,17 +5,22 @@
 	<key>OnboardingScreen1Style</key>
 	<dict>
 		<key>backgroundColor</key>
-		<string>#ff69d9f7</string>
+		<string>#ff436bde</string>
 	</dict>
 	<key>OnboardingScreen2Style</key>
 	<dict>
 		<key>backgroundColor</key>
-		<string>#ffd0021b</string>
+		<string>#ff43a647</string>
 	</dict>
 	<key>OnboardingScreen3Style</key>
 	<dict>
 		<key>backgroundColor</key>
-		<string>#ff2400ff</string>
+		<string>#fff0f0f0</string>
+	</dict>
+	<key>OnboardingScreen3HeaderStyle</key>
+	<dict>
+		<key>backgroundColor</key>
+		<string>#fff59d21</string>
 	</dict>
 	<key>OnboardingTextHeadingStyle</key>
 	<dict>
@@ -33,8 +38,6 @@
 		<key>backgroundColor</key>
 		<string>#00000000</string>
 		<key>tintColor</key>
-		<string>#ffffffff</string>
-		<key>textColor</key>
 		<string>#ffffffff</string>
 		<key>textSize</key>
 		<integer>15</integer>
@@ -130,8 +133,10 @@
 	</dict>
 	<key>FeedListCategoryStyle</key>
 	<dict>
+		<key>textSize</key>
+		<integer>15</integer>
 		<key>textColor</key>
-		<string>#fff9ff04</string>
+		<string>#ffacacac</string>
 	</dict>
 	<key>FeedListTitleStyle</key>
 	<dict>

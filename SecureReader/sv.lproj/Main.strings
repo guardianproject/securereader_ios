@@ -1,5 +1,5 @@
-/* Class = "UILabel"; text = "About"; ObjectID = "1Ng-Ad-Uh9"; */
-"1Ng-Ad-Uh9.text" = "Om";
+/* Class = "UIViewController"; title = "Create Nickname"; ObjectID = "0gb-eb-Y4t"; */
+"0gb-eb-Y4t.title" = "Create Nickname";
 
 /* Class = "UIViewController"; title = "Manage Feeds"; ObjectID = "1YJ-Df-8xT"; */
 "1YJ-Df-8xT.title" = "Hantera Flöden";
@@ -10,8 +10,8 @@
 /* Class = "UITableViewController"; title = "Settings"; ObjectID = "1qY-y1-unP"; */
 "1qY-y1-unP.title" = "Inställningar";
 
-/* Class = "UILabel"; text = "Share App"; ObjectID = "2Xw-SW-kOp"; */
-"2Xw-SW-kOp.text" = "Dela App";
+/* Class = "UITextField"; placeholder = "Nickname"; ObjectID = "3lV-Xx-htH"; */
+"3lV-Xx-htH.placeholder" = "Nickname";
 
 /* Class = "UITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."; ObjectID = "4vz-a6-cEX"; */
 "4vz-a6-cEX.text" = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.";
@@ -19,26 +19,47 @@
 /* Class = "UIViewController"; title = "Posts"; ObjectID = "5Mu-TI-8Ub"; */
 "5Mu-TI-8Ub.title" = "Inlägg";
 
-/* Class = "UIButton"; normalTitle = "GET STARTED"; ObjectID = "6yP-Wd-LOe"; */
-"6yP-Wd-LOe.normalTitle" = "SÄTT IGÅNG";
+/* Class = "UILabel"; text = "Clear App Data"; ObjectID = "6fY-NC-Xp8"; */
+"6fY-NC-Xp8.text" = "Clear App Data";
 
-/* Class = "UINavigationController"; title = "Posts"; ObjectID = "9b8-tQ-QPR"; */
-"9b8-tQ-QPR.title" = "Inlägg";
+/* Class = "UIViewController"; title = "Allow Posts"; ObjectID = "6kG-WQ-rUL"; */
+"6kG-WQ-rUL.title" = "Allow Posts";
+
+/* Class = "UIButton"; normalTitle = "NEXT"; ObjectID = "6yP-Wd-LOe"; */
+"6yP-Wd-LOe.normalTitle" = "NEXT";
 
 /* Class = "UINavigationItem"; title = "All Feeds"; ObjectID = "97d-nj-rXa"; */
 "97d-nj-rXa.title" = "Alla Flöden";
 
-/* Class = "UILabel"; text = "Subtitle"; ObjectID = "A99-kn-Ejx"; */
-"A99-kn-Ejx.text" = "Undertitel";
+/* Class = "UINavigationController"; title = "Posts"; ObjectID = "9b8-tQ-QPR"; */
+"9b8-tQ-QPR.title" = "Inlägg";
+
+/* Class = "UIViewController"; title = "Setup Touch ID"; ObjectID = "9oR-lX-5GM"; */
+"9oR-lX-5GM.title" = "Setup Touch ID";
 
 /* Class = "UILabel"; text = "Label sdkfjh sdf kjhfsd fshdkfjh sdkfh sdfkjh sdfkjhs dfkjshdfsdf kjhd asdkjha sdk asdhkaj sdkjahsd"; ObjectID = "AhW-0L-8EY"; */
 "AhW-0L-8EY.text" = "Label sdkfjh sdf kjhfsd fshdkfjh sdkfh sdfkjh sdfkjhs dfkjshdfsdf kjhd asdkjha sdk asdhkaj sdkjahsd";
 
+/* Class = "UINavigationItem"; title = "Share the News"; ObjectID = "Bfs-Rk-67O"; */
+"Bfs-Rk-67O.title" = "Share the News";
+
+/* Class = "UIButton"; normalTitle = "CONNECT TOR"; ObjectID = "CZ4-uj-rjT"; */
+"CZ4-uj-rjT.normalTitle" = "CONNECT TOR";
+
 /* Class = "UINavigationItem"; title = "Language"; ObjectID = "Ctb-zM-vlQ"; */
 "Ctb-zM-vlQ.title" = "Språk";
 
+/* Class = "UITextView"; text = "Paik provides a feed of noteworthy news to its community. Every post created will undergo a curation process before it is shared in the official Paik news feed.\n\nPlease read the <a href=\"#terms\">Terms and Conditions</a> to understand the rights you grant when you share information with Paik."; ObjectID = "DQm-Tf-bTc"; */
+"DQm-Tf-bTc.text" = "Paik provides a feed of noteworthy news to its community. Every post created will undergo a curation process before it is shared in the official Paik news feed.\n\nPlease read the <a href=\"#terms\">Terms and Conditions</a> to understand the rights you grant when you share information with Paik.";
+
 /* Class = "UIButton"; normalTitle = "DELETE"; ObjectID = "EB2-33-vKV"; */
 "EB2-33-vKV.normalTitle" = "RADERA";
+
+/* Class = "UILabel"; text = "Display Photos"; ObjectID = "EKa-sY-58h"; */
+"EKa-sY-58h.text" = "Display Photos";
+
+/* Class = "UIButton"; normalTitle = "Use Complex Password"; ObjectID = "ENO-EI-uNA"; */
+"ENO-EI-uNA.normalTitle" = "Use Complex Password";
 
 /* Class = "UILabel"; text = "Repeat"; ObjectID = "FIB-E0-LcG"; */
 "FIB-E0-LcG.text" = "Upprepa";
@@ -52,11 +73,11 @@
 /* Class = "UIBarButtonItem"; title = "Save"; ObjectID = "Hkg-oX-HWc"; */
 "Hkg-oX-HWc.title" = "Spara";
 
-/* Class = "UILabel"; text = "My Posts"; ObjectID = "IYU-Jn-k1V"; */
-"IYU-Jn-k1V.text" = "Mina Inlägg";
-
 /* Class = "UINavigationItem"; title = "Posts"; ObjectID = "J3r-ci-WJW"; */
 "J3r-ci-WJW.title" = "Inlägg";
+
+/* Class = "UITableViewSection"; headerTitle = "PRIVACY SERVICES"; ObjectID = "Joo-qc-cK7"; */
+"Joo-qc-cK7.headerTitle" = "PRIVACY SERVICES";
 
 /* Class = "UILabel"; text = "Swipe down to delete personal data"; ObjectID = "JrE-xH-ei5"; */
 "JrE-xH-ei5.text" = "Svep nedåt för att radera personlig information";
@@ -70,6 +91,9 @@
 /* Class = "UINavigationItem"; title = "Feeds"; ObjectID = "L7S-JU-Emx"; */
 "L7S-JU-Emx.title" = "Flöden";
 
+/* Class = "UINavigationItem"; title = "Create a Nickname"; ObjectID = "LX5-F6-QEC"; */
+"LX5-F6-QEC.title" = "Create a Nickname";
+
 /* Class = "UINavigationItem"; title = "Add Post"; ObjectID = "LXK-o7-itM"; */
 "LXK-o7-itM.title" = "Skapa Inlägg";
 
@@ -82,26 +106,44 @@
 /* Class = "UINavigationItem"; title = "All Feeds"; ObjectID = "OKW-af-rFH"; */
 "OKW-af-rFH.title" = "Alla Flöden";
 
-/* Class = "UILabel"; text = "This is a localized string!"; ObjectID = "QdG-Sb-e5G"; */
-"QdG-Sb-e5G.text" = "Det här är svenska!";
+/* Class = "UILabel"; text = "Tap the icon to use TouchID with Paik."; ObjectID = "Oft-d2-RV8"; */
+"Oft-d2-RV8.text" = "Tap the icon to use TouchID with Paik.";
+
+/* Class = "UIButton"; normalTitle = "Continue"; ObjectID = "OgG-UR-oXT"; */
+"OgG-UR-oXT.normalTitle" = "Continue";
+
+/* Class = "UILabel"; text = "This is the footer!"; ObjectID = "PdZ-Fi-cVM"; */
+"PdZ-Fi-cVM.text" = "This is the footer!";
+
+/* Class = "UILabel"; text = "Language"; ObjectID = "QdG-Sb-e5G"; */
+"QdG-Sb-e5G.text" = "Language";
+
+/* Class = "UILabel"; text = "This is a label explaining what needs to be explained in the screen."; ObjectID = "QlR-Dv-512"; */
+"QlR-Dv-512.text" = "This is a label explaining what needs to be explained in the screen.";
 
 /* Class = "UIViewController"; title = "Add Post"; ObjectID = "RIg-BG-i7z"; */
 "RIg-BG-i7z.title" = "Skapa Inlägg";
 
+/* Class = "UIViewController"; title = "Tor"; ObjectID = "S3m-Xa-Cvg"; */
+"S3m-Xa-Cvg.title" = "Tor";
+
+/* Class = "UILabel"; text = "Designed to work with Tor"; ObjectID = "SbE-YW-Mv9"; */
+"SbE-YW-Mv9.text" = "Designed to work with Tor";
+
 /* Class = "UINavigationItem"; title = "Panic"; ObjectID = "UQp-yT-RyE"; */
 "UQp-yT-RyE.title" = "Panik";
-
-/* Class = "UILabel"; text = "Subtitle"; ObjectID = "Udm-Mf-U41"; */
-"Udm-Mf-U41.text" = "Undertitel";
 
 /* Class = "UILabel"; text = "Login"; ObjectID = "VBG-Sb-iFV"; */
 "VBG-Sb-iFV.text" = "Logga in";
 
+/* Class = "UIBarButtonItem"; title = "Post"; ObjectID = "VS0-jF-udY"; */
+"VS0-jF-udY.title" = "Post";
+
+/* Class = "UILabel"; text = "Your nickname is displayed when you publish posts and comment."; ObjectID = "W1N-49-wdI"; */
+"W1N-49-wdI.text" = "Your nickname is displayed when you publish posts and comment.";
+
 /* Class = "UINavigationItem"; title = "More"; ObjectID = "W3V-ZH-RNJ"; */
 "W3V-ZH-RNJ.title" = "Mer";
-
-/* Class = "UILabel"; text = "Subtitle"; ObjectID = "WL9-e7-PGa"; */
-"WL9-e7-PGa.text" = "Undertitel";
 
 /* Class = "UILabel"; text = "Passphrase"; ObjectID = "WLc-bv-wXH"; */
 "WLc-bv-wXH.text" = "Lösenord";
@@ -109,8 +151,29 @@
 /* Class = "UINavigationItem"; title = "Share"; ObjectID = "WYs-F0-9DE"; */
 "WYs-F0-9DE.title" = "Dela";
 
+/* Class = "UILabel"; text = "Passcode"; ObjectID = "YA2-Bc-sKc"; */
+"YA2-Bc-sKc.text" = "Passcode";
+
+/* Class = "UILabel"; text = "COMMENT"; ObjectID = "YKR-G0-z5o"; */
+"YKR-G0-z5o.text" = "COMMENT";
+
+/* Class = "UISegmentedControl"; ZGv-WW-YVA.segmentTitles[0] = "Readability"; ObjectID = "ZGv-WW-YVA"; */
+"ZGv-WW-YVA.segmentTitles[0]" = "Readability";
+
+/* Class = "UISegmentedControl"; ZGv-WW-YVA.segmentTitles[1] = "Web"; ObjectID = "ZGv-WW-YVA"; */
+"ZGv-WW-YVA.segmentTitles[1]" = "Web";
+
 /* Class = "UIButton"; normalTitle = "VIEW"; ObjectID = "ZI8-O9-DZX"; */
 "ZI8-O9-DZX.normalTitle" = "VISA";
+
+/* Class = "UIButton"; normalTitle = "NOT NOW"; ObjectID = "Zvv-Vz-DTZ"; */
+"Zvv-Vz-DTZ.normalTitle" = "NOT NOW";
+
+/* Class = "UIViewController"; title = "Terms and Conditions"; ObjectID = "Zyu-DA-fGY"; */
+"Zyu-DA-fGY.title" = "Terms and Conditions";
+
+/* Class = "UIButton"; normalTitle = "View Full Article"; ObjectID = "aVq-GA-w0V"; */
+"aVq-GA-w0V.normalTitle" = "View Full Article";
 
 /* Class = "UIViewController"; title = "Placeholder"; ObjectID = "aZE-v5-VRg"; */
 "aZE-v5-VRg.title" = "Platshållare";
@@ -124,11 +187,14 @@
 /* Class = "UITabBarItem"; title = "News"; ObjectID = "bIm-L5-JQq"; */
 "bIm-L5-JQq.title" = "Nyheter";
 
-/* Class = "UITableViewSection"; headerTitle = "SECURITY SERVICES"; ObjectID = "bTs-fh-3ep"; */
-"bTs-fh-3ep.headerTitle" = "SÄKERHETSTJÄNSTER";
-
 /* Class = "UIViewController"; title = "Main Content"; ObjectID = "bv6-37-Bdc"; */
 "bv6-37-Bdc.title" = "Huvudinnehåll";
+
+/* Class = "UIButton"; normalTitle = "Continue"; ObjectID = "c4l-7L-fKc"; */
+"c4l-7L-fKc.normalTitle" = "Continue";
+
+/* Class = "UIButton"; normalTitle = "GOT IT"; ObjectID = "cRf-gD-m8v"; */
+"cRf-gD-m8v.normalTitle" = "GOT IT";
 
 /* Class = "UINavigationItem"; title = "Title"; ObjectID = "eRY-G4-MOM"; */
 "eRY-G4-MOM.title" = "Rubrik";
@@ -136,11 +202,20 @@
 /* Class = "UIButton"; normalTitle = "Receive share screen - push to close"; ObjectID = "eaT-Lr-aX6"; */
 "eaT-Lr-aX6.normalTitle" = "Ta emot delningar - tryck för att stänga";
 
-/* Class = "UILabel"; text = "This is a label explaining what needs to be explained in the screen."; ObjectID = "f6t-ZW-7bp"; */
-"f6t-ZW-7bp.text" = "Den här texten förklarar vad som ska förklaras i skärmbilden.";
+/* Class = "UIButton"; normalTitle = "Set Passphrase"; ObjectID = "gCH-BV-rVN"; */
+"gCH-BV-rVN.normalTitle" = "Set Passphrase";
 
-/* Class = "UIButton"; normalTitle = "I get it!"; ObjectID = "gUb-Pp-FdZ"; */
-"gUb-Pp-FdZ.normalTitle" = "Jag förstår!";
+/* Class = "UILabel"; text = "Curate your daily feed."; ObjectID = "iSy-oq-E2J"; */
+"iSy-oq-E2J.text" = "Curate your daily feed.";
+
+/* Class = "UITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."; ObjectID = "iU6-FO-cfp"; */
+"iU6-FO-cfp.text" = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.";
+
+/* Class = "UILabel"; text = "I give permission to use my content."; ObjectID = "ili-y9-2sH"; */
+"ili-y9-2sH.text" = "I give permission to use my content.";
+
+/* Class = "UILabel"; text = "The app is currently locked. Please login to continue."; ObjectID = "jgh-Aj-Oo3"; */
+"jgh-Aj-Oo3.text" = "The app is currently locked. Please login to continue.";
 
 /* Class = "UINavigationItem"; title = "Receive Share"; ObjectID = "kvR-28-70Q"; */
 "kvR-28-70Q.title" = "Ta emot delning";
@@ -148,11 +223,20 @@
 /* Class = "UIButton"; normalTitle = "Login"; ObjectID = "o0V-O8-hvd"; */
 "o0V-O8-hvd.normalTitle" = "Logga in";
 
+/* Class = "UILabel"; text = "Your favorite RSS feeds in one spot"; ObjectID = "p6Q-aK-Qil"; */
+"p6Q-aK-Qil.text" = "Your favorite RSS feeds in one spot";
+
+/* Class = "UIButton"; normalTitle = "212"; ObjectID = "pKg-um-IG3"; */
+"pKg-um-IG3.normalTitle" = "212";
+
 /* Class = "UIBarButtonItem"; title = "Share"; ObjectID = "qhX-o0-Xc6"; */
 "qhX-o0-Xc6.title" = "Dela";
 
-/* Class = "UIButton"; normalTitle = "OPEN APP"; ObjectID = "sqX-hY-kql"; */
-"sqX-hY-kql.normalTitle" = "ÖPPNA APP";
+/* Class = "UIButton"; normalTitle = "DONE"; ObjectID = "qoO-C7-NPn"; */
+"qoO-C7-NPn.normalTitle" = "DONE";
+
+/* Class = "UILabel"; text = "Protect your privacy."; ObjectID = "sTr-d0-IAJ"; */
+"sTr-d0-IAJ.text" = "Protect your privacy.";
 
 /* Class = "UILabel"; text = "Passphrase"; ObjectID = "tiP-dv-3CJ"; */
 "tiP-dv-3CJ.text" = "Lösenord";
@@ -166,8 +250,8 @@
 /* Class = "UITabBarItem"; title = "Feeds"; ObjectID = "uYb-je-uQM"; */
 "uYb-je-uQM.title" = "Flöden";
 
-/* Class = "UILabel"; text = "Create Passphrase"; ObjectID = "uj9-2b-hUt"; */
-"uj9-2b-hUt.text" = "Skapa Lösenord";
+/* Class = "UINavigationItem"; title = "Terms and Conditions"; ObjectID = "uk3-Bf-zsS"; */
+"uk3-Bf-zsS.title" = "Terms and Conditions";
 
 /* Class = "UIViewController"; title = "Main Content"; ObjectID = "vpR-Gw-cn5"; */
 "vpR-Gw-cn5.title" = "Huvudinnehåll";
@@ -181,9 +265,6 @@
 /* Class = "UIViewController"; title = "Panic"; ObjectID = "z6q-7u-hD7"; */
 "z6q-7u-hD7.title" = "Panik";
 
-/* Class = "UILabel"; text = "Stories Received"; ObjectID = "zJ0-AS-4JT"; */
-"zJ0-AS-4JT.text" = "Mottagna Artiklar";
-
-/* Class = "UILabel"; text = "Media Downloads"; ObjectID = "zb4-sp-nWg"; */
-"zb4-sp-nWg.text" = "Medianedladdningar";
+/* Class = "UITableViewController"; title = "Media Downloads"; ObjectID = "zOI-2E-a1E"; */
+"zOI-2E-a1E.title" = "Media Downloads";
 

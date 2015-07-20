@@ -83,8 +83,8 @@
     [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
     
     ////// Keychain //////
-    [[SCRPassphraseManager sharedInstance] clearDatabasePassphrase];
     [[SCRTouchLock sharedInstance] deletePasscode];
+    [[SCRPassphraseManager sharedInstance] clearDatabasePassphrase];
     
     // force exit
     exit(0);

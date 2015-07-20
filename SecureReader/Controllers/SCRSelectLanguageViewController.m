@@ -42,8 +42,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.languages = [[NSArray alloc] initWithObjects:NSLocalizedString(@"English", @"Language name for English") , NSLocalizedString(@"Svenska", @"Language name for Swedish"), nil];
-    self.languageCodes = [[NSArray alloc] initWithObjects:@"Base", @"sv", nil];
+    self.languages = [[NSArray alloc] initWithObjects:NSLocalizedString(@"English", @"Language name for English"),
+                      NSLocalizedString(@"Farsi", @"Language name for Farsi"),
+                      NSLocalizedString(@"Svenska", @"Language name for Swedish"), nil];
+    self.languageCodes = [[NSArray alloc] initWithObjects:@"Base", @"ar", @"sv", nil];
     
     [pickerLanguage setDataSource:self];
     [pickerLanguage setDelegate:self];
