@@ -10,6 +10,8 @@
 		3BB24D68EE03667F19CC9704 /* libPods-SecureReaderTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5735327C43C1B3AC8034225E /* libPods-SecureReaderTests.a */; };
 		63215AF71B546A7F0040A1A0 /* secureReader.xml in Resources */ = {isa = PBXBuildFile; fileRef = 63215AF61B546A7F0040A1A0 /* secureReader.xml */; };
 		632A10831ACF528500E05075 /* SCRNetworkFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 632A10821ACF528500E05075 /* SCRNetworkFetcher.m */; };
+		6335E2FD1B548FBA00836705 /* SCRCommentItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6335E2FC1B548FBA00836705 /* SCRCommentItem.m */; };
+		6335E2FF1B549BD500836705 /* comments.xml in Resources */ = {isa = PBXBuildFile; fileRef = 6335E2FE1B549BD400836705 /* comments.xml */; };
 		633AB7361A9FE8E600A0F3F9 /* SCRMediaItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 633AB7351A9FE8E600A0F3F9 /* SCRMediaItem.m */; };
 		633AB7391A9FE9A800A0F3F9 /* SCRMediaFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 633AB7381A9FE9A800A0F3F9 /* SCRMediaFetcher.m */; };
 		633AB73B1A9FFCEA00A0F3F9 /* SecureReaderDownloadTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 633AB73A1A9FFCEA00A0F3F9 /* SecureReaderDownloadTests.m */; };
@@ -154,6 +156,9 @@
 		63215AF61B546A7F0040A1A0 /* secureReader.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = secureReader.xml; path = "Test Assets/secureReader.xml"; sourceTree = "<group>"; };
 		632A10811ACF528500E05075 /* SCRNetworkFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRNetworkFetcher.h; sourceTree = "<group>"; };
 		632A10821ACF528500E05075 /* SCRNetworkFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRNetworkFetcher.m; sourceTree = "<group>"; };
+		6335E2FB1B548FBA00836705 /* SCRCommentItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRCommentItem.h; sourceTree = "<group>"; };
+		6335E2FC1B548FBA00836705 /* SCRCommentItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRCommentItem.m; sourceTree = "<group>"; };
+		6335E2FE1B549BD400836705 /* comments.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = comments.xml; path = "Test Assets/comments.xml"; sourceTree = "<group>"; };
 		633AB7341A9FE8E600A0F3F9 /* SCRMediaItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRMediaItem.h; sourceTree = "<group>"; };
 		633AB7351A9FE8E600A0F3F9 /* SCRMediaItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRMediaItem.m; sourceTree = "<group>"; };
 		633AB7371A9FE9A800A0F3F9 /* SCRMediaFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRMediaFetcher.h; sourceTree = "<group>"; };
@@ -438,6 +443,7 @@
 		63775E871AAF9602006CE553 /* Test Assets */ = {
 			isa = PBXGroup;
 			children = (
+				6335E2FE1B549BD400836705 /* comments.xml */,
 				63215AF61B546A7F0040A1A0 /* secureReader.xml */,
 				63775E921AB0FFDE006CE553 /* nytimes.xml */,
 				63775E881AAF97B4006CE553 /* Octocat.png */,
@@ -719,6 +725,8 @@
 				D9E6575E1A234363000E6301 /* SCRFeed.m */,
 				92BD50981A07A36A00F3BD22 /* SCRItem.h */,
 				92BD50991A07A36A00F3BD22 /* SCRItem.m */,
+				6335E2FB1B548FBA00836705 /* SCRCommentItem.h */,
+				6335E2FC1B548FBA00836705 /* SCRCommentItem.m */,
 				633AB7341A9FE8E600A0F3F9 /* SCRMediaItem.h */,
 				633AB7351A9FE8E600A0F3F9 /* SCRMediaItem.m */,
 				9276CCEC1ACBE9CB00A6B0E3 /* SCRPostItem.h */,
@@ -976,6 +984,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				63775E891AAF97B4006CE553 /* Octocat.png in Resources */,
+				6335E2FF1B549BD500836705 /* comments.xml in Resources */,
 				63215AF71B546A7F0040A1A0 /* secureReader.xml in Resources */,
 				920C8D971AE934A500FAF494 /* InfoPlist.strings in Resources */,
 				63775E931AB0FFDE006CE553 /* nytimes.xml in Resources */,
@@ -1102,6 +1111,7 @@
 				929EEF4D19F4EB100020BD75 /* main.m in Sources */,
 				92B23C491A5D303800FFD963 /* SCRMainViewController.m in Sources */,
 				9268080C1ABC4C5E00EB9225 /* SCRMediaCollectionView.m in Sources */,
+				6335E2FD1B548FBA00836705 /* SCRCommentItem.m in Sources */,
 				929EEF8219F4F5940020BD75 /* NSBundle+Language.m in Sources */,
 				92B9E9751A9C7A3D00A2BED9 /* SCRPostsViewController.m in Sources */,
 				923FFFA41AA4AA2B00BC83D6 /* SCRItemTagCell.m in Sources */,

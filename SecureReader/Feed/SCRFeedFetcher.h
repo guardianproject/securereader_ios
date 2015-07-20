@@ -8,7 +8,7 @@
 
 #import "SCRNetworkFetcher.h"
 
-@class YapDatabaseConnection, RSSParser;
+@class YapDatabaseConnection, RSSParser, SCRItem;
 
 @interface SCRFeedFetcher : SCRNetworkFetcher
 
@@ -55,6 +55,18 @@
 - (void) fetchFeedsFromOPMLURL:(NSURL *)url
                completionBlock:(void (^)(NSArray *feeds, NSError *error))completionBlock
                completionQueue:(dispatch_queue_t)completionQueue;
+
+/**
+ Fetches Feeds Comments if there are any and stores in database
+ 
+ @param item the SCRItem with a commentsURL
+ @param completionQueue The queue that the completion block will be called on
+ @param completion The block that will be called when it has fetched and stored the comments
+ */
+
+- (void)fetchComments:(SCRItem *)item
+      completionQueue:(dispatch_queue_t)completionQueue
+           completion:(void (^)(NSError *error))completion;
 
 + (RSSParser *)defaultParser;
 

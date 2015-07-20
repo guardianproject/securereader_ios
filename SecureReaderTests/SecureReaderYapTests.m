@@ -22,7 +22,8 @@
 @end
 
 NSString *const kSecureReaderYapTestsRSSURL = @"http://test.fake/rss";
-NSString *const kSEcureReaderYapTestsRSSULWithComments = @"http://test.fake/rsscomments";
+NSString *const kSEcureReaderYapTestsRSSURLWithComments = @"http://test.fake/rsscomments";
+NSString *const kSEcureReaderYapTestsRSSURLComments = @"http://test.fake/comments";
 
 @implementation SecureReaderYapTests
 
@@ -71,7 +72,12 @@ NSString *const kSEcureReaderYapTestsRSSULWithComments = @"http://test.fake/rssc
     NSString *secureReaderPath = [[NSBundle bundleForClass:[self class]] pathForResource:@"secureReader" ofType:@"xml"];
     __block NSData *secureReaderData = [[NSFileManager defaultManager] contentsAtPath:secureReaderPath];
     
-    [UMKMockURLProtocol expectMockRequest:[self requestWithURL:[NSURL URLWithString:kSEcureReaderYapTestsRSSULWithComments] data:secureReaderData]];
+    [UMKMockURLProtocol expectMockRequest:[self requestWithURL:[NSURL URLWithString:kSEcureReaderYapTestsRSSURLWithComments] data:secureReaderData]];
+    
+    NSString *secureReaderCommentsPath = [[NSBundle bundleForClass:[self class]] pathForResource:@"comments" ofType:@"xml"];
+    __block NSData *secureReaderCommentsData = [[NSFileManager defaultManager] contentsAtPath:secureReaderCommentsPath];
+    
+    [UMKMockURLProtocol expectMockRequest:[self requestWithURL:[NSURL URLWithString:kSEcureReaderYapTestsRSSURLComments] data:secureReaderCommentsData]];
     
     return configuration;
 }
@@ -100,7 +106,52 @@ NSString *const kSEcureReaderYapTestsRSSULWithComments = @"http://test.fake/rssc
 }
 
 - (void)importFeedWithComments:(void (^)(NSError *error))completion {
-    [self importFeed:[NSURL URLWithString:kSEcureReaderYapTestsRSSULWithComments] completion:completion];
+    [self importFeed:[NSURL URLWithString:kSEcureReaderYapTestsRSSURLWithComments] completion:completion];
+}
+
+- (void)testFetchingComments {
+    NSString *path = [NSTemporaryDirectory() stringByAppendingPathComponent:NSStringFromSelector(_cmd)];
+    [self setupDatabseAtPath:path];
+    XCTestExpectation *expectation = [self expectationWithDescription:NSStringFromSelector(_cmd)];
+    
+    YapDatabaseConnection *connection = [self.databaseManager.database newConnection];
+    NSURLSessionConfiguration *configuration = [self setupURLMock];
+    SCRFeedFetcher *feedFetcher = [[SCRFeedFetcher alloc] initWithSessionConfiguration:configuration
+                                                                readWriteYapConnection:connection];
+    
+    [self importDefaultFeed:^(NSError *error) {
+        __block SCRItem *item = nil;
+        [self.databaseManager.readConnection readWithBlock:^(YapDatabaseReadTransaction *transaction) {
+            [transaction enumerateKeysAndObjectsInCollection:[SCRItem yapCollection] usingBlock:^(NSString *key, SCRItem *object, BOOL * stop) {
+                
+                item = object;
+                
+                *stop = YES;
+                
+            }];
+        }];
+        
+        item.commentsURL = [NSURL URLWithString:kSEcureReaderYapTestsRSSURLComments];
+        __block NSInteger count = 0;
+        [feedFetcher fetchComments:item completionQueue:dispatch_get_main_queue() completion:^(NSError *error) {
+            
+            [self.databaseManager.readConnection readWithBlock:^(YapDatabaseReadTransaction *transaction) {
+                [item enumeratCommentsWithTransaction:transaction block:^(SCRCommentItem *comment, BOOL *stop) {
+                    XCTAssertNotNil(comment);
+                    count+=1;
+                }];
+            }];
+            
+            XCTAssertEqual(count, 5,"Did not fin correct number of comments");
+            [expectation fulfill];
+        }];
+    }];
+    
+    
+    
+    [self waitForExpectationsWithTimeout:3000 handler:^(NSError *error) {
+        XCTAssertNil(error);
+    }];
 }
 
 - (void)testFeedWithComments

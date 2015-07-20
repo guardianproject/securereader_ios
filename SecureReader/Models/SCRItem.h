@@ -14,10 +14,11 @@
 
 @import UIKit;
 
-@class YapDatabaseReadTransaction, SCRMediaItem, IOCipher;
+@class YapDatabaseReadTransaction, SCRMediaItem, IOCipher, SCRCommentItem;
 
 extern NSString *const kSCRMediaItemEdgeName;
 extern NSString *const kSCRFeedEdgeName;
+extern NSString *const kSCRCommentEdgeName;
 
 @interface SCRItem : RSSItem <SCRYapObject, YapDatabaseRelationshipNode>
 
@@ -43,6 +44,8 @@ extern NSString *const kSCRFeedEdgeName;
 - (void)removeMediaItemsWithReadWriteTransaction:(YapDatabaseReadWriteTransaction *)transaction storage:(IOCipher *)storage;
 
 - (void)enumerateMediaItemsInTransaction:(YapDatabaseReadTransaction *)readTransaction block:(void (^)(SCRMediaItem *mediaItem,BOOL *stop))block;
+
+- (void)enumeratCommentsWithTransaction:(YapDatabaseReadTransaction *)transaction block:(void (^)(SCRCommentItem *comment,BOOL *stop))block;
 
 /**
  Removes SCRItems in the database and their media items where the the data in the yap metadata field is older than a date.

@@ -9,6 +9,7 @@
 #import "SCRItem.h"
 #import "SCRFeed.h"
 #import "SCRMediaItem.h"
+#import "SCRCommentItem.h"
 #import "YapDatabaseTransaction.h"
 #import "YapDatabaseRelationshipTransaction.h"
 #import "SCRDatabaseManager.h"
@@ -17,6 +18,8 @@
 
 NSString *const kSCRMediaItemEdgeName = @"kSCRMediaItemEdgeName";
 NSString *const kSCRFeedEdgeName      = @"kSCRFeedEdgeName";
+NSString *const kSCRCommentEdgeName   = @"kSCRCommentEdgeName";
+
 
 NSString *const kSCRFeedWfwPrefix = @"wfw";
 NSString *const kSCRFeedWfwNameSpace = @"http://wellformedweb.org/CommentAPI/";
@@ -112,6 +115,19 @@ NSString *const kSCRFeedPaikNameSpace = @"http://securereader.guardianproject.in
         SCRMediaItem *mediaItem = [readTransaction objectForKey:edge.destinationKey inCollection:edge.destinationCollection];
         block(mediaItem,stop);
         
+    }];
+}
+
+- (void)enumeratCommentsWithTransaction:(YapDatabaseReadTransaction *)transaction block:(void (^)(SCRCommentItem *comment,BOOL *stop))block
+{
+    if (!block) {
+        return;
+    }
+    
+    [[transaction ext:kSCRRelationshipExtensionName] enumerateEdgesWithName:kSCRCommentEdgeName destinationKey:self.yapKey collection:[[self class] yapCollection] usingBlock:^(YapDatabaseRelationshipEdge *edge, BOOL *stop) {
+        
+        SCRCommentItem *comment = [transaction objectForKey:edge.sourceKey inCollection:edge.sourceCollection];
+        block(comment,stop);
     }];
 }
 

@@ -10,6 +10,7 @@
 #import "RSSAtomKit.h"
 #import "SCRDatabaseManager.h"
 #import "SCRItem.h"
+#import "SCRCommentItem.h"
 #import "SCRFeed.h"
 #import "SCRMediaItem.h"
 #import "YapDatabaseQuery.h"
@@ -209,6 +210,44 @@
 
 - (void) fetchFeedsFromOPMLURL:(NSURL *)url completionBlock:(void (^)(NSArray *, NSError *))completionBlock completionQueue:(dispatch_queue_t)completionQueue{
     [self.atomKit parseFeedsFromOPMLURL:url completionBlock:completionBlock completionQueue:completionQueue];
+}
+
+- (void)fetchComments:(SCRItem *)item completionQueue:(dispatch_queue_t)completionQueue completion:(void (^)(NSError *error))completion {
+    
+    if (!completionQueue) {
+        completionQueue = dispatch_get_main_queue();
+    }
+    
+    if (![[item.commentsURL absoluteString] length]) {
+        if (completion) {
+            dispatch_async(completionQueue, ^{
+                completion(nil);
+            });
+        }
+        return;
+    }
+    
+    [self.networkOperationQueue addOperationWithBlock:^{
+        
+        [self.atomKit parseFeedFromURL:item.commentsURL completionBlock:^(RSSFeed *feed, NSArray *items, NSError *error) {
+            
+            [self.databaseConnection asyncReadWriteWithBlock:^(YapDatabaseReadWriteTransaction *transaction) {
+                for (SCRItem *parsedItem in items) {
+                    SCRCommentItem *commentsItem = [[SCRCommentItem alloc] initWithDictionary:parsedItem.dictionaryValue error:nil];
+                    SCRCommentItem *existingCommentsItem = [transaction objectForKey:commentsItem.yapKey inCollection:[SCRCommentItem yapCollection]];
+                    [commentsItem mergeValuesForKeysFromModel:existingCommentsItem];
+                    
+                    commentsItem.parentItemKey = item.yapKey;
+                    [commentsItem saveWithTransaction:transaction];
+                }
+            } completionQueue:self.callbackQueue completionBlock:^{
+               
+                if (completion){
+                    completion(nil);
+                }
+            }];
+        } completionQueue:self.callbackQueue];
+    }];
 }
 
 + (RSSParser *)defaultParser
