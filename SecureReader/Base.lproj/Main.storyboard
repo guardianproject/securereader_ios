@@ -198,14 +198,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="center" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R9M-sT-UXu" customClass="SVGDocumentView">
+                            <view contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="R9M-sT-UXu" customClass="SVGDocumentView">
                                 <rect key="frame" x="20" y="90" width="560" height="270"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="artworkPath" value="onboard-01"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="theme" value="OnboardingScreen1Style"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="1000" misplaced="YES" text="Your favorite RSS feeds in one spot" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="560" translatesAutoresizingMaskIntoConstraints="NO" id="p6Q-aK-Qil" customClass="SCRLabel">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="1000" text="Your favorite RSS feeds in one spot" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="560" translatesAutoresizingMaskIntoConstraints="NO" id="p6Q-aK-Qil" customClass="SCRLabel">
                                 <rect key="frame" x="20" y="380" width="560" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -214,7 +214,7 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="theme" value="OnboardingTextHeadingStyle"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="1000" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="560" translatesAutoresizingMaskIntoConstraints="NO" id="yc2-2b-XFL" customClass="SCRLabel">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="1000" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="560" translatesAutoresizingMaskIntoConstraints="NO" id="yc2-2b-XFL" customClass="SCRLabel">
                                 <rect key="frame" x="20" y="421" width="560" height="79"/>
                                 <attributedString key="attributedText">
                                     <fragment>
@@ -1909,14 +1909,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="center" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="di7-fd-JdS" customClass="SVGDocumentView">
+                            <view contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="di7-fd-JdS" customClass="SVGDocumentView">
                                 <rect key="frame" x="20" y="30" width="560" height="312"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="artworkPath" value="onboard-02"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="theme" value="OnboardingScreen2Style"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="1000" misplaced="YES" text="Designed to work with Tor" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="560" translatesAutoresizingMaskIntoConstraints="NO" id="SbE-YW-Mv9" customClass="SCRLabel">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="1000" text="Designed to work with Tor" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="560" translatesAutoresizingMaskIntoConstraints="NO" id="SbE-YW-Mv9" customClass="SCRLabel">
                                 <rect key="frame" x="20" y="362" width="560" height="20"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -1925,7 +1925,7 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="theme" value="OnboardingTextHeadingStyle"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="1000" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="560" translatesAutoresizingMaskIntoConstraints="NO" id="RXC-M6-512" customClass="SCRLabel">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="1000" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="560" translatesAutoresizingMaskIntoConstraints="NO" id="RXC-M6-512" customClass="SCRLabel">
                                 <rect key="frame" x="20" y="402" width="560" height="98"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Tor ">
@@ -2154,8 +2154,8 @@ It also </string>
                                     <userDefinedRuntimeAttribute type="string" keyPath="theme" value="OnboardingScreen3Style"/>
                                 </userDefinedRuntimeAttributes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" misplaced="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5M5-5V-l9a">
-                                <rect key="frame" x="0.0" y="550" width="543" height="50"/>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5M5-5V-l9a">
+                                <rect key="frame" x="0.0" y="550" width="537" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="pbV-Pk-4ck"/>
                                 </constraints>
@@ -2170,8 +2170,8 @@ It also </string>
                                     <action selector="getStartedButtonClicked:" destination="CNQ-Pl-C5o" eventType="touchUpInside" id="pFI-5r-rKA"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qoO-C7-NPn">
-                                <rect key="frame" x="543" y="550" width="57" height="50"/>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qoO-C7-NPn">
+                                <rect key="frame" x="537" y="550" width="63" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="x7m-IN-bbc"/>
                                 </constraints>
@@ -2193,12 +2193,15 @@ It also </string>
                             <constraint firstItem="93A-Ur-BqO" firstAttribute="top" secondItem="qoO-C7-NPn" secondAttribute="bottom" id="9GX-ze-2NR"/>
                             <constraint firstItem="qoO-C7-NPn" firstAttribute="leading" secondItem="5M5-5V-l9a" secondAttribute="trailing" id="A6z-4J-Man"/>
                             <constraint firstAttribute="trailing" secondItem="qoO-C7-NPn" secondAttribute="trailing" id="DSA-RW-SMt"/>
+                            <constraint firstItem="QM5-ZU-zls" firstAttribute="top" secondItem="ktm-vf-Bsx" secondAttribute="bottom" id="LMK-an-R0u"/>
                             <constraint firstItem="qoO-C7-NPn" firstAttribute="top" secondItem="QM5-ZU-zls" secondAttribute="bottom" id="MuD-le-vhx"/>
                             <constraint firstAttribute="trailing" secondItem="QM5-ZU-zls" secondAttribute="trailing" id="X7D-z5-xxM"/>
                             <constraint firstItem="5M5-5V-l9a" firstAttribute="leading" secondItem="yH5-q6-8bk" secondAttribute="leading" id="nFV-f8-jCO"/>
-                            <constraint firstItem="QM5-ZU-zls" firstAttribute="top" secondItem="ktm-vf-Bsx" secondAttribute="bottom" id="oCf-vn-1aq"/>
                             <constraint firstItem="93A-Ur-BqO" firstAttribute="top" secondItem="5M5-5V-l9a" secondAttribute="bottom" id="wEP-Xb-nJN"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="theme" value="OnboardingScreen3HeaderStyle"/>
+                        </userDefinedRuntimeAttributes>
                     </view>
                     <connections>
                         <outlet property="tableView" destination="QM5-ZU-zls" id="see-a5-wKu"/>
@@ -2379,7 +2382,7 @@ Please read the &lt;a href="#terms"&gt;Terms and Conditions&lt;/a&gt; to underst
         <image name="paik_launcher" width="60" height="60"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="h85-gh-6Jg"/>
+        <segue reference="vmW-Fe-xQR"/>
         <segue reference="87I-Fd-lKx"/>
     </inferredMetricsTieBreakers>
 </document>
