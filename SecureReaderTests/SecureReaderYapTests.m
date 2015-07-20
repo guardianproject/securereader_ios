@@ -13,7 +13,9 @@
 #import "SCRMediaItem.h"
 #import "SCRItem.h"
 #import "SCRFeed.h"
+#import "SCRCommentItem.h"
 #import "SCRPassphraseManager.h"
+#import "RSSPerson.h"
 
 @interface SecureReaderYapTests : XCTestCase
 
@@ -138,6 +140,7 @@ NSString *const kSEcureReaderYapTestsRSSURLComments = @"http://test.fake/comment
             [self.databaseManager.readConnection readWithBlock:^(YapDatabaseReadTransaction *transaction) {
                 [item enumeratCommentsWithTransaction:transaction block:^(SCRCommentItem *comment, BOOL *stop) {
                     XCTAssertNotNil(comment);
+                    XCTAssertTrue([comment.author.name length] > 0,@"No author name");
                     count+=1;
                 }];
             }];
