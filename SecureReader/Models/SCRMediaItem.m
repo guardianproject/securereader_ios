@@ -55,7 +55,27 @@
 
 - (NSURL *)localURLWithPort:(NSUInteger)port
 {
-    return [NSURL URLWithString:[[NSString stringWithFormat:@"http://localhost:%lu",port] stringByAppendingPathComponent:[self localPath]]];
+    return [NSURL URLWithString:[[NSString stringWithFormat:@"http://localhost:%lu",(unsigned long)port] stringByAppendingPathComponent:[self localPath]]];
+}
+
+- (SCRMediaItemType)mediaType
+{
+    NSRange imageRange = [self.type rangeOfString:@"image"];
+    if (imageRange.location == 0) {
+        return SCRMediaItemTypeImage;
+    }
+    
+    NSRange audioRange = [self.type rangeOfString:@"audio"];
+    if (audioRange.location == 0) {
+        return SCRMediaItemTypeAudio;
+    }
+    
+    NSRange videoRange = [self.type rangeOfString:@"video"];
+    if (videoRange.location == 0) {
+        return SCRMediaItemTypeVideo;
+    }
+    
+    return SCRMediaItemTypeUnkown;
 }
 
 - (void)enumerateItemsInTransaction:(YapDatabaseReadTransaction *)readTransaction block:(void (^)(SCRItem *item,BOOL *stop))block

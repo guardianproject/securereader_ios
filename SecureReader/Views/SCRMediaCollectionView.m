@@ -12,6 +12,8 @@
 #import "SCRMediaItem.h"
 #import "SCRMediaCollectionViewDownloadView.h"
 #import "JTSImageViewController.h"
+#import "SCRMediaServer+Video.h"
+@import AVFoundation;
 
 @interface SCRMediaCollectionViewItem : NSObject
 
@@ -188,12 +190,11 @@
 
 - (void) mediaItemCreate:(SCRMediaCollectionViewItem *)mediaItem
 {
-    [[SCRAppDelegate sharedAppDelegate].fileManager dataForPath:mediaItem.mediaItem.localPath completionQueue:self.imageQueue completion:^(NSData *data, NSError *error) {
+    [self imageForMediaItem:mediaItem.mediaItem completion:^(UIImage *image, NSError *error) {
         mediaItem.downloading = false;
         if (error == nil)
         {
             mediaItem.downloaded = true;
-            UIImage *image = [UIImage imageWithData:data];
             dispatch_async(dispatch_get_main_queue(), ^{
                 UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
                 [imageView setFrame:CGRectMake(0, 0, self.contentView.bounds.size.width, [self imageViewHeight])];
@@ -219,17 +220,46 @@
     }
 }
 
+- (void)imageForMediaItem:(SCRMediaItem *)mediaItem completion:(void (^)(UIImage *image, NSError *error))completion;
+{
+    if (!completion) {
+        return;
+    }
+    
+    dispatch_async(self.imageQueue, ^{
+        __block UIImage *image = nil;
+        SCRMediaItemType mediaType = [mediaItem mediaType];
+        if (mediaType == SCRMediaItemTypeImage) {
+            
+            [[SCRAppDelegate sharedAppDelegate].fileManager dataForPath:mediaItem.localPath completionQueue:self.imageQueue completion:^(NSData *data, NSError *error) {
+                image = [UIImage imageWithData:data];
+                completion(image,error);
+            }];
+            
+        } else if (mediaType == SCRMediaItemTypeVideo) {
+            
+            image = [[SCRAppDelegate sharedAppDelegate].mediaServer videoThumbnail:mediaItem];
+            
+            completion(image,nil);
+            
+        } else if (mediaType == SCRMediaItemTypeAudio ) {
+            
+        }
+        
+        
+    });
+}
+
 - (void) mediaItemDownload:(SCRMediaCollectionViewItem *)mediaItem
 {
     mediaItem.downloading = YES;
     [[SCRAppDelegate sharedAppDelegate].mediaFetcher downloadMediaItem:mediaItem.mediaItem completionBlock:^(NSError *error) {
         mediaItem.downloading = NO;
-        [[SCRAppDelegate sharedAppDelegate].fileManager dataForPath:mediaItem.mediaItem.localPath completionQueue:self.imageQueue   completion:^(NSData *data, NSError *error) {
-            if (error == nil)
-            {
-                mediaItem.downloaded = true;
-                UIImage *image = [UIImage imageWithData:data];
-                dispatch_async(dispatch_get_main_queue(), ^{
+        
+        [self imageForMediaItem:mediaItem.mediaItem completion:^(UIImage *image, NSError *error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (!error) {
+                    mediaItem.downloaded = true;
                     UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
                     mediaItem.view = imageView;
                     [imageView setFrame:CGRectMake(0, 0, self.contentView.bounds.size.width, [self imageViewHeight])];
@@ -251,15 +281,16 @@
                     {
                         [self updateHeight];
                     }
-                });
-            }
-            else if (mediaItem.view != nil && [mediaItem.view isKindOfClass:[SCRMediaCollectionViewDownloadView class]])
-            {
-                [[(SCRMediaCollectionViewDownloadView *)mediaItem.view downloadButton] setHidden:NO];
-                [[(SCRMediaCollectionViewDownloadView *)mediaItem.view activityView] stopAnimating];
-                [[(SCRMediaCollectionViewDownloadView *)mediaItem.view activityView] setHidden:YES];
-            }
-
+                }
+                else if (mediaItem.view != nil && [mediaItem.view isKindOfClass:[SCRMediaCollectionViewDownloadView class]])
+                {
+                    [[(SCRMediaCollectionViewDownloadView *)mediaItem.view downloadButton] setHidden:NO];
+                    [[(SCRMediaCollectionViewDownloadView *)mediaItem.view activityView] stopAnimating];
+                    [[(SCRMediaCollectionViewDownloadView *)mediaItem.view activityView] setHidden:YES];
+                }
+                
+                
+            });
         }];
     }];
 }
@@ -354,6 +385,9 @@
         
         //Make sure the tapped view is an imageview and not the downloading view
         if ([collectionViewItem.view isKindOfClass:[UIImageView class]]) {
+            
+            
+            
             JTSImageInfo *imageInfo = [[JTSImageInfo alloc] init];
             imageInfo.image = ((UIImageView *)collectionViewItem.view).image;
             imageInfo.referenceRect = collectionViewItem.view.frame;

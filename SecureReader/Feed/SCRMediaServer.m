@@ -62,6 +62,10 @@
     
 }
 
+- (void)stop {
+    [self.webServer stop];
+}
+
 - (void)handleMediaRequest:(GCDWebServerRequest *)request completion:(GCDWebServerCompletionBlock)completionBlock
 {
     if (completionBlock) {

@@ -68,7 +68,7 @@
 
 - (IBAction)doneButtonPressed:(id)sender
 {
-    [self.navigationController dismissViewControllerAnimated:self completion:nil];
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)segmentedControlDidChange:(id)sender

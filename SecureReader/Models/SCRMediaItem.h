@@ -11,7 +11,16 @@
 
 @class SCRItem, YapDatabaseReadTransaction;
 
+typedef NS_ENUM(NSUInteger, SCRMediaItemType) {
+    SCRMediaItemTypeUnkown  = 0,
+    SCRMediaItemTypeAudio   = 1,
+    SCRMediaItemTypeVideo   = 2,
+    SCRMediaItemTypeImage   = 3
+};
+
 @interface SCRMediaItem : RSSMediaItem <SCRYapObject>
+
+- (SCRMediaItemType)mediaType;
 
 /** Local path for used in IOCipher */
 - (NSString *)localPath;

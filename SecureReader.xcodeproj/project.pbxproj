@@ -19,6 +19,8 @@
 		633D23DF1AA0EC78008D1C28 /* SCRMediaServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 633D23DE1AA0EC78008D1C28 /* SCRMediaServer.m */; };
 		633FEABB1ACE023300A628AF /* SCRTorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 633FEABA1ACE023300A628AF /* SCRTorManager.m */; };
 		634680901B0AAB8E00D9A1C5 /* SCRFeedIconFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 6346808F1B0AAB8E00D9A1C5 /* SCRFeedIconFetcher.m */; };
+		635A62691B61730D00008CB5 /* SCRMediaServer+Video.m in Sources */ = {isa = PBXBuildFile; fileRef = 635A62681B61730D00008CB5 /* SCRMediaServer+Video.m */; };
+		635A626D1B61772500008CB5 /* short.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 635A626C1B61772500008CB5 /* short.mp4 */; };
 		635B8C7F1AF96954009D976C /* default.opml in Resources */ = {isa = PBXBuildFile; fileRef = 635B8C7E1AF96954009D976C /* default.opml */; };
 		636180DE1B015A95008048A0 /* SCRPanicController.m in Sources */ = {isa = PBXBuildFile; fileRef = 636180DD1B015A95008048A0 /* SCRPanicController.m */; };
 		63775E891AAF97B4006CE553 /* Octocat.png in Resources */ = {isa = PBXBuildFile; fileRef = 63775E881AAF97B4006CE553 /* Octocat.png */; };
@@ -170,6 +172,9 @@
 		633FEABA1ACE023300A628AF /* SCRTorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRTorManager.m; sourceTree = "<group>"; };
 		6346808E1B0AAB8E00D9A1C5 /* SCRFeedIconFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SCRFeedIconFetcher.h; path = SecureReader/Feed/SCRFeedIconFetcher.h; sourceTree = SOURCE_ROOT; };
 		6346808F1B0AAB8E00D9A1C5 /* SCRFeedIconFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SCRFeedIconFetcher.m; path = SecureReader/Feed/SCRFeedIconFetcher.m; sourceTree = SOURCE_ROOT; };
+		635A62671B61730D00008CB5 /* SCRMediaServer+Video.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SCRMediaServer+Video.h"; path = "SecureReader/Categories/SCRMediaServer+Video.h"; sourceTree = SOURCE_ROOT; };
+		635A62681B61730D00008CB5 /* SCRMediaServer+Video.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "SCRMediaServer+Video.m"; path = "SecureReader/Categories/SCRMediaServer+Video.m"; sourceTree = SOURCE_ROOT; };
+		635A626C1B61772500008CB5 /* short.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = short.mp4; path = "Test Assets/short.mp4"; sourceTree = "<group>"; };
 		635B8C7E1AF96954009D976C /* default.opml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = default.opml; sourceTree = "<group>"; };
 		636180DC1B015A95008048A0 /* SCRPanicController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRPanicController.h; sourceTree = "<group>"; };
 		636180DD1B015A95008048A0 /* SCRPanicController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRPanicController.m; sourceTree = "<group>"; };
@@ -438,6 +443,8 @@
 				633D23DB1AA0EBF2008D1C28 /* SCRFileManager.m */,
 				633D23DD1AA0EC78008D1C28 /* SCRMediaServer.h */,
 				633D23DE1AA0EC78008D1C28 /* SCRMediaServer.m */,
+				635A62671B61730D00008CB5 /* SCRMediaServer+Video.h */,
+				635A62681B61730D00008CB5 /* SCRMediaServer+Video.m */,
 			);
 			name = "File Management";
 			path = Models;
@@ -446,6 +453,7 @@
 		63775E871AAF9602006CE553 /* Test Assets */ = {
 			isa = PBXGroup;
 			children = (
+				635A626C1B61772500008CB5 /* short.mp4 */,
 				6335E2FE1B549BD400836705 /* comments.xml */,
 				63215AF61B546A7F0040A1A0 /* secureReader.xml */,
 				63775E921AB0FFDE006CE553 /* nytimes.xml */,
@@ -984,6 +992,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				635A626D1B61772500008CB5 /* short.mp4 in Resources */,
 				63775E891AAF97B4006CE553 /* Octocat.png in Resources */,
 				6335E2FF1B549BD500836705 /* comments.xml in Resources */,
 				63215AF71B546A7F0040A1A0 /* secureReader.xml in Resources */,
@@ -1093,6 +1102,7 @@
 				9276CCF41ACC1FBB00A6B0E3 /* SCRSentPostItemTableDelegate.m in Sources */,
 				633AB7361A9FE8E600A0F3F9 /* SCRMediaItem.m in Sources */,
 				D98DA0801B1FA7C500852715 /* SCRTouchLock.m in Sources */,
+				635A62691B61730D00008CB5 /* SCRMediaServer+Video.m in Sources */,
 				929EEF8119F4F5940020BD75 /* SCRSelectLanguageViewController.m in Sources */,
 				633FEABB1ACE023300A628AF /* SCRTorManager.m in Sources */,
 				920582881A6EA25000E152D9 /* SCRGradientBackgroundView.m in Sources */,

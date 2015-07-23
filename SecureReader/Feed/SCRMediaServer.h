@@ -17,4 +17,6 @@
 
 - (void)startOnPort:(uint16_t)port error:(NSError **)error;
 
+- (void)stop;
+
 @end
