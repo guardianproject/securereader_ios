@@ -13,7 +13,7 @@
 #import "SCRMediaCollectionViewDownloadView.h"
 #import "JTSImageViewController.h"
 #import "SCRMediaServer+Video.h"
-@import AVFoundation;
+@import MediaPlayer;
 
 @interface SCRMediaCollectionViewItem : NSObject
 
@@ -386,18 +386,7 @@
         //Make sure the tapped view is an imageview and not the downloading view
         if ([collectionViewItem.view isKindOfClass:[UIImageView class]]) {
             
-            
-            
-            JTSImageInfo *imageInfo = [[JTSImageInfo alloc] init];
-            imageInfo.image = ((UIImageView *)collectionViewItem.view).image;
-            imageInfo.referenceRect = collectionViewItem.view.frame;
-            imageInfo.referenceView = collectionViewItem.view.superview;
-            
-            // Setup view controller
-            JTSImageViewController *imageViewer = [[JTSImageViewController alloc]
-                                                   initWithImageInfo:imageInfo
-                                                   mode:JTSImageViewControllerMode_Image
-                                                   backgroundStyle:JTSImageViewControllerBackgroundOption_Blurred];
+            SCRMediaItemType type  = [collectionViewItem.mediaItem mediaType];
             
             // Get parent View Controller a bit ugly but it works
             UIViewController *parentViewController = nil;
@@ -409,7 +398,29 @@
                 parentViewController = (UIViewController *)responder;
             }
             
-            [imageViewer showFromViewController:parentViewController transition:JTSImageViewControllerTransition_FromOriginalPosition];
+            //Show correct view depending on media
+            if (type == SCRMediaItemTypeImage) {
+                JTSImageInfo *imageInfo = [[JTSImageInfo alloc] init];
+                imageInfo.image = ((UIImageView *)collectionViewItem.view).image;
+                imageInfo.referenceRect = collectionViewItem.view.frame;
+                imageInfo.referenceView = collectionViewItem.view.superview;
+                
+                // Setup view controller
+                JTSImageViewController *imageViewer = [[JTSImageViewController alloc]
+                                                       initWithImageInfo:imageInfo
+                                                       mode:JTSImageViewControllerMode_Image
+                                                       backgroundStyle:JTSImageViewControllerBackgroundOption_Blurred];
+                
+                
+                
+                [imageViewer showFromViewController:parentViewController transition:JTSImageViewControllerTransition_FromOriginalPosition];
+            } else if (type == SCRMediaItemTypeVideo || type == SCRMediaItemTypeAudio) {
+                NSURL *meidaURL = [collectionViewItem.mediaItem localURLWithPort:[SCRAppDelegate sharedAppDelegate].mediaServer.port];
+                MPMoviePlayerViewController *moviePlayerViewController = [[MPMoviePlayerViewController alloc] initWithContentURL:meidaURL];
+                [parentViewController presentViewController:moviePlayerViewController animated:YES completion:nil];
+            }
+            
+            
         }
         
         
