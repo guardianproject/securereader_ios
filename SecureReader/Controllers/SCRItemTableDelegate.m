@@ -69,16 +69,16 @@
     //
     if (cell.tagCollectionView != nil)
     {
-        if (self.filter != nil)
-        {
-            UINib *nib = [UINib nibWithNibName:@"SCRItemTagCell" bundle:nil];
-            [cell.tagCollectionView registerNib:nib forCellWithReuseIdentifier:@"cellTag"];
-            if (self.cellTagPrototype == nil)
-                self.cellTagPrototype = [[nib instantiateWithOwner:nil options:nil] objectAtIndex:0];
-            cell.tagCollectionView.delegate = self;
-            cell.tagCollectionView.dataSource = self;
-        }
-        else
+//        if (self.filter != nil)
+//        {
+//            UINib *nib = [UINib nibWithNibName:@"SCRItemTagCell" bundle:nil];
+//            [cell.tagCollectionView registerNib:nib forCellWithReuseIdentifier:@"cellTag"];
+//            if (self.cellTagPrototype == nil)
+//                self.cellTagPrototype = [[nib instantiateWithOwner:nil options:nil] objectAtIndex:0];
+//            cell.tagCollectionView.delegate = self;
+//            cell.tagCollectionView.dataSource = self;
+//        }
+//        else
         {
             // Collapse the tag view
             cell.tagCollectionViewHeightConstraint.constant = 0;
