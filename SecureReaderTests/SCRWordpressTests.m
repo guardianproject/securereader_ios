@@ -150,6 +150,24 @@
     }];
 }
 
+- (void) testGetCommentsCount {
+    [self.wpClient requestNewAccountWithNickname:@"test" completionBlock:^(NSString *username, NSString *password, NSError *error) {
+        if (error) {
+            XCTFail(@"%@", error);
+            return;
+        }
+        [self.wpClient setUsername:username password:password];
+        [self.wpClient getCommentCountsForPostId:@"1" completionBlock:^(NSUInteger approvedCount, NSUInteger awaitingModerationCount, NSUInteger spamCount, NSUInteger totalCommentCount, NSError *error) {
+            XCTAssertNil(error);
+            [self.expectation fulfill];
+        }];
+    }];
+    self.expectation = [self expectationWithDescription:@"post comment"];
+    [self waitForExpectationsWithTimeout:30 handler:^(NSError *error) {
+        XCTAssertNil(error);
+    }];
+}
+
 
 #pragma mark Utility
 

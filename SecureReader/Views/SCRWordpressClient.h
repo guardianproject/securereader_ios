@@ -47,4 +47,13 @@
                    fileName:(NSString*)fileName
             completionBlock:(void (^)(NSURL *url, NSString *fileId, NSError *error))completionBlock;
 
+/** Get comment stats for a specific post */
+- (void) getCommentCountsForPostId:(NSString*)postId
+                  completionBlock:(void (^)(NSUInteger approvedCount,
+                                            NSUInteger awaitingModerationCount,
+                                            NSUInteger spamCount,
+                                            NSUInteger totalCommentCount,
+                                            NSError *error))completionBlock;
+
+
 @end

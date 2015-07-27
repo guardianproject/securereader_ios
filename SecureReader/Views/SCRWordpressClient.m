@@ -277,6 +277,86 @@ static NSString* SCRGetMimeTypeForExtension(NSString* extension) {
     }];
 }
 
+/** Get comment stats for a specific post */
+- (void) getCommentCountsForPostId:(NSString*)postId
+                   completionBlock:(void (^)(NSUInteger approvedCount,
+                                             NSUInteger awaitingModerationCount,
+                                             NSUInteger spamCount,
+                                             NSUInteger totalCommentCount,
+                                             NSError *error))completionBlock {
+    NSParameterAssert(self.username);
+    NSParameterAssert(self.password);
+    NSParameterAssert(postId);
+    NSParameterAssert(completionBlock);
+    if (!completionBlock || !postId) {
+        return;
+    }
+    [self.networkOperationQueue addOperationWithBlock:^{
+        NSDictionary *postParameters = @{@"post_id": postId};
+        NSArray *parameters = [self buildParametersWithExtra:postParameters];
+        WPXMLRPCEncoder *encoder = [[WPXMLRPCEncoder alloc] initWithMethod:@"wp.getCommentCount" andParameters:parameters];
+        NSError *error = nil;
+        NSData *data = [encoder dataEncodedWithError:&error];
+        if (error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completionBlock(0, 0, 0, 0, error);
+            });
+            return;
+        }
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:self.rpcEndpoint];
+        [request setHTTPMethod:@"POST"];
+        [request setAllHTTPHeaderFields:@{@"Content-Type": @"text/xml"}];
+        NSURLSessionUploadTask *uploadTask = [self.urlSession uploadTaskWithRequest:request fromData:data completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+            if (error) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    completionBlock(0, 0, 0, 0, error);
+                });
+                return;
+            }
+            WPXMLRPCDecoder *decoder = [[WPXMLRPCDecoder alloc] initWithData:data];
+            if ([decoder isFault] || [decoder object] == nil) {
+                error = [decoder error];
+            }
+            if (error) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    completionBlock(0, 0, 0, 0, error);
+                });
+                return;
+            }
+            if ([decoder.object isKindOfClass:[NSDictionary class]]) {
+                NSDictionary *dict = decoder.object;
+                NSString *approved = dict[@"approved"]; // why is this a string?
+                NSNumber *awaiting = dict[@"awaiting_moderation"];
+                NSNumber *total = dict[@"total_comments"];
+                NSNumber *spam = dict[@"spam"];
+                NSParameterAssert(approved);
+                NSParameterAssert(awaiting);
+                NSParameterAssert(total);
+                NSParameterAssert(spam);
+                if (approved && awaiting && total && spam) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        completionBlock(approved.integerValue,
+                                        awaiting.integerValue,
+                                        spam.integerValue,
+                                        total.integerValue,
+                                        nil);
+                    });
+                } else {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        completionBlock(0, 0, 0, 0, [NSError errorWithDomain:@"info.gp" code:1235 userInfo:@{NSLocalizedDescriptionKey: @"Couldn't parse response"}]);
+                    });
+                }
+            } else {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    completionBlock(0, 0, 0, 0, [NSError errorWithDomain:@"info.gp" code:1235 userInfo:@{NSLocalizedDescriptionKey: @"Couldn't parse response"}]);
+                });
+            }
+        }];
+        [uploadTask resume];
+    }];
+    
+}
+
 - (void) uploadFileAtURL:(NSURL *)fileURL completionBlock:(void (^)(NSURL *, NSString *, NSError *))completionBlock {
     NSParameterAssert(self.username);
     NSParameterAssert(self.password);
