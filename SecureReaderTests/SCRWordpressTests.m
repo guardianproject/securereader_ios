@@ -162,7 +162,26 @@
             [self.expectation fulfill];
         }];
     }];
-    self.expectation = [self expectationWithDescription:@"post comment"];
+    self.expectation = [self expectationWithDescription:@"get comment count"];
+    [self waitForExpectationsWithTimeout:30 handler:^(NSError *error) {
+        XCTAssertNil(error);
+    }];
+}
+
+- (void) testPostNewComment {
+    [self.wpClient requestNewAccountWithNickname:@"test" completionBlock:^(NSString *username, NSString *password, NSError *error) {
+        if (error) {
+            XCTFail(@"%@", error);
+            return;
+        }
+        [self.wpClient setUsername:username password:password];
+        [self.wpClient postNewCommentForPostId:@"1" parentCommentId:nil body:@"test comment body" author:@"test_author" authorURL:[NSURL URLWithString:@"http://example.com"] authorEmail:@"test@example.com" completionBlock:^(NSString *commentId, NSError *error) {
+            XCTAssertNil(error);
+            XCTAssertNotNil(commentId);
+            [self.expectation fulfill];
+        }];
+    }];
+    self.expectation = [self expectationWithDescription:@"post new comment"];
     [self waitForExpectationsWithTimeout:30 handler:^(NSError *error) {
         XCTAssertNil(error);
     }];

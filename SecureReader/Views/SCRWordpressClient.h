@@ -55,5 +55,18 @@
                                             NSUInteger totalCommentCount,
                                             NSError *error))completionBlock;
 
+/**
+ * Post new comment
+ * @param postId
+ * @param parentCommentId can be nil
+ * @param body non-nil
+ */
+- (void) postNewCommentForPostId:(NSString*)postId
+                 parentCommentId:(NSString*)parentCommentId
+                            body:(NSString*)body
+                          author:(NSString*)author
+                       authorURL:(NSURL*)authorURL
+                     authorEmail:(NSString*)authorEmail
+                 completionBlock:(void (^)(NSString *commentId, NSError *error))completionBlock;
 
 @end

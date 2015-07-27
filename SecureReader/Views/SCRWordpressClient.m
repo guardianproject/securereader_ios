@@ -221,6 +221,104 @@ static NSString* SCRGetMimeTypeForExtension(NSString* extension) {
     }];
 }
 
+/*
+ int blog_id
+ string username
+ string password
+ int post_id
+ struct comment
+ int comment_parent
+ string content
+ string author
+ string author_url
+ string author_email
+ */
+- (void) postNewCommentForPostId:(NSString*)postId
+                 parentCommentId:(NSString*)parentCommentId
+                            body:(NSString*)body
+                          author:(NSString*)author
+                       authorURL:(NSURL*)authorURL
+                     authorEmail:(NSString*)authorEmail
+                 completionBlock:(void (^)(NSString *commentId, NSError *error))completionBlock {
+    NSParameterAssert(postId);
+    NSParameterAssert(body);
+    NSParameterAssert(completionBlock);
+    if (!postId || !body || !completionBlock) {
+        return;
+    }
+    NSParameterAssert(self.username);
+    NSParameterAssert(self.password);
+    if (!self.username || !self.password) {
+        return;
+    }
+    [self.networkOperationQueue addOperationWithBlock:^{
+        NSMutableDictionary *commentParams = [NSMutableDictionary dictionary];
+        if (parentCommentId) {
+            [commentParams setObject:parentCommentId forKey:@"comment_parent"];
+        }
+        [commentParams setObject:body forKey:@"content"];
+        if (author) {
+            [commentParams setObject:author forKey:@"author"];
+        }
+        if (authorURL) {
+            [commentParams setObject:authorURL.absoluteString forKey:@"author_url"];
+        }
+        if (authorEmail) {
+            [commentParams setObject:authorEmail forKey:@"author_email"];
+        }
+        NSMutableArray *parameters = [NSMutableArray arrayWithArray:[self buildParametersWithExtra:@[postId]]];
+        [parameters addObject:commentParams];
+        WPXMLRPCEncoder *encoder = [[WPXMLRPCEncoder alloc] initWithMethod:@"wp.newComment" andParameters:parameters];
+        NSError *error = nil;
+        NSData *data = [encoder dataEncodedWithError:&error];
+        if (error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completionBlock(nil, error);
+            });
+            return;
+        }
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:self.rpcEndpoint];
+        [request setHTTPMethod:@"POST"];
+        [request setAllHTTPHeaderFields:@{@"Content-Type": @"text/xml"}];
+        NSURLSessionUploadTask *uploadTask = [self.urlSession uploadTaskWithRequest:request fromData:data completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+            if (error) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    completionBlock(nil, error);
+                });
+                return;
+            }
+            WPXMLRPCDecoder *decoder = [[WPXMLRPCDecoder alloc] initWithData:data];
+            if ([decoder isFault] || [decoder object] == nil) {
+                error = [decoder error];
+            }
+            if (error) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    completionBlock(nil, error);
+                });
+                return;
+            }
+            id object = decoder.object;
+            NSString *commentId = nil;
+            if ([object isKindOfClass:[NSString class]]) {
+                commentId = object;
+            } else if ([object isKindOfClass:[NSNumber class]]) {
+                NSNumber *commentNumber = object;
+                commentId = commentNumber.stringValue;
+            }
+            if (commentId) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    completionBlock(commentId, nil);
+                });
+            } else {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    completionBlock(nil, [NSError errorWithDomain:@"info.gp" code:1235 userInfo:@{NSLocalizedDescriptionKey: @"Couldn't parse response"}]);
+                });
+            }
+        }];
+        [uploadTask resume];
+    }];
+}
+
 
 // https://codex.wordpress.org/XML-RPC_WordPress_API/Media#wp.uploadFile
 /*
