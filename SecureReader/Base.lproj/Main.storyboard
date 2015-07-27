@@ -1059,6 +1059,26 @@
                         <sections>
                             <tableViewSection id="beA-NW-UuX">
                                 <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="settings" textLabel="PwL-A0-7eM" style="IBUITableViewCellStyleDefault" id="ehi-cu-Erl" userLabel="paik_talk">
+                                        <rect key="frame" x="0.0" y="152" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ehi-cu-Erl" id="XQw-x0-pxa">
+                                            <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Paik Talk" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PwL-A0-7eM">
+                                                    <rect key="frame" x="15" y="0.0" width="550" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="gBd-Q9-ESd" kind="show" identifier="showPaikTalkSegue" id="LCH-L0-7VP"/>
+                                        </connections>
+                                    </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="settings" textLabel="GtC-r7-ma2" style="IBUITableViewCellStyleDefault" id="5yb-o0-TqP">
                                         <rect key="frame" x="0.0" y="152" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
@@ -1077,6 +1097,26 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <segue destination="1qY-y1-unP" kind="show" id="oeg-9D-40H"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="settings" textLabel="yVh-oa-MsE" style="IBUITableViewCellStyleDefault" id="fI3-03-17X" userLabel="acknowledgements">
+                                        <rect key="frame" x="0.0" y="152" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fI3-03-17X" id="ANx-Rp-aMZ">
+                                            <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Acknowledgements" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yVh-oa-MsE">
+                                                    <rect key="frame" x="15" y="0.0" width="550" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="nBa-vb-U2i" kind="show" identifier="showAcknowledgementsSegue" id="Wen-bW-diE"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -1121,6 +1161,24 @@
             </objects>
             <point key="canvasLocation" x="1027" y="2024"/>
         </scene>
+        <!--Acknowledgements View Controller-->
+        <scene sceneID="ZQr-My-TPU">
+            <objects>
+                <viewController id="nBa-vb-U2i" customClass="VTAcknowledgementsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="RcB-BR-Y2h"/>
+                        <viewControllerLayoutGuide type="bottom" id="Bor-3W-xW5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Dh0-46-Vvq">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UCq-cO-eWe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1697" y="2585"/>
+        </scene>
         <!--Activity View Controller-->
         <scene sceneID="DGR-kN-KOR">
             <objects>
@@ -1138,6 +1196,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ksO-vH-Iq0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1725" y="3023"/>
+        </scene>
+        <!--Comments View Controller-->
+        <scene sceneID="UV8-1a-Dp6">
+            <objects>
+                <viewController id="gBd-Q9-ESd" customClass="SCRCommentsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="FP4-ts-rr3"/>
+                        <viewControllerLayoutGuide type="bottom" id="ged-Z8-wRu"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="tfo-hJ-Gyq">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uQE-bj-lxZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1804" y="1579"/>
         </scene>
         <!--Placeholder-->
         <scene sceneID="4Vw-Hw-AX3">

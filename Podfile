@@ -15,7 +15,8 @@ pod 'VENTouchLock', '~> 1.0'
 pod 'KVOController', '~> 1.0'
 pod 'MRProgress', '~> 0.8'
 pod 'DZReadability', '~> 0.2'
-
+pod 'JSQMessagesViewController', '~> 7.1'
+pod 'VTAcknowledgementsViewController', '~> 0.14'
 pod 'MWFeedParser/NSString+HTML', '~> 1.0'
 pod 'JTSImageViewController', '~> 1.4'
 

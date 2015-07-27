@@ -136,6 +136,8 @@
 		D98DA07D1B1F9AD800852715 /* SCRSetupTouchIDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D98DA07C1B1F9AD800852715 /* SCRSetupTouchIDViewController.m */; };
 		D98DA0801B1FA7C500852715 /* SCRTouchLock.m in Sources */ = {isa = PBXBuildFile; fileRef = D98DA07F1B1FA7C500852715 /* SCRTouchLock.m */; };
 		D99A615E1B2B9519009CC09E /* SCRConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = D99A615D1B2B9519009CC09E /* SCRConstants.m */; };
+		D9B785881B66EBC700905171 /* SCRCommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B785871B66EBC700905171 /* SCRCommentsViewController.m */; };
+		D9B7858A1B66EF8E00905171 /* Pods-acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = D9B785891B66EF8E00905171 /* Pods-acknowledgements.plist */; };
 		D9E6575F1A234363000E6301 /* SCRFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E6575E1A234363000E6301 /* SCRFeed.m */; };
 		F6AA97CBC086528EBF0FFA97 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5982780EDA69C66A355A7531 /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -391,6 +393,9 @@
 		D98DA07F1B1FA7C500852715 /* SCRTouchLock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRTouchLock.m; sourceTree = "<group>"; };
 		D99A615C1B2B9519009CC09E /* SCRConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRConstants.h; sourceTree = "<group>"; };
 		D99A615D1B2B9519009CC09E /* SCRConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRConstants.m; sourceTree = "<group>"; };
+		D9B785861B66EBC700905171 /* SCRCommentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRCommentsViewController.h; sourceTree = "<group>"; };
+		D9B785871B66EBC700905171 /* SCRCommentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRCommentsViewController.m; sourceTree = "<group>"; };
+		D9B785891B66EF8E00905171 /* Pods-acknowledgements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Pods-acknowledgements.plist"; path = "Pods/Target Support Files/Pods/Pods-acknowledgements.plist"; sourceTree = SOURCE_ROOT; };
 		D9DCD4451A2344CA003C0522 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		D9E6575D1A234363000E6301 /* SCRFeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRFeed.h; sourceTree = "<group>"; };
 		D9E6575E1A234363000E6301 /* SCRFeed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRFeed.m; sourceTree = "<group>"; };
@@ -602,6 +607,7 @@
 		929EEF4A19F4EB100020BD75 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D9B785891B66EF8E00905171 /* Pods-acknowledgements.plist */,
 				920C8D8A1AE8DBF700FAF494 /* Localizable.strings */,
 				929EEF4B19F4EB100020BD75 /* Info.plist */,
 				929EEF4C19F4EB100020BD75 /* main.m */,
@@ -637,6 +643,8 @@
 		929EEF7319F4F5940020BD75 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				D9B785861B66EBC700905171 /* SCRCommentsViewController.h */,
+				D9B785871B66EBC700905171 /* SCRCommentsViewController.m */,
 				92B9E97C1A9E10B000A2BED9 /* Table Delegates */,
 				925AE57A1A401B02001E182F /* Startup Flow */,
 				925AE57B1A401C33001E182F /* Login */,
@@ -968,6 +976,7 @@
 				92C3F0901A80CDE000DFA438 /* SCRFeedListCell.xib in Resources */,
 				925FF9811B0F645A00CBB148 /* onboard-02.svg in Resources */,
 				920C8D881AE8DBF700FAF494 /* Localizable.strings in Resources */,
+				D9B7858A1B66EF8E00905171 /* Pods-acknowledgements.plist in Resources */,
 				924BBFC01A08DCEB00A32940 /* InAppSettings.bundle in Resources */,
 				9279F80A1A67FBE50029572B /* SCRItemCellLandscapePhotos.xib in Resources */,
 				92A650F71B57BAB100CB9DFB /* FeedCategories.strings in Resources */,
@@ -1145,6 +1154,7 @@
 				929BE4C11A79293900641647 /* SCRTextView.m in Sources */,
 				92C867A51B13626400E44A4A /* NSString+SecureReader.m in Sources */,
 				924B2E521B33059400BEF8C6 /* SCRItemCommentsViewController.m in Sources */,
+				D9B785881B66EBC700905171 /* SCRCommentsViewController.m in Sources */,
 				92654F2F1B15FB04005FCC0C /* SCRPulseView.m in Sources */,
 				D9317B891A886A95005DA904 /* NSFormatter+SecureReader.m in Sources */,
 				63FDB1871B4B355A00849152 /* SCRAppSettingsViewController.m in Sources */,

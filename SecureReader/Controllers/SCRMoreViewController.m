@@ -13,6 +13,8 @@
 #import "UIView+Theming.h"
 #import "SCRSettings.h"
 #import "SCRPanicController.h"
+#import "VTAcknowledgementsViewController.h"
+#import "SCRCommentsViewController.h"
 
 @interface SCRMoreViewController ()
 
@@ -49,8 +51,7 @@
         
         [self.navigationController pushViewController:feedViewController animated:YES];
         return NO;
-    }
-    if ([identifier isEqualToString:@"shareAppLinkSegue"]) {
+    } else if ([identifier isEqualToString:@"shareAppLinkSegue"]) {
         // Possibly replace with direct App Store link
         NSURL *appURL = [NSURL URLWithString:@"https://guardianproject.info/apps/courier/"];
         NSString *appName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"];
@@ -58,8 +59,20 @@
         UIActivityViewController *shareView = [[UIActivityViewController alloc] initWithActivityItems:@[shareString, appURL] applicationActivities:nil];
         [self presentViewController:shareView animated:YES completion:nil];
         return NO;
+    } else if ([identifier isEqualToString:@"showAcknowledgementsSegue"]) {
+        VTAcknowledgementsViewController *ackVC = [VTAcknowledgementsViewController acknowledgementsViewController];
+        [self.navigationController pushViewController:ackVC animated:YES];
+        return NO;
     }
     return [super shouldPerformSegueWithIdentifier:identifier sender:sender];
+}
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    NSString *identifier = segue.identifier;
+    if ([identifier isEqualToString:@"showPaikTalkSegue"]) {
+        SCRCommentsViewController *commentsVC = segue.destinationViewController;
+        commentsVC.hidesBottomBarWhenPushed = YES;
+    }
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
