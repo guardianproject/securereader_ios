@@ -30,7 +30,7 @@ function processStoryboard {
 
     sourceFile=./temppath/storyboard.strings
     tempFile=./temppath/storyboard.stringstemp
-    ibtool $1 --generate-strings-file $tempFile
+    ibtool "$1" --generate-strings-file $tempFile
     iconv -f UTF-16 -t UTF-8 $tempFile > $sourceFile
 
     for languageDir in `find .. -depth 1 -name "*.lproj" -print`
