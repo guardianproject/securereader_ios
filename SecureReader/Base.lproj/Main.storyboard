@@ -1076,7 +1076,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="gBd-Q9-ESd" kind="show" identifier="showPaikTalkSegue" id="LCH-L0-7VP"/>
+                                            <segue destination="gBd-Q9-ESd" kind="custom" identifier="showPaikTalkSegue" customClass="SCRRequireNicknameSegue" id="LCH-L0-7VP"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="settings" textLabel="GtC-r7-ma2" style="IBUITableViewCellStyleDefault" id="5yb-o0-TqP">

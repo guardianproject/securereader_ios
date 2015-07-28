@@ -71,6 +71,7 @@
     NSString *identifier = segue.identifier;
     if ([identifier isEqualToString:@"showPaikTalkSegue"]) {
         SCRCommentsViewController *commentsVC = segue.destinationViewController;
+        commentsVC.postId = @"1"; // global app feed
         commentsVC.hidesBottomBarWhenPushed = YES;
     }
 }
