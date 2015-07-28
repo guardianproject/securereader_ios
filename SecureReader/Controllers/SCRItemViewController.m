@@ -71,6 +71,8 @@
 {
     [super viewWillAppear:animated];
     self.textSizeSlider.value = [SCRSettings fontSizeAdjustment];
+    SCRItemPageViewController *viewController = [self.pageViewController.viewControllers firstObject];
+    [self checkShowCommentButton:viewController.item];
 }
 
 - (UIViewController *)viewControllerForIndexPath:(NSIndexPath *)indexPath
@@ -81,10 +83,21 @@
         SCRItemPageViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"fullScreenItemView"];
         [vc setItem:item];
         [vc setItemIndexPath:indexPath];
+        
+        [self checkShowCommentButton:item];
+        
         [(SCRNavigationController *)self.navigationController registerScrollViewForHideBars:vc.scrollView];
         return vc;
     }
     return nil;
+}
+
+- (void)checkShowCommentButton:(SCRItem *)item{
+    if ([[item.commentsURL absoluteString] length]) {
+        self.buttonComment.hidden = NO;
+    } else {
+        self.buttonComment.hidden = YES;
+    }
 }
 
 #pragma mark - Page View Controller Delegate
