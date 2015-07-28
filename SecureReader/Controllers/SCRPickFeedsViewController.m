@@ -168,13 +168,34 @@
     cell.titleView.text = [self tableView:tableView titleForHeaderInSection:section];
     
     NSString *category = (NSString *)[_categoriesArray objectAtIndex:section];
+    if ([@"World News" isEqualToString:category])
+    {
+        [cell.categoryImage setArtworkPath:@"img_cat-worldnews"];
+    }
+    if ([@"National News" isEqualToString:category])
+    {
+        [cell.categoryImage setArtworkPath:@"img_cat-nationalnews"];
+    }
+    if ([@"Arts & Culture" isEqualToString:category])
+    {
+        [cell.categoryImage setArtworkPath:@"img_cat-artsculture"];
+    }
+    if ([@"Business" isEqualToString:category])
+    {
+        [cell.categoryImage setArtworkPath:@"img_cat-business"];
+    }
     if ([@"Sports" isEqualToString:category])
     {
-        [cell.categoryImage setArtworkPath:@"onboard-category"];
+        [cell.categoryImage setArtworkPath:@"img_cat-sports"];
+    }
+    if ([@"Technology" isEqualToString:category])
+    {
+        [cell.categoryImage setArtworkPath:@"img_cat-technology"];
     }
     else
     {
-        [cell.categoryImage setArtworkPath:@"onboard-category"];
+        // Default
+        // [cell.categoryImage setArtworkPath:@"onboard-category"];
     }
     return cell;
 }
