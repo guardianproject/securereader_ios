@@ -205,6 +205,26 @@ static NSMutableDictionary *themes = nil;
             UIColor *color = [self colorWithPropertyValue:[self getNillableProperty:property fromDict:style]];
             [control performSelector:@selector(setTextColorDisabled:) withObject:color];
         }
+        else if ([property isEqualToString:@"textColorBold"] && [control isKindOfClass:[UILabel class]])
+        {
+            UILabel *label = (UILabel *)control;
+            
+            UIColor *color = [self colorWithPropertyValue:[self getNillableProperty:property fromDict:style]];
+            NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc] initWithString:label.text];
+            
+            NSError *error = NULL;
+            NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"<b>([^<]+)</b>" options:NSRegularExpressionCaseInsensitive error:&error];
+            
+            NSArray *results = [regex matchesInString:label.text options:kNilOptions range:NSMakeRange(0, [label.text length])];
+            for(NSTextCheckingResult *match in [results reverseObjectEnumerator])
+            {
+                NSString *textPart = [label.text substringWithRange:[match rangeAtIndex:1]];
+                NSDictionary *attributes = @{ NSForegroundColorAttributeName: color };
+                [attributedText addAttributes:attributes range:match.range];
+                [attributedText replaceCharactersInRange:match.range withString:textPart];
+            }
+            label.attributedText = attributedText;
+        }
         else if ([property isEqualToString:@"corners"])
         {
             if ([control isKindOfClass:[UIView class]])
