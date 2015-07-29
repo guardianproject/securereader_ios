@@ -116,6 +116,9 @@
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="theme" value="NavigationBarItemStyle"/>
+                                </userDefinedRuntimeAttributes>
                             </navigationBar>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Nickname" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3lV-Xx-htH">
                                 <rect key="frame" x="16" y="114" width="568" height="17"/>
@@ -836,7 +839,7 @@
                                                                 </connections>
                                                             </button>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="0.66666666666666663" alpha="0.70000000000000007" colorSpace="calibratedWhite"/>
+                                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="trailing" secondItem="EB2-33-vKV" secondAttribute="trailing" constant="5" id="19g-fL-na6"/>
                                                             <constraint firstAttribute="height" constant="50" id="CqX-aJ-EDr"/>
@@ -882,7 +885,7 @@
                                                 </constraints>
                                             </view>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Adn-F9-fBH" userLabel="Title" customClass="SCRTextView">
-                                                <rect key="frame" x="0.0" y="210" width="600" height="80"/>
+                                                <rect key="frame" x="20" y="210" width="560" height="80"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="80" id="2Qe-6h-jKP"/>
@@ -898,7 +901,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </textView>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="inT-tN-8CT" userLabel="Description" customClass="SCRTextView">
-                                                <rect key="frame" x="0.0" y="300" width="600" height="80"/>
+                                                <rect key="frame" x="20" y="300" width="560" height="80"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="80" id="WPm-Mk-Tj7"/>
@@ -914,7 +917,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </textView>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Hg-t3-5if" userLabel="Tags" customClass="SCREditTagsTextView">
-                                                <rect key="frame" x="0.0" y="390" width="600" height="50"/>
+                                                <rect key="frame" x="20" y="390" width="560" height="50"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="uXl-4d-PYn"/>
@@ -933,18 +936,18 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="Adn-F9-fBH" firstAttribute="top" secondItem="re8-U9-Zs5" secondAttribute="bottom" constant="10" id="2WL-Qi-SFc"/>
-                                            <constraint firstItem="4Hg-t3-5if" firstAttribute="leading" secondItem="rcp-dE-Owv" secondAttribute="leading" id="2ng-B3-WwT"/>
+                                            <constraint firstItem="4Hg-t3-5if" firstAttribute="leading" secondItem="rcp-dE-Owv" secondAttribute="leading" constant="20" id="2ng-B3-WwT"/>
                                             <constraint firstItem="re8-U9-Zs5" firstAttribute="top" secondItem="rcp-dE-Owv" secondAttribute="top" id="8wn-A0-Zbc"/>
-                                            <constraint firstAttribute="trailing" secondItem="inT-tN-8CT" secondAttribute="trailing" id="B4f-5l-Hud"/>
+                                            <constraint firstAttribute="trailing" secondItem="inT-tN-8CT" secondAttribute="trailing" constant="20" id="B4f-5l-Hud"/>
                                             <constraint firstAttribute="bottom" secondItem="4Hg-t3-5if" secondAttribute="bottom" constant="10" id="FaS-a7-JGB"/>
                                             <constraint firstItem="inT-tN-8CT" firstAttribute="top" secondItem="Adn-F9-fBH" secondAttribute="bottom" constant="10" id="FeY-wY-cy0"/>
                                             <constraint firstItem="re8-U9-Zs5" firstAttribute="leading" secondItem="rcp-dE-Owv" secondAttribute="leading" id="GzU-KI-3F6"/>
                                             <constraint firstItem="4Hg-t3-5if" firstAttribute="top" secondItem="inT-tN-8CT" secondAttribute="bottom" constant="10" id="MyO-eU-d20"/>
-                                            <constraint firstAttribute="trailing" secondItem="Adn-F9-fBH" secondAttribute="trailing" id="S5t-a3-7GL"/>
+                                            <constraint firstAttribute="trailing" secondItem="Adn-F9-fBH" secondAttribute="trailing" constant="20" id="S5t-a3-7GL"/>
                                             <constraint firstAttribute="trailing" secondItem="re8-U9-Zs5" secondAttribute="trailing" id="Ysg-ao-gdF"/>
-                                            <constraint firstItem="inT-tN-8CT" firstAttribute="leading" secondItem="rcp-dE-Owv" secondAttribute="leading" id="aTg-bC-vuD"/>
-                                            <constraint firstAttribute="trailing" secondItem="4Hg-t3-5if" secondAttribute="trailing" id="b00-Go-qEx"/>
-                                            <constraint firstItem="Adn-F9-fBH" firstAttribute="leading" secondItem="rcp-dE-Owv" secondAttribute="leading" id="vx1-7C-Ee9"/>
+                                            <constraint firstItem="inT-tN-8CT" firstAttribute="leading" secondItem="rcp-dE-Owv" secondAttribute="leading" constant="20" id="aTg-bC-vuD"/>
+                                            <constraint firstAttribute="trailing" secondItem="4Hg-t3-5if" secondAttribute="trailing" constant="20" id="b00-Go-qEx"/>
+                                            <constraint firstItem="Adn-F9-fBH" firstAttribute="leading" secondItem="rcp-dE-Owv" secondAttribute="leading" constant="20" id="vx1-7C-Ee9"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -1392,8 +1395,8 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="APV-0g-kfm">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zgO-vU-RGa" userLabel="Scroll Content">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="392"/>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zgO-vU-RGa" userLabel="Scroll Content">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="435"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" verticalCompressionResistancePriority="1000" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uoM-Ab-Efl" userLabel="Media Collection View" customClass="SCRMediaCollectionView">
                                                 <rect key="frame" x="0.0" y="0.0" width="600" height="0.0"/>
@@ -1442,8 +1445,8 @@
                                                     <userDefinedRuntimeAttribute type="string" keyPath="theme" value="ItemContentStyle"/>
                                                 </userDefinedRuntimeAttributes>
                                             </textView>
-                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aVq-GA-w0V">
-                                                <rect key="frame" x="246" y="306" width="109" height="30"/>
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aVq-GA-w0V">
+                                                <rect key="frame" x="246" y="386" width="109" height="30"/>
                                                 <state key="normal" title="View Full Article">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -2159,6 +2162,9 @@ It also &lt;b&gt;helps get you access&lt;/b&gt; to information that may be unava
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="theme" value="NavigationBarItemStyle"/>
+                                </userDefinedRuntimeAttributes>
                             </navigationBar>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DQm-Tf-bTc">
                                 <rect key="frame" x="16" y="114" width="568" height="100"/>

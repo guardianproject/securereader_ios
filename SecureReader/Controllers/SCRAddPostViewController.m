@@ -14,6 +14,8 @@
 #import "MRProgress.h"
 #import "SCRWordpressClient.h"
 #import "SCRSettings.h"
+#import "UIView+Theming.h"
+#import "SCRTheme.h"
 
 @interface SCRAddPostViewController ()
 @property (nonatomic, strong) SCRPostItem *item;
@@ -285,6 +287,14 @@
     self.imagePickerController = [[UIImagePickerController alloc] init];
     self.imagePickerController.delegate = self;
     self.imagePickerController.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+    
+    // Styled navigation bar
+    [self.imagePickerController.navigationBar setTheme:@"NavigationBarItemStyle"];
+    UIColor *color = [SCRTheme getColorProperty:@"textColor" forTheme:@"NavigationBarItemStyle"];
+    if (color != nil)
+    {
+        [self.imagePickerController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObject:color forKey:NSForegroundColorAttributeName]];
+    }
     
     if(UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPhone)
         [self presentViewController:self.imagePickerController animated:YES completion:nil];
