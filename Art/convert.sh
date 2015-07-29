@@ -2,13 +2,44 @@
 
 # Requires ImageMagick to be installed.
 
-# Build the app icon from paik_launcher.svg
-convert -strip -background none paik_launcher.svg -resize 120x120 ../SecureReader/Images.xcassets/AppIcon.appiconset/paik_launcher@2x.png
-convert -strip -background none paik_launcher.svg -resize 180x180 ../SecureReader/Images.xcassets/AppIcon.appiconset/paik_launcher@3x.png
-convert -strip -background none paik_launcher.svg -resize 76x76 ../SecureReader/Images.xcassets/AppIcon.appiconset/paik_launcher.png
-convert -strip -background none paik_launcher.svg -resize 152x152 ../SecureReader/Images.xcassets/AppIcon.appiconset/paik_launcher@2x-1.png
+function checkForInkscape {
+    IM="/Applications/Inkscape.app/Contents/Resources/bin/inkscape"
+    $IM --version >/dev/null 2>&1 || { echo >&2 "ERROR: Inkscape needs to be installed to update the icons!"; exit 1; }
+}
+
+function updateIcon {
+    # Build the app icon from paik_launcher.svg
+    echo "Updating icon"
+    echo
+    checkForInkscape
+    DIR=$(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+    IM="/Applications/Inkscape.app/Contents/Resources/bin/inkscape"
+    $IM -z -e "$DIR/../SecureReader/Images.xcassets/AppIcon.appiconset/paik_launcher@2x.png" --export-background=white -w 120 -h 120 $DIR/paik_launcher.svg
+    $IM -z -e "$DIR/../SecureReader/Images.xcassets/AppIcon.appiconset/paik_launcher@3x.png" --export-background=white -w 180 -h 180 $DIR/paik_launcher.svg
+    $IM -z -e "$DIR/../SecureReader/Images.xcassets/AppIcon.appiconset/paik_launcher.png" --export-background=white -w 76 -h 76 $DIR/paik_launcher.svg
+    $IM -z -e "$DIR/../SecureReader/Images.xcassets/AppIcon.appiconset/paik_launcher@2x-1.png" --export-background=white -w 152 -h 152 $DIR/paik_launcher.svg
+}
+
+function showUsage {
+    echo "Usage:"
+    echo
+    echo "$0 --icon            Update the icon"
+    echo "$0 <file-pattern>    Process the given files, e.g. $0 ic_toggle*"
+    echo "$0 --all             Process all SVG files"
+}
 
 if [ "$#" -eq "0" ]; then
+    showUsage
+    exit
+fi
+
+if [ "$1" = "--help" ]; then
+    showUsage
+    exit
+elif [ "$1" = "--icon" ]; then
+    updateIcon
+    exit
+elif [ "$1" = "--all" ]; then
     files=*.svg
 else
     files="$@"
@@ -16,6 +47,10 @@ fi
 
 for f in $files
 do
+    if [ ! -e $f ]; then
+	continue
+    fi
+
 	echo "Processing: $f"
 
 	name=${f/.svg}
