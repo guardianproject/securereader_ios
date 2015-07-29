@@ -31,6 +31,7 @@
 		6388E9721B2F68FF00D556E6 /* SCRHTMLFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 6388E9711B2F68FF00D556E6 /* SCRHTMLFetcher.m */; };
 		6388E9751B2F763500D556E6 /* SCRReadabilityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6388E9741B2F763500D556E6 /* SCRReadabilityViewController.m */; };
 		63BE303D1AE70ECD003799D4 /* SCRNotificationsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BE303C1AE70ECD003799D4 /* SCRNotificationsView.m */; };
+		63D600741B694D9B00298CF5 /* NSURL+SecureReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D600731B694D9B00298CF5 /* NSURL+SecureReader.m */; };
 		63FDB1871B4B355A00849152 /* SCRAppSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63FDB1861B4B355A00849152 /* SCRAppSettingsViewController.m */; };
 		920214CD1B42D061009FD0CE /* SCRCreateNicknameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 920214CC1B42D061009FD0CE /* SCRCreateNicknameViewController.m */; };
 		920214D01B42D429009FD0CE /* SCRRequireNicknameSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 920214CF1B42D429009FD0CE /* SCRRequireNicknameSegue.m */; };
@@ -49,7 +50,6 @@
 		9239049E1A07E365004EEE7E /* background_debut_light.png in Resources */ = {isa = PBXBuildFile; fileRef = 9239049D1A07E365004EEE7E /* background_debut_light.png */; };
 		923FFFA11AA4A75600BC83D6 /* SCRItemTagCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 923FFFA01AA4A75600BC83D6 /* SCRItemTagCell.xib */; };
 		923FFFA41AA4AA2B00BC83D6 /* SCRItemTagCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 923FFFA31AA4AA2B00BC83D6 /* SCRItemTagCell.m */; };
-		924B2E521B33059400BEF8C6 /* SCRItemCommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 924B2E511B33059400BEF8C6 /* SCRItemCommentsViewController.m */; };
 		924BBFC01A08DCEB00A32940 /* InAppSettings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 924BBFBF1A08DCEB00A32940 /* InAppSettings.bundle */; };
 		924E96701B02536C008A838A /* SCRTorOptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 924E966F1B02536C008A838A /* SCRTorOptionViewController.m */; };
 		924F92BB1B67A2E7006CBED5 /* img_cat-artsculture.svg in Resources */ = {isa = PBXBuildFile; fileRef = 924F92B51B67A2E7006CBED5 /* img_cat-artsculture.svg */; };
@@ -197,6 +197,8 @@
 		6388E9741B2F763500D556E6 /* SCRReadabilityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRReadabilityViewController.m; sourceTree = "<group>"; };
 		63BE303B1AE70ECD003799D4 /* SCRNotificationsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRNotificationsView.h; sourceTree = "<group>"; };
 		63BE303C1AE70ECD003799D4 /* SCRNotificationsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRNotificationsView.m; sourceTree = "<group>"; };
+		63D600721B694D9B00298CF5 /* NSURL+SecureReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+SecureReader.h"; sourceTree = "<group>"; };
+		63D600731B694D9B00298CF5 /* NSURL+SecureReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+SecureReader.m"; sourceTree = "<group>"; };
 		63FDB1851B4B355A00849152 /* SCRAppSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRAppSettingsViewController.h; sourceTree = "<group>"; };
 		63FDB1861B4B355A00849152 /* SCRAppSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRAppSettingsViewController.m; sourceTree = "<group>"; };
 		920214CB1B42D061009FD0CE /* SCRCreateNicknameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRCreateNicknameViewController.h; sourceTree = "<group>"; };
@@ -228,8 +230,6 @@
 		923FFFA01AA4A75600BC83D6 /* SCRItemTagCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SCRItemTagCell.xib; sourceTree = "<group>"; };
 		923FFFA21AA4AA2B00BC83D6 /* SCRItemTagCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRItemTagCell.h; sourceTree = "<group>"; };
 		923FFFA31AA4AA2B00BC83D6 /* SCRItemTagCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRItemTagCell.m; sourceTree = "<group>"; };
-		924B2E501B33059400BEF8C6 /* SCRItemCommentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRItemCommentsViewController.h; sourceTree = "<group>"; };
-		924B2E511B33059400BEF8C6 /* SCRItemCommentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRItemCommentsViewController.m; sourceTree = "<group>"; };
 		924BBFBF1A08DCEB00A32940 /* InAppSettings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = InAppSettings.bundle; sourceTree = "<group>"; };
 		924E966E1B02536C008A838A /* SCRTorOptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRTorOptionViewController.h; sourceTree = "<group>"; };
 		924E966F1B02536C008A838A /* SCRTorOptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRTorOptionViewController.m; sourceTree = "<group>"; };
@@ -486,6 +486,8 @@
 				9219347A1ADBCD14001B1A73 /* UIAlertView+SecureReader.m */,
 				92C867A31B13626400E44A4A /* NSString+SecureReader.h */,
 				92C867A41B13626400E44A4A /* NSString+SecureReader.m */,
+				63D600721B694D9B00298CF5 /* NSURL+SecureReader.h */,
+				63D600731B694D9B00298CF5 /* NSURL+SecureReader.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -698,8 +700,6 @@
 				92D212911AEE5E8300549740 /* SCRMediaDownloadsViewController.m */,
 				6388E9731B2F763500D556E6 /* SCRReadabilityViewController.h */,
 				6388E9741B2F763500D556E6 /* SCRReadabilityViewController.m */,
-				924B2E501B33059400BEF8C6 /* SCRItemCommentsViewController.h */,
-				924B2E511B33059400BEF8C6 /* SCRItemCommentsViewController.m */,
 				920214CB1B42D061009FD0CE /* SCRCreateNicknameViewController.h */,
 				920214CC1B42D061009FD0CE /* SCRCreateNicknameViewController.m */,
 				926D3DB81B4424EA00A66064 /* SCRAllowPostsViewController.h */,
@@ -1149,6 +1149,7 @@
 				929EEF4D19F4EB100020BD75 /* main.m in Sources */,
 				92B23C491A5D303800FFD963 /* SCRMainViewController.m in Sources */,
 				9268080C1ABC4C5E00EB9225 /* SCRMediaCollectionView.m in Sources */,
+				63D600741B694D9B00298CF5 /* NSURL+SecureReader.m in Sources */,
 				6335E2FD1B548FBA00836705 /* SCRCommentItem.m in Sources */,
 				929EEF8219F4F5940020BD75 /* NSBundle+Language.m in Sources */,
 				92B9E9751A9C7A3D00A2BED9 /* SCRPostsViewController.m in Sources */,
@@ -1173,7 +1174,6 @@
 				632A10831ACF528500E05075 /* SCRNetworkFetcher.m in Sources */,
 				929BE4C11A79293900641647 /* SCRTextView.m in Sources */,
 				92C867A51B13626400E44A4A /* NSString+SecureReader.m in Sources */,
-				924B2E521B33059400BEF8C6 /* SCRItemCommentsViewController.m in Sources */,
 				D9B785881B66EBC700905171 /* SCRCommentsViewController.m in Sources */,
 				92654F2F1B15FB04005FCC0C /* SCRPulseView.m in Sources */,
 				D9317B891A886A95005DA904 /* NSFormatter+SecureReader.m in Sources */,

@@ -28,68 +28,6 @@
             </objects>
             <point key="canvasLocation" x="-1555" y="195"/>
         </scene>
-        <!--Item Comments View Controller-->
-        <scene sceneID="sfI-2U-Agp">
-            <objects>
-                <viewController storyboardIdentifier="fullScreenItemCommentsView" id="rzo-MI-9v8" customClass="SCRItemCommentsViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="CQF-mX-VDF"/>
-                        <viewControllerLayoutGuide type="bottom" id="WtF-45-okn"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="ZVn-YH-Zm4">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fDF-Lb-xTv">
-                                <rect key="frame" x="0.0" y="550" width="600" height="50"/>
-                                <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" bounces="NO" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bpy-Rd-mS0" customClass="SCRTextView">
-                                        <rect key="frame" x="10" y="10" width="540" height="30"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" priority="999" constant="30" id="SCZ-kv-XF6"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" spellCheckingType="yes"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="prompt" value="Write something..."/>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="theme" value="CommentsEditViewStyle"/>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <outlet property="delegate" destination="rzo-MI-9v8" id="IfY-lN-gvz"/>
-                                        </connections>
-                                    </textView>
-                                </subviews>
-                                <color key="backgroundColor" red="0.97820230119999996" green="1" blue="0.01669867241" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="Bpy-Rd-mS0" secondAttribute="trailing" constant="50" id="4jF-xU-WlP"/>
-                                    <constraint firstItem="Bpy-Rd-mS0" firstAttribute="leading" secondItem="fDF-Lb-xTv" secondAttribute="leading" constant="10" id="P28-Ds-xkz"/>
-                                    <constraint firstAttribute="bottom" secondItem="Bpy-Rd-mS0" secondAttribute="bottom" constant="10" id="bGz-Wc-ddi"/>
-                                    <constraint firstItem="Bpy-Rd-mS0" firstAttribute="top" secondItem="fDF-Lb-xTv" secondAttribute="top" constant="10" id="oWz-Pa-2VR"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="theme" value="CommentsViewStyle"/>
-                                </userDefinedRuntimeAttributes>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="WtF-45-okn" firstAttribute="top" secondItem="fDF-Lb-xTv" secondAttribute="bottom" id="4BV-4Z-Vle"/>
-                            <constraint firstItem="fDF-Lb-xTv" firstAttribute="top" relation="greaterThanOrEqual" secondItem="CQF-mX-VDF" secondAttribute="bottom" constant="200" id="Vhj-Ub-4M1"/>
-                            <constraint firstItem="fDF-Lb-xTv" firstAttribute="leading" secondItem="ZVn-YH-Zm4" secondAttribute="leading" id="gj3-J3-2LZ"/>
-                            <constraint firstAttribute="trailing" secondItem="fDF-Lb-xTv" secondAttribute="trailing" id="sS0-rT-uwr"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="commentsView" destination="Bpy-Rd-mS0" id="F3H-nR-HTn"/>
-                        <outlet property="commentsViewBottomConstraint" destination="4BV-4Z-Vle" id="ggJ-Lo-nTl"/>
-                        <outlet property="commentsViewHeightConstraint" destination="SCZ-kv-XF6" id="9d2-XE-hC6"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="PzT-DH-jY6" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-358" y="4559"/>
-        </scene>
         <!--Create Nickname-->
         <scene sceneID="MKt-UR-5ax">
             <objects>
@@ -1200,7 +1138,7 @@
         <!--Comments View Controller-->
         <scene sceneID="UV8-1a-Dp6">
             <objects>
-                <viewController id="gBd-Q9-ESd" customClass="SCRCommentsViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="fullScreenItemCommentsView" id="gBd-Q9-ESd" customClass="SCRCommentsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="FP4-ts-rr3"/>
                         <viewControllerLayoutGuide type="bottom" id="ged-Z8-wRu"/>

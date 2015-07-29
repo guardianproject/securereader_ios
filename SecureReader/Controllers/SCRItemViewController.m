@@ -17,8 +17,9 @@
 #import "UIBarItem+Theming.h"
 #import "SCRAppDelegate.h"
 #import "NSString+HTML.h"
-#import "SCRItemCommentsViewController.h"
+#import "SCRCommentsViewController.h"
 #import "SCRRequireNicknameSegue.h"
+#import "NSURL+SecureReader.h"
 
 @interface SCRItemViewController ()
 @property id<SCRItemViewControllerDataSource> itemDataSource;
@@ -168,8 +169,9 @@
     if (itemPage != nil)
     {
         SCRItem *item = itemPage.item;
-        SCRItemCommentsViewController *commentsController = (SCRItemCommentsViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"fullScreenItemCommentsView"];
-        [commentsController setItem:item];
+        SCRCommentsViewController *commentsController = (SCRCommentsViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"fullScreenItemCommentsView"];
+        NSString *post = [item.commentsURL scr_wordpressPostID];
+        [commentsController setPostId:post];
         SCRRequireNicknameSegue *segue = [[SCRRequireNicknameSegue alloc] initWithIdentifier:@"" source:self destination:commentsController];
         [self prepareForSegue:segue sender:self];
         [segue perform];

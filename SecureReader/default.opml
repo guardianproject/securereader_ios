@@ -9,6 +9,7 @@
 
 <outline text="World News">
     <outline category="en_US" text="The Guardian World News" htmlUrl="http://feeds.theguardian.com/theguardian/world/rss" xmlUrl="http://feeds.theguardian.com/theguardian/world/rss"/>
+    <outline category="en_US" text="Social Reporter" htmlUrl="http://securereader.guardianproject.info/wordpress/?feed=rss2" xmlUrl="http://securereader.guardianproject.info/wordpress/?feed=rss2"/>
 </outline>
 <outline text="National News">
     <outline category="en_US" text="VOA News" htmlUrl="http://www.voanews.com/api/epiqq" xmlUrl="http://www.voanews.com/api/epiqq"/>
