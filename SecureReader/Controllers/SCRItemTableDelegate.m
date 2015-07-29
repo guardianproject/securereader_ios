@@ -61,7 +61,16 @@
     cell.item = item;
     
     cell.titleView.text = item.title;
-    cell.sourceView.labelSource.text = [item.linkURL host];
+    
+    [[SCRDatabaseManager sharedInstance].readConnection asyncReadWithBlock:^(YapDatabaseReadTransaction * __nonnull transaction) {
+        SCRFeed *existingFeed = [transaction objectForKey:item.feedYapKey inCollection:[[SCRFeed class] yapCollection]];
+        if (existingFeed) {
+            cell.sourceView.labelSource.text = existingFeed.title;
+        }
+        else {
+            cell.sourceView.labelSource.text = [item.linkURL host];
+        }
+    }];
     cell.sourceView.labelDate.text = [[NSFormatter scr_sharedIntervalFormatter] stringForTimeIntervalFromDate:[NSDate date] toDate:item.publicationDate];
     [cell.mediaCollectionView setItem:item];
     

@@ -15,6 +15,8 @@
 #import "SCRApplication.h"
 #import "SCRSettings.h"
 #import "SCRReadabilityViewController.h"
+#import "SCRDatabaseManager.h"
+#import "SCRFeed.h"
 
 @interface SCRItemPageViewController ()
 
@@ -61,7 +63,16 @@
     [self.mediaCollectionView setItem:self.item];
     [self.mediaCollectionView createThumbnails:[SCRSettings downloadMedia] completion:nil];
     
-    self.sourceView.labelSource.text = [item.linkURL host];
+    [[SCRDatabaseManager sharedInstance].readConnection asyncReadWithBlock:^(YapDatabaseReadTransaction * __nonnull transaction) {
+        SCRFeed *existingFeed = [transaction objectForKey:item.feedYapKey inCollection:[[SCRFeed class] yapCollection]];
+        if (existingFeed) {
+            self.sourceView.labelSource.text = existingFeed.title;
+        }
+        else {
+            self.sourceView.labelSource.text = [item.linkURL host];
+        }
+    }];
+    
     self.sourceView.labelDate.text = [[NSFormatter scr_sharedIntervalFormatter] stringForTimeIntervalFromDate:[NSDate date] toDate:item.publicationDate];
 
     self.titleView.text =  self.item.title;
