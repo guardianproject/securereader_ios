@@ -35,6 +35,10 @@
 	</dict>
 	<key>OnboardingTextContentStyle</key>
 	<dict>
+		<key>textColor</key>
+		<string>#ffffffff</string>
+		<key>textColorBold</key>
+		<string>#fff8e41b</string>
 		<key>backgroundColor</key>
 		<string>#00000000</string>
 		<key>tintColor</key>
