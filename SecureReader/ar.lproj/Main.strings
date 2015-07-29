@@ -1,3 +1,6 @@
+/* Class = "UITextField"; placeholder = "Passphrase"; ObjectID = "0aQ-XQ-xi1"; */
+"0aQ-XQ-xi1.placeholder" = "Passphrase";
+
 /* Class = "UIViewController"; title = "Create Nickname"; ObjectID = "0gb-eb-Y4t"; */
 "0gb-eb-Y4t.title" = "Create Nickname";
 
@@ -28,14 +31,14 @@
 /* Class = "UIButton"; normalTitle = "NEXT"; ObjectID = "6yP-Wd-LOe"; */
 "6yP-Wd-LOe.normalTitle" = "NEXT";
 
+/* Class = "UITextField"; placeholder = "Repeat"; ObjectID = "8D5-lH-j9E"; */
+"8D5-lH-j9E.placeholder" = "Repeat";
+
 /* Class = "UINavigationItem"; title = "All Feeds"; ObjectID = "97d-nj-rXa"; */
 "97d-nj-rXa.title" = "All Feeds";
 
 /* Class = "UINavigationController"; title = "Posts"; ObjectID = "9b8-tQ-QPR"; */
 "9b8-tQ-QPR.title" = "Posts";
-
-/* Class = "UIViewController"; title = "Setup Touch ID"; ObjectID = "9oR-lX-5GM"; */
-"9oR-lX-5GM.title" = "Setup Touch ID";
 
 /* Class = "UILabel"; text = "Label sdkfjh sdf kjhfsd fshdkfjh sdkfh sdfkjh sdfkjhs dfkjshdfsdf kjhd asdkjha sdk asdhkaj sdkjahsd"; ObjectID = "AhW-0L-8EY"; */
 "AhW-0L-8EY.text" = "Label sdkfjh sdf kjhfsd fshdkfjh sdkfh sdfkjh sdfkjhs dfkjshdfsdf kjhd asdkjha sdk asdhkaj sdkjahsd";
@@ -55,12 +58,6 @@
 /* Class = "UIButton"; normalTitle = "DELETE"; ObjectID = "EB2-33-vKV"; */
 "EB2-33-vKV.normalTitle" = "DELETE";
 
-/* Class = "UILabel"; text = "Display Photos"; ObjectID = "EKa-sY-58h"; */
-"EKa-sY-58h.text" = "Display Photos";
-
-/* Class = "UIButton"; normalTitle = "Use Complex Password"; ObjectID = "ENO-EI-uNA"; */
-"ENO-EI-uNA.normalTitle" = "Use Complex Password";
-
 /* Class = "UILabel"; text = "Repeat"; ObjectID = "FIB-E0-LcG"; */
 "FIB-E0-LcG.text" = "Repeat";
 
@@ -78,9 +75,6 @@
 
 /* Class = "UITableViewSection"; headerTitle = "PRIVACY SERVICES"; ObjectID = "Joo-qc-cK7"; */
 "Joo-qc-cK7.headerTitle" = "PRIVACY SERVICES";
-
-/* Class = "UILabel"; text = "Swipe down to delete personal data"; ObjectID = "JrE-xH-ei5"; */
-"JrE-xH-ei5.text" = "Swipe down to delete personal data";
 
 /* Class = "UITabBarItem"; title = "Favorites"; ObjectID = "KKQ-Rl-YyL"; */
 "KKQ-Rl-YyL.title" = "Favorites";
@@ -100,20 +94,17 @@
 /* Class = "UITabBarItem"; title = "Posts"; ObjectID = "MY7-Dh-4ZY"; */
 "MY7-Dh-4ZY.title" = "Posts";
 
-/* Class = "UIBarButtonItem"; title = "Cancel"; ObjectID = "N7I-dk-nLh"; */
-"N7I-dk-nLh.title" = "Cancel";
-
 /* Class = "UINavigationItem"; title = "All Feeds"; ObjectID = "OKW-af-rFH"; */
 "OKW-af-rFH.title" = "All Feeds";
-
-/* Class = "UILabel"; text = "Tap the icon to use TouchID with Paik."; ObjectID = "Oft-d2-RV8"; */
-"Oft-d2-RV8.text" = "Tap the icon to use TouchID with Paik.";
 
 /* Class = "UIButton"; normalTitle = "Continue"; ObjectID = "OgG-UR-oXT"; */
 "OgG-UR-oXT.normalTitle" = "Continue";
 
 /* Class = "UILabel"; text = "This is the footer!"; ObjectID = "PdZ-Fi-cVM"; */
 "PdZ-Fi-cVM.text" = "This is the footer!";
+
+/* Class = "UILabel"; text = "Paik Talk"; ObjectID = "PwL-A0-7eM"; */
+"PwL-A0-7eM.text" = "Paik Talk";
 
 /* Class = "UILabel"; text = "Language"; ObjectID = "QdG-Sb-e5G"; */
 "QdG-Sb-e5G.text" = "Language";
@@ -124,17 +115,14 @@
 /* Class = "UIViewController"; title = "Add Post"; ObjectID = "RIg-BG-i7z"; */
 "RIg-BG-i7z.title" = "Add Post";
 
+/* Class = "UILabel"; text = "Tor <b>respects your privacy</b> by concealing your identity as the app sends and receives information over the internet.\n\nIt also <b>helps get you access</b> to information that may be unavailable in your geography."; ObjectID = "RXC-M6-512"; */
+"RXC-M6-512.text" = "Tor <b>respects your privacy</b> by concealing your identity as the app sends and receives information over the internet.\n\nIt also <b>helps get you access</b> to information that may be unavailable in your geography.";
+
 /* Class = "UIViewController"; title = "Tor"; ObjectID = "S3m-Xa-Cvg"; */
 "S3m-Xa-Cvg.title" = "Tor";
 
 /* Class = "UILabel"; text = "Designed to work with Tor"; ObjectID = "SbE-YW-Mv9"; */
 "SbE-YW-Mv9.text" = "Designed to work with Tor";
-
-/* Class = "UINavigationItem"; title = "Panic"; ObjectID = "UQp-yT-RyE"; */
-"UQp-yT-RyE.title" = "Panic";
-
-/* Class = "UILabel"; text = "Login"; ObjectID = "VBG-Sb-iFV"; */
-"VBG-Sb-iFV.text" = "Login";
 
 /* Class = "UIBarButtonItem"; title = "Post"; ObjectID = "VS0-jF-udY"; */
 "VS0-jF-udY.title" = "Post";
@@ -150,9 +138,6 @@
 
 /* Class = "UINavigationItem"; title = "Share"; ObjectID = "WYs-F0-9DE"; */
 "WYs-F0-9DE.title" = "Share";
-
-/* Class = "UILabel"; text = "Passcode"; ObjectID = "YA2-Bc-sKc"; */
-"YA2-Bc-sKc.text" = "Passcode";
 
 /* Class = "UILabel"; text = "COMMENT"; ObjectID = "YKR-G0-z5o"; */
 "YKR-G0-z5o.text" = "COMMENT";
@@ -193,11 +178,11 @@
 /* Class = "UIButton"; normalTitle = "Continue"; ObjectID = "c4l-7L-fKc"; */
 "c4l-7L-fKc.normalTitle" = "Continue";
 
+/* Class = "UIButton"; normalTitle = "Forgot Password?"; ObjectID = "cDk-dR-lux"; */
+"cDk-dR-lux.normalTitle" = "Forgot Password?";
+
 /* Class = "UIButton"; normalTitle = "GOT IT"; ObjectID = "cRf-gD-m8v"; */
 "cRf-gD-m8v.normalTitle" = "GOT IT";
-
-/* Class = "UINavigationItem"; title = "Title"; ObjectID = "eRY-G4-MOM"; */
-"eRY-G4-MOM.title" = "Title";
 
 /* Class = "UIButton"; normalTitle = "Receive share screen - push to close"; ObjectID = "eaT-Lr-aX6"; */
 "eaT-Lr-aX6.normalTitle" = "Receive share screen - push to close";
@@ -235,8 +220,8 @@
 /* Class = "UIButton"; normalTitle = "DONE"; ObjectID = "qoO-C7-NPn"; */
 "qoO-C7-NPn.normalTitle" = "DONE";
 
-/* Class = "UILabel"; text = "Protect your privacy."; ObjectID = "sTr-d0-IAJ"; */
-"sTr-d0-IAJ.text" = "Protect your privacy.";
+/* Class = "UITextField"; placeholder = "Passphrase"; ObjectID = "r6V-Is-GTi"; */
+"r6V-Is-GTi.placeholder" = "Passphrase";
 
 /* Class = "UILabel"; text = "Passphrase"; ObjectID = "tiP-dv-3CJ"; */
 "tiP-dv-3CJ.text" = "Passphrase";
@@ -262,8 +247,11 @@
 /* Class = "UISegmentedControl"; yFE-c1-6DC.segmentTitles[1] = "Explore"; ObjectID = "yFE-c1-6DC"; */
 "yFE-c1-6DC.segmentTitles[1]" = "Explore";
 
-/* Class = "UIViewController"; title = "Panic"; ObjectID = "z6q-7u-hD7"; */
-"z6q-7u-hD7.title" = "Panic";
+/* Class = "UILabel"; text = "Acknowledgements"; ObjectID = "yVh-oa-MsE"; */
+"yVh-oa-MsE.text" = "Acknowledgements";
+
+/* Class = "UILabel"; text = "Discover important and entertaining stories from any source. Read in privacy. Enjoy offline access.\n\n<b>Make it yours!</b>"; ObjectID = "yc2-2b-XFL"; */
+"yc2-2b-XFL.text" = "Discover important and entertaining stories from any source. Read in privacy. Enjoy offline access.\n\n<b>Make it yours!</b>";
 
 /* Class = "UITableViewController"; title = "Media Downloads"; ObjectID = "zOI-2E-a1E"; */
 "zOI-2E-a1E.title" = "Media Downloads";

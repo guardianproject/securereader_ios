@@ -28,9 +28,10 @@ function processStoryboard {
     storyboardFileName=${storyboard:14}
     outputFileName=$(echo "$storyboardFileName" | sed "s/\.storyboard/\.strings/")
 
-    sourceFile=./temppath/storyboard.strings
-    tempFile=./temppath/storyboard.stringstemp
-    ibtool "$1" --generate-strings-file $tempFile
+    echo "Path is $DIR/$1"
+    sourceFile=$DIR/temppath/storyboard.strings
+    tempFile=$DIR/temppath/storyboard.stringstemp
+    ibtool $DIR/$1 --generate-strings-file $tempFile
     iconv -f UTF-16 -t UTF-8 $tempFile > $sourceFile
 
     for languageDir in `find .. -depth 1 -name "*.lproj" -print`
@@ -57,6 +58,8 @@ if ! [ -d ./temppath ]; then
     mkdir ./temppath; 
     echo "Created ./temppath";
 fi
+
+DIR=$(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 
 processStoryboards
 
