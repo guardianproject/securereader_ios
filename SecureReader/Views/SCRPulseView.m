@@ -7,6 +7,11 @@
 //
 
 #import "SCRPulseView.h"
+#import "SCRTheme.h"
+
+@interface SCRPulseView ()
+@property (nonatomic, strong) UIColor *viewColor;
+@end
 
 @implementation SCRPulseView
 
@@ -16,6 +21,7 @@
     if (self != nil)
     {
         [self setUserInteractionEnabled:NO];
+        self.viewColor = [SCRTheme getColorProperty:@"highlightColor" forTheme:@"Colors"];
     }
     return self;
 }
@@ -47,8 +53,8 @@
     CAShapeLayer *circle = [CAShapeLayer layer];
     [self.layer addSublayer:circle];
     circle.path = [UIBezierPath bezierPathWithOvalInRect:CGRectInset(self.bounds, self.bounds.size.width / 2 - 3, self.bounds.size.height / 2 - 3)].CGPath;
-    circle.fillColor = [UIColor greenColor].CGColor;
-    circle.strokeColor = [UIColor greenColor].CGColor;
+    circle.fillColor = self.viewColor.CGColor;
+    circle.strokeColor = self.viewColor.CGColor;
     circle.lineWidth = 2;
 }
 
@@ -59,7 +65,7 @@
     
     circle.path = nil;
     circle.fillColor = [UIColor clearColor].CGColor;
-    circle.strokeColor = [UIColor greenColor].CGColor;
+    circle.strokeColor = self.viewColor.CGColor;
     circle.lineWidth = 2;
     
     // Add to parent layer
