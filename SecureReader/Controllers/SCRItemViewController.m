@@ -21,6 +21,7 @@
 #import "SCRRequireNicknameSegue.h"
 #import "NSURL+SecureReader.h"
 #import "SCRWordpressClient.h"
+#import "SCRDatabaseManager.h"
 
 @interface SCRItemViewController ()
 @property id<SCRItemViewControllerDataSource> itemDataSource;
@@ -95,20 +96,31 @@
 - (void)updateCommentButton:(SCRItem *)item{
     if ([[item.commentsURL absoluteString] length]) {
         self.buttonComment.hidden = NO;
+        [self.buttonComment setBadge:[NSString stringWithFormat:@"%d",item.totalCommentCount]];
         SCRWordpressClient *wpClient = [SCRWordpressClient defaultClient];
         NSString *username = [SCRSettings wordpressUsername];
         NSString *password = [SCRSettings wordpressPassword];
         if ([username length] && [password length]) {
             [wpClient setUsername:username password:password];
-            [wpClient getCommentCountsForPostId:[item.commentsURL scr_wordpressPostID] completionBlock:^(NSUInteger approvedCount, NSUInteger awaitingModerationCount, NSUInteger spamCount, NSUInteger totalCommentCount, NSError *error) {
-                __block NSString *badgeString = @"0";
-                if (!error) {
-                    badgeString = [NSString stringWithFormat:@"%d",totalCommentCount];
-                }
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.buttonComment setBadge:badgeString];
-                });
-            }];
+            //Todo: Change to only update every so often not on every button update.
+            if (item.lastCheckedCommentCount == nil || ABS([item.lastCheckedCommentCount timeIntervalSinceNow]) > 3600) {
+                [wpClient getCommentCountsForPostId:[item.commentsURL scr_wordpressPostID] completionBlock:^(NSUInteger approvedCount, NSUInteger awaitingModerationCount, NSUInteger spamCount, NSUInteger totalCommentCount, NSError *error) {
+                    __block NSString *badgeString = @"0";
+                    if (!error) {
+                        [[SCRDatabaseManager sharedInstance].readWriteConnection asyncReadWriteWithBlock:^(YapDatabaseReadWriteTransaction * transaction) {
+                            SCRItem *tempItem = [transaction objectForKey:item.yapKey inCollection:[SCRItem yapCollection]];
+                            tempItem.totalCommentCount = totalCommentCount;
+                            tempItem.lastCheckedCommentCount = [NSDate date];
+                            [tempItem saveWithTransaction:transaction];
+                        }];
+                        badgeString = [NSString stringWithFormat:@"%d",totalCommentCount];
+                    }
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self.buttonComment setBadge:badgeString];
+                    });
+                }];
+            }
+            
         }
     } else {
         self.buttonComment.hidden = YES;
