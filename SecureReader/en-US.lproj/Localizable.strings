@@ -23,16 +23,16 @@
 "Clear Data" = "Clear Data";
 
 /* Message for create passphrase, db failure */
-"CreatePassphrase.DBError.Message" = "A database error has occured.";
+"CreatePassphrase.DBError.Message" = "A database error has occurred.";
 
 /* Title for create passphrase, db failure */
-"CreatePassphrase.DBError.Title" = "Create passphrase";
+"CreatePassphrase.DBError.Title" = "Create password";
 
 /* Message for create passphrase, mismatched passwords */
 "CreatePassphrase.Mismatched.Message" = "The passwords did not match, please try again.";
 
 /* Title for create passphrase, mismatched passwords */
-"CreatePassphrase.Mismatched.Title" = "Create passphrase";
+"CreatePassphrase.Mismatched.Title" = "Create password";
 
 /* panic delete button */
 "Delete" = "Delete";
@@ -71,10 +71,10 @@
 "ItemPage.AuthorName" = "BY %@";
 
 /* Alert message for incorrect passphrase entered */
-"Login.Incorrect.Message" = "Incorrect passphrase, please try again.";
+"Login.Incorrect.Message" = "Incorrect. Please try again.";
 
 /* Alert title for incorrect passphrase entered */
-"Login.Incorrect.Title" = "Login";
+"Login.Incorrect.Title" = "Lock";
 
 /* Display string for profress with byte count */
 "MediaDownloads.Progress.Bytes" = "%lu%% of %@ downloaded";
