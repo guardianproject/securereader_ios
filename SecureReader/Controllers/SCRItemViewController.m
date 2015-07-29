@@ -20,6 +20,7 @@
 #import "SCRCommentsViewController.h"
 #import "SCRRequireNicknameSegue.h"
 #import "NSURL+SecureReader.h"
+#import "SCRWordpressClient.h"
 
 @interface SCRItemViewController ()
 @property id<SCRItemViewControllerDataSource> itemDataSource;
@@ -42,8 +43,6 @@
     [super viewDidLoad];
     pageViewController = [[self childViewControllers] objectAtIndex:0];
     pageViewController.delegate = self;
-    
-    [self.buttonComment setBadge:@"0"];
     
     self.textSizeViewGestureRecognizer = [[UIGestureRecognizer alloc] initWithTarget:self action:@selector(handleTextSizeGesture:)];
     [self.textSizeViewGestureRecognizer setEnabled:YES];
@@ -73,7 +72,7 @@
     [super viewWillAppear:animated];
     self.textSizeSlider.value = [SCRSettings fontSizeAdjustment];
     SCRItemPageViewController *viewController = [self.pageViewController.viewControllers firstObject];
-    [self checkShowCommentButton:viewController.item];
+    [self updateCommentButton:viewController.item];
 }
 
 - (UIViewController *)viewControllerForIndexPath:(NSIndexPath *)indexPath
@@ -85,7 +84,7 @@
         [vc setItem:item];
         [vc setItemIndexPath:indexPath];
         
-        [self checkShowCommentButton:item];
+        [self updateCommentButton:item];
         
         [(SCRNavigationController *)self.navigationController registerScrollViewForHideBars:vc.scrollView];
         return vc;
@@ -93,9 +92,24 @@
     return nil;
 }
 
-- (void)checkShowCommentButton:(SCRItem *)item{
+- (void)updateCommentButton:(SCRItem *)item{
     if ([[item.commentsURL absoluteString] length]) {
         self.buttonComment.hidden = NO;
+        SCRWordpressClient *wpClient = [SCRWordpressClient defaultClient];
+        NSString *username = [SCRSettings wordpressUsername];
+        NSString *password = [SCRSettings wordpressPassword];
+        if ([username length] && [password length]) {
+            [wpClient setUsername:username password:password];
+            [wpClient getCommentCountsForPostId:[item.commentsURL scr_wordpressPostID] completionBlock:^(NSUInteger approvedCount, NSUInteger awaitingModerationCount, NSUInteger spamCount, NSUInteger totalCommentCount, NSError *error) {
+                __block NSString *badgeString = @"0";
+                if (!error) {
+                    badgeString = [NSString stringWithFormat:@"%d",totalCommentCount];
+                }
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.buttonComment setBadge:badgeString];
+                });
+            }];
+        }
     } else {
         self.buttonComment.hidden = YES;
     }
