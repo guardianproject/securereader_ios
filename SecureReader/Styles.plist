@@ -206,7 +206,7 @@
 	<key>ItemTitleStyle</key>
 	<dict>
 		<key>textSize</key>
-		<integer>20</integer>
+		<integer>22</integer>
 		<key>textColor</key>
 		<string>#ff000000</string>
 		<key>lineHeightInPercent</key>
@@ -350,7 +350,7 @@
 	<key>CreateNicknameButtonStyle</key>
 	<dict>
 		<key>corners</key>
-		<integer>20</integer>
+		<integer>25</integer>
 		<key>textColorNormal</key>
 		<string>#ffffffff</string>
 		<key>backgroundColorNormal</key>
@@ -370,7 +370,7 @@
 	<key>CreateNicknameTextStyle</key>
 	<dict>
 		<key>textSize</key>
-		<integer>14</integer>
+		<integer>17</integer>
 		<key>textColor</key>
 		<string>#ff000000</string>
 	</dict>

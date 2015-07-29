@@ -1520,7 +1520,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UQ6-Cd-wsD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-688" y="4569"/>
+            <point key="canvasLocation" x="-364" y="5285"/>
         </scene>
         <!--Readability View Controller-->
         <scene sceneID="on5-F0-m1a">
@@ -1573,7 +1573,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E77-zT-rA7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="42" y="4569"/>
+            <point key="canvasLocation" x="301" y="5285"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ke9-1p-PEd">
@@ -2166,7 +2166,7 @@ It also &lt;b&gt;helps get you access&lt;/b&gt; to information that may be unava
                                 <string key="text">Paik provides a feed of noteworthy news to its community. Every post created will undergo a curation process before it is shared in the official Paik news feed.
 
 Please read the &lt;a href="#terms"&gt;Terms and Conditions&lt;/a&gt; to understand the rights you grant when you share information with Paik.</string>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="theme" value="CreateNicknameTextStyle"/>

@@ -57,7 +57,8 @@
 }
 
 - (NSAttributedString *)autoLinkURLs:(NSString *)string {
-    NSMutableAttributedString *linkedString = [[NSMutableAttributedString alloc] initWithString:string];
+    NSDictionary *originalAttributes = @{ NSForegroundColorAttributeName: self.infoTextView.textColor, NSFontAttributeName: self.infoTextView.font };
+    NSMutableAttributedString *linkedString = [[NSMutableAttributedString alloc] initWithString:string attributes:originalAttributes];
     
     NSError *error = NULL;
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"<a href=\"([^\"]+)\">([^<]+)</a>" options:NSRegularExpressionCaseInsensitive error:&error];
