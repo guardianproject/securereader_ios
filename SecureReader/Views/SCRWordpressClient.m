@@ -390,8 +390,7 @@ static NSString* SCRGetMimeTypeForExtension(NSString* extension) {
         return;
     }
     [self.networkOperationQueue addOperationWithBlock:^{
-        NSDictionary *postParameters = @{@"post_id": postId};
-        NSArray *parameters = [self buildParametersWithExtra:postParameters];
+        NSArray *parameters = [self buildParametersWithExtra:@[postId]];
         WPXMLRPCEncoder *encoder = [[WPXMLRPCEncoder alloc] initWithMethod:@"wp.getCommentCount" andParameters:parameters];
         NSError *error = nil;
         NSData *data = [encoder dataEncodedWithError:&error];
