@@ -16,6 +16,7 @@
 #import "SCRSettings.h"
 #import "UIView+Theming.h"
 #import "SCRTheme.h"
+#import "SCRPostsViewController.h"
 
 @interface SCRAddPostViewController ()
 @property (nonatomic, strong) SCRPostItem *item;
@@ -84,8 +85,8 @@
     [self.mediaCollectionView setItem:self.item];
     [self.mediaCollectionView createThumbnails:NO completion:^{
         int numImages = [self.mediaCollectionView numberOfImages];
-        //[self.operationButtonsToolbar setAlpha:0];
-        //[self.operationButtonsContainer setHidden:(numImages == 0)];
+        [self.operationButtonsToolbar setAlpha:0];
+        [self.operationButtonsContainer setHidden:(numImages == 0)];
         [self.imagePlaceholder setHidden:(numImages > 0)];
     }];
 }
@@ -115,6 +116,16 @@
     }
     self.item.tags = tags;
     self.item.lastEdited = [NSDate dateWithTimeIntervalSinceNow:0];
+}
+
+- (UIViewController *)backViewController
+{
+    NSInteger numberOfViewControllers = self.navigationController.viewControllers.count;
+    
+    if (numberOfViewControllers < 2)
+        return nil;
+    else
+        return [self.navigationController.viewControllers objectAtIndex:numberOfViewControllers - 2];
 }
 
 - (IBAction)post:(id)sender
@@ -180,6 +191,15 @@
                 [[SCRDatabaseManager sharedInstance].readWriteConnection asyncReadWriteWithBlock:^(YapDatabaseReadWriteTransaction *transaction) {
                     [self.item saveWithTransaction:transaction];
                 } completionBlock:^{
+                    // Select the "My Posts" tab when going back
+                    //
+                    UIViewController *backVC = [self backViewController];
+                    if (backVC != nil && [backVC isKindOfClass:[SCRPostsViewController class]])
+                    {
+                        SCRPostsViewController *pVC = (SCRPostsViewController *)backVC;
+                        [pVC.segmentedControl setSelectedSegmentIndex:0];
+                        [pVC.segmentedControl sendActionsForControlEvents:UIControlEventValueChanged];
+                    }
                     [self.navigationController popViewControllerAnimated:YES];
                 }];
             }
@@ -245,7 +265,7 @@
 {
     BOOL hasCamera = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
     BOOL hasSavedPics = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
-      
+    
     if(hasCamera && hasSavedPics)
     {
         UIAlertController* alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"AddPost.PickImage.PickSource.Title", @"Post screen: Alert title, get image from gallery")
@@ -400,8 +420,8 @@
         [self.mediaCollectionView setItem:self.item];
         [self.mediaCollectionView createThumbnails:NO completion:^{
             int numImages = [self.mediaCollectionView numberOfImages];
-            //[self.operationButtonsToolbar setAlpha:0];
-            //[self.operationButtonsContainer setHidden:(numImages == 0)];
+            [self.operationButtonsToolbar setAlpha:0];
+            [self.operationButtonsContainer setHidden:(numImages == 0)];
             [self.imagePlaceholder setHidden:(numImages > 0)];
         }];
     });
