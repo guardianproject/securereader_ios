@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "SCRItem.h"
+#import "SCRFeed.h"
 #import "SCRSourceView.h"
 #import "SCRAuthorView.h"
 #import "SCRMediaCollectionView.h"
@@ -21,9 +22,10 @@
 @property (weak, nonatomic) IBOutlet SCRAuthorView *authorView;
 @property (weak, nonatomic) IBOutlet UITextView *contentView;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-@property (weak, nonatomic) IBOutlet UIButton *fullArticleButton;
 
 @property (strong, nonatomic) SCRItem *item;
 @property (strong, nonatomic) NSIndexPath *itemIndexPath;
+
+- (void)switchToView:(SCRFeedViewPreference) viewPreference;
 
 @end

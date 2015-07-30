@@ -207,14 +207,12 @@
 
 - (IBAction)segmentedControlChanged:(id)sender {
     SCRFeedViewPreference viewPreference = SCRFeedViewPreferenceRSS;
-    if (self.readabilitySegmentedControl.selectedSegmentIndex == 0) {
-        
-        //switch to rss view
-    } else if (self.readabilitySegmentedControl.selectedSegmentIndex == 1) {
+    if (self.readabilitySegmentedControl.selectedSegmentIndex == 1) {
         viewPreference = SCRFeedViewPreferenceReadability;
-        
-        //Switch to readability view
     }
+    
+    SCRItemPageViewController *viewController = [self.pageViewController.viewControllers firstObject];
+    [viewController switchToView:viewPreference];
     
     
     __block SCRItem *item = [itemDataSource itemForIndexPath:currentItemIndex];
