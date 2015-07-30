@@ -109,6 +109,11 @@
 		<key>tintColor</key>
 		<string>@Colors/highlightColor</string>
 	</dict>
+	<key>TableStyle</key>
+	<dict>
+		<key>backgroundColor</key>
+		<string>#fff6f6f6</string>
+	</dict>
 	<key>TabBarItemStyle</key>
 	<dict>
 		<key>tintColor</key>
