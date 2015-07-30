@@ -74,6 +74,7 @@
     self.textSizeSlider.value = [SCRSettings fontSizeAdjustment];
     SCRItemPageViewController *viewController = [self.pageViewController.viewControllers firstObject];
     [self updateCommentButton:viewController.item];
+    [self updateReadability:viewController.item];
 }
 
 - (UIViewController *)viewControllerForIndexPath:(NSIndexPath *)indexPath
@@ -86,11 +87,27 @@
         [vc setItemIndexPath:indexPath];
         
         [self updateCommentButton:item];
+        [self updateReadability:item];
         
         [(SCRNavigationController *)self.navigationController registerScrollViewForHideBars:vc.scrollView];
         return vc;
     }
     return nil;
+}
+
+- (void)updateReadability:(SCRItem *)item
+{
+    __block SCRFeedViewPreference viewPreference = SCRFeedViewPreferenceRSS;
+    [[SCRDatabaseManager sharedInstance].readConnection asyncReadWithBlock:^(YapDatabaseReadTransaction * transaction) {
+        SCRFeed *feed = [transaction objectForKey:item.feedYapKey inCollection:[SCRFeed yapCollection]];
+        viewPreference = feed.viewPreference;
+    } completionQueue:dispatch_get_main_queue() completionBlock:^(void){
+        if (viewPreference == SCRFeedViewPreferenceRSS) {
+            [self.readabilitySegmentedControl setSelectedSegmentIndex:0];
+        } else if (viewPreference == SCRFeedViewPreferenceReadability) {
+            [self.readabilitySegmentedControl setSelectedSegmentIndex:1];
+        }
+    }];
 }
 
 - (void)updateCommentButton:(SCRItem *)item{
@@ -185,7 +202,28 @@
         [self updateFavoriteIcon];
     }
 }
-             
+
+#pragma - mark - Navigation Bar
+
+- (IBAction)segmentedControlChanged:(id)sender {
+    SCRFeedViewPreference viewPreference = SCRFeedViewPreferenceRSS;
+    if (self.readabilitySegmentedControl.selectedSegmentIndex == 0) {
+        
+        //switch to rss view
+    } else if (self.readabilitySegmentedControl.selectedSegmentIndex == 1) {
+        viewPreference = SCRFeedViewPreferenceReadability;
+        
+        //Switch to readability view
+    }
+    
+    
+    __block SCRItem *item = [itemDataSource itemForIndexPath:currentItemIndex];
+    [[SCRDatabaseManager sharedInstance].readWriteConnection asyncReadWriteWithBlock:^(YapDatabaseReadWriteTransaction * transaction) {
+        SCRFeed *feed = [transaction objectForKey:item.feedYapKey inCollection:[SCRFeed yapCollection]];
+        feed.viewPreference = viewPreference;
+        [feed saveWithTransaction:transaction];
+    }];
+}
 
 #pragma mark - Toolbar buttons
 

@@ -32,5 +32,6 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *buttonFavorite;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *buttonFavoriteSpace;
 @property (weak, nonatomic) IBOutlet SCRCommentsBarButton *buttonComment;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *readabilitySegmentedControl;
 
 @end
