@@ -15,6 +15,7 @@
 #import "SCRFeed.h"
 #import "SCRDatabaseManager.h"
 #import "SCRAppDelegate.h"
+#import "SCRNoResultsTableDelegate.h"
 
 #define WEB_SEARCH_URL_FORMAT @"http://securereader.guardianproject.info/opml/find.php?lang=%1$@&term=%2$@&desc=1"
 
@@ -22,6 +23,7 @@
 @property (nonatomic, strong) YapDatabaseSearchQueue *searchQueue;
 @property NSArray *searchResults;
 @property (nonatomic, strong) YapDatabaseConnection *searchReadConnection;
+@property (nonatomic, strong) SCRNoResultsTableDelegate *noResultsDelegate;
 @end
 
 @implementation SCRFeedSearchTableDelegate
@@ -46,7 +48,8 @@
 
 - (void)clearSearchResults
 {
-    self.searchResults = nil;    
+    self.searchResults = nil;
+    [self hideNoResultsView:self.tableView];
 }
 
 - (void)performSearchWithString:(NSString *)searchString
@@ -93,6 +96,7 @@
                                                                   {
                                                                       feed.userAdded = YES;
                                                                   }
+                                                                  [self setActive:YES];
                                                                   [self.tableView reloadData];
                                                               }
                                                               
@@ -141,17 +145,23 @@
 }
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    NSInteger numberOfLocalFeeds = [self.yapMappings numberOfItemsInSection:(section - 1)];
     if (section == 0)
     {
         // Local search results in first section
         if (self.searchResults == nil)
+        {
+            if (numberOfLocalFeeds == 0)
+            {
+                [self hideNoResultsView:tableView];
+            }
             return 0;
+        }
         return self.searchResults.count;
     }
     else
     {
-        NSInteger numberOfRows = [self.yapMappings numberOfItemsInSection:(section - 1)];
-        return numberOfRows;
+        return numberOfLocalFeeds;
     }
 }
 
@@ -170,6 +180,21 @@
         feed = [super itemForIndexPath:newIndexPath];
     }
     return feed;
+}
+
+-(void)onYapDatabaseUpdate
+{
+    [super onYapDatabaseUpdate];
+    [self setActive:YES];
+}
+
+-(void)hideNoResultsView:(UITableView *)tableView
+{
+    if (self.noResultsDelegate == nil)
+        self.noResultsDelegate = [[SCRNoResultsTableDelegate alloc] init];
+    tableView.dataSource = self.noResultsDelegate;
+    tableView.delegate = self.noResultsDelegate;
+    [tableView reloadData];
 }
 
 @end

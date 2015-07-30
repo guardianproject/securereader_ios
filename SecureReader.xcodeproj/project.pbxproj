@@ -131,6 +131,7 @@
 		92E7B9711A41A30F0038DBCE /* SCRReceiveShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7B9701A41A30F0038DBCE /* SCRReceiveShareView.m */; };
 		92E7B9741A41C8E60038DBCE /* SCRReceiveShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7B9731A41C8E60038DBCE /* SCRReceiveShareViewController.m */; };
 		92E8CF8D1AD3C91D00756F9E /* SCREditTagsTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E8CF8C1AD3C91D00756F9E /* SCREditTagsTextView.m */; };
+		92ECD36B1B6A3CA4004B9788 /* SCRNoResultsTableDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 92ECD36A1B6A3CA4004B9788 /* SCRNoResultsTableDelegate.m */; };
 		92F040A21B43DA1D00A6C3D8 /* SCRButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F040A11B43DA1D00A6C3D8 /* SCRButton.m */; };
 		D901FE001B3B8E4C00106D53 /* SCRWordpressClient.m in Sources */ = {isa = PBXBuildFile; fileRef = D901FDFF1B3B8E4C00106D53 /* SCRWordpressClient.m */; };
 		D901FE021B3B93F200106D53 /* SCRWordpressTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D901FE011B3B93F200106D53 /* SCRWordpressTests.m */; };
@@ -379,6 +380,8 @@
 		92E7B9731A41C8E60038DBCE /* SCRReceiveShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRReceiveShareViewController.m; sourceTree = "<group>"; };
 		92E8CF8B1AD3C91D00756F9E /* SCREditTagsTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCREditTagsTextView.h; sourceTree = "<group>"; };
 		92E8CF8C1AD3C91D00756F9E /* SCREditTagsTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCREditTagsTextView.m; sourceTree = "<group>"; };
+		92ECD3691B6A3CA4004B9788 /* SCRNoResultsTableDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRNoResultsTableDelegate.h; sourceTree = "<group>"; };
+		92ECD36A1B6A3CA4004B9788 /* SCRNoResultsTableDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRNoResultsTableDelegate.m; sourceTree = "<group>"; };
 		92F040A01B43DA1D00A6C3D8 /* SCRButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRButton.h; sourceTree = "<group>"; };
 		92F040A11B43DA1D00A6C3D8 /* SCRButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRButton.m; sourceTree = "<group>"; };
 		A21561AE6A5B97BAE0C7EADE /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -744,6 +747,8 @@
 				9276CCF01ACBF6AF00A6B0E3 /* SCRDraftPostItemTableDelegate.m */,
 				9276CCF21ACC1FBB00A6B0E3 /* SCRSentPostItemTableDelegate.h */,
 				9276CCF31ACC1FBB00A6B0E3 /* SCRSentPostItemTableDelegate.m */,
+				92ECD3691B6A3CA4004B9788 /* SCRNoResultsTableDelegate.h */,
+				92ECD36A1B6A3CA4004B9788 /* SCRNoResultsTableDelegate.m */,
 			);
 			name = "Table Delegates";
 			sourceTree = "<group>";
@@ -1166,6 +1171,7 @@
 				929EEF8419F4F5940020BD75 /* SCRTheme.m in Sources */,
 				920214CD1B42D061009FD0CE /* SCRCreateNicknameViewController.m in Sources */,
 				92B9E97B1A9CBC0000A2BED9 /* SCRItemTableDelegate.m in Sources */,
+				92ECD36B1B6A3CA4004B9788 /* SCRNoResultsTableDelegate.m in Sources */,
 				9276CCF11ACBF6AF00A6B0E3 /* SCRDraftPostItemTableDelegate.m in Sources */,
 				925AE5801A404161001E182F /* SCRMoreViewController.m in Sources */,
 				633AB7391A9FE9A800A0F3F9 /* SCRMediaFetcher.m in Sources */,

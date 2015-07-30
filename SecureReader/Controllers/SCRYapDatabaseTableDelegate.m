@@ -322,8 +322,13 @@
         
         [self.tableView endUpdates];
     }
+    [self onYapDatabaseUpdate];
 }
 
+- (void)onYapDatabaseUpdate
+{
+    // No nothing
+}
 // -------------------------------------------------------------------------------
 //	loadMediaForOnscreenRows
 //  This method is used in case the user scrolled into a set of cells that don't
