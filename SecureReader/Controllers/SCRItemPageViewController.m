@@ -14,7 +14,6 @@
 #import "RSSPerson.h"
 #import "SCRApplication.h"
 #import "SCRSettings.h"
-#import "SCRReadabilityViewController.h"
 #import "SCRDatabaseManager.h"
 #import "SCRFeed.h"
 #import "SCRFileManager.h"
@@ -111,18 +110,6 @@
     self.contentView.text = [self.item.itemDescription stringByConvertingHTMLToPlainText];
 
     [self.view layoutIfNeeded];
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    [super prepareForSegue:segue sender:sender];
-    if ([segue.destinationViewController isKindOfClass:[UINavigationController class]]) {
-        UINavigationController *navigationController = (UINavigationController *)segue.destinationViewController;
-        if ([navigationController.topViewController isKindOfClass:[SCRReadabilityViewController class]]) {
-            SCRReadabilityViewController *viewController = (SCRReadabilityViewController *)navigationController.topViewController;
-            viewController.item = self.item;
-        }
-    }
 }
 
  #pragma - mark Readability
