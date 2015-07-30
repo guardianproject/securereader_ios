@@ -103,6 +103,10 @@ NSString *const kSCRFeedPaikNameSpace = @"http://securereader.guardianproject.in
         [storage removeItemAtPath:[mediaItem localPath] error:nil];
         [transaction removeObjectForKey:mediaItem.yapKey inCollection:[[mediaItem class] yapCollection]];
     }];
+    
+    //Remvoe HTML as well
+    NSString *htmlPath = [self pathForDownloadedHTML];
+    [storage removeItemAtPath:htmlPath error:nil];
 }
 
 - (void)enumerateMediaItemsInTransaction:(YapDatabaseReadTransaction *)readTransaction block:(void (^)(SCRMediaItem *, BOOL *))block
