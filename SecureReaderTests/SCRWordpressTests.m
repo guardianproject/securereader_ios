@@ -158,9 +158,15 @@
         }
         [self.wpClient setUsername:username password:password];
         [self.wpClient getCommentCountsForPostId:@"1" completionBlock:^(NSUInteger approvedCount, NSUInteger awaitingModerationCount, NSUInteger spamCount, NSUInteger totalCommentCount, NSError *error) {
+            NSLog(@"comments: %d, %d, %d, %d", (int)approvedCount, (int)awaitingModerationCount, (int)spamCount, (int) totalCommentCount);
             XCTAssertNil(error);
-            [self.expectation fulfill];
+            [self.wpClient getCommentCountsForPostId:@"360" completionBlock:^(NSUInteger approvedCount, NSUInteger awaitingModerationCount, NSUInteger spamCount, NSUInteger totalCommentCount, NSError *error) {
+                NSLog(@"comments: %d, %d, %d, %d", (int)approvedCount, (int)awaitingModerationCount, (int)spamCount, (int) totalCommentCount);
+                XCTAssertNil(error);
+                [self.expectation fulfill];
+            }];
         }];
+        
     }];
     self.expectation = [self expectationWithDescription:@"get comment count"];
     [self waitForExpectationsWithTimeout:30 handler:^(NSError *error) {

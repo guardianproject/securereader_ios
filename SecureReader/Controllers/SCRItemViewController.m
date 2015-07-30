@@ -17,8 +17,11 @@
 #import "UIBarItem+Theming.h"
 #import "SCRAppDelegate.h"
 #import "NSString+HTML.h"
-#import "SCRItemCommentsViewController.h"
+#import "SCRCommentsViewController.h"
 #import "SCRRequireNicknameSegue.h"
+#import "NSURL+SecureReader.h"
+#import "SCRWordpressClient.h"
+#import "SCRDatabaseManager.h"
 
 @interface SCRItemViewController ()
 @property id<SCRItemViewControllerDataSource> itemDataSource;
@@ -41,8 +44,6 @@
     [super viewDidLoad];
     pageViewController = [[self childViewControllers] objectAtIndex:0];
     pageViewController.delegate = self;
-    
-    [self.buttonComment setBadge:@"0"];
     
     self.textSizeViewGestureRecognizer = [[UIGestureRecognizer alloc] initWithTarget:self action:@selector(handleTextSizeGesture:)];
     [self.textSizeViewGestureRecognizer setEnabled:YES];
@@ -72,7 +73,7 @@
     [super viewWillAppear:animated];
     self.textSizeSlider.value = [SCRSettings fontSizeAdjustment];
     SCRItemPageViewController *viewController = [self.pageViewController.viewControllers firstObject];
-    [self checkShowCommentButton:viewController.item];
+    [self updateCommentButton:viewController.item];
 }
 
 - (UIViewController *)viewControllerForIndexPath:(NSIndexPath *)indexPath
@@ -84,7 +85,7 @@
         [vc setItem:item];
         [vc setItemIndexPath:indexPath];
         
-        [self checkShowCommentButton:item];
+        [self updateCommentButton:item];
         
         [(SCRNavigationController *)self.navigationController registerScrollViewForHideBars:vc.scrollView];
         return vc;
@@ -92,9 +93,35 @@
     return nil;
 }
 
-- (void)checkShowCommentButton:(SCRItem *)item{
+- (void)updateCommentButton:(SCRItem *)item{
     if ([[item.commentsURL absoluteString] length]) {
         self.buttonComment.hidden = NO;
+        [self.buttonComment setBadge:[NSString stringWithFormat:@"%d",item.totalCommentCount]];
+        SCRWordpressClient *wpClient = [SCRWordpressClient defaultClient];
+        NSString *username = [SCRSettings wordpressUsername];
+        NSString *password = [SCRSettings wordpressPassword];
+        if ([username length] && [password length]) {
+            [wpClient setUsername:username password:password];
+            //Todo: Change to only update every so often not on every button update.
+            if (item.lastCheckedCommentCount == nil || ABS([item.lastCheckedCommentCount timeIntervalSinceNow]) > 3600) {
+                [wpClient getCommentCountsForPostId:[item.commentsURL scr_wordpressPostID] completionBlock:^(NSUInteger approvedCount, NSUInteger awaitingModerationCount, NSUInteger spamCount, NSUInteger totalCommentCount, NSError *error) {
+                    __block NSString *badgeString = @"0";
+                    if (!error) {
+                        [[SCRDatabaseManager sharedInstance].readWriteConnection asyncReadWriteWithBlock:^(YapDatabaseReadWriteTransaction * transaction) {
+                            SCRItem *tempItem = [transaction objectForKey:item.yapKey inCollection:[SCRItem yapCollection]];
+                            tempItem.totalCommentCount = totalCommentCount;
+                            tempItem.lastCheckedCommentCount = [NSDate date];
+                            [tempItem saveWithTransaction:transaction];
+                        }];
+                        badgeString = [NSString stringWithFormat:@"%d",totalCommentCount];
+                    }
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self.buttonComment setBadge:badgeString];
+                    });
+                }];
+            }
+            
+        }
     } else {
         self.buttonComment.hidden = YES;
     }
@@ -168,8 +195,9 @@
     if (itemPage != nil)
     {
         SCRItem *item = itemPage.item;
-        SCRItemCommentsViewController *commentsController = (SCRItemCommentsViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"fullScreenItemCommentsView"];
-        [commentsController setItem:item];
+        SCRCommentsViewController *commentsController = (SCRCommentsViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"fullScreenItemCommentsView"];
+        NSString *post = [item.commentsURL scr_wordpressPostID];
+        [commentsController setPostId:post];
         SCRRequireNicknameSegue *segue = [[SCRRequireNicknameSegue alloc] initWithIdentifier:@"" source:self destination:commentsController];
         [self prepareForSegue:segue sender:self];
         [segue perform];

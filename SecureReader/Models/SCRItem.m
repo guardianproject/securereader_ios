@@ -37,6 +37,7 @@ NSString *const kSCRFeedPaikNameSpace = @"http://securereader.guardianproject.in
 {
     if (self = [super initWithFeedType:feedType xmlElement:xmlElement mediaItemClass:mediaItemClass]) {
         [self parseSpecialFeedValues:xmlElement];
+        self.totalCommentCount = 0;
     }
     return  self;
 }

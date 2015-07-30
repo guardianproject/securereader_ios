@@ -13,6 +13,7 @@
 #import "SCRMediaCollectionViewDownloadView.h"
 #import "JTSImageViewController.h"
 #import "SCRMediaServer+Video.h"
+#import "PureLayout.h"
 @import MediaPlayer;
 
 @interface SCRMediaCollectionViewItem : NSObject
@@ -190,13 +191,12 @@
 
 - (void) mediaItemCreate:(SCRMediaCollectionViewItem *)mediaItem
 {
-    [self imageForMediaItem:mediaItem.mediaItem completion:^(UIImage *image, NSError *error) {
+    [self imageForMediaItem:mediaItem.mediaItem completion:^(UIImageView *imageView, NSError *error) {
         mediaItem.downloading = false;
         if (error == nil)
         {
             mediaItem.downloaded = true;
             dispatch_async(dispatch_get_main_queue(), ^{
-                UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
                 [imageView setFrame:CGRectMake(0, 0, self.contentView.bounds.size.width, [self imageViewHeight])];
                 mediaItem.view = imageView;
                 [(SwipeView *)self.contentView reloadData];
@@ -220,30 +220,41 @@
     }
 }
 
-- (void)imageForMediaItem:(SCRMediaItem *)mediaItem completion:(void (^)(UIImage *image, NSError *error))completion;
+- (void)imageForMediaItem:(SCRMediaItem *)mediaItem completion:(void (^)(UIImageView *imageView, NSError *error))completion;
 {
     if (!completion) {
         return;
     }
     
-    dispatch_async(self.imageQueue, ^{
-        __block UIImage *image = nil;
+    dispatch_async(dispatch_get_main_queue(), ^{
         SCRMediaItemType mediaType = [mediaItem mediaType];
         if (mediaType == SCRMediaItemTypeImage) {
             
-            [[SCRAppDelegate sharedAppDelegate].fileManager dataForPath:mediaItem.localPath completionQueue:self.imageQueue completion:^(NSData *data, NSError *error) {
-                image = [UIImage imageWithData:data];
-                completion(image,error);
+            [[SCRAppDelegate sharedAppDelegate].fileManager dataForPath:mediaItem.localPath completionQueue:dispatch_get_main_queue() completion:^(NSData *data, NSError *error) {
+                UIImage *image = [UIImage imageWithData:data];
+                UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+                completion(imageView,error);
             }];
             
         } else if (mediaType == SCRMediaItemTypeVideo) {
             
-            image = [[SCRAppDelegate sharedAppDelegate].mediaServer videoThumbnail:mediaItem];
-            
-            completion(image,nil);
+            UIImage *image = [[SCRAppDelegate sharedAppDelegate].mediaServer videoThumbnail:mediaItem];
+            UIImage *circleImage = [UIImage imageNamed:@"ic_play_circle_filled_white_36px"];
+            UIImageView *playImageView = [[UIImageView alloc] initWithImage:circleImage];
+            UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+            [imageView addSubview:playImageView];
+            [playImageView autoCenterInSuperview];
+            completion(imageView,nil);
             
         } else if (mediaType == SCRMediaItemTypeAudio ) {
             
+            UIImage *image = [UIImage imageNamed:@"ic_play_circle_filled_white_36px"];
+            UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
+            UIImageView *playImageView = [[UIImageView alloc] initWithImage:image];
+            [imageView addSubview:playImageView];
+            [playImageView autoCenterInSuperview];
+            imageView.backgroundColor = [UIColor lightGrayColor];
+            completion(imageView, nil);
         }
         
         
@@ -256,11 +267,10 @@
     [[SCRAppDelegate sharedAppDelegate].mediaFetcher downloadMediaItem:mediaItem.mediaItem completionBlock:^(NSError *error) {
         mediaItem.downloading = NO;
         
-        [self imageForMediaItem:mediaItem.mediaItem completion:^(UIImage *image, NSError *error) {
+        [self imageForMediaItem:mediaItem.mediaItem completion:^(UIImageView *imageView, NSError *error) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (!error) {
                     mediaItem.downloaded = true;
-                    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
                     mediaItem.view = imageView;
                     [imageView setFrame:CGRectMake(0, 0, self.contentView.bounds.size.width, [self imageViewHeight])];
                     [(SwipeView *)self.contentView reloadData];

@@ -30,6 +30,9 @@ extern NSString *const kSCRCommentEdgeName;
 @property (nonatomic) NSUInteger commentCount;
 @property (nonatomic, strong) NSString *paikID;
 
+@property (nonatomic) NSUInteger totalCommentCount;
+@property (nonatomic, strong) NSDate *lastCheckedCommentCount;
+
 /** User/app added */
 @property (nonatomic) BOOL isFavorite;
 @property (nonatomic) BOOL isReceived;
