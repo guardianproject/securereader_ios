@@ -31,6 +31,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.mediaCollectionView.showPlaceholders = YES;
+    self.operationButtonTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(operationButtonsTapped:)];
+    self.operationButtonTapRecognizer.delegate = self;
+    self.operationButtonTapRecognizer.cancelsTouchesInView = NO;
+    [self.operationButtonsContainer addGestureRecognizer:self.operationButtonTapRecognizer];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -43,7 +47,8 @@
         self.isEditing = NO;
     }
     [self.imagePlaceholder setHidden:YES];
-    [self.operationButtons setHidden:YES];
+    self.operationButtonsToolbar.alpha = 0.0f;
+    self.operationButtonsContainer.hidden = NO;
     [self populateUIfromItem];
 }
 
@@ -78,8 +83,10 @@
     self.tagView.text = [self.item.tags componentsJoinedByString:@" "];
     [self.mediaCollectionView setItem:self.item];
     [self.mediaCollectionView createThumbnails:NO completion:^{
-        [self.operationButtons setHidden:([self.mediaCollectionView numberOfImages] == 0)];
-        [self.imagePlaceholder setHidden:([self.mediaCollectionView numberOfImages] > 0)];
+        int numImages = [self.mediaCollectionView numberOfImages];
+        //[self.operationButtonsToolbar setAlpha:0];
+        //[self.operationButtonsContainer setHidden:(numImages == 0)];
+        [self.imagePlaceholder setHidden:(numImages > 0)];
     }];
 }
 
@@ -390,8 +397,10 @@
         [self.mediaCollectionView setItem:nil];
         [self.mediaCollectionView setItem:self.item];
         [self.mediaCollectionView createThumbnails:NO completion:^{
-            [self.operationButtons setHidden:([self.mediaCollectionView numberOfImages] == 0)];
-            [self.imagePlaceholder setHidden:([self.mediaCollectionView numberOfImages] > 0)];
+            int numImages = [self.mediaCollectionView numberOfImages];
+            //[self.operationButtonsToolbar setAlpha:0];
+            //[self.operationButtonsContainer setHidden:(numImages == 0)];
+            [self.imagePlaceholder setHidden:(numImages > 0)];
         }];
     });
 }
@@ -433,6 +442,25 @@
         [self.view endEditing:YES];
     }
     [super touchesBegan:touches withEvent:event];
+}
+
+- (void)operationButtonsTapped:(UITapGestureRecognizer *)gesture
+{
+    self.operationButtonsContainer.hidden = YES;
+    [UIView animateWithDuration:0.5 delay:0 options:0 animations:^{
+        self.operationButtonsToolbar.alpha = 1.0f;
+    } completion:^(BOOL finished) {
+        [self performSelector:@selector(hideOperationButtons:) withObject:self afterDelay:5];
+    }];
+}
+
+- (void) hideOperationButtons:(id)sender
+{
+    [UIView animateWithDuration:0.5 delay:0 options:0 animations:^{
+        self.operationButtonsToolbar.alpha = 0.0f;
+    } completion:^(BOOL finished) {
+        self.operationButtonsContainer.hidden = NO;
+    }];
 }
 
 @end
