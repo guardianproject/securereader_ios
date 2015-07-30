@@ -245,7 +245,7 @@
 {
     BOOL hasCamera = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
     BOOL hasSavedPics = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
-    
+      
     if(hasCamera && hasSavedPics)
     {
         UIAlertController* alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"AddPost.PickImage.PickSource.Title", @"Post screen: Alert title, get image from gallery")
@@ -264,6 +264,8 @@
                                                              }];
         
         [alert addAction:cameraAction];
+        
+        [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel handler:nil]];
         
         if(UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPhone)
             [self presentViewController:alert animated:YES completion:nil];
