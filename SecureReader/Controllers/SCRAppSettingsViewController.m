@@ -77,6 +77,9 @@
             [self presentViewController:[createPasscodeVC embeddedInNavigationController] animated:YES completion:nil];
         } else {
             [[SCRTouchLock sharedInstance] deletePasscode];
+            [SCRTouchLock setShouldUseTouchID:NO];
+            [[NSUserDefaults standardUserDefaults] setValue:@NO forKey:kSCRUseTouchIDKey];
+            [self.tableView reloadData];
         }
     }
     NSNumber *touchIDSetting = notif.userInfo[kSCRUseTouchIDKey];
