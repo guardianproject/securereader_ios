@@ -106,19 +106,21 @@
 
 -(void)applicationDidTimeout:(NSNotification *) notif
 {
-    NSLog (@"time exceeded!!");
-    
-    _feedFetcher = nil;
-    [self.mediaFetcher invalidate];
-    _mediaFetcher = nil;
-    
-    NSString *databasePath = [SCRDatabaseManager sharedInstance].database.databasePath;
-
-    [[SCRDatabaseManager sharedInstance] teardownDatabase];
+    if (![[SCRTouchLock sharedInstance] isPasscodeSet]) {
+        return;
+    }
     
     // Changing to complex DB passphrase
     NSString *newPassphrase = notif.userInfo[kNewPasswordUserInfoKey];
     if (newPassphrase.length > 0) {
+        _feedFetcher = nil;
+        [self.mediaFetcher invalidate];
+        _mediaFetcher = nil;
+        
+        NSString *databasePath = [SCRDatabaseManager sharedInstance].database.databasePath;
+        
+        [[SCRDatabaseManager sharedInstance] teardownDatabase];
+        
         NSString *oldPassphrase = [SCRPassphraseManager sharedInstance].databasePassphrase;
         [self.fileManager.ioCipher changePassword:newPassphrase oldPassword:oldPassphrase];
         sqlite3 *db = NULL;
@@ -135,12 +137,10 @@
             NSString *errorString = [NSString stringWithUTF8String:error_str];
             NSLog(@"Error changing database key: %@", errorString);
         }
+        
+        _fileManager = nil;
+        [[SCRPassphraseManager sharedInstance] clearDatabasePassphraseFromMemory];
     }
-    
-    _fileManager = nil;
-    [[SCRPassphraseManager sharedInstance] clearDatabasePassphraseFromMemory];
-    
-    
 
     UIViewController *rootVC = self.window.rootViewController;
     UIViewController *vcCurrent = rootVC;
@@ -148,7 +148,8 @@
         vcCurrent = ((UINavigationController*)rootVC).visibleViewController;
     }
     
-    if ([vcCurrent class] != [SCRLoginViewController class])
+    if ([vcCurrent class] != [SCRLoginViewController class] &&
+        [[SCRTouchLock sharedInstance] isPasscodeSet])
     {
         SCRLoginViewController *vcLogin = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"login"];
         self.window.rootViewController = vcLogin;
