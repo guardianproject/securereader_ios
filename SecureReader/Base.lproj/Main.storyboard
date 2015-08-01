@@ -139,15 +139,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="center" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R9M-sT-UXu" customClass="SVGDocumentView">
-                                <rect key="frame" x="20" y="90" width="560" height="270"/>
+                            <view contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="R9M-sT-UXu" customClass="SVGDocumentView">
+                                <rect key="frame" x="20" y="90" width="560" height="307"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="artworkPath" value="onboard-01"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="theme" value="OnboardingScreen1Style"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="1000" misplaced="YES" text="Your favorite RSS feeds in one spot" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="560" translatesAutoresizingMaskIntoConstraints="NO" id="p6Q-aK-Qil" customClass="SCRLabel">
-                                <rect key="frame" x="20" y="380" width="560" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="1000" text="Your favorite RSS feeds in one spot" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="560" translatesAutoresizingMaskIntoConstraints="NO" id="p6Q-aK-Qil" customClass="SCRLabel">
+                                <rect key="frame" x="20" y="417" width="560" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -155,8 +155,8 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="theme" value="OnboardingTextHeadingStyle"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="1000" misplaced="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="560" translatesAutoresizingMaskIntoConstraints="NO" id="yc2-2b-XFL" customClass="SCRLabel">
-                                <rect key="frame" x="20" y="421" width="560" height="79"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="1000" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="560" translatesAutoresizingMaskIntoConstraints="NO" id="yc2-2b-XFL" customClass="SCRLabel">
+                                <rect key="frame" x="20" y="458" width="560" height="42"/>
                                 <string key="text">Discover important and entertaining stories from any source. Read in privacy. Enjoy offline access.
 
 &lt;b&gt;Make it yours!&lt;/b&gt;</string>
@@ -732,7 +732,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7ut-3w-aLj">
-                                                        <rect key="frame" x="259" y="59" width="82" height="82"/>
+                                                        <rect key="frame" x="258" y="58" width="85" height="84"/>
                                                         <state key="normal" image="ic_post_add">
                                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
@@ -759,13 +759,13 @@
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <subviews>
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Ow-xq-xSP">
-                                                                            <rect key="frame" x="20" y="16" width="60" height="43"/>
+                                                                            <rect key="frame" x="20" y="21" width="60" height="33"/>
                                                                             <subviews>
                                                                                 <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_post_add_more" translatesAutoresizingMaskIntoConstraints="NO" id="OPN-FF-4Ll" userLabel="icon">
-                                                                                    <rect key="frame" x="18" y="0.0" width="24" height="24"/>
+                                                                                    <rect key="frame" x="19" y="0.0" width="22" height="14"/>
                                                                                 </imageView>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ADD MORE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SwH-sd-9dq" userLabel="label">
-                                                                                    <rect key="frame" x="0.0" y="29" width="60" height="14"/>
+                                                                                    <rect key="frame" x="0.0" y="19" width="60" height="14"/>
                                                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                                                     <nil key="highlightedColor"/>
@@ -799,13 +799,13 @@
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <subviews>
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fx2-Ym-fKG">
-                                                                            <rect key="frame" x="25" y="16" width="51" height="43"/>
+                                                                            <rect key="frame" x="25" y="20" width="51" height="35"/>
                                                                             <subviews>
                                                                                 <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_post_swap" translatesAutoresizingMaskIntoConstraints="NO" id="hEG-rV-kV8" userLabel="icon">
-                                                                                    <rect key="frame" x="13" y="0.0" width="24" height="24"/>
+                                                                                    <rect key="frame" x="16" y="0.0" width="19" height="16"/>
                                                                                 </imageView>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="REPLACE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CDd-uS-ZID" userLabel="label">
-                                                                                    <rect key="frame" x="0.0" y="29" width="51" height="14"/>
+                                                                                    <rect key="frame" x="0.0" y="21" width="51" height="14"/>
                                                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                                                     <nil key="highlightedColor"/>
@@ -839,13 +839,13 @@
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <subviews>
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VV4-4r-ZFU">
-                                                                            <rect key="frame" x="36" y="16" width="28" height="43"/>
+                                                                            <rect key="frame" x="36" y="21" width="28" height="33"/>
                                                                             <subviews>
                                                                                 <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_post_view" translatesAutoresizingMaskIntoConstraints="NO" id="9Fe-DC-Fa1" userLabel="icon">
-                                                                                    <rect key="frame" x="2" y="0.0" width="24" height="24"/>
+                                                                                    <rect key="frame" x="5" y="0.0" width="18" height="14"/>
                                                                                 </imageView>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VIEW" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UHN-h9-pDc" userLabel="label">
-                                                                                    <rect key="frame" x="0.0" y="29" width="28" height="14"/>
+                                                                                    <rect key="frame" x="0.0" y="19" width="28" height="14"/>
                                                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                                                     <nil key="highlightedColor"/>
@@ -879,13 +879,13 @@
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <subviews>
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jJp-lh-hnp">
-                                                                            <rect key="frame" x="29" y="16" width="42" height="43"/>
+                                                                            <rect key="frame" x="29" y="23" width="42" height="30"/>
                                                                             <subviews>
                                                                                 <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_post_delete" translatesAutoresizingMaskIntoConstraints="NO" id="DBO-1K-mhk" userLabel="icon">
-                                                                                    <rect key="frame" x="9" y="0.0" width="24" height="24"/>
+                                                                                    <rect key="frame" x="16" y="0.0" width="11" height="11"/>
                                                                                 </imageView>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DELETE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DHG-kT-qYX" userLabel="label">
-                                                                                    <rect key="frame" x="0.0" y="29" width="42" height="14"/>
+                                                                                    <rect key="frame" x="0.0" y="16" width="42" height="14"/>
                                                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                                                     <nil key="highlightedColor"/>
@@ -1312,7 +1312,7 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_action2_chat" translatesAutoresizingMaskIntoConstraints="NO" id="5zs-ga-vLC">
-                                                    <rect key="frame" x="0.0" y="6" width="21" height="21"/>
+                                                    <rect key="frame" x="0.0" y="6" width="22" height="22"/>
                                                     <accessibility key="accessibilityConfiguration">
                                                         <accessibilityTraits key="traits" none="YES" image="YES" notEnabled="YES"/>
                                                     </accessibility>
@@ -1321,7 +1321,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="COMMENT" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YKR-G0-z5o">
-                                                    <rect key="frame" x="31" y="11" width="53" height="12"/>
+                                                    <rect key="frame" x="32" y="11" width="53" height="12"/>
                                                     <accessibility key="accessibilityConfiguration">
                                                         <accessibilityTraits key="traits" none="YES" staticText="YES" notEnabled="YES"/>
                                                     </accessibility>
@@ -1333,7 +1333,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pKg-um-IG3" userLabel="badge">
-                                                    <rect key="frame" x="14" y="4" width="19" height="12"/>
+                                                    <rect key="frame" x="15" y="4" width="19" height="12"/>
                                                     <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="12" id="KQy-5W-fbh"/>
@@ -1968,15 +1968,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="center" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="di7-fd-JdS" customClass="SVGDocumentView">
-                                <rect key="frame" x="20" y="30" width="560" height="312"/>
+                            <view contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="di7-fd-JdS" customClass="SVGDocumentView">
+                                <rect key="frame" x="20" y="30" width="560" height="354"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="artworkPath" value="onboard-02"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="theme" value="OnboardingScreen2Style"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="1000" misplaced="YES" text="Designed to work with Tor" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="560" translatesAutoresizingMaskIntoConstraints="NO" id="SbE-YW-Mv9" customClass="SCRLabel">
-                                <rect key="frame" x="20" y="362" width="560" height="20"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="1000" text="Designed to work with Tor" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="560" translatesAutoresizingMaskIntoConstraints="NO" id="SbE-YW-Mv9" customClass="SCRLabel">
+                                <rect key="frame" x="20" y="404" width="560" height="20"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -1984,8 +1984,8 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="theme" value="OnboardingTextHeadingStyle"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="1000" misplaced="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="560" translatesAutoresizingMaskIntoConstraints="NO" id="RXC-M6-512" customClass="SCRLabel">
-                                <rect key="frame" x="20" y="402" width="560" height="98"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="1000" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="560" translatesAutoresizingMaskIntoConstraints="NO" id="RXC-M6-512" customClass="SCRLabel">
+                                <rect key="frame" x="20" y="444" width="560" height="56"/>
                                 <string key="text">Tor &lt;b&gt;respects your privacy&lt;/b&gt; by concealing your identity as the app sends and receives information over the internet.
 
 It also &lt;b&gt;helps get you access&lt;/b&gt; to information that may be unavailable in your geography.</string>
@@ -2316,22 +2316,22 @@ Please read the &lt;a href="#terms"&gt;Terms and Conditions&lt;/a&gt; to underst
         </scene>
     </scenes>
     <resources>
-        <image name="ic_action2_chat" width="21" height="21"/>
-        <image name="ic_action2_favorite" width="24" height="24"/>
-        <image name="ic_action2_font" width="24" height="24"/>
-        <image name="ic_iosshare" width="16" height="22"/>
-        <image name="ic_post_add" width="82" height="82"/>
-        <image name="ic_post_add_more" width="24" height="24"/>
-        <image name="ic_post_delete" width="24" height="24"/>
-        <image name="ic_post_swap" width="24" height="24"/>
-        <image name="ic_post_view" width="24" height="24"/>
-        <image name="ic_tab_favorites" width="15" height="20"/>
-        <image name="ic_tab_feeds" width="18" height="17"/>
-        <image name="ic_tab_more" width="21" height="5"/>
-        <image name="ic_tab_news" width="20" height="17"/>
-        <image name="ic_tab_posts" width="20" height="20"/>
+        <image name="ic_action2_chat" width="22" height="22"/>
+        <image name="ic_action2_favorite" width="15" height="22"/>
+        <image name="ic_action2_font" width="22" height="15"/>
+        <image name="ic_iosshare" width="15" height="22"/>
+        <image name="ic_post_add" width="85" height="84"/>
+        <image name="ic_post_add_more" width="22" height="14"/>
+        <image name="ic_post_delete" width="11" height="11"/>
+        <image name="ic_post_swap" width="19" height="16"/>
+        <image name="ic_post_view" width="18" height="14"/>
+        <image name="ic_tab_favorites" width="16" height="22"/>
+        <image name="ic_tab_feeds" width="21" height="22"/>
+        <image name="ic_tab_more" width="22" height="5"/>
+        <image name="ic_tab_news" width="22" height="18"/>
+        <image name="ic_tab_posts" width="22" height="22"/>
         <image name="ic_toggle_unselected" width="26" height="26"/>
-        <image name="paik_launcher" width="60" height="60"/>
+        <image name="paik_launcher" width="48" height="42"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="vmW-Fe-xQR"/>

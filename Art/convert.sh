@@ -45,25 +45,57 @@ else
     files="$@"
 fi
 
+
+DIR=$(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+IM="/Applications/Inkscape.app/Contents/Resources/bin/inkscape"
+checkForInkscape
+
 for f in $files
 do
     if [ ! -e $f ]; then
 	continue
     fi
 
-	echo "Processing: $f"
+    echo "Processing: $f"
 
-	name=${f/.svg}
-	lang=""
-	
-	Target=../SecureReader/Images.xcassets/${name}.imageset
-	mkdir -p ${Target}
+    name=${f/.svg}
 
-	convert -strip -background none $f -resize 150% ${Target}/${name}@3x.png
-	convert -strip -background none $f -resize 100% ${Target}/${name}@2x.png
-	convert -strip -background none $f -resize 50% ${Target}/${name}.png
+    originalW=$($IM -z -W "$DIR/$f")
+    originalH=$($IM -z -H "$DIR/$f")
 
-cat > ${Target}/Contents.json <<EOF
+    absolutesize=$(expr "$name" : '.*@\([0-9]*\)')
+    if [[ ${#absolutesize} -ne 0 ]]; then
+	aspect=$(echo "scale=2; $originalW/$originalH" | bc)
+	echo "Asp $aspect"
+	if [[ $(echo $originalW'<'$originalH | bc -l) -eq 0 ]]; then
+	    echo "OriginalW bigger"
+	    originalW=$absolutesize
+	    originalH=$(echo "scale=2; $originalW/$aspect" | bc)
+	else
+	    echo "OriginalH bigger"
+	    originalH=$absolutesize
+	    originalW=$(echo "scale=2; $originalH*$aspect" | bc)
+	fi
+
+	name=${name%%@[0-9]*}
+    fi
+    
+    echo "Size is $originalW x $originalH"
+
+    Target="$DIR/../SecureReader/Images.xcassets/${name}.imageset"
+    mkdir -p ${Target}
+
+    sizeW=$(echo 0.5*$originalW | bc)
+    sizeH=$(echo 0.5*$originalH | bc)
+    $IM -z -e "${Target}/${name}.png" -w $sizeW -h $sizeH -D "$DIR/$f"
+    sizeW=$originalW
+    sizeH=$originalH
+    $IM -z -e "${Target}/${name}@2x.png" -w $sizeW -h $sizeH -D "$DIR/$f"
+    sizeW=$(echo 1.5*$originalW | bc)
+    sizeH=$(echo 1.5*$originalH | bc)
+    $IM -z -e "${Target}/${name}@3x.png" -w $sizeW -h $sizeH -D "$DIR/$f"
+
+    cat > ${Target}/Contents.json <<EOF
 {
  "images" : [
   {
@@ -88,5 +120,5 @@ cat > ${Target}/Contents.json <<EOF
  }
 }
 EOF
-
+    
 done
