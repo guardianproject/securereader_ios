@@ -113,7 +113,12 @@
 - (void)updateCommentButton:(SCRItem *)item{
     if ([[item.commentsURL absoluteString] length]) {
         self.buttonComment.hidden = NO;
-        [self.buttonComment setBadge:[NSString stringWithFormat:@"%d",item.totalCommentCount]];
+        if (item.totalCommentCount > 0) {
+            [self.buttonComment setBadge:[NSString stringWithFormat:@"%d",item.totalCommentCount]];
+        } else {
+            [self.buttonComment setBadge:nil];
+        }
+        
         SCRWordpressClient *wpClient = [SCRWordpressClient defaultClient];
         NSString *username = [SCRSettings wordpressUsername];
         NSString *password = [SCRSettings wordpressPassword];
@@ -130,7 +135,11 @@
                             tempItem.lastCheckedCommentCount = [NSDate date];
                             [tempItem saveWithTransaction:transaction];
                         }];
-                        badgeString = [NSString stringWithFormat:@"%d",totalCommentCount];
+                        if (totalCommentCount > 0) {
+                            badgeString = [NSString stringWithFormat:@"%d",totalCommentCount];
+                        } else {
+                            badgeString = nil;
+                        }
                     }
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [self.buttonComment setBadge:badgeString];
