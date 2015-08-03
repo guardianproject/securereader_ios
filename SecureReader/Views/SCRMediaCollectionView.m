@@ -158,7 +158,7 @@
                                     [self mediaItemCreate:mediaItem];
                                 });
                             }
-                            else if (downloadIfNeeded)
+                            else if (downloadIfNeeded && [mediaItem.mediaItem mediaType] == SCRMediaItemTypeImage)
                             {
                                 [view.activityView setHidden:NO];
                                 [view.activityView startAnimating];

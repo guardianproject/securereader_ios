@@ -171,7 +171,18 @@
     {
         NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
         paragraphStyle.lineHeightMultiple = [self.lineHeightInPercent floatValue] / 100.0;
-        NSDictionary *attrsDictionary = @{ NSFontAttributeName: self.font, NSParagraphStyleAttributeName: paragraphStyle, NSForegroundColorAttributeName: self.textColor};
+        
+        UIFont *font = self.font;
+        if (font) {
+            font = [UIFont systemFontOfSize:[UIFont systemFontSize]];
+        }
+        
+        UIColor *color= self.textColor;
+        if (!color) {
+            color = [UIColor blackColor];
+        }
+        
+        NSDictionary *attrsDictionary = @{ NSFontAttributeName: font, NSParagraphStyleAttributeName: paragraphStyle, NSForegroundColorAttributeName: color};
         [self setAttributedText:[[NSAttributedString alloc] initWithString:text attributes:attrsDictionary]];
     }
 

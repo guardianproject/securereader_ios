@@ -79,13 +79,15 @@
     [self.mediaCollectionView createThumbnails:[SCRSettings downloadMedia] completion:nil];
     
     [[SCRDatabaseManager sharedInstance].readConnection asyncReadWithBlock:^(YapDatabaseReadTransaction * __nonnull transaction) {
-        SCRFeed *existingFeed = [transaction objectForKey:item.feedYapKey inCollection:[[SCRFeed class] yapCollection]];
-        if (existingFeed) {
-            self.sourceView.labelSource.text = existingFeed.title;
-        }
-        else {
-            self.sourceView.labelSource.text = [item.linkURL host];
-        }
+        __block SCRFeed *existingFeed = [transaction objectForKey:item.feedYapKey inCollection:[[SCRFeed class] yapCollection]];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (existingFeed) {
+                self.sourceView.labelSource.text = existingFeed.title;
+            }
+            else {
+                self.sourceView.labelSource.text = [item.linkURL host];
+            }
+        });
     }];
     
     self.sourceView.labelDate.text = [[NSFormatter scr_sharedIntervalFormatter] stringForTimeIntervalFromDate:[NSDate date] toDate:item.publicationDate];
