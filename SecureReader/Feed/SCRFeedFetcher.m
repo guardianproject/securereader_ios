@@ -202,6 +202,12 @@
                         });
                     }
                 }];
+            } else {
+                if (completion) {
+                    dispatch_async(completionQueue, ^{
+                        completion(nil);
+                    });
+                }
             }
         } completionQueue:self.callbackQueue];
     }];
