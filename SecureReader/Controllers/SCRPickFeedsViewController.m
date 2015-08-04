@@ -166,37 +166,66 @@
 {
     SCRFeedListCategoryCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellFeedCategory"];
     cell.titleView.text = [self tableView:tableView titleForHeaderInSection:section];
+    [cell setNeedsLayout];
+    [cell layoutIfNeeded];
     
     NSString *category = (NSString *)[_categoriesArray objectAtIndex:section];
+    NSURL *url = nil;
     if ([@"World News" isEqualToString:category])
     {
-        [cell.categoryImage setArtworkPath:@"img_cat-worldnews"];
+        url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"img_cat-worldnews" ofType:@"svg"]];
     }
     else if ([@"National News" isEqualToString:category])
     {
-        [cell.categoryImage setArtworkPath:@"img_cat-nationalnews"];
+        url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"img_cat-nationalnews" ofType:@"svg"]];
     }
     else if ([@"Arts & Culture" isEqualToString:category])
     {
-        [cell.categoryImage setArtworkPath:@"img_cat-artsculture"];
+        url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"img_cat-artsculture" ofType:@"svg"]];
     }
     else if ([@"Business" isEqualToString:category])
     {
-        [cell.categoryImage setArtworkPath:@"img_cat-business"];
+        url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"img_cat-business" ofType:@"svg"]];
     }
     else if ([@"Sports" isEqualToString:category])
     {
-        [cell.categoryImage setArtworkPath:@"img_cat-sports"];
+        url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"img_cat-sports" ofType:@"svg"]];
     }
     else if ([@"Technology" isEqualToString:category])
     {
-        [cell.categoryImage setArtworkPath:@"img_cat-technology"];
+        url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"img_cat-technology" ofType:@"svg"]];
     }
     else
     {
-        // Default
-        // [cell.categoryImage setArtworkPath:@"onboard-category"];
+        [cell.catImageView setBackgroundColor:self.tableView.tableHeaderView.backgroundColor];
     }
+    
+    if (url != nil)
+    {
+        SVGRenderer *renderer = [[SVGRenderer alloc] initWithContentsOfURL:url];
+        UIImage *image = [self render:renderer asImageWithSize:cell.catImageView.bounds.size andScale:1.0];
+        
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+        
+        //Add image view
+        [cell.catImageView addSubview:imageView];
+        
+        //set contentMode to scale aspect to fit
+        imageView.contentMode = UIViewContentModeScaleAspectFit;
+        
+        //change width of frame
+        CGRect frame = imageView.frame;
+        frame.size.width = image.size.width;
+        imageView.frame = frame;
+
+        UIColor *color = [self getPixelColorAtTopLeft:imageView image:image];
+        if (color != nil)
+        {
+            [cell.catImageView setBackgroundColor:color];
+        }
+    }
+
+    
     return cell;
 }
 
@@ -251,6 +280,77 @@
     SCRFeed *feed = (SCRFeed *)[self itemForIndexPath:indexPath];
     feed.subscribed = !feed.subscribed;
     [self.tableView reloadData];
+}
+
+- (UIColor *)getPixelColorAtTopLeft:(UIView *)view image:(UIImage *)image{
+    
+    CGFloat width = view.frame.size.width;
+    CGFloat height = view.frame.size.height;
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    
+    size_t bitsPerComponent = 8;
+    size_t bytesPerPixel    = 4;
+    size_t bytesPerRow      = (width * bitsPerComponent * bytesPerPixel + 7) / 8;
+    size_t dataSize         = bytesPerRow * height;
+    
+    unsigned char *data = malloc(dataSize);
+    memset(data, 0, dataSize);
+    
+    CGContextRef context = CGBitmapContextCreate(data, width, height,
+                                                 bitsPerComponent,
+                                                 bytesPerRow, colorSpace,
+                                                 kCGImageAlphaPremultipliedFirst | kCGBitmapByteOrder32Big);
+    
+    
+    CGColorSpaceRelease(colorSpace);
+    
+    CGContextDrawImage(context, view.bounds, image.CGImage);
+    
+    int alpha =  data[0];
+    int red = data[1];
+    int green = data[2];
+    int blue = data[3];
+    UIColor *color = [UIColor colorWithRed:(red/255.0f) green:(green/255.0f) blue:(blue/255.0f) alpha:(alpha/255.0f)];
+    
+    // When finished, release the context
+    CGContextRelease(context);
+    if (data) { free(data); }
+    
+    return color;
+}
+
+-(UIImage*)render:(SVGRenderer *)renderer asImageWithSize:(CGSize)maximumSize andScale:(CGFloat)scale
+{
+    CGSize documentSize = renderer.viewRect.size;
+    
+    CGFloat interiorAspectRatio = maximumSize.width/maximumSize.height;
+    CGFloat rendererAspectRatio = documentSize.width/documentSize.height;
+    CGFloat fittedScaling;
+    if(interiorAspectRatio >= rendererAspectRatio)
+    {
+        fittedScaling = maximumSize.height/documentSize.height;
+    }
+    else
+    {
+        fittedScaling = maximumSize.width/documentSize.width;
+    }
+    
+    CGFloat scaledWidth = floor(documentSize.width*fittedScaling);
+    CGFloat scaleHeight = floor(documentSize.height*fittedScaling);
+    
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(scaledWidth, scaleHeight), NO, scale);
+    CGContextRef quartzContext = UIGraphicsGetCurrentContext();
+    CGContextClearRect(quartzContext, CGRectMake(0, 0, scaledWidth, scaleHeight));
+    CGContextSaveGState(quartzContext);
+    CGContextTranslateCTM(quartzContext, 0, (maximumSize.height-scaleHeight)/2.0);
+    CGContextScaleCTM(quartzContext, fittedScaling, fittedScaling);
+    
+    // tell the renderer to draw into my context
+    [renderer renderIntoContext:quartzContext];
+    CGContextRestoreGState(quartzContext);
+    UIImage* result = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return result;
 }
 
 @end

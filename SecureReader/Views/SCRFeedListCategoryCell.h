@@ -11,7 +11,7 @@
 
 @interface SCRFeedListCategoryCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet SVGDocumentView *categoryImage;
 @property (weak, nonatomic) IBOutlet UILabel *titleView;
+@property (weak, nonatomic) IBOutlet UIView *catImageView;
 
 @end
