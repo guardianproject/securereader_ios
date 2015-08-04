@@ -172,23 +172,23 @@
     {
         [cell.categoryImage setArtworkPath:@"img_cat-worldnews"];
     }
-    if ([@"National News" isEqualToString:category])
+    else if ([@"National News" isEqualToString:category])
     {
         [cell.categoryImage setArtworkPath:@"img_cat-nationalnews"];
     }
-    if ([@"Arts & Culture" isEqualToString:category])
+    else if ([@"Arts & Culture" isEqualToString:category])
     {
         [cell.categoryImage setArtworkPath:@"img_cat-artsculture"];
     }
-    if ([@"Business" isEqualToString:category])
+    else if ([@"Business" isEqualToString:category])
     {
         [cell.categoryImage setArtworkPath:@"img_cat-business"];
     }
-    if ([@"Sports" isEqualToString:category])
+    else if ([@"Sports" isEqualToString:category])
     {
         [cell.categoryImage setArtworkPath:@"img_cat-sports"];
     }
-    if ([@"Technology" isEqualToString:category])
+    else if ([@"Technology" isEqualToString:category])
     {
         [cell.categoryImage setArtworkPath:@"img_cat-technology"];
     }
