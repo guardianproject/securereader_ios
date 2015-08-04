@@ -42,6 +42,7 @@ extern NSString * const kSCRUseComplexPassphraseKey;
 + (BOOL) backgroundSyncEnabled;
 + (BOOL) syncDataOverCellular;
 + (BOOL) useTor;
++ (void) setUseTor:(BOOL)useTor;
 
 + (BOOL) hasShownInitialSettingsHelp;
 + (void) setHasShownInitialSettingsHelp:(BOOL)hasShownInitialSettingsHelp;

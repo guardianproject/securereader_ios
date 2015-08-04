@@ -1975,6 +1975,22 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="theme" value="OnboardingScreen2Style"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="HGw-49-lem">
+                                <rect key="frame" x="20" y="302" width="560" height="2"/>
+                            </progressView>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b7R-Dy-ipj">
+                                <rect key="frame" x="499" y="314" width="81" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="lmX-Gh-gQU"/>
+                                </constraints>
+                                <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="20" maxY="0.0"/>
+                                <state key="normal" title="CANCEL">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancelTor:" destination="S3m-Xa-Cvg" eventType="touchUpInside" id="ZJZ-XQ-DAg"/>
+                                </connections>
+                            </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="1000" text="Designed to work with Tor" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="560" translatesAutoresizingMaskIntoConstraints="NO" id="SbE-YW-Mv9" customClass="SCRLabel">
                                 <rect key="frame" x="20" y="404" width="560" height="20"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
@@ -2009,8 +2025,7 @@ It also &lt;b&gt;helps get you access&lt;/b&gt; to information that may be unava
                                     <userDefinedRuntimeAttribute type="string" keyPath="theme" value="OnboardingTextActionStyle"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="getStartedButtonClicked:" destination="K4n-fz-2MT" eventType="touchUpInside" id="kwf-eX-XNM"/>
-                                    <segue destination="9Wz-EC-CbZ" kind="show" id="9Yt-ri-RbP"/>
+                                    <action selector="notNow:" destination="S3m-Xa-Cvg" eventType="touchUpInside" id="ccE-uD-RdW"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CZ4-uj-rjT">
@@ -2026,8 +2041,7 @@ It also &lt;b&gt;helps get you access&lt;/b&gt; to information that may be unava
                                     <userDefinedRuntimeAttribute type="string" keyPath="theme" value="OnboardingTextActionStyle"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="getStartedButtonClicked:" destination="K4n-fz-2MT" eventType="touchUpInside" id="Bro-QU-081"/>
-                                    <segue destination="9Wz-EC-CbZ" kind="show" id="87I-Fd-lKx"/>
+                                    <action selector="connectTor:" destination="S3m-Xa-Cvg" eventType="touchUpInside" id="JXt-GG-QXJ"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -2035,8 +2049,11 @@ It also &lt;b&gt;helps get you access&lt;/b&gt; to information that may be unava
                         <constraints>
                             <constraint firstItem="di7-fd-JdS" firstAttribute="top" secondItem="mkW-jg-aiL" secondAttribute="bottom" constant="10" id="0lc-rg-gav"/>
                             <constraint firstItem="CZ4-uj-rjT" firstAttribute="top" secondItem="RXC-M6-512" secondAttribute="bottom" constant="50" id="2Rf-Tc-FuX"/>
+                            <constraint firstItem="SbE-YW-Mv9" firstAttribute="top" secondItem="HGw-49-lem" secondAttribute="bottom" constant="100" id="6un-Ld-bQp"/>
+                            <constraint firstItem="b7R-Dy-ipj" firstAttribute="top" secondItem="HGw-49-lem" secondAttribute="bottom" constant="10" id="Dwf-vL-bs8"/>
                             <constraint firstItem="RXC-M6-512" firstAttribute="top" secondItem="SbE-YW-Mv9" secondAttribute="bottom" constant="20" id="HLm-Cj-6x2"/>
                             <constraint firstItem="SbE-YW-Mv9" firstAttribute="trailing" secondItem="RXC-M6-512" secondAttribute="trailing" id="M7A-S8-N38"/>
+                            <constraint firstItem="di7-fd-JdS" firstAttribute="width" secondItem="HGw-49-lem" secondAttribute="width" priority="500" id="NHE-wN-P8C"/>
                             <constraint firstItem="SbE-YW-Mv9" firstAttribute="leading" secondItem="di7-fd-JdS" secondAttribute="leading" id="Qx2-Dz-l7i"/>
                             <constraint firstAttribute="bottom" secondItem="Zvv-Vz-DTZ" secondAttribute="bottom" id="Six-Kw-Vkk"/>
                             <constraint firstAttribute="centerX" secondItem="di7-fd-JdS" secondAttribute="centerX" id="V1G-GB-n8z"/>
@@ -2044,8 +2061,10 @@ It also &lt;b&gt;helps get you access&lt;/b&gt; to information that may be unava
                             <constraint firstItem="CZ4-uj-rjT" firstAttribute="leading" secondItem="Zvv-Vz-DTZ" secondAttribute="trailing" id="Wwr-SM-Sif"/>
                             <constraint firstItem="Zvv-Vz-DTZ" firstAttribute="leading" secondItem="Jp3-Hw-nz4" secondAttribute="leading" id="ZDY-UY-uzu"/>
                             <constraint firstItem="SbE-YW-Mv9" firstAttribute="trailing" secondItem="di7-fd-JdS" secondAttribute="trailing" id="cfC-G5-iXd"/>
+                            <constraint firstAttribute="centerX" secondItem="HGw-49-lem" secondAttribute="centerX" id="d0j-GR-SL1"/>
                             <constraint firstItem="di7-fd-JdS" firstAttribute="leading" secondItem="Jp3-Hw-nz4" secondAttribute="leading" constant="20" id="f2G-fv-r0H"/>
                             <constraint firstItem="cGJ-3f-IRq" firstAttribute="top" secondItem="CZ4-uj-rjT" secondAttribute="bottom" id="jsy-IN-zgJ"/>
+                            <constraint firstItem="b7R-Dy-ipj" firstAttribute="trailing" secondItem="HGw-49-lem" secondAttribute="trailing" priority="900" id="nRA-Lw-YmA"/>
                             <constraint firstItem="SbE-YW-Mv9" firstAttribute="leading" secondItem="RXC-M6-512" secondAttribute="leading" id="s3M-8z-qLz"/>
                             <constraint firstAttribute="trailing" secondItem="CZ4-uj-rjT" secondAttribute="trailing" id="unK-6j-kgj"/>
                         </constraints>
@@ -2055,6 +2074,14 @@ It also &lt;b&gt;helps get you access&lt;/b&gt; to information that may be unava
                     </view>
                     <navigationItem key="navigationItem" id="rUG-gC-cfM"/>
                     <nil key="simulatedTopBarMetrics"/>
+                    <connections>
+                        <outlet property="artworkView" destination="di7-fd-JdS" id="Bss-Cu-CbS"/>
+                        <outlet property="cancelTorButton" destination="b7R-Dy-ipj" id="E1v-aa-Uir"/>
+                        <outlet property="connectTorButton" destination="CZ4-uj-rjT" id="dYF-E9-aQ6"/>
+                        <outlet property="notNowButton" destination="Zvv-Vz-DTZ" id="uYC-6M-791"/>
+                        <outlet property="progressTor" destination="HGw-49-lem" id="pm2-Zm-mzQ"/>
+                        <segue destination="9Wz-EC-CbZ" kind="show" identifier="segueToPickFeeds" id="Jez-Ya-DRn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K4n-fz-2MT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2335,6 +2362,5 @@ Please read the &lt;a href="#terms"&gt;Terms and Conditions&lt;/a&gt; to underst
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="vmW-Fe-xQR"/>
-        <segue reference="87I-Fd-lKx"/>
     </inferredMetricsTieBreakers>
 </document>

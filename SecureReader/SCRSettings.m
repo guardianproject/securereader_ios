@@ -116,6 +116,10 @@ NSString * const kSCRUseComplexPassphraseKey = @"useComplexPassphrase";
     return [[NSUserDefaults standardUserDefaults] boolForKey:kSCRUseTorKey];
 }
 
++ (void) setUseTor:(BOOL)useTor {
+    [[NSUserDefaults standardUserDefaults] setBool:useTor forKey:kSCRUseTorKey];
+}
+
 + (BOOL)hasShownInitialSettingsHelp
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
