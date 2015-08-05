@@ -33,7 +33,9 @@ NSString * const kSCRUseComplexPassphraseKey = @"useComplexPassphrase";
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *ret = [userDefaults stringForKey:@"uiLanguage"];
     if (ret == nil)
-        ret = @"Base";
+        ret = @"en";
+    else if ([ret isEqualToString:@"Base"])
+        ret = @"en";
     return ret;
 }
 

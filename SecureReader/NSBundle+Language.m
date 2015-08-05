@@ -32,7 +32,10 @@ static const char _language=1;
                   {
                       object_setClass([NSBundle mainBundle],[BundleEx class]);
                   });
-    objc_setAssociatedObject([NSBundle mainBundle], &_bundle, language ? [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:language ofType:@"lproj"]] : nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    NSString *bundleLanguage = language;
+    if ([bundleLanguage isEqualToString:@"en"])
+        bundleLanguage = @"Base"; // English resources are here
+    objc_setAssociatedObject([NSBundle mainBundle], &_bundle, bundleLanguage ? [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:bundleLanguage ofType:@"lproj"]] : nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     objc_setAssociatedObject([NSBundle mainBundle], &_language, language, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
