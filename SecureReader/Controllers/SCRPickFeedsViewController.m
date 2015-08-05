@@ -139,7 +139,11 @@
     
     cell.titleView.text = feed.title;
     if (cell.descriptionView != nil)
+    {
         cell.descriptionView.text = feed.feedDescription;
+        if (cell.descriptionView.text.length == 0)
+            cell.descriptionView.text = [feed.xmlURL absoluteString];
+    }
     
     cell.iconViewWidthConstraint.constant = 70;
     if ([feed subscribed])
