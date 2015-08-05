@@ -1,31 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <opml version="1.1">
 <head>
-<title>Big Buffalo - Default Feeds</title>
+<title>Big Buffalo</title>
 <dateCreated>2013-07-18T00:38:00+00:00</dateCreated>
 <dateModified>2013-07-18T00:38:00+00:00</dateModified>
 </head>
 <body>
-
 <outline text="World News">
-    <outline category="en_US" text="The Guardian World News" htmlUrl="http://feeds.theguardian.com/theguardian/world/rss" xmlUrl="http://feeds.theguardian.com/theguardian/world/rss"/>
-    <outline category="en_US" text="Social Reporter" htmlUrl="http://securereader.guardianproject.info/wordpress/?feed=rss2" xmlUrl="http://securereader.guardianproject.info/wordpress/?feed=rss2"/>
+	<outline text="guardian world" xmlUrl="http://www.theguardian.com/world/rss" />
+	<outline text="cnn world" xmlUrl="http://rss.cnn.com/rss/cnn_world.rss" />
+	<outline text="bbc world" xmlUrl="http://feeds.bbci.co.uk/news/world_radio_and_tv/rss.xml" />
+	<outline text="nyt international " xmlUrl="http://feeds.washingtonpost.com/rss/homepage" />
+	<outline text="washington post world" xmlUrl="http://feeds.washingtonpost.com/rss/homepage" />
+	<outline text="voa" xmlUrl="http://www.voanews.com/api/" />
+	<outline text="intercept" xmlUrl="https://firstlook.org/theintercept/feed/?rss" />
 </outline>
 <outline text="National News">
-    <outline category="en_US" text="VOA News" htmlUrl="http://www.voanews.com/api/epiqq" xmlUrl="http://www.voanews.com/api/epiqq"/>
+	<outline text="time national" xmlUrl="http://feeds2.feedburner.com/time/nation" />
+	<outline text="usa today state news" xmlUrl="http://rssfeeds.usatoday.com/usatoday-NewsTopStories" />
+	<outline text="nyt national" xmlUrl="http://rss.nytimes.com/services/xml/rss/nyt/US.xml" />
+	<outline text="associated press us news" xmlUrl="http://hosted.ap.org/lineups/TOPHEADS.rss?SITE=AP&amp;SECTION=HOME" />
+	<outline text="abc news national" xmlUrl="http://feeds.abcnews.com/abcnews/usheadlines" />
 </outline>
 <outline text="Arts &amp; Culture">
-    <outline category="en_US" text="Washington Post World News" htmlUrl="http://feeds.washingtonpost.com/rss/world" xmlUrl="http://feeds.washingtonpost.com/rss/world"/>
+	<outline text="national geographic" xmlUrl="https://genographic.nationalgeographic.com/feed/" />
+	<outline text="americans for the arts" xmlUrl="http://blog.americansforthearts.org/blog/feed" />
+	<outline text="variety" xmlUrl="http://feeds.feedburner.com/variety/news/frontpage" />
+	<outline text="nyt arts" xmlUrl="http://rss.nytimes.com/services/xml/rss/nyt/Arts.xml" />
+	<outline text="food network" xmlUrl="http://blog.foodnetwork.com/feed/" />
 </outline>
 <outline text="Business">
-    <outline text="The Guardian - Business news" xmlUrl="http://www.theguardian.com/uk/business" tyle="rss" />
+	<outline text="wall street journal" xmlUrl="http://www.wsj.com/xml/rss/3_7014.xml" />
+	<outline text="forbes" xmlUrl="http://www.forbes.com/real-time/feed2/" />
+	<outline text="reuters" xmlUrl="http://feeds.reuters.com/reuters/businessNews" />
+	<outline text="fortune" xmlUrl="http://fortune.com/tag/fortune-500/feed/" />
+	<outline text="fox business" xmlUrl="http://feeds.foxbusiness.com/foxbusiness/latest" />
+	<outline text="bloomberg" xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UCUMZ7gohGI9HcU9VNsr2FJQ" />
 </outline>
 <outline text="Sports">
-    <outline text="The Guardian" xmlUrl="http://www.theguardian.com/uk/sport/rss" />
+	<outline text="bleacher report" xmlUrl="http://bleacherreport.com/articles/feed" />
+	<outline text="espn" xmlUrl="http://feeds.feedburner.com/espnfrontrow" />
+	<outline text="bbc sport" xmlUrl="http://feeds.bbci.co.uk/sport/0/rss.xml" />
+	<outline text="sb nation" xmlUrl="http://www.sbnation.com/rss/current" />
+	<outline text="cbs sports" xmlUrl="http://www.cbssports.com/partners/feeds/rss/home_news" />
 </outline>
 <outline text="Technology">
-    <outline text="Schulman Show – Sveriges största tv-program på nätet " xmlUrl="http://www.aftonbladet.se/podcaster/article7226533.ab?service=podcast" type="rss" />
+	<outline text="verge" xmlUrl="http://www.theverge.com/rss/full.xml" />
+	<outline text="tech crunch" xmlUrl="http://techcrunch.com/feed/" />
+	<outline text="cnet" xmlUrl="http://www.cnet.com/rss/news/" />
+	<outline text="phys" xmlUrl="http://phys.org/rss-feed/" />
+	<outline text="vice motherboard" xmlUrl="http://www.vice.com/rss" />
+	<outline text="wired (podcast)" xmlUrl="http://www.wired.com/feed/podcast" />
 </outline>
-
+<outline text="Security">
+	<outline text="tor homepage news" xmlUrl="https://blog.torproject.org/crss" />
+	<outline text="guardian project blog" xmlUrl="https://guardianproject.info/feed/" />
+	<outline text="infosec" xmlUrl="http://www.infosecnews.org/feed/" />
+</outline>
 </body>
 </opml>
