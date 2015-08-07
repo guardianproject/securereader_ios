@@ -711,7 +711,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rcp-dE-Owv" userLabel="Scroll Content">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="450"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="390"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="re8-U9-Zs5">
                                                 <rect key="frame" x="0.0" y="0.0" width="600" height="200"/>
@@ -966,11 +966,11 @@
                                                     <userDefinedRuntimeAttribute type="string" keyPath="prompt" value="Describe what's happening. Include important details about the location and subject. Remember to respect others' privacy."/>
                                                 </userDefinedRuntimeAttributes>
                                             </textView>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Hg-t3-5if" userLabel="Tags" customClass="SCREditTagsTextView">
-                                                <rect key="frame" x="20" y="390" width="560" height="50"/>
+                                            <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Hg-t3-5if" userLabel="Tags" customClass="SCREditTagsTextView">
+                                                <rect key="frame" x="20" y="390" width="560" height="0.0"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="uXl-4d-PYn"/>
+                                                    <constraint firstAttribute="height" id="uXl-4d-PYn"/>
                                                 </constraints>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -989,7 +989,7 @@
                                             <constraint firstItem="4Hg-t3-5if" firstAttribute="leading" secondItem="rcp-dE-Owv" secondAttribute="leading" constant="20" id="2ng-B3-WwT"/>
                                             <constraint firstItem="re8-U9-Zs5" firstAttribute="top" secondItem="rcp-dE-Owv" secondAttribute="top" id="8wn-A0-Zbc"/>
                                             <constraint firstAttribute="trailing" secondItem="inT-tN-8CT" secondAttribute="trailing" constant="20" id="B4f-5l-Hud"/>
-                                            <constraint firstAttribute="bottom" secondItem="4Hg-t3-5if" secondAttribute="bottom" constant="10" id="FaS-a7-JGB"/>
+                                            <constraint firstAttribute="bottom" secondItem="4Hg-t3-5if" secondAttribute="bottom" id="FaS-a7-JGB"/>
                                             <constraint firstItem="inT-tN-8CT" firstAttribute="top" secondItem="Adn-F9-fBH" secondAttribute="bottom" constant="10" id="FeY-wY-cy0"/>
                                             <constraint firstItem="re8-U9-Zs5" firstAttribute="leading" secondItem="rcp-dE-Owv" secondAttribute="leading" id="GzU-KI-3F6"/>
                                             <constraint firstItem="4Hg-t3-5if" firstAttribute="top" secondItem="inT-tN-8CT" secondAttribute="bottom" constant="10" id="MyO-eU-d20"/>
