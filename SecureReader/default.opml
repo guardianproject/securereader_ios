@@ -7,48 +7,59 @@
 </head>
 <body>
 <outline text="World News">
-	<outline text="guardian world" xmlUrl="http://www.theguardian.com/world/rss" />
-	<outline text="bbc world" xmlUrl="https://feeds.bbci.co.uk/news/world/rss.xml" />
-	<outline text="nyt international " xmlUrl="http://rss.nytimes.com/services/xml/rss/nyt/World.xml" />
-	<outline text="washington post world" xmlUrl="http://feeds.washingtonpost.com/rss/homepage" />
-	<outline text="voa" xmlUrl="http://www.voanews.com/api/" />
+	<outline text="guardian world" xmlUrl="http://www.theguardian.com/world/rss" subscribe="true" />
+	<outline text="bbc world" xmlUrl="https://feeds.bbci.co.uk/news/world/rss.xml" subscribe="true" />
+	<outline text="nyt international " xmlUrl="http://rss.nytimes.com/services/xml/rss/nyt/World.xml" subscribe="false" />
+	<outline text="washington post world" xmlUrl="http://feeds.washingtonpost.com/rss/homepage" subscribe="true" />
+	<outline text="voa" xmlUrl="http://www.voanews.com/api/" subscribe="true" />
+	<outline text="LA Times" xmlUrl="http://www.latimes.com/rss2.0.xml" subscribe="false" />
 </outline>
 <outline text="National News">
-	<outline text="time national" xmlUrl="http://feeds2.feedburner.com/time/topstories" />
-	<outline text="nyt national" xmlUrl="http://rss.nytimes.com/services/xml/rss/nyt/US.xml" />
-	<outline text="associated press us news" xmlUrl="http://hosted.ap.org/lineups/TOPHEADS.rss?SITE=AP&amp;SECTION=HOME" />
-	<outline text="abc news national" xmlUrl="http://feeds.abcnews.com/abcnews/usheadlines" />
+	<outline text="time national" xmlUrl="http://feeds2.feedburner.com/time/topstories" subscribe="false"/>
+	<outline text="nyt national" xmlUrl="http://rss.nytimes.com/services/xml/rss/nyt/US.xml" subscribe="true" />
+	<outline text="associated press us news" xmlUrl="http://hosted.ap.org/lineups/TOPHEADS.rss?SITE=AP&amp;SECTION=HOME" subscribe="true" />
+	<outline text="abc news national" xmlUrl="http://feeds.abcnews.com/abcnews/usheadlines" subscribe="false" />
+	<outline text="Chicago Tribune" xmlUrl="http://www.chicagotribune.com/rss2.0.xml" subscribe="false" />
+	<outline text="News Day" xmlUrl="http://www.newsday.com/xml/1.1324249" subscribe="false" />
+	<outline text="Seattle Times" xmlUrl="http://www.seattletimes.com/feed/" subscribe="false" />
+	<outline text="Chicago Sun-times" xmlUrl="http://chicago.suntimes.com/feed/" subscribe="false" />
 </outline>
 <outline text="Arts &amp; Culture">
-	<outline text="national geographic" xmlUrl="http://news.nationalgeographic.com/index.rss" />
-	<outline text="americans for the arts" xmlUrl="http://blog.americansforthearts.org/blog/feed" />
-	<outline text="variety" xmlUrl="http://feeds.feedburner.com/variety/news/frontpage" />
-	<outline text="nyt arts" xmlUrl="http://rss.nytimes.com/services/xml/rss/nyt/Arts.xml" />
-	<outline text="food network" xmlUrl="http://blog.foodnetwork.com/feed/" />
-	<outline text="vice motherboard" xmlUrl="http://www.vice.com/rss" />
+	<outline text="national geographic" xmlUrl="http://news.nationalgeographic.com/index.rss" subscribe="false" />
+	<outline text="americans for the arts" xmlUrl="http://blog.americansforthearts.org/blog/feed" subscribe="false" />
+	<outline text="variety" xmlUrl="http://feeds.feedburner.com/variety/news/frontpage" subscribe="false" />
+	<outline text="nyt arts" xmlUrl="http://rss.nytimes.com/services/xml/rss/nyt/Arts.xml" subscribe="true" />
+	<outline text="food network" xmlUrl="http://blog.foodnetwork.com/feed/" subscribe="true" />
+	<outline text="vice motherboard" xmlUrl="http://www.vice.com/rss" subscribe="true" />
+	<outline text="The Atlantic Monthly" xmlUrl="http://feeds.feedburner.com/TheAtlantic" subscribe="false" />
 </outline>
 <outline text="Business">
-	<outline text="wall street journal" xmlUrl="http://www.wsj.com/xml/rss/3_7014.xml" />
-	<outline text="forbes" xmlUrl="http://www.forbes.com/real-time/feed2/" />
-	<outline text="reuters" xmlUrl="http://feeds.reuters.com/reuters/businessNews" />
-	<outline text="fortune" xmlUrl="http://fortune.com/tag/fortune-500/feed/" />
-	<outline text="fox business" xmlUrl="http://feeds.foxbusiness.com/foxbusiness/latest" />
+	<outline text="wall street journal" xmlUrl="http://www.wsj.com/xml/rss/3_7014.xml" subscribe="false" />
+	<outline text="forbes" xmlUrl="http://www.forbes.com/real-time/feed2/" subscribe="true" />
+	<outline text="reuters" xmlUrl="http://feeds.reuters.com/reuters/businessNews" subscribe="false" />
+	<outline text="fortune" xmlUrl="http://fortune.com/tag/fortune-500/feed/" subscribe="false" />
+	<outline text="fox business" xmlUrl="http://feeds.foxbusiness.com/foxbusiness/latest" subscribe="false" />
+	<outline text="Bloomberg Business Week" xmlUrl="http://www.businessweek.com/rss/bwdaily.rss" subscribe="false" />
+	<outline text="Inc." xmlUrl="http://www.inc.com/rss.xml" subscribe="false" />
+	<outline text="Yahoo Finance" xmlUrl="http://finance.yahoo.com/rss/topstories" subscribe="true" />
 </outline>
 <outline text="Sports">
-	<outline text="bleacher report" xmlUrl="http://bleacherreport.com/articles/feed" />
-	<outline text="espn" xmlUrl="http://feeds.feedburner.com/espnfrontrow" />
-	<outline text="bbc sport" xmlUrl="http://feeds.bbci.co.uk/sport/0/rss.xml" />
-	<outline text="cbs sports" xmlUrl="http://www.cbssports.com/partners/feeds/rss/home_news" />
+	<outline text="bleacher report" xmlUrl="http://bleacherreport.com/articles/feed" subscribe="true" />
+	<outline text="espn" xmlUrl="http://feeds.feedburner.com/espnfrontrow" subscribe="false" />
+	<outline text="bbc sport" xmlUrl="http://feeds.bbci.co.uk/sport/0/rss.xml" subscribe="true" />
+	<outline text="cbs sports" xmlUrl="http://www.cbssports.com/partners/feeds/rss/home_news" subscribe="false" />
+	<outline text="Grant Land" xmlUrl="http://feeds.feedburner.com/Grantland" subscribe="true" />
 </outline>
 <outline text="Technology">
-	<outline text="tech crunch" xmlUrl="http://techcrunch.com/feed/" />
-	<outline text="cnet" xmlUrl="http://www.cnet.com/rss/news/" />
-	<outline text="phys" xmlUrl="http://phys.org/rss-feed/" />
+	<outline text="tech crunch" xmlUrl="http://techcrunch.com/feed/" subscribe="false" />
+	<outline text="cnet" xmlUrl="http://www.cnet.com/rss/news/" subscribe="true" />
+	<outline text="phys" xmlUrl="http://phys.org/rss-feed/" subscribe="false" />
+	<outline text="ArsTechnica" xmlUrl="http://feeds.arstechnica.com/arstechnica/index/" subscribe="true" />
 </outline>
 <outline text="Security">
-	<outline text="tor homepage news" xmlUrl="https://blog.torproject.org/crss" />
-	<outline text="guardian project blog" xmlUrl="https://guardianproject.info/feed/" />
-	<outline text="infosec" xmlUrl="http://www.infosecnews.org/feed/" />
+	<outline text="tor homepage news" xmlUrl="https://blog.torproject.org/crss" subscribe="true" />
+	<outline text="guardian project blog" xmlUrl="https://guardianproject.info/feed/" subscribe="true" />
+	<outline text="infosec" xmlUrl="http://www.infosecnews.org/feed/" subscribe="true" />
 </outline>
 </body>
 </opml>
