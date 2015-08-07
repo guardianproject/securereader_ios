@@ -25,7 +25,7 @@ IB_DESIGNABLE
  */
 @property (nonatomic) BOOL showPlaceholders;
 
-@property (strong) IBOutlet UIView *contentView;
+@property (strong) IBOutlet SwipeView *contentView;
 @property (strong) IBOutlet UIPageControl *pageControl;
 
 @property IBInspectable BOOL showDownloadButtonIfNotLoaded;
@@ -37,5 +37,7 @@ IB_DESIGNABLE
 - (int) numberOfImages;
 - (int) currentImageIndex;
 - (SCRMediaItem *) currentImageMediaItem;
+
+- (void) viewCurrentImage;
 
 @end

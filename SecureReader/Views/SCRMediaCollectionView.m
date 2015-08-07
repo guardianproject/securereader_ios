@@ -95,6 +95,16 @@
                         item.downloaded = [[SCRAppDelegate sharedAppDelegate].fileManager hasDataForPath:mediaItem.localPath];
                         [self.mediaItems addObject:item];
                     }];
+                    if ([_item respondsToSelector:@selector(mediaItemsYapKeys)])
+                    {
+                        NSArray *mediaKeysArray = [_item performSelector:@selector(mediaItemsYapKeys)];
+                        [self.mediaItems sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+                            long idx1 = [mediaKeysArray indexOfObject:[(SCRMediaCollectionViewItem *)obj1 mediaItem].yapKey];
+                            long idx2 = [mediaKeysArray indexOfObject:[(SCRMediaCollectionViewItem *)obj2 mediaItem].yapKey];
+                            return idx1 < idx2;
+                        }];
+                    }
+                    
                 }
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [(SwipeView *)self.contentView reloadData];
@@ -435,6 +445,11 @@
         
         
     }
+}
+
+- (void)viewCurrentImage
+{
+    [self swipeView:self.contentView didSelectItemAtIndex:self.currentImageIndex];
 }
 
 @end

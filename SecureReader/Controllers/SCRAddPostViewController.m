@@ -25,6 +25,8 @@
 @property (nonatomic) UIPopoverController *imagePickerPopoverController;
 @property (nonatomic, weak) SCRMediaItem *imagePickerReplaceThisItem;
 @property (nonatomic, strong) MRProgressOverlayView *progressOverlayView;
+@property (nonatomic, strong) UISwipeGestureRecognizer *operationButtonSwipeRecognizer;
+@property (nonatomic, strong) UISwipeGestureRecognizer *operationButtonSwipeRightRecognizer;
 @end
 
 @implementation SCRAddPostViewController
@@ -36,6 +38,12 @@
     self.operationButtonTapRecognizer.delegate = self;
     self.operationButtonTapRecognizer.cancelsTouchesInView = NO;
     [self.operationButtonsContainer addGestureRecognizer:self.operationButtonTapRecognizer];
+    self.operationButtonSwipeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(operationButtonsSwiped:)];
+    self.operationButtonSwipeRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
+    [self.operationButtonsContainer addGestureRecognizer:self.operationButtonSwipeRecognizer];
+    self.operationButtonSwipeRightRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(operationButtonsSwipedRight:)];
+    self.operationButtonSwipeRightRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
+    [self.operationButtonsContainer addGestureRecognizer:self.operationButtonSwipeRightRecognizer];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -239,7 +247,7 @@
 
 - (IBAction)viewMediaButtonClicked:(id)sender
 {
-    
+    [self.mediaCollectionView viewCurrentImage];
 }
 
 - (IBAction)deleteMediaButtonClicked:(id)sender
@@ -373,7 +381,7 @@
                     if (self.imagePickerReplaceThisItem != nil)
                     {
                         NSMutableArray *newArray = [[NSMutableArray alloc] initWithArray:self.item.mediaItemsYapKeys];
-                        [newArray replaceObjectAtIndex:[newArray indexOfObject:[self.imagePickerReplaceThisItem yapKey]] withObject:mediaItem.yapKey];
+                        [newArray insertObject:mediaItem.yapKey atIndex:[newArray indexOfObject:[self.imagePickerReplaceThisItem yapKey]]];
                         self.item.mediaItemsYapKeys = newArray;
                         [self.imagePickerReplaceThisItem removeWithTransaction:transaction];
                         self.imagePickerReplaceThisItem = nil;
@@ -466,7 +474,6 @@
 
 - (void)operationButtonsTapped:(UITapGestureRecognizer *)gesture
 {
-    self.operationButtonsContainer.hidden = YES;
     [UIView animateWithDuration:0.5 delay:0 options:0 animations:^{
         self.operationButtonsToolbar.alpha = 1.0f;
     } completion:^(BOOL finished) {
@@ -474,12 +481,21 @@
     }];
 }
 
+- (void)operationButtonsSwiped:(UISwipeGestureRecognizer *)gesture
+{
+    [self.mediaCollectionView.contentView scrollByNumberOfItems:1 duration:0.5f];
+}
+
+- (void)operationButtonsSwipedRight:(UISwipeGestureRecognizer *)gesture
+{
+    [self.mediaCollectionView.contentView scrollByNumberOfItems:-1 duration:0.5f];
+}
+
 - (void) hideOperationButtons:(id)sender
 {
     [UIView animateWithDuration:0.5 delay:0 options:0 animations:^{
         self.operationButtonsToolbar.alpha = 0.0f;
     } completion:^(BOOL finished) {
-        self.operationButtonsContainer.hidden = NO;
     }];
 }
 
