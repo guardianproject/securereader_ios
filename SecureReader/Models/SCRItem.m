@@ -172,7 +172,9 @@ NSString *const kSCRFeedPaikNameSpace = @"http://securereader.guardianproject.in
 - (id)yapDatabaseRelationshipEdgeDeleted:(YapDatabaseRelationshipEdge *)edge withReason:(YDB_NotifyReason)reason
 {
     if (reason == YDB_DestinationNodeDeleted) {
-        [[self.mediaItemsYapKeys mutableCopy] removeObject:edge.destinationKey];
+        NSMutableArray *newMediaItems = [self.mediaItemsYapKeys mutableCopy];
+        [newMediaItems removeObject:edge.destinationKey];
+        self.mediaItemsYapKeys = newMediaItems;
     }
     return self;
 }

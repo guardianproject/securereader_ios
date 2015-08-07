@@ -248,14 +248,8 @@
     if (itemToRemove != nil)
     {
         [[SCRDatabaseManager sharedInstance].readWriteConnection asyncReadWriteWithBlock:^(YapDatabaseReadWriteTransaction *transaction) {
-            if (self.item.mediaItemsYapKeys.count > 0)
-            {
-                NSMutableArray *newArray = [[NSMutableArray alloc] initWithArray:self.item.mediaItemsYapKeys];
-                [newArray removeObject:[itemToRemove yapKey]];
-                self.item.mediaItemsYapKeys = newArray;
-                [self.item saveWithTransaction:transaction];
-            }
             [itemToRemove removeWithTransaction:transaction];
+        } completionBlock:^(void){
             [self updateMediaCollectionView];
         }];
     }
@@ -393,14 +387,18 @@
                     self.item.mediaItemsYapKeys = [NSArray arrayWithObject:mediaItem.yapKey];
                 [self populateItemFromUI];
                 [self.item saveWithTransaction:transaction];
+            } completionBlock:^(void){
                 [self updateMediaCollectionView];
-                [[SCRAppDelegate sharedAppDelegate].mediaFetcher saveMediaItem:mediaItem data:jpegData completionBlock:^(NSError *error) {
-                    if (error) {
-                        NSLog(@"Error saving media item: %@", error);
-                    } else {
-                        [self.mediaCollectionView createViewForMediaItem:mediaItem];
-                    }
-                }];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    // Make sure to post on same queue as updateMediaColletionView, because that needs to happen first!
+                    [[SCRAppDelegate sharedAppDelegate].mediaFetcher saveMediaItem:mediaItem data:jpegData completionBlock:^(NSError *error) {
+                        if (error) {
+                            NSLog(@"Error saving media item: %@", error);
+                        } else {
+                            [self.mediaCollectionView createViewForMediaItem:mediaItem];
+                        }
+                    }];
+                });
             }];
         }
     }
