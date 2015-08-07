@@ -109,6 +109,8 @@
     searchBar.text = @"";
     [self showTrendingView];
     [searchBar endEditing:YES];
+    [self.segmentedControl setSelectedSegmentIndex:0];
+    [self segmentedControlValueChanged:self.segmentedControl];
 }
 
 -(void)hideTrendingView:(BOOL)hideSegmentedControl
@@ -144,6 +146,8 @@
             [self hideSearchBarSpinner];
             searchBar.text = @"";
             [self showTrendingView];
+            [self.segmentedControl setSelectedSegmentIndex:0];
+            [self segmentedControlValueChanged:self.segmentedControl];
         }
     });
 }
