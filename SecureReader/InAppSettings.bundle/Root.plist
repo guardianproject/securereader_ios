@@ -24,13 +24,13 @@
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
-			<string>Lock App</string>
+			<string> </string>
 		</dict>
 		<dict>
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
-			<string>Lock App</string>
+			<string>Auto-Lock</string>
 			<key>Key</key>
 			<string>passcodeEnabled</string>
 			<key>DefaultValue</key>

@@ -1696,11 +1696,14 @@
                                     <constraint firstAttribute="trailing" secondItem="54i-r2-a2J" secondAttribute="trailing" id="umi-he-pbs"/>
                                 </constraints>
                             </view>
-                            <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="0XR-cD-wLm">
+                            <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Find new feeds" translatesAutoresizingMaskIntoConstraints="NO" id="0XR-cD-wLm">
                                 <rect key="frame" x="0.0" y="114" width="600" height="44"/>
+                                <color key="backgroundColor" red="0.97647058823529409" green="0.97647058823529409" blue="0.97647058823529409" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="rMB-BN-mXC"/>
                                 </constraints>
+                                <offsetWrapper key="searchTextPositionAdjustment" horizontal="0.0" vertical="0.0"/>
+                                <offsetWrapper key="searchFieldBackgroundPositionAdjustment" horizontal="0.0" vertical="0.0"/>
                                 <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="theme" value="FeedListSearchStyle"/>
