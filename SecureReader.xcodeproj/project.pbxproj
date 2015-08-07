@@ -125,6 +125,7 @@
 		92D169731A30A5C200A84608 /* SCRFeedListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92D169721A30A5C200A84608 /* SCRFeedListCell.m */; };
 		92D212921AEE5E8300549740 /* SCRMediaDownloadsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92D212911AEE5E8300549740 /* SCRMediaDownloadsViewController.m */; };
 		92DD08831ACAD010001A0F59 /* SCRAddPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DD08821ACAD010001A0F59 /* SCRAddPostViewController.m */; };
+		92E0767E1B74C10F009902AD /* img_cat-security.svg in Resources */ = {isa = PBXBuildFile; fileRef = 92E0767D1B74C10F009902AD /* img_cat-security.svg */; };
 		92E7B96C1A4186D60038DBCE /* SCRItemViewControllerSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7B96B1A4186D60038DBCE /* SCRItemViewControllerSegue.m */; };
 		92E7B96E1A41A2AE0038DBCE /* SCRReceiveShareView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92E7B96D1A41A2AE0038DBCE /* SCRReceiveShareView.xib */; };
 		92E7B9711A41A30F0038DBCE /* SCRReceiveShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7B9701A41A30F0038DBCE /* SCRReceiveShareView.m */; };
@@ -368,6 +369,7 @@
 		92D212911AEE5E8300549740 /* SCRMediaDownloadsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRMediaDownloadsViewController.m; sourceTree = "<group>"; };
 		92DD08811ACAD010001A0F59 /* SCRAddPostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRAddPostViewController.h; sourceTree = "<group>"; };
 		92DD08821ACAD010001A0F59 /* SCRAddPostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRAddPostViewController.m; sourceTree = "<group>"; };
+		92E0767D1B74C10F009902AD /* img_cat-security.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "img_cat-security.svg"; path = "Images/img_cat-security.svg"; sourceTree = "<group>"; };
 		92E7B96A1A4186D60038DBCE /* SCRItemViewControllerSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SCRItemViewControllerSegue.h; path = Controllers/SCRItemViewControllerSegue.h; sourceTree = "<group>"; };
 		92E7B96B1A4186D60038DBCE /* SCRItemViewControllerSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SCRItemViewControllerSegue.m; path = Controllers/SCRItemViewControllerSegue.m; sourceTree = "<group>"; };
 		92E7B96D1A41A2AE0038DBCE /* SCRReceiveShareView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SCRReceiveShareView.xib; sourceTree = "<group>"; };
@@ -553,6 +555,7 @@
 		925AE57D1A401D91001E182F /* Storyboarding */ = {
 			isa = PBXGroup;
 			children = (
+				92E0767D1B74C10F009902AD /* img_cat-security.svg */,
 				924F92B51B67A2E7006CBED5 /* img_cat-artsculture.svg */,
 				924F92B61B67A2E7006CBED5 /* img_cat-business.svg */,
 				924F92B71B67A2E7006CBED5 /* img_cat-nationalnews.svg */,
@@ -1012,6 +1015,7 @@
 				92BD50A31A07A38900F3BD22 /* SCRSourceView.xib in Resources */,
 				9205828D1A6EA8F500E152D9 /* SCRAuthorView.xib in Resources */,
 				924F92C01B67A2E7006CBED5 /* img_cat-worldnews.svg in Resources */,
+				92E0767E1B74C10F009902AD /* img_cat-security.svg in Resources */,
 				635B8C7F1AF96954009D976C /* default.opml in Resources */,
 				92BD50AE1A07A74500F3BD22 /* img_local_share.png in Resources */,
 			);

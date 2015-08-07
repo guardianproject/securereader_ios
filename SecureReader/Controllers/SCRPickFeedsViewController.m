@@ -199,6 +199,10 @@
     {
         url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"img_cat-technology" ofType:@"svg"]];
     }
+    else if ([@"Security" isEqualToString:category])
+    {
+        url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"img_cat-security" ofType:@"svg"]];
+    }
     else
     {
         [cell.catImageView setBackgroundColor:self.tableView.tableHeaderView.backgroundColor];
