@@ -102,7 +102,6 @@
     _categoriesArray = [NSMutableArray array];
     for (SCRFeed *feed in feeds)
     {
-        feed.subscribed = YES; //default all feeds to subscribed
         NSString *category = nil;
         if ([feed.feedCategory length] > 0)
             category = feed.feedCategory;
