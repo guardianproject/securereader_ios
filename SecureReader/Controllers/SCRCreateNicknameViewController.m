@@ -12,11 +12,19 @@
 #import "SCRConstants.h"
 #import "SCRAppDelegate.h"
 #import "MRProgress.h"
+#import "SCRTorAlertView.h"
 
 @implementation SCRCreateNicknameViewController
 
 
 - (IBAction)continueClicked:(id)sender {
+    if (![SCRSettings useTor]) {
+        //Need to make sure new posts are posted through tor
+        [SCRTorAlertView showTorAlertView];
+        
+        return;
+    }
+    
     SCRWordpressClient *wpClient = [SCRWordpressClient defaultClient];
     [MRProgressOverlayView showOverlayAddedTo:self.view animated:YES];
     [wpClient requestNewAccountWithNickname:self.nickname.text completionBlock:^(NSString *username, NSString *password, NSError *error) {
@@ -29,7 +37,7 @@
         [SCRSettings setUserNickname:self.nickname.text];
         [SCRSettings setWordpressUsername:username];
         [SCRSettings setWordpressPassword:password];
-        [self dismissViewControllerAnimated:self completion:^{
+        [self dismissViewControllerAnimated:YES completion:^{
             [self.openingSegue perform];
         }];
     }];
