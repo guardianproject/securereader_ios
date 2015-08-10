@@ -19,6 +19,7 @@
 #import "NSString+HTML.h"
 #import "SCRSettings.h"
 #import "SCRWordpressClient.h"
+#import "SCRTorAlertView.h"
 
 static NSString * const kSCRCommentsURLFormat = @"http://securereader.guardianproject.info/wordpress/?feed=rss2&p=%@";
 
@@ -122,6 +123,13 @@ static NSString * const kSCRCommentsURLFormat = @"http://securereader.guardianpr
          senderDisplayName:(NSString *)senderDisplayName
                       date:(NSDate *)date
 {
+    if (![SCRSettings useTor]) {
+        //Need to make sure new comments are posted through tor
+        [SCRTorAlertView showTorAlertView];
+        
+        return;
+    }
+    
     JSQMessage *message = [[JSQMessage alloc] initWithSenderId:senderId
                                              senderDisplayName:senderDisplayName
                                                           date:date

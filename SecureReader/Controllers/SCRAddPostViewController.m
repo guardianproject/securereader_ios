@@ -17,6 +17,7 @@
 #import "UIView+Theming.h"
 #import "SCRTheme.h"
 #import "SCRPostsViewController.h"
+#import "SCRTorAlertView.h"
 
 @interface SCRAddPostViewController ()
 @property (nonatomic, strong) SCRPostItem *item;
@@ -138,6 +139,13 @@
 
 - (IBAction)post:(id)sender
 {
+    if (![SCRSettings useTor]) {
+        //Need to make sure new posts are posted through tor
+        [SCRTorAlertView showTorAlertView];
+        
+        return;
+    }
+    
     [self populateItemFromUI];
     
     SCRWordpressClient *wpClient = [SCRWordpressClient defaultClient];
