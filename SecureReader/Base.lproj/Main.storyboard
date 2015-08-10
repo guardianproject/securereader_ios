@@ -1500,12 +1500,18 @@
                                                         <integer key="value" value="200"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <variation key="widthClass=compact" ambiguous="YES">
+                                                    <rect key="frame" x="0.0" y="0.0" width="400" height="0.0"/>
+                                                </variation>
                                             </view>
                                             <view contentMode="scaleToFill" verticalCompressionResistancePriority="1000" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Edy-xh-Hc4" customClass="SCRSourceView">
                                                 <rect key="frame" x="20" y="20" width="560" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="shL-Vq-OvW"/>
                                                 </constraints>
+                                                <variation key="widthClass=compact" ambiguous="YES">
+                                                    <rect key="frame" x="20" y="20" width="360" height="50"/>
+                                                </variation>
                                             </view>
                                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" ambiguous="YES" text="Label sdkfjh sdf kjhfsd fshdkfjh sdkfh sdfkjh sdfkjhs dfkjshdfsdf kjhd asdkjha sdk asdhkaj sdkjahsd" lineBreakMode="wordWrap" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AhW-0L-8EY" customClass="SCRLabel">
                                                 <rect key="frame" x="20" y="78" width="560" height="41"/>
@@ -1516,12 +1522,18 @@
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="theme" value="ItemTitleStyle"/>
                                                 </userDefinedRuntimeAttributes>
+                                                <variation key="widthClass=compact" ambiguous="YES">
+                                                    <rect key="frame" x="20" y="78" width="360" height="61"/>
+                                                </variation>
                                             </label>
                                             <view contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7ve-Ed-M2b" customClass="SCRAuthorView">
                                                 <rect key="frame" x="20" y="139" width="560" height="80"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="80" placeholder="YES" id="vAD-es-C0W"/>
                                                 </constraints>
+                                                <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
+                                                    <rect key="frame" x="20" y="139" width="360" height="80"/>
+                                                </variation>
                                             </view>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" ambiguous="YES" scrollEnabled="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4vz-a6-cEX" customClass="SCRTextView">
                                                 <rect key="frame" x="20" y="239" width="560" height="133"/>
@@ -1532,6 +1544,9 @@
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="theme" value="ItemContentStyle"/>
                                                 </userDefinedRuntimeAttributes>
+                                                <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
+                                                    <rect key="frame" x="20" y="239" width="360" height="200"/>
+                                                </variation>
                                             </textView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1553,6 +1568,9 @@
                                             <constraint firstAttribute="trailing" secondItem="4vz-a6-cEX" secondAttribute="trailing" constant="20" id="vZI-PN-M6n"/>
                                             <constraint firstAttribute="trailing" secondItem="AhW-0L-8EY" secondAttribute="trailing" constant="20" id="wJW-zN-zRh"/>
                                         </constraints>
+                                        <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
+                                            <rect key="frame" x="0.0" y="0.0" width="400" height="392"/>
+                                        </variation>
                                     </view>
                                 </subviews>
                                 <constraints>
@@ -1561,6 +1579,9 @@
                                     <constraint firstItem="zgO-vU-RGa" firstAttribute="leading" secondItem="APV-0g-kfm" secondAttribute="leading" id="YMa-4w-u9z"/>
                                     <constraint firstAttribute="trailing" secondItem="zgO-vU-RGa" secondAttribute="trailing" id="led-Gs-eT5"/>
                                 </constraints>
+                                <variation key="widthClass=compact" ambiguous="YES">
+                                    <rect key="frame" x="0.0" y="0.0" width="400" height="600"/>
+                                </variation>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2320,23 +2341,40 @@ Please read the &lt;a href="#terms"&gt;Terms and Conditions&lt;/a&gt; to underst
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iU6-FO-cfp">
-                                <rect key="frame" x="16" y="65" width="568" height="535"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iU6-FO-cfp">
+                                <rect key="frame" x="16" y="64" width="568" height="536"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <mutableString key="text">User-Submitted Materials
+
+BBG Websites may allow users to post, upload, transmit, or otherwise submit comments, messages, photos, images, story ideas, or other content or materials (collectively “User-Submitted Materials). You acknowledge that User-Submitted Materials may be routed through our servers, the servers of one or more third parties on our behalf, and the Internet. You acknowledge that BBG Websites are for public and not private communications.
+
+You may only submit materials to BBG Websites for which you have the copyright or other necessary rights and permission to distribute electronically. You may not violate, plagiarize, or infringe on the rights of third parties, including copyright, patent, trademark, trade secret, privacy, personal, publicity, moral or proprietary rights. You agree and represent that you own or have all necessary rights and permissions to use, distribute, and authorize BBG to use and distribute any materials you submit.
+
+You retain any copyright or other ownership rights you possess in any User-Submitted Materials that you submit on or through BBG Websites. However, by submitting any User-Submitted Materials on or through BBG Websites, you hereby grant BBG a non-exclusive, perpetual, royalty-free, fully paid up, worldwide, transferable license to use, copy, sublicense, modify, transmit, publicly perform, display, create derivative works of, host, index, cache, tag, encode, and/or adapt your User-Submitted Materials in any and all media formats or channels, whether now known or hereafter devised.
+
+Additional user-submitted material Rules Specific to Posting Comments
+
+BBG will make every effort to review and post comments within 48 hours, although BBG is under no obligation to post comments within any deadline or to post the comments at all. BBG encourages thoughtful discussion and will not censor comments based on ideology or political points of view. BBG will not edit comments - we will either post them or refuse to post them. All comments must follow these rules:
+
+- Stay on topic.
+- No obscenity, profanity, vulgarity, hate language, SHOUTING, or other bad behavior.
+- No personal attacks. No inflammatory language or calls for violence.
+- No advocating or providing instruction on how to conduct any illegal activity
+- No advertising, promotional materials, "junk mail," "spam," "chain letters," "pyramid schemes," or any other form of solicitation
+- Simple text only, no html or other code.</mutableString>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="iU6-FO-cfp" firstAttribute="trailing" secondItem="9lm-lb-Z7O" secondAttribute="trailingMargin" id="3lB-VI-Gxm"/>
+                            <constraint firstItem="iU6-FO-cfp" firstAttribute="top" secondItem="tdj-e4-Ytn" secondAttribute="bottom" id="8ke-Ad-YlB"/>
+                            <constraint firstItem="iU6-FO-cfp" firstAttribute="trailing" secondItem="9lm-lb-Z7O" secondAttribute="trailingMargin" id="Nb2-XP-UKl"/>
+                            <constraint firstItem="iU6-FO-cfp" firstAttribute="leading" secondItem="9lm-lb-Z7O" secondAttribute="leadingMargin" id="RWS-IV-eNa"/>
                             <constraint firstItem="tdj-e4-Ytn" firstAttribute="top" secondItem="bXE-Xl-tsT" secondAttribute="bottom" id="ThT-kO-UIC"/>
                             <constraint firstAttribute="trailing" secondItem="tdj-e4-Ytn" secondAttribute="trailing" id="ZJY-NM-de8"/>
-                            <constraint firstItem="iU6-FO-cfp" firstAttribute="leading" secondItem="9lm-lb-Z7O" secondAttribute="leadingMargin" id="ZSb-Mc-xxZ"/>
-                            <constraint firstItem="iU6-FO-cfp" firstAttribute="top" secondItem="tdj-e4-Ytn" secondAttribute="bottom" constant="1" id="iA5-jj-6hq"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="iU6-FO-cfp" secondAttribute="bottom" id="qAj-Zy-5db"/>
                             <constraint firstItem="tdj-e4-Ytn" firstAttribute="leading" secondItem="9lm-lb-Z7O" secondAttribute="leading" id="wrv-3b-LZX"/>
+                            <constraint firstItem="p4k-aY-JAH" firstAttribute="top" secondItem="iU6-FO-cfp" secondAttribute="bottom" id="xJ7-rS-ESD"/>
                         </constraints>
                     </view>
                 </viewController>
