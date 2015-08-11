@@ -351,6 +351,7 @@ static NSString* SCRGetMimeTypeForExtension(NSString* extension) {
  */
 - (void) uploadFileWithData:(NSData*)fileData
                    fileName:(NSString*)fileName
+                     postId:(NSString*)postId
             completionBlock:(void (^)(NSURL *url, NSString *fileId, NSError *error))completionBlock {
     NSParameterAssert(self.username);
     NSParameterAssert(self.password);
@@ -369,7 +370,7 @@ static NSString* SCRGetMimeTypeForExtension(NSString* extension) {
         return;
     }
     NSURL *fileURL = [NSURL fileURLWithPath:tmpFilePath];
-    [self uploadFileAtURL:fileURL completionBlock:^(NSURL *url, NSString *fileId, NSError *error) {
+    [self uploadFileAtURL:fileURL postId:postId completionBlock:^(NSURL *url, NSString *fileId, NSError *error) {
         [[NSFileManager defaultManager] removeItemAtURL:fileURL error:nil];
         completionBlock(url, fileId, error);
     }];
@@ -454,7 +455,9 @@ static NSString* SCRGetMimeTypeForExtension(NSString* extension) {
     
 }
 
-- (void) uploadFileAtURL:(NSURL *)fileURL completionBlock:(void (^)(NSURL *, NSString *, NSError *))completionBlock {
+- (void) uploadFileAtURL:(NSURL *)fileURL
+                  postId:(NSString*)postId
+         completionBlock:(void (^)(NSURL *, NSString *, NSError *))completionBlock {
     NSParameterAssert(self.username);
     NSParameterAssert(self.password);
     NSParameterAssert(fileURL != nil);
@@ -484,7 +487,7 @@ static NSString* SCRGetMimeTypeForExtension(NSString* extension) {
                     });
                     return;
                 }
-                [self uploadFileAtURL:destionationFileURL completionBlock:^(NSURL *url, NSString *fileId, NSError *error) {
+                [self uploadFileAtURL:destionationFileURL postId:postId completionBlock:^(NSURL *url, NSString *fileId, NSError *error) {
                     [[NSFileManager defaultManager] removeItemAtURL:destionationFileURL error:nil];
                     completionBlock(url, fileId, error);
                 }];
@@ -504,9 +507,12 @@ static NSString* SCRGetMimeTypeForExtension(NSString* extension) {
         return;
     }
     [self.networkOperationQueue addOperationWithBlock:^{
-        NSDictionary *dataStruct = @{@"name": fileName,
+        NSMutableDictionary *dataStruct = @{@"name": fileName,
                                      @"type": mimeType,
-                                     @"bits": fileHandle};
+                                     @"bits": fileHandle}.mutableCopy;
+        if (postId) {
+            [dataStruct setObject:postId forKey:@"post_id"];
+        }
         NSArray *parameters = [self buildParametersWithExtra:dataStruct];
         WPXMLRPCEncoder *encoder = [[WPXMLRPCEncoder alloc] initWithMethod:@"wp.uploadFile" andParameters:parameters];
         

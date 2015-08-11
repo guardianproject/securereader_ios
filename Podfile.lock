@@ -30,9 +30,9 @@ PODS:
   - libsqlfs/SQLCipher (1.3):
     - libsqlfs/common
     - SQLCipher/fts
-  - Mantle (2.0.2):
-    - Mantle/extobjc (= 2.0.2)
-  - Mantle/extobjc (2.0.2)
+  - Mantle (2.0.3):
+    - Mantle/extobjc (= 2.0.3)
+  - Mantle/extobjc (2.0.3)
   - MRProgress (0.8.2):
     - MRProgress/ActivityIndicator (= 0.8.2)
     - MRProgress/Blur (= 0.8.2)
@@ -152,11 +152,11 @@ SPEC CHECKSUMS:
   JTSImageViewController: 6a367b144e257db02cdfacdba78d684377d3777b
   KVOController: 9fd8f0343670994e4b6f9f0b31f5a45663f3e1cf
   libsqlfs: 179e4fb40b8c07fd0ee7933ec4c0b9f4815cbd0e
-  Mantle: 967fd31ea0220890b2e76589198996b534bb3fb1
+  Mantle: 8d6b14979a082a9ed4994463eb7a4ff576c94632
   MRProgress: f4cfe862082418e8f542f077772283f425d6c699
   MWFeedParser: 2cf646014c1baf6ad1b08c480b40a08180079247
   Ono: 80b1c686777d3f6d5d5ce6fcac8a74afef4ca197
-  PSTAlertController: cb21afcfa76c3229feec7db044afd4f60dab5892
+  PSTAlertController: 5de0cc590bfdb26730c57e93b953f09f44d3b94d
   PureLayout: f25f0bb904d5ccfe6e31da3cb869185259f02e0d
   RSSAtomKit: 4c57701c961e044555e793283455b39e44ceeb9f
   SOCKit: c7376ac262bea9115b8f749358f762522a47d392

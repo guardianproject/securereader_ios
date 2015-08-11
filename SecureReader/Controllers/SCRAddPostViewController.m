@@ -162,7 +162,7 @@
         [self.item enumerateMediaItemsInTransaction:transaction block:^(SCRMediaItem *mediaItem, BOOL *stop) {
             dispatch_group_enter(uploadGroup);
             NSURL *url = [mediaItem localURLWithPort:[SCRAppDelegate sharedAppDelegate].mediaServer.port];
-            [wpClient uploadFileAtURL:url completionBlock:^(NSURL *url, NSString *fileId, NSError *error) {
+            [wpClient uploadFileAtURL:url postId:nil completionBlock:^(NSURL *url, NSString *fileId, NSError *error) {
                 dispatch_group_leave(uploadGroup);
                 if (url) {
                     [mediaURLs addObject:url];
@@ -191,7 +191,7 @@
         
         //append tags to description
         [self.item.tags enumerateObjectsUsingBlock:^(NSString *tag, NSUInteger idx, BOOL * __nonnull stop) {
-            [newDescription appendFormat:@"\n%@", tag];
+            [newDescription appendFormat:@"\n#%@", tag];
         }];
         
         [self.progressOverlayView setTitleLabelText:NSLocalizedString(@"Posting Story", @"Progress for posting a new story to wordpress")];

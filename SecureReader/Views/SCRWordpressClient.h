@@ -38,13 +38,15 @@
                      content:(NSString*)content
              completionBlock:(void (^)(NSString *postId, NSError *error))completionBlock;
 
-/** Must be local file URL, can be large file */
+/** Must be local file URL, can be large file, postId optional */
 - (void) uploadFileAtURL:(NSURL*)fileURL
+                  postId:(NSString*)postId
          completionBlock:(void (^)(NSURL *url, NSString *fileId, NSError *error))completionBlock;
 
-/** fileData must fit in memory */
+/** fileData must fit in memory, postId optional */
 - (void) uploadFileWithData:(NSData*)fileData
                    fileName:(NSString*)fileName
+                     postId:(NSString*)postId
             completionBlock:(void (^)(NSURL *url, NSString *fileId, NSError *error))completionBlock;
 
 /** Get comment stats for a specific post */

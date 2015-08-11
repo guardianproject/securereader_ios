@@ -80,7 +80,7 @@
         
         NSData *testJPG = [self generateTestJPEG];
         
-        [self.wpClient uploadFileWithData:testJPG fileName:@"test.jpg" completionBlock:^(NSURL *url, NSString *fileId, NSError *error) {
+        [self.wpClient uploadFileWithData:testJPG fileName:@"test.jpg" postId:nil completionBlock:^(NSURL *url, NSString *fileId, NSError *error) {
             NSLog(@"Uploaded image at URL: %@", url);
             XCTAssertNotNil(url);
             XCTAssertNotNil(fileId);
@@ -90,6 +90,39 @@
     }];
     self.expectation = [self expectationWithDescription:@"post image data"];
     [self waitForExpectationsWithTimeout:30 handler:^(NSError * __nullable error) {
+        if (error) {
+            NSLog(@"%@",error);
+        }
+    }];
+}
+
+- (void) testUploadImageAttachedToPost {
+    
+    [self.wpClient requestNewAccountWithNickname:@"test" completionBlock:^(NSString *username, NSString *password, NSError *error) {
+        if (error) {
+            XCTFail(@"%@", error);
+            return;
+        }
+        [self.wpClient setUsername:username password:password];
+        [self.wpClient createPostWithTitle:@"test_title" content:@"test_content" completionBlock:^(NSString *postId, NSError *error) {
+            if (error) {
+                XCTFail(@"%@", error);
+                return;
+            }
+            XCTAssertNotNil(postId);
+            NSLog(@"New post with Id: %@", postId);
+            NSData *testJPG = [self generateTestJPEG];
+            [self.wpClient uploadFileWithData:testJPG fileName:@"test.jpg" postId:postId completionBlock:^(NSURL *url, NSString *fileId, NSError *error) {
+                NSLog(@"Uploaded image at URL attached to postId %@: %@", postId, url);
+                XCTAssertNotNil(url);
+                XCTAssertNotNil(fileId);
+                XCTAssertNil(error);
+                [self.expectation fulfill];
+            }];
+        }];
+    }];
+    self.expectation = [self expectationWithDescription:@"test image attached to post creation"];
+    [self waitForExpectationsWithTimeout:20 handler:^(NSError *error) {
         if (error) {
             NSLog(@"%@",error);
         }
@@ -109,7 +142,7 @@
         BOOL success = [testJPG writeToFile:tmpFilePath atomically:YES];
         XCTAssertTrue(success, @"error writing file");
         NSURL *fileURL = [NSURL fileURLWithPath:tmpFilePath];
-        [self.wpClient uploadFileAtURL:fileURL completionBlock:^(NSURL *url, NSString *fileId, NSError *error) {
+        [self.wpClient uploadFileAtURL:fileURL postId:nil completionBlock:^(NSURL *url, NSString *fileId, NSError *error) {
             NSLog(@"Uploaded image at URL: %@", url);
             XCTAssertNotNil(url);
             XCTAssertNotNil(fileId);
@@ -134,7 +167,7 @@
         [self.wpClient setUsername:username password:password];
         
         NSURL *fileURL = [NSURL URLWithString:@"https://guardianproject.info/wp-content/uploads/2014/05/feature.jpg"];
-        [self.wpClient uploadFileAtURL:fileURL completionBlock:^(NSURL *url, NSString *fileId, NSError *error) {
+        [self.wpClient uploadFileAtURL:fileURL postId:nil completionBlock:^(NSURL *url, NSString *fileId, NSError *error) {
             NSLog(@"Uploaded image at URL: %@", url);
             XCTAssertNotNil(url);
             XCTAssertNotNil(fileId);
