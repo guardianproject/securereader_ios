@@ -243,6 +243,7 @@
             [[SCRAppDelegate sharedAppDelegate].fileManager dataForPath:mediaItem.localPath completionQueue:dispatch_get_main_queue() completion:^(NSData *data, NSError *error) {
                 UIImage *image = [UIImage imageWithData:data];
                 UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+                imageView.contentMode = UIViewContentModeScaleAspectFill;
                 completion(imageView,error);
             }];
             
@@ -252,6 +253,7 @@
             UIImage *circleImage = [UIImage imageNamed:@"ic_play_circle_filled_white_36px"];
             UIImageView *playImageView = [[UIImageView alloc] initWithImage:circleImage];
             UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+            imageView.contentMode = UIViewContentModeScaleAspectFill;
             [imageView addSubview:playImageView];
             [playImageView autoCenterInSuperview];
             completion(imageView,nil);
@@ -260,7 +262,9 @@
             
             UIImage *image = [UIImage imageNamed:@"ic_play_circle_filled_white_36px"];
             UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
+            imageView.contentMode = UIViewContentModeScaleAspectFill;
             UIImageView *playImageView = [[UIImageView alloc] initWithImage:image];
+            
             [imageView addSubview:playImageView];
             [playImageView autoCenterInSuperview];
             imageView.backgroundColor = [UIColor lightGrayColor];

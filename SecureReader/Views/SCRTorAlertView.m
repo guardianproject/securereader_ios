@@ -19,7 +19,7 @@
 + (instancetype)showTorAlertView
 {
     //Need to make sure new comments are posted through tor
-    SCRTorAlertView *alertView = [[self alloc] initWithTitle:NSLocalizedString(@"Connect to Tor to post.", @"Title for alertview telling user to connect to Tor in order to post")  message:nil delegate:nil cancelButtonTitle:NSLocalizedString(@"Posts.Draft.Delete.Cancel", @"Cancel String") otherButtonTitles:NSLocalizedString(@"Connet Tor", @"Button title to turn Tor on"), nil];
+    SCRTorAlertView *alertView = [[self alloc] initWithTitle:NSLocalizedString(@"Connect to Tor to post.", @"Title for alertview telling user to connect to Tor in order to post")  message:nil delegate:nil cancelButtonTitle:NSLocalizedString(@"Posts.Draft.Delete.Cancel", @"Cancel String") otherButtonTitles:NSLocalizedString(@"Connect Tor", @"Button title to turn Tor on"), nil];
     [alertView showWithCompletion:^(UIAlertView *alertView, NSInteger buttonIndex) {
         if (alertView.cancelButtonIndex != buttonIndex) {
             [SCRSettings setUseTor:YES];
