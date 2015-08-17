@@ -92,4 +92,16 @@
     [transaction removeObjectForKey:feed.yapKey inCollection:[[feed class] yapCollection]];
 }
 
+- (void)parseOPMLOutlineElement:(ONOXMLElement *)element
+{
+    [super parseOPMLOutlineElement:element];
+    if ([element.tag isEqualToString:@"outline"]) {
+        NSString *subscribe = [element valueForAttribute:@"subscribe"];
+        if (subscribe.length > 0 && [@"false" isEqualToString:[subscribe lowercaseString]])
+            _subscribed = NO;
+        else
+            _subscribed = YES;
+    }
+}
+
 @end
