@@ -88,7 +88,7 @@
 			<key>Key</key>
 			<string>downloadMedia</string>
 			<key>DefaultValue</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>Type</key>
