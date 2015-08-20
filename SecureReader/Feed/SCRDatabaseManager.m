@@ -123,14 +123,14 @@ NSString *const kSCRSubscribedFeedsColumnName = @"kSCRSubscribedFeedsColumnName"
 }
 
 - (void) registerAllFeedItemsView {
-    YapDatabaseViewGrouping *grouping = [YapDatabaseViewGrouping withObjectBlock:^NSString *(NSString *collection, NSString *key, id object) {
+    YapDatabaseViewGrouping *grouping = [YapDatabaseViewGrouping withObjectBlock:^NSString *(YapDatabaseReadTransaction *transaction, NSString *collection, NSString *key, id object) {
         if ([object isKindOfClass:[SCRItem class]] && ![object isKindOfClass:[SCRPostItem class]] &&![object isKindOfClass:[SCRCommentItem class]]) {
             SCRItem *item = object;
             return item.yapGroup;
         }
         return nil;
     }];
-    YapDatabaseViewSorting *sorting = [YapDatabaseViewSorting withObjectBlock:^NSComparisonResult(NSString *group, NSString *collection1, NSString *key1, SCRItem *item1, NSString *collection2, NSString *key2, SCRItem *item2) {
+    YapDatabaseViewSorting *sorting = [YapDatabaseViewSorting withObjectBlock:^NSComparisonResult(YapDatabaseReadTransaction *transaction, NSString *group, NSString *collection1, NSString *key1, SCRItem *item1, NSString *collection2, NSString *key2, SCRItem *item2) {
         return [item2.publicationDate compare:item1.publicationDate];
     }];
     YapDatabaseView *databaseView = [[YapDatabaseView alloc] initWithGrouping:grouping sorting:sorting versionTag:@"4" options:nil];
@@ -140,14 +140,14 @@ NSString *const kSCRSubscribedFeedsColumnName = @"kSCRSubscribedFeedsColumnName"
 }
 
 - (void) registerAllFeedItemsUngroupedView {
-    YapDatabaseViewGrouping *grouping = [YapDatabaseViewGrouping withObjectBlock:^NSString *(NSString *collection, NSString *key, id object) {
+    YapDatabaseViewGrouping *grouping = [YapDatabaseViewGrouping withObjectBlock:^NSString *(YapDatabaseReadTransaction *transaction, NSString *collection, NSString *key, id object) {
         if ([object isKindOfClass:[SCRItem class]] && ![object isKindOfClass:[SCRPostItem class]]
             && ![object isKindOfClass:[SCRCommentItem class]]) {
             return @"All";
         }
         return nil;
     }];
-    YapDatabaseViewSorting *sorting = [YapDatabaseViewSorting withObjectBlock:^NSComparisonResult(NSString *group, NSString *collection1, NSString *key1, SCRItem *item1, NSString *collection2, NSString *key2, SCRItem *item2) {
+    YapDatabaseViewSorting *sorting = [YapDatabaseViewSorting withObjectBlock:^NSComparisonResult(YapDatabaseReadTransaction *transaction, NSString *group, NSString *collection1, NSString *key1, SCRItem *item1, NSString *collection2, NSString *key2, SCRItem *item2) {
         return [item2.publicationDate compare:item1.publicationDate];
     }];
     YapDatabaseView *databaseView = [[YapDatabaseView alloc] initWithGrouping:grouping sorting:sorting versionTag:@"2" options:nil];
@@ -156,7 +156,7 @@ NSString *const kSCRSubscribedFeedsColumnName = @"kSCRSubscribedFeedsColumnName"
 
 - (void) registerFavoriteFeedItemsView {
     
-    YapDatabaseViewFiltering *filtering = [YapDatabaseViewFiltering withObjectBlock:^BOOL(NSString *group, NSString *collection, NSString *key, id object) {
+    YapDatabaseViewFiltering *filtering = [YapDatabaseViewFiltering withObjectBlock:^BOOL(YapDatabaseReadTransaction *transaction, NSString *group, NSString *collection, NSString *key, id object) {
         SCRItem *item = object;
         if (item.isFavorite) {
             return YES;
@@ -172,7 +172,7 @@ NSString *const kSCRSubscribedFeedsColumnName = @"kSCRSubscribedFeedsColumnName"
 }
 
 - (void) registerReceivedFeedItemsView {
-    YapDatabaseViewFiltering *filtering = [YapDatabaseViewFiltering withObjectBlock:^BOOL(NSString *group, NSString *collection, NSString *key, id object) {
+    YapDatabaseViewFiltering *filtering = [YapDatabaseViewFiltering withObjectBlock:^BOOL(YapDatabaseReadTransaction *transaction, NSString *group, NSString *collection, NSString *key, id object) {
         SCRItem *item = object;
         if (item.isReceived) {
             return YES;
@@ -186,21 +186,21 @@ NSString *const kSCRSubscribedFeedsColumnName = @"kSCRSubscribedFeedsColumnName"
 }
 
 - (void) registerAllFeedsView {
-    YapDatabaseViewGrouping *grouping = [YapDatabaseViewGrouping withObjectBlock:^NSString *(NSString *collection, NSString *key, id object) {
+    YapDatabaseViewGrouping *grouping = [YapDatabaseViewGrouping withObjectBlock:^NSString *(YapDatabaseReadTransaction *transaction, NSString *collection, NSString *key, id object) {
         if ([object isKindOfClass:[SCRFeed class]]) {
             SCRFeed *item = object;
             return item.yapGroup;
         }
         return nil;
     }];
-    YapDatabaseViewSorting *sorting = [YapDatabaseViewSorting withObjectBlock:^NSComparisonResult(NSString *group, NSString *collection1, NSString *key1, SCRFeed *item1, NSString *collection2, NSString *key2, SCRFeed *item2) {
+    YapDatabaseViewSorting *sorting = [YapDatabaseViewSorting withObjectBlock:^NSComparisonResult(YapDatabaseReadTransaction *transaction, NSString *group, NSString *collection1, NSString *key1, SCRFeed *item1, NSString *collection2, NSString *key2, SCRFeed *item2) {
         return [item1.title compare:item2.title];
     }];
     YapDatabaseView *databaseView = [[YapDatabaseView alloc] initWithGrouping:grouping sorting:sorting versionTag:@"1" options:nil];
     
     [self.database registerExtension:databaseView withName:kSCRAllFeedsViewName connection:self.registrationConnection];
         
-    YapDatabaseViewFiltering *filtering = [YapDatabaseViewFiltering withObjectBlock:^BOOL (NSString *group, NSString *collection, NSString *key, id object)
+    YapDatabaseViewFiltering *filtering = [YapDatabaseViewFiltering withObjectBlock:^BOOL (YapDatabaseReadTransaction *transaction, NSString *group, NSString *collection, NSString *key, id object)
     {
         return [(SCRFeed *)object subscribed];
     }];
@@ -209,7 +209,7 @@ NSString *const kSCRSubscribedFeedsColumnName = @"kSCRSubscribedFeedsColumnName"
     
     [self.database registerExtension:subscribedFeedsView withName:kSCRSubscribedFeedsViewName connection:self.registrationConnection];
     
-    filtering = [YapDatabaseViewFiltering withObjectBlock:^BOOL (NSString *group, NSString *collection, NSString *key, id object)
+    filtering = [YapDatabaseViewFiltering withObjectBlock:^BOOL (YapDatabaseReadTransaction *transaction, NSString *group, NSString *collection, NSString *key, id object)
                                            {
                                                return ![(SCRFeed *)object subscribed];
                                            }];
@@ -246,14 +246,14 @@ NSString *const kSCRSubscribedFeedsColumnName = @"kSCRSubscribedFeedsColumnName"
 }
 
 - (void) registerAllPostItemsView {
-    YapDatabaseViewGrouping *grouping = [YapDatabaseViewGrouping withObjectBlock:^NSString *(NSString *collection, NSString *key, id object) {
+    YapDatabaseViewGrouping *grouping = [YapDatabaseViewGrouping withObjectBlock:^NSString *(YapDatabaseReadTransaction *transaction, NSString *collection, NSString *key, id object) {
         if ([object isKindOfClass:[SCRPostItem class]]) {
             SCRPostItem *item = object;
             return item.yapGroup;
         }
         return nil;
     }];
-    YapDatabaseViewSorting *sorting = [YapDatabaseViewSorting withObjectBlock:^NSComparisonResult(NSString *group, NSString *collection1, NSString *key1, SCRPostItem *item1, NSString *collection2, NSString *key2, SCRPostItem *item2) {
+    YapDatabaseViewSorting *sorting = [YapDatabaseViewSorting withObjectBlock:^NSComparisonResult(YapDatabaseReadTransaction *transaction, NSString *group, NSString *collection1, NSString *key1, SCRPostItem *item1, NSString *collection2, NSString *key2, SCRPostItem *item2) {
         return [item2.lastEdited compare:item1.lastEdited];
     }];
     YapDatabaseView *databaseView = [[YapDatabaseView alloc] initWithGrouping:grouping sorting:sorting versionTag:@"1" options:nil];
