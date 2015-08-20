@@ -25,8 +25,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.cellDisplayPhotos setAccessoryType:([SCRSettings downloadMedia] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone)];
-    
     // Set version number label
     NSString * version = [[NSBundle mainBundle] objectForInfoDictionaryKey: @"CFBundleShortVersionString"];
     NSString * build = [[NSBundle mainBundle] objectForInfoDictionaryKey: (NSString *)kCFBundleVersionKey];
@@ -113,12 +111,7 @@
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if ([tableView indexPathForCell:self.cellDisplayPhotos] == indexPath)
-    {
-        [SCRSettings setDownloadMedia:![SCRSettings downloadMedia]];
-        [self.cellDisplayPhotos setAccessoryType:([SCRSettings downloadMedia] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone)];
-    }
-    else if ([tableView indexPathForCell:self.cellClearAppData] == indexPath)
+    if ([[tableView indexPathForCell:self.cellClearAppData] compare:indexPath] == NSOrderedSame)
     {
         [self clearAppData];
     }
