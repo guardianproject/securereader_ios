@@ -68,6 +68,15 @@
     [self updateCurrentView];
 }
 
+- (BOOL)isFeedCommentable:(SCRFeed *)feed
+{
+    static NSArray *feedsWithComments = nil;
+    if (!feedsWithComments) {
+        feedsWithComments = @[@"https://securereader.guardianproject.info/wordpress/?feed=rss2"];
+    }
+    return [feedsWithComments containsObject:[[feed xmlURL] absoluteString]];
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -85,10 +94,6 @@
         SCRItemPageViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"fullScreenItemView"];
         [vc setItem:item];
         [vc setItemIndexPath:indexPath];
-        
-        [self updateCommentButton:item];
-        [self updateReadability:item];
-        
         [(SCRNavigationController *)self.navigationController registerScrollViewForHideBars:vc.scrollView];
         return vc;
     }
@@ -111,53 +116,63 @@
 }
 
 - (void)updateCommentButton:(SCRItem *)item{
-    if ([[item.commentsURL absoluteString] length]) {
-        self.buttonComment.hidden = NO;
-        if (item.totalCommentCount > 0) {
-            [self.buttonComment setBadge:[NSString stringWithFormat:@"%d",item.totalCommentCount]];
-        } else {
-            [self.buttonComment setBadge:nil];
-        }
+    
+    __block BOOL showCommentsButton = NO;
+    [[SCRDatabaseManager sharedInstance].readConnection asyncReadWithBlock:^(YapDatabaseReadTransaction * transaction) {
+        SCRFeed *feed = [transaction objectForKey:item.feedYapKey inCollection:[SCRFeed yapCollection]];
+        showCommentsButton = [self isFeedCommentable:feed];
+    } completionQueue:dispatch_get_main_queue() completionBlock:^(void){
         
-        SCRWordpressClient *wpClient = [SCRWordpressClient defaultClient];
-        NSString *username = [SCRSettings wordpressUsername];
-        NSString *password = [SCRSettings wordpressPassword];
-        if ([username length] && [password length]) {
-            [wpClient setUsername:username password:password];
-            //Todo: Change to only update every so often not on every button update.
-            if (item.lastCheckedCommentCount == nil || ABS([item.lastCheckedCommentCount timeIntervalSinceNow]) > 3600) {
-                [wpClient getCommentCountsForPostId:[item.commentsURL scr_wordpressPostID] completionBlock:^(NSUInteger approvedCount, NSUInteger awaitingModerationCount, NSUInteger spamCount, NSUInteger totalCommentCount, NSError *error) {
-                    __block NSString *badgeString = @"0";
-                    if (!error) {
-                        [[SCRDatabaseManager sharedInstance].readWriteConnection asyncReadWriteWithBlock:^(YapDatabaseReadWriteTransaction * transaction) {
-                            SCRItem *tempItem = [transaction objectForKey:item.yapKey inCollection:[SCRItem yapCollection]];
-                            tempItem.totalCommentCount = totalCommentCount;
-                            tempItem.lastCheckedCommentCount = [NSDate date];
-                            [tempItem saveWithTransaction:transaction];
-                        }];
-                        if (totalCommentCount > 0) {
-                            badgeString = [NSString stringWithFormat:@"%d",totalCommentCount];
-                        } else {
-                            badgeString = nil;
-                        }
-                    }
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [self.buttonComment setBadge:badgeString];
-                    });
-                }];
+        if (showCommentsButton && [[item.commentsURL absoluteString] length]) {
+            self.buttonComment.hidden = NO;
+            if (item.totalCommentCount > 0) {
+                [self.buttonComment setBadge:[NSString stringWithFormat:@"%d",item.totalCommentCount]];
+            } else {
+                [self.buttonComment setBadge:nil];
             }
             
+            SCRWordpressClient *wpClient = [SCRWordpressClient defaultClient];
+            NSString *username = [SCRSettings wordpressUsername];
+            NSString *password = [SCRSettings wordpressPassword];
+            if ([username length] && [password length]) {
+                [wpClient setUsername:username password:password];
+                //Todo: Change to only update every so often not on every button update.
+                if (item.lastCheckedCommentCount == nil || ABS([item.lastCheckedCommentCount timeIntervalSinceNow]) > 3600) {
+                    [wpClient getCommentCountsForPostId:[item.commentsURL scr_wordpressPostID] completionBlock:^(NSUInteger approvedCount, NSUInteger awaitingModerationCount, NSUInteger spamCount, NSUInteger totalCommentCount, NSError *error) {
+                        __block NSString *badgeString = @"0";
+                        if (!error) {
+                            [[SCRDatabaseManager sharedInstance].readWriteConnection asyncReadWriteWithBlock:^(YapDatabaseReadWriteTransaction * transaction) {
+                                SCRItem *tempItem = [transaction objectForKey:item.yapKey inCollection:[SCRItem yapCollection]];
+                                tempItem.totalCommentCount = totalCommentCount;
+                                tempItem.lastCheckedCommentCount = [NSDate date];
+                                [tempItem saveWithTransaction:transaction];
+                            }];
+                            if (totalCommentCount > 0) {
+                                badgeString = [NSString stringWithFormat:@"%d",totalCommentCount];
+                            } else {
+                                badgeString = nil;
+                            }
+                        }
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [self.buttonComment setBadge:badgeString];
+                        });
+                    }];
+                }
+                
+            }
+        } else {
+            self.buttonComment.hidden = YES;
         }
-    } else {
-        self.buttonComment.hidden = YES;
-    }
+    }];
 }
 
 #pragma mark - Page View Controller Delegate
 
 - (void)pageViewController:(UIPageViewController *)viewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed
 {
-    [self updateFavoriteIcon];
+    if (completed) {
+        [self updateButtonsForCurrentItem];
+    }
 }
 
 #pragma mark - Page View Controller Data Source
@@ -208,7 +223,7 @@
         [(SCRNavigationController *)self.navigationController registerScrollViewForHideBars:initialViewController.scrollView];
         NSArray *viewControllers = [NSArray arrayWithObject:initialViewController];
         [pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
-        [self updateFavoriteIcon];
+        [self updateButtonsForCurrentItem];
     }
 }
 
@@ -262,7 +277,7 @@
         SCRItem *item = itemPage.item;
         [[SCRAppDelegate sharedAppDelegate] markItem:item asFavorite:![item isFavorite]];
     }
-    [self updateFavoriteIcon];
+    [self updateButtonsForCurrentItem];
 }
 
 - (IBAction)shareItem:(id)sender
@@ -342,7 +357,7 @@
     [SCRSettings setFontSizeAdjustment:self.textSizeSlider.value];
 }
 
-- (void)updateFavoriteIcon
+- (void)updateButtonsForCurrentItem
 {
     SCRItemPageViewController *itemPage = [[self.pageViewController viewControllers] objectAtIndex:0];
     if (itemPage != nil)
@@ -351,10 +366,14 @@
             [self.buttonFavorite setTintColor:self.favoriteButtonSelectedTintColor];
         else
             [self.buttonFavorite setTintColor:self.favoriteButtonDefaultTintColor];
+        [self updateCommentButton:itemPage.item];
+        [self updateReadability:itemPage.item];
     }
     else
     {
         [self.buttonFavorite setTintColor:self.favoriteButtonDefaultTintColor];
+        self.buttonComment.hidden = YES;
+        [self.readabilitySegmentedControl setSelectedSegmentIndex:0];
     }
 }
 
