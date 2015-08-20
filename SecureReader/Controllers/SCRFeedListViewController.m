@@ -74,6 +74,9 @@
     // Hide empty rows at end of table
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.searchDisplayController.searchResultsTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+
+    // Prevent search bar from using black tint
+    self.searchBar.backgroundImage = [[UIImage alloc] init];
 }
 
 - (void) viewDidAppear:(BOOL)animated {
