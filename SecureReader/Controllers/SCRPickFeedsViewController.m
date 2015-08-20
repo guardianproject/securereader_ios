@@ -50,6 +50,12 @@
         self.feeds = feeds;
         [self processFeeds:feeds];
     } completionQueue:dispatch_get_main_queue()];
+    
+    [self setNeedsStatusBarAppearanceUpdate];
+}
+
+- (UIStatusBarStyle) preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
 }
 
 - (BOOL) shouldPerformSegueWithIdentifier:(nonnull NSString *)identifier sender:(nullable id)sender {

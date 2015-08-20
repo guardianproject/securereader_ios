@@ -24,6 +24,11 @@
     [super viewDidLoad];
     [self.progressTor setHidden:YES];
     [self.cancelTorButton setHidden:YES];
+    [self setNeedsStatusBarAppearanceUpdate];
+}
+
+- (UIStatusBarStyle) preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
 }
 
 - (void)viewWillAppear:(BOOL)animated

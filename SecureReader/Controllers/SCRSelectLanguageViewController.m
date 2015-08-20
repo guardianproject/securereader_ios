@@ -54,6 +54,11 @@
     UITapGestureRecognizer *tapGesture =
     [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(selectLanguageButtonClicked:)];
     [labelCurrentLanguage addGestureRecognizer:tapGesture];
+    [self setNeedsStatusBarAppearanceUpdate];
+}
+
+- (UIStatusBarStyle) preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
 }
 
 - (void)viewWillAppear:(BOOL)animated
