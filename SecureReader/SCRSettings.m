@@ -73,7 +73,7 @@ NSString * const kSCRUseComplexPassphraseKey = @"useComplexPassphrase";
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     if ([userDefaults objectForKey:kSCRArticleExpirationKey] == nil)
-        return 60 * 60 * 24 * 30;
+        return 60 * 60 * 24 * 7;
     return [userDefaults doubleForKey:kSCRArticleExpirationKey];
 }
 
