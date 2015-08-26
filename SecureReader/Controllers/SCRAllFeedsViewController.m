@@ -15,6 +15,7 @@
 #import <KVOController/FBKVOController.h>
 #import "MRCircularProgressView.h"
 #import "MRActivityIndicatorView.h"
+#import "SCRSettings.h"
 
 static void * kSCRAllFeedsViewControllerContext = &kSCRAllFeedsViewControllerContext;
 
@@ -125,7 +126,7 @@ static void * kSCRAllFeedsViewControllerContext = &kSCRAllFeedsViewControllerCon
 
 - (void)updateHeaderWithTorStatus:(CPAStatus)status
 {
-    if (status == CPAStatusConnecting) {
+    if (status == CPAStatusConnecting && [SCRSettings useTor]) {
         self.notificationsView = [[SCRNotificationsView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 33)];
         self.notificationsView.backgroundColor = [SCRTheme torColor];
         self.notificationsView.textLabel.text = NSLocalizedString(@"Tor starting", @"Label for alert for when tor is starting");
