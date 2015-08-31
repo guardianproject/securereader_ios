@@ -12,6 +12,8 @@
 		632A10831ACF528500E05075 /* SCRNetworkFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 632A10821ACF528500E05075 /* SCRNetworkFetcher.m */; };
 		6335E2FD1B548FBA00836705 /* SCRCommentItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6335E2FC1B548FBA00836705 /* SCRCommentItem.m */; };
 		6335E2FF1B549BD500836705 /* comments.xml in Resources */ = {isa = PBXBuildFile; fileRef = 6335E2FE1B549BD400836705 /* comments.xml */; };
+		633A3FE01B94DB2F006E9731 /* SCRReadabilityScoreFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 633A3FDF1B94DB2F006E9731 /* SCRReadabilityScoreFetcher.m */; };
+		633A3FE21B94E4B4006E9731 /* ReadabilityScoreTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 633A3FE11B94E4B4006E9731 /* ReadabilityScoreTest.m */; };
 		633AB7361A9FE8E600A0F3F9 /* SCRMediaItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 633AB7351A9FE8E600A0F3F9 /* SCRMediaItem.m */; };
 		633AB7391A9FE9A800A0F3F9 /* SCRMediaFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 633AB7381A9FE9A800A0F3F9 /* SCRMediaFetcher.m */; };
 		633AB73B1A9FFCEA00A0F3F9 /* SecureReaderDownloadTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 633AB73A1A9FFCEA00A0F3F9 /* SecureReaderDownloadTests.m */; };
@@ -168,6 +170,9 @@
 		6335E2FB1B548FBA00836705 /* SCRCommentItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRCommentItem.h; sourceTree = "<group>"; };
 		6335E2FC1B548FBA00836705 /* SCRCommentItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRCommentItem.m; sourceTree = "<group>"; };
 		6335E2FE1B549BD400836705 /* comments.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = comments.xml; path = "Test Assets/comments.xml"; sourceTree = "<group>"; };
+		633A3FDE1B94DB2F006E9731 /* SCRReadabilityScoreFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRReadabilityScoreFetcher.h; sourceTree = "<group>"; };
+		633A3FDF1B94DB2F006E9731 /* SCRReadabilityScoreFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRReadabilityScoreFetcher.m; sourceTree = "<group>"; };
+		633A3FE11B94E4B4006E9731 /* ReadabilityScoreTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReadabilityScoreTest.m; sourceTree = "<group>"; };
 		633AB7341A9FE8E600A0F3F9 /* SCRMediaItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRMediaItem.h; sourceTree = "<group>"; };
 		633AB7351A9FE8E600A0F3F9 /* SCRMediaItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRMediaItem.m; sourceTree = "<group>"; };
 		633AB7371A9FE9A800A0F3F9 /* SCRMediaFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRMediaFetcher.h; sourceTree = "<group>"; };
@@ -452,6 +457,8 @@
 				6388E9711B2F68FF00D556E6 /* SCRHTMLFetcher.m */,
 				926599061AEFAE25009357AD /* SCRMediaFetcherWatcher.h */,
 				926599071AEFAE25009357AD /* SCRMediaFetcherWatcher.m */,
+				633A3FDE1B94DB2F006E9731 /* SCRReadabilityScoreFetcher.h */,
+				633A3FDF1B94DB2F006E9731 /* SCRReadabilityScoreFetcher.m */,
 			);
 			name = "Network Operations";
 			sourceTree = "<group>";
@@ -649,6 +656,7 @@
 				63775E901AB0F2CB006CE553 /* SecureReaderYapTests.m */,
 				633AB73A1A9FFCEA00A0F3F9 /* SecureReaderDownloadTests.m */,
 				63775E8A1AAF9BE4006CE553 /* SecureReaderMediaServerTest.m */,
+				633A3FE11B94E4B4006E9731 /* ReadabilityScoreTest.m */,
 				63775E871AAF9602006CE553 /* Test Assets */,
 				929EEF6719F4EB100020BD75 /* Supporting Files */,
 			);
@@ -1126,6 +1134,7 @@
 				92F040A21B43DA1D00A6C3D8 /* SCRButton.m in Sources */,
 				92E7B96C1A4186D60038DBCE /* SCRItemViewControllerSegue.m in Sources */,
 				92D169731A30A5C200A84608 /* SCRFeedListCell.m in Sources */,
+				633A3FE01B94DB2F006E9731 /* SCRReadabilityScoreFetcher.m in Sources */,
 				D98DA07D1B1F9AD800852715 /* SCRSetupTouchIDViewController.m in Sources */,
 				63BE303D1AE70ECD003799D4 /* SCRNotificationsView.m in Sources */,
 				92E7B9741A41C8E60038DBCE /* SCRReceiveShareViewController.m in Sources */,
@@ -1209,6 +1218,7 @@
 				D901FE021B3B93F200106D53 /* SCRWordpressTests.m in Sources */,
 				633AB73B1A9FFCEA00A0F3F9 /* SecureReaderDownloadTests.m in Sources */,
 				63775E8B1AAF9BE4006CE553 /* SecureReaderMediaServerTest.m in Sources */,
+				633A3FE21B94E4B4006E9731 /* ReadabilityScoreTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
