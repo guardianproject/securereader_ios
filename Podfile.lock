@@ -16,7 +16,7 @@ PODS:
   - GCDWebServer (3.2.5):
     - GCDWebServer/Core (= 3.2.5)
   - GCDWebServer/Core (3.2.5)
-  - HockeySDK-Source (3.7.2)
+  - HockeySDK-Source (3.7.3)
   - HTMLReader (0.8.1)
   - InAppSettingsKit (2.6)
   - IOCipher/common (0.1.0):
@@ -67,7 +67,7 @@ PODS:
   - MWFeedParser/NSString+HTML (1.0.1)
   - Ono (1.2.2)
   - PSTAlertController (1.1.0)
-  - PureLayout (3.0.0)
+  - PureLayout (3.0.1)
   - RSSAtomKit (0.1.1):
     - Mantle (~> 2.0)
     - Ono (~> 1.2)
@@ -92,7 +92,7 @@ PODS:
     - SSKeychain (~> 1.0)
   - VTAcknowledgementsViewController (0.14)
   - wpxmlrpc (0.8.1)
-  - YapDatabase/SQLCipher (2.7.1):
+  - YapDatabase/SQLCipher (2.7.2):
     - CocoaLumberjack (~> 2)
     - SQLCipher/fts
 
@@ -146,7 +146,7 @@ SPEC CHECKSUMS:
   DZReadability: 451e9134abd6861bc855467e01c7b05680734d4f
   FormatterKit: bddde83e054edf9d9ee14f9de3b3a5103db256f4
   GCDWebServer: d0e1b23785e3dfd6c87601323d0f7cae059aab18
-  HockeySDK-Source: 8ac00a931e96c50dae524e3b0626c66adb5855cd
+  HockeySDK-Source: 2ed30df0d39d9ffe5aeed4deda8000a20fdcce54
   HTMLReader: 9de5a559dc3c72f90ff794ac00a66ab990b4d0d2
   InAppSettingsKit: cc56d3ec45f11352a16d5b210da8a3fa1b9d05ed
   IOCipher: 2bcc56103fbdd9cd9139a5b030ebb97ed6fbc4b9
@@ -159,8 +159,8 @@ SPEC CHECKSUMS:
   MRProgress: f4cfe862082418e8f542f077772283f425d6c699
   MWFeedParser: 2cf646014c1baf6ad1b08c480b40a08180079247
   Ono: 80b1c686777d3f6d5d5ce6fcac8a74afef4ca197
-  PSTAlertController: cb21afcfa76c3229feec7db044afd4f60dab5892
-  PureLayout: 270dfee2236f697ab1d5e2771c2e5c248495fa0d
+  PSTAlertController: 5de0cc590bfdb26730c57e93b953f09f44d3b94d
+  PureLayout: f35f5384c9c4e4479df041dbe33ad7577b71ddfb
   RSSAtomKit: 4c57701c961e044555e793283455b39e44ceeb9f
   SOCKit: c7376ac262bea9115b8f749358f762522a47d392
   SQLCipher: c44fcca49c31483c2489cfb79aa7a69407f3794a
@@ -172,6 +172,6 @@ SPEC CHECKSUMS:
   VENTouchLock: f3145d6fbff243d6692dfb1107b88db06dc216c9
   VTAcknowledgementsViewController: 11a869dd69598a852f12699aeaf36e2589d3fc1b
   wpxmlrpc: bd391dab54e9bdceb5d1de23d161ecf1ba80f0e0
-  YapDatabase: e9ff9a189e99268a331575411e8462e4c6df2bc3
+  YapDatabase: bcf13bd764ab4961fb48bef937becf964e50063d
 
 COCOAPODS: 0.38.2
