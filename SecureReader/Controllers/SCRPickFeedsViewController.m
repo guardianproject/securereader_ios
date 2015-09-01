@@ -168,13 +168,15 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 100;
+    return 91;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     SCRFeedListCategoryCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellFeedCategory"];
     cell.titleView.text = [self tableView:tableView titleForHeaderInSection:section];
+    [cell setNeedsUpdateConstraints];
+    [cell updateConstraintsIfNeeded];
     [cell setNeedsLayout];
     [cell layoutIfNeeded];
     
@@ -216,7 +218,7 @@
     if (url != nil)
     {
         SVGRenderer *renderer = [[SVGRenderer alloc] initWithContentsOfURL:url];
-        UIImage *image = [self render:renderer asImageWithSize:cell.catImageView.bounds.size andScale:1.0];
+        UIImage *image = [self render:renderer asImageWithSize:cell.catImageView.frame.size andScale:1.0f];
         
         UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
         
@@ -231,7 +233,7 @@
         frame.size.width = image.size.width;
         imageView.frame = frame;
 
-        UIColor *color = [self getPixelColorAtTopLeft:imageView image:image];
+        UIColor *color = [self getColorForPixel:CGPointMake(0, 5) inImage:image];
         if (color != nil)
         {
             [cell.catImageView setBackgroundColor:color];
@@ -295,10 +297,10 @@
     [self.tableView reloadData];
 }
 
-- (UIColor *)getPixelColorAtTopLeft:(UIView *)view image:(UIImage *)image{
+- (UIColor *)getColorForPixel:(CGPoint)pt inImage:(UIImage *)image{
     
-    CGFloat width = view.frame.size.width;
-    CGFloat height = view.frame.size.height;
+    CGFloat width = image.size.width;
+    CGFloat height = image.size.height;
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
     
     size_t bitsPerComponent = 8;
@@ -317,12 +319,14 @@
     
     CGColorSpaceRelease(colorSpace);
     
-    CGContextDrawImage(context, view.bounds, image.CGImage);
+    CGContextDrawImage(context, CGRectMake(0, 0, image.size.width, image.size.height), image.CGImage);
     
-    int alpha =  data[0];
-    int red = data[1];
-    int green = data[2];
-    int blue = data[3];
+    int offset = pt.y * bytesPerRow + pt.y * bytesPerPixel;
+    
+    int alpha =  data[offset+0];
+    int red = data[offset+1];
+    int green = data[offset+2];
+    int blue = data[offset+3];
     UIColor *color = [UIColor colorWithRed:(red/255.0f) green:(green/255.0f) blue:(blue/255.0f) alpha:(alpha/255.0f)];
     
     // When finished, release the context
@@ -354,6 +358,8 @@
     UIGraphicsBeginImageContextWithOptions(CGSizeMake(scaledWidth, scaleHeight), NO, scale);
     CGContextRef quartzContext = UIGraphicsGetCurrentContext();
     CGContextClearRect(quartzContext, CGRectMake(0, 0, scaledWidth, scaleHeight));
+    CGContextSetFillColorWithColor(quartzContext, [UIColor whiteColor].CGColor);
+    CGContextFillRect(quartzContext, CGRectMake(0, 0, scaledWidth, scaleHeight));
     CGContextSaveGState(quartzContext);
     CGContextTranslateCTM(quartzContext, 0, (maximumSize.height-scaleHeight)/2.0);
     CGContextScaleCTM(quartzContext, fittedScaling, fittedScaling);
