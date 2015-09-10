@@ -1,0 +1,37 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "66FFB3D248AC14F3078D8D92F6CFAFF113C07FBC",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "66FFB3D248AC14F3078D8D92F6CFAFF113C07FBC" : 0,
+    "98D05BCBC40AE5315578EEE7C186D3063CCA59C3" : 0,
+    "0667158F825A93D2AA325B5DCB5737C5DE9CB558" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "7E9CFCE2-D9FF-4A9E-8599-BD1DE6FFD87C",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "66FFB3D248AC14F3078D8D92F6CFAFF113C07FBC" : "securereader_ios",
+    "98D05BCBC40AE5315578EEE7C186D3063CCA59C3" : "securereader_ios\/Submodules\/CPAProxy\/",
+    "0667158F825A93D2AA325B5DCB5737C5DE9CB558" : "securereader_ios\/Submodules\/IOCipher\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "SecureReader",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "SecureReader.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:ChatSecure\/IOCipher-ObjC.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "0667158F825A93D2AA325B5DCB5737C5DE9CB558"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:guardianproject\/securereader_ios.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "66FFB3D248AC14F3078D8D92F6CFAFF113C07FBC"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:ursachec\/CPAProxy.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "98D05BCBC40AE5315578EEE7C186D3063CCA59C3"
+    }
+  ]
+}

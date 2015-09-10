@@ -13,11 +13,11 @@ PODS:
   - DZReadability (0.2.3):
     - HTMLReader
   - FormatterKit/TimeIntervalFormatter (1.8.0)
-  - GCDWebServer (3.2.5):
-    - GCDWebServer/Core (= 3.2.5)
-  - GCDWebServer/Core (3.2.5)
+  - GCDWebServer (3.2.6):
+    - GCDWebServer/Core (= 3.2.6)
+  - GCDWebServer/Core (3.2.6)
   - HockeySDK-Source (3.7.3)
-  - HTMLReader (0.8.1)
+  - HTMLReader (0.8.2)
   - InAppSettingsKit (2.6)
   - IOCipher/common (0.1.0):
     - libsqlfs/SQLCipher
@@ -90,7 +90,7 @@ PODS:
   - URLMock/TestHelpers (1.2.3)
   - VENTouchLock (1.11.0):
     - SSKeychain (~> 1.0)
-  - VTAcknowledgementsViewController (0.14)
+  - VTAcknowledgementsViewController (0.15)
   - wpxmlrpc (0.8.1)
   - YapDatabase/SQLCipher (2.7.2):
     - CocoaLumberjack (~> 2)
@@ -145,9 +145,9 @@ SPEC CHECKSUMS:
   CPAProxy: 9ca6809d0ee47d90ee149da033a53b911d15ab82
   DZReadability: 451e9134abd6861bc855467e01c7b05680734d4f
   FormatterKit: bddde83e054edf9d9ee14f9de3b3a5103db256f4
-  GCDWebServer: d0e1b23785e3dfd6c87601323d0f7cae059aab18
+  GCDWebServer: 2c01a7e3511812cfb3dc3945ee962973bc516b0d
   HockeySDK-Source: 2ed30df0d39d9ffe5aeed4deda8000a20fdcce54
-  HTMLReader: 9de5a559dc3c72f90ff794ac00a66ab990b4d0d2
+  HTMLReader: 2922aba4c1fff9c41aff3b20a3d5900a140b0585
   InAppSettingsKit: cc56d3ec45f11352a16d5b210da8a3fa1b9d05ed
   IOCipher: 2bcc56103fbdd9cd9139a5b030ebb97ed6fbc4b9
   JSQMessagesViewController: ca11f86fa68ca70835f05e169df9244147c1dc40
@@ -170,7 +170,7 @@ SPEC CHECKSUMS:
   SWTableViewCell: 2a94aadc9d47b2b611fa064566bf57948b95b579
   URLMock: 5d14a89942559f7948793d2f9aaffc25a6af2166
   VENTouchLock: f3145d6fbff243d6692dfb1107b88db06dc216c9
-  VTAcknowledgementsViewController: 11a869dd69598a852f12699aeaf36e2589d3fc1b
+  VTAcknowledgementsViewController: 575f5841fb47b7d9c852ccb406104ea68de07b21
   wpxmlrpc: bd391dab54e9bdceb5d1de23d161ecf1ba80f0e0
   YapDatabase: bcf13bd764ab4961fb48bef937becf964e50063d
 
