@@ -154,8 +154,19 @@ static NSString* SCRGetMimeTypeForExtension(NSString* extension) {
     }];
 }
 
+
+
 - (void) createPostWithTitle:(NSString*)title
                      content:(NSString*)content
+             completionBlock:(void (^)(NSString *postId, NSError *error))completionBlock {
+    [self createPostWithTitle:title content:content enclosureURL:nil enclosureLength:0 completionBlock:completionBlock];
+}
+
+/** Creates new post with title, content and optional image. You must call setUsername:password: first! */
+- (void) createPostWithTitle:(NSString*)title
+                     content:(NSString*)content
+                enclosureURL:(NSURL*)enclosureURL
+             enclosureLength:(NSUInteger)enclosureLength
              completionBlock:(void (^)(NSString *postId, NSError *error))completionBlock {
     NSParameterAssert(title);
     NSParameterAssert(content);
@@ -169,10 +180,18 @@ static NSString* SCRGetMimeTypeForExtension(NSString* extension) {
         return;
     }
     [self.networkOperationQueue addOperationWithBlock:^{
-        NSDictionary *postParameters = @{@"post_title": title,
+        NSMutableDictionary *postParameters = [NSMutableDictionary dictionaryWithDictionary:@{@"post_title": title,
                                          @"post_content": content,
-                                         @"post_status": @"publish"};
-        NSArray *parameters = [self buildParametersWithExtra:postParameters];
+                                         @"post_status": @"publish"}];
+        NSMutableArray *parameters = [NSMutableArray arrayWithArray:[self buildParametersWithExtra:postParameters]];
+
+        if (enclosureURL) {
+            NSString *mimeType = SCRGetMimeTypeForExtension(enclosureURL.absoluteString.pathExtension);
+            NSDictionary *enclosure = @{@"url": enclosureURL.absoluteString,
+                                        @"length": @(enclosureLength),
+                                        @"type": mimeType};
+            [parameters addObject:enclosure];
+        }
         WPXMLRPCEncoder *encoder = [[WPXMLRPCEncoder alloc] initWithMethod:@"wp.newPost" andParameters:parameters];
         NSError *error = nil;
         NSData *data = [encoder dataEncodedWithError:&error];

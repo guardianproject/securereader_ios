@@ -96,6 +96,43 @@
     }];
 }
 
+- (void) testUploadImageWithPostEnclosure {
+    [self.wpClient requestNewAccountWithNickname:@"test" completionBlock:^(NSString *username, NSString *password, NSError *error) {
+        if (error) {
+            XCTFail(@"%@", error);
+            return;
+        }
+        [self.wpClient setUsername:username password:password];
+        
+        NSData *testJPG = [self generateTestJPEG];
+        [self.wpClient uploadFileWithData:testJPG fileName:@"test.jpg" postId:nil completionBlock:^(NSURL *url, NSString *fileId, NSError *error) {
+            NSLog(@"Uploaded image at URL: %@", url);
+            XCTAssertNotNil(url);
+            XCTAssertNotNil(fileId);
+            XCTAssertNil(error);
+            
+            NSString *content = [NSString stringWithFormat:@"<a href=\"%@\">Enclosure Link</a>", url.absoluteString];
+            
+            [self.wpClient createPostWithTitle:@"Test Enclosure" content:content enclosureURL:url enclosureLength:testJPG.length completionBlock:^(NSString *postId, NSError *error) {
+                if (error) {
+                    XCTFail(@"%@", error);
+                    return;
+                }
+                XCTAssertNotNil(postId);
+                NSLog(@"New post with Id: %@", postId);
+                [self.expectation fulfill];
+            }];
+        }];
+        
+    }];
+    self.expectation = [self expectationWithDescription:@"test image enclosure post creation"];
+    [self waitForExpectationsWithTimeout:20 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"%@",error);
+        }
+    }];
+}
+
 - (void) testUploadImageAttachedToPost {
     
     [self.wpClient requestNewAccountWithNickname:@"test" completionBlock:^(NSString *username, NSString *password, NSError *error) {

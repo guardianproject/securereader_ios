@@ -38,6 +38,13 @@
                      content:(NSString*)content
              completionBlock:(void (^)(NSString *postId, NSError *error))completionBlock;
 
+/** Creates new post with title, content and enclosure (length in bytes) You must call setUsername:password: first! */
+- (void) createPostWithTitle:(NSString*)title
+                     content:(NSString*)content
+                enclosureURL:(NSURL*)enclosureURL
+             enclosureLength:(NSUInteger)enclosureLength
+             completionBlock:(void (^)(NSString *postId, NSError *error))completionBlock;
+
 /** Must be local file URL, can be large file, postId optional */
 - (void) uploadFileAtURL:(NSURL*)fileURL
                   postId:(NSString*)postId
