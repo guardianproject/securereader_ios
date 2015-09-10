@@ -13,5 +13,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *titleView;
 @property (weak, nonatomic) IBOutlet UIView *catImageView;
+@property (weak, nonatomic) IBOutlet SVGDocumentView *documentView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageWidthConstraint;
 
 @end

@@ -185,55 +185,59 @@
     if ([@"World News" isEqualToString:category])
     {
         url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"img_cat-worldnews" ofType:@"svg"]];
+        [cell.documentView setArtworkPath:@"img_cat-worldnews"];
     }
     else if ([@"National News" isEqualToString:category])
     {
         url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"img_cat-nationalnews" ofType:@"svg"]];
+        [cell.documentView setArtworkPath:@"img_cat-nationalnews"];
     }
     else if ([@"Arts & Culture" isEqualToString:category])
     {
         url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"img_cat-artsculture" ofType:@"svg"]];
+        [cell.documentView setArtworkPath:@"img_cat-artsculture"];
     }
     else if ([@"Business" isEqualToString:category])
     {
         url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"img_cat-business" ofType:@"svg"]];
+        [cell.documentView setArtworkPath:@"img_cat-business"];
     }
     else if ([@"Sports" isEqualToString:category])
     {
         url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"img_cat-sports" ofType:@"svg"]];
+        [cell.documentView setArtworkPath:@"img_cat-sports"];
     }
     else if ([@"Technology" isEqualToString:category])
     {
         url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"img_cat-technology" ofType:@"svg"]];
+        [cell.documentView setArtworkPath:@"img_cat-technology"];
     }
     else if ([@"Security" isEqualToString:category])
     {
         url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"img_cat-security" ofType:@"svg"]];
+        [cell.documentView setArtworkPath:@"img_cat-security"];
     }
     else
     {
         [cell.catImageView setBackgroundColor:self.tableView.tableHeaderView.backgroundColor];
+        [cell.documentView setDefaultColor:[UIColor clearColor]];
+        [cell.documentView setBackgroundColor:[UIColor clearColor]];
+        [cell.documentView setBeTransparent:YES];
     }
     
     if (url != nil)
     {
         SVGRenderer *renderer = [[SVGRenderer alloc] initWithContentsOfURL:url];
         UIImage *image = [self render:renderer asImageWithSize:cell.catImageView.frame.size andScale:1.0f];
-        
-        UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
-        
-        //Add image view
-        [cell.catImageView addSubview:imageView];
-        
-        //set contentMode to scale aspect to fit
-        imageView.contentMode = UIViewContentModeScaleAspectFit;
+        UIColor *color = [self getColorForPixel:CGPointMake(0, 5) inImage:image];
+
+        [cell.documentView setContentMode:UIViewContentModeScaleAspectFit];
+        [cell.documentView setDefaultColor:color];
+        [cell.documentView setBackgroundColor:[UIColor clearColor]];
+        [cell.documentView setBeTransparent:YES];
         
         //change width of frame
-        CGRect frame = imageView.frame;
-        frame.size.width = image.size.width;
-        imageView.frame = frame;
-
-        UIColor *color = [self getColorForPixel:CGPointMake(0, 5) inImage:image];
+        cell.imageWidthConstraint.constant = image.size.width;
         if (color != nil)
         {
             [cell.catImageView setBackgroundColor:color];
