@@ -217,6 +217,11 @@
         url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"img_cat-security" ofType:@"svg"]];
         [cell.documentView setArtworkPath:@"img_cat-security"];
     }
+    else if ([@"Discussion" isEqualToString:category])
+    {
+        url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"img_cat-discussion" ofType:@"svg"]];
+        [cell.documentView setArtworkPath:@"img_cat-discussion"];
+    }
     else
     {
         [cell.catImageView setBackgroundColor:self.tableView.tableHeaderView.backgroundColor];
