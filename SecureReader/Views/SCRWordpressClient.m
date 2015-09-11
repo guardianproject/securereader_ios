@@ -180,27 +180,34 @@ static NSString* SCRGetMimeTypeForExtension(NSString* extension) {
         return;
     }
     [self.networkOperationQueue addOperationWithBlock:^{
-        NSMutableDictionary *postParameters = [NSMutableDictionary dictionaryWithDictionary:@{@"post_title": title,
-                                         @"post_content": content,
-                                         @"post_status": @"publish"}];
-        NSMutableArray *parameters = [NSMutableArray arrayWithArray:[self buildParametersWithExtra:postParameters]];
+        NSMutableDictionary *postParameters = [NSMutableDictionary dictionaryWithDictionary:@{@"title": title, @"description": content}];
 
         if (enclosureURL) {
             NSString *mimeType = SCRGetMimeTypeForExtension(enclosureURL.absoluteString.pathExtension);
             NSDictionary *enclosure = @{@"url": enclosureURL.absoluteString,
                                         @"length": @(enclosureLength),
                                         @"type": mimeType};
-            [parameters addObject:enclosure];
+            [postParameters setObject:enclosure forKey:@"enclosure"];
         }
-        WPXMLRPCEncoder *encoder = [[WPXMLRPCEncoder alloc] initWithMethod:@"wp.newPost" andParameters:parameters];
+        NSMutableArray *parameters = [NSMutableArray arrayWithArray:[self buildParametersWithExtra:postParameters]];
+        [parameters addObject:@YES]; // publish = true
+        
+        WPXMLRPCEncoder *encoder = [[WPXMLRPCEncoder alloc] initWithMethod:@"metaWeblog.newPost" andParameters:parameters];
         NSError *error = nil;
         NSData *data = [encoder dataEncodedWithError:&error];
+        
         if (error) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 completionBlock(nil, error);
             });
             return;
         }
+        
+#if DEBUG
+        NSString *xmlString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSLog(@"XML-RPC: %@", xmlString);
+#endif
+        
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:self.rpcEndpoint];
         [request setHTTPMethod:@"POST"];
         [request setAllHTTPHeaderFields:@{@"Content-Type": @"text/xml"}];

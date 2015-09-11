@@ -156,11 +156,13 @@
     
     dispatch_group_t uploadGroup = dispatch_group_create();
     NSMutableArray *mediaURLs = [NSMutableArray array];
+    NSMutableArray<SCRMediaItem *> *mediaItems = [NSMutableArray array];
     dispatch_group_enter(uploadGroup);
     __block NSError *uploadError = nil;
     [[SCRDatabaseManager sharedInstance].readConnection readWithBlock:^(YapDatabaseReadTransaction * __nonnull transaction) {
         [self.item enumerateMediaItemsInTransaction:transaction block:^(SCRMediaItem *mediaItem, BOOL *stop) {
             dispatch_group_enter(uploadGroup);
+            [mediaItems addObject:mediaItem];
             NSURL *url = [mediaItem localURLWithPort:[SCRAppDelegate sharedAppDelegate].mediaServer.port];
             [wpClient uploadFileAtURL:url postId:nil completionBlock:^(NSURL *url, NSString *fileId, NSError *error) {
                 dispatch_group_leave(uploadGroup);
@@ -185,8 +187,9 @@
         
         // append uploaded images to item description
         NSMutableString *newDescription = [self.item.itemDescription mutableCopy];
+        NSString *linkString = NSLocalizedString(@"Link to Media", @"text shown for media links e.g. <a href=\"blah.jpg\">Link To Media</a>");
         [mediaURLs enumerateObjectsUsingBlock:^(NSURL *url, NSUInteger idx, BOOL * __nonnull stop) {
-            [newDescription appendFormat:@"\n<a href=\"%@\">%@</a>", url.absoluteString, url.absoluteString];
+            [newDescription appendFormat:@"\n<a href=\"%@\">%@</a>", url.absoluteString, linkString];
         }];
         
         //append tags to description
@@ -197,7 +200,17 @@
         [self.progressOverlayView setTitleLabelText:NSLocalizedString(@"Posting Story", @"Progress for posting a new story to wordpress")];
         self.progressOverlayView.mode = MRProgressOverlayViewModeIndeterminate;
         
-        [wpClient createPostWithTitle:self.item.title content:newDescription completionBlock:^(NSString *postId, NSError *error) {
+        SCRMediaItem *enclosure = [mediaItems firstObject];
+        IOCipher *iocipher = [SCRAppDelegate sharedAppDelegate].fileManager.ioCipher;
+        NSError *error = nil;
+        NSDictionary *stats = [iocipher fileAttributesAtPath:enclosure.localPath error:&error];
+        if (error) {
+            NSLog(@"Error getting file stats: %@", error);
+        }
+        NSUInteger enclosureLength = stats.fileSize;
+        NSURL *enclosureURL = [mediaURLs firstObject];
+        
+        [wpClient createPostWithTitle:self.item.title content:newDescription enclosureURL:enclosureURL enclosureLength:enclosureLength completionBlock:^(NSString *postId, NSError *error) {
             if (error) {
                 self.progressOverlayView.mode = MRProgressOverlayViewModeCross;
             } else {
