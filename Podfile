@@ -1,4 +1,5 @@
-platform :ios, '7.0'
+platform :ios, '8.0'
+# use_frameworks!     # Blocking on GCDWebServer and DZReadability dynamic framework issues
 xcodeproj 'SecureReader.xcodeproj'
 source 'https://github.com/CocoaPods/Specs.git'
 

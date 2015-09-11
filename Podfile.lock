@@ -13,9 +13,9 @@ PODS:
   - DZReadability (0.2.3):
     - HTMLReader
   - FormatterKit/TimeIntervalFormatter (1.8.0)
-  - GCDWebServer (3.2.6):
-    - GCDWebServer/Core (= 3.2.6)
-  - GCDWebServer/Core (3.2.6)
+  - GCDWebServer (3.2.7):
+    - GCDWebServer/Core (= 3.2.7)
+  - GCDWebServer/Core (3.2.7)
   - HockeySDK-Source (3.7.3)
   - HTMLReader (0.8.2)
   - InAppSettingsKit (2.6)
@@ -145,7 +145,7 @@ SPEC CHECKSUMS:
   CPAProxy: 9ca6809d0ee47d90ee149da033a53b911d15ab82
   DZReadability: 451e9134abd6861bc855467e01c7b05680734d4f
   FormatterKit: bddde83e054edf9d9ee14f9de3b3a5103db256f4
-  GCDWebServer: 2c01a7e3511812cfb3dc3945ee962973bc516b0d
+  GCDWebServer: 76a9540371d5f12f850b32ec7f555dd2d266e543
   HockeySDK-Source: 2ed30df0d39d9ffe5aeed4deda8000a20fdcce54
   HTMLReader: 2922aba4c1fff9c41aff3b20a3d5900a140b0585
   InAppSettingsKit: cc56d3ec45f11352a16d5b210da8a3fa1b9d05ed

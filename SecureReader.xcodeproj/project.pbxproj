@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3BB24D68EE03667F19CC9704 /* libPods-SecureReaderTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5735327C43C1B3AC8034225E /* libPods-SecureReaderTests.a */; };
 		63215AF71B546A7F0040A1A0 /* secureReader.xml in Resources */ = {isa = PBXBuildFile; fileRef = 63215AF61B546A7F0040A1A0 /* secureReader.xml */; };
 		632A10831ACF528500E05075 /* SCRNetworkFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 632A10821ACF528500E05075 /* SCRNetworkFetcher.m */; };
 		6335E2FD1B548FBA00836705 /* SCRCommentItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6335E2FC1B548FBA00836705 /* SCRCommentItem.m */; };
@@ -135,6 +134,7 @@
 		92E8CF8D1AD3C91D00756F9E /* SCREditTagsTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E8CF8C1AD3C91D00756F9E /* SCREditTagsTextView.m */; };
 		92ECD36B1B6A3CA4004B9788 /* SCRNoResultsTableDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 92ECD36A1B6A3CA4004B9788 /* SCRNoResultsTableDelegate.m */; };
 		92F040A21B43DA1D00A6C3D8 /* SCRButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F040A11B43DA1D00A6C3D8 /* SCRButton.m */; };
+		C54E158458245F65716F9304 /* libPods-SecureReaderTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D29550E3D7B6F20A6D478130 /* libPods-SecureReaderTests.a */; };
 		D901FE001B3B8E4C00106D53 /* SCRWordpressClient.m in Sources */ = {isa = PBXBuildFile; fileRef = D901FDFF1B3B8E4C00106D53 /* SCRWordpressClient.m */; };
 		D901FE021B3B93F200106D53 /* SCRWordpressTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D901FE011B3B93F200106D53 /* SCRWordpressTests.m */; };
 		D90F59371A19ECBE008F2DCB /* SCRFeedFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = D90F59361A19ECBE008F2DCB /* SCRFeedFetcher.m */; };
@@ -147,7 +147,7 @@
 		D9B785881B66EBC700905171 /* SCRCommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B785871B66EBC700905171 /* SCRCommentsViewController.m */; };
 		D9B7858A1B66EF8E00905171 /* Pods-acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = D9B785891B66EF8E00905171 /* Pods-acknowledgements.plist */; };
 		D9E6575F1A234363000E6301 /* SCRFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E6575E1A234363000E6301 /* SCRFeed.m */; };
-		F6AA97CBC086528EBF0FFA97 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5982780EDA69C66A355A7531 /* libPods.a */; };
+		F38A5F7B1FDD9249B6E3CAE7 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BF805D750ABB39F88743AD96 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -161,8 +161,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		5735327C43C1B3AC8034225E /* libPods-SecureReaderTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SecureReaderTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		5982780EDA69C66A355A7531 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		63215AF61B546A7F0040A1A0 /* secureReader.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = secureReader.xml; path = "Test Assets/secureReader.xml"; sourceTree = "<group>"; };
 		632A10811ACF528500E05075 /* SCRNetworkFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRNetworkFetcher.h; sourceTree = "<group>"; };
 		632A10821ACF528500E05075 /* SCRNetworkFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRNetworkFetcher.m; sourceTree = "<group>"; };
@@ -390,6 +388,8 @@
 		92F040A11B43DA1D00A6C3D8 /* SCRButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRButton.m; sourceTree = "<group>"; };
 		A21561AE6A5B97BAE0C7EADE /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		B6D79F343A572BF139F79DDE /* Pods-SecureReaderTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SecureReaderTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SecureReaderTests/Pods-SecureReaderTests.release.xcconfig"; sourceTree = "<group>"; };
+		BF805D750ABB39F88743AD96 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D29550E3D7B6F20A6D478130 /* libPods-SecureReaderTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SecureReaderTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D63F575D235A327D686329F6 /* Pods-SecureReaderTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SecureReaderTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SecureReaderTests/Pods-SecureReaderTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D901FDFE1B3B8E4C00106D53 /* SCRWordpressClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRWordpressClient.h; sourceTree = "<group>"; };
 		D901FDFF1B3B8E4C00106D53 /* SCRWordpressClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRWordpressClient.m; sourceTree = "<group>"; };
@@ -424,7 +424,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F6AA97CBC086528EBF0FFA97 /* libPods.a in Frameworks */,
+				F38A5F7B1FDD9249B6E3CAE7 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,7 +432,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3BB24D68EE03667F19CC9704 /* libPods-SecureReaderTests.a in Frameworks */,
+				C54E158458245F65716F9304 /* libPods-SecureReaderTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -503,8 +503,8 @@
 			isa = PBXGroup;
 			children = (
 				D9DCD4451A2344CA003C0522 /* CoreGraphics.framework */,
-				5982780EDA69C66A355A7531 /* libPods.a */,
-				5735327C43C1B3AC8034225E /* libPods-SecureReaderTests.a */,
+				BF805D750ABB39F88743AD96 /* libPods.a */,
+				D29550E3D7B6F20A6D478130 /* libPods-SecureReaderTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -941,7 +941,7 @@
 				TargetAttributes = {
 					929EEF4619F4EB100020BD75 = {
 						CreatedOnToolsVersion = 6.0.1;
-						DevelopmentTeam = SF3NXKQQ64;
+						DevelopmentTeam = 4T8JLQR6GR;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -1373,8 +1373,9 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = SecureReader/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "info.guardianproject.ios.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1390,8 +1391,9 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = SecureReader/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "info.guardianproject.ios.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
