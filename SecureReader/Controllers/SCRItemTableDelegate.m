@@ -71,7 +71,11 @@
             cell.sourceView.labelSource.text = [item.linkURL host];
         }
     }];
-    cell.sourceView.labelDate.text = [[NSFormatter scr_sharedIntervalFormatter] stringForTimeIntervalFromDate:[NSDate date] toDate:item.publicationDate];
+    if (item.publicationDate) {
+        cell.sourceView.labelDate.text = [[NSFormatter scr_sharedIntervalFormatter] stringForTimeIntervalFromDate:[NSDate date] toDate:item.publicationDate];
+    } else {
+        cell.sourceView.labelDate.text = nil;
+    }
     [cell.mediaCollectionView setItem:item];
     
     // If we have a filter, i.e. we are showing a single feed, show tags as well

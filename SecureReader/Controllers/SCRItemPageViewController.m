@@ -90,7 +90,11 @@
         });
     }];
     
-    self.sourceView.labelDate.text = [[NSFormatter scr_sharedIntervalFormatter] stringForTimeIntervalFromDate:[NSDate date] toDate:item.publicationDate];
+    if (item.publicationDate) {
+        self.sourceView.labelDate.text = [[NSFormatter scr_sharedIntervalFormatter] stringForTimeIntervalFromDate:[NSDate date] toDate:item.publicationDate];
+    } else {
+        self.sourceView.labelDate.text = nil;
+    }
 
     self.titleView.text =  self.item.title;
     
